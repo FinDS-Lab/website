@@ -1,0 +1,404 @@
+.serviceSection{
+    position: relative;
+}
+.factSection{
+    position: relative;
+    padding: 207px 0 197px;
+    background: url(../images/bg/2.png) no-repeat center center;
+}
+.aboutSection{
+    background: url(../images/bg/20.jpg) no-repeat right top #fafafa;
+    padding: 139px 0 154px;
+}
+.mb43{
+    margin-bottom: 43px;
+}
+.categoriesSection{
+    padding: 133px 0 146px;
+}
+.categoriesSection .secTitle{
+    margin: 0 0 80px;
+}
+.whyChooseUs{
+    position: relative;
+    padding: 146px 0 158px;
+    background: url(../images/bg/4.jpg) no-repeat left center #FFF;
+}
+.whyChooseUs .container{
+    position: relative;
+    z-index: 2;
+}
+.testimonialSection{
+    position: relative;
+    padding: 136px 0 140px;
+}
+.testimonialSection .secTitle{
+    margin: 0 0 78px;
+}
+.ctaSection{
+    position: relative;
+    background: url(../images/bg/5.jpg) no-repeat fixed center center / cover;
+    padding: 88px 0 72px;
+    overflow: hidden;
+}
+.ctaSection:after{
+    content: '';
+    width: 454px;
+    height: 440px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: url(../images/shapes/5.png) no-repeat right bottom;
+    
+    animation: move-right-bottom 4s ease-out infinite;
+}
+@keyframes move-right-bottom {
+    0% {
+        transform: translate3d(0);
+    }
+    50% {
+        transform: translate3d(50px, 50px, 0);
+    }
+    100% {
+        transform: translate3d(0);
+    }
+}
+.blogSection{
+    padding: 119px 0 123px;
+}
+.blogSection .secTitle{
+    margin: 0 0 66px;
+}
+
+.testingSection{
+    position: relative;
+    padding: 129px 0 113px;
+}
+.testingSection:after{
+    content: '';
+    width: 86.8%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #392779;
+}
+.testingSection .container{
+    position: relative;
+    z-index: 2;
+}
+
+.aboutusSection{
+    position: relative;
+    padding: 158px 0 132px;
+}
+.imgDiv2{
+    position: relative;
+}
+.imgDiv2 img{
+    max-width: 100%;
+    height: auto;
+}
+.aboutContent2 .secSubTitle3{
+    margin: 0 0 9px;
+}
+
+.reasearchSection{
+    background: url(../images/bg/7.png) no-repeat left top #f1f7fc;
+    padding: 126px 0 0;
+}
+.reasearchSection .secSubTitle3{
+    margin: 0 0 14px;
+}
+.reasearchSection .secTitle{
+    color: #392779;
+    margin: 0 0 77px;
+}
+.phoneCall3{
+    background: url(../images/bg/8.jpg) no-repeat left bottom;
+    padding: 272px 0 112px;
+}
+.mtm168px{
+    margin-top: -168px;
+}
+.factSection2{
+    position: relative;
+    padding: 122px 0 155px;
+    background: url(../images/bg/2.png) no-repeat center center;
+}
+.whyDifferentSection{
+    position: relative;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonialSection2{
+    position: relative;
+    padding: 352px 0 142px;
+    background: #f1f7fc;
+    margin: -215px 0 0;
+}
+.testimonialSection2:before{
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: url(../images/1-4.png)no-repeat scroll center center / cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.blogSection2{
+    position: relative;
+    padding: 140px 0 128px;
+}
+.blogSection2 .secTitle{
+    color: #392779;
+    margin: 0 0 52px;
+}
+
+.serviceSection2{
+    position: relative;
+    background: url(../images/bg/12.png) no-repeat right top #FFF;
+    padding: 152px 0 149px;
+}
+.serviceSection2 .secTitle2{
+    padding: 0 165px 0 0px;
+}
+.serviceSection2 .labCard{
+    margin: -1px -1px 0 0;
+}
+.serviceSection2 .secSubTitle4{
+    margin-top: 32px;
+}
+
+.whywebestSection{
+    position: relative;
+    padding: 100px 0 0;
+    background: url(../images/bg/13.jpg) no-repeat center center / cover;
+}
+.whywebestSection .secTitle2, .whywebestSection .secSubTitle4{
+    color: #FFF;
+}
+.whywebestSection .secSubTitle4{
+    margin-bottom: 22px;
+}
+.whywebestSection .secTitle2{
+    margin: 0 0 93px;
+}
+
+.factSection3{
+    position: relative;
+    padding: 125px 0;
+}
+.factSection3 .secTitle2{
+    position: relative;
+    margin: 0;
+    padding: 24px 50px 23px 0;
+}
+.factSection3 .secTitle2:after{
+    content: '';
+    width: 1px;
+    height: 100%;
+    background: #ebebeb;
+    position: absolute;
+    right: 28px;
+    top: 0;
+}
+.pdt23{
+    padding-top: 23px;
+}
+.f021{
+    margin-left: 10px;
+}
+.whoWeAreSection{
+    position: relative;
+    padding: 72px 0 57px;
+    background: url(../images/bg/14.jpg) no-repeat left top #FFF;
+    margin: 0 0 114px;
+}
+.packageSection{
+    position: relative;
+    padding: 118px 0 128px;
+    background: url(../images/bg/15.jpg) no-repeat center center / cover;
+}
+.ctaSection02{
+    position: relative;
+    padding: 0;
+    background: url(../images/bg/16.jpg) no-repeat center center / cover;
+}
+.testimonialSection3{
+    position: relative;
+    padding: 113px 0 100px;
+}
+.testimonialSection3 .secSubTitle4{
+    margin: 0 0 22px;
+}
+.testimonialSection3 .secTitle2{
+    margin: 0 0 65px;
+}
+
+.blogSection3{
+    position: relative;
+    background: #f1f7fc;
+    padding: 135px 0 136px;
+}
+.blogSection3 .secSubTitle4{
+    margin: 0 0 22px;
+}
+.blogSection3 .secTitle2{
+    margin: 0 0 76px;
+}
+
+
+.aboutusSection2{
+    padding: 147px 0 136px;
+}
+.aboutusSection2 .aboutContent2{
+    padding: 36px 0 0;
+}
+.aboutusSection2 .secSubTitle{
+    margin: 0 0 24px;
+}
+.aboutusSection2 .aboutContent2 .secTitle{
+    color: #1c1c1c;
+}
+.aboutusSection2 .listUL li{
+    color: #1c1c1c;
+}
+.aboutusSection2 .listUL li:before{
+    color: #fc3329;
+}
+.aboutusSection2 .expCounter2{
+    background: rgb(236,101,35);
+    background: linear-gradient(90deg, rgba(236,101,35,1) 0%, rgba(236,45,35,1) 100%);
+}
+.aboutusSection2 .expCounter2 span:first-child,
+.aboutusSection2 .expCounter2 span:last-child{
+    color: #FFF;
+}
+
+.aboutSkillSection{
+    background: #fafafa;
+    position: relative;
+    padding: 0;
+    margin: -194px 0 0;
+}
+.imgDiv3{
+    position: relative;
+    overflow: hidden;
+}
+.imgDiv3 img{
+    max-width: 100%;
+    height: auto;
+    background: #FFF;
+    padding-top: 35px;
+}
+.aboutSkillContent{
+    position: relative;
+    padding: 345px 0 0 5px;
+}
+.aboutSkillContent .secSubTitle{
+    margin: 0 0 17px;
+}
+.aboutSkillContent .secTitle{
+    margin: 0 0 27px;
+}
+.aboutSkillContent > p{
+    color: #1c1c1c;
+    margin: 0 100px 45px 0;
+}
+.aboutSkillContent .singleProgress > span{
+    color: #1c1c1c;
+}
+.aboutSkillContent .spParent .spInner{
+    background: #f23127;
+}
+.aboutSkillContent .singleProgress{
+    max-width: 414px;
+}
+.factSection4{
+    position: relative;
+    z-index: 2;
+}
+
+.teamSection{
+    position: relative;
+    background: #fafafa;
+    padding: 136px 0 160px;
+}
+.teamSection .secTitle{
+    margin: 0 0 67px;
+}
+
+.serviceSection3{
+    padding: 130px 0 73px;
+}
+.serviceSection3 .singleService01{
+    margin: 0 0 57px;
+}
+
+.appointmentSection{
+    position: relative;
+    padding: 115px 0 117px;
+}
+.packageSection2{
+    position: relative;
+    padding: 140px 0 157px;
+}
+.pdt40{
+    padding-top: 40px;
+}
+.mapSection{
+    padding: 125px 0 110px;
+    position: relative;
+}
+.mapSection .secSubTitle{
+    margin: 0 0 16px;
+}
+.mapSection .secTitle{
+    margin: 0 0 36px;
+}
+
+.contactFormSection{
+    background: #fafafa;
+    position: relative;
+    padding: 110px 0 117px;
+}
+.contactFormSection .secTitle{
+    margin: 0 0 50px;
+}
+.faqSection{
+    position: relative;
+    padding: 130px 0 130px;
+}
+
+.faqSection2 {
+    background: #fafafa;
+    padding: 130px 0 130px;
+}
+.teamMemberSection{
+    position: relative;
+    padding: 120px 0 90px;
+}
+.teamMemberSection .singleTeam{
+    margin: 0 0 30px;
+}
+.researchSection{
+    padding: 115px 0 100px;
+}
+.ctaSection03{
+    position: relative;
+    padding: 95px 0 92px;
+    background: url(../images/bg/21.jpg) no-repeat left top / cover;
+}
+.researchBoxSection{
+    padding: 150px 0 125px;
+    position: relative;
+}
+.gallerypage {
+    overflow: hidden;
+    position: relative;
+    padding: 120px 0;
+}

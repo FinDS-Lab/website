@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'LabFlox';
+  src:  url('../fonts/LabFlox.eot?rlnx4n');
+  src:  url('../fonts/LabFlox.eot?rlnx4n#iefix') format('embedded-opentype'),
+    url('../fonts/LabFlox.ttf?rlnx4n') format('truetype'),
+    url('../fonts/LabFlox.woff?rlnx4n') format('woff'),
+    url('../fonts/LabFlox.svg?rlnx4n#LabFlox') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="laf-"], [class*=" laf-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'LabFlox' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.laf-QQOBhd01:before {
+  content: "\e90a";
+}
+.laf-P86WG101:before {
+  content: "\e90b";
+}
+.laf-y4LP01:before {
+  content: "\e90c";
+}
+.laf-CaWRfT01:before {
+  content: "\e90d";
+}
+.laf-APYoN601:before {
+  content: "\e90e";
+}
+.laf-lHZT4N01:before {
+  content: "\e90f";
+}
+.laf-BqBcxz01:before {
+  content: "\e910";
+}
+.laf-A8AIr201:before {
+  content: "\e911";
+}
+.laf-c2XLzn01:before {
+  content: "\e912";
+}
+.laf-eJT9WW01:before {
+  content: "\e913";
+}
+.laf-rXdMT01:before {
+  content: "\e900";
+}
+.laf-F4W0Q01:before {
+  content: "\e901";
+}
+.laf-DqlwU301:before {
+  content: "\e902";
+}
+.laf-GA9M8J01:before {
+  content: "\e903";
+}
+.laf-GiBYLh01:before {
+  content: "\e904";
+}
+.laf-lHEkBa01:before {
+  content: "\e905";
+}
+.laf-MjY3z001:before {
+  content: "\e906";
+}
+.laf-VoAPSp01:before {
+  content: "\e907";
+}
+.laf-Yk7aBo01:before {
+  content: "\e908";
+}
+.laf-yzxBv601:before {
+  content: "\e909";
+}

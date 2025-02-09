@@ -1,0 +1,433 @@
+/*
+ Theme Name: Labflox
+ Theme URI: https://themewar.com/html/labflox/
+ Author: Themewar
+ Author URI: https://themeforest.net/user/themewar
+ Description: Labflox - Laboratory & Research Responsive HTML Template
+ Version: 1.0
+ License:
+ License URI:
+*/
+
+/*==================================
+[Table of contents]
+===================================
+1. Fonts
+2. Presets & Typography Settings
+3. Buttons & Links
+4. Spacing & Padding
+5. Page Banner
+6. Animation
+7. Utility
+8. Preloader
+*/
+
+/*------------------------------------------------------
+/  1. Fonts
+/------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/*------------------------------------------------------
+/  2. Presets & Typography Settings
+/------------------------------------------------------*/
+body, html{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Heebo', sans-serif;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: #666666;
+}
+.shapesBody{
+    background: url(../images/shapes/7.png) no-repeat left top;
+}
+p{
+    margin: 0 0 15px;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Roboto', sans-serif;
+    color: #1c1c1c;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 15px;
+}
+.heebo{
+    font-family: 'Heebo', sans-serif;
+}
+.roboto{
+    font-family: 'Roboto', sans-serif;
+}
+a{
+    color: #1c1c1c;
+    text-decoration: none;
+    transition: all ease 400ms;
+    -moz-transition: all ease 400ms;
+    -webkit-transition: all ease 400ms;
+}
+button, input[type="submit"]{
+    transition: all ease 400ms;
+    -moz-transition: all ease 400ms;
+    -webkit-transition: all ease 400ms;
+}
+a:hover{
+    text-decoration: none;
+    color: #fc3329;
+}
+a:focus, input:focus, select:focus, button:focus, textarea:focus{
+    outline: 0;
+    box-shadow: none;
+}
+.lab_btn{
+    font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    background: #fc3329;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.35px;
+    padding: 0 24px;
+    overflow: hidden;
+    
+    transform: perspective(1px) translateZ(0);
+    -moz-transform: perspective(1px) translateZ(0);
+    -webkit-transform: perspective(1px) translateZ(0);
+}
+.lab_btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ec6523;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.lab_btn.darkHover:before{
+    background: #1c1c1c;
+}
+.lab_btn.lightHover:before{
+    background: #FFF;
+}
+.lab_btn i{
+    font-weight: 400;
+    position: relative;
+    top: -1px;
+    margin-right: 6px;
+}
+.lab_btn span{
+    position: relative;
+    z-index: 1;
+}
+.lab_btn:hover{
+    color: #fff;
+}
+.lab_btn.lightHover:hover{
+    color: #fc3329;
+}
+.lab_btn:hover:before{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+.lab_btn_2{
+    font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 54px;
+    line-height: 54px;
+    background: #33d1cb;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -.625px;
+    padding: 0 24px;
+    min-width: 194px;
+    overflow: hidden;
+    position: relative;
+    
+    transform: perspective(1px) translateZ(0);
+    -moz-transform: perspective(1px) translateZ(0);
+    -webkit-transform: perspective(1px) translateZ(0);
+}
+.lab_btn_2:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f2c354;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.lab_btn_2:hover{
+    color: #fff;
+}
+.lab_btn_2:hover:before{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+.lab_btn_3{
+    font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    background: rgb(0,210,255);
+    background: linear-gradient(90deg, rgba(0,210,255,1) 0%, rgba(58,123,213,1) 100%);
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.35px;
+    padding: 0 24px;
+    overflow: hidden;
+    position: relative;
+    
+    transform: perspective(1px) translateZ(0);
+    -moz-transform: perspective(1px) translateZ(0);
+    -webkit-transform: perspective(1px) translateZ(0);
+}
+.lab_btn_3:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(58,123,213);
+    background: linear-gradient(90deg, rgba(58,123,213,1) 0%, rgba(0,210,255,1) 100%);
+    
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.lab_btn_3:hover{
+    color: #FFF;
+}
+.lab_btn_3:hover:before{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+.lab_btn_4{
+    font-family: 'Roboto', sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    background: rgb(249,121,0);
+    background: linear-gradient(90deg, rgba(249,121,0,1) 0%, rgba(255,200,55,1) 100%);
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.35px;
+    padding: 0 21px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    
+    transform: perspective(1px) translateZ(0);
+    -moz-transform: perspective(1px) translateZ(0);
+    -webkit-transform: perspective(1px) translateZ(0);
+}
+.lab_btn_4:hover{
+    color: #FFF;
+}
+.lab_btn_4:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(255,200,55,0);
+    background: linear-gradient(90deg, rgba(255,200,55,1) 0%, rgba(249,121,0,1) 100%);
+    border-radius: 2px;
+    
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.lab_btn_4:hover:before{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+
+/*------------------------------------------------------
+/  3. Sections Gappings
+/------------------------------------------------------*/
+.noPaddingLeft{
+    padding-left: 0 !important;
+}
+.noPadding{
+    padding: 0;
+}
+.noPaddingRight{
+    padding-right: 0;
+}
+.noMarginBottom{
+    margin-bottom: 0 !important;
+}
+.inline-flex{
+    display: inline-flex;
+}
+
+
+/*------------------------------------------------------
+/  4. Section Typography
+/------------------------------------------------------*/
+.secSubTitle{
+    color: #fc3329;
+    font-weight: 500;
+    line-height: 1;
+    font-size: 18px;
+    letter-spacing: -.45px;
+    margin: 0 0 18px;
+    padding-left: 51px;
+    position: relative;
+}
+.secSubTitle:before{
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: #fc3329;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+.secTitle{
+    font-size: 48px;
+    line-height: 60px;
+    letter-spacing: 0;
+}
+.secSubTitle2{
+    color: #fc3329;
+    font-weight: 500;
+    line-height: 1;
+    font-size: 18px;
+    letter-spacing: -.45px;
+    margin: 0 0 16px;
+    position: relative;
+}
+.secSubTitle3{
+    position: relative;
+    color: #2e2e2e;
+    font-weight: 500;
+    letter-spacing: -.45px;
+    font-size: 18px;
+    line-height: 25px;
+    margin: 0 0 12px;
+    padding: 12px 0 9px 19px;
+}
+.secSubTitle3.white{
+    color: #FFF;
+}
+.secSubTitle3 span{
+    position: relative;
+    z-index: 2;
+}
+.secSubTitle3:before{
+    content: '';
+    height: 46px;
+    width: 46px;
+    position: absolute;
+    left: -3px;
+    top: 0;
+    background: #33d1cb;
+    border-radius: 50%;
+}
+.secTitle2{
+    font-size: 38px;
+    line-height: 48px;
+    font-weight: 700;
+    color: #11469d;
+    letter-spacing: 0;
+    margin: 0 0 15px;
+}
+.secSubTitle4{
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    font-size: 16px;
+    line-height: 34px;
+    color: #687178;
+    font-weight: 500;
+    letter-spacing: -.4px;
+    padding: 0 0 11px;
+    margin: 0 0 16px;
+}
+.secSubTitle4:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 52px;
+    height: 2px;
+    background: rgb(249,121,0);
+    background: linear-gradient(90deg, rgba(249,121,0,1) 0%, rgba(255,200,55,1) 100%);
+}
+.secSubTitle4.text-center:after{
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+
+/*------------------------------------------------------
+/  5. Presets & Typography Settings
+/------------------------------------------------------*/
