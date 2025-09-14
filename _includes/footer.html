@@ -16,13 +16,15 @@
 
     <!-- Footer styles -->
     <style>
-      /* 링크 색상 */
-      #siteFooter { --link-color: rgb(172, 14, 14); }
+      * {
+        box-sizing: border-box;
+      }
 
       /* ===== 음악 플레이어 박스 ===== */
       .music-player-box {
-        width: 420px;
-        max-width: 100%;
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
         background: #f8fafc;
         border: 1px solid #e2e8f0;
         border-radius: 16px;
@@ -37,21 +39,22 @@
         align-items: center;
         gap: 8px;
         min-height: 36px;
+        width: 100%;
       }
 
       /* 버튼 그룹 */
       .button-group {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         flex-shrink: 0;
       }
 
       /* 버튼들 */
       .nav-btn {
-        width: 28px;
-        height: 28px;
-        padding: 6px;
+        width: 26px;
+        height: 26px;
+        padding: 5px;
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 50%;
@@ -60,13 +63,14 @@
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
+        flex-shrink: 0;
       }
-      .nav-btn svg { width: 14px; height: 14px; color: #64748b; }
+      .nav-btn svg { width: 13px; height: 13px; color: #64748b; }
 
       .play-btn {
-        width: 36px;
-        height: 36px;
-        padding: 8px;
+        width: 34px;
+        height: 34px;
+        padding: 7px;
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 50%;
@@ -76,8 +80,9 @@
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
+        flex-shrink: 0;
       }
-      .play-btn svg { width: 20px; height: 20px; color: #475569; }
+      .play-btn svg { width: 18px; height: 18px; color: #475569; }
 
       .nav-btn:hover, .play-btn:hover {
         background: #f1f5f9;
@@ -89,8 +94,9 @@
         flex: 1;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         min-width: 0;
+        overflow: hidden;
       }
 
       /* 시간 텍스트 */
@@ -108,7 +114,7 @@
         position: relative; 
         height: 4px; 
         flex: 1;
-        min-width: 60px;
+        min-width: 50px;
       }
       
       .progress-track {
@@ -150,16 +156,16 @@
       .progress-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background: #475569;
         border-radius: 50%;
         cursor: pointer;
       }
       
       .progress-slider::-moz-range-thumb {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background: #475569;
         border-radius: 50%;
         cursor: pointer;
@@ -170,20 +176,23 @@
       .music-info { 
         display: flex; 
         align-items: center; 
-        gap: 6px; 
+        gap: 4px; 
         overflow: hidden;
-        margin-left: 8px;
+        margin-left: 4px;
         flex-shrink: 0;
-        max-width: 140px;
+        max-width: 110px;
       }
       
-      .music-note-animation { flex-shrink: 0; }
+      .music-note-animation { 
+        flex-shrink: 0;
+        display: none; /* 공간 절약을 위해 숨김 */
+      }
       .music-note-animation svg { width: 12px; height: 12px; color: #64748b; }
 
       /* 음악 제목 */
       .music-title {
         color: rgb(214, 177, 77);
-        font-size: 11px;
+        font-size: 10px;
         font-weight: 600;
         white-space: nowrap;
         overflow: hidden;
@@ -197,11 +206,11 @@
 
       /* Marquee 효과 */
       .music-title.marquee { 
-        animation: marquee 12s linear infinite;
+        animation: marquee 10s linear infinite;
       }
       @keyframes marquee {
         0%, 25% { transform: translateX(0); }
-        50%, 75% { transform: translateX(calc(-100% + 100px)); }
+        50%, 75% { transform: translateX(calc(-100% + 90px)); }
         100% { transform: translateX(0); }
       }
       #musicPlayer:not(.playing) .music-title.marquee { animation: none; }
@@ -210,7 +219,7 @@
       .volume-controls { 
         display: flex; 
         align-items: center; 
-        gap: 6px; 
+        gap: 4px; 
         flex-shrink: 0;
       }
       
@@ -219,11 +228,12 @@
         cursor: pointer; 
         background: none; 
         border: none; 
+        flex-shrink: 0;
       }
-      .mute-btn svg { width: 14px; height: 14px; color: #64748b; }
+      .mute-btn svg { width: 13px; height: 13px; color: #64748b; }
       
       .volume-slider {
-        width: 40px;
+        width: 36px;
         height: 4px;
         background: #e2e8f0;
         border-radius: 2px;
@@ -235,16 +245,16 @@
       .volume-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
         background: #475569;
         border-radius: 50%;
         cursor: pointer;
       }
       
       .volume-slider::-moz-range-thumb {
-        width: 10px;
-        height: 10px;
+        width: 9px;
+        height: 9px;
         background: #475569;
         border-radius: 50%;
         cursor: pointer;
@@ -253,64 +263,35 @@
 
       /* 애니메이션 */
       @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-      .music-note-animation svg { animation: musicBounce 2s ease-in-out infinite; }
-      @keyframes musicBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
       #musicPlayer.playing .music-note-animation svg { animation: musicPulse 1s ease-in-out infinite; }
       @keyframes musicPulse { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.2); opacity: 1; } }
 
-      /* 링크 언더라인 */
-      .link-underline { position: relative; color: var(--link-color); transition: color .2s ease; }
-      .link-underline::after {
-        content: ""; position: absolute; left: 0; bottom: -2px; width: 100%; height: 2px; background: var(--link-color);
-        transform: scaleX(0); transform-origin: left; transition: transform .2s ease;
+      /* Footer 및 Copyright */
+      footer {
+        width: 100%;
+        padding: 20px 15px;
       }
-      .link-underline:hover::after { transform: scaleX(1); }
 
-      /* Back to Top 버튼 */
-      #btnTop { opacity: 0; transform: translateY(6px); transition: all .2s ease; z-index: 40; }
-      #btnTop.is-visible { opacity: 1; transform: translateY(0); }
-
-      /* 방문자 카운터 */
-      #visitor-counter { opacity: 0; animation: fadeInUp .6s ease forwards; animation-delay: .2s; }
-      @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-      /* 2x2 레이아웃 */
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        align-items: start;
-        max-width: 900px;
+      .footer-container {
+        max-width: 600px;
         margin: 0 auto;
-      }
-
-      .copyright-row {
-        grid-column: 1 / -1;
         text-align: center;
-        margin: 0 auto;
       }
 
-      .right-section {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
+      .copyright {
+        margin-top: 16px;
+        font-size: 11px;
+        color: #94a3b8;
+        text-align: center;
       }
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
-        footer.bg-white { background-color: #0b0f19; }
-        footer .text-slate-500 { color: #cbd5e1; }
-        footer .text-slate-400 { color: #94a3b8; }
-        footer .text-slate-700 { color: #e2e8f0; }
-        #btnTop { background: rgba(15,23,42,.85); border-color: #334155; }
-        #btnTop svg { color: #e2e8f0; }
-
-        .music-player-box { background: rgba(30,41,59,.8); border-color: #334155; }
-        .nav-btn, .play-btn { background: rgba(51,65,85,.8); border-color: #475569; }
-        .nav-btn:hover, .play-btn:hover { background: rgba(71,85,105,.8); }
+        footer { background-color: #0b0f19; border-color: #1e293b; }
+        .copyright { color: #64748b; }
+        .music-player-box { background: rgba(30,41,59,.9); border-color: #334155; }
+        .nav-btn, .play-btn { background: rgba(51,65,85,.9); border-color: #475569; }
+        .nav-btn:hover, .play-btn:hover { background: rgba(71,85,105,.9); }
         .music-title { color: rgb(214, 177, 77); }
         .progress-track, .volume-slider { background: rgba(71,85,105,.6); }
         .progress-fill { background: #94a3b8; }
@@ -320,54 +301,53 @@
         .volume-slider::-moz-range-thumb { background: #cbd5e1; }
       }
 
-      /* 모바일 반응형 */
-      @media (max-width: 768px) {
-        .footer-grid {
-          grid-template-columns: 1fr;
-          gap: 1.5rem;
-        }
+      /* 모바일 반응형 - 정밀 조정 */
+      @media (max-width: 540px) {
         .music-player-box { 
-          width: 100%;
-          max-width: 480px;
-          margin: 0 auto;
-        }
-        .music-info { max-width: 120px; }
-        .music-title { font-size: 10px; }
-      }
-
-      @media (max-width: 480px) {
-        .music-player-box { 
+          max-width: calc(100% - 20px);
           padding: 10px 12px;
         }
-        .integrated-controls {
-          gap: 6px;
-        }
-        .button-group { gap: 6px; }
-        .nav-btn { width: 24px; height: 24px; padding: 5px; }
-        .nav-btn svg { width: 12px; height: 12px; }
-        .play-btn { width: 32px; height: 32px; padding: 6px; }
-        .play-btn svg { width: 18px; height: 18px; }
-        .time-text { width: 28px; font-size: 9px; }
-        .music-info { max-width: 100px; gap: 4px; }
-        .music-title { font-size: 9px; }
+        .integrated-controls { gap: 5px; }
+        .center-section { gap: 5px; }
+        .music-info { max-width: 95px; }
         .volume-slider { width: 32px; }
       }
 
-      @media (max-width: 360px) {
+      @media (max-width: 400px) {
         .music-player-box { 
           padding: 8px 10px;
+          border-radius: 12px;
         }
-        .nav-btn { width: 22px; height: 22px; padding: 4px; }
-        .play-btn { width: 28px; height: 28px; padding: 5px; }
-        .music-info { display: none; } /* 너무 작은 화면에서는 제목 숨김 */
-        .volume-controls { gap: 4px; }
+        .integrated-controls { gap: 4px; }
+        .button-group { gap: 4px; }
+        .nav-btn { width: 24px; height: 24px; padding: 4px; }
+        .nav-btn svg { width: 12px; height: 12px; }
+        .play-btn { width: 30px; height: 30px; padding: 6px; }
+        .play-btn svg { width: 16px; height: 16px; }
+        .time-text { width: 28px; font-size: 9px; }
+        .music-info { max-width: 80px; }
+        .music-title { font-size: 9px; }
         .volume-slider { width: 28px; }
+        .mute-btn svg { width: 12px; height: 12px; }
+      }
+
+      @media (max-width: 350px) {
+        .music-player-box { 
+          padding: 6px 8px;
+        }
+        .nav-btn { width: 22px; height: 22px; }
+        .play-btn { width: 28px; height: 28px; padding: 5px; }
+        .play-btn svg { width: 14px; height: 14px; }
+        .music-info { display: none; } /* 초소형 화면에서 제목 숨김 */
+        .volume-controls { gap: 3px; }
+        .volume-slider { width: 24px; }
+        .time-text { font-size: 8px; width: 26px; }
       }
 
       /* 에러 메시지 */
       .error-message {
         color: #ef4444;
-        font-size: 11px;
+        font-size: 10px;
         text-align: center;
       }
     </style>
@@ -375,119 +355,82 @@
   <body>
 
     <!-- Footer -->
-    <footer class="mt-16 border-t border-slate-200 bg-white" aria-label="Site footer" id="siteFooter">
-      <div class="max-w-7xl mx-auto px-4 py-10">
+    <footer class="border-t border-slate-200" id="siteFooter">
+      <div class="footer-container">
         
-        <div class="footer-grid">
-          
-          <!-- 음악 플레이어 -->
-          <div id="musicPlayer" style="opacity: 0; animation: fadeIn 0.5s ease forwards;">
-            <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
+        <!-- 음악 플레이어만 -->
+        <div id="musicPlayer" style="opacity: 0; animation: fadeIn 0.5s ease forwards;">
+          <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
+            
+            <!-- 통합 컨트롤 (한 줄) -->
+            <div class="integrated-controls">
               
-              <!-- 통합 컨트롤 (한 줄) -->
-              <div class="integrated-controls">
-                
-                <!-- 버튼 그룹 -->
-                <div class="button-group">
-                  <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
-                    </svg>
-                  </button>
-                  <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
-                    <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                    </svg>
-                    <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                    </svg>
-                  </button>
-                  <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- 중앙 섹션: 시간 + 진행바 + 제목 -->
-                <div class="center-section">
-                  <span id="currentTime" class="time-text">0:00</span>
-                  <div class="progress-container">
-                    <div class="progress-track"></div>
-                    <div id="progressBar" class="progress-fill"></div>
-                    <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
-                  </div>
-                  <span id="duration" class="time-text">0:00</span>
-                  
-                  <!-- 음악 제목 -->
-                  <div class="music-info">
-                    <div class="music-note-animation">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-                      </svg>
-                    </div>
-                    <span id="musicTitle" class="music-title" title="Background Music">Loading...</span>
-                  </div>
-                </div>
-
-                <!-- 볼륨 컨트롤 -->
-                <div class="volume-controls">
-                  <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
-                    <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
-                    </svg>
-                    <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                    </svg>
-                  </button>
-                  <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
-                </div>
-                
+              <!-- 버튼 그룹 -->
+              <div class="button-group">
+                <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
+                  </svg>
+                </button>
+                <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
+                  <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                  </svg>
+                  <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                  </svg>
+                </button>
+                <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
+                  </svg>
+                </button>
               </div>
+
+              <!-- 중앙 섹션: 시간 + 진행바 + 제목 -->
+              <div class="center-section">
+                <span id="currentTime" class="time-text">0:00</span>
+                <div class="progress-container">
+                  <div class="progress-track"></div>
+                  <div id="progressBar" class="progress-fill"></div>
+                  <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
+                </div>
+                <span id="duration" class="time-text">0:00</span>
+                
+                <!-- 음악 제목 -->
+                <div class="music-info">
+                  <div class="music-note-animation">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                    </svg>
+                  </div>
+                  <span id="musicTitle" class="music-title" title="Background Music">Loading...</span>
+                </div>
+              </div>
+
+              <!-- 볼륨 컨트롤 -->
+              <div class="volume-controls">
+                <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
+                  <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+                  </svg>
+                  <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                  </svg>
+                </button>
+                <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
+              </div>
+              
             </div>
           </div>
-
-          <!-- 링크들과 방문자 카운터 -->
-          <div class="right-section">
-            <p class="text-center text-sm text-slate-500 font-semibold">
-              <a class="link-underline" href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
-              <span class="mx-2 text-slate-300">|</span>
-              <a class="link-underline" href="https://www.nrf.re.kr/" target="_blank" rel="noopener">한국연구재단</a>
-            </p>
-
-            <div id="visitor-counter" class="flex items-center gap-4">
-              <div class="flex items-center gap-2 text-xs text-slate-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                  <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
-                </svg>
-                <span>오늘 방문</span>
-                <span id="todayCount" class="font-mono font-semibold text-slate-700">0</span>
-              </div>
-              <div class="flex items-center gap-2 text-xs text-slate-500">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                  <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H6a2 2 0 100 4h2a2 2 0 100-4h-.5a1 1 0 000-2H8a2 2 0 012-2h2a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"/>
-                </svg>
-                <span>전체 방문</span>
-                <span id="totalCount" class="font-mono font-semibold text-slate-700">0</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- 저작권 표시 -->
-          <p id="copyright" class="copyright-row text-xs text-slate-400">
-            Copyright © <span id="year"></span> FINDS Lab. All Rights Reserved.
-          </p>
         </div>
-      </div>
 
-      <!-- Back to Top -->
-      <button id="btnTop" class="fixed bottom-5 right-5 hidden rounded-full border border-slate-300 bg-white/90 backdrop-blur p-3 shadow-md hover:shadow-lg focus:outline-none" aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-        </svg>
-      </button>
+        <!-- 저작권 표시 -->
+        <p class="copyright">
+          Copyright © <span id="year"></span> FINDS Lab. All Rights Reserved.
+        </p>
+        
+      </div>
     </footer>
 
     <!-- YouTube IFrame API를 위한 div -->
@@ -495,7 +438,7 @@
 
     <!-- 플레이어 스크립트 -->
     <script>
-      // Google Analytics 이벤트 추적 함수
+      // Google Analytics 이벤트 추적
       function trackEvent(category, action, label) {
         if (typeof gtag !== 'undefined') {
           gtag('event', action, {
@@ -710,7 +653,6 @@
           updateVideoTitle();
           startProgressUpdate();
           
-          // Analytics 추적
           var title = document.getElementById('musicTitle').textContent;
           trackEvent('Music Player', 'play', title);
           
@@ -799,7 +741,7 @@
         var oneLine = forceSingleLine(text);
         el.textContent = oneLine;
         el.title = oneLine;
-        if (oneLine.length > 25) {
+        if (oneLine.length > 20) {
           el.classList.add('marquee');
         } else {
           el.classList.remove('marquee');
@@ -991,61 +933,6 @@
             setTimeout(function() { isDragging = false; }, 100);
           });
         });
-        
-        // 방문자 카운터 (Analytics와 연동)
-        function initVisitorCounter() {
-          var todayEl = document.getElementById('todayCount');
-          var totalEl = document.getElementById('totalCount');
-          
-          var koreaTime = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Seoul"}));
-          var today = koreaTime.toLocaleDateString('ko-KR');
-          var todayKey = 'finds_visit_' + today;
-          var totalKey = 'finds_visit_total';
-          var cooldownKey = 'finds_visit_cooldown';
-          
-          var last = parseInt(sessionStorage.getItem(cooldownKey) || '0', 10);
-          var now = Date.now();
-          var allowIncrease = (now - last) > (10 * 60 * 1000);
-          
-          if (allowIncrease) {
-            sessionStorage.setItem(cooldownKey, String(now));
-            var todayCount = parseInt(localStorage.getItem(todayKey) || '0') + 1;
-            localStorage.setItem(todayKey, String(todayCount));
-            var totalCount = parseInt(localStorage.getItem(totalKey) || '0') + 1;
-            localStorage.setItem(totalKey, String(totalCount));
-            
-            // Analytics에 방문 기록
-            trackEvent('Site Visit', 'new_visit', today);
-          }
-          
-          var todayVisits = parseInt(localStorage.getItem(todayKey) || '0');
-          var totalVisits = parseInt(localStorage.getItem(totalKey) || '0');
-          if (todayEl) todayEl.textContent = todayVisits;
-          if (totalEl) totalEl.textContent = totalVisits;
-        }
-        
-        if (window.location.hostname === 'finds-lab.github.io' || window.location.hostname === 'localhost') {
-          initVisitorCounter();
-        }
-        
-        // Back to Top
-        var btn = document.getElementById('btnTop');
-        window.addEventListener('scroll', function() {
-          if (window.scrollY > 240) {
-            btn.classList.add('is-visible');
-            btn.classList.remove('hidden');
-          } else {
-            btn.classList.remove('is-visible');
-            btn.classList.add('hidden');
-          }
-        });
-        
-        if (btn) {
-          btn.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            trackEvent('UI', 'back_to_top', 'footer');
-          });
-        }
       })();
     </script>
   </body>
