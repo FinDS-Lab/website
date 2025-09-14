@@ -4,9 +4,6 @@ title: publications
 permalink: /publications.html
 ---
 
-<!-- ===== Load Authors Data First ===== -->
-{% include authors-data.html %}
-
 <!-- ===== Gold Interactive Banner (Hearts/Clubs/Spades/Diamonds) ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
  <style>
@@ -1351,7 +1348,7 @@ function toTitleCase(str) {
 
  /* ===== Load data from _data/pubs.json ===== */
  const PUBS_RAW = {{ site.data.pubs | jsonify | default: '[]' }};
-
+ const AUTHORS = {{ site.data.authors | jsonify | default: '{}' }};
  /* ===== ADDED: small helpers for arrays/types/indexing ===== */
  function arr(v){ return Array.isArray(v) ? v : (v != null ? [v] : []); }
  function hasAny(haystack, needles){ const hs = arr(haystack); return arr(needles).some(x => hs.includes(x)); }
@@ -1854,14 +1851,13 @@ function calculatePublicationStats() {
   }
 
   /* ===== Citation Modal Functions - FIXED ===== */
-  function getAuthorName(authorId, useDomestic) {
-    const a = AUTHORS?.[authorId];
-    if (!a) return `Author ${authorId}`;
-    if (useDomestic && a.ko) return a.ko;
-    if (!useDomestic && a.en) return a.en;
-    return a.en || a.ko || `Author ${authorId}`;
-  }
-
+function getAuthorName(authorId, useDomestic) {
+  const a = AUTHORS?.[authorId];
+  if (!a) return `Author ${authorId}`;
+  if (useDomestic && a.ko) return a.ko;
+  if (!useDomestic && a.en) return a.en;
+  return a.en || a.ko || `Author ${authorId}`;
+}
   // 개선된 저자명 포맷팅 함수
   function toInitials(name) {
     const clean = (name || '').replace(/\*/g, '').trim();
