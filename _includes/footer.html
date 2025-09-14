@@ -19,30 +19,30 @@
       /* 링크 색상 */
       #siteFooter { --link-color: rgb(172, 14, 14); }
 
-      /* ===== 음악 플레이어 고정 크기 스타일 ===== */
+      /* ===== 컴팩트 음악 플레이어 스타일 ===== */
       .music-player-box {
-        width: 420px !important;
+        width: 320px !important;
         background: #f8fafc;
         border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 12px 16px;
+        border-radius: 12px;
+        padding: 8px 12px;
         box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
       }
 
-      /* 상단 컨트롤 행 - 고정 그리드 */
+      /* 상단 컨트롤 행 - 컴팩트 그리드 */
       .controls-row {
         display: grid !important;
-        grid-template-columns: 28px 36px 28px 1fr 80px !important;
-        gap: 8px;
+        grid-template-columns: 24px 32px 24px 1fr 65px !important;
+        gap: 6px;
         align-items: center;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
 
-      /* 버튼들 - 고정 크기 */
+      /* 버튼들 - 크기 축소 */
       .nav-btn {
-        width: 28px !important;
-        height: 28px !important;
-        padding: 6px;
+        width: 24px !important;
+        height: 24px !important;
+        padding: 5px;
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 50%;
@@ -52,12 +52,12 @@
         justify-content: center;
         flex-shrink: 0;
       }
-      .nav-btn svg { width: 14px !important; height: 14px !important; color: #64748b; }
+      .nav-btn svg { width: 12px !important; height: 12px !important; color: #64748b; }
 
       .play-btn {
-        width: 36px !important;
-        height: 36px !important;
-        padding: 8px;
+        width: 32px !important;
+        height: 32px !important;
+        padding: 7px;
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 50%;
@@ -68,22 +68,22 @@
         justify-content: center;
         flex-shrink: 0;
       }
-      .play-btn svg { width: 20px !important; height: 20px !important; color: #475569; }
+      .play-btn svg { width: 18px !important; height: 18px !important; color: #475569; }
 
       .nav-btn:hover, .play-btn:hover {
         background: #f1f5f9 !important;
         transform: scale(1.05);
       }
 
-      /* 음악 정보 - 가변 너비 */
-      .music-info { display: flex; align-items: center; gap: 8px; overflow: hidden; }
+      /* 음악 정보 */
+      .music-info { display: flex; align-items: center; gap: 6px; overflow: hidden; }
       .music-note-animation { flex-shrink: 0; }
-      .music-note-animation svg { width: 14px !important; height: 14px !important; color: #64748b; }
+      .music-note-animation svg { width: 12px !important; height: 12px !important; color: #64748b; }
 
-      /* 음악 제목 - 금색 고정! */
+      /* 음악 제목 - 금색 유지 */
       .music-title {
         color: rgb(214, 177, 77) !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-weight: 600 !important;
         white-space: nowrap;
         overflow: hidden;
@@ -94,23 +94,23 @@
         max-width: 100%;
       }
 
-      /* Marquee 효과 (긴 제목) */
-      .music-title.marquee { animation: marquee 12s linear infinite; }
+      /* Marquee 효과 */
+      .music-title.marquee { animation: marquee 10s linear infinite; }
       @keyframes marquee {
         0%,25% { transform: translateX(0); }
-        50%,75% { transform: translateX(calc(-100% + 150px)); }
+        50%,75% { transform: translateX(calc(-100% + 120px)); }
         100% { transform: translateX(0); }
       }
       #musicPlayer:not(.playing) .music-title.marquee { animation: none; }
       .music-title.marquee:hover { animation-play-state: paused; }
 
-      /* 볼륨 컨트롤 - 고정 너비 */
-      .volume-controls { display: flex; align-items: center; gap: 8px; width: 80px !important; flex-shrink: 0; }
-      .mute-btn { padding: 4px; cursor: pointer; flex-shrink: 0; }
-      .mute-btn svg { width: 14px !important; height: 14px !important; color: #64748b; }
+      /* 볼륨 컨트롤 - 크기 축소 */
+      .volume-controls { display: flex; align-items: center; gap: 6px; width: 65px !important; flex-shrink: 0; }
+      .mute-btn { padding: 3px; cursor: pointer; flex-shrink: 0; }
+      .mute-btn svg { width: 12px !important; height: 12px !important; color: #64748b; }
       .volume-slider {
-        width: 50px !important;
-        height: 4px;
+        width: 40px !important;
+        height: 3px;
         background: #e2e8f0;
         border-radius: 2px;
         outline: none;
@@ -118,16 +118,16 @@
         cursor: pointer;
       }
 
-      /* 진행 바 행 - 고정 그리드 */
-      .progress-row { display: grid !important; grid-template-columns: 40px 1fr 40px !important; gap: 8px; align-items: center; }
-      .time-text { font-family: monospace; font-size: 11px !important; color: #64748b; text-align: center; width: 40px !important; }
-      .progress-container { position: relative; height: 4px; width: 100%; }
+      /* 진행 바 행 - 크기 축소 */
+      .progress-row { display: grid !important; grid-template-columns: 35px 1fr 35px !important; gap: 6px; align-items: center; }
+      .time-text { font-family: monospace; font-size: 10px !important; color: #64748b; text-align: center; width: 35px !important; }
+      .progress-container { position: relative; height: 3px; width: 100%; }
       .progress-slider {
-        width: 100%; height: 4px; background: #e2e8f0; border-radius: 2px; outline: none;
+        width: 100%; height: 3px; background: #e2e8f0; border-radius: 2px; outline: none;
         -webkit-appearance: none; cursor: pointer; position: relative; z-index: 2;
       }
       .progress-fill {
-        position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 4px;
+        position: absolute; top: 50%; transform: translateY(-50%); left: 0; height: 3px;
         background: #94a3b8; border-radius: 2px; pointer-events: none; transition: width .1s; z-index: 1; width: 0%;
       }
 
@@ -135,8 +135,8 @@
       .progress-slider::-webkit-slider-thumb,
       .volume-slider::-moz-range-thumb,
       .progress-slider::-moz-range-thumb {
-        width: 12px;
-        height: 12px;
+        width: 10px;
+        height: 10px;
         background: #475569;
         border-radius: 50%;
         cursor: pointer;
@@ -182,29 +182,28 @@
         .nav-btn, .play-btn { background: rgba(51,65,85,.8) !important; border-color: #475569 !important; }
         .nav-btn:hover, .play-btn:hover { background: rgba(71,85,105,.8) !important; }
 
-        /* 다크모드에서도 제목은 금색 유지! */
+        /* 다크모드에서도 제목은 금색 유지 */
         .music-title { color: rgb(214, 177, 77) !important; }
       }
 
-      /* 모바일 - 고정 크기 유지! */
-      @media (max-width: 440px) {
-        .music-player-box { width: calc(100vw - 32px) !important; min-width: 320px !important; }
-      }
-      @media (max-width: 360px) {
-        .music-player-box { width: calc(100vw - 24px) !important; min-width: 300px !important; }
-        .controls-row { grid-template-columns: 26px 32px 26px 1fr 70px !important; }
-        .nav-btn { width: 26px !important; height: 26px !important; }
-        .play-btn { width: 32px !important; height: 32px !important; }
-        .volume-controls { width: 70px !important; }
-        .volume-slider { width: 40px !important; }
+      /* 모바일 반응형 */
+      @media (max-width: 340px) {
+        .music-player-box { width: calc(100vw - 24px) !important; min-width: 280px !important; }
+        .controls-row { grid-template-columns: 22px 28px 22px 1fr 60px !important; }
+        .nav-btn { width: 22px !important; height: 22px !important; }
+        .play-btn { width: 28px !important; height: 28px !important; }
+        .volume-controls { width: 60px !important; }
+        .volume-slider { width: 35px !important; }
+        .progress-row { grid-template-columns: 32px 1fr 32px !important; }
+        .time-text { width: 32px !important; font-size: 9px !important; }
       }
 
       /* 에러 메시지 스타일 */
       .error-message {
         color: #ef4444;
-        font-size: 12px;
+        font-size: 11px;
         text-align: center;
-        padding: 8px;
+        padding: 6px;
       }
     </style>
   </head>
@@ -217,7 +216,7 @@
       <div class="max-w-7xl mx-auto px-4 py-10">
         <div class="flex flex-col items-center gap-3">
 
-          <!-- 음악 플레이어 - 고정 크기 -->
+          <!-- 컴팩트 음악 플레이어 -->
           <div id="musicPlayer" class="mb-4" style="opacity: 0; animation: fadeIn 0.5s ease forwards;">
             <div class="music-player-box">
               <!-- 상단 컨트롤 -->
@@ -246,7 +245,7 @@
                   </svg>
                 </button>
 
-                <!-- 음악 정보 - 고정 너비 -->
+                <!-- 음악 정보 -->
                 <div class="music-info">
                   <div class="music-note-animation">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -256,7 +255,7 @@
                   <span id="musicTitle" class="music-title" title="Background Music">Loading playlist...</span>
                 </div>
 
-                <!-- 볼륨 조절 - 고정 너비 -->
+                <!-- 볼륨 조절 -->
                 <div class="volume-controls">
                   <button id="muteBtn" class="mute-btn" aria-label="Toggle mute">
                     <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -724,7 +723,7 @@
       function applyTitle(el, text) {
         el.textContent = text;
         el.title = text;
-        if (text.length > 32) el.classList.add('marquee'); 
+        if (text.length > 28) el.classList.add('marquee');  // 32 → 28 (컴팩트 버전)
         else el.classList.remove('marquee');
       }
 
