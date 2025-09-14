@@ -2813,7 +2813,8 @@ permalink: /members-director.html
 <!-- Scripts -->
 <script>
 
-  const AUTHORS = {{ site.data.authors | jsonify | default: {} }};
+  {% assign authors = site.data.authors | default: {} %}
+  {{ authors | jsonify }}
 
 
  // ===== Research Interests Toggle =====
@@ -3799,6 +3800,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
