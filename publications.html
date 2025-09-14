@@ -632,8 +632,30 @@ permalink: /publications.html
    padding: 12px 16px;
    background: #f8fafc;
    border-bottom: 1px solid #e5e7eb;
+   transition: all 0.3s ease;  /* 추가 */
  }
 
+/* 현재 연도 금색 스타일 - 새로 추가 */
+.year-head.current-year {
+  background: linear-gradient(135deg, var(--journal-gold), rgb(234, 197, 97));
+  color: #fff;
+}
+
+.year-head.current-year .year-title {
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.year-head.current-year .year-toggle {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.year-head.current-year .year-toggle:hover {
+  background: rgba(255,255,255,0.3);
+}
+ 
  .year-title {
    font-size: 18px;
    font-weight: 900;
@@ -1809,50 +1831,53 @@ function calculatePublicationStats() {
   }
 
   /* ===== Render ===== */
-  function render() {
-    const filtered = (PUBS || []).filter(matches);
-    const years = [...new Set(filtered.map(p => p.year))].sort((a, b) => b - a);
+ function render() {
+  const filtered = (PUBS || []).filter(matches);
+  const years = [...new Set(filtered.map(p => p.year))].sort((a, b) => b - a);
+  const currentYear = new Date().getFullYear(); // 현재 연도 가져오기
+  
+  if (filtered.length === 0) {
+    pubWrap.innerHTML = `<div class="empty-state">No publications found. Try adjusting your search or filters.</div>`;
+  } else {
+    const hasActiveFilters = onFilters.type.size > 0 || 
+                            onFilters.journal.size > 0 || 
+                            onFilters.conference.size > 0;
+    const mostRecentYear = years[0];
     
-    if (filtered.length === 0) {
-      pubWrap.innerHTML = `<div class="empty-state">No publications found. Try adjusting your search or filters.</div>`;
-    } else {
-      const hasActiveFilters = onFilters.type.size > 0 || 
-                              onFilters.journal.size > 0 || 
-                              onFilters.conference.size > 0;
-      const mostRecentYear = years[0];
+    pubWrap.innerHTML = years.map(y => {
+      const items = filtered.filter(p => p.year === y);
+      const shouldCollapse = hasActiveFilters ? false : (y !== mostRecentYear);
+      const isCurrentYear = y === currentYear; // 현재 연도 확인
       
-      pubWrap.innerHTML = years.map(y => {
-        const items = filtered.filter(p => p.year === y);
-        const shouldCollapse = hasActiveFilters ? false : (y !== mostRecentYear);
-        
-        return `
-          <div class="year-section">
-            <div class="year-head">
-              <h2 class="year-title">${y}</h2>
-              <button class="year-toggle" data-year="${y}">${shouldCollapse ? 'Expand' : 'Collapse'}</button>
-            </div>
-            <div class="year-content" id="year-${y}" ${shouldCollapse ? 'style="display: none;"' : ''}>
-              <ul class="paper-list">
-                ${items.map((it, i) => createCard(it, `${y}-${i}`)).join('')}
-              </ul>
-            </div>
+      return `
+        <div class="year-section">
+          <div class="year-head ${isCurrentYear ? 'current-year' : ''}">
+            <h2 class="year-title">${y}</h2>
+            <button class="year-toggle" data-year="${y}">${shouldCollapse ? 'Expand' : 'Collapse'}</button>
           </div>
-        `;
-      }).join('');
+          <div class="year-content" id="year-${y}" ${shouldCollapse ? 'style="display: none;"' : ''}>
+            <ul class="paper-list">
+              ${items.map((it, i) => createCard(it, `${y}-${i}`)).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    }).join('');
 
-      document.querySelectorAll('.year-toggle').forEach(btn => {
-        btn.onclick = () => {
-          const y = btn.dataset.year;
-          const el = document.getElementById('year-' + y);
-          const hide = el.style.display === 'none';
-          el.style.display = hide ? '' : 'none';
-          btn.textContent = hide ? 'Collapse' : 'Expand';
-        };
-      });
-    }
-    
-    countEl.textContent = `${filtered.length} of ${(PUBS || []).length}`;
+    // 토글 버튼 이벤트 핸들러
+    document.querySelectorAll('.year-toggle').forEach(btn => {
+      btn.onclick = () => {
+        const y = btn.dataset.year;
+        const el = document.getElementById('year-' + y);
+        const hide = el.style.display === 'none';
+        el.style.display = hide ? '' : 'none';
+        btn.textContent = hide ? 'Collapse' : 'Expand';
+      };
+    });
   }
+  
+  countEl.textContent = `${filtered.length} of ${(PUBS || []).length}`;
+}
 
   /* ===== Citation Modal Functions - FIXED ===== */
 function getAuthorName(authorId, useDomestic) {
