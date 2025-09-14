@@ -797,50 +797,29 @@
       // ===================== 제목 표시 =====================
       function applyTitle(el, text) {
         var oneLine = forceSingleLine(text);
-        
-        // 제목 전체를 표시
         el.textContent = oneLine;
         el.title = oneLine;
-        el.setAttribute('data-text', oneLine);
         
-        // 컨테이너 너비 체크
+        // 부모 컨테이너 찾기
+        var container = el.parentElement;
+        if (!container) return;
+        
+        // 기존 marquee 클래스 제거
+        container.classList.remove('marquee-active');
+        
+        // 짧은 지연 후 너비 체크 (렌더링 완료 대기)
         setTimeout(function() {
-          var container = el.parentElement;
-          if (!container) return;
-          
-          // 실제 텍스트 너비 측정
-          var tempSpan = document.createElement('span');
-          tempSpan.style.visibility = 'hidden';
-          tempSpan.style.position = 'absolute';
-          tempSpan.style.whiteSpace = 'nowrap';
-          tempSpan.style.font = window.getComputedStyle(el).font;
-          tempSpan.textContent = oneLine;
-          document.body.appendChild(tempSpan);
-          
-          var textWidth = tempSpan.offsetWidth;
-          document.body.removeChild(tempSpan);
-          
-          var containerWidth = container.offsetWidth;
-          
-          // 텍스트가 컨테이너보다 넓으면 marquee 적용
-          if (textWidth > containerWidth - 10) { // 10px 여유
-            el.classList.add('marquee');
+          // 텍스트가 컨테이너보다 넓은지 체크
+          if (el.scrollWidth > container.clientWidth - 5) {
+            container.classList.add('marquee-active');
             // 텍스트 길이에 따른 애니메이션 속도 조정
-            var duration = Math.max(5, (textWidth / 25)); // 25px per second
-            el.style.animationDuration = duration + 's';
-            
-            // 이중 텍스트로 무한 스크롤 효과
-            var clone = el.cloneNode(true);
-            clone.style.paddingLeft = '50px';
-            container.appendChild(clone);
+            var speed = Math.max(8, Math.min(20, oneLine.length / 4));
+            el.style.animationDuration = speed + 's';
           } else {
-            el.classList.remove('marquee');
+            container.classList.remove('marquee-active');
             el.style.animationDuration = '';
-            // 복제본 제거
-            var clones = container.querySelectorAll('.music-title:not(:first-child)');
-            clones.forEach(function(clone) { clone.remove(); });
           }
-        }, 100); // DOM 업데이트 후 실행
+        }, 50);
       }
 
       function updateVideoTitle() {
