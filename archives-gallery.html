@@ -244,7 +244,8 @@ permalink: /archives-gallery.html
         Example: "/gallery/2025-09-01-1/"
         {%- endcomment -%}
         {% assign base = '/' | append: gallery.path | remove: gallery.name | replace: '//','/' %}
-        {% unless base contains '/' and base | slice: -1, 1 == '/' %}
+        {% assign last_char = base | slice: -1, 1 %}
+        {% unless base contains '/' and last_char == '/' %}
           {% assign base = base | append: '/' %}
         {% endunless %}
 
