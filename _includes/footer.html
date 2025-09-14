@@ -551,22 +551,43 @@
 
       // ===================== playlist.json 로드 =====================
       function loadPlaylistJson() {
-        var basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
-        var url = basePath + '/assets/playlist.json';
+        // baseurl을 고려한 경로 설정
+        var baseurl = '/website'; // Jekyll baseurl
+        var url = baseurl + '/_data/playlist.json';
         
-        return fetch(url + '?t=' + Date.now())
+        console.log('playlist.json 로드 시도:', url);
+        
+        fetch(url + '?t=' + Date.now())
           .then(function(res) {
             if (!res.ok) throw new Error('HTTP ' + res.status);
             return res.json();
           })
           .then(function(json) {
+            console.log('playlist.json 로드 성공');
             buildFromJson(json);
             trackEvent('Music Player', 'playlist_loaded', 'success');
           })
           .catch(function(err) {
             console.error('playlist.json 로드 실패:', err);
-            handlePlaylistError();
-            trackEvent('Music Player', 'playlist_error', err.message);
+            // 폴백: baseurl 없이 시도
+            var fallbackUrl = '/_data/playlist.json';
+            console.log('폴백 시도:', fallbackUrl);
+            
+            return fetch(fallbackUrl + '?t=' + Date.now())
+              .then(function(res) {
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                return res.json();
+              })
+              .then(function(json) {
+                console.log('폴백 성공');
+                buildFromJson(json);
+                trackEvent('Music Player', 'playlist_loaded', 'fallback_success');
+              })
+              .catch(function(fallbackErr) {
+                console.error('폴백도 실패:', fallbackErr);
+                handlePlaylistError();
+                trackEvent('Music Player', 'playlist_error', fallbackErr.message);
+              });
           });
       }
 
