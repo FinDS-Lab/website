@@ -112,7 +112,7 @@
       .music-artist{
         font-size:10px;
         font-weight:700;
-        color:#64748b;
+        color: rgb(172, 14, 14); /* ✅ 가수명 색상 */
         line-height:1.2;
         white-space:nowrap;
         max-width:100%;
@@ -128,7 +128,7 @@
         display:inline-block;
         font-size:10px;
         font-weight:600;
-        color: rgb(214, 177, 77);
+        color: rgb(214, 177, 77); /* ✅ 노래 제목 색상 */
         line-height:1.2;
         white-space:nowrap;
         will-change: transform;
@@ -143,9 +143,10 @@
         100% { transform: translateX(0); }
       }
 
-      /* 중앙 섹션: 시간 + 진행바 */
+      /* 중앙 섹션: 시간 + 진행바
+         👉 고정폭으로 설정해 제목/아티스트 변화에도 흔들리지 않도록 함 */
       .center-section {
-        flex: 1;
+        flex: 0 0 auto; /* ✅ 더 이상 남는 공간을 먹지 않음 */
         display: flex;
         align-items: center;
         gap: 6px;
@@ -163,14 +164,14 @@
         flex-shrink: 0;
       }
 
-      /* 진행바 컨테이너 */
+      /* 진행바 컨테이너 - 고정폭 적용 */
       .progress-container { 
         position: relative; 
         height: 10px;
-        flex: 1;
-        min-width: 50px;
+        width: 160px;       /* ✅ 데스크탑 기본 고정폭 */
         display: flex;
         align-items: center;
+        flex: 0 0 auto;
       }
       .progress-track {
         position: absolute;
@@ -342,7 +343,7 @@
         .volume-slider::-moz-range-thumb { background: #cbd5e1; }
       }
 
-      /* 모바일 반응형 - 정밀 조정 */
+      /* 모바일 반응형 - 고정폭 단계 조정 */
       @media (max-width: 540px) {
         .music-player-box { 
           max-width: calc(100% - 20px);
@@ -351,6 +352,7 @@
         .integrated-controls { gap: 5px; }
         .center-section { gap: 5px; }
         .music-info { max-width: 80px; }
+        .progress-container { width: 120px; } /* ✅ 태블릿급 */
         .volume-slider { width: 32px; }
       }
       @media (max-width: 400px) {
@@ -367,6 +369,7 @@
         .time-text { width: 28px; font-size: 9px; }
         .music-info { max-width: 70px; }
         .song-title { font-size: 9px; }
+        .progress-container { width: 90px; }  /* ✅ 초소형 폰 */
         .volume-slider { width: 28px; }
         .mute-btn svg { width: 12px; height: 12px; }
       }
@@ -377,6 +380,7 @@
         .play-btn svg { width: 14px; height: 14px; }
         .music-info { max-width: 60px; }
         .song-title { font-size: 8px; }
+        .progress-container { width: 90px; }
         .volume-controls { gap: 3px; }
         .volume-slider { width: 24px; }
         .time-text { font-size: 8px; width: 26px; }
@@ -433,7 +437,7 @@
                 </div>
               </div>
 
-              <!-- 중앙 섹션: 시간 + 진행바 -->
+              <!-- 중앙 섹션: 시간 + 진행바 (고정 폭) -->
               <div class="center-section">
                 <span id="currentTime" class="time-text">0:00</span>
                 <div class="progress-container">
@@ -502,7 +506,6 @@
       function extractVideoId(url) {
         if (!url) return null;
         if (/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
-        
         var videoId = null;
         if (url.includes('music.youtube.com')) {
           var match = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
@@ -515,7 +518,6 @@
         } else if (url.indexOf('/embed/') > -1) {
           videoId = url.split('/embed/')[1].split(/[?#&]/)[0];
         }
-        
         return (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) ? videoId : null;
       }
       function toNumberOrNull(v) {
@@ -533,14 +535,11 @@
       function loadPlaylistJson() {
         // Jekyll이 이미 삽입한 PLAYLIST_DATA 변수 사용 (권장)
         if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
-          console.log('✓ Jekyll _data/playlist.json 데이터 사용');
           buildFromJson(PLAYLIST_DATA);
           trackEvent('Music Player', 'playlist_loaded', 'jekyll_data');
           return;
         }
-
         // (Fallback) fetch 시도
-        console.log('PLAYLIST_DATA 없음, fetch로 시도');
         var baseurl = '';
         if (window.location.pathname.indexOf('/website') === 0) baseurl = '/website';
         var paths = [
@@ -550,22 +549,11 @@
           './playlist.json'
         ];
         var tryLoad = function(index) {
-          if (index >= paths.length) {
-            console.error('모든 경로에서 playlist.json 로드 실패');
-            handlePlaylistError();
-            return;
-          }
+          if (index >= paths.length) { handlePlaylistError(); return; }
           var url = paths[index];
           fetch(url + '?t=' + Date.now())
-            .then(function(res) {
-              if (!res.ok) throw new Error('HTTP ' + res.status);
-              return res.json();
-            })
-            .then(function(json) {
-              console.log('✓ playlist.json 로드 성공:', url);
-              buildFromJson(json);
-              trackEvent('Music Player', 'playlist_loaded', url);
-            })
+            .then(function(res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+            .then(function(json) { buildFromJson(json); trackEvent('Music Player', 'playlist_loaded', url); })
             .catch(function() { tryLoad(index + 1); });
         };
         tryLoad(0);
@@ -591,10 +579,7 @@
       function buildFromJson(json) {
         tracks = [];
         YOUTUBE_CONFIG.shuffle = (typeof json.shuffle === 'boolean') ? json.shuffle : true;
-        if (!json.items || !Array.isArray(json.items)) {
-          handlePlaylistError();
-          return;
-        }
+        if (!json.items || !Array.isArray(json.items)) { handlePlaylistError(); return; }
         json.items.forEach(function(item) {
           if (item.enabled === false) return;
           var id = item.id || extractVideoId(item.url);
@@ -608,22 +593,14 @@
             title_override: item.title_override || null
           });
         });
-        if (tracks.length === 0) {
-          handlePlaylistError();
-          return;
-        }
+        if (tracks.length === 0) { handlePlaylistError(); return; }
         finalizeTrackSetup();
       }
 
       function finalizeTrackSetup() {
         var seen = {};
         videoIds = [];
-        tracks.forEach(function(t) {
-          if (!seen[t.id]) {
-            videoIds.push(t.id);
-            seen[t.id] = true;
-          }
-        });
+        tracks.forEach(function(t) { if (!seen[t.id]) { videoIds.push(t.id); seen[t.id] = true; } });
         orderPool = [];
         tracks.forEach(function(t, idx) {
           var w = Math.max(1, parseInt(t.weight || 1, 10));
@@ -655,10 +632,7 @@
       }
 
       function onYouTubeIframeAPIReady() {
-        if (!tracks.length) {
-          handlePlaylistError();
-          return;
-        }
+        if (!tracks.length) { handlePlaylistError(); return; }
         player = new YT.Player('youtube-player', {
           height: '0',
           width: '0',
@@ -736,8 +710,6 @@
       }
 
       function onPlayerError(event) {
-        console.error('YouTube Player Error:', event.data);
-        trackEvent('Music Player', 'error', 'code_' + event.data);
         var titleElement = document.getElementById('musicTitle');
         if (tracks.length > 1) {
           titleElement.textContent = '오류 발생, 다음 곡 재생 중...';
