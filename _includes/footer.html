@@ -551,44 +551,58 @@
 
       // ===================== playlist.json 로드 =====================
       function loadPlaylistJson() {
-        // baseurl을 고려한 경로 설정
-        var baseurl = '/website'; // Jekyll baseurl
-        var url = baseurl + '/_data/playlist.json';
+        // 방법 1: Jekyll이 이미 삽입한 PLAYLIST_DATA 변수 사용 (권장)
+        if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
+          console.log('✓ Jekyll _data/playlist.json 데이터 사용');
+          buildFromJson(PLAYLIST_DATA);
+          trackEvent('Music Player', 'playlist_loaded', 'jekyll_data');
+          return;
+        }
         
-        console.log('playlist.json 로드 시도:', url);
+        // 방법 2: PLAYLIST_DATA가 없으면 fetch로 시도
+        console.log('PLAYLIST_DATA 없음, fetch로 시도');
         
-        fetch(url + '?t=' + Date.now())
-          .then(function(res) {
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            return res.json();
-          })
-          .then(function(json) {
-            console.log('playlist.json 로드 성공');
-            buildFromJson(json);
-            trackEvent('Music Player', 'playlist_loaded', 'success');
-          })
-          .catch(function(err) {
-            console.error('playlist.json 로드 실패:', err);
-            // 폴백: baseurl 없이 시도
-            var fallbackUrl = '/_data/playlist.json';
-            console.log('폴백 시도:', fallbackUrl);
-            
-            return fetch(fallbackUrl + '?t=' + Date.now())
-              .then(function(res) {
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                return res.json();
-              })
-              .then(function(json) {
-                console.log('폴백 성공');
-                buildFromJson(json);
-                trackEvent('Music Player', 'playlist_loaded', 'fallback_success');
-              })
-              .catch(function(fallbackErr) {
-                console.error('폴백도 실패:', fallbackErr);
-                handlePlaylistError();
-                trackEvent('Music Player', 'playlist_error', fallbackErr.message);
-              });
-          });
+        // GitHub Pages baseurl 자동 감지
+        var baseurl = '';
+        if (window.location.pathname.indexOf('/website') === 0) {
+          baseurl = '/website';
+        }
+        
+        // 시도할 경로들
+        var paths = [
+          baseurl + '/assets/playlist.json',        // assets 폴더
+          baseurl + '/assets/data/playlist.json',   // assets/data 폴더
+          '/assets/playlist.json',                  // 절대 경로
+          './playlist.json'                         // 현재 경로
+        ];
+        
+        var tryLoad = function(index) {
+          if (index >= paths.length) {
+            console.error('모든 경로에서 playlist.json 로드 실패');
+            handlePlaylistError();
+            return;
+          }
+          
+          var url = paths[index];
+          console.log('시도 ' + (index + 1) + ':', url);
+          
+          fetch(url + '?t=' + Date.now())
+            .then(function(res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              return res.json();
+            })
+            .then(function(json) {
+              console.log('✓ playlist.json 로드 성공:', url);
+              buildFromJson(json);
+              trackEvent('Music Player', 'playlist_loaded', url);
+            })
+            .catch(function(err) {
+              console.warn('✗ 실패:', url);
+              tryLoad(index + 1);
+            });
+        };
+        
+        tryLoad(0);
       }
 
       function handlePlaylistError() {
