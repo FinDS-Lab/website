@@ -17,6 +17,8 @@
     <!-- Footer styles -->
     <style>
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
@@ -89,96 +91,13 @@
         transform: scale(1.05);
       }
 
-      /* 중앙 섹션: 시간 + 진행바 + 제목 */
-      .center-section {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        min-width: 0;
-        overflow: hidden;
-      }
-
-      /* 시간 텍스트 */
-      .time-text { 
-        font-family: monospace; 
-        font-size: 10px; 
-        color: #64748b; 
-        width: 32px;
-        text-align: center;
-        flex-shrink: 0;
-      }
-
-      /* 진행바 컨테이너 */
-      .progress-container { 
-        position: relative; 
-        height: 4px; 
-        flex: 1;
-        min-width: 50px;
-      }
-      
-      .progress-track {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 100%;
-        background: #e2e8f0;
-        border-radius: 2px;
-      }
-      
-      .progress-fill {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background: #94a3b8;
-        border-radius: 2px;
-        width: 0%;
-        transition: width 0.1s;
-        pointer-events: none;
-      }
-      
-      .progress-slider {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 100%;
-        height: 4px;
-        background: transparent;
-        border-radius: 2px;
-        outline: none;
-        -webkit-appearance: none;
-        cursor: pointer;
-        z-index: 2;
-      }
-
-      .progress-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 10px;
-        height: 10px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-      
-      .progress-slider::-moz-range-thumb {
-        width: 10px;
-        height: 10px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
-      }
-
-      /* 음악 정보 */
+      /* 음악 정보 - 재생버튼 바로 옆으로 이동 */
       .music-info { 
         display: flex; 
         align-items: center; 
         gap: 4px; 
         overflow: hidden;
-        margin-left: 4px;
+        margin-left: 2px;
         flex-shrink: 0;
         max-width: 110px;
       }
@@ -214,6 +133,139 @@
         100% { transform: translateX(0); }
       }
       #musicPlayer:not(.playing) .music-title.marquee { animation: none; }
+
+      /* 중앙 섹션: 시간 + 진행바 */
+      .center-section {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      /* 시간 텍스트 */
+      .time-text { 
+        font-family: monospace; 
+        font-size: 10px; 
+        color: #64748b; 
+        width: 32px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      /* 진행바 컨테이너 - 여기가 핵심! */
+      .progress-container { 
+        position: relative; 
+        height: 10px; /* 썸네일을 위한 충분한 높이 */
+        flex: 1;
+        min-width: 50px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .progress-track {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #e2e8f0;
+        border-radius: 2px;
+      }
+      
+      .progress-fill {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        height: 4px;
+        background: #94a3b8;
+        border-radius: 2px;
+        width: 0%;
+        transition: width 0.1s;
+        pointer-events: none;
+      }
+      
+      /* 슬라이더 - 완전히 재설정 */
+      .progress-slider {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 10px;
+        background: transparent;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        z-index: 2;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Webkit 브라우저 (Chrome, Safari) */
+      .progress-slider::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 10px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .progress-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 10px;
+        height: 10px;
+        background: #475569;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        z-index: 3;
+        /* 중요: 썸네일이 트랙 중앙에 위치하도록 조정 */
+        margin-top: 0;
+        border: 0;
+      }
+
+      /* Firefox */
+      .progress-slider::-moz-range-track {
+        width: 100%;
+        height: 10px;
+        background: transparent;
+        cursor: pointer;
+        border: none;
+      }
+      
+      .progress-slider::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        background: #475569;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+        position: relative;
+        z-index: 3;
+      }
+
+      /* Edge/IE */
+      .progress-slider::-ms-track {
+        width: 100%;
+        height: 10px;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+
+      .progress-slider::-ms-thumb {
+        width: 10px;
+        height: 10px;
+        background: #475569;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
 
       /* 볼륨 컨트롤 */
       .volume-controls { 
@@ -309,7 +361,7 @@
         }
         .integrated-controls { gap: 5px; }
         .center-section { gap: 5px; }
-        .music-info { width: 80px; }
+        .music-info { max-width: 80px; }
         .volume-slider { width: 32px; }
       }
 
@@ -325,7 +377,7 @@
         .play-btn { width: 30px; height: 30px; padding: 6px; }
         .play-btn svg { width: 16px; height: 16px; }
         .time-text { width: 28px; font-size: 9px; }
-        .music-info { width: 70px; }
+        .music-info { max-width: 70px; }
         .music-title { font-size: 9px; animation-duration: 6s; }
         .volume-slider { width: 28px; }
         .mute-btn svg { width: 12px; height: 12px; }
@@ -338,7 +390,7 @@
         .nav-btn { width: 22px; height: 22px; }
         .play-btn { width: 28px; height: 28px; padding: 5px; }
         .play-btn svg { width: 14px; height: 14px; }
-        .music-info { width: 60px; } /* 작은 화면에서도 제목 표시 */
+        .music-info { max-width: 60px; }
         .music-title { font-size: 8px; animation-duration: 5s; }
         .volume-controls { gap: 3px; }
         .volume-slider { width: 24px; }
@@ -388,7 +440,17 @@
                 </button>
               </div>
 
-              <!-- 중앙 섹션: 시간 + 진행바 + 제목 -->
+              <!-- 음악 제목 - 재생버튼 바로 옆 -->
+              <div class="music-info">
+                <div class="music-note-animation">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+                  </svg>
+                </div>
+                <span id="musicTitle" class="music-title" title="Background Music">Loading...</span>
+              </div>
+
+              <!-- 중앙 섹션: 시간 + 진행바 -->
               <div class="center-section">
                 <span id="currentTime" class="time-text">0:00</span>
                 <div class="progress-container">
@@ -397,16 +459,6 @@
                   <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
                 </div>
                 <span id="duration" class="time-text">0:00</span>
-                
-                <!-- 음악 제목 -->
-                <div class="music-info">
-                  <div class="music-note-animation">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-                    </svg>
-                  </div>
-                  <span id="musicTitle" class="music-title" title="Background Music">Loading...</span>
-                </div>
               </div>
 
               <!-- 볼륨 컨트롤 -->
@@ -634,6 +686,9 @@
         event.target.mute();
         updateVideoTitle();
         
+        // 진행바 초기화 확인
+        resetProgress();
+        
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
           try {
@@ -711,6 +766,7 @@
 
       function loadNextVideo() {
         gotoByStep(1);
+        resetProgress(); // 진행바 리셋
         player.loadVideoById(tracks[currentVideoIndex].id);
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
@@ -725,6 +781,7 @@
 
       function loadPreviousVideo() {
         gotoByStep(-1);
+        resetProgress(); // 진행바 리셋
         player.loadVideoById(tracks[currentVideoIndex].id);
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
@@ -832,7 +889,7 @@
 
       function resetProgress() {
         document.getElementById('progressSlider').value = 0;
-        document.getElementById('progressBar').style.width = '0px';
+        document.getElementById('progressBar').style.width = '0%';
         document.getElementById('currentTime').textContent = '0:00';
         document.getElementById('duration').textContent = '0:00';
       }
@@ -842,6 +899,10 @@
         document.getElementById('year').textContent = new Date().getFullYear();
         
         document.addEventListener('DOMContentLoaded', function() {
+          // 슬라이더 초기 설정
+          document.getElementById('progressSlider').value = 0;
+          document.getElementById('volumeSlider').value = 30;
+          
           loadPlaylistJson();
           
           // 컨트롤 이벤트
