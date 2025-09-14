@@ -1348,7 +1348,7 @@ function toTitleCase(str) {
 
  /* ===== Load data from _data/pubs.json ===== */
  const PUBS_RAW = {{ site.data.pubs | jsonify | default: '[]' }};
- const AUTHORS = {{ site.data.authors | jsonify | default: '{}' }};
+ const AUTHORS = {{ site.data.authors | jsonify | default: {} }};
  /* ===== ADDED: small helpers for arrays/types/indexing ===== */
  function arr(v){ return Array.isArray(v) ? v : (v != null ? [v] : []); }
  function hasAny(haystack, needles){ const hs = arr(haystack); return arr(needles).some(x => hs.includes(x)); }
