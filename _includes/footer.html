@@ -797,27 +797,49 @@
       // ===================== 제목 표시 =====================
       function applyTitle(el, text) {
         var oneLine = forceSingleLine(text);
-        el.textContent = oneLine;
-        el.title = oneLine;
         
         // 부모 컨테이너 찾기
         var container = el.parentElement;
         if (!container) return;
         
-        // 기존 marquee 클래스 제거
+        // 기존 marquee 구조 초기화
+        var existingInner = container.querySelector('.marquee-inner');
+        if (existingInner) {
+          // marquee-inner가 있으면 제거하고 원래대로
+          el.textContent = oneLine;
+          el.title = oneLine;
+          existingInner.parentNode.appendChild(el);
+          existingInner.remove();
+        } else {
+          el.textContent = oneLine;
+          el.title = oneLine;
+        }
+        
+        // marquee 클래스 제거
         container.classList.remove('marquee-active');
         
         // 짧은 지연 후 너비 체크 (렌더링 완료 대기)
         setTimeout(function() {
           // 텍스트가 컨테이너보다 넓은지 체크
           if (el.scrollWidth > container.clientWidth - 5) {
+            // marquee 필요
             container.classList.add('marquee-active');
+            
+            // marquee 구조 생성
+            var marqueeInner = document.createElement('div');
+            marqueeInner.className = 'marquee-inner';
+            
+            // 원본 요소를 marquee-inner로 이동
+            el.parentNode.insertBefore(marqueeInner, el);
+            marqueeInner.appendChild(el);
+            
+            // 복제본 추가 (무한 스크롤 효과)
+            var clone = el.cloneNode(true);
+            marqueeInner.appendChild(clone);
+            
             // 텍스트 길이에 따른 애니메이션 속도 조정
-            var speed = Math.max(8, Math.min(20, oneLine.length / 4));
-            el.style.animationDuration = speed + 's';
-          } else {
-            container.classList.remove('marquee-active');
-            el.style.animationDuration = '';
+            var speed = Math.max(8, Math.min(20, oneLine.length / 3));
+            marqueeInner.style.animationDuration = speed + 's';
           }
         }, 50);
       }
