@@ -608,11 +608,19 @@
       function handlePlaylistError() {
         playlistLoadError = true;
         var titleElement = document.getElementById('musicTitle');
-        titleElement.textContent = 'Playlist 로드 실패';
-        titleElement.classList.add('error-message');
-        document.getElementById('playPauseBtn').disabled = true;
-        document.getElementById('prevBtn').disabled = true;
-        document.getElementById('nextBtn').disabled = true;
+        if (titleElement) {
+          titleElement.textContent = 'Playlist 로드 실패';
+          titleElement.classList.add('error-message');
+        }
+        var playBtn = document.getElementById('playPauseBtn');
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+        
+        if (playBtn) playBtn.disabled = true;
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+        
+        console.error('Playlist 로드 실패 - 버튼 비활성화');
       }
 
       function buildFromJson(json) {
