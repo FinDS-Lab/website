@@ -371,7 +371,7 @@ title: home
     <h3 class="keep-words">
       <span class="lab-name keep-words">FINDS Lab.</span><br>
       <span class="lab-full keep-words">
-        <b>Fin</b>ancial <b>D</b>ata Intelligence <b>S</b>olutions Laboratory
+        <b>Fin</b>ancial <b>D</b>ata Intelligence & <b>S</b>olutions Laboratory
       </span>
     </h3>
     <p class="description keep-words">
