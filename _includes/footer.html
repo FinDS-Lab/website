@@ -30,26 +30,27 @@
         position:relative;
         display:grid;
         grid-template-columns:28px 36px 28px 1fr 80px; /* 이전/재생/다음 | 제목 | 볼륨 */
-        gap:8px;align-items:center;margin-bottom:0; /* 아래줄 제거 */
+        gap:8px;align-items:center;
         min-height:42px; /* 진행바가 가운데 오도록 */
       }
-      .controls-row > *{ position:relative; z-index:2; } /* 위 레이어 */
+      .controls-row > *:not(.progress-overlay){ position:relative; z-index:2; } /* 진행바 제외 위 레이어 */
 
-      /* 진행바 오버레이: 컨트롤 행 내부에 겹치기 -> 1줄 유지 */
+      /* 진행바 오버레이: 컨트롤 행 내부에 겹치기 */
       .progress-overlay{
-        --progress-left: 116px; /* 28+36+28 + 간격(8*2) */
+        --progress-left: 116px; /* 28+36+28 + 간격(8*3) */
         --progress-right: 90px; /* 볼륨(80) + 여유 */
         position:absolute; z-index:1;
         left:var(--progress-left); right:var(--progress-right);
         top:50%; transform:translateY(-50%);
         display:grid; grid-template-columns:40px 1fr 40px; gap:8px; align-items:center;
-        pointer-events:auto;
+        pointer-events:none; /* 기본적으로 클릭 불가 */
       }
+      .progress-overlay > * { pointer-events:auto; } /* 자식 요소는 클릭 가능 */
 
       /* 버튼들 */
       .nav-btn,.play-btn{
         display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;
-        border:1px solid #e2e8f0;border-radius:50%;background:#fff;
+        border:1px solid #e2e8f0;border-radius:50%;background:#fff;transition:all .2s;
       }
       .nav-btn{width:28px;height:28px;padding:6px;}
       .play-btn{width:36px;height:36px;padding:8px;box-shadow:0 1px 2px 0 rgb(0 0 0 / .05);}
@@ -79,22 +80,41 @@
       .mute-btn svg{width:14px;height:14px;color:#64748b}
       .volume-slider{width:50px;height:4px;background:#e2e8f0;border-radius:2px;outline:none;-webkit-appearance:none;cursor:pointer}
 
-      /* 진행바 구성요소 (오버레이 내부) */
+      /* 진행바 구성요소 */
       .time-text{font-family:monospace;font-size:11px;color:#64748b;text-align:center;width:40px}
       .progress-container{position:relative;height:4px;width:100%}
       .progress-slider{
-        width:100%;height:4px;background:#e2e8f0;border-radius:2px;outline:none;
-        -webkit-appearance:none;cursor:pointer;position:relative;z-index:2;
+        width:100%;height:4px;background:transparent;border-radius:2px;outline:none;
+        -webkit-appearance:none;cursor:pointer;position:relative;z-index:3;
       }
+      /* 진행바 배경 트랙 */
+      .progress-track{
+        position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;height:4px;
+        background:#e2e8f0;border-radius:2px;pointer-events:none;z-index:1;
+      }
+      /* 진행바 채워진 부분 */
       .progress-fill{
         position:absolute;top:50%;transform:translateY(-50%);left:0;height:4px;
-        background:#94a3b8;border-radius:2px;pointer-events:none;transition:width .1s;z-index:1;width:0%;
+        background:#94a3b8;border-radius:2px;pointer-events:none;transition:width .1s;z-index:2;width:0%;
       }
+      
+      /* 슬라이더 썸 스타일 */
       .volume-slider::-webkit-slider-thumb,
-      .progress-slider::-webkit-slider-thumb,
+      .progress-slider::-webkit-slider-thumb{
+        -webkit-appearance:none;appearance:none;
+        width:12px;height:12px;background:#475569;border-radius:50%;cursor:pointer;position:relative;z-index:4;
+      }
       .volume-slider::-moz-range-thumb,
       .progress-slider::-moz-range-thumb{
-        width:12px;height:12px;background:#475569;border-radius:50%;cursor:pointer;position:relative;z-index:3;
+        width:12px;height:12px;background:#475569;border-radius:50%;cursor:pointer;position:relative;z-index:4;border:none;
+      }
+      
+      /* 슬라이더 트랙 투명화 (배경은 별도 div로 처리) */
+      .progress-slider::-webkit-slider-runnable-track{
+        background:transparent;height:4px;
+      }
+      .progress-slider::-moz-range-track{
+        background:transparent;height:4px;
       }
 
       /* 링크/애니메이션/기타 */
@@ -137,6 +157,13 @@
         .nav-btn,.play-btn{background:rgba(51,65,85,.8);border-color:#475569}
         .nav-btn:hover,.play-btn:hover{background:rgba(71,85,105,.8)}
         .music-title{color:rgb(214,177,77)}
+        .progress-track{background:rgba(71,85,105,.6)}
+        .progress-fill{background:#94a3b8}
+        .progress-slider::-webkit-slider-thumb,
+        .progress-slider::-moz-range-thumb{background:#cbd5e1}
+        .volume-slider{background:rgba(71,85,105,.6)}
+        .volume-slider::-webkit-slider-thumb,
+        .volume-slider::-moz-range-thumb{background:#cbd5e1}
       }
 
       /* 모바일 최적화 */
@@ -144,7 +171,7 @@
         .footer-grid{grid-template-columns:1fr;gap:1.5rem}
         .music-player-box{width:100%;max-width:480px;margin:0 auto;padding:10px 12px}
         .controls-row{grid-template-columns:28px 36px 28px 1fr 72px}
-        .progress-overlay{--progress-left:110px;--progress-right:76px} /* 버튼/볼륨 공간 보정 */
+        .progress-overlay{--progress-left:110px;--progress-right:80px}
         .music-title{font-size:11px}
         .time-text{font-size:10px}
         .text-sm{font-size:.813rem}.text-xs{font-size:.688rem}
@@ -152,21 +179,22 @@
       @media (max-width:440px){
         .music-player-box{width:calc(100vw - 24px);min-width:300px;padding:8px 10px}
         .controls-row{grid-template-columns:24px 30px 24px 1fr 60px;gap:6px}
-        .progress-overlay{--progress-left:96px;--progress-right:72px}
+        .progress-overlay{--progress-left:96px;--progress-right:66px}
         .nav-btn{width:24px;height:24px;padding:5px}.nav-btn svg{width:12px;height:12px}
         .play-btn{width:30px;height:30px;padding:6px}.play-btn svg{width:16px;height:16px}
         .volume-controls{width:60px;gap:4px}.volume-slider{width:35px}
-        .time-text{font-size:9px}
+        .time-text{font-size:9px;width:35px}
         .music-title{font-size:10px}
       }
       @media (max-width:360px){
         .music-player-box{width:calc(100vw - 20px);min-width:280px;padding:6px 8px}
         .controls-row{grid-template-columns:22px 28px 22px 1fr 55px;gap:4px}
-        .progress-overlay{--progress-left:88px;--progress-right:64px}
+        .progress-overlay{--progress-left:88px;--progress-right:60px}
         .nav-btn{width:22px;height:22px;padding:4px}
         .play-btn{width:28px;height:28px;padding:5px}
         .volume-controls{width:55px}.volume-slider{width:30px}
         .music-title{font-size:9px}
+        .time-text{font-size:9px;width:32px}
         .text-sm{font-size:.75rem}.text-xs{font-size:.625rem}
       }
 
@@ -220,17 +248,17 @@
                   <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨 조절">
                 </div>
 
-                <!-- 진행바: 컨트롤 행 위에 겹치기 (따라서 2줄로 안나옴) -->
+                <!-- 진행바: 컨트롤 행 위에 겹치기 -->
                 <div class="progress-overlay" aria-label="재생 진행도">
                   <span id="currentTime" class="time-text">0:00</span>
                   <div class="progress-container">
-                    <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치 이동">
+                    <div class="progress-track"></div>
                     <div id="progressBar" class="progress-fill"></div>
+                    <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치 이동">
                   </div>
                   <span id="duration" class="time-text">0:00</span>
                 </div>
               </div>
-              <!-- 별도의 progress-row 없음 -->
             </div>
           </div>
 
@@ -430,7 +458,7 @@
             else if(player.isMuted()){player.unMute();document.getElementById('volumeIcon').classList.remove('hidden');document.getElementById('muteIcon').classList.add('hidden');}
           });
 
-          // 진행바 드래그(마우스/터치/포인터)
+          // 진행바 드래그
           var slider=document.getElementById('progressSlider');
           var startDrag=function(){isDragging=true}, endDrag=function(){setTimeout(function(){isDragging=false},100)};
           slider.addEventListener('pointerdown',startDrag); slider.addEventListener('pointerup',endDrag);
