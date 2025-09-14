@@ -2813,7 +2813,7 @@ permalink: /members-director.html
 <!-- Scripts -->
 <script>
 
-  const AUTHORS = {{ site.data.authors | jsonify | default: '{}' }};
+  const AUTHORS = {{ site.data.authors | jsonify | default: {} }};
 
  // ===== Research Interests Toggle =====
  function toggleRI(header) {
@@ -3798,6 +3798,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
