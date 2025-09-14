@@ -797,24 +797,50 @@
       // ===================== 제목 표시 =====================
       function applyTitle(el, text) {
         var oneLine = forceSingleLine(text);
+        
+        // 제목 전체를 표시
         el.textContent = oneLine;
         el.title = oneLine;
-        el.setAttribute('data-text', oneLine); // marquee 복제용
+        el.setAttribute('data-text', oneLine);
         
-        // 텍스트 길이에 따른 marquee 적용 기준 조정
-        var container = el.parentElement;
-        var textWidth = el.scrollWidth;
-        var containerWidth = container ? container.offsetWidth : 150;
-        
-        if (textWidth > containerWidth || oneLine.length > 15) {
-          el.classList.add('marquee');
-          // 텍스트 길이에 따른 애니메이션 속도 동적 조정
-          var duration = Math.max(8, Math.min(20, oneLine.length / 3));
-          el.style.animationDuration = duration + 's';
-        } else {
-          el.classList.remove('marquee');
-          el.style.animationDuration = '';
-        }
+        // 컨테이너 너비 체크
+        setTimeout(function() {
+          var container = el.parentElement;
+          if (!container) return;
+          
+          // 실제 텍스트 너비 측정
+          var tempSpan = document.createElement('span');
+          tempSpan.style.visibility = 'hidden';
+          tempSpan.style.position = 'absolute';
+          tempSpan.style.whiteSpace = 'nowrap';
+          tempSpan.style.font = window.getComputedStyle(el).font;
+          tempSpan.textContent = oneLine;
+          document.body.appendChild(tempSpan);
+          
+          var textWidth = tempSpan.offsetWidth;
+          document.body.removeChild(tempSpan);
+          
+          var containerWidth = container.offsetWidth;
+          
+          // 텍스트가 컨테이너보다 넓으면 marquee 적용
+          if (textWidth > containerWidth - 10) { // 10px 여유
+            el.classList.add('marquee');
+            // 텍스트 길이에 따른 애니메이션 속도 조정
+            var duration = Math.max(5, (textWidth / 25)); // 25px per second
+            el.style.animationDuration = duration + 's';
+            
+            // 이중 텍스트로 무한 스크롤 효과
+            var clone = el.cloneNode(true);
+            clone.style.paddingLeft = '50px';
+            container.appendChild(clone);
+          } else {
+            el.classList.remove('marquee');
+            el.style.animationDuration = '';
+            // 복제본 제거
+            var clones = container.querySelectorAll('.music-title:not(:first-child)');
+            clones.forEach(function(clone) { clone.remove(); });
+          }
+        }, 100); // DOM 업데이트 후 실행
       }
 
       function updateVideoTitle() {
