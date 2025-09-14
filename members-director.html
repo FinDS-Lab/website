@@ -2813,9 +2813,13 @@ permalink: /members-director.html
 <!-- Scripts -->
 <script>
 
-  {% assign authors = site.data.authors | default: {} %}
-  {{ authors | jsonify }}
 
+   {% if site.data.authors %}
+    const AUTHORS = {{ site.data.authors | jsonify }};
+  {% else %}
+    const AUTHORS = {};
+  {% endif %}
+ 
 
  // ===== Research Interests Toggle =====
  function toggleRI(header) {
@@ -3800,6 +3804,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
