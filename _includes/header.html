@@ -13,8 +13,8 @@
       </div>
     </a>
     
-    <!-- Desktop Nav - flex 클래스 먼저, hidden md:flex 순서 중요 -->
-    <nav class="flex items-center gap-6 hidden md:flex" aria-label="Primary" style="display: none;">
+    <!-- Desktop Nav -->
+    <nav class="flex items-center gap-6 desktop-nav" aria-label="Primary">
       <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About -->
@@ -58,7 +58,7 @@
     <!-- Mobile Toggle -->
     <div class="flex items-center gap-2">
       <button id="btnMobile" 
-              class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition-colors" 
+              class="mobile-menu-toggle inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition-colors" 
               aria-label="Open menu" 
               aria-expanded="false" 
               aria-controls="mobileNav">
@@ -69,9 +69,9 @@
     </div>
   </div>
   
-  <!-- Mobile Nav - 완전 불투명 흰색 배경 -->
-  <div id="mobileNav" class="md:hidden hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; z-index: 9998; display: none;">
-    <div class="grid gap-2 bg-white border border-gray-200 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg mx-4 my-3">
+  <!-- Mobile Nav - 원래 구조 그대로 -->
+  <div id="mobileNav" class="mobile-nav-panel hidden">
+    <div class="mobile-nav-inner">
       <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
@@ -124,32 +124,113 @@
 </header>
 
 <style>
-/* ========= 헤더 네비 시인성 업그레이드 ========= */
+/* 데스크톱 네비 */
+.desktop-nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-menu-toggle {
+    display: inline-flex !important;
+  }
+}
+
+/* 모바일 네비 패널 - 핵심 */
+.mobile-nav-panel {
+  position: absolute;
+  top: 70px;  /* 헤더 바로 아래 */
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 9998;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.mobile-nav-panel.show {
+  display: block !important;
+}
+
+.mobile-nav-inner {
+  max-width: 100%;
+  padding: 1rem;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+/* 모바일 링크 스타일 통일 */
+.mobile-link,
+.px-3.py-2 > div > a:first-child {
+  display: block;
+  padding: 10px 12px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1f2937;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.mobile-link:hover,
+.px-3.py-2 > div > a:first-child:hover {
+  background: #fff7e0;
+  color: #8a6a12;
+}
+
+/* 모바일 아코디언 */
+.mobile-acc-panel {
+  display: none;
+  margin-left: 1rem;
+}
+
+.mobile-acc-panel:not(.hidden) {
+  display: grid;
+  gap: 4px;
+}
+
+.mobile-acc-panel a {
+  display: block;
+  padding: 6px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.mobile-acc-panel a:hover {
+  background: #fff7e0;
+  color: #8a6a12;
+}
+
+/* 기존 데스크톱 스타일 유지 */
 .nav-link{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px; padding:0 14px; border-radius:10px;
   font-weight:800; line-height:1;
-  color:#ffffff !important;  /* 중요: 흰색 유지 */
+  color:#ffffff;
   text-shadow: 0 1px 1px rgba(0,0,0,.18);
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
 .nav-link:hover,
 .menu-group:hover > .nav-link{
-  color:#ffffff !important;
+  color:#ffffff;
   background: rgba(0,0,0,.15);
   text-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
 
-.nav-link:focus-visible{
-  outline: none;
-  color:#ffffff !important;
-  background: rgba(0,0,0,.20);
-  text-shadow: 0 2px 6px rgba(0,0,0,.35);
-  box-shadow: 0 0 0 3px rgba(255,255,255,.45);
-}
-
-/* 드롭다운 */
 .menu-group{ position:relative; }
 .submenu-panel{
   display:none; position:absolute; top:calc(100% + 8px); left:0;
@@ -157,12 +238,8 @@
   box-shadow:0 12px 40px rgba(0,0,0,.12);
   min-width:180px; padding:8px 0; z-index:50;
 }
-
-/* site.css의 hover 규칙과 호환 */
 .menu-group:hover > .submenu-panel,
-.menu-group[data-open="true"] > .submenu-panel{ 
-  display:block !important; 
-}
+.menu-group[data-open="true"] > .submenu-panel{ display:block; }
 
 .submenu-panel a{
   display:block; padding:8px 14px; font-weight:700; font-size:14px;
@@ -171,100 +248,5 @@
 .submenu-panel a:hover{
   background:#fff7e0;
   color:#8a6a12;
-}
-
-/* 모바일 링크 - 통일된 스타일 */
-.mobile-link{
-  display:block; 
-  padding:10px 12px;
-  font-weight:700 !important;  /* 700으로 통일 */
-  font-size:15px !important;    /* 크기 통일 */
-  color:#1f2937; 
-  border-radius:8px;
-  text-decoration: none;
-  line-height: 1.5;
-}
-.mobile-link:hover{ 
-  background:#fff7e0; 
-  color:#8a6a12; 
-}
-
-/* 모바일 아코디언 헤더의 메인 링크 - mobile-link와 동일하게 */
-.px-3.py-2 > div > a:first-child {
-  display:block;
-  padding:10px 12px;
-  font-weight:700 !important;  /* 700으로 통일 */
-  font-size:15px !important;    /* 크기 통일 */
-  color:#1f2937;
-  text-decoration: none;
-  line-height: 1.5;
-}
-
-/* 아코디언 버튼 위치 조정 */
-.mobile-acc-btn {
-  font-size: 18px;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 모바일 아코디언 서브메뉴 */
-.mobile-acc-panel{ 
-  display:none; 
-  margin-left:1rem; 
-}
-.mobile-acc-panel a{
-  display:block; 
-  padding:8px 12px;   /* 패딩 조정 */
-  font-size:14px !important;     
-  font-weight:600 !important;  /* 서브메뉴는 살짝 얇게 */
-  color:#555; 
-  border-radius:6px;
-  text-decoration: none;
-  line-height: 1.5;
-}
-.mobile-acc-panel a:hover{ 
-  background:#fff7e0; 
-  color:#8a6a12; 
-}
-.mobile-acc-panel:not(.hidden) { 
-  display:grid; 
-  gap:4px; 
-}
-
-/* site.js show 클래스 지원 */
-#mobileNav.show {
-  display: block !important;
-}
-
-/* 모바일 버튼 표시 */
-@media (max-width: 767px) {
-  #btnMobile {
-    display: inline-flex !important;
-  }
-  #mobileNav.hidden {
-    display: none !important;
-  }
-}
-
-/* 데스크톱 네비 표시 */
-@media (min-width: 768px) {
-  nav[aria-label="Primary"] {
-    display: flex !important;
-  }
-  #btnMobile {
-    display: none !important;
-  }
-  #mobileNav {
-    display: none !important;
-  }
-}
-
-/* 헤더 높이 조정 */
-@media (max-width: 768px) {
-  .fixed-header {
-    height: 60px !important;
-  }
 }
 </style>
