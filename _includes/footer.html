@@ -28,453 +28,349 @@
       }
 
       /* ===== 음악 플레이어 박스 ===== */
-.music-player-box {
-  width: 90%;                 /* 화면의 85~90% */
-  max-width: 900px;
-  margin: 0 auto;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
-}
-
-/* 첫 줄 */
-.top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* 좌–중앙–우 배치 */
-  margin-bottom: 6px;
-}
-
-/* 아티스트 */
-.music-artist {
-  font-size: 9px;
-  font-weight: 700;
-  color: #e0c46d;   /* 흰 ↔ 금색 중간 */
-  text-align: center;
-  flex: 1;          /* 가운데 정렬 효과 */
-}
-
-/* 두번째 줄 (제목만 중앙) */
-.title-row {
-  text-align: center;
-  margin-bottom: 8px;
-}
-.song-title {
-  font-size: 10px;
-  font-weight: 600;
-  color: #d6b14d;   /* 금색 */
-  display: inline-block;
-  white-space: nowrap;
-}
-
-/* 세번째 줄 (진행 바) */
-.progress-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.progress-container {
-  flex: 1;
-  min-width: 80px;
-  max-width: 100%;
-  position: relative;
-  height: 10px;
-}
-
-
-      /* 통합 컨트롤 행 - 모든 요소를 한 줄에 배치 */
-      .integrated-controls {
-        position: relative;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        min-height: 36px;
-        width: 100%;
-      }
-
-      /* 버튼 그룹 */
-      .button-group {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        flex-shrink: 0;
-      }
-
-      /* 버튼들 */
-      .nav-btn {
-        width: 26px;
-        height: 26px;
-        padding: 5px;
-        background: white;
+      .music-player-box {
+        width: 90%;                 /* 화면의 85~90% 중 90% */
+        max-width: 900px;
+        margin: 0 auto;
+        background: #f8fafc;
         border: 1px solid #e2e8f0;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-        flex-shrink: 0;
-      }
-      .nav-btn svg { width: 13px; height: 13px; color: #64748b; }
-
-      .play-btn {
-        width: 34px;
-        height: 34px;
-        padding: 7px;
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 50%;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-        flex-shrink: 0;
-      }
-      .play-btn svg { width: 18px; height: 18px; color: #475569; }
-
-      .nav-btn:hover, .play-btn:hover {
-        background: #f1f5f9;
-        transform: scale(1.05);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
       }
 
-      /* ====== 음악 정보 (2줄: 위=아티스트, 아래=제목) ====== */
-.music-info{
-  display:flex;
-  flex-direction:column;
-  align-items:center;  /* ← 가운데 정렬로 변경 */
-  gap:2px;
-  overflow:hidden;
-  margin-left:2px;
-  flex-shrink:0;
-  width:140px;
-  text-align:center;   /* ← 추가 */
-}
-.music-artist{
-  font-size:9px;                       /* 기존보다 줄임 */
-  font-weight:700;
-  color: #e0c46d;                       /* 흰색(#ffffff) ↔ #d6b14d 중간 톤 */
-  line-height:1.2;
-  white-space:nowrap;
-  max-width:100%;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  display:block;
-  text-align:center;
-}
+      /* === 2줄 + 진행바 레이아웃 === */
 
-.title-viewport{
-  /* 기존 속성 유지 + 아래 한 줄 추가 */
-  text-align:center;  /* 가운데 */
-}
+      /* 줄1: 좌(이전/재생/다음) — 중앙(아티스트) — 우(볼륨) */
+      .top-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        min-height:36px;
+        margin-bottom:6px;
+      }
+      .left-controls{
+        display:flex;
+        align-items:center;
+        gap:6px;
+        flex-shrink:0;
+      }
 
-.song-title{
-  display:inline-block;
-  font-size:9px;
-  font-weight:600;
-  color: #d6b14d;                       /* 요청하신 정확한 색 */
-  line-height:1.2;
-  white-space:nowrap;
-  will-change: transform;
-}
+      /* 아티스트 (요청 색상/크기) */
+      #musicArtist.music-artist{
+        font-size:9px;                 /* 줄임 */
+        font-weight:700;
+        color:#e0c46d;                 /* 흰 ↔ rgb(214,177,77) 중간 톤 */
+        text-align:center;
+        flex:1;                        /* 가운데에 자리잡게 */
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+
+      /* 볼륨 영역 */
+      .volume-controls { 
+        display:flex; 
+        align-items:center; 
+        gap:4px; 
+        flex-shrink:0;
+      }
+      .mute-btn { 
+        padding:4px; 
+        cursor:pointer; 
+        background:none; 
+        border:none; 
+        flex-shrink:0;
+      }
+      .mute-btn svg { width:13px; height:13px; color:#64748b; }
+      .volume-slider {
+        width:36px;
+        height:4px;
+        background:#e2e8f0;
+        border-radius:2px;
+        outline:none;
+        -webkit-appearance:none;
+        appearance:none;
+        cursor:pointer;
+      }
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance:none;
+        appearance:none;
+        width:9px;
+        height:9px;
+        background:#475569;
+        border-radius:50%;
+        cursor:pointer;
+      }
+      .volume-slider::-moz-range-thumb {
+        width:9px;
+        height:9px;
+        background:#475569;
+        border-radius:50%;
+        cursor:pointer;
+        border:none;
+      }
+
+      /* 줄2: 제목만 중앙 */
+      .title-row{ 
+        text-align:center; 
+        margin-bottom:8px; 
+      }
       .title-viewport{
         position:relative;
         width:100%;
         overflow:hidden;
       }
-      .song-title{
-        display:inline-block;
+      #musicTitle.song-title{
+        display:inline-block;          /* 마키 애니메이션용 */
         font-size:10px;
         font-weight:600;
-        color: #2563eb; /* ✅ 파란색으로 변경 */
+        color:#d6b14d;                 /* 정확히 rgb(214,177,77) */
         line-height:1.2;
         white-space:nowrap;
-        will-change: transform;
+        will-change:transform;
       }
+
       /* 재생중이 아닐 땐 멈춤 */
-      #musicPlayer:not(.playing) .song-title{
-        animation: none !important;
-      }
+      #musicPlayer:not(.playing) .song-title{ animation:none !important; }
+
       /* 좌↔우 왕복 스크롤 (JS가 --overflow, --marquee-duration 세팅) */
       @keyframes marqueeAlt {
         0%   { transform: translateX(calc(-1 * var(--overflow, 0px))); }
         100% { transform: translateX(0); }
       }
 
-      /* 중앙 섹션: 시간 + 진행바 - 고정폭 설정 */
-      .center-section {
-        flex: 1; /* ✅ 남은 공간 차지 */
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        min-width: 0;
-        overflow: hidden;
+      /* 줄3: 시간 + 진행바 */
+      .progress-row{
+        display:flex;
+        align-items:center;
+        gap:6px;
       }
-
-      /* 시간 텍스트 */
       .time-text { 
-        font-family: monospace; 
-        font-size: 10px; 
-        color: #64748b; 
-        width: 32px;
-        text-align: center;
-        flex-shrink: 0;
+        font-family:monospace; 
+        font-size:10px; 
+        color:#64748b; 
+        width:32px;
+        text-align:center;
+        flex-shrink:0;
       }
-
-      /* 진행바 컨테이너 - 고정폭 유지 */
       .progress-container { 
-        position: relative; 
-        height: 10px;
-        flex: 1; /* ✅ 남은 공간을 차지하도록 변경 */
-        min-width: 80px; /* 최소 너비 */
-        max-width: 180px; /* 최대 너비 */
-        display: flex;
-        align-items: center;
+        position:relative; 
+        height:10px;
+        flex:1;                     /* 넓게 */
+        min-width:80px;
+        max-width:100%;
+        display:flex;
+        align-items:center;
       }
       .progress-track {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: #e2e8f0;
-        border-radius: 2px;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        left:0;
+        right:0;
+        height:4px;
+        background:#e2e8f0;
+        border-radius:2px;
       }
       .progress-fill {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;
-        height: 4px;
-        background: #94a3b8;
-        border-radius: 2px;
-        width: 0%;
-        transition: width 0.1s;
-        pointer-events: none;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        left:0;
+        height:4px;
+        background:#94a3b8;
+        border-radius:2px;
+        width:0%;
+        transition:width 0.1s;
+        pointer-events:none;
       }
       .progress-slider {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        transform: translateY(-50%);
-        width: 100%;
-        height: 10px;
-        background: transparent;
-        outline: none;
-        -webkit-appearance: none;
-        appearance: none;
-        cursor: pointer;
-        z-index: 2;
-        margin: 0;
-        padding: 0;
+        position:absolute;
+        top:50%;
+        left:0;
+        transform:translateY(-50%);
+        width:100%;
+        height:10px;
+        background:transparent;
+        outline:none;
+        -webkit-appearance:none;
+        appearance:none;
+        cursor:pointer;
+        z-index:2;
+        margin:0;
+        padding:0;
       }
       .progress-slider::-webkit-slider-runnable-track {
-        width: 100%;
-        height: 10px;
-        background: transparent;
-        cursor: pointer;
+        width:100%;
+        height:10px;
+        background:transparent;
+        cursor:pointer;
       }
       .progress-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 10px;
-        height: 10px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-        position: relative;
-        z-index: 3;
-        margin-top: 0;
-        border: 0;
+        -webkit-appearance:none;
+        appearance:none;
+        width:10px;
+        height:10px;
+        background:#475569;
+        border-radius:50%;
+        cursor:pointer;
+        position:relative;
+        z-index:3;
+        margin-top:0;
+        border:0;
       }
       .progress-slider::-moz-range-track {
-        width: 100%;
-        height: 10px;
-        background: transparent;
-        cursor: pointer;
-        border: none;
+        width:100%;
+        height:10px;
+        background:transparent;
+        cursor:pointer;
+        border:none;
       }
       .progress-slider::-moz-range-thumb {
-        width: 10px;
-        height: 10px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
-        position: relative;
-        z-index: 3;
+        width:10px;
+        height:10px;
+        background:#475569;
+        border-radius:50%;
+        cursor:pointer;
+        border:none;
+        position:relative;
+        z-index:3;
       }
       .progress-slider::-ms-track {
-        width: 100%;
-        height: 10px;
-        background: transparent;
-        border-color: transparent;
-        color: transparent;
+        width:100%;
+        height:10px;
+        background:transparent;
+        border-color:transparent;
+        color:transparent;
       }
       .progress-slider::-ms-thumb {
-        width: 10px;
-        height: 10px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
+        width:10px;
+        height:10px;
+        background:#475569;
+        border-radius:50%;
+        cursor:pointer;
+        border:none;
       }
 
-      /* 볼륨 컨트롤 */
-      .volume-controls { 
-        display: flex; 
-        align-items: center; 
-        gap: 4px; 
-        flex-shrink: 0;
+      /* 버튼들(재사용) */
+      .nav-btn {
+        width:26px;
+        height:26px;
+        padding:5px;
+        background:white;
+        border:1px solid #e2e8f0;
+        border-radius:50%;
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transition:all 0.2s;
+        flex-shrink:0;
       }
-      .mute-btn { 
-        padding: 4px; 
-        cursor: pointer; 
-        background: none; 
-        border: none; 
-        flex-shrink: 0;
-      }
-      .mute-btn svg { width: 13px; height: 13px; color: #64748b; }
-      .volume-slider {
-        width: 36px;
-        height: 4px;
-        background: #e2e8f0;
-        border-radius: 2px;
-        outline: none;
-        -webkit-appearance: none;
-        cursor: pointer;
-      }
-      .volume-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 9px;
-        height: 9px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-      }
-      .volume-slider::-moz-range-thumb {
-        width: 9px;
-        height: 9px;
-        background: #475569;
-        border-radius: 50%;
-        cursor: pointer;
-        border: none;
-      }
+      .nav-btn svg { width:13px; height:13px; color:#64748b; }
 
-      /* 애니메이션 */
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-      #musicPlayer.playing .music-note-animation svg { animation: musicPulse 1s ease-in-out infinite; }
-      @keyframes musicPulse { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.2); opacity: 1; } }
+      .play-btn {
+        width:34px;
+        height:34px;
+        padding:7px;
+        background:white;
+        border:1px solid #e2e8f0;
+        border-radius:50%;
+        box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transition:all 0.2s;
+        flex-shrink:0;
+      }
+      .play-btn svg { width:18px; height:18px; color:#475569; }
+
+      .nav-btn:hover, .play-btn:hover {
+        background:#f1f5f9;
+        transform:scale(1.05);
+      }
 
       /* Footer 및 Copyright */
       footer {
-        width: 100%;
-        padding: 20px 15px;
+        width:100%;
+        padding:20px 15px;
       }
       .footer-container {
-        max-width: 600px;
+        max-width: 1000px;           /* 상단 박스와 맞춤 */
         margin: 0 auto;
-        text-align: center;
+        text-align:center;
       }
       .copyright {
-        margin-top: 16px;
-        font-size: 11px;
-        color: #94a3b8;
-        text-align: center;
+        margin-top:16px;
+        font-size:11px;
+        color:#94a3b8;
+        text-align:center;
       }
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
-        footer { background-color: #0b0f19; border-color: #1e293b; }
-        .copyright { color: #64748b; }
-        .music-player-box { background: rgba(30,41,59,.9); border-color: #334155; }
-        .nav-btn, .play-btn { background: rgba(51,65,85,.9); border-color: #475569; }
-        .nav-btn:hover, .play-btn:hover { background: rgba(71,85,105,.9); }
-        .music-artist { color: #f472b6; } /* ✅ 다크모드에서 밝은 핑크 */
-        .song-title { color: #60a5fa; } /* ✅ 다크모드에서 밝은 파랑 */
-        .progress-track, .volume-slider { background: rgba(71,85,105,.6); }
-        .progress-fill { background: #94a3b8; }
+        footer { background-color:#0b0f19; border-color:#1e293b; }
+        .copyright { color:#64748b; }
+        .music-player-box { background:rgba(30,41,59,.9); border-color:#334155; }
+        .nav-btn, .play-btn { background:rgba(51,65,85,.9); border-color:#475569; }
+        .nav-btn:hover, .play-btn:hover { background:rgba(71,85,105,.9); }
+        /* 다크모드에서도 요청 색 유지(아티스트/제목) */
+        #musicArtist.music-artist { color:#e0c46d; }
+        #musicTitle.song-title { color:#d6b14d; }
+        .progress-track, .volume-slider { background:rgba(71,85,105,.6); }
+        .progress-fill { background:#94a3b8; }
         .progress-slider::-webkit-slider-thumb,
         .progress-slider::-moz-range-thumb,
         .volume-slider::-webkit-slider-thumb,
-        .volume-slider::-moz-range-thumb { background: #cbd5e1; }
+        .volume-slider::-moz-range-thumb { background:#cbd5e1; }
       }
 
-      /* 모바일 반응형 - 개선된 설정 */
+      /* 모바일 반응형 */
       @media (max-width: 540px) {
         .music-player-box { 
-          max-width: calc(100% - 20px);
-          padding: 10px 12px;
+          width: 92%;
+          padding: 12px;
         }
-        .player-wrapper { gap: 6px; }
-        .integrated-controls { gap: 6px; }
-        .center-section { gap: 4px; }
-        .title-container { max-width: 200px; }
-        .music-artist { font-size: 10px; }
-        .song-title { font-size: 11px; }
-        .progress-container { 
-          min-width: 70px;
-          max-width: 140px;
-        }
-        .volume-slider { width: 30px; }
-        .time-text { width: 30px; font-size: 9px; }
+        .top-row { gap:8px; }
+        #musicArtist.music-artist { font-size:9px; }
+        #musicTitle.song-title { font-size:10px; }
+        .progress-container { min-width:70px; }
+        .time-text { width:30px; font-size:9px; }
       }
-      
       @media (max-width: 400px) {
-        .music-player-box { 
-          padding: 8px 10px;
-          border-radius: 12px;
-        }
-        .player-wrapper { gap: 5px; }
-        .integrated-controls { gap: 4px; }
-        .button-group { gap: 3px; }
-        .nav-btn { width: 24px; height: 24px; padding: 4px; }
-        .nav-btn svg { width: 12px; height: 12px; }
-        .play-btn { width: 30px; height: 30px; padding: 6px; }
-        .play-btn svg { width: 16px; height: 16px; }
-        .time-text { width: 28px; font-size: 9px; }
-        .title-container { max-width: 160px; height: 14px; }
-        .music-artist { font-size: 9px; }
-        .song-title { font-size: 10px; }
-        .progress-container { 
-          min-width: 60px;
-          max-width: 100px;
-        }
-        .volume-controls { gap: 2px; }
-        .volume-slider { width: 26px; }
-        .mute-btn svg { width: 12px; height: 12px; }
+        .music-player-box { padding: 10px; border-radius: 12px; }
+        .left-controls { gap:4px; }
+        .nav-btn { width:24px; height:24px; padding:4px; }
+        .nav-btn svg { width:12px; height:12px; }
+        .play-btn { width:30px; height:30px; padding:6px; }
+        .play-btn svg { width:16px; height:16px; }
+        .time-text { width:28px; font-size:9px; }
+        #musicArtist.music-artist { font-size:9px; }
+        #musicTitle.song-title { font-size:10px; }
+        .volume-controls { gap:2px; }
+        .volume-slider { width:26px; }
+        .mute-btn svg { width:12px; height:12px; }
       }
-      
       @media (max-width: 350px) {
-        .music-player-box { padding: 6px 8px; }
-        .player-wrapper { gap: 4px; }
-        .integrated-controls { gap: 3px; }
-        .button-group { gap: 2px; }
-        .nav-btn { width: 22px; height: 22px; }
-        .play-btn { width: 28px; height: 28px; padding: 5px; }
-        .play-btn svg { width: 14px; height: 14px; }
-        .title-container { max-width: 140px; height: 12px; }
-        .music-artist { font-size: 8px; }
-        .song-title { font-size: 9px; }
-        .progress-container { 
-          min-width: 50px;
-          max-width: 80px;
-        }
-        .volume-controls { gap: 2px; }
-        .volume-slider { width: 22px; }
-        .time-text { font-size: 8px; width: 24px; }
+        .music-player-box { padding: 8px; }
+        .nav-btn { width:22px; height:22px; }
+        .play-btn { width:28px; height:28px; padding:5px; }
+        .play-btn svg { width:14px; height:14px; }
+        #musicArtist.music-artist { font-size:8px; }
+        #musicTitle.song-title { font-size:9px; }
+        .progress-container { min-width:50px; }
+        .volume-slider { width:22px; }
+        .time-text { font-size:8px; width:24px; }
       }
 
       /* 에러 메시지 */
       .error-message {
-        color: #ef4444;
-        font-size: 10px;
-        text-align: center;
+        color:#ef4444;
+        font-size:10px;
+        text-align:center;
       }
     </style>
   </head>
@@ -487,12 +383,10 @@
         <!-- 음악 플레이어만 -->
         <div id="musicPlayer" style="opacity: 0; animation: fadeIn 0.5s ease forwards;">
           <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
-            
-            <!-- 통합 컨트롤 (한 줄) -->
-            <div class="integrated-controls">
-              
-              <!-- 버튼 그룹 -->
-              <div class="button-group">
+
+            <!-- 줄1: 좌(이전/재생/다음) — 중앙(아티스트) — 우(볼륨) -->
+            <div class="top-row">
+              <div class="left-controls">
                 <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
@@ -513,26 +407,8 @@
                 </button>
               </div>
 
-              <!-- 음악 정보: 윗줄(아티스트) + 아랫줄(제목; 스크롤) -->
-              <div class="music-info">
-                <span id="musicArtist" class="music-artist">Artist</span>
-                <div class="title-viewport">
-                  <span id="musicTitle" class="song-title" title="Background Music">Loading...</span>
-                </div>
-              </div>
+              <span id="musicArtist" class="music-artist">Artist</span>
 
-              <!-- 중앙 섹션: 시간 + 진행바 -->
-              <div class="center-section">
-                <span id="currentTime" class="time-text">0:00</span>
-                <div class="progress-container">
-                  <div class="progress-track"></div>
-                  <div id="progressBar" class="progress-fill"></div>
-                  <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
-                </div>
-                <span id="duration" class="time-text">0:00</span>
-              </div>
-
-              <!-- 볼륨 컨트롤 -->
               <div class="volume-controls">
                 <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
                   <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -544,8 +420,26 @@
                 </button>
                 <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
               </div>
-              
             </div>
+
+            <!-- 줄2: 제목 중앙 -->
+            <div class="title-row">
+              <div class="title-viewport">
+                <span id="musicTitle" class="song-title" title="Background Music">Loading...</span>
+              </div>
+            </div>
+
+            <!-- 줄3: 시간 + 진행바 -->
+            <div class="progress-row">
+              <span id="currentTime" class="time-text">0:00</span>
+              <div class="progress-container">
+                <div class="progress-track"></div>
+                <div id="progressBar" class="progress-fill"></div>
+                <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
+              </div>
+              <span id="duration" class="time-text">0:00</span>
+            </div>
+
           </div>
         </div>
 
