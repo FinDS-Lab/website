@@ -289,16 +289,12 @@ permalink: /members-current.html
     
     .edu-degree{ 
       display:inline-flex;padding:2px 8px;background:#fff;border:1px solid #e5e7eb;
-      border-radius:999px;font-size:10px;font-weight:800;margin-bottom:6px;
+      border-radius:999px;font-size:10px;font-weight:800;
     }
     .edu-degree.phd, .edu-degree.phdms{ border-color:var(--phd-gold);color:var(--phd-gold); }
     .edu-degree.ms{ border-color:var(--ms-light-gold);color:#a08030; }
     .edu-degree.bs{ border-color:#6b7280;color:#6b7280; }
     .edu-degree.ongoing{ border-color:var(--undergrad-red);color:var(--undergrad-red); }
-    
-    .edu-school{ font-weight:800;color:#111827;font-size:13px; }
-    .edu-year{ font-size:11px;color:#6b7280;float:right; }
-    .edu-dept{ font-size:12px;color:#374151;margin-top:3px; }
     
     .modal-list{ 
       list-style:none;padding:0;margin:0;
@@ -326,9 +322,6 @@ permalink: /members-current.html
       .modal-section-title{ font-size:12px; }
       .edu-item{ padding:10px; }
       .edu-degree{ font-size:9px;padding:2px 6px; }
-      .edu-school{ font-size:12px; }
-      .edu-year{ font-size:10px; }
-      .edu-dept{ font-size:11px; }
       .modal-list li{ padding:8px 10px;font-size:11px; }
     }
     
@@ -641,8 +634,8 @@ const memberData = {
     name: '김박사 (Kim Ph.D.)',
     role: 'Ph.D. Candidate',
     education: [
-      {degree: 'Ph.D.', school: 'Dongduk Women\'s University', year: 'In Progress', dept: 'Business Analytics'},
-      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: '2018', dept: 'Mathematics'}
+      {degree: 'Ph.D.', school: 'Dongduk Women\'s University', year: 'Expected August 2025', dept: 'Business Analytics'},
+      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: 'August 2018', dept: 'Mathematics'}
     ],
     publications: [
       'Kim, P. et al. (2025). "Multilingual Challenges in Automated Evaluators". AAAI Workshop on Preparing Good Data for Generative AI.',
@@ -657,9 +650,9 @@ const memberData = {
     name: '이박사 (Lee Ph.D.)',
     role: 'Ph.D. Student',
     education: [
-      {degree: 'Ph.D.', school: 'Dongduk Women\'s University', year: 'Expected 2026', dept: 'Business Analytics'},
-      {degree: 'M.S.', school: 'Seoul National University', year: '2020', dept: 'Financial Engineering'},
-      {degree: 'B.S.', school: 'KAIST', year: '2018', dept: 'Applied Mathematics'}
+      {degree: 'Ph.D.', school: 'Dongduk Women\'s University', year: 'Expected February 2026', dept: 'Business Analytics'},
+      {degree: 'M.S.', school: 'Seoul National University', year: 'February 2020', dept: 'Financial Engineering'},
+      {degree: 'B.S.', school: 'KAIST', year: 'February 2018', dept: 'Applied Mathematics'}
     ],
     publications: [
       'Lee, P. & Kim, S. (2024). "Neural Network Approaches to Portfolio Management". KDD Workshop on AI in Finance.'
@@ -673,8 +666,8 @@ const memberData = {
     name: '박석사 (Park Master)',
     role: 'Master Student',
     education: [
-      {degree: 'M.S.', school: 'Dongduk Women\'s University', year: 'Expected 2026', dept: 'Financial Data Science'},
-      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: '2024', dept: 'Computer Science'}
+      {degree: 'M.S.', school: 'Dongduk Women\'s University', year: 'Expected February 2026', dept: 'Financial Data Science'},
+      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: 'February 2024', dept: 'Computer Science'}
     ],
     publications: [
       'Park, M. (2024). "Financial NLP Applications in Korean Markets". Under Review.'
@@ -687,7 +680,7 @@ const memberData = {
     name: '최학사 (Choi Undergrad)',
     role: 'Undergraduate Researcher',
     education: [
-      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: 'Expected 2026', dept: 'Business Analytics'},
+      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: 'Expected August 2026', dept: 'Business Analytics'},
     ],
     publications: [
       'Currently working on first research project on data-driven trading strategies.'
@@ -745,12 +738,15 @@ function openModal(memberId, degreeType) {
     bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Education</h4>';
     member.education.forEach(edu => {
       const degreeClass = edu.degree.toLowerCase().replaceAll('.', '').replaceAll('-', '').replaceAll('–', '');
+      const isExpected = edu.year.includes('Expected');
       bodyContent += `
         <div class="edu-item">
-          <span class="edu-degree ${degreeClass}">${edu.degree}</span>
-          <span class="edu-year">${edu.year}</span>
-          <div class="edu-school">${edu.school}</div>
-          <div class="edu-dept">${edu.dept}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span class="edu-degree ${degreeClass}">${isExpected ? 'Expected ' : ''}${edu.degree}</span>
+            <span style="font-size: 11px; color: #374151; font-weight: 700;">${edu.year.replace('Expected ', '')}</span>
+          </div>
+          <div style="font-weight: 800; color: #111827; font-size: 13px; margin-bottom: 2px;">${edu.school}</div>
+          <div style="font-size: 12px; color: #374151;">${edu.dept}</div>
         </div>`;
     });
     bodyContent += '</div>';
