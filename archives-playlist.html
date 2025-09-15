@@ -4,101 +4,1067 @@ title: Archives Playlist
 permalink: /archives-playlist.html
 ---
 
-<section class="max-w-7xl mx-auto px-4 mt-6">
-
-  <!-- Tabs -->
-  <div class="tabs">
-    <div class="tab active" data-tab="ischoi">Insu Choi's playlist</div>
-  </div>
-
-  <!-- Tab Content -->
-  <div id="ischoi" class="tab-content active">
-    <div class="playlist-grid">
-      {% assign isc = site.data.playlist.itemsByPerson.ischoi.items %}
-      {% for track in isc %}
-        {% assign video_id = track.url | split: 'v=' | last | split: '&' | first %}
-        <div class="playlist-card">
-          <iframe src="https://music.youtube.com/embed/{{ video_id }}"></iframe>
-          <div class="info">Track {{ forloop.index }}</div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-
-</section>
-
-<!-- Styles -->
+<!-- ===== Styles ===== -->
 <style>
-  .tabs {
-    display: flex;
-    border-bottom: 2px solid #e5e7eb;
-    gap: 12px;
-    margin-bottom: 20px;
+  /* Breadcrumbs (for old image banner & general use) */
+  .breadcrumbs{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:12px}
+  .breadcrumbs a{color:#e5e7eb}
+  .breadcrumbs a:hover{text-decoration:underline}
+  .breadcrumbs .sep{opacity:.8}
+
+  /* ====== NEW: Animated Gradient Banner (responsive) ====== */
+  :root {
+    --gold: rgb(214, 177, 77);
+    --gold-mid: rgb(234, 197, 97);
+    --gold-dark: rgb(194, 157, 57);
   }
-  .tab {
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.75rem 0.75rem 0 0;
-    font-weight: 700;
-    font-size: 14px;
+  .banner-section {
+    background: linear-gradient(135deg,
+      var(--gold) 0%,
+      var(--gold-mid) 25%,
+      var(--gold-dark) 50%,
+      var(--gold) 75%,
+      var(--gold-mid) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
     cursor: pointer;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-bottom: none;
-    transition: all 0.2s;
   }
-  .tab.active {
-    background: linear-gradient(135deg, rgb(214, 177, 77), rgb(234, 197, 97));
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%;}
+    50% { background-position: 100% 50%;}
+    100% { background-position: 0% 50%;}
+  }
+  .banner-content {
+    position: relative;
+    z-index: 10;
+    padding: 32px 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    min-height: 200px;
+  }
+  .banner-breadcrumbs {
+    display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+    font-size:13px;font-weight:600;margin-bottom:8px;
+  }
+  .banner-breadcrumbs a{color:rgba(255,255,255,.92);text-decoration:none;transition:color .2s}
+  .banner-breadcrumbs a:hover{color:#fff;text-decoration:underline}
+  .banner-breadcrumbs .sep{color:rgba(255,255,255,.75)}
+  .banner-breadcrumbs span:not(.sep):not(a){color:#fff;font-weight:700}
+  .banner-title {
+    font-size: 2.5rem;
+    font-weight: 900;
     color: #fff;
-    border-color: rgb(214, 177, 77);
+    text-shadow: 0 2px 4px rgba(0,0,0,.12);
+    letter-spacing: -0.02em;
+    margin: 0;
   }
-  .tab:hover { transform: translateY(-2px); }
-  .tab-content {
-    display: none;
-    border: 1px solid #e5e7eb;
-    border-radius: 0 0 1rem 1rem;
-    padding: 20px;
-    background: #fff;
+
+  /* Network burst particles (click effect) */
+  .network-burst {
+    position:absolute;width:200px;height:200px;pointer-events:none;opacity:0;
+    animation: burstAnimation 2s ease-out forwards;
   }
-  .tab-content.active { display: block; }
-  .playlist-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  @keyframes burstAnimation {
+    0% {opacity:0;transform:scale(.3) rotate(0deg)}
+    30% {opacity:.85}
+    100% {opacity:0;transform:scale(2) rotate(180deg)}
   }
-  .playlist-card {
+  .network-burst svg{width:100%;height:100%}
+  .burst-line{stroke:rgba(255,255,255,.7);stroke-width:1.5;fill:none}
+  .burst-dot{fill:rgba(255,255,255,.95)}
+
+  /* ===== Collapsible Sections ===== */
+  .playlist-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .collapsible-section {
+    margin-top: 1.5rem;
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 1rem;
     overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .collapsible-header {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(214, 177, 77, 0.08), rgba(234, 197, 97, 0.12));
+    border-bottom: 1px solid rgba(214, 177, 77, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.2s;
-    box-shadow: 0 2px 6px rgba(0,0,0,.05);
   }
-  .playlist-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+
+  .collapsible-header:hover {
+    background: linear-gradient(135deg, rgba(214, 177, 77, 0.12), rgba(234, 197, 97, 0.16));
   }
-  .playlist-card iframe {
+
+  .collapsible-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: rgb(214, 177, 77);
+    margin: 0;
+  }
+
+  .collapse-icon {
+    width: 24px;
+    height: 24px;
+    color: rgb(214, 177, 77);
+    transition: transform 0.3s ease;
+  }
+
+  .collapsible-section.open .collapse-icon {
+    transform: rotate(180deg);
+  }
+
+  .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .collapsible-section.open .collapsible-content {
+    max-height: 600px;
+  }
+
+  .content-inner {
+    padding: 24px;
+  }
+
+  /* ===== Music Player (Footer Style) ===== */
+  .music-player-box {
     width: 100%;
-    height: 160px;
+    background: #ffffff;
+    border: 2px solid rgb(214, 177, 77);
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 3px 15px rgba(214, 177, 77, 0.15);
+  }
+
+  /* Player Rows */
+  .player-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  
+  .player-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .playback-row { gap: 10px; }
+  .volume-row { gap: 10px; }
+  .artist-row { padding: 6px 0; }
+  .title-row { padding: 6px 0; }
+  .progress-row { gap: 12px; }
+  
+  #musicArtist {
+    font-size: 13px;
+    font-weight: 700;
+    color: #B8892F;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  #musicTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(214, 177, 77, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* Time Display */
+  .time-text {
+    font-family: 'SF Mono', 'Roboto Mono', 'Monaco', 'Consolas', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    min-width: 45px;
+    padding: 4px 8px;
+    background: rgba(214, 177, 77, 0.08);
+    border: 1px solid rgba(214, 177, 77, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+  }
+  
+  #currentTime {
+    color: rgb(214, 177, 77);
+    font-weight: 600;
+  }
+  
+  #duration {
+    color: #9ca3af;
+  }
+  
+  @media (hover: hover) {
+    .time-text:hover {
+      background: rgba(214, 177, 77, 0.12);
+      border-color: rgba(214, 177, 77, 0.3);
+    }
+  }
+  
+  .progress-container {
+    position: relative;
+    height: 10px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  
+  .progress-track {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: rgba(214, 177, 77, 0.15);
+    border-radius: 2.5px;
+  }
+  
+  .progress-fill {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    height: 5px;
+    background: rgb(214, 177, 77);
+    border-radius: 2.5px;
+    width: 0%;
+    transition: width 0.1s;
+  }
+  
+  .progress-slider {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 10px;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .progress-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: rgb(214, 177, 77);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  
+  .progress-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: rgb(214, 177, 77);
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* Buttons */
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    background: #ffffff;
+    border: 1.5px solid rgba(214, 177, 77, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  
+  .nav-btn svg {
+    width: 15px;
+    height: 15px;
+    color: rgb(214, 177, 77);
+  }
+  
+  .play-btn {
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    background: #ffffff;
+    border: 2px solid rgb(214, 177, 77);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(214, 177, 77, 0.2);
+  }
+  
+  .play-btn svg {
+    width: 20px;
+    height: 20px;
+    color: rgb(214, 177, 77);
+  }
+  
+  .nav-btn:hover, .play-btn:hover {
+    transform: scale(1.06);
+    background: rgba(214, 177, 77, 0.08);
+  }
+
+  /* Volume */
+  .mute-btn {
+    padding: 5px;
+    cursor: pointer;
+    background: none;
     border: none;
   }
-  .playlist-card .info {
-    padding: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #374151;
-    text-align: center;
+  
+  .mute-btn svg {
+    width: 18px;
+    height: 18px;
+    color: rgb(214, 177, 77);
+  }
+  
+  .volume-slider {
+    width: 120px;
+    height: 5px;
+    background: rgba(214, 177, 77, 0.2);
+    border-radius: 2.5px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: rgb(214, 177, 77);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: rgb(214, 177, 77);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+
+  .hidden { display: none !important; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .banner-title { font-size: 2rem; }
+    .banner-content { padding: 28px 20px; min-height: 160px; }
+    .banner-section { min-height: 160px; }
+    .music-player-box { padding: 16px 18px; }
+    .player-row { margin-bottom: 8px; }
+    .progress-row { gap: 10px; }
+    .time-text { font-size: 11px; min-width: 42px; padding: 3px 6px; }
+  }
+
+  @media (max-width: 540px) {
+    .music-player-box { padding: 14px 16px; }
+    .player-row { margin-bottom: 7px; }
+    .progress-row { gap: 8px; }
+    #musicTitle { font-size: 14px; }
+    #musicArtist { font-size: 11px; }
+    .nav-btn { width: 28px; height: 28px; }
+    .play-btn { width: 35px; height: 35px; }
+    .volume-slider { width: 100px; }
+    .time-text { font-size: 10px; min-width: 40px; padding: 3px 5px; border-radius: 6px; }
+  }
+
+  @media (max-width: 480px) {
+    .banner-title { font-size: 1.6rem; }
+    .banner-content { padding: 22px 16px; min-height: 130px; }
+    .banner-section { min-height: 130px; }
   }
 </style>
 
-<!-- Tab Switch JS (확장 대비) -->
+<!-- ===== Banner Section ===== -->
+<section class="max-w-7xl mx-auto px-4 mt-6">
+  <div class="banner-section" onclick="createNetworkBurst(event, this)">
+    <div class="banner-content">
+      <div>
+        <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
+          <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
+          <span class="sep">›</span>
+          <span>Archives</span>
+          <span class="sep">›</span>
+          <span aria-current="page">Playlist</span>
+        </nav>
+        <h1 class="banner-title">Playlist</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Collapsible Playlist Section ===== -->
+<div class="playlist-container">
+  <div class="collapsible-section" id="ischoi-section">
+    <div class="collapsible-header" onclick="toggleSection('ischoi-section')">
+      <h2 class="collapsible-title">Insu Choi's Playlist</h2>
+      <svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+    <div class="collapsible-content">
+      <div class="content-inner">
+        <!-- Music Player (Footer Style) -->
+        <div id="musicPlayer" class="fade-in">
+          <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
+
+            <!-- 줄1: 제목 -->
+            <div class="player-row title-row">
+              <span id="musicTitle">Loading...</span>
+            </div>
+
+            <!-- 줄2: 아티스트 -->
+            <div class="player-row artist-row">
+              <span id="musicArtist">Loading Artist...</span>
+            </div>
+
+            <!-- 줄3: 재생버튼 -->
+            <div class="player-row playback-row">
+              <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
+                </svg>
+              </button>
+              <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
+                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                </svg>
+                <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- 줄4: 볼륨 -->
+            <div class="player-row volume-row">
+              <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
+                <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+                </svg>
+                <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
+            </div>
+
+            <!-- 줄5: 진행바/시간 -->
+            <div class="player-row progress-row">
+              <span id="currentTime" class="time-text">0:00</span>
+              <div class="progress-container">
+                <div class="progress-track"></div>
+                <div id="progressBar" class="progress-fill"></div>
+                <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
+              </div>
+              <span id="duration" class="time-text">0:00</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- YouTube IFrame API용 (숨김) -->
+<div id="youtube-player" style="display:none;"></div>
+
+<!-- ===== Scripts ===== -->
 <script>
-  document.querySelectorAll(".tab").forEach(tab => {
-    tab.addEventListener("click", () => {
-      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-      tab.classList.add("active");
-      document.getElementById(tab.dataset.tab).classList.add("active");
+// Jekyll playlist data injection
+window.PLAYLIST_DATA = {{ site.data.playlist.itemsByPerson.ischoi | jsonify }};
+
+/* ===== Collapsible Section Toggle ===== */
+function toggleSection(sectionId) {
+  const section = document.getElementById(sectionId);
+  section.classList.toggle('open');
+}
+
+/* ===== Banner Click Effect ===== */
+function createNetworkBurst(event, element) {
+  const rect = element.getBoundingClientRect();
+  const x = event.clientX - rect.left - 100;
+  const y = event.clientY - rect.top - 100;
+
+  const networkDiv = document.createElement('div');
+  networkDiv.className = 'network-burst';
+  networkDiv.style.left = x + 'px';
+  networkDiv.style.top = y + 'px';
+
+  const patterns = [generateHeartNetwork(), generateClubNetwork(), generateSpadeNetwork(), generateDiamondNetwork()];
+  const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
+  networkDiv.innerHTML = randomPattern;
+
+  element.appendChild(networkDiv);
+  setTimeout(()=>{ element.removeChild(networkDiv); }, 2000);
+}
+
+function generateHeartNetwork(){
+  let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
+  const heartPath='M100,140 C80,120 40,100 40,70 C40,50 55,35 70,35 C85,35 95,45 100,55 C105,45 115,35 130,35 C145,35 160,50 160,70 C160,100 120,120 100,140 Z';
+  svg+=`<path d="${heartPath}" fill="none" class="burst-line" stroke-width="2"/>`;
+  const nodes=[{x:70,y:35},{x:130,y:35},{x:40,y:70},{x:160,y:70},{x:100,y:140},{x:60,y:50},{x:140,y:50},{x:80,y:90},{x:120,y:90}];
+  const connections=[[0,1],[0,2],[1,3],[2,4],[3,4],[0,5],[1,6],[5,7],[6,8],[7,8]];
+  connections.forEach(([f,t])=>{svg+=`<line x1="${nodes[f].x}" y1="${nodes[f].y}" x2="${nodes[t].x}" y2="${nodes[t].y}" class="burst-line" opacity="0.5"/>`});
+  nodes.forEach(n=>{svg+=`<circle cx="${n.x}" cy="${n.y}" r="${3+Math.random()*2}" class="burst-dot"/>`});
+  svg+='</svg>'; return svg;
+}
+
+function generateClubNetwork(){
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
+  const circles=[{x:100,y:60,r:25},{x:75,y:85,r:25},{x:125,y:85,r:25}];
+  circles.forEach(c=>{svg+=`<circle cx="${c.x}" cy="${c.y}" r="${c.r}" fill="none" class="burst-line" stroke-width="2"/>`});
+  svg+=`<line x1="100" y1="100" x2="100" y2="140" class="burst-line" stroke-width="3"/>`;
+  const nodes=[];
+  circles.forEach(c=>{for(let i=0;i<6;i++){const a=(i*2*Math.PI)/6;nodes.push({x:c.x+c.r*Math.cos(a),y:c.y+c.r*Math.sin(a)})}});
+  nodes.push({x:100,y:100},{x:100,y:140});
+  for(let i=0;i<nodes.length;i++){for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y; const dist=Math.sqrt(dx*dx+dy*dy); if(dist<40){svg+=`<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[j].x}" y2="${nodes[j].y}" class="burst-line" opacity="${0.3+(1-dist/40)*0.4}"/>`}}}
+  nodes.forEach(n=>{svg+=`<circle cx="${n.x}" cy="${n.y}" r="${2+Math.random()*2}" class="burst-dot"/>`});
+  svg+='</svg>'; return svg;
+}
+
+function generateSpadeNetwork(){
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
+  const spadePath='M100,50 C80,50 60,65 60,85 C60,105 75,110 85,110 C90,110 95,108 100,105 C105,108 110,110 115,110 C125,110 140,105 140,85 C140,65 120,50 100,50 Z';
+  svg+=`<path d="${spadePath}" fill="none" class="burst-line" stroke-width="2"/>`;
+  svg+=`<path d="M100,105 L90,130 L110,130 Z" fill="none" class="burst-line" stroke-width="2"/>`;
+  svg+=`<line x1="100" y1="130" x2="100" y2="145" class="burst-line" stroke-width="3"/>`;
+  const nodes=[{x:100,y:50},{x:75,y:70},{x:125,y:70},{x:60,y:85},{x:140,y:85},{x:85,y:110},{x:115,y:110},{x:100,y:105},{x:90,y:130},{x:110,y:130},{x:100,y:145}];
+  const connections=[[0,1],[0,2],[1,3],[2,4],[3,5],[4,6],[5,7],[6,7],[7,8],[7,9],[8,10],[9,10]];
+  connections.forEach(([f,t])=>{svg+=`<line x1="${nodes[f].x}" y1="${nodes[f].y}" x2="${nodes[t].x}" y2="${nodes[t].y}" class="burst-line" opacity="0.4"/>`});
+  nodes.forEach((n,i)=>{const r=(i===0||i===7)?4:3; svg+=`<circle cx="${n.x}" cy="${n.y}" r="${r}" class="burst-dot"/>`});
+  svg+='</svg>'; return svg;
+}
+
+function generateDiamondNetwork(){
+  let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
+  const diamondPath='M100,40 L140,100 L100,160 L60,100 Z';
+  svg+=`<path d="${diamondPath}" fill="none" class="burst-line" stroke-width="2"/>`;
+  svg+=`<line x1="100" y1="40" x2="100" y2="160" class="burst-line" opacity="0.5"/>`;
+  svg+=`<line x1="60" y1="100" x2="140" y2="100" class="burst-line" opacity="0.5"/>`;
+  svg+=`<line x1="80" y1="70" x2="120" y2="130" class="burst-line" opacity="0.3"/>`;
+  svg+=`<line x1="120" y1="70" x2="80" y2="130" class="burst-line" opacity="0.3"/>`;
+  const nodes=[{x:100,y:40},{x:140,y:100},{x:100,y:160},{x:60,y:100},{x:100,y:100},{x:80,y:70},{x:120,y:70},{x:80,y:130},{x:120,y:130},{x:120,y:100},{x:80,y:100}];
+  for(let i=0;i<4;i++){svg+=`<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[4].x}" y2="${nodes[4].y}" class="burst-line" opacity="0.3"/>`}
+  nodes.forEach((n,i)=>{const r=i<4?4:(i===4?5:2.5); svg+=`<circle cx="${n.x}" cy="${n.y}" r="${r}" class="burst-dot" opacity="${i===4?1:.8}"/>`});
+  for(let i=0;i<4;i++){const ang=(i*Math.PI)/2; const x=100+30*Math.cos(ang); const y=100+30*Math.sin(ang); svg+=`<circle cx="${x}" cy="${y}" r="1.5" class="burst-dot" opacity="0.6"/>`}
+  svg+='</svg>'; return svg;
+}
+
+/* ===== Music Player Logic (Same as Footer) ===== */
+// 전역 상태
+var YOUTUBE_CONFIG = { shuffle: true };
+var tracks = [];
+var videoIds = [];
+var orderPool = [];
+var shuffledOrder = [];
+var orderPos = 0;
+var currentVideoIndex = 0;
+var player;
+var isPlayerReady = false;
+var updateTimer = null;
+var isDragging = false;
+var playlistLoadError = false;
+
+// 유틸 함수
+function extractVideoId(url) {
+  if (!url) return null;
+  if (/^[a-zA-Z0-9_-]{11}$/.test(url)) return url;
+  var videoId = null;
+  if (url.includes('music.youtube.com')) {
+    var match = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+    if (match) videoId = match[1];
+  } else if (url.indexOf('v=') > -1) {
+    var vParam = url.split('v=')[1];
+    if (vParam) videoId = vParam.split(/[&#]/)[0];
+  } else if (url.indexOf('youtu.be/') > -1) {
+    videoId = url.split('youtu.be/')[1].split(/[?#&]/)[0];
+  } else if (url.indexOf('/embed/') > -1) {
+    videoId = url.split('/embed/')[1].split(/[?#&]/)[0];
+  }
+  return (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) ? videoId : null;
+}
+
+function toNumberOrNull(v) {
+  var n = parseFloat(v);
+  return Number.isFinite(n) ? n : null;
+}
+
+// Playlist 로드
+function loadPlaylistJson() {
+  if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
+    buildFromJson(PLAYLIST_DATA);
+    return;
+  }
+  handlePlaylistError();
+}
+
+function handlePlaylistError() {
+  playlistLoadError = true;
+  var titleEl = document.getElementById('musicTitle');
+  var artistEl = document.getElementById('musicArtist');
+  if (artistEl) artistEl.textContent = 'Error';
+  if (titleEl) {
+    titleEl.textContent = 'Playlist 로드 실패';
+  }
+  var playBtn = document.getElementById('playPauseBtn');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  if (playBtn) playBtn.disabled = true;
+  if (prevBtn) prevBtn.disabled = true;
+  if (nextBtn) nextBtn.disabled = true;
+}
+
+function buildFromJson(json) {
+  tracks = [];
+  YOUTUBE_CONFIG.shuffle = (typeof json.shuffle === 'boolean') ? json.shuffle : true;
+  if (!json.items || !Array.isArray(json.items)) { 
+    handlePlaylistError(); 
+    return; 
+  }
+  
+  json.items.forEach(function(item) {
+    if (item.enabled === false) return;
+    var id = item.id || extractVideoId(item.url);
+    if (!id) return;
+    tracks.push({
+      id: id,
+      url: item.url || null,
+      weight: Math.max(1, parseInt(item.weight || 1, 10)),
+      start_at: toNumberOrNull(item.start_at),
+      end_at: toNumberOrNull(item.end_at),
+      title_override: item.title_override || null
     });
   });
+  
+  if (tracks.length === 0) { 
+    handlePlaylistError(); 
+    return; 
+  }
+  finalizeTrackSetup();
+}
+
+function finalizeTrackSetup() {
+  var seen = {};
+  videoIds = [];
+  tracks.forEach(function(t) { 
+    if (!seen[t.id]) { 
+      videoIds.push(t.id); 
+      seen[t.id] = true; 
+    } 
+  });
+  
+  orderPool = [];
+  tracks.forEach(function(t, idx) {
+    var w = Math.max(1, parseInt(t.weight || 1, 10));
+    for (var i = 0; i < w; i++) orderPool.push(idx);
+  });
+  
+  generateShuffleOrder();
+  injectYouTubeAPI();
+}
+
+function generateShuffleOrder() {
+  shuffledOrder = orderPool.slice();
+  for (var i = shuffledOrder.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = shuffledOrder[i];
+    shuffledOrder[i] = shuffledOrder[j];
+    shuffledOrder[j] = tmp;
+  }
+  orderPos = 0;
+  currentVideoIndex = shuffledOrder[orderPos] || 0;
+}
+
+// YouTube IFrame API
+function injectYouTubeAPI() {
+  if (playlistLoadError) return;
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var first = document.getElementsByTagName('script')[0];
+  first.parentNode.insertBefore(tag, first);
+}
+
+function onYouTubeIframeAPIReady() {
+  if (!tracks.length) { 
+    handlePlaylistError(); 
+    return; 
+  }
+  player = new YT.Player('youtube-player', {
+    height: '0',
+    width: '0',
+    videoId: tracks[currentVideoIndex].id,
+    playerVars: {
+      'autoplay': 0,
+      'controls': 0,
+      'disablekb': 1,
+      'fs': 0,
+      'modestbranding': 1,
+      'rel': 0
+    },
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError
+    }
+  });
+}
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+function onPlayerReady(event) {
+  isPlayerReady = true;
+  event.target.setVolume(30);
+  event.target.mute();
+  updateVideoTitle();
+  resetProgress();
+  var t = tracks[currentVideoIndex];
+  if (t && t.start_at !== null && t.start_at > 0) {
+    try { 
+      event.target.seekTo(t.start_at, true); 
+    } catch(e) {}
+  }
+}
+
+function onPlayerStateChange(event) {
+  var musicPlayer = document.getElementById('musicPlayer');
+  var playIcon = document.getElementById('playIcon');
+  var pauseIcon = document.getElementById('pauseIcon');
+  var playerBox = document.querySelector('.music-player-box');
+  
+  if (event.data == YT.PlayerState.PLAYING) {
+    musicPlayer.classList.add('playing');
+    if (playerBox) playerBox.classList.add('playing');
+    playIcon.classList.add('hidden');
+    pauseIcon.classList.remove('hidden');
+    updateVideoTitle();
+    startProgressUpdate();
+
+    var t = tracks[currentVideoIndex];
+    if (t && t.end_at !== null && t.end_at > 0) {
+      var remaining = (t.end_at - player.getCurrentTime()) * 1000;
+      if (remaining > 0) {
+        setTimeout(function() {
+          if (player && player.getPlayerState() == YT.PlayerState.PLAYING) {
+            loadNextVideo();
+          }
+        }, remaining);
+      }
+    }
+  } else if (event.data == YT.PlayerState.PAUSED) {
+    musicPlayer.classList.remove('playing');
+    if (playerBox) playerBox.classList.remove('playing');
+    playIcon.classList.remove('hidden');
+    pauseIcon.classList.add('hidden');
+    stopProgressUpdate();
+  } else if (event.data == YT.PlayerState.ENDED) {
+    musicPlayer.classList.remove('playing');
+    if (playerBox) playerBox.classList.remove('playing');
+    playIcon.classList.remove('hidden');
+    pauseIcon.classList.add('hidden');
+    stopProgressUpdate();
+    loadNextVideo();
+  } else if (event.data == YT.PlayerState.CUED) {
+    updateVideoTitle();
+    resetProgress();
+  }
+}
+
+function onPlayerError(event) {
+  var titleElement = document.getElementById('musicTitle');
+  if (tracks.length > 1) {
+    titleElement.textContent = '오류 발생, 다음 곡 재생 중...';
+    setTimeout(loadNextVideo, 1200);
+  } else {
+    titleElement.textContent = '재생 오류가 발생했습니다.';
+  }
+}
+
+// 재생 제어
+function gotoByStep(step) {
+  if (tracks.length <= 1) return;
+  if (YOUTUBE_CONFIG.shuffle && shuffledOrder.length > 0) {
+    orderPos = (orderPos + step + shuffledOrder.length) % shuffledOrder.length;
+    currentVideoIndex = shuffledOrder[orderPos];
+  } else {
+    currentVideoIndex = (currentVideoIndex + step + tracks.length) % tracks.length;
+  }
+}
+
+function loadNextVideo() {
+  gotoByStep(1);
+  resetProgress();
+  player.loadVideoById(tracks[currentVideoIndex].id);
+  var t = tracks[currentVideoIndex];
+  if (t && t.start_at !== null && t.start_at > 0) {
+    setTimeout(function() { 
+      try { 
+        player.seekTo(t.start_at, true); 
+      } catch(e) {} 
+    }, 250);
+  }
+}
+
+function loadPreviousVideo() {
+  gotoByStep(-1);
+  resetProgress();
+  player.loadVideoById(tracks[currentVideoIndex].id);
+  var t = tracks[currentVideoIndex];
+  if (t && t.start_at !== null && t.start_at > 0) {
+    setTimeout(function() { 
+      try { 
+        player.seekTo(t.start_at, true); 
+      } catch(e) {} 
+    }, 250);
+  }
+}
+
+// 제목/아티스트 분리
+function sanitize(s){ 
+  return String(s || '').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim(); 
+}
+
+function stripDecorations(title){
+  return sanitize(title)
+    .replace(/\s*\([^)]*\)\s*$/g,'')
+    .replace(/\s*\[.*?\]\s*$/g,'')
+    .replace(/\s*【.*?】\s*$/g,'')
+    .replace(/\s*(Official\s*(Video|Audio|MV|M\/V))\s*$/i,'')
+    .replace(/\s*-\s*Topic\s*$/i,'')
+    .replace(/\s*\b(MV|Music\s*Video|Lyric\s*Video)\b\s*$/i,'');
+}
+
+function splitTitleArtist(cleanTitle, cleanAuthor){
+  const parts = cleanTitle.split(' - ').map(sanitize);
+  let artist = sanitize(cleanAuthor).replace(/\s*-\s*Topic\s*$/i,'');
+  if (parts.length >= 2){
+    const left  = parts[0];
+    const right = parts.slice(1).join(' - ');
+    return { song: right, artist: left };
+  }
+  return { song: cleanTitle, artist };
+}
+
+function updateVideoTitle() {
+  if (!isPlayerReady || !player) return;
+  try {
+    var videoData = player.getVideoData();
+    var songEl   = document.getElementById('musicTitle');
+    var artistEl = document.getElementById('musicArtist');
+    var t        = tracks[currentVideoIndex];
+
+    if (!videoData){
+      if (songEl)   songEl.textContent   = 'Background Music';
+      if (artistEl) artistEl.textContent = '';
+      return;
+    }
+
+    var rawTitle  = videoData.title  || '';
+    var rawAuthor = videoData.author || '';
+
+    var cleanTitle  = stripDecorations(rawTitle);
+    var cleanAuthor = stripDecorations(rawAuthor).replace(/\s*-\s*Topic\s*$/i,'');
+
+    if (t && t.title_override){
+      cleanTitle = stripDecorations(t.title_override);
+    }
+
+    var msg = splitTitleArtist(cleanTitle, cleanAuthor);
+    var song   = sanitize(msg.song);
+    var artist = sanitize(msg.artist);
+
+    if (artistEl) artistEl.textContent = artist || cleanAuthor || '';
+    if (songEl)   songEl.textContent   = song   || cleanTitle  || 'Background Music';
+
+  } catch (e) {
+    var songEl = document.getElementById('musicTitle');
+    if (songEl) songEl.textContent = 'Background Music';
+  }
+}
+
+// 진행 바
+function formatTime(seconds) {
+  if (!seconds || isNaN(seconds)) return '0:00';
+  var mins = Math.floor(seconds / 60);
+  var secs = Math.floor(seconds % 60);
+  return mins + ':' + (secs < 10 ? '0' : '') + secs;
+}
+
+function updateProgress() {
+  if (!isPlayerReady || !player || isDragging) return;
+  try {
+    var currentTime = player.getCurrentTime();
+    var duration = player.getDuration();
+    if (duration > 0) {
+      var percentage = (currentTime / duration) * 100;
+      document.getElementById('progressSlider').value = percentage;
+      document.getElementById('progressBar').style.width = percentage + '%';
+      document.getElementById('currentTime').textContent = formatTime(currentTime);
+      document.getElementById('duration').textContent = formatTime(duration);
+    }
+  } catch (e) {}
+}
+
+function startProgressUpdate() {
+  if (!updateTimer) {
+    updateTimer = setInterval(updateProgress, 500);
+    updateProgress();
+  }
+}
+
+function stopProgressUpdate() {
+  if (updateTimer) {
+    clearInterval(updateTimer);
+    updateTimer = null;
+  }
+}
+
+function resetProgress() {
+  document.getElementById('progressSlider').value = 0;
+  document.getElementById('progressBar').style.width = '0%';
+  document.getElementById('currentTime').textContent = '0:00';
+  document.getElementById('duration').textContent = '0:00';
+}
+
+// DOM 바인딩
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('progressSlider').value = 0;
+  document.getElementById('volumeSlider').value = 30;
+  loadPlaylistJson();
+
+  // 컨트롤 이벤트
+  document.getElementById('playPauseBtn').addEventListener('click', function() {
+    if (playlistLoadError || !isPlayerReady || !player) return;
+    var state = player.getPlayerState();
+    if (state == YT.PlayerState.PLAYING) {
+      player.pauseVideo();
+    } else {
+      player.playVideo();
+      if (player.isMuted()) {
+        player.unMute();
+        document.getElementById('volumeIcon').classList.remove('hidden');
+        document.getElementById('muteIcon').classList.add('hidden');
+      }
+    }
+  });
+  
+  document.getElementById('prevBtn').addEventListener('click', function() {
+    if (playlistLoadError || !isPlayerReady || !player || tracks.length <= 1) return;
+    loadPreviousVideo();
+  });
+  
+  document.getElementById('nextBtn').addEventListener('click', function() {
+    if (playlistLoadError || !isPlayerReady || !player || tracks.length <= 1) return;
+    loadNextVideo();
+  });
+  
+  document.getElementById('muteBtn').addEventListener('click', function() {
+    if (!isPlayerReady || !player) return;
+    if (player.isMuted()) {
+      player.unMute();
+      document.getElementById('volumeIcon').classList.remove('hidden');
+      document.getElementById('muteIcon').classList.add('hidden');
+      var currentVolume = player.getVolume();
+      document.getElementById('volumeSlider').value = currentVolume;
+    } else {
+      player.mute();
+      document.getElementById('volumeIcon').classList.add('hidden');
+      document.getElementById('muteIcon').classList.remove('hidden');
+    }
+  });
+  
+  document.getElementById('volumeSlider').addEventListener('input', function() {
+    if (!isPlayerReady || !player) return;
+    player.setVolume(this.value);
+    if (this.value == 0) {
+      player.mute();
+      document.getElementById('volumeIcon').classList.add('hidden');
+      document.getElementById('muteIcon').classList.remove('hidden');
+    } else if (player.isMuted()) {
+      player.unMute();
+      document.getElementById('volumeIcon').classList.remove('hidden');
+      document.getElementById('muteIcon').classList.add('hidden');
+    }
+  });
+
+  // 진행 바 드래그
+  var progressSlider = document.getElementById('progressSlider');
+  var startDrag = function() { isDragging = true; };
+  var endDrag = function() { 
+    setTimeout(function() { isDragging = false; }, 100); 
+  };
+  
+  progressSlider.addEventListener('pointerdown', startDrag);
+  progressSlider.addEventListener('pointerup', endDrag);
+  progressSlider.addEventListener('mousedown', startDrag);
+  progressSlider.addEventListener('mouseup', endDrag);
+  progressSlider.addEventListener('touchstart', startDrag, {passive: true});
+  progressSlider.addEventListener('touchend', endDrag);
+  
+  progressSlider.addEventListener('input', function() {
+    document.getElementById('progressBar').style.width = this.value + '%';
+    if (isPlayerReady && player) {
+      var duration = player.getDuration();
+      if (duration > 0) {
+        var seekTime = (this.value / 100) * duration;
+        document.getElementById('currentTime').textContent = formatTime(seekTime);
+      }
+    }
+  });
+  
+  progressSlider.addEventListener('change', function() {
+    if (!isPlayerReady || !player) {
+      isDragging = false;
+      return;
+    }
+    var duration = player.getDuration();
+    if (duration > 0) {
+      var seekTime = (this.value / 100) * duration;
+      player.seekTo(seekTime, true);
+    }
+    setTimeout(function() { isDragging = false; }, 100);
+  });
+});
 </script>
