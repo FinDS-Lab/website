@@ -109,9 +109,16 @@
   text-align:center;   /* ← 추가 */
 }
 .music-artist{
-  /* 기존 속성 유지 + 아래 두 줄 추가 */
-  display:block;      /* 말줄임 안정화 */
-  text-align:center;  /* 가운데 */
+  font-size:9px;                       /* 기존보다 줄임 */
+  font-weight:700;
+  color: #e0c46d;                       /* 흰색(#ffffff) ↔ #d6b14d 중간 톤 */
+  line-height:1.2;
+  white-space:nowrap;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:block;
+  text-align:center;
 }
 
 .title-viewport{
@@ -120,8 +127,13 @@
 }
 
 .song-title{
-  /* 기존 속성 유지 + 아래 한 줄 명시 */
-  display:inline-block; /* 마키용, 중앙 기준 움직임 */
+  display:inline-block;
+  font-size:9px;
+  font-weight:600;
+  color: #d6b14d;                       /* 요청하신 정확한 색 */
+  line-height:1.2;
+  white-space:nowrap;
+  will-change: transform;
 }
       .title-viewport{
         position:relative;
