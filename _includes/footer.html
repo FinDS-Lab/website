@@ -17,11 +17,6 @@
     <!-- Styles -->
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background: #ffffff;
-      }
 
       /* Footer 스타일 - 완전한 흰색 */
       footer {
@@ -39,20 +34,13 @@
       /* 메인 컨텐츠 - 중앙 정렬 */
       .footer-content {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
-        gap: 40px;
+        gap: 25px;
         margin-bottom: 20px;
       }
 
       /* Research Links */
-      .research-links {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-        flex: 1;
-      }
-
       .research-link {
         display: inline-flex;
         align-items: center;
@@ -80,43 +68,6 @@
         color: rgb(214, 177, 77);
       }
 
-      /* 방문자 카운터 */
-      .visitor-counter {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 16px;
-        background-color: #ffffff;
-        border: 1px solid rgb(214, 177, 77);
-        border-radius: 8px;
-      }
-
-      .visitor-icon {
-        width: 18px;
-        height: 18px;
-        color: rgb(214, 177, 77);
-      }
-
-      .visitor-stats {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .visitor-number {
-        font-size: 16px;
-        font-weight: 600;
-        color: rgb(214, 177, 77);
-        font-variant-numeric: tabular-nums;
-        line-height: 1.2;
-      }
-
-      .visitor-label {
-        font-size: 10px;
-        color: #666666;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-      }
-
       /* Copyright */
       .copyright {
         text-align: center;
@@ -131,12 +82,6 @@
         }
 
         .footer-content {
-          flex-direction: column;
-          gap: 20px;
-        }
-
-        .research-links {
-          justify-content: center;
           flex-wrap: wrap;
           gap: 10px;
         }
@@ -162,14 +107,6 @@
           height: 14px;
         }
 
-        .visitor-number {
-          font-size: 14px;
-        }
-
-        .visitor-label {
-          font-size: 9px;
-        }
-
         .copyright {
           font-size: 11px;
         }
@@ -185,10 +122,6 @@
           background-color: #ffffff;
           color: #333333;
         }
-        
-        .visitor-counter {
-          background-color: #ffffff;
-        }
       }
     </style>
   </head>
@@ -202,46 +135,33 @@
         <div class="footer-content">
           
           <!-- Research Links -->
-          <div class="research-links">
-            <a href="https://www.nrf.re.kr" target="_blank" rel="noopener" class="research-link">
-              <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
-              </svg>
-              <span>한국연구재단</span>
-            </a>
-            
-            <a href="https://scholar.google.com" target="_blank" rel="noopener" class="research-link">
-              <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/>
-              </svg>
-              <span>Google Scholar</span>
-            </a>
-
-            <a href="https://www.scopus.com" target="_blank" rel="noopener" class="research-link">
-              <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-10 8H8v2h3v2H8v2h3v2H6V7h5v4z"/>
-              </svg>
-              <span>Scopus</span>
-            </a>
-
-            <a href="https://www.webofscience.com" target="_blank" rel="noopener" class="research-link">
-              <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-              <span>Web of Science</span>
-            </a>
-          </div>
-
-          <!-- Visitor Counter -->
-          <div class="visitor-counter">
-            <svg class="visitor-icon" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          <a href="https://www.nrf.re.kr" target="_blank" rel="noopener" class="research-link">
+            <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
             </svg>
-            <div class="visitor-stats">
-              <div class="visitor-number" id="visitorCount">0</div>
-              <div class="visitor-label">Visitors</div>
-            </div>
-          </div>
+            <span>한국연구재단</span>
+          </a>
+          
+          <a href="https://scholar.google.com" target="_blank" rel="noopener" class="research-link">
+            <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 100 14 7 7 0 000-14z"/>
+            </svg>
+            <span>Google Scholar</span>
+          </a>
+
+          <a href="https://www.scopus.com" target="_blank" rel="noopener" class="research-link">
+            <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-10 8H8v2h3v2H8v2h3v2H6V7h5v4z"/>
+            </svg>
+            <span>Scopus</span>
+          </a>
+
+          <a href="https://www.webofscience.com" target="_blank" rel="noopener" class="research-link">
+            <svg class="research-link-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <span>Web of Science</span>
+          </a>
 
         </div>
 
@@ -258,93 +178,18 @@
       // 현재 연도 설정
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // 실제 작동하는 방문자 카운터
-      (function() {
-        const STORAGE_KEY = 'findslab_total_visitors';
-        const SESSION_KEY = 'findslab_visitor_session';
-        const LAST_VISIT_KEY = 'findslab_last_visit';
-        
-        // 유니크 방문자 체크 (24시간 기준)
-        function isNewVisitor() {
-          const lastVisit = localStorage.getItem(LAST_VISIT_KEY);
-          const now = Date.now();
-          const oneDay = 24 * 60 * 60 * 1000; // 24시간
-          
-          if (!lastVisit) {
-            return true;
-          }
-          
-          return (now - parseInt(lastVisit)) > oneDay;
-        }
-        
-        // 카운터 초기화 및 업데이트
-        function initCounter() {
-          let totalCount = parseInt(localStorage.getItem(STORAGE_KEY) || '0');
-          
-          // 초기값 설정 (처음 방문시)
-          if (totalCount === 0) {
-            totalCount = 12847; // 초기 시드값
-            localStorage.setItem(STORAGE_KEY, totalCount.toString());
-          }
-          
-          // 새 방문자인 경우 카운트 증가
-          if (isNewVisitor()) {
-            totalCount++;
-            localStorage.setItem(STORAGE_KEY, totalCount.toString());
-            localStorage.setItem(LAST_VISIT_KEY, Date.now().toString());
-            
-            // Google Analytics 이벤트
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'new_visitor', {
-                'event_category': 'engagement',
-                'value': totalCount
-              });
-            }
-          }
-          
-          // 카운터 애니메이션
-          animateCounter(totalCount);
-        }
-        
-        // 숫자 애니메이션
-        function animateCounter(target) {
-          const element = document.getElementById('visitorCount');
-          let current = 0;
-          const increment = Math.ceil(target / 60);
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-              current = target;
-              clearInterval(timer);
-            }
-            element.textContent = current.toLocaleString();
-          }, 20);
-        }
-        
-        // 실시간 업데이트 (다른 탭에서 변경시)
-        window.addEventListener('storage', function(e) {
-          if (e.key === STORAGE_KEY) {
-            const newCount = parseInt(e.newValue || '0');
-            document.getElementById('visitorCount').textContent = newCount.toLocaleString();
+      // 링크 클릭 추적
+      document.querySelectorAll('.research-link').forEach(link => {
+        link.addEventListener('click', function() {
+          const linkText = this.querySelector('span').textContent;
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'click', {
+              'event_category': 'Research Link',
+              'event_label': linkText
+            });
           }
         });
-        
-        // 페이지 로드시 실행
-        initCounter();
-        
-        // 링크 클릭 추적
-        document.querySelectorAll('.research-link').forEach(link => {
-          link.addEventListener('click', function() {
-            const linkText = this.querySelector('span').textContent;
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'click', {
-                'event_category': 'Research Link',
-                'event_label': linkText
-              });
-            }
-          });
-        });
-      })();
+      });
     </script>
   </body>
 </html>
