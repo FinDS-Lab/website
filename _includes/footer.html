@@ -330,29 +330,45 @@
         }
       }
 
-      /* 모바일 최적화 */
+      /* 모바일 최적화 - 태블릿 */
+      @media (max-width: 768px) {
+        .music-player-box {
+          width: 75%;
+          padding: 16px 18px;
+        }
+        
+        .player-row {
+          margin-bottom: 8px;
+        }
+      }
+
+      /* 모바일 최적화 - 스마트폰 */
       @media (max-width: 540px) {
         .music-player-box {
-          width: 94%;
-          padding: 20px 16px;
+          width: 85%;
+          padding: 14px 16px;
+        }
+        
+        .player-row {
+          margin-bottom: 7px;
         }
         
         #musicTitle {
-          font-size: 15px;
+          font-size: 14px;
         }
         
         #musicArtist {
-          font-size: 12px;
+          font-size: 11px;
         }
         
         .nav-btn {
-          width: 30px;
-          height: 30px;
+          width: 28px;
+          height: 28px;
         }
         
         .play-btn {
-          width: 38px;
-          height: 38px;
+          width: 35px;
+          height: 35px;
         }
         
         .volume-slider {
@@ -371,43 +387,43 @@
         }
         
         .music-player-box {
-          width: 96%;
-          padding: 18px 14px;
+          width: 90%;
+          padding: 12px 14px;
           border-radius: 16px;
         }
         
         .player-row {
-          margin-bottom: 12px;
+          margin-bottom: 6px;
         }
         
         #musicTitle {
-          font-size: 14px;
+          font-size: 13px;
         }
         
         #musicArtist {
-          font-size: 11px;
+          font-size: 10px;
         }
         
         .nav-btn {
-          width: 28px;
-          height: 28px;
-          padding: 5px;
+          width: 26px;
+          height: 26px;
+          padding: 4px;
         }
         
         .nav-btn svg {
-          width: 13px;
-          height: 13px;
+          width: 12px;
+          height: 12px;
         }
         
         .play-btn {
-          width: 35px;
-          height: 35px;
-          padding: 8px;
+          width: 32px;
+          height: 32px;
+          padding: 7px;
         }
         
         .play-btn svg {
-          width: 18px;
-          height: 18px;
+          width: 16px;
+          height: 16px;
         }
         
         .volume-slider {
@@ -435,40 +451,41 @@
 
       @media (max-width: 350px) {
         .music-player-box {
-          padding: 16px 12px;
+          width: 92%;
+          padding: 10px 12px;
         }
         
         .player-row {
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
         
         #musicTitle {
-          font-size: 13px;
+          font-size: 12px;
         }
         
         #musicArtist {
-          font-size: 10px;
+          font-size: 9px;
         }
         
         .nav-btn {
-          width: 26px;
-          height: 26px;
+          width: 24px;
+          height: 24px;
         }
         
         .nav-btn svg {
-          width: 12px;
-          height: 12px;
+          width: 11px;
+          height: 11px;
         }
         
         .play-btn {
-          width: 32px;
-          height: 32px;
-          padding: 7px;
+          width: 30px;
+          height: 30px;
+          padding: 6px;
         }
         
         .play-btn svg {
-          width: 16px;
-          height: 16px;
+          width: 14px;
+          height: 14px;
         }
         
         .volume-slider {
@@ -523,7 +540,17 @@
         <div id="musicPlayer" class="fade-in">
           <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
 
-            <!-- 줄1: 재생버튼 -->
+            <!-- 줄1: 제목 -->
+            <div class="player-row title-row">
+              <span id="musicTitle">Loading...</span>
+            </div>
+
+            <!-- 줄2: 아티스트 -->
+            <div class="player-row artist-row">
+              <span id="musicArtist">Loading Artist...</span>
+            </div>
+
+            <!-- 줄3: 재생버튼 -->
             <div class="player-row playback-row">
               <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -545,7 +572,7 @@
               </button>
             </div>
 
-            <!-- 줄2: 볼륨 -->
+            <!-- 줄4: 볼륨 -->
             <div class="player-row volume-row">
               <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
                 <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -556,16 +583,6 @@
                 </svg>
               </button>
               <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
-            </div>
-
-            <!-- 줄3: 아티스트 -->
-            <div class="player-row artist-row">
-              <span id="musicArtist">Loading Artist...</span>
-            </div>
-
-            <!-- 줄4: 제목 -->
-            <div class="player-row title-row">
-              <span id="musicTitle">Loading...</span>
             </div>
 
             <!-- 줄5: 진행바/시간 -->
