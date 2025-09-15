@@ -45,7 +45,7 @@ html { scrollbar-gutter: stable both-edges; }
   background: #fff;
 }
 
-/* 상단 고정 + 살짝 블러(선택적으로 동시에 사용) */
+/* (선택) 상단 고정 + 살짝 블러 */
 .sticky-blur{
   position:sticky; top:0; z-index:50;
   backdrop-filter:saturate(180%) blur(8px);
@@ -54,7 +54,7 @@ html { scrollbar-gutter: stable both-edges; }
   border-bottom:1px solid #e5e7eb; /* 안전선 */
 }
 
-/* 공통 네비게이션 링크 기본형 */
+/* 공통 네비게이션 링크 기본형(베이스) */
 .nav-link{
   color:#1f2937; /* slate-800 */
   font-weight:800;
@@ -67,6 +67,31 @@ html { scrollbar-gutter: stable both-edges; }
     transform .2s ease;
 }
 
+/* === 헤더 내 데스크톱 네비 통일: 높이, 정렬, 색상 === */
+header nav[aria-label="Primary"]{ display:flex; align-items:center; gap:24px; }
+header nav[aria-label="Primary"] .menu-group{ position:relative; }
+
+header .nav-link{
+  /* 높이 들쭉 해결 핵심 */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:44px;           /* ← 통일된 줄 높이 */
+  padding:0 14px;        /* 좌우 패딩만 */
+  border-radius:10px;
+  line-height:1;
+  letter-spacing:.1px;
+  color:#fff;            /* 헤더 배경이 금색이므로 흰색 텍스트 */
+  text-decoration:none;
+  transition: color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+/* 높이를 흔드는 임의 밑줄 제거(다른 곳에서 넣었던 효과 무시) */
+header .nav-link::after{ content:none !important; }
+
+/* 호버/포커스 */
+header .nav-link:hover{ color:rgba(255,255,255,.9); }
+header .nav-link:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(255,255,255,.35); }
+
 /* 드롭다운 패널/아이템 */
 .submenu-panel{ font-size:13px; line-height:1.25rem; width:13.5rem; }
 .submenu-item{
@@ -77,30 +102,40 @@ html { scrollbar-gutter: stable both-edges; }
   transition: background-color .2s ease, color .2s ease;
 }
 
-/* 드롭다운의 기준점 보장 (absolute 위치 기준) */
+/* 드롭다운의 기준점 보장 */
 .menu-group{ position: relative; }
 
-/* 드롭다운 기본: 숨김 (애니메이션은 CSS 담당) — 상위 그룹의 '직계 자식'만 */
-.menu-group > .js-submenu{
-  position:absolute; top:100%; left:0; margin-top:.25rem;
-  background:#fff; border:1px solid #e5e7eb; border-radius:.75rem;
-  box-shadow:0 12px 40px rgba(0,0,0,.08);
-  min-width:13.5rem; padding:.5rem 0;
+/* 드롭다운 기본: 숨김 (HTML은 .submenu-panel 사용) */
+.menu-group > .submenu-panel{
+  position:absolute; top:calc(100% + 8px); left:0;
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+  min-width:180px; padding:8px 0;
 
-  visibility:hidden; opacity:0; transform: translateY(6px) scale(.98);
+  visibility:hidden; opacity:0; transform: translateY(6px);
   pointer-events:none;
   transition: visibility .18s ease, opacity .18s ease, transform .18s ease;
+  z-index:30;
 }
 
 /* 보여지는 상태(세 경로 지원: data-open, :hover, :focus-within) */
-.menu-group[data-open="true"] > .js-submenu,
-.menu-group:hover > .js-submenu,
-.menu-group:focus-within > .js-submenu{
-  visibility:visible; opacity:1; transform: translateY(0) scale(1);
+.menu-group[data-open="true"] > .submenu-panel,
+.menu-group:hover > .submenu-panel,
+.menu-group:focus-within > .submenu-panel{
+  visibility:visible; opacity:1; transform: translateY(0);
   pointer-events:auto;
 }
 
-/* === 옵션 A: 텍스트만 골드(배경 그대로) === */
+/* 드롭다운 아이템 통일 */
+header .submenu-panel a,
+header .submenu-item{
+  display:block; padding:8px 14px; border-radius:8px;
+  color:#1f2937; font-weight:700; font-size:14px; line-height:1.25;
+  transition: background-color .18s ease, color .18s ease;
+}
+header .submenu-panel a:hover{ background:#fff7e0; color:#8a6a12; }
+
+/* 텍스트만 골드(옵션 A) — 모바일 링크 포함 */
 .menu-group[data-open="true"] > .nav-link,
 .menu-group:hover > .nav-link,
 .nav-link:hover,
@@ -122,12 +157,14 @@ html { scrollbar-gutter: stable both-edges; }
 #mobileNav a{
   border-radius:.6rem;
   transition:background-color .2s ease, color .2s ease;
+  /* 모바일에서도 높이 통일 */
+  height:44px; display:flex; align-items:center;
 }
 #mobileNav.hidden{ display:none; }
 
 /* 접근성/성능 */
 @media (prefers-reduced-motion: reduce){
-  .js-submenu{ transition:none; transform:none; }
+  .submenu-panel{ transition:none; transform:none; }
 }
 
 /* ========== Buttons / Badges / Cards (PANELS UNIFIED) ========== */
@@ -237,7 +274,7 @@ footer[aria-label="Site footer"]{
   body{ background:#0b0f19; color:#e2e8f0; }
   .sticky-blur{ background:rgba(11,15,25,.85); border-color:#1f2937; }
   .submenu-item, .nav-link{ color:#e2e8f0; }
-  .js-submenu{ background:#0f172a; border-color:#1f2937; box-shadow:0 12px 40px rgba(0,0,0,.5); }
+  .submenu-panel{ background:#0f172a; border-color:#1f2937; box-shadow:0 12px 40px rgba(0,0,0,.5); }
 
   /* 패널은 항상 밝게 유지 (News/Notice 모두) */
   .card, .home-panel{
@@ -313,7 +350,7 @@ footer[aria-label="Site footer"]{
 /* === Mobile: always show submenus expanded === */
 @media (max-width: 768px){
   /* 모바일 전용 네비 컨테이너 안에서 드롭다운 패널을 '항상 보이게' 전환 */
-  #mobileNav .js-submenu{
+  #mobileNav .submenu-panel{
     position: static;           /* absolute → 일반 흐름 */
     visibility: visible;
     opacity: 1;
