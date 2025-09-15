@@ -441,16 +441,16 @@ permalink: /members-director.html
   gap:1.5rem;
   max-width: 100%;
   overflow-x: hidden;
-  align-items: start; /* 중요: 이 줄이 있어야 함 */
+  align-items: flex-start; /* start 대신 flex-start로 변경 */
 }
 
 /* PC에서만 Profile 카드가 스크롤 따라오게 함 */
 @media (min-width: 969px) {
-  aside {
-    position: -webkit-sticky; /* Safari 지원 */
+  .main-grid > aside {
+    position: -webkit-sticky;
     position: sticky;
     top: 20px;
-    height: fit-content;
+    z-index: 100; /* z-index 추가 */
   }
   
   aside .director-card {
@@ -3820,6 +3820,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
