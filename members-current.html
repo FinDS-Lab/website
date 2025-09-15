@@ -552,15 +552,19 @@ function generateDiamondNetwork() {
 // Store all loaded member data
 let allMembers = [];
 
-// Load member data from JSON
-async function loadAllMembers() {
-  const container = document.getElementById('membersContainer');
-  
-  try {
-    console.log('Attempting to load kim-phd.json from /members/');
-    
-    // Try to load kim-phd.json from /members/ directory
-    const response = await fetch('/members/kim-phd.json');
+": "2014-03", "end": "2018-08", "gpa": "4.2/4.5", "honors": "Magna Cum Laude" }
+        ],
+        "publications": [
+          { "title": "Multilingual Challenges in Automated Evaluators", "authors": ["Kim, P.", "Lee, S.", "Park, J."], "venue": "AAAI Workshop on Preparing Good Data for Generative AI", "year": 2025, "type": "workshop" },
+          { "title": "Quantifying Qualitative Insights with LLMs", "authors": ["Kim, P.", "Lee, S."], "venue": "ICAIF Workshop on LLMs and Generative AI for Finance", "year": 2024, "type": "workshop" }
+        ],
+        "awards": [
+          { "title": "FinanceRAG Challenge Winner", "organization": "ICAIF", "year": 2024 },
+          { "title": "Big Data Competition Excellence Award", "organization": "NH Investment & Securities", "year": 2023 }
+        ],
+        "avatar": "/assets/img/members/kim-phd.jpg"
+      };
+    }
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
