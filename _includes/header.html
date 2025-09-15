@@ -20,7 +20,7 @@
       <!-- About -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" style="display: none;">
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}">Research Areas</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
@@ -31,7 +31,7 @@
       <!-- Members -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/members-director.html' | relative_url }}">Members</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" style="display: none;">
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}">Director</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}">Current Members</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
@@ -45,7 +45,7 @@
       <!-- Archives -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" style="display: none;">
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}">News</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
           <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
@@ -124,6 +124,7 @@
 <style>
 /* 호버 시 서브메뉴 표시 */
 .menu-group:hover .submenu-panel {
+  display: block !important;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -173,16 +174,5 @@
 
 .nav-link:hover::after {
   width: 100%;
-}
-
-/* 헤더 높이를 위한 spacer */
-.header-spacer {
-  height: 70px;
-}
-
-@media (max-width: 768px) {
-  .header-spacer {
-    height: 60px;
-  }
 }
 </style>
