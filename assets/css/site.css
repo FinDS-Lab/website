@@ -37,7 +37,15 @@ html { scrollbar-gutter: stable both-edges; }
 }
 
 /* ========== Header / Nav ========== */
-/* 상단 고정 + 살짝 블러 */
+/* 헤더를 항상 최상단 + 불투명 배경으로 고정 (덮임/투명 이슈 방지) */
+.site-header, header{
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  background: #fff;
+}
+
+/* 상단 고정 + 살짝 블러(선택적으로 동시에 사용) */
 .sticky-blur{
   position:sticky; top:0; z-index:50;
   backdrop-filter:saturate(180%) blur(8px);
@@ -69,8 +77,11 @@ html { scrollbar-gutter: stable both-edges; }
   transition: background-color .2s ease, color .2s ease;
 }
 
-/* 드롭다운 기본: 숨김 (애니메이션은 CSS 담당) */
-.js-submenu{
+/* 드롭다운의 기준점 보장 (absolute 위치 기준) */
+.menu-group{ position: relative; }
+
+/* 드롭다운 기본: 숨김 (애니메이션은 CSS 담당) — 상위 그룹의 '직계 자식'만 */
+.menu-group > .js-submenu{
   position:absolute; top:100%; left:0; margin-top:.25rem;
   background:#fff; border:1px solid #e5e7eb; border-radius:.75rem;
   box-shadow:0 12px 40px rgba(0,0,0,.08);
@@ -82,15 +93,14 @@ html { scrollbar-gutter: stable both-edges; }
 }
 
 /* 보여지는 상태(세 경로 지원: data-open, :hover, :focus-within) */
-.menu-group[data-open="true"] .js-submenu,
-.menu-group:hover .js-submenu,
-.menu-group:focus-within .js-submenu{
+.menu-group[data-open="true"] > .js-submenu,
+.menu-group:hover > .js-submenu,
+.menu-group:focus-within > .js-submenu{
   visibility:visible; opacity:1; transform: translateY(0) scale(1);
   pointer-events:auto;
 }
 
 /* === 옵션 A: 텍스트만 골드(배경 그대로) === */
-/* 그룹 활성/호버 + 링크/서브아이템/모바일 링크 호버 */
 .menu-group[data-open="true"] > .nav-link,
 .menu-group:hover > .nav-link,
 .nav-link:hover,
@@ -261,7 +271,6 @@ footer[aria-label="Site footer"]{
 }
 
 /* ========== Banner responsive text fix (no HTML changes) ========== */
-/* 여러 배너에서 쓰는 공통 캡션 컨테이너: 아주 작은 화면에서 안정적으로 줄이기 */
 .relative.rounded-2xl .absolute.inset-x-0.bottom-4.px-4,
 .relative.rounded-2xl .absolute.inset-x-0.bottom-3.px-4{
   bottom:.75rem; /* 여백 살짝 위로 */
@@ -347,3 +356,6 @@ footer[aria-label="Site footer"]{
   /* 만약 상위 항목에 '∨' 같은 케럿 아이콘을 의사요소로 넣었다면 제거(겹침 방지) */
   #mobileNav .menu-group > .nav-link::after{ content: none; }
 }
+
+/* 히어로/캐러셀이 헤더를 덮지 않도록 안전장치 */
+.hero-section, .carousel-container, .carousel-overlay{ z-index: 0; }
