@@ -41,6 +41,15 @@ permalink: /members-current.html
       font-size: 14px;
       gap: 12px;
     }
+    
+    .error-container {
+      text-align: center;
+      padding: 40px 20px;
+      color: #dc2626;
+      background: #fef2f2;
+      border-radius: 12px;
+      margin: 20px 0;
+    }
 
     /* Banner */
     .banner-section {
@@ -394,7 +403,7 @@ permalink: /members-current.html
     .btn-details.ms:hover{ background:var(--ms-light-gold);color:#111827; }
     .btn-details.undergrad:hover{ background:var(--undergrad-red);color:#fff; }
 
-    /* Modal styles remain the same... */
+    /* Modal styles */
     .modal-overlay{ 
       position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;
       display:none;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(3px);
@@ -437,25 +446,21 @@ permalink: /members-current.html
 </section>
 
 <script>
-/* Interactive gold burst (cards suits) - Same as before */
+/* Interactive gold burst functions */
 function createNetworkBurst(event, element) {
   const rect = element.getBoundingClientRect();
   const x = event.clientX - rect.left - 100;
   const y = event.clientY - rect.top  - 100;
-
   const networkDiv = document.createElement('div');
   networkDiv.className = 'network-burst';
   networkDiv.style.left = x + 'px';
   networkDiv.style.top  = y + 'px';
-
   const patterns = [generateHeartNetwork, generateClubNetwork, generateSpadeNetwork, generateDiamondNetwork];
   const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
   networkDiv.innerHTML = randomPattern();
-
   element.appendChild(networkDiv);
   setTimeout(()=> element.removeChild(networkDiv), 2000);
 }
-
 function generateHeartNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const heartPath = 'M100,140 C80,120 40,100 40,70 C40,50 55,35 70,35 C85,35 95,45 100,55 C105,45 115,35 130,35 C145,35 160,50 160,70 C160,100 120,120 100,140 Z';
@@ -544,24 +549,27 @@ function generateDiamondNetwork() {
 
 <!-- ===== Dynamic Member Loading Script ===== -->
 <script>
-// Configuration
-const MEMBERS_DATA_PATH = '{{ "/data/members/" | relative_url }}';
-const ASSETS_PATH = '{{ "/assets" | relative_url }}';
-
 // Store all loaded member data
 let allMembers = [];
 
-// Load all member data (TEMPORARY: Using kim-phd.json for all members)
+// Load member data from JSON
 async function loadAllMembers() {
   const container = document.getElementById('membersContainer');
   
   try {
-    // TEMPORARY: Load kim-phd.json and create variations for other members
-    const response = await fetch(MEMBERS_DATA_PATH + 'kim-phd.json');
-    if (!response.ok) throw new Error('Failed to load kim-phd.json');
-    const kimData = await response.json();
+    console.log('Attempting to load kim-phd.json from /members/');
     
-    // Create temporary member data based on kim-phd.json
+    // Try to load kim-phd.json from /members/ directory
+    const response = await fetch('/members/kim-phd.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const kimData = await response.json();
+    console.log('Successfully loaded kim-phd.json:', kimData);
+    
+    // Create variations for all members based on kim-phd.json
     allMembers = [
       // Original Kim Ph.D.
       kimData,
@@ -577,36 +585,7 @@ async function loadAllMembers() {
         research: {
           ...kimData.research,
           interests: ['Deep Learning for Finance', 'Portfolio Optimization', 'Time Series Analysis', 'Quantitative Trading']
-        },
-        education: [
-          {
-            degree: 'Ph.D.',
-            field: 'Business Analytics',
-            school: 'Dongduk Women\'s University',
-            location: 'Seoul, Korea',
-            start: '2021-03',
-            end: null,
-            expected: '2026-02',
-            status: 'ongoing'
-          },
-          {
-            degree: 'M.S.',
-            field: 'Financial Engineering',
-            school: 'Seoul National University',
-            location: 'Seoul, Korea',
-            start: '2018-03',
-            end: '2020-02'
-          },
-          {
-            degree: 'B.S.',
-            field: 'Applied Mathematics',
-            school: 'KAIST',
-            location: 'Daejeon, Korea',
-            start: '2014-03',
-            end: '2018-02',
-            honors: 'Magna Cum Laude'
-          }
-        ]
+        }
       },
       
       // Park Master (modified version)
@@ -621,43 +600,7 @@ async function loadAllMembers() {
         research: {
           ...kimData.research,
           interests: ['Financial NLP', 'Evaluation Metrics', 'Text Mining', 'Sentiment Analysis']
-        },
-        education: [
-          {
-            degree: 'M.S.',
-            field: 'Financial Data Science',
-            school: 'Dongduk Women\'s University',
-            location: 'Seoul, Korea',
-            start: '2024-03',
-            end: null,
-            expected: '2026-02',
-            status: 'ongoing'
-          },
-          {
-            degree: 'B.S.',
-            field: 'Computer Science',
-            school: 'Dongduk Women\'s University',
-            location: 'Seoul, Korea',
-            start: '2020-03',
-            end: '2024-02'
-          }
-        ],
-        publications: [
-          {
-            title: 'Financial NLP Applications in Korean Markets',
-            authors: ['Park, M.'],
-            venue: 'Under Review',
-            year: 2024,
-            type: 'journal'
-          }
-        ],
-        awards: [
-          {
-            title: 'Excellence Award',
-            organization: 'Data Science Competition',
-            year: 2024
-          }
-        ]
+        }
       },
       
       // Choi Undergrad (modified version)
@@ -672,40 +615,14 @@ async function loadAllMembers() {
         research: {
           ...kimData.research,
           interests: ['Data-Driven Trading', 'Basic Analytics', 'Machine Learning', 'Python Programming']
-        },
-        education: [
-          {
-            degree: 'B.S.',
-            field: 'Business Analytics',
-            school: 'Dongduk Women\'s University',
-            location: 'Seoul, Korea',
-            start: '2023-03',
-            end: null,
-            expected: '2026-08',
-            status: 'ongoing'
-          }
-        ],
-        publications: [
-          {
-            title: 'Currently working on first research project',
-            authors: ['Choi, U.'],
-            venue: 'In Progress',
-            year: 2024,
-            type: 'project'
-          }
-        ],
-        awards: [
-          {
-            title: 'Dean\'s List',
-            organization: 'Dongduk Women\'s University',
-            year: '2023-2024'
-          }
-        ]
+        }
       }
     ];
     
     // Filter only active members
-    allMembers = allMembers.filter(m => m !== null && m.status === 'active');
+    allMembers = allMembers.filter(m => m && m.status === 'active');
+    
+    console.log('Total active members:', allMembers.length);
     
     // Sort members by degree and start date
     allMembers.sort((a, b) => {
@@ -716,13 +633,20 @@ async function loadAllMembers() {
       return new Date(a.period.start) - new Date(b.period.start);
     });
     
-    // Render members by category
+    // Render members
     renderMembers();
     updateStatistics();
     
   } catch (error) {
     console.error('Error loading members:', error);
-    container.innerHTML = '<div class="loading-container">Error loading member data. Please try again later.</div>';
+    container.innerHTML = `
+      <div class="error-container">
+        <h3 style="margin-bottom:8px;">Error Loading Member Data</h3>
+        <p style="font-size:14px;margin-bottom:8px;">Could not load member data from /members/kim-phd.json</p>
+        <p style="font-size:12px;color:#6b7280;">Error: ${error.message}</p>
+        <p style="font-size:12px;color:#6b7280;margin-top:12px;">Please ensure kim-phd.json exists in the /members/ directory</p>
+      </div>
+    `;
   }
 }
 
@@ -779,7 +703,7 @@ function createMemberCard(member) {
   const role = member.role.en || member.role;
   const period = formatPeriod(member.period);
   const research = member.research.interests ? member.research.interests.slice(0, 2).join(', ') : '';
-  const avatarPath = member.avatar || `${ASSETS_PATH}/img/members/default.jpg`;
+  const avatarPath = member.avatar || '/assets/img/members/default.jpg';
   
   return `
     <div class="member-card" data-degree="${member.degree}">
@@ -790,7 +714,7 @@ function createMemberCard(member) {
                alt="${displayName}"
                class="member-avatar"
                loading="lazy" decoding="async"
-               onerror="this.onerror=null; this.src='${ASSETS_PATH}/img/members/default.jpg'">
+               onerror="this.onerror=null; this.src='/assets/img/members/default.jpg'">
           <div class="member-details">
             <h3 class="member-name">${displayName}</h3>
             <span class="member-role ${member.degree}">${role}</span>
@@ -862,7 +786,6 @@ function openModal(memberId) {
   const member = allMembers.find(m => m.id === memberId);
   if (!member) return;
   
-  // Create modal HTML
   const modalPanel = document.getElementById('modalPanel');
   const displayName = member.name.ko ? `${member.name.ko} (${member.name.en})` : member.name.en;
   const role = member.role.en || member.role;
@@ -878,59 +801,27 @@ function openModal(memberId) {
     <div class="modal-body" style="padding:20px;overflow-y:auto;flex:1;">
   `;
   
-  // Education Section
+  // Add sections if data exists
   if (member.education && member.education.length > 0) {
-    modalHTML += '<div class="modal-section" style="margin-bottom:20px;"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Education</h4>';
+    modalHTML += '<div style="margin-bottom:20px;"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Education</h4>';
     member.education.forEach(edu => {
-      const isExpected = edu.expected;
-      const yearStr = edu.end ? edu.end : (edu.expected ? `Expected ${edu.expected}` : 'Present');
-      modalHTML += `
-        <div style="background:linear-gradient(135deg, #f8fafc 0%, #fff 100%);border:1px solid #e5e7eb;border-radius:0.75rem;padding:12px;margin-bottom:8px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-            <span style="display:inline-flex;padding:2px 8px;background:#fff;border:1px solid ${edu.degree === 'Ph.D.' ? 'var(--phd-gold)' : edu.degree === 'M.S.' ? 'var(--ms-light-gold)' : '#6b7280'};border-radius:999px;font-size:10px;font-weight:800;color:${edu.degree === 'Ph.D.' ? 'var(--phd-gold)' : edu.degree === 'M.S.' ? '#a08030' : '#6b7280'};">${edu.degree}</span>
-            <span style="font-size: 11px; color: #374151; font-weight: 700;">${yearStr}</span>
-          </div>
-          <div style="font-weight: 800; color: #111827; font-size: 13px; margin-bottom: 2px;">${edu.school}</div>
-          <div style="font-size: 12px; color: #374151;">${edu.field}</div>
-          ${edu.honors ? `<div style="font-size: 11px; color: #10b981; margin-top: 4px;">🏆 ${edu.honors}</div>` : ''}
-        </div>`;
+      modalHTML += `<div style="background:#f8fafc;padding:12px;border-radius:8px;margin-bottom:8px;font-size:13px;color:#374151;">
+        <strong>${edu.degree}</strong> in ${edu.field}<br>
+        ${edu.school}<br>
+        <span style="color:#6b7280;font-size:12px;">${edu.end || edu.expected || 'Present'}</span>
+      </div>`;
     });
     modalHTML += '</div>';
   }
   
-  // Publications Section
   if (member.publications && member.publications.length > 0) {
-    modalHTML += '<div class="modal-section" style="margin-bottom:20px;"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Publications</h4><ul style="list-style:none;padding:0;margin:0;">';
+    modalHTML += '<div style="margin-bottom:20px;"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Publications</h4>';
     member.publications.forEach(pub => {
-      modalHTML += `<li style="padding:10px 12px;background:#f8fafc;border-radius:0.5rem;margin-bottom:8px;font-size:12px;line-height:1.5;color:#374151;border-left:3px solid #e5e7eb;">
+      modalHTML += `<div style="padding:10px 12px;background:#f8fafc;border-radius:0.5rem;margin-bottom:8px;font-size:12px;line-height:1.5;color:#374151;border-left:3px solid #e5e7eb;">
         <strong>${pub.title}</strong><br>
-        ${pub.authors.join(', ')} - ${pub.venue} (${pub.year})
-      </li>`;
+        ${pub.authors ? pub.authors.join(', ') + ' - ' : ''}${pub.venue} (${pub.year})
+      </div>`;
     });
-    modalHTML += '</ul></div>';
-  }
-  
-  // Awards Section
-  if (member.awards && member.awards.length > 0) {
-    modalHTML += '<div class="modal-section" style="margin-bottom:20px;"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Honors & Awards</h4><ul style="list-style:none;padding:0;margin:0;">';
-    member.awards.forEach(award => {
-      modalHTML += `<li style="padding:10px 12px;background:#f8fafc;border-radius:0.5rem;margin-bottom:8px;font-size:12px;line-height:1.5;color:#374151;border-left:3px solid #e5e7eb;">
-        <strong>${award.title}</strong> - ${award.organization}, ${award.year}
-        ${award.description ? `<br><span style="font-size:11px;color:#6b7280;">${award.description}</span>` : ''}
-      </li>`;
-    });
-    modalHTML += '</ul></div>';
-  }
-  
-  // Skills Section
-  if (member.skills) {
-    modalHTML += '<div class="modal-section"><h4 style="font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;">Skills</h4>';
-    if (member.skills.programming) {
-      modalHTML += `<div style="margin-bottom:8px;"><strong style="font-size:11px;color:#6b7280;">Programming:</strong> <span style="font-size:12px;color:#374151;">${member.skills.programming.join(', ')}</span></div>`;
-    }
-    if (member.skills.frameworks) {
-      modalHTML += `<div style="margin-bottom:8px;"><strong style="font-size:11px;color:#6b7280;">Frameworks:</strong> <span style="font-size:12px;color:#374151;">${member.skills.frameworks.join(', ')}</span></div>`;
-    }
     modalHTML += '</div>';
   }
   
@@ -952,6 +843,7 @@ function closeModal() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('Page loaded, starting to load members...');
   loadAllMembers();
 });
 
