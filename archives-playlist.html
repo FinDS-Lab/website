@@ -414,7 +414,7 @@ permalink: /archives-playlist.html
 
             <!-- 줄1: 제목 -->
             <div class="player-row title-row">
-              <span id="musicTitle">Click the play button!</span>
+              <span id="musicTitle">Loading...</span>
             </div>
 
             <!-- 줄2: 아티스트 -->
@@ -803,12 +803,31 @@ function stripDecorations(title) {
 }
 
 function splitTitleArtist(cleanTitle, cleanAuthor) {
+  // 제목에서 ' - '로 분리
   const parts = cleanTitle.split(' - ').map(sanitize);
+  
+  // 작가/아티스트 처리 - Topic 제거
   let artist = sanitize(cleanAuthor).replace(/\s*-\s*Topic\s*$/i,'');
+  
+  // 제목이 "아티스트 - 노래제목" 형식인 경우
   if (parts.length >= 2) {
-    return { song: parts.slice(1).join(' - '), artist: parts[0] };
+    const leftPart = parts[0];
+    const rightPart = parts.slice(1).join(' - ');
+    
+    // 왼쪽 부분이 아티스트일 가능성이 높음
+    // 쉼표가 있으면 여러 아티스트
+    if (leftPart.includes(',') || leftPart.includes('&') || leftPart.includes('feat')) {
+      artist = leftPart;  // 전체 아티스트 이름 사용
+    } else {
+      artist = leftPart;
+    }
+    
+    return { song: rightPart, artist: artist };
   }
-  return { song: cleanTitle, artist };
+  
+  // 제목에 ' - '가 없는 경우, YouTube author를 그대로 사용
+  // 쉼표로 구분된 여러 아티스트도 그대로 표시
+  return { song: cleanTitle, artist: artist };
 }
 
 function updateVideoTitle() {
