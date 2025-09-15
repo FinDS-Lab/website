@@ -434,24 +434,29 @@ permalink: /members-director.html
  }
 
  /* Layout Grid */
+/* Layout Grid */
 .main-grid{
   display:grid;
   grid-template-columns:340px 1fr;
   gap:1.5rem;
   max-width: 100%;
   overflow-x: hidden;
-  align-items: start; /* 이 줄 추가 */
+  align-items: start; /* 중요: 이 줄이 있어야 함 */
 }
 
+/* PC에서만 Profile 카드가 스크롤 따라오게 함 */
 @media (min-width: 969px) {
-  .main-grid > aside {
+  aside {
+    position: -webkit-sticky; /* Safari 지원 */
     position: sticky;
     top: 20px;
     height: fit-content;
-    align-self: start;
+  }
+  
+  aside .director-card {
+    position: relative; /* sticky 컨테이너 내부 요소 */
   }
 }
-
  
 @media (max-width: 968px) {
   .main-grid{
@@ -3815,6 +3820,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
