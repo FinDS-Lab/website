@@ -116,6 +116,12 @@ permalink: /archives-playlist.html
     color: rgb(214, 177, 77);
     margin: 0;
   }
+  
+  /* Insu Choi에 더 진한 황금색 적용 */
+  .collapsible-title .name-highlight {
+    color: rgb(184, 137, 47);
+    font-weight: 800;
+  }
 
   .collapse-icon {
     width: 24px;
@@ -435,7 +441,7 @@ permalink: /archives-playlist.html
 <div class="playlist-container">
   <div class="collapsible-section" id="ischoi-section">
     <div class="collapsible-header" onclick="toggleSection('ischoi-section')">
-      <h2 class="collapsible-title">Insu Choi's Playlist</h2>
+      <h2 class="collapsible-title"><span class="name-highlight">Insu Choi</span>'s Playlist</h2>
       <svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
@@ -514,8 +520,32 @@ permalink: /archives-playlist.html
 
 <!-- ===== Scripts ===== -->
 <script>
-// Jekyll playlist data injection
-window.PLAYLIST_DATA = {{ site.data.playlist.itemsByPerson.ischoi | jsonify }};
+// Jekyll 데이터 처리 - 다양한 방법 시도
+{% raw %}
+{% if site.data.playlist %}
+  {% assign playlist_data = site.data.playlist %}
+  {% if playlist_data.itemsByPerson and playlist_data.itemsByPerson.ischoi %}
+    window.PLAYLIST_DATA = {{ playlist_data.itemsByPerson.ischoi | jsonify }};
+    console.log('Loaded from Jekyll _data folder');
+  {% else %}
+    console.error('playlist.json found but itemsByPerson.ischoi not found');
+    window.PLAYLIST_DATA = null;
+  {% endif %}
+{% else %}
+  console.error('site.data.playlist not found - check _data/playlist.json');
+  // Fallback: 하드코딩된 데이터
+  window.PLAYLIST_DATA = {
+    "shuffle": true,
+    "items": [
+      { "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N" },
+      { "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3" },
+      { "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r" },
+      { "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE" }
+    ]
+  };
+  console.log('Using fallback hardcoded data');
+{% endif %}
+{% endraw %}
 
 /* ===== Collapsible Section Toggle ===== */
 function toggleSection(sectionId) {
@@ -633,55 +663,16 @@ function toNumberOrNull(v) {
   return Number.isFinite(n) ? n : null;
 }
 
-// Playlist 로드 - 수정된 버전
+// 매우 간단한 Playlist 로드
 function loadPlaylistJson() {
-  if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
-    // PLAYLIST_DATA가 null이 아니고 올바른 구조인지 확인
-    if (PLAYLIST_DATA && PLAYLIST_DATA.items) {
-      buildFromJson(PLAYLIST_DATA);
-      return;
-    }
+  // 하드코딩된 데이터 바로 사용
+  if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA && PLAYLIST_DATA.items) {
+    console.log('Using embedded playlist data');
+    buildFromJson(PLAYLIST_DATA);
+  } else {
+    console.error('No playlist data found');
+    handlePlaylistError();
   }
-  
-  // Jekyll 데이터가 없으면 fallback으로 직접 로드 시도
-  var baseurl = '';
-  if (window.location.pathname.indexOf('/website') === 0) baseurl = '/website';
-  var paths = [
-    baseurl + '/assets/playlist.json',
-    baseurl + '/assets/data/playlist.json',
-    baseurl + '/_data/playlist.json',
-    '/assets/playlist.json',
-    './playlist.json'
-  ];
-  
-  var tryLoad = function(index) {
-    if (index >= paths.length) { 
-      handlePlaylistError(); 
-      return; 
-    }
-    var url = paths[index];
-    fetch(url + '?t=' + Date.now())
-      .then(function(res) { 
-        if (!res.ok) throw new Error('HTTP ' + res.status); 
-        return res.json(); 
-      })
-      .then(function(json) {
-        // 중첩된 구조 처리
-        if (json.itemsByPerson && json.itemsByPerson.ischoi) {
-          buildFromJson(json.itemsByPerson.ischoi);
-        } else if (json.items) {
-          buildFromJson(json);
-        } else {
-          tryLoad(index + 1);
-        }
-      })
-      .catch(function() { 
-        tryLoad(index + 1); 
-      });
-  };
-  
-  // fallback 시도
-  tryLoad(0);
 }
 
 function handlePlaylistError() {
