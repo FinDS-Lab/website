@@ -15,41 +15,41 @@
     
     <!-- Desktop Nav -->
     <nav class="flex items-center gap-6" aria-label="Primary">
-      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/' | relative_url }}">Home</a>
+      <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}">Research Areas</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}">Location</a>
+      <div class="menu-group" data-menu>
+        <a class="nav-link" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+        <div class="submenu-panel" role="menu">
+          <a href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
+          <a href="{{ '/about-vision-area.html' | relative_url }}">Research Areas</a>
+          <a href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
+          <a href="{{ '/about-location.html' | relative_url }}">Location</a>
         </div>
       </div>
       
       <!-- Members -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/members-director.html' | relative_url }}">Members</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}">Director</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}">Current Members</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
+      <div class="menu-group" data-menu>
+        <a class="nav-link" href="{{ '/members-director.html' | relative_url }}">Members</a>
+        <div class="submenu-panel" role="menu">
+          <a href="{{ '/members-director.html' | relative_url }}">Director</a>
+          <a href="{{ '/members-current.html' | relative_url }}">Current Members</a>
+          <a href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
         </div>
       </div>
       
-      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/publications.html' | relative_url }}">Publications</a>
-      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
-      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/projects.html' | relative_url }}">Projects</a>
+      <a class="nav-link" href="{{ '/publications.html' | relative_url }}">Publications</a>
+      <a class="nav-link" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
+      <a class="nav-link" href="{{ '/projects.html' | relative_url }}">Projects</a>
       
       <!-- Archives -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}">News</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
-          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
+      <div class="menu-group" data-menu>
+        <a class="nav-link" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+        <div class="submenu-panel" role="menu">
+          <a href="{{ '/archives-news.html' | relative_url }}">News</a>
+          <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
+          <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
+          <a href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
         </div>
       </div>
     </nav>
@@ -71,7 +71,7 @@
   <!-- Mobile Nav -->
   <div id="mobileNav" class="md:hidden max-w-7xl mx-auto px-4 pb-3 hidden">
     <div class="grid gap-2 bg-white/98 border border-white/50 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg">
-      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/' | relative_url }}">Home</a>
+      <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
       <div class="px-3 py-2">
@@ -79,11 +79,11 @@
           <a class="block font-bold mb-1 text-gray-800" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
           <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-about">▾</button>
         </div>
-        <div id="mob-about" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}">Location</a>
+        <div id="mob-about" class="mobile-acc-panel hidden">
+          <a href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
+          <a href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
+          <a href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
+          <a href="{{ '/about-location.html' | relative_url }}">Location</a>
         </div>
       </div>
       
@@ -93,16 +93,16 @@
           <a class="block font-bold mb-1 text-gray-800" href="{{ '/members-director.html' | relative_url }}">Members</a>
           <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-members">▾</button>
         </div>
-        <div id="mob-members" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}">Director</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}">Current Members</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
+        <div id="mob-members" class="mobile-acc-panel hidden">
+          <a href="{{ '/members-director.html' | relative_url }}">Director</a>
+          <a href="{{ '/members-current.html' | relative_url }}">Current Members</a>
+          <a href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
         </div>
       </div>
       
-      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/publications.html' | relative_url }}">Publications</a>
-      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
-      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/projects.html' | relative_url }}">Projects</a>
+      <a class="mobile-link" href="{{ '/publications.html' | relative_url }}">Publications</a>
+      <a class="mobile-link" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
+      <a class="mobile-link" href="{{ '/projects.html' | relative_url }}">Projects</a>
       
       <!-- Archives (Accordion) -->
       <div class="px-3 py-2">
@@ -110,11 +110,11 @@
           <a class="block font-bold mb-1 text-gray-800" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
           <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-archives">▾</button>
         </div>
-        <div id="mob-archives" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}">News</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
-          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
+        <div id="mob-archives" class="mobile-acc-panel hidden">
+          <a href="{{ '/archives-news.html' | relative_url }}">News</a>
+          <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
+          <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
+          <a href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
         </div>
       </div>
     </div>
@@ -122,63 +122,43 @@
 </header>
 
 <style>
-/* 서브메뉴 기본 숨김 - 최우선 적용 */
-.submenu-panel {
-  display: none !important;
+/* === 헤더 네비 디자인 통일 === */
+.nav-link{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:46px; padding:0 14px; border-radius:10px;
+  font-weight:800; color:#fff; line-height:1;
+  transition:background-color .2s ease, color .2s ease;
 }
+.nav-link:hover{ background:rgba(255,255,255,.15); }
 
-/* 호버 시 서브메뉴 표시 */
-.menu-group:hover .submenu-panel,
-[data-menu][data-open="true"] .submenu-panel {
-  display: block !important;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.menu-group{ position:relative; }
+.submenu-panel{
+  display:none; position:absolute; top:calc(100% + 8px); left:0;
+  background:#fff; border:1px solid rgba(0,0,0,.08); border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+  min-width:180px; padding:8px 0; z-index:50;
 }
+.menu-group:hover>.submenu-panel,
+.menu-group[data-open="true"]>.submenu-panel{ display:block; }
+.submenu-panel a{
+  display:block; padding:8px 14px; font-weight:700; font-size:14px;
+  color:#1f2937; border-radius:8px;
+}
+.submenu-panel a:hover{ background:#fff7e0; color:#8a6a12; }
 
-/* 서브메뉴 초기 상태 */
-.submenu-panel {
-  transform: translateY(-10px);
+/* 모바일 링크 */
+.mobile-link{
+  display:block; padding:10px 12px;
+  font-weight:800; color:#1f2937; border-radius:8px;
 }
+.mobile-link:hover{ background:#fff7e0; color:#8a6a12; }
 
-/* 모바일 아코디언 애니메이션 */
-.mobile-acc-panel {
-  transition: all 0.3s ease;
+/* 모바일 아코디언 */
+.mobile-acc-panel{ display:none; margin-left:1rem; }
+.mobile-acc-panel a{
+  display:block; padding:6px 8px; font-size:14px;
+  font-weight:700; color:#555; border-radius:6px;
 }
-
-.mobile-acc-panel:not(.hidden) {
-  animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 링크 언더라인 효과 */
-.nav-link {
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
+.mobile-acc-panel a:hover{ background:#fff7e0; color:#8a6a12; }
+.mobile-acc-panel.is-open{ display:grid; gap:4px; }
 </style>
