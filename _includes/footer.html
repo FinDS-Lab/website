@@ -97,26 +97,32 @@
       }
 
       /* ====== 음악 정보 (2줄: 위=아티스트, 아래=제목) ====== */
-      .music-info{
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        gap:2px;
-        overflow:hidden;
-        margin-left:2px;
-        flex-shrink:0;
-        width: 140px; /* ✅ 고정 너비로 변경 */
-      }
-      .music-artist{
-        font-size:10px;
-        font-weight:700;
-        color: #e91e63; /* ✅ 밝은 배경에 잘 보이는 핫핑크 */
-        line-height:1.2;
-        white-space:nowrap;
-        max-width:100%;
-        overflow:hidden;
-        text-overflow:ellipsis;
-      }
+.music-info{
+  display:flex;
+  flex-direction:column;
+  align-items:center;  /* ← 가운데 정렬로 변경 */
+  gap:2px;
+  overflow:hidden;
+  margin-left:2px;
+  flex-shrink:0;
+  width:140px;
+  text-align:center;   /* ← 추가 */
+}
+.music-artist{
+  /* 기존 속성 유지 + 아래 두 줄 추가 */
+  display:block;      /* 말줄임 안정화 */
+  text-align:center;  /* 가운데 */
+}
+
+.title-viewport{
+  /* 기존 속성 유지 + 아래 한 줄 추가 */
+  text-align:center;  /* 가운데 */
+}
+
+.song-title{
+  /* 기존 속성 유지 + 아래 한 줄 명시 */
+  display:inline-block; /* 마키용, 중앙 기준 움직임 */
+}
       .title-viewport{
         position:relative;
         width:100%;
