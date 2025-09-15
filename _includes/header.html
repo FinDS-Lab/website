@@ -6,15 +6,15 @@
     <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group" aria-label="FINDS Lab Home">
       <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" 
            alt="FINDS Lab Logo" 
-           class="h-10 w-10 rounded-lg ring-2 ring-white/50 object-contain bg-white shadow-sm transition-transform group-hover:scale-105" />
+           class="brand-logo h-10 w-10 rounded-lg ring-2 ring-white/50 object-contain bg-white shadow-sm transition-transform group-hover:scale-105" />
       <div class="leading-tight">
-        <div class="text-sm font-extrabold tracking-tight text-white drop-shadow-sm">FINDS Lab.</div>
-        <div class="text-[11px] font-bold text-white/90 tracking-wide">Dongduk Women's University</div>
+        <div class="brand-name text-sm font-extrabold tracking-tight text-white drop-shadow-sm">FINDS Lab.</div>
+        <div class="brand-subtitle text-[11px] font-bold text-white/90 tracking-wide">Dongduk Women's University</div>
       </div>
     </a>
     
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+    <nav class="flex items-center gap-6 hidden md:flex" aria-label="Primary">
       <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About -->
@@ -50,15 +50,14 @@
           <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
           <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
           <a href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
-          <a href="{{ '/archives-gallery.html' | relative_url }}">Playlist</a>
         </div>
       </div>
     </nav>
     
     <!-- Mobile Toggle -->
-    <div class="flex items-center gap-2 md:hidden">
+    <div class="flex items-center gap-2">
       <button id="btnMobile" 
-              class="mobile-menu-btn" 
+              class="md:hidden mobile-menu-btn" 
               aria-label="Open menu" 
               aria-expanded="false" 
               aria-controls="mobileNav">
@@ -69,20 +68,22 @@
     </div>
   </div>
   
-  <!-- Mobile Nav - 완전히 새로운 구조 -->
-  <div id="mobileNav" class="mobile-nav-container">
-    <div class="mobile-nav-content">
+  <!-- Mobile Nav - 원래 구조 유지하되 스타일 개선 -->
+  <div id="mobileNav" class="mobile-nav-dropdown md:hidden">
+    <div class="mobile-nav-inner">
       <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
-      <div class="mobile-accordion">
-        <button class="accordion-trigger" data-target="mob-about">
-          <span>About FINDS</span>
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-          </svg>
-        </button>
-        <div id="mob-about" class="accordion-content">
+      <div class="mobile-accordion-item">
+        <div class="mobile-accordion-header">
+          <a class="mobile-accordion-title" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-about">
+            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="mob-about" class="mobile-acc-panel">
           <a href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
           <a href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
           <a href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
@@ -91,14 +92,16 @@
       </div>
       
       <!-- Members (Accordion) -->
-      <div class="mobile-accordion">
-        <button class="accordion-trigger" data-target="mob-members">
-          <span>Members</span>
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-          </svg>
-        </button>
-        <div id="mob-members" class="accordion-content">
+      <div class="mobile-accordion-item">
+        <div class="mobile-accordion-header">
+          <a class="mobile-accordion-title" href="{{ '/members-director.html' | relative_url }}">Members</a>
+          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-members">
+            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="mob-members" class="mobile-acc-panel">
           <a href="{{ '/members-director.html' | relative_url }}">Director</a>
           <a href="{{ '/members-current.html' | relative_url }}">Current Members</a>
           <a href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
@@ -110,14 +113,16 @@
       <a class="mobile-link" href="{{ '/projects.html' | relative_url }}">Projects</a>
       
       <!-- Archives (Accordion) -->
-      <div class="mobile-accordion">
-        <button class="accordion-trigger" data-target="mob-archives">
-          <span>Archives</span>
-          <svg class="accordion-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
-          </svg>
-        </button>
-        <div id="mob-archives" class="accordion-content">
+      <div class="mobile-accordion-item">
+        <div class="mobile-accordion-header">
+          <a class="mobile-accordion-title" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-archives">
+            <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+            </svg>
+          </button>
+        </div>
+        <div id="mob-archives" class="mobile-acc-panel">
           <a href="{{ '/archives-news.html' | relative_url }}">News</a>
           <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
           <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
@@ -129,7 +134,7 @@
 </header>
 
 <style>
-/* ========= 기존 데스크톱 스타일 유지 ========= */
+/* ========= 헤더 네비 시인성 업그레이드 (데스크톱 - 원래대로 유지) ========= */
 .nav-link{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px; padding:0 14px; border-radius:10px;
@@ -145,7 +150,6 @@
   background: rgba(0,0,0,.15);
   text-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
-
 .nav-link:focus-visible{
   outline: none;
   color:#ffffff;
@@ -154,6 +158,7 @@
   box-shadow: 0 0 0 3px rgba(255,255,255,.45);
 }
 
+/* 드롭다운 위치/모양 (데스크톱 - 원래대로 유지) */
 .menu-group{ position:relative; }
 .submenu-panel{
   display:none; position:absolute; top:calc(100% + 8px); left:0;
@@ -179,25 +184,21 @@
     height: 60px !important;
   }
   
-  .fixed-header > div:first-child {
-    height: 60px !important;
-  }
-  
-  .fixed-header img {
+  .brand-logo {
     height: 36px !important;
     width: 36px !important;
   }
   
-  .fixed-header .text-sm {
+  .brand-name {
     font-size: 14px !important;
   }
   
-  .fixed-header .text-\\[11px\\] {
+  .brand-subtitle {
     font-size: 10px !important;
   }
 }
 
-/* ========= 햄버거 메뉴 버튼 새로운 스타일 ========= */
+/* ========= 개선된 햄버거 메뉴 버튼 ========= */
 .mobile-menu-btn {
   position: relative;
   display: inline-flex;
@@ -211,7 +212,6 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  overflow: hidden;
 }
 
 .mobile-menu-btn:hover {
@@ -219,7 +219,7 @@
 }
 
 .hamburger-box {
-  width: 24px;
+  width: 22px;
   height: 18px;
   display: inline-block;
   position: relative;
@@ -234,7 +234,7 @@
 .hamburger-inner,
 .hamburger-inner::before,
 .hamburger-inner::after {
-  width: 24px;
+  width: 22px;
   height: 2px;
   background-color: #fff;
   border-radius: 2px;
@@ -271,41 +271,33 @@
   transform: rotate(-90deg);
 }
 
-/* ========= 모바일 네비게이션 컨테이너 ========= */
-.mobile-nav-container {
-  display: none;
-  position: fixed;
-  top: 60px;
+/* ========= 개선된 모바일 드롭다운 ========= */
+.mobile-nav-dropdown {
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(214, 177, 77, 0.2);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(214,177,77,0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 9998;
 }
 
-@media (max-width: 768px) {
-  .mobile-nav-container {
-    display: block;
-  }
-}
-
-.mobile-nav-container.is-open {
+.mobile-nav-dropdown.is-open {
   max-height: calc(100vh - 60px);
   overflow-y: auto;
 }
 
-.mobile-nav-content {
+.mobile-nav-inner {
   padding: 16px;
   max-width: 500px;
   margin: 0 auto;
 }
 
-/* ========= 모바일 링크 스타일 ========= */
+/* 모바일 링크 스타일 개선 */
 .mobile-link {
   display: block;
   padding: 14px 16px;
@@ -326,94 +318,109 @@
   transform: translateX(4px);
 }
 
-/* ========= 모바일 아코디언 스타일 ========= */
-.mobile-accordion {
+/* 모바일 아코디언 개선 */
+.mobile-accordion-item {
   margin-bottom: 8px;
 }
 
-.accordion-trigger {
-  width: 100%;
+.mobile-accordion-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
   background: transparent;
-  border: none;
   border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+.mobile-accordion-header:hover {
+  background: rgba(254,243,199,0.5);
+}
+
+.mobile-accordion-title {
+  flex: 1;
+  display: block;
+  padding: 14px 16px;
   font-weight: 700;
   font-size: 15px;
   color: #1f2937;
-  text-align: left;
+  text-decoration: none;
+}
+
+.mobile-acc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin-right: 8px;
+  background: transparent;
+  border: none;
+  color: #6b7280;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.accordion-trigger:hover,
-.accordion-trigger:active {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  color: #92400e;
+.mobile-acc-btn:hover {
+  color: #d97706;
+  background: rgba(254,243,199,0.5);
+  border-radius: 8px;
 }
 
-.accordion-icon {
+.accordion-arrow {
   transition: transform 0.3s ease;
-  flex-shrink: 0;
 }
 
-.accordion-trigger.is-open .accordion-icon {
+.mobile-acc-btn[aria-expanded="true"] .accordion-arrow {
   transform: rotate(180deg);
 }
 
-.accordion-content {
+/* 모바일 아코디언 패널 */
+.mobile-acc-panel {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  padding-left: 16px;
+  margin-left: 16px;
+  margin-bottom: 8px;
 }
 
-.accordion-content.is-open {
+.mobile-acc-panel.is-open {
   max-height: 400px;
-  padding-top: 4px;
-  padding-bottom: 4px;
 }
 
-.accordion-content a {
+.mobile-acc-panel a {
   display: block;
   padding: 10px 16px;
   margin: 4px 0;
-  font-weight: 600;
   font-size: 14px;
+  font-weight: 600;
   color: #4b5563;
-  text-decoration: none;
   border-radius: 8px;
   border-left: 3px solid transparent;
+  text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.accordion-content a:hover,
-.accordion-content a:active {
+.mobile-acc-panel a:hover {
   background: #fef3c7;
   color: #92400e;
   border-left-color: #d97706;
   padding-left: 20px;
 }
 
+/* 스크롤바 스타일 */
+.mobile-nav-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.mobile-nav-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(214,177,77,0.3);
+  border-radius: 2px;
+}
+
 /* 바디 스크롤 방지 */
 body.menu-open {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
-}
-
-/* 스크롤바 스타일 (모바일) */
-@media (max-width: 768px) {
-  .mobile-nav-container::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  .mobile-nav-container::-webkit-scrollbar-thumb {
-    background: rgba(214, 177, 77, 0.3);
-    border-radius: 2px;
-  }
 }
 </style>
 
@@ -422,6 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const btnMobile = document.getElementById('btnMobile');
   const mobileNav = document.getElementById('mobileNav');
   const body = document.body;
+  const accordionBtns = document.querySelectorAll('.mobile-acc-btn');
   
   // 햄버거 메뉴 토글
   btnMobile.addEventListener('click', function(e) {
@@ -449,37 +457,45 @@ document.addEventListener('DOMContentLoaded', function() {
     body.classList.remove('menu-open');
     
     // 모든 아코디언 닫기
-    document.querySelectorAll('.accordion-trigger').forEach(trigger => {
-      trigger.classList.remove('is-open');
-    });
-    document.querySelectorAll('.accordion-content').forEach(content => {
-      content.classList.remove('is-open');
+    accordionBtns.forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      const targetId = btn.getAttribute('aria-controls');
+      const panel = document.getElementById(targetId);
+      if (panel) {
+        panel.classList.remove('is-open');
+      }
     });
   }
   
   // 아코디언 토글
-  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
-    trigger.addEventListener('click', function(e) {
+  accordionBtns.forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
-      const targetId = this.getAttribute('data-target');
-      const content = document.getElementById(targetId);
-      const isOpen = this.classList.contains('is-open');
+      
+      const targetId = this.getAttribute('aria-controls');
+      const panel = document.getElementById(targetId);
+      const isOpen = this.getAttribute('aria-expanded') === 'true';
       
       // 다른 아코디언 닫기
-      document.querySelectorAll('.accordion-trigger').forEach(t => {
-        if (t !== this) t.classList.remove('is-open');
-      });
-      document.querySelectorAll('.accordion-content').forEach(c => {
-        if (c !== content) c.classList.remove('is-open');
+      accordionBtns.forEach(otherBtn => {
+        if (otherBtn !== this) {
+          otherBtn.setAttribute('aria-expanded', 'false');
+          const otherId = otherBtn.getAttribute('aria-controls');
+          const otherPanel = document.getElementById(otherId);
+          if (otherPanel) {
+            otherPanel.classList.remove('is-open');
+          }
+        }
       });
       
       // 현재 아코디언 토글
       if (isOpen) {
-        this.classList.remove('is-open');
-        content.classList.remove('is-open');
+        this.setAttribute('aria-expanded', 'false');
+        panel.classList.remove('is-open');
       } else {
-        this.classList.add('is-open');
-        content.classList.add('is-open');
+        this.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
       }
     });
   });
@@ -511,9 +527,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // 링크 클릭 시 메뉴 닫기
-  document.querySelectorAll('.mobile-link, .accordion-content a').forEach(link => {
+  document.querySelectorAll('.mobile-link, .mobile-acc-panel a').forEach(link => {
     link.addEventListener('click', function() {
-      closeMenu();
+      setTimeout(closeMenu, 100);
     });
   });
 });
