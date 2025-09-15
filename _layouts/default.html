@@ -30,6 +30,19 @@
     }
   </script>
   
+  <!-- 모바일 메뉴 FOUC 방지 - 즉시 실행 -->
+  <script>
+    (function() {
+      // 모바일 메뉴 초기 숨김 처리
+      document.addEventListener('DOMContentLoaded', function() {
+        var mobileNav = document.getElementById('mobileNav');
+        if (mobileNav) {
+          mobileNav.style.display = 'none';
+        }
+      });
+    })();
+  </script>
+  
   <!-- Site CSS -->
   <link rel="preload" as="style" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
@@ -53,6 +66,15 @@
       body {
         padding-top: 60px; /* 모바일에서는 작은 헤더 */
       }
+    }
+    
+    /* 모바일 메뉴 초기 숨김 (FOUC 방지) */
+    #mobileNav {
+      display: none !important;
+    }
+    
+    #mobileNav.show {
+      display: block !important;
     }
     
     /* 스킵 링크 */
@@ -142,7 +164,7 @@
   {% include footer.html %}
   
   <!-- Site JS -->
-  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
   
   <!-- 헤더 관련 스크립트 -->
   <script>
