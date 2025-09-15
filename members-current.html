@@ -188,9 +188,18 @@ permalink: /members-current.html
       gap: 16px;
     }
 
-    /* Grid Layout */
-    .members-grid{ display:grid;gap:20px;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); }
-    @media (max-width: 768px) { .members-grid{ grid-template-columns:1fr; gap:16px; } }
+    /* Grid Layout - CHANGED TO 2 COLUMNS */
+    .members-grid{ 
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(2, 1fr);
+    }
+    @media (max-width: 768px) { 
+      .members-grid{ 
+        grid-template-columns:1fr; 
+        gap:16px; 
+      } 
+    }
 
     /* Member Cards */
     .member-card{ background:#fff;border:1px solid #e5e7eb;border-radius:1rem;overflow:hidden;transition:all 0.2s; }
