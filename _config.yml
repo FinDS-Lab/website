@@ -32,7 +32,9 @@ defaults:
 # Include docs folder
 include:
   - assets/docs
-
+# Static files to include
+include:
+  - members
 # --- 추가: Open Graph / SEO 설정 ---
 # 사이트 전역에서 사용될 OG 기본 이미지
 og_image: "/assets/img/findslab-thumbnail.png"
