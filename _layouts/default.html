@@ -5,19 +5,19 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  <meta name="description" content="Financial Data Science Lab. (FINDS Lab.) — Dongduk Women’s University" />
+  <meta name="description" content="Financial Data Science Lab. (FINDS Lab.) — Dongduk Women's University" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}"/>
-
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&family=Noto+Sans:wght@400;600;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+  
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Tailwind 설정(선택): 폰트/컨테이너 기본값과 색상 훅
+    // Tailwind 설정
     tailwind.config = {
       theme: {
         container: { center: true, screens: { xl: '72rem' } },
@@ -29,71 +29,162 @@
       }
     }
   </script>
-
+  
   <!-- Site CSS -->
   <link rel="preload" as="style" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-
-  <!-- 전역 스타일: 헤더/푸터와 톤 일치 + 접근성 -->
+  
+  <!-- 전역 스타일 -->
   <style>
     :root {
-      /* 헤더/푸터에서 쓰는 포인트 컬러 */
+      /* 헤더/푸터 색상 */
       --accent: rgb(214, 177, 77);
       --accent2: rgb(172, 14, 14);
-      --header-height: 64px; /* sticky header 높이 가정 */
+      --header-height: 70px; /* 헤더 기본 높이 */
     }
+    
+    /* 전체 body에 헤더 공간 확보 */
+    body {
+      padding-top: 0; /* sticky 헤더는 자동으로 공간을 차지함 */
+      margin: 0;
+    }
+    
     /* 스킵 링크 */
     .skip-link {
-      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+      position: absolute; 
+      left: -9999px; 
+      top: auto; 
+      width: 1px; 
+      height: 1px; 
+      overflow: hidden;
     }
     .skip-link:focus {
-      left: 16px; top: 12px; width:auto; height:auto; z-index:50;
-      background:#fff; color:#111; padding:.5rem .75rem; border-radius:.5rem;
-      border:1px solid #e5e7eb; box-shadow:0 4px 12px rgba(0,0,0,.06);
+      left: 16px; 
+      top: 12px; 
+      width: auto; 
+      height: auto; 
+      z-index: 9999;
+      background: #fff; 
+      color: #111; 
+      padding: .5rem .75rem; 
+      border-radius: .5rem;
+      border: 1px solid #e5e7eb; 
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
     }
-    /* sticky 헤더 고려한 오프셋 유틸리티 */
-    .content-offset { scroll-margin-top: var(--header-height); }
+    
+    /* sticky 헤더를 위한 z-index 관리 */
+    .sticky-blur {
+      z-index: 1000;
+    }
+    
+    /* 메인 컨텐츠 영역 */
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: calc(100vh - var(--header-height));
+    }
+    
+    /* index 페이지의 특별한 처리 */
+    main > .max-w-7xl {
+      padding: 0; /* index.md의 자체 패딩 사용 */
+    }
+    
+    /* index가 아닌 일반 페이지들 */
+    main > .max-w-7xl.page-container {
+      padding: 2rem 1rem;
+    }
+    
+    /* 앵커 링크 오프셋 */
+    .content-offset { 
+      scroll-margin-top: calc(var(--header-height) + 20px); 
+    }
+    
     /* reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+      * { 
+        animation-duration: .001ms !important; 
+        animation-iteration-count: 1 !important; 
+        transition-duration: .001ms !important; 
+        scroll-behavior: auto !important; 
+      }
+    }
+    
+    /* 모바일 대응 */
+    @media (max-width: 768px) {
+      :root {
+        --header-height: 60px;
+      }
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
   <!-- Skip to content -->
   <a href="#main" class="skip-link">본문으로 건너뛰기</a>
-
+  
+  <!-- Header -->
   {% include header.html %}
-
-  <!-- 메인 컨테이너: 페이지마다 여백/넓이 기본 제공 (필요시 각 페이지에서 덮어쓰기 가능) -->
+  
+  <!-- Main Content -->
   <main id="main" class="content-offset grow">
-    <div class="max-w-7xl mx-auto px-4 py-8">
+    <!-- index 페이지는 패딩 없이, 다른 페이지는 패딩 적용 -->
+    {% if page.url == "/" or page.url == "/index.html" %}
+    <div class="max-w-7xl mx-auto">
       {{ content }}
     </div>
+    {% else %}
+    <div class="max-w-7xl mx-auto page-container">
+      {{ content }}
+    </div>
+    {% endif %}
   </main>
-
+  
+  <!-- Footer -->
   {% include footer.html %}
-
-  <!-- Site JS (defer) -->
+  
+  <!-- Site JS -->
   <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
-
-  <!-- 전역 보조 스크립트: sticky 헤더 높이 동기화(헤더가 바뀌어도 안전) -->
+  
+  <!-- 헤더 높이 동적 측정 스크립트 -->
   <script>
     (function () {
-      // 헤더 높이 측정해서 --header-height 업데이트 (sticky spacing 정확도 ↑)
+      // 헤더 높이 실시간 측정
       var header = document.querySelector('.sticky-blur');
       if (header) {
-        var setH = function() {
-          var h = header.getBoundingClientRect().height;
+        var updateHeaderHeight = function() {
+          var h = header.offsetHeight;
           document.documentElement.style.setProperty('--header-height', h + 'px');
         };
-        setH();
-        window.addEventListener('resize', setH);
+        
+        // 초기 설정
+        updateHeaderHeight();
+        
+        // 리사이즈 시 업데이트
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(updateHeaderHeight, 250);
+        });
+        
+        // 로드 완료 후 한 번 더 측정 (폰트 로딩 등으로 높이 변경 가능)
+        window.addEventListener('load', updateHeaderHeight);
       }
-      // 스무스 스크롤(사용자 선호가 reduce-motion이 아닐 때만)
-      var m = window.matchMedia('(prefers-reduced-motion: no-preference)');
-      if (m.matches && 'scrollBehavior' in document.documentElement.style) {
+      
+      // 스무스 스크롤 (사용자 선호 반영)
+      var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!prefersReducedMotion.matches && 'scrollBehavior' in document.documentElement.style) {
         document.documentElement.style.scrollBehavior = 'smooth';
+      }
+      
+      // 페이지 로드 시 헤더가 컨텐츠를 가리지 않도록 확인
+      if (window.location.hash) {
+        setTimeout(function() {
+          var target = document.querySelector(window.location.hash);
+          if (target) {
+            var headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'));
+            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+            window.scrollTo(0, targetPosition);
+          }
+        }, 100);
       }
     })();
   </script>
