@@ -348,9 +348,12 @@
           max-width: calc(100% - 20px);
           padding: 10px 12px;
         }
+        .player-wrapper { gap: 6px; }
         .integrated-controls { gap: 6px; }
         .center-section { gap: 4px; }
-        .music-info { width: 110px; } /* ✅ 고정 너비 */
+        .title-container { max-width: 200px; }
+        .music-artist { font-size: 10px; }
+        .song-title { font-size: 11px; }
         .progress-container { 
           min-width: 70px;
           max-width: 140px;
@@ -364,6 +367,7 @@
           padding: 8px 10px;
           border-radius: 12px;
         }
+        .player-wrapper { gap: 5px; }
         .integrated-controls { gap: 4px; }
         .button-group { gap: 3px; }
         .nav-btn { width: 24px; height: 24px; padding: 4px; }
@@ -371,9 +375,9 @@
         .play-btn { width: 30px; height: 30px; padding: 6px; }
         .play-btn svg { width: 16px; height: 16px; }
         .time-text { width: 28px; font-size: 9px; }
-        .music-info { width: 90px; } /* ✅ 고정 너비 */
+        .title-container { max-width: 160px; height: 14px; }
         .music-artist { font-size: 9px; }
-        .song-title { font-size: 9px; }
+        .song-title { font-size: 10px; }
         .progress-container { 
           min-width: 60px;
           max-width: 100px;
@@ -385,14 +389,15 @@
       
       @media (max-width: 350px) {
         .music-player-box { padding: 6px 8px; }
+        .player-wrapper { gap: 4px; }
         .integrated-controls { gap: 3px; }
         .button-group { gap: 2px; }
         .nav-btn { width: 22px; height: 22px; }
         .play-btn { width: 28px; height: 28px; padding: 5px; }
         .play-btn svg { width: 14px; height: 14px; }
-        .music-info { width: 75px; } /* ✅ 고정 너비 */
+        .title-container { max-width: 140px; height: 12px; }
         .music-artist { font-size: 8px; }
-        .song-title { font-size: 8px; }
+        .song-title { font-size: 9px; }
         .progress-container { 
           min-width: 50px;
           max-width: 80px;
@@ -797,22 +802,28 @@
       }
 
       function applySongScroll(){
-        const el = document.getElementById('musicTitle');      // 곡명
-        const viewport = el ? el.parentElement : null;         // .title-viewport
+        const el = document.getElementById('musicTitle');
+        const viewport = el ? el.parentElement : null;
         if (!el || !viewport) return;
 
         el.style.animation = 'none';
         el.style.removeProperty('--overflow');
         el.style.removeProperty('--marquee-duration');
 
+        // 초기 위치 중앙 설정
+        el.style.transform = 'translateX(0)';
+
         requestAnimationFrame(() => {
-          const overflow = Math.max(0, el.scrollWidth - viewport.clientWidth);
+          const textWidth = el.scrollWidth;
+          const viewportWidth = viewport.clientWidth;
+          const overflow = Math.max(0, textWidth - viewportWidth);
+          
           if (overflow > 4){
             el.style.setProperty('--overflow', overflow + 'px');
             const text = el.textContent || '';
-            const duration = Math.max(8, Math.min(20, text.length / 3)); // 8~20초
+            const duration = Math.max(8, Math.min(20, text.length / 3));
             el.style.setProperty('--marquee-duration', duration + 's');
-            el.style.animation = 'marqueeAlt var(--marquee-duration) ease-in-out infinite alternate';
+            el.style.animation = 'marqueeAlt var(--marquee-duration) ease-in-out infinite';
           }
         });
       }
