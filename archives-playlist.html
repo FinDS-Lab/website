@@ -454,7 +454,7 @@ permalink: /archives-playlist.html
 
             <!-- 줄1: 제목 -->
             <div class="player-row title-row">
-              <span id="musicTitle">Loading...</span>
+              <span id="musicTitle">Click the play button!</span>
             </div>
 
             <!-- 줄2: 아티스트 -->
@@ -817,7 +817,7 @@ function onPlayerReady(event) {
   isPlayerReady = true;
   event.target.setVolume(30);
   event.target.mute();
-  updateVideoTitle();
+  // updateVideoTitle() 호출 제거 - 실제 재생할 때만 제목 표시
   resetProgress();
   var t = tracks[currentVideoIndex];
   if (t && t.start_at !== null && t.start_at > 0) {
@@ -838,7 +838,7 @@ function onPlayerStateChange(event) {
     if (playerBox) playerBox.classList.add('playing');
     playIcon.classList.add('hidden');
     pauseIcon.classList.remove('hidden');
-    updateVideoTitle();
+    updateVideoTitle(); // 재생 시작할 때만 제목 업데이트
     startProgressUpdate();
 
     var t = tracks[currentVideoIndex];
@@ -866,7 +866,7 @@ function onPlayerStateChange(event) {
     stopProgressUpdate();
     loadNextVideo();
   } else if (event.data == YT.PlayerState.CUED) {
-    updateVideoTitle();
+    // CUED 상태에서는 제목 업데이트 하지 않음 (Loading... 유지)
     resetProgress();
   }
 }
@@ -1058,6 +1058,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (state == YT.PlayerState.PLAYING) {
       player.pauseVideo();
     } else {
+      // 재생 시작할 때 제목 업데이트
+      updateVideoTitle();
       player.playVideo();
       if (player.isMuted()) {
         player.unMute();
