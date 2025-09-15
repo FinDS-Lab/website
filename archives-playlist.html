@@ -454,12 +454,12 @@ permalink: /archives-playlist.html
 
             <!-- 줄1: 제목 -->
             <div class="player-row title-row">
-              <span id="musicTitle" style="visibility: hidden;">Loading...</span>
+              <span id="musicTitle"></span>
             </div>
 
             <!-- 줄2: 아티스트 -->
             <div class="player-row artist-row">
-              <span id="musicArtist" style="visibility: hidden;">Loading Artist...</span>
+              <span id="musicArtist"></span>
             </div>
 
             <!-- 줄3: 재생버튼 -->
@@ -668,10 +668,11 @@ function handlePlaylistError() {
   playlistLoadError = true;
   var titleEl = document.getElementById('musicTitle');
   var artistEl = document.getElementById('musicArtist');
-  if (artistEl) artistEl.textContent = 'Error';
-  if (titleEl) {
-    titleEl.textContent = 'Playlist 로드 실패';
-  }
+  
+  // 에러 시에도 빈 상태로 유지
+  if (titleEl) titleEl.textContent = '';
+  if (artistEl) artistEl.textContent = '';
+  
   var playBtn = document.getElementById('playPauseBtn');
   var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
@@ -953,9 +954,8 @@ function updateVideoTitle() {
     var artistEl = document.getElementById('musicArtist');
     var t        = tracks[currentVideoIndex];
 
-    if (!videoData){
-      if (songEl)   songEl.textContent   = 'Background Music';
-      if (artistEl) artistEl.textContent = '';
+    if (!videoData || !videoData.title){
+      // 데이터가 없으면 빈 상태로 유지
       return;
     }
 
@@ -973,12 +973,16 @@ function updateVideoTitle() {
     var song   = sanitize(msg.song);
     var artist = sanitize(msg.artist);
 
-    if (artistEl) artistEl.textContent = artist || cleanAuthor || '';
-    if (songEl)   songEl.textContent   = song   || cleanTitle  || 'Background Music';
+    // 제목과 아티스트 업데이트
+    if (artistEl) {
+      artistEl.textContent = artist || cleanAuthor || '';
+    }
+    if (songEl) {
+      songEl.textContent = song || cleanTitle || 'Background Music';
+    }
 
   } catch (e) {
-    var songEl = document.getElementById('musicTitle');
-    if (songEl) songEl.textContent = 'Background Music';
+    console.error('Error updating title:', e);
   }
 }
 
