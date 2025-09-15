@@ -433,8 +433,44 @@ permalink: /members-director.html
    padding:1.5rem;
  }
 
- /* Layout Grid */
 /* Layout Grid */
+
+/* Sticky Profile Sidebar with smooth animation - PC only */
+@media (min-width: 969px) {
+  .main-grid > aside {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    align-self: start;
+    transition: top 0.3s ease;
+  }
+  
+  .main-grid > aside .director-card {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .main-grid > aside .director-card::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .main-grid > aside .director-card::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    border-radius: 3px;
+  }
+  
+  .main-grid > aside .director-card::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  
+  .main-grid > aside .director-card::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+  }
+}
+ 
 .main-grid{
   display:grid;
   grid-template-columns:340px 1fr;
@@ -3820,6 +3856,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
