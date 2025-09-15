@@ -6,15 +6,15 @@
     <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group" aria-label="FINDS Lab Home">
       <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" 
            alt="FINDS Lab Logo" 
-           class="brand-logo h-10 w-10 rounded-lg ring-2 ring-white/50 object-contain bg-white shadow-sm transition-transform group-hover:scale-105" />
+           class="h-10 w-10 rounded-lg ring-2 ring-white/50 object-contain bg-white shadow-sm transition-transform group-hover:scale-105" />
       <div class="leading-tight">
-        <div class="brand-name text-sm font-extrabold tracking-tight text-white drop-shadow-sm">FINDS Lab.</div>
-        <div class="brand-subtitle text-[11px] font-bold text-white/90 tracking-wide">Dongduk Women's University</div>
+        <div class="text-sm font-extrabold tracking-tight text-white drop-shadow-sm">FINDS Lab.</div>
+        <div class="text-[11px] font-bold text-white/90 tracking-wide">Dongduk Women's University</div>
       </div>
     </a>
     
-    <!-- Desktop Nav (데스크톱은 그대로 유지) -->
-    <nav class="flex items-center gap-6" aria-label="Primary">
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
       <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About -->
@@ -55,36 +55,32 @@
       </div>
     </nav>
     
-    <!-- Mobile Toggle (모바일에서만 표시) -->
-    <div class="flex items-center gap-2 md:hidden">
+    <!-- Mobile Toggle -->
+    <div class="flex items-center gap-2">
       <button id="btnMobile" 
-              class="mobile-menu-btn" 
+              class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition-colors" 
               aria-label="Open menu" 
               aria-expanded="false" 
               aria-controls="mobileNav">
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
-        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
       </button>
     </div>
   </div>
   
-  <!-- Mobile Nav (슬라이드 다운 방식) -->
-  <div id="mobileNav" class="mobile-nav-dropdown md:hidden">
-    <div class="mobile-nav-content">
+  <!-- Mobile Nav - site.js와 호환되도록 수정 -->
+  <div id="mobileNav" class="md:hidden hidden">
+    <div class="grid gap-2 bg-white/98 border border-white/50 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg mx-4 my-3">
       <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
-      <div class="mobile-accordion">
-        <div class="accordion-header">
-          <a class="accordion-title" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-          <button class="accordion-btn" aria-expanded="false" aria-controls="mob-about">
-            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-            </svg>
-          </button>
+      <div class="px-3 py-2">
+        <div class="flex items-center justify-between">
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-about">▾</button>
         </div>
-        <div id="mob-about" class="accordion-panel">
+        <div id="mob-about" class="mobile-acc-panel hidden">
           <a href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
           <a href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
           <a href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
@@ -93,16 +89,12 @@
       </div>
       
       <!-- Members (Accordion) -->
-      <div class="mobile-accordion">
-        <div class="accordion-header">
-          <a class="accordion-title" href="{{ '/members-director.html' | relative_url }}">Members</a>
-          <button class="accordion-btn" aria-expanded="false" aria-controls="mob-members">
-            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-            </svg>
-          </button>
+      <div class="px-3 py-2">
+        <div class="flex items-center justify-between">
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/members-director.html' | relative_url }}">Members</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-members">▾</button>
         </div>
-        <div id="mob-members" class="accordion-panel">
+        <div id="mob-members" class="mobile-acc-panel hidden">
           <a href="{{ '/members-director.html' | relative_url }}">Director</a>
           <a href="{{ '/members-current.html' | relative_url }}">Current Members</a>
           <a href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
@@ -114,16 +106,12 @@
       <a class="mobile-link" href="{{ '/projects.html' | relative_url }}">Projects</a>
       
       <!-- Archives (Accordion) -->
-      <div class="mobile-accordion">
-        <div class="accordion-header">
-          <a class="accordion-title" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-          <button class="accordion-btn" aria-expanded="false" aria-controls="mob-archives">
-            <svg class="accordion-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-            </svg>
-          </button>
+      <div class="px-3 py-2">
+        <div class="flex items-center justify-between">
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-archives">▾</button>
         </div>
-        <div id="mob-archives" class="accordion-panel">
+        <div id="mob-archives" class="mobile-acc-panel hidden">
           <a href="{{ '/archives-news.html' | relative_url }}">News</a>
           <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
           <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
@@ -136,7 +124,8 @@
 </header>
 
 <style>
-/* ========= 기존 데스크톱 스타일 그대로 유지 ========= */
+/* ========= 헤더 네비 시인성 업그레이드 ========= */
+/* 모든 탭 높이/정렬 통일 */
 .nav-link{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px; padding:0 14px; border-radius:10px;
@@ -146,13 +135,13 @@
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
+/* hover/focus */
 .nav-link:hover,
 .menu-group:hover > .nav-link{
   color:#ffffff;
   background: rgba(0,0,0,.15);
   text-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
-
 .nav-link:focus-visible{
   outline: none;
   color:#ffffff;
@@ -161,6 +150,7 @@
   box-shadow: 0 0 0 3px rgba(255,255,255,.45);
 }
 
+/* 드롭다운 위치/모양 */
 .menu-group{ position:relative; }
 .submenu-panel{
   display:none; position:absolute; top:calc(100% + 8px); left:0;
@@ -171,6 +161,7 @@
 .menu-group:hover > .submenu-panel,
 .menu-group[data-open="true"] > .submenu-panel{ display:block; }
 
+/* 드롭다운 항목 */
 .submenu-panel a{
   display:block; padding:8px 14px; font-weight:700; font-size:14px;
   color:#1f2937; border-radius:8px; transition: background-color .15s ease, color .15s ease;
@@ -180,377 +171,39 @@
   color:#8a6a12;
 }
 
-/* ========= 모바일 헤더 높이 조정 ========= */
+/* 모바일 메뉴 표시 상태 - site.js의 show 클래스 사용 */
+#mobileNav.show {
+  display: block !important;
+}
+
+/* 모바일 링크 */
+.mobile-link{
+  display:block; padding:10px 12px;
+  font-weight:800; color:#1f2937; border-radius:8px;
+}
+.mobile-link:hover{ background:#fff7e0; color:#8a6a12; }
+
+/* 모바일 아코디언 */
+.mobile-acc-panel{ display:none; margin-left:1rem; }
+.mobile-acc-panel a{
+  display:block; padding:6px 8px; font-size:14px;
+  font-weight:700; color:#555; border-radius:6px;
+}
+.mobile-acc-panel a:hover{ background:#fff7e0; color:#8a6a12; }
+
+/* hidden 클래스가 제거되면 표시 */
+.mobile-acc-panel:not(.hidden) { 
+  display:grid; 
+  gap:4px; 
+}
+
+/* (중요) 이전에 쓰던 '밑줄 애니메이션' 규칙은 비활성화 */
+.nav-link::after{ content:none !important; }
+
+/* 모바일 헤더 높이 조정 */
 @media (max-width: 768px) {
   .fixed-header {
     height: 60px !important;
   }
-  
-  .brand-logo {
-    height: 36px !important;
-    width: 36px !important;
-  }
-  
-  .brand-name {
-    font-size: 14px !important;
-  }
-  
-  .brand-subtitle {
-    font-size: 10px !important;
-  }
-}
-
-/* ========= 새로운 햄버거 메뉴 버튼 ========= */
-.mobile-menu-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  background: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.mobile-menu-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-
-.hamburger-box {
-  width: 22px;
-  height: 16px;
-  display: inline-block;
-  position: relative;
-}
-
-.hamburger-inner {
-  display: block;
-  top: 50%;
-  margin-top: -1px;
-}
-
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-  width: 22px;
-  height: 2px;
-  background-color: #fff;
-  border-radius: 2px;
-  position: absolute;
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.hamburger-inner::before,
-.hamburger-inner::after {
-  content: "";
-  display: block;
-}
-
-.hamburger-inner::before {
-  top: -6px;
-}
-
-.hamburger-inner::after {
-  bottom: -6px;
-}
-
-/* 햄버거 → X 애니메이션 */
-.mobile-menu-btn.is-active .hamburger-inner {
-  transform: rotate(45deg);
-}
-
-.mobile-menu-btn.is-active .hamburger-inner::before {
-  top: 0;
-  opacity: 0;
-}
-
-.mobile-menu-btn.is-active .hamburger-inner::after {
-  bottom: 0;
-  transform: rotate(-90deg);
-}
-
-/* ========= 모바일 드롭다운 메뉴 ========= */
-.mobile-nav-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: rgba(255,255,255,0.98);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(214,177,77,0.2);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mobile-nav-dropdown.is-open {
-  max-height: calc(100vh - 60px);
-  overflow-y: auto;
-}
-
-.mobile-nav-content {
-  padding: 16px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* 모바일 링크 */
-.mobile-link {
-  display: block;
-  padding: 14px 16px;
-  margin-bottom: 8px;
-  font-weight: 700;
-  font-size: 15px;
-  color: #1f2937;
-  text-decoration: none;
-  background: transparent;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-}
-
-.mobile-link:hover,
-.mobile-link:active {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  color: #92400e;
-  transform: translateX(4px);
-}
-
-/* 모바일 아코디언 */
-.mobile-accordion {
-  margin-bottom: 8px;
-}
-
-.accordion-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: transparent;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-}
-
-.accordion-header:hover {
-  background: rgba(254,243,199,0.3);
-}
-
-.accordion-title {
-  flex: 1;
-  display: block;
-  padding: 14px 16px;
-  font-weight: 700;
-  font-size: 15px;
-  color: #1f2937;
-  text-decoration: none;
-}
-
-.accordion-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin-right: 8px;
-  background: transparent;
-  border: none;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-radius: 8px;
-}
-
-.accordion-btn:hover {
-  color: #d97706;
-  background: rgba(254,243,199,0.5);
-}
-
-.accordion-icon {
-  transition: transform 0.3s ease;
-}
-
-.accordion-btn[aria-expanded="true"] .accordion-icon {
-  transform: rotate(180deg);
-}
-
-.accordion-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  padding-left: 16px;
-  margin-bottom: 4px;
-}
-
-.accordion-panel.is-open {
-  max-height: 400px;
-}
-
-.accordion-panel a {
-  display: block;
-  padding: 10px 16px;
-  margin: 4px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4b5563;
-  border-radius: 8px;
-  border-left: 3px solid transparent;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.accordion-panel a:hover {
-  background: #fef3c7;
-  color: #92400e;
-  border-left-color: #d97706;
-  padding-left: 20px;
-}
-
-/* 스크롤바 스타일 */
-.mobile-nav-dropdown::-webkit-scrollbar {
-  width: 4px;
-}
-
-.mobile-nav-dropdown::-webkit-scrollbar-thumb {
-  background: rgba(214,177,77,0.3);
-  border-radius: 2px;
-}
-
-/* 바디 스크롤 방지 */
-body.menu-open {
-  overflow: hidden;
-}
-
-/* 작은 화면 조정 */
-@media (max-width: 480px) {
-  .mobile-link,
-  .accordion-title {
-    font-size: 14px;
-  }
-  
-  .accordion-panel a {
-    font-size: 13px;
-    padding: 8px 14px;
-  }
-  
-  .mobile-nav-content {
-    padding: 12px;
-  }
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const btnMobile = document.getElementById('btnMobile');
-  const mobileNav = document.getElementById('mobileNav');
-  const body = document.body;
-  const accordionBtns = document.querySelectorAll('.accordion-btn');
-  
-  // 햄버거 메뉴 토글
-  if (btnMobile) {
-    btnMobile.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const isOpen = this.classList.contains('is-active');
-      
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-  }
-  
-  function openMenu() {
-    btnMobile.classList.add('is-active');
-    btnMobile.setAttribute('aria-expanded', 'true');
-    mobileNav.classList.add('is-open');
-    body.classList.add('menu-open');
-  }
-  
-  function closeMenu() {
-    btnMobile.classList.remove('is-active');
-    btnMobile.setAttribute('aria-expanded', 'false');
-    mobileNav.classList.remove('is-open');
-    body.classList.remove('menu-open');
-    
-    // 모든 아코디언 닫기
-    accordionBtns.forEach(btn => {
-      btn.setAttribute('aria-expanded', 'false');
-      const targetId = btn.getAttribute('aria-controls');
-      const panel = document.getElementById(targetId);
-      if (panel) {
-        panel.classList.remove('is-open');
-      }
-    });
-  }
-  
-  // 아코디언 토글
-  accordionBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const targetId = this.getAttribute('aria-controls');
-      const panel = document.getElementById(targetId);
-      const isOpen = this.getAttribute('aria-expanded') === 'true';
-      
-      // 다른 아코디언 닫기
-      accordionBtns.forEach(otherBtn => {
-        if (otherBtn !== this) {
-          otherBtn.setAttribute('aria-expanded', 'false');
-          const otherId = otherBtn.getAttribute('aria-controls');
-          const otherPanel = document.getElementById(otherId);
-          if (otherPanel) {
-            otherPanel.classList.remove('is-open');
-          }
-        }
-      });
-      
-      // 현재 아코디언 토글
-      if (isOpen) {
-        this.setAttribute('aria-expanded', 'false');
-        panel.classList.remove('is-open');
-      } else {
-        this.setAttribute('aria-expanded', 'true');
-        panel.classList.add('is-open');
-      }
-    });
-  });
-  
-  // 외부 클릭 시 메뉴 닫기
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.fixed-header') && mobileNav && mobileNav.classList.contains('is-open')) {
-      closeMenu();
-    }
-  });
-  
-  // ESC 키로 메뉴 닫기
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
-      closeMenu();
-      btnMobile.focus();
-    }
-  });
-  
-  // 윈도우 리사이즈 처리
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      if (window.innerWidth > 768 && mobileNav && mobileNav.classList.contains('is-open')) {
-        closeMenu();
-      }
-    }, 250);
-  });
-  
-  // 링크 클릭 시 메뉴 닫기
-  document.querySelectorAll('.mobile-link, .accordion-panel a').forEach(link => {
-    link.addEventListener('click', function() {
-      setTimeout(closeMenu, 100);
-    });
-  });
-});
-</script>
