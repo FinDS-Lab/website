@@ -520,32 +520,16 @@ permalink: /archives-playlist.html
 
 <!-- ===== Scripts ===== -->
 <script>
-// Jekyll 데이터 처리 - 다양한 방법 시도
-{% raw %}
-{% if site.data.playlist %}
-  {% assign playlist_data = site.data.playlist %}
-  {% if playlist_data.itemsByPerson and playlist_data.itemsByPerson.ischoi %}
-    window.PLAYLIST_DATA = {{ playlist_data.itemsByPerson.ischoi | jsonify }};
-    console.log('Loaded from Jekyll _data folder');
-  {% else %}
-    console.error('playlist.json found but itemsByPerson.ischoi not found');
-    window.PLAYLIST_DATA = null;
-  {% endif %}
-{% else %}
-  console.error('site.data.playlist not found - check _data/playlist.json');
-  // Fallback: 하드코딩된 데이터
-  window.PLAYLIST_DATA = {
-    "shuffle": true,
-    "items": [
-      { "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N" },
-      { "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3" },
-      { "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r" },
-      { "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE" }
-    ]
-  };
-  console.log('Using fallback hardcoded data');
-{% endif %}
-{% endraw %}
+// 직접 playlist 데이터 정의
+window.PLAYLIST_DATA = {
+  "shuffle": true,
+  "items": [
+    { "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N" },
+    { "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3" },
+    { "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r" },
+    { "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE" }
+  ]
+};
 
 /* ===== Collapsible Section Toggle ===== */
 function toggleSection(sectionId) {
