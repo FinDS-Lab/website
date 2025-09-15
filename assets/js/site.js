@@ -1,12 +1,5 @@
 // assets/js/site.js
 (function () {
-  // 모바일 메뉴 초기 숨김 처리 (FOUC 방지)
-  var mobileNav = document.getElementById('mobileNav');
-  if (mobileNav) {
-    mobileNav.style.display = 'none';
-    mobileNav.classList.remove('hidden'); // hidden 클래스는 제거
-  }
-  
   function ready(fn){ 
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
     else fn();
@@ -30,27 +23,27 @@
     
     if (btn && panel){
       btn.addEventListener('click', function(){
-        var isHidden = panel.style.display === 'none' || !panel.style.display;
+        var isShown = panel.classList.contains('show');
         
-        if (isHidden) {
-          // 메뉴 열기
-          panel.style.display = 'block';
-          btn.setAttribute('aria-expanded', 'true');
-          btn.setAttribute('aria-label', 'Close menu');
-          document.body.classList.add('no-scroll');
-        } else {
+        if (isShown) {
           // 메뉴 닫기
-          panel.style.display = 'none';
+          panel.classList.remove('show');
           btn.setAttribute('aria-expanded', 'false');
           btn.setAttribute('aria-label', 'Open menu');
           document.body.classList.remove('no-scroll');
+        } else {
+          // 메뉴 열기
+          panel.classList.add('show');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.setAttribute('aria-label', 'Close menu');
+          document.body.classList.add('no-scroll');
         }
       });
       
       // ESC로 닫기
       document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && panel.style.display === 'block'){
-          panel.style.display = 'none';
+        if (e.key === 'Escape' && panel.classList.contains('show')){
+          panel.classList.remove('show');
           btn.setAttribute('aria-expanded', 'false');
           btn.setAttribute('aria-label', 'Open menu');
           document.body.classList.remove('no-scroll');
@@ -61,7 +54,7 @@
       panel.addEventListener('click', function(e){
         var a = e.target.closest('a');
         if (a){ 
-          panel.style.display = 'none';
+          panel.classList.remove('show');
           btn.setAttribute('aria-expanded', 'false');
           btn.setAttribute('aria-label', 'Open menu');
           document.body.classList.remove('no-scroll');
