@@ -70,8 +70,8 @@
   </div>
   
   <!-- Mobile Nav - site.js와 호환되도록 수정 -->
-  <div id="mobileNav" class="md:hidden hidden">
-    <div class="grid gap-2 bg-white/98 border border-white/50 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg mx-4 my-3">
+  <div id="mobileNav" class="md:hidden hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; z-index: 9998;">
+    <div class="grid gap-2 bg-white border border-gray-200 p-3 max-h-[70vh] overflow-y-auto shadow-2xl mx-4 my-3" style="background: white !important;">
       <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
