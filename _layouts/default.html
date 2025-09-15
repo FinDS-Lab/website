@@ -146,31 +146,8 @@
   
   <!-- 헤더 관련 스크립트 -->
   <script>
+    // 헤더 높이는 이미 CSS에서 설정되어 있으므로, 동적 측정은 제거
     (function () {
-      // 헤더 높이 측정 및 업데이트
-      var header = document.querySelector('.fixed-header');
-      if (header) {
-        var updateHeaderHeight = function() {
-          var h = header.offsetHeight;
-          document.documentElement.style.setProperty('--header-height', h + 'px');
-          // body padding도 동적으로 업데이트
-          document.body.style.paddingTop = h + 'px';
-        };
-        
-        // 초기 설정
-        setTimeout(updateHeaderHeight, 0);
-        
-        // 리사이즈 시 업데이트
-        var resizeTimer;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(updateHeaderHeight, 250);
-        });
-        
-        // 로드 완료 후 한 번 더 측정
-        window.addEventListener('load', updateHeaderHeight);
-      }
-      
       // 스무스 스크롤 (사용자 선호 반영)
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       if (!prefersReducedMotion.matches && 'scrollBehavior' in document.documentElement.style) {
@@ -182,7 +159,7 @@
         setTimeout(function() {
           var target = document.querySelector(window.location.hash);
           if (target) {
-            var headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 70;
+            var headerHeight = 70; // 고정값 사용
             var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
             window.scrollTo(0, targetPosition);
           }
