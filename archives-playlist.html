@@ -703,15 +703,26 @@ function handlePlaylistError() {
 function buildFromJson(json) {
   tracks = [];
   YOUTUBE_CONFIG.shuffle = (typeof json.shuffle === 'boolean') ? json.shuffle : true;
+  
+  // items 배열 확인
   if (!json.items || !Array.isArray(json.items)) { 
+    console.error('No items array found in JSON');
     handlePlaylistError(); 
     return; 
   }
   
-  json.items.forEach(function(item) {
+  console.log('Processing', json.items.length, 'items');
+  
+  json.items.forEach(function(item, index) {
     if (item.enabled === false) return;
+    
+    // URL에서 video ID 추출
     var id = item.id || extractVideoId(item.url);
-    if (!id) return;
+    if (!id) {
+      console.warn('No valid ID for item', index, item);
+      return;
+    }
+    
     tracks.push({
       id: id,
       url: item.url || null,
@@ -722,10 +733,14 @@ function buildFromJson(json) {
     });
   });
   
+  console.log('Loaded', tracks.length, 'tracks');
+  
   if (tracks.length === 0) { 
+    console.error('No valid tracks found');
     handlePlaylistError(); 
     return; 
   }
+  
   finalizeTrackSetup();
 }
 
