@@ -99,10 +99,30 @@ permalink: /archives-gallery.html
   .gallery-card{background:#fff;border:1px solid #e5e7eb;border-radius:1rem;overflow:hidden;transition:all .2s;cursor:pointer;display:flex;flex-direction:column;}
   .gallery-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1);}
 
-  /* Thumbnail */
+  /* Thumbnail - Changed to contain to prevent image cutoff */
   .gallery-thumb{
-    width:100%;height:200px;background-color:#f3f4f6;background-size:cover;background-position:center;background-repeat:no-repeat;position:relative;overflow:hidden;
+    width:100%;
+    height:200px;
+    background-color:#f3f4f6;
+    background-size:contain;  /* Changed from cover to contain */
+    background-position:center;
+    background-repeat:no-repeat;
+    position:relative;
+    overflow:hidden;
   }
+  
+  /* Alternative: If you want the image to fill but show more of it, use cover with object-fit */
+  /* .gallery-thumb{
+    width:100%;
+    height:200px;
+    background-color:#f3f4f6;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    position:relative;
+    overflow:hidden;
+  } */
+  
   .gallery-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.3));opacity:0;transition:opacity .2s;}
   .gallery-card:hover .gallery-thumb::after{opacity:1;}
 
