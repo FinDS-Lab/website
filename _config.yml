@@ -1,4 +1,4 @@
-title: FINDS Lab
+title: "FINDS Lab"
 description: "Financial Data Intelligence & Solutions Lab."
 
 # 사이트 기본 URL (GitHub Pages 도메인)
@@ -9,12 +9,14 @@ baseurl: "/website"
 
 # (선택) 테마가 필요 없다면 주석 처리
 # theme: minima
-# _config.yml
+
+# 컬렉션 설정
 collections:
   news:
     output: true
     permalink: /news/:name.html
 
+# 기본 레이아웃/값 설정
 defaults:
   - scope:
       path: ""
@@ -22,8 +24,6 @@ defaults:
     values:
       layout: news_post   # 개별 뉴스 페이지 기본 레이아웃
 
-# Static files
-defaults:
   - scope:
       path: "assets/docs"
     values:
@@ -32,3 +32,14 @@ defaults:
 # Include docs folder
 include:
   - assets/docs
+
+# --- 추가: Open Graph / SEO 설정 ---
+# 사이트 전역에서 사용될 OG 기본 이미지
+og_image: "/assets/img/findslab-thumbnail.png"
+
+# jekyll-seo-tag 같은 SEO 플러그인을 쓴다면 아래 image 키를 써도 됩니다
+image: "/assets/img/findslab-thumbnail.png"
+
+# (선택) Twitter 카드에서 사이트 계정 지정 가능
+# twitter:
+#   username: finds_lab
