@@ -30,49 +30,22 @@
     }
   </script>
   
-  <!-- 모바일 메뉴 FOUC 방지 - 즉시 실행 -->
-  <script>
-    (function() {
-      // 모바일 메뉴 초기 숨김 처리
-      document.addEventListener('DOMContentLoaded', function() {
-        var mobileNav = document.getElementById('mobileNav');
-        if (mobileNav) {
-          mobileNav.style.display = 'none';
-        }
-      });
-    })();
-  </script>
-  
   <!-- Site CSS -->
   <link rel="preload" as="style" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   
   <!-- 전역 스타일 -->
   <style>
-      .submenu-panel {
-    display: none !important;
-  }
-  
-  .menu-group:hover .submenu-panel,
-  [data-menu][data-open="true"] .submenu-panel {
-    display: block !important;
-  }
-  
-  #mobileNav {
-    display: none !important;
-  }
-  
-  #mobileNav.show {
-    display: block !important;
-  }
-  
-  /* ⭐ 아래는 기존 코드 그대로 유지 ⭐ */
-  :root {
-    /* 헤더/푸터 색상 */
-    --accent: rgb(214, 177, 77);
-    --accent2: rgb(172, 14, 14);
-    --header-height: 70px; /* 헤더 기본 높이 */
-  }
+    /* 서브메뉴 FOUC 방지 - 최우선 적용 */
+    .submenu-panel {
+      display: none !important;
+    }
+    
+    /* 호버시에만 표시 */
+    .menu-group:hover .submenu-panel,
+    [data-menu][data-open="true"] .submenu-panel {
+      display: block !important;
+    }
     
     :root {
       /* 헤더/푸터 색상 */
@@ -91,15 +64,6 @@
       body {
         padding-top: 60px; /* 모바일에서는 작은 헤더 */
       }
-    }
-    
-    /* 모바일 메뉴 초기 숨김 (FOUC 방지) */
-    #mobileNav {
-      display: none !important;
-    }
-    
-    #mobileNav.show {
-      display: block !important;
     }
     
     /* 스킵 링크 */
@@ -189,7 +153,7 @@
   {% include footer.html %}
   
   <!-- Site JS -->
-  <script src="{{ '/assets/js/site.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
   
   <!-- 헤더 관련 스크립트 -->
   <script>
