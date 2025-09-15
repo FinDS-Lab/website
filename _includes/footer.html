@@ -14,11 +14,10 @@
       gtag('config', 'G-RSGEYHWRHR');
     </script>
 
-    <!-- ✅ _data/playlist.json 주입 (옵션 A, Jekyll에서 렌더링됨) -->
+    <!-- Jekyll playlist data injection -->
     <script>
       window.PLAYLIST_DATA = {{ site.data.playlist | jsonify }};
     </script>
-    <!-- 안전장치: Jekyll 미동작 시 에러 방지 -->
     <script>
       window.PLAYLIST_DATA = window.PLAYLIST_DATA || null;
     </script>
@@ -26,295 +25,545 @@
     <!-- Styles -->
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-
-      /* Tailwind 없이 hidden 클래스 사용 시 필요 */
+      
       .hidden { display: none !important; }
 
-      /* ===== 음악 플레이어 박스 ===== */
+      /* Footer 흰색 배경 */
+      footer {
+        width: 100%;
+        padding: 30px 15px;
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      /* ===== 음악 플레이어 박스 (흰색 배경 + 금색 테두리) ===== */
       .music-player-box {
-        width: 90%;                /* 화면의 85~90% */
-        max-width: 900px;
+        width: 90%;
+        max-width: 450px;
         margin: 0 auto;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        background: #ffffff;
+        border: 2px solid rgb(214, 177, 77);
+        border-radius: 20px;
+        padding: 24px 20px;
+        box-shadow: 0 3px 15px rgba(214, 177, 77, 0.15);
       }
 
-      /* === 2줄 + 진행바 레이아웃 === */
-
-      /* 줄1: 좌(이전/재생/다음) — 중앙(아티스트) — 우(볼륨) */
-      .top-row{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap:12px;
-        min-height:36px;
-        margin-bottom:6px;
+      /* === 5줄 레이아웃 === */
+      .player-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 14px;
       }
-      .left-controls{
-        display:flex;
-        align-items:center;
-        gap:6px;
-        flex-shrink:0;
+      
+      .player-row:last-child {
+        margin-bottom: 0;
       }
 
-      /* 아티스트 (요청 색상/크기) */
-      #musicArtist.music-artist{
-        font-size:9px;                 /* 줄임 */
-        font-weight:700;
-        color:#e0c46d;                 /* 흰 ↔ rgb(214,177,77) 중간 톤 */
-        text-align:center;
-        flex:1;                        /* 가운데에 자리잡게 */
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
+      /* 줄1: 재생버튼 */
+      .playback-row {
+        gap: 10px;
       }
 
-      /* 볼륨 영역 */
-      .volume-controls { 
-        display:flex; 
-        align-items:center; 
-        gap:4px; 
-        flex-shrink:0;
-      }
-      .mute-btn { 
-        padding:4px; 
-        cursor:pointer; 
-        background:none; 
-        border:none; 
-        flex-shrink:0;
-      }
-      .mute-btn svg { width:13px; height:13px; color:#64748b; }
-      .volume-slider {
-        width:36px;
-        height:4px;
-        background:#e2e8f0;
-        border-radius:2px;
-        outline:none;
-        -webkit-appearance:none;
-        appearance:none;
-        cursor:pointer;
-      }
-      .volume-slider::-webkit-slider-thumb {
-        -webkit-appearance:none;
-        appearance:none;
-        width:9px;
-        height:9px;
-        background:#475569;
-        border-radius:50%;
-        cursor:pointer;
-      }
-      .volume-slider::-moz-range-thumb {
-        width:9px;
-        height:9px;
-        background:#475569;
-        border-radius:50%;
-        cursor:pointer;
-        border:none;
+      /* 줄2: 볼륨 */
+      .volume-row {
+        gap: 10px;
       }
 
-      /* 줄2: 제목만 중앙 */
-      .title-row{ text-align:center; margin-bottom:8px; }
-      .title-viewport{ position:relative; width:100%; overflow:hidden; }
-      #musicTitle.song-title{
-        display:inline-block;          /* 마키 애니메이션용 */
-        font-size:10px;
-        font-weight:600;
-        color:#d6b14d;                 /* 정확히 rgb(214,177,77) */
-        line-height:1.2;
-        white-space:nowrap;
-        will-change:transform;
+      /* 줄3: 아티스트 */
+      .artist-row {
+        padding: 6px 0;
+      }
+      
+      #musicArtist {
+        font-size: 13px;
+        font-weight: 700;
+        color: rgb(214, 177, 77);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
-      /* 재생중이 아닐 땐 마키 멈춤 */
-      #musicPlayer:not(.playing) .song-title{ animation:none !important; }
-
-      /* 좌↔우 왕복 스크롤 (JS가 --overflow, --marquee-duration 세팅) */
-      @keyframes marqueeAlt {
-        0%   { transform: translateX(calc(-1 * var(--overflow, 0px))); }
-        100% { transform: translateX(0); }
+      /* 줄4: 제목 */
+      .title-row {
+        padding: 6px 0;
+      }
+      
+      #musicTitle {
+        font-size: 16px;
+        font-weight: 600;
+        color: rgba(214, 177, 77, 0.85);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
       }
 
-      /* 줄3: 시간 + 진행바 */
-      .progress-row{ display:flex; align-items:center; gap:6px; }
-      .time-text { 
-        font-family:monospace; font-size:10px; color:#64748b; 
-        width:32px; text-align:center; flex-shrink:0;
+      /* 줄5: 진행바/시간 */
+      .progress-row {
+        gap: 10px;
       }
-      .progress-container { 
-        position:relative; height:10px; flex:1; 
-        min-width:80px; max-width:100%; display:flex; align-items:center;
+      
+      .time-text {
+        font-family: 'SF Mono', 'Monaco', monospace;
+        font-size: 11px;
+        color: #94a3b8;
+        width: 42px;
+        text-align: center;
+        flex-shrink: 0;
       }
+      
+      .progress-container {
+        position: relative;
+        height: 10px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+      }
+      
       .progress-track {
-        position:absolute; top:50%; transform:translateY(-50%);
-        left:0; right:0; height:4px; background:#e2e8f0; border-radius:2px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: rgba(214, 177, 77, 0.15);
+        border-radius: 2.5px;
       }
+      
       .progress-fill {
-        position:absolute; top:50%; transform:translateY(-50%);
-        left:0; height:4px; background:#94a3b8; border-radius:2px;
-        width:0%; transition:width 0.1s; pointer-events:none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        height: 5px;
+        background: rgb(214, 177, 77);
+        border-radius: 2.5px;
+        width: 0%;
+        transition: width 0.1s;
       }
+      
       .progress-slider {
-        position:absolute; top:50%; left:0; transform:translateY(-50%);
-        width:100%; height:10px; background:transparent; outline:none;
-        -webkit-appearance:none; appearance:none; cursor:pointer;
-        z-index:2; margin:0; padding:0;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 10px;
+        background: transparent;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        z-index: 2;
       }
-      .progress-slider::-webkit-slider-runnable-track { width:100%; height:10px; background:transparent; cursor:pointer; }
+      
       .progress-slider::-webkit-slider-thumb {
-        -webkit-appearance:none; appearance:none; width:10px; height:10px;
-        background:#475569; border-radius:50%; cursor:pointer; position:relative; z-index:3; margin-top:0; border:0;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        background: rgb(214, 177, 77);
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       }
-      .progress-slider::-moz-range-track { width:100%; height:10px; background:transparent; cursor:pointer; border:none; }
+      
       .progress-slider::-moz-range-thumb {
-        width:10px; height:10px; background:#475569; border-radius:50%; cursor:pointer; border:none; position:relative; z-index:3;
+        width: 12px;
+        height: 12px;
+        background: rgb(214, 177, 77);
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
       }
-      .progress-slider::-ms-track { width:100%; height:10px; background:transparent; border-color:transparent; color:transparent; }
-      .progress-slider::-ms-thumb { width:10px; height:10px; background:#475569; border-radius:50%; cursor:pointer; border:none; }
 
-      /* 버튼들 */
+      /* 버튼 스타일 */
       .nav-btn {
-        width:26px; height:26px; padding:5px; background:white;
-        border:1px solid #e2e8f0; border-radius:50%; cursor:pointer;
-        display:flex; align-items:center; justify-content:center;
-        transition:all 0.2s; flex-shrink:0;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+        background: #ffffff;
+        border: 1.5px solid rgba(214, 177, 77, 0.6);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
       }
-      .nav-btn svg { width:13px; height:13px; color:#64748b; }
+      
+      .nav-btn svg {
+        width: 15px;
+        height: 15px;
+        color: rgb(214, 177, 77);
+      }
+      
       .play-btn {
-        width:34px; height:34px; padding:7px; background:white;
-        border:1px solid #e2e8f0; border-radius:50%;
-        box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);
-        cursor:pointer; display:flex; align-items:center; justify-content:center;
-        transition:all 0.2s; flex-shrink:0;
+        width: 42px;
+        height: 42px;
+        padding: 9px;
+        background: #ffffff;
+        border: 2px solid rgb(214, 177, 77);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        box-shadow: 0 2px 8px rgba(214, 177, 77, 0.2);
       }
-      .play-btn svg { width:18px; height:18px; color:#475569; }
-      .nav-btn:hover, .play-btn:hover { background:#f1f5f9; transform:scale(1.05); }
+      
+      .play-btn svg {
+        width: 20px;
+        height: 20px;
+        color: rgb(214, 177, 77);
+      }
+      
+      .nav-btn:hover, .play-btn:hover {
+        transform: scale(1.06);
+        background: rgba(214, 177, 77, 0.08);
+      }
 
-      /* 페이드인 (기본 표시 + 부드럽게 노출) */
-      .fade-in { animation: fadeIn 0.5s ease forwards; }
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+      /* 볼륨 컨트롤 */
+      .mute-btn {
+        padding: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+      
+      .mute-btn svg {
+        width: 18px;
+        height: 18px;
+        color: rgb(214, 177, 77);
+      }
+      
+      .volume-slider {
+        width: 120px;
+        height: 5px;
+        background: rgba(214, 177, 77, 0.2);
+        border-radius: 2.5px;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
+      
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 12px;
+        background: rgb(214, 177, 77);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      .volume-slider::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        background: rgb(214, 177, 77);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
 
-      /* Footer 및 Copyright */
-      footer { width:100%; padding:20px 15px; }
-      .footer-container { max-width: 1000px; margin: 0 auto; text-align:center; }
-      .copyright { margin-top:16px; font-size:11px; color:#94a3b8; text-align:center; }
+      .footer-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      .copyright {
+        margin-top: 24px;
+        font-size: 12px;
+        color: #94a3b8;
+      }
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
-        footer { background-color:#0b0f19; border-color:#1e293b; }
-        .copyright { color:#64748b; }
-        .music-player-box { background:rgba(30,41,59,.9); border-color:#334155; }
-        .nav-btn, .play-btn { background:rgba(51,65,85,.9); border-color:#475569; }
-        .nav-btn:hover, .play-btn:hover { background:rgba(71,85,105,.9); }
-        /* 요청 색 유지 */
-        #musicArtist.music-artist { color:#e0c46d; }
-        #musicTitle.song-title { color:#d6b14d; }
-        .progress-track, .volume-slider { background:rgba(71,85,105,.6); }
-        .progress-fill { background:#94a3b8; }
+        footer {
+          background-color: #0b0f19;
+          border-top-color: #1e293b;
+        }
+        
+        .music-player-box {
+          background: #1e293b;
+          border-color: rgb(214, 177, 77);
+          box-shadow: 0 3px 20px rgba(214, 177, 77, 0.25);
+        }
+        
+        .nav-btn, .play-btn {
+          background: #2d3748;
+          border-color: rgb(214, 177, 77);
+        }
+        
+        .nav-btn:hover, .play-btn:hover {
+          background: rgba(214, 177, 77, 0.2);
+        }
+        
+        .progress-track, .volume-slider {
+          background: rgba(214, 177, 77, 0.25);
+        }
+        
+        .time-text {
+          color: #cbd5e1;
+        }
+        
+        .copyright {
+          color: #64748b;
+        }
+        
+        .progress-slider::-webkit-slider-thumb,
+        .progress-slider::-moz-range-thumb {
+          border-color: #1e293b;
+        }
+      }
+
+      /* 모바일 최적화 */
+      @media (max-width: 540px) {
+        .music-player-box {
+          width: 94%;
+          padding: 20px 16px;
+        }
+        
+        #musicTitle {
+          font-size: 15px;
+        }
+        
+        #musicArtist {
+          font-size: 12px;
+        }
+        
+        .nav-btn {
+          width: 30px;
+          height: 30px;
+        }
+        
+        .play-btn {
+          width: 38px;
+          height: 38px;
+        }
+        
+        .volume-slider {
+          width: 100px;
+        }
+        
+        .time-text {
+          font-size: 10px;
+          width: 38px;
+        }
+      }
+      
+      @media (max-width: 400px) {
+        footer {
+          padding: 20px 10px;
+        }
+        
+        .music-player-box {
+          width: 96%;
+          padding: 18px 14px;
+          border-radius: 16px;
+        }
+        
+        .player-row {
+          margin-bottom: 12px;
+        }
+        
+        #musicTitle {
+          font-size: 14px;
+        }
+        
+        #musicArtist {
+          font-size: 11px;
+        }
+        
+        .nav-btn {
+          width: 28px;
+          height: 28px;
+          padding: 5px;
+        }
+        
+        .nav-btn svg {
+          width: 13px;
+          height: 13px;
+        }
+        
+        .play-btn {
+          width: 35px;
+          height: 35px;
+          padding: 8px;
+        }
+        
+        .play-btn svg {
+          width: 18px;
+          height: 18px;
+        }
+        
+        .volume-slider {
+          width: 85px;
+        }
+        
+        .mute-btn svg {
+          width: 16px;
+          height: 16px;
+        }
+        
+        .time-text {
+          font-size: 9px;
+          width: 35px;
+        }
+        
         .progress-slider::-webkit-slider-thumb,
         .progress-slider::-moz-range-thumb,
         .volume-slider::-webkit-slider-thumb,
-        .volume-slider::-moz-range-thumb { background:#cbd5e1; }
+        .volume-slider::-moz-range-thumb {
+          width: 10px;
+          height: 10px;
+        }
       }
 
-      /* 모바일 반응형 */
-      @media (max-width: 540px) {
-        .music-player-box { width: 92%; padding: 12px; }
-        .top-row { gap:8px; }
-        #musicArtist.music-artist { font-size:9px; }
-        #musicTitle.song-title { font-size:10px; }
-        .progress-container { min-width:70px; }
-        .time-text { width:30px; font-size:9px; }
-      }
-      @media (max-width: 400px) {
-        .music-player-box { padding: 10px; border-radius: 12px; }
-        .left-controls { gap:4px; }
-        .nav-btn { width:24px; height:24px; padding:4px; }
-        .nav-btn svg { width:12px; height:12px; }
-        .play-btn { width:30px; height:30px; padding:6px; }
-        .play-btn svg { width:16px; height:16px; }
-        .time-text { width:28px; font-size:9px; }
-        #musicArtist.music-artist { font-size:9px; }
-        #musicTitle.song-title { font-size:10px; }
-        .volume-controls { gap:2px; }
-        .volume-slider { width:26px; }
-        .mute-btn svg { width:12px; height:12px; }
-      }
       @media (max-width: 350px) {
-        .music-player-box { padding: 8px; }
-        .nav-btn { width:22px; height:22px; }
-        .play-btn { width:28px; height:28px; padding:5px; }
-        .play-btn svg { width:14px; height:14px; }
-        #musicArtist.music-artist { font-size:8px; }
-        #musicTitle.song-title { font-size:9px; }
-        .progress-container { min-width:50px; }
-        .volume-slider { width:22px; }
-        .time-text { font-size:8px; width:24px; }
+        .music-player-box {
+          padding: 16px 12px;
+        }
+        
+        .player-row {
+          margin-bottom: 10px;
+        }
+        
+        #musicTitle {
+          font-size: 13px;
+        }
+        
+        #musicArtist {
+          font-size: 10px;
+        }
+        
+        .nav-btn {
+          width: 26px;
+          height: 26px;
+        }
+        
+        .nav-btn svg {
+          width: 12px;
+          height: 12px;
+        }
+        
+        .play-btn {
+          width: 32px;
+          height: 32px;
+          padding: 7px;
+        }
+        
+        .play-btn svg {
+          width: 16px;
+          height: 16px;
+        }
+        
+        .volume-slider {
+          width: 75px;
+          height: 4px;
+        }
+        
+        .mute-btn svg {
+          width: 15px;
+          height: 15px;
+        }
+        
+        .progress-slider::-webkit-slider-thumb,
+        .progress-slider::-moz-range-thumb,
+        .volume-slider::-webkit-slider-thumb,
+        .volume-slider::-moz-range-thumb {
+          width: 9px;
+          height: 9px;
+        }
       }
 
       /* 에러 메시지 */
-      .error-message { color:#ef4444; font-size:10px; text-align:center; }
+      .error-message {
+        color: #ef4444;
+        font-size: 12px;
+      }
+
+      /* 페이드인 */
+      .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+      
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-200" id="siteFooter">
+    <footer id="siteFooter">
       <div class="footer-container">
         
         <!-- 음악 플레이어 -->
         <div id="musicPlayer" class="fade-in">
           <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
 
-            <!-- 줄1: 좌(이전/재생/다음) — 중앙(아티스트) — 우(볼륨) -->
-            <div class="top-row">
-              <div class="left-controls">
-                <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
-                  </svg>
-                </button>
-                <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
-                  <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                  </svg>
-                  <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                  </svg>
-                </button>
-                <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
-                  </svg>
-                </button>
-              </div>
-
-              <span id="musicArtist" class="music-artist">Artist</span>
-
-              <div class="volume-controls">
-                <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
-                  <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
-                  </svg>
-                  <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                  </svg>
-                </button>
-                <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
-              </div>
+            <!-- 줄1: 재생버튼 -->
+            <div class="player-row playback-row">
+              <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
+                </svg>
+              </button>
+              <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
+                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                </svg>
+                <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
+                </svg>
+              </button>
             </div>
 
-            <!-- 줄2: 제목 중앙 -->
-            <div class="title-row">
-              <div class="title-viewport">
-                <span id="musicTitle" class="song-title" title="Background Music">Loading...</span>
-              </div>
+            <!-- 줄2: 볼륨 -->
+            <div class="player-row volume-row">
+              <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
+                <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+                </svg>
+                <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
             </div>
 
-            <!-- 줄3: 시간 + 진행바 -->
-            <div class="progress-row">
+            <!-- 줄3: 아티스트 -->
+            <div class="player-row artist-row">
+              <span id="musicArtist">Loading Artist...</span>
+            </div>
+
+            <!-- 줄4: 제목 -->
+            <div class="player-row title-row">
+              <span id="musicTitle">Loading...</span>
+            </div>
+
+            <!-- 줄5: 진행바/시간 -->
+            <div class="player-row progress-row">
               <span id="currentTime" class="time-text">0:00</span>
               <div class="progress-container">
                 <div class="progress-track"></div>
@@ -379,22 +628,20 @@
         }
         return (videoId && /^[a-zA-Z0-9_-]{11}$/.test(videoId)) ? videoId : null;
       }
+      
       function toNumberOrNull(v) {
         var n = parseFloat(v);
         return Number.isFinite(n) ? n : null;
       }
-      function collapseSpaces(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
-      function forceSingleLine(text) { return collapseSpaces(String(text || '').replace(/[\r\n]+/g, ' ')); }
 
       // ===================== playlist.json 로드 =====================
       function loadPlaylistJson() {
-        // Jekyll이 삽입한 PLAYLIST_DATA 변수 사용 (권장)
         if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
           buildFromJson(PLAYLIST_DATA);
           trackEvent('Music Player', 'playlist_loaded', 'jekyll_data');
           return;
         }
-        // (Fallback) fetch 시도
+        
         var baseurl = '';
         if (window.location.pathname.indexOf('/website') === 0) baseurl = '/website';
         var paths = [
@@ -403,21 +650,33 @@
           '/assets/playlist.json',
           './playlist.json'
         ];
+        
         var tryLoad = function(index) {
-          if (index >= paths.length) { handlePlaylistError(); return; }
+          if (index >= paths.length) { 
+            handlePlaylistError(); 
+            return; 
+          }
           var url = paths[index];
           fetch(url + '?t=' + Date.now())
-            .then(function(res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
-            .then(function(json) { buildFromJson(json); trackEvent('Music Player', 'playlist_loaded', url); })
-            .catch(function() { tryLoad(index + 1); });
+            .then(function(res) { 
+              if (!res.ok) throw new Error('HTTP ' + res.status); 
+              return res.json(); 
+            })
+            .then(function(json) { 
+              buildFromJson(json); 
+              trackEvent('Music Player', 'playlist_loaded', url); 
+            })
+            .catch(function() { 
+              tryLoad(index + 1); 
+            });
         };
         tryLoad(0);
       }
 
       function handlePlaylistError() {
         playlistLoadError = true;
-        var titleEl  = document.getElementById('musicTitle');   // 곡명
-        var artistEl = document.getElementById('musicArtist');  // 아티스트
+        var titleEl = document.getElementById('musicTitle');
+        var artistEl = document.getElementById('musicArtist');
         if (artistEl) artistEl.textContent = 'Error';
         if (titleEl) {
           titleEl.textContent = 'Playlist 로드 실패';
@@ -434,7 +693,11 @@
       function buildFromJson(json) {
         tracks = [];
         YOUTUBE_CONFIG.shuffle = (typeof json.shuffle === 'boolean') ? json.shuffle : true;
-        if (!json.items || !Array.isArray(json.items)) { handlePlaylistError(); return; }
+        if (!json.items || !Array.isArray(json.items)) { 
+          handlePlaylistError(); 
+          return; 
+        }
+        
         json.items.forEach(function(item) {
           if (item.enabled === false) return;
           var id = item.id || extractVideoId(item.url);
@@ -448,19 +711,30 @@
             title_override: item.title_override || null
           });
         });
-        if (tracks.length === 0) { handlePlaylistError(); return; }
+        
+        if (tracks.length === 0) { 
+          handlePlaylistError(); 
+          return; 
+        }
         finalizeTrackSetup();
       }
 
       function finalizeTrackSetup() {
         var seen = {};
         videoIds = [];
-        tracks.forEach(function(t) { if (!seen[t.id]) { videoIds.push(t.id); seen[t.id] = true; } });
+        tracks.forEach(function(t) { 
+          if (!seen[t.id]) { 
+            videoIds.push(t.id); 
+            seen[t.id] = true; 
+          } 
+        });
+        
         orderPool = [];
         tracks.forEach(function(t, idx) {
           var w = Math.max(1, parseInt(t.weight || 1, 10));
           for (var i = 0; i < w; i++) orderPool.push(idx);
         });
+        
         generateShuffleOrder();
         injectYouTubeAPI();
       }
@@ -487,7 +761,10 @@
       }
 
       function onYouTubeIframeAPIReady() {
-        if (!tracks.length) { handlePlaylistError(); return; }
+        if (!tracks.length) { 
+          handlePlaylistError(); 
+          return; 
+        }
         player = new YT.Player('youtube-player', {
           height: '0',
           width: '0',
@@ -517,7 +794,9 @@
         resetProgress();
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
-          try { event.target.seekTo(t.start_at, true); } catch(e) {}
+          try { 
+            event.target.seekTo(t.start_at, true); 
+          } catch(e) {}
         }
       }
 
@@ -584,29 +863,42 @@
           currentVideoIndex = (currentVideoIndex + step + tracks.length) % tracks.length;
         }
       }
+      
       function loadNextVideo() {
         gotoByStep(1);
         resetProgress();
         player.loadVideoById(tracks[currentVideoIndex].id);
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
-          setTimeout(function() { try { player.seekTo(t.start_at, true); } catch(e) {} }, 250);
+          setTimeout(function() { 
+            try { 
+              player.seekTo(t.start_at, true); 
+            } catch(e) {} 
+          }, 250);
         }
         trackEvent('Music Player', 'next', tracks[currentVideoIndex].id);
       }
+      
       function loadPreviousVideo() {
         gotoByStep(-1);
         resetProgress();
         player.loadVideoById(tracks[currentVideoIndex].id);
         var t = tracks[currentVideoIndex];
         if (t && t.start_at !== null && t.start_at > 0) {
-          setTimeout(function() { try { player.seekTo(t.start_at, true); } catch(e) {} }, 250);
+          setTimeout(function() { 
+            try { 
+              player.seekTo(t.start_at, true); 
+            } catch(e) {} 
+          }, 250);
         }
         trackEvent('Music Player', 'previous', tracks[currentVideoIndex].id);
       }
 
-      // ===================== 제목/아티스트 분리 + 스크롤 =====================
-      function sanitize(s){ return String(s || '').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim(); }
+      // ===================== 제목/아티스트 분리 =====================
+      function sanitize(s){ 
+        return String(s || '').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim(); 
+      }
+      
       function stripDecorations(title){
         return sanitize(title)
           .replace(/\s*\([^)]*\)\s*$/g,'')
@@ -616,57 +908,24 @@
           .replace(/\s*-\s*Topic\s*$/i,'')
           .replace(/\s*\b(MV|Music\s*Video|Lyric\s*Video)\b\s*$/i,'');
       }
-      function eqLoose(a,b){
-        return sanitize(a).toLowerCase().replace(/[^a-z0-9]+/g,'')
-             === sanitize(b).toLowerCase().replace(/[^a-z0-9]+/g,'');
-      }
+      
       function splitTitleArtist(cleanTitle, cleanAuthor){
         const parts = cleanTitle.split(' - ').map(sanitize);
         let artist = sanitize(cleanAuthor).replace(/\s*-\s*Topic\s*$/i,'');
         if (parts.length >= 2){
           const left  = parts[0];
           const right = parts.slice(1).join(' - ');
-          if (artist && eqLoose(left, artist))  return { song: right, artist };
-          if (artist && eqLoose(right, artist)) return { song: left,  artist };
-          return { song: right, artist: left }; // 기본 가정
+          return { song: right, artist: left };
         }
         return { song: cleanTitle, artist };
       }
-
-      function applySongScroll(){
-        const el = document.getElementById('musicTitle');
-        const viewport = el ? el.parentElement : null;
-        if (!el || !viewport) return;
-
-        el.style.animation = 'none';
-        el.style.removeProperty('--overflow');
-        el.style.removeProperty('--marquee-duration');
-
-        // 초기 위치 중앙 설정
-        el.style.transform = 'translateX(0)';
-
-        requestAnimationFrame(() => {
-          const textWidth = el.scrollWidth;
-          const viewportWidth = viewport.clientWidth;
-          const overflow = Math.max(0, textWidth - viewportWidth);
-          
-          if (overflow > 4){
-            el.style.setProperty('--overflow', overflow + 'px');
-            const text = el.textContent || '';
-            const duration = Math.max(8, Math.min(20, text.length / 3));
-            el.style.setProperty('--marquee-duration', duration + 's');
-            el.style.animation = 'marqueeAlt var(--marquee-duration) ease-in-out infinite';
-          }
-        });
-      }
-      window.addEventListener('resize', applySongScroll);
 
       function updateVideoTitle() {
         if (!isPlayerReady || !player) return;
         try {
           var videoData = player.getVideoData();
-          var songEl   = document.getElementById('musicTitle');   // 곡명(아랫줄)
-          var artistEl = document.getElementById('musicArtist');  // 아티스트(윗줄)
+          var songEl   = document.getElementById('musicTitle');
+          var artistEl = document.getElementById('musicArtist');
           var t        = tracks[currentVideoIndex];
 
           if (songEl) songEl.classList.remove('error-message');
@@ -674,7 +933,6 @@
           if (!videoData){
             if (songEl)   songEl.textContent   = 'Background Music';
             if (artistEl) artistEl.textContent = '';
-            applySongScroll();
             return;
           }
 
@@ -695,11 +953,9 @@
           if (artistEl) artistEl.textContent = artist || cleanAuthor || '';
           if (songEl)   songEl.textContent   = song   || cleanTitle  || 'Background Music';
 
-          applySongScroll();
         } catch (e) {
           var songEl = document.getElementById('musicTitle');
           if (songEl) songEl.textContent = 'Background Music';
-          applySongScroll();
         }
       }
 
@@ -710,6 +966,7 @@
         var secs = Math.floor(seconds % 60);
         return mins + ':' + (secs < 10 ? '0' : '') + secs;
       }
+      
       function updateProgress() {
         if (!isPlayerReady || !player || isDragging) return;
         try {
@@ -724,18 +981,21 @@
           }
         } catch (e) {}
       }
+      
       function startProgressUpdate() {
         if (!updateTimer) {
           updateTimer = setInterval(updateProgress, 500);
           updateProgress();
         }
       }
+      
       function stopProgressUpdate() {
         if (updateTimer) {
           clearInterval(updateTimer);
           updateTimer = null;
         }
       }
+      
       function resetProgress() {
         document.getElementById('progressSlider').value = 0;
         document.getElementById('progressBar').style.width = '0%';
@@ -766,14 +1026,17 @@
               }
             }
           });
+          
           document.getElementById('prevBtn').addEventListener('click', function() {
             if (playlistLoadError || !isPlayerReady || !player || tracks.length <= 1) return;
             loadPreviousVideo();
           });
+          
           document.getElementById('nextBtn').addEventListener('click', function() {
             if (playlistLoadError || !isPlayerReady || !player || tracks.length <= 1) return;
             loadNextVideo();
           });
+          
           document.getElementById('muteBtn').addEventListener('click', function() {
             if (!isPlayerReady || !player) return;
             if (player.isMuted()) {
@@ -786,6 +1049,7 @@
               document.getElementById('muteIcon').classList.remove('hidden');
             }
           });
+          
           document.getElementById('volumeSlider').addEventListener('input', function() {
             if (!isPlayerReady || !player) return;
             player.setVolume(this.value);
@@ -800,16 +1064,20 @@
             }
           });
 
-          // 진행 바 드래گ
+          // 진행 바 드래그
           var progressSlider = document.getElementById('progressSlider');
           var startDrag = function() { isDragging = true; };
-          var endDrag = function() { setTimeout(function() { isDragging = false; }, 100); };
+          var endDrag = function() { 
+            setTimeout(function() { isDragging = false; }, 100); 
+          };
+          
           progressSlider.addEventListener('pointerdown', startDrag);
           progressSlider.addEventListener('pointerup', endDrag);
           progressSlider.addEventListener('mousedown', startDrag);
           progressSlider.addEventListener('mouseup', endDrag);
           progressSlider.addEventListener('touchstart', startDrag, {passive: true});
           progressSlider.addEventListener('touchend', endDrag);
+          
           progressSlider.addEventListener('input', function() {
             document.getElementById('progressBar').style.width = this.value + '%';
             if (isPlayerReady && player) {
@@ -820,6 +1088,7 @@
               }
             }
           });
+          
           progressSlider.addEventListener('change', function() {
             if (!isPlayerReady || !player) {
               isDragging = false;
