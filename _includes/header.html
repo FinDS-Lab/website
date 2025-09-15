@@ -170,38 +170,78 @@
   overflow-y: auto;
 }
 
-/* 모바일 링크 스타일 통일 */
+/* 모바일 링크 스타일 - 완전 통일 */
 .mobile-link,
-.px-3.py-2 > div > a:first-child {
+.mobile-accordion-link {
   display: block;
-  padding: 10px 12px;
-  font-weight: 700;
-  font-size: 15px;
-  color: #1f2937;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  color: #1f2937 !important;
   border-radius: 8px;
   text-decoration: none;
+  line-height: 1.5;
 }
 
 .mobile-link:hover,
-.px-3.py-2 > div > a:first-child:hover {
+.mobile-accordion-link:hover {
   background: #fff7e0;
-  color: #8a6a12;
+  color: #8a6a12 !important;
 }
 
-/* 모바일 아코디언 */
+/* 아코디언 아이템 - 간격 통일 */
+.mobile-accordion-item {
+  margin: 0;
+  padding: 0;
+}
+
+/* 아코디언 헤더 - 플렉스 정렬 */
+.mobile-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+}
+
+/* 아코디언 링크 - 플렉스 1로 전체 너비 */
+.mobile-accordion-link {
+  flex: 1;
+  border-radius: 8px 0 0 8px !important;
+}
+
+/* 아코디언 버튼 */
+.mobile-acc-btn {
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: #6b7280;
+  transition: all 0.2s;
+}
+
+.mobile-acc-btn:hover {
+  background: #fff7e0;
+  color: #d97706;
+}
+
+/* 모바일 아코디언 서브메뉴 */
 .mobile-acc-panel {
   display: none;
-  margin-left: 1rem;
+  margin: 4px 0 4px 24px;
 }
 
 .mobile-acc-panel:not(.hidden) {
   display: grid;
-  gap: 4px;
+  gap: 2px;
 }
 
 .mobile-acc-panel a {
   display: block;
-  padding: 6px 8px;
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: 600;
   color: #555;
@@ -212,6 +252,11 @@
 .mobile-acc-panel a:hover {
   background: #fff7e0;
   color: #8a6a12;
+}
+
+/* 이전 스타일 제거 */
+.px-3.py-2 {
+  display: none !important;
 }
 
 /* 기존 데스크톱 스타일 유지 */
