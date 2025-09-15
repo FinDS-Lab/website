@@ -5,9 +5,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-  <meta name="description" content="Financial Data Science Lab. (FINDS Lab.) — Dongduk Women's University" />
+  <meta name="description" content="{{ page.description | default: site.description }}" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}"/>
+
+  <!-- Open Graph / Twitter Meta -->
+  {%- assign og_img = page.og_image | default: site.og_image -%}
+  {%- if og_img contains 'http' -%}
+    {%- assign og_img_abs = og_img -%}
+  {%- else -%}
+    {%- assign og_img_abs = site.url | append: site.baseurl | append: og_img -%}
+  {%- endif -%}
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" />
+  <meta property="og:description" content="{{ page.description | default: site.description }}" />
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}" />
+  <meta property="og:image" content="{{ og_img_abs }}?v=20250915" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" />
+  <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
+  <meta name="twitter:image" content="{{ og_img_abs }}?v=20250915" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -33,7 +55,7 @@
   <link rel="preload" as="style" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
 
-  <!-- (선택) Google Analytics 4: 필요 시 site/_includes/ga.html로 분리해서 include 하세요
+  <!-- (선택) Google Analytics 4 -->
   {% comment %}
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXYYYYZ"></script>
   <script>
@@ -43,17 +65,14 @@
     gtag('config', 'G-XXXXXYYYYZ');
   </script>
   {% endcomment %}
-  -->
 
   <!-- 전역 레이아웃 보정 -->
   <style>
     :root{
-      --header-height: 70px; /* 데스크톱 헤더 높이 */
+      --header-height: 70px;
       --accent: rgb(214, 177, 77);
       --accent2: rgb(172, 14, 14);
     }
-
-    /* 고정 헤더로 인한 본문 상단 패딩 */
     body{
       padding-top: var(--header-height);
       margin:0;
@@ -61,8 +80,6 @@
     @media (max-width: 768px){
       :root{ --header-height: 60px; }
     }
-
-    /* Skip link (접근성) */
     .skip-link {
       position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
     }
@@ -72,37 +89,18 @@
       background: #fff; color: #111; padding: .5rem .75rem; border-radius: .5rem;
       border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0,0,0,.1);
     }
-
-    /* 메인 영역 기본 높이 */
     main{
       position: relative; z-index: 1;
       min-height: calc(100vh - var(--header-height));
     }
-
-    /* index(홈)와 일반 페이지 구분: 홈은 패딩 없음 */
     main > .main-container { padding: 0; }
     main > .main-container.page-container { padding: 2rem 1rem; }
-
-    /* 앵커 오프셋 */
     .content-offset{ scroll-margin-top: calc(var(--header-height) + 20px); }
-
-    /* === 중요 수정 1: FOUC 방지 스코프 한정 ===
-       전역 .submenu-panel을 숨기지 말고 '헤더 내부'로 한정 */
     header .submenu-panel { display: none; }
     header .menu-group:hover .submenu-panel,
     header [data-menu][data-open="true"] .submenu-panel { display: block; }
-
-    /* === 중요 수정 2: 헤더가 항상 최상단에 오도록 === */
     .site-header, header{ position: sticky; top: 0; z-index: 1000; }
-
-    /* 히어로/캐러셀 등 첫 섹션 오버레이가 헤더를 덮지 않도록 */
     .hero-section, .carousel-container, .carousel-overlay{ z-index: 0; }
-
-    /* (임시 디버그) 헤더 링크 가시성 — 필요 시 주석 해제
-    header nav a { color:#111 !important; }
-    */
-
-    /* 모션 감소 선호 반영 */
     @media (prefers-reduced-motion: reduce){
       *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
     }
@@ -131,18 +129,16 @@
   <!-- Footer -->
   {% include footer.html %}
 
-  <!-- Site JS (전역 스크립트) -->
+  <!-- Site JS -->
   <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
 
-  <!-- 헤더 보조 스크립트: 부드러운 스크롤/앵커 보정 -->
+  <!-- 헤더 보조 스크립트 -->
   <script>
     (function () {
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       if (!prefersReducedMotion.matches && 'scrollBehavior' in document.documentElement.style) {
         document.documentElement.style.scrollBehavior = 'smooth';
       }
-
-      // 초기 해시가 있는 경우, 헤더 높이만큼 보정
       if (window.location.hash) {
         setTimeout(function() {
           var target = document.querySelector(window.location.hash);
