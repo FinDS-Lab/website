@@ -122,15 +122,33 @@
 </header>
 
 <style>
-/* === 헤더 네비 디자인 통일 === */
+/* ========= 헤더 네비 시인성 업그레이드 ========= */
+/* 모든 탭 높이/정렬 통일 */
 .nav-link{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px; padding:0 14px; border-radius:10px;
-  font-weight:800; color:#fff; line-height:1;
-  transition:background-color .2s ease, color .2s ease;
+  font-weight:800; line-height:1;
+  color:#ffffff;                              /* 항상 흰색 글씨 */
+  text-shadow: 0 1px 1px rgba(0,0,0,.18);     /* 기본 가벼운 그림자 */
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
-.nav-link:hover{ background:rgba(255,255,255,.15); }
 
+/* hover/focus: 흰글씨 고정 + 더 강한 그림자 + 배경만 살짝 어둡게 */
+.nav-link:hover,
+.menu-group:hover > .nav-link{
+  color:#ffffff;
+  background: rgba(0,0,0,.15);                /* 금 배경 위로 살짝 눌러주는 오버레이 */
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.nav-link:focus-visible{
+  outline: none;
+  color:#ffffff;
+  background: rgba(0,0,0,.20);
+  text-shadow: 0 2px 6px rgba(0,0,0,.35);
+  box-shadow: 0 0 0 3px rgba(255,255,255,.45);
+}
+
+/* 드롭다운 위치/모양 */
 .menu-group{ position:relative; }
 .submenu-panel{
   display:none; position:absolute; top:calc(100% + 8px); left:0;
@@ -138,13 +156,18 @@
   box-shadow:0 12px 40px rgba(0,0,0,.12);
   min-width:180px; padding:8px 0; z-index:50;
 }
-.menu-group:hover>.submenu-panel,
-.menu-group[data-open="true"]>.submenu-panel{ display:block; }
+.menu-group:hover > .submenu-panel,
+.menu-group[data-open="true"] > .submenu-panel{ display:block; }
+
+/* 드롭다운 항목(흰 바탕에서 금빛 하이라이트) */
 .submenu-panel a{
   display:block; padding:8px 14px; font-weight:700; font-size:14px;
-  color:#1f2937; border-radius:8px;
+  color:#1f2937; border-radius:8px; transition: background-color .15s ease, color .15s ease;
 }
-.submenu-panel a:hover{ background:#fff7e0; color:#8a6a12; }
+.submenu-panel a:hover{
+  background:#fff7e0;               /* 은은한 금빛 배경 */
+  color:#8a6a12;
+}
 
 /* 모바일 링크 */
 .mobile-link{
@@ -161,4 +184,7 @@
 }
 .mobile-acc-panel a:hover{ background:#fff7e0; color:#8a6a12; }
 .mobile-acc-panel.is-open{ display:grid; gap:4px; }
+
+/* (중요) 이전에 쓰던 '밑줄 애니메이션' 규칙은 비활성화 */
+.nav-link::after{ content:none !important; }
 </style>
