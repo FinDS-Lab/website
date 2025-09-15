@@ -4,6 +4,15 @@ title: members-current
 permalink: /members-current.html
 ---
 
+<!-- Jekyll에서 _data/members/ 폴더의 JSON 파일들을 Liquid 템플릿으로 읽어와서 JavaScript 변수로 전달 -->
+<script>
+  // _data/members/kim-phd.json 데이터를 JavaScript 변수로 변환
+  const kimPhdData = {{ site.data.members.kim-phd | jsonify }};
+  
+  // 디버깅용 로그
+  console.log('Loaded kim-phd data from _data/members/:', kimPhdData);
+</script>
+
 <!-- ===== Gold Interactive Banner (Hearts/Clubs/Spades/Diamonds) ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
   <style>
@@ -40,15 +49,6 @@ permalink: /members-current.html
       color: #6b7280;
       font-size: 14px;
       gap: 12px;
-    }
-    
-    .error-container {
-      text-align: center;
-      padding: 40px 20px;
-      color: #dc2626;
-      background: #fef2f2;
-      border-radius: 12px;
-      margin: 20px 0;
     }
 
     /* Banner */
@@ -552,26 +552,18 @@ function generateDiamondNetwork() {
 // Store all loaded member data
 let allMembers = [];
 
-": "2014-03", "end": "2018-08", "gpa": "4.2/4.5", "honors": "Magna Cum Laude" }
-        ],
-        "publications": [
-          { "title": "Multilingual Challenges in Automated Evaluators", "authors": ["Kim, P.", "Lee, S.", "Park, J."], "venue": "AAAI Workshop on Preparing Good Data for Generative AI", "year": 2025, "type": "workshop" },
-          { "title": "Quantifying Qualitative Insights with LLMs", "authors": ["Kim, P.", "Lee, S."], "venue": "ICAIF Workshop on LLMs and Generative AI for Finance", "year": 2024, "type": "workshop" }
-        ],
-        "awards": [
-          { "title": "FinanceRAG Challenge Winner", "organization": "ICAIF", "year": 2024 },
-          { "title": "Big Data Competition Excellence Award", "organization": "NH Investment & Securities", "year": 2023 }
-        ],
-        "avatar": "/assets/img/members/kim-phd.jpg"
-      };
+// Load member data using Jekyll's data from _data/members/
+function loadAllMembers() {
+  const container = document.getElementById('membersContainer');
+  
+  try {
+    // Use the data loaded from _data/members/kim-phd.json
+    if (typeof kimPhdData === 'undefined') {
+      throw new Error('김박사 데이터를 찾을 수 없습니다. _data/members/kim-phd.json 파일을 확인하세요.');
     }
     
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const kimData = await response.json();
-    console.log('Successfully loaded kim-phd.json:', kimData);
+    const kimData = kimPhdData;
+    console.log('Using data from _data/members/kim-phd.json');
     
     // Create variations for all members based on kim-phd.json
     allMembers = [
@@ -644,11 +636,10 @@ let allMembers = [];
   } catch (error) {
     console.error('Error loading members:', error);
     container.innerHTML = `
-      <div class="error-container">
-        <h3 style="margin-bottom:8px;">Error Loading Member Data</h3>
-        <p style="font-size:14px;margin-bottom:8px;">Could not load member data from /members/kim-phd.json</p>
-        <p style="font-size:12px;color:#6b7280;">Error: ${error.message}</p>
-        <p style="font-size:12px;color:#6b7280;margin-top:12px;">Please ensure kim-phd.json exists in the /members/ directory</p>
+      <div style="text-align:center;padding:40px 20px;color:#dc2626;background:#fef2f2;border-radius:12px;margin:20px 0;">
+        <h3 style="margin-bottom:8px;">데이터 로드 오류</h3>
+        <p style="font-size:14px;margin-bottom:8px;">${error.message}</p>
+        <p style="font-size:12px;color:#6b7280;margin-top:12px;">_data/members/ 폴더에 kim-phd.json 파일이 있는지 확인하세요.</p>
       </div>
     `;
   }
@@ -847,8 +838,11 @@ function closeModal() {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Page loaded, starting to load members...');
-  loadAllMembers();
+  console.log('Page loaded, loading members from _data/members/');
+  // Small delay to ensure Jekyll data is loaded
+  setTimeout(() => {
+    loadAllMembers();
+  }, 100);
 });
 
 // ESC key to close modal
