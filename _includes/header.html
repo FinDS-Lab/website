@@ -1,33 +1,34 @@
 <!-- Header / Global Nav -->
 <style>
-  :root{
-    --accent: rgb(214,177,77);    /* Gold */
-    --burgundy: rgb(172, 14, 14); /* Burgundy */
-    --ink: #111;                  /* Base text */
+  /* 색 변수: 페이지 어디서든 보이도록 기본값 지정 */
+  :root {
+    --accent: rgb(214,177,77);      /* Gold */
+    --brand-burgundy: rgb(172,14,14);
   }
 
+  /* 헤더 배경/경계 강화 */
   .sticky-blur{
-    position: sticky; top: 0; z-index: 50;
+    position: sticky; top: 0; z-index: 1000;
     background: rgba(255,255,255,0.96);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,0.06);
   }
 
-  /* ===== Desktop: 1차 메뉴를 '금색 배경 + 흰 글씨 + 그림자'로 공통 적용 ===== */
+  /* 1차 메뉴: 공통 금색 배경 + 흰 글씨 + 그림자 */
   .nav-link{
     background: var(--accent);
     color: #fff !important;
     font-weight: 800;
     padding: 8px 12px;
     border-radius: 10px;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.25);         /* 흰 글씨 가독성 ↑ */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);        /* 살짝 떠있는 느낌 */
-    transition: background-color .15s ease, box-shadow .15s ease, transform .06s ease;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     display: inline-flex; align-items: center;
+    transition: background-color .15s ease, box-shadow .15s ease, transform .06s ease;
   }
   .nav-link:hover{
-    background: rgb(200,165,72);                   /* 금색 살짝 진하게 */
+    background: rgb(200,165,72);
     box-shadow: 0 4px 10px rgba(0,0,0,0.18);
     transform: translateY(-1px);
   }
@@ -36,22 +37,29 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
 
-  /* ===== 드롭다운 패널(원래 구조 유지) ===== */
+  /* 드롭다운 패널: 항상 위에, 호버 시 표시 */
+  .menu-group{ position: relative; }
   .submenu-panel{
     position: absolute; left: 0; top: 100%;
+    z-index: 1100;
     background: #fff;
     border: 1px solid rgba(0,0,0,0.06);
     border-radius: 12px;
     padding: 8px;
-    display: none;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-    margin-top: 8px; /* 트리거와 간격 */
     min-width: 220px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
+    display: none;                /* 기본 숨김 */
+    margin-top: 8px;
   }
-  .menu-group:hover .submenu-panel{ display: block; }
+  /* 트리거/그룹에 마우스를 올리면 서브메뉴 표시 */
+  .menu-group:hover > .submenu-panel,
+  .menu-group:focus-within > .submenu-panel{
+    display: block;
+  }
 
+  /* 서브메뉴 항목: 호버 시도 금색 배경 + 흰 글씨 */
   .submenu-item{
-    color: var(--ink);
+    color: #111;
     padding: 8px 10px;
     border-radius: 8px;
     transition: background-color .15s ease, color .15s ease;
@@ -63,7 +71,7 @@
     text-shadow: 0 1px 0 rgba(0,0,0,0.25);
   }
 
-  /* ===== 모바일 링크도 톤 통일 ===== */
+  /* 모바일 링크도 동일 톤 */
   .mobile-link{
     background: var(--accent);
     color: #fff !important;
@@ -80,20 +88,17 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.16);
   }
 
-  /* 모바일 아코디언 버튼은 테두리형(금색 톤) */
+  /* 모바일 아코디언 버튼은 금색 테두리형 */
   .mobile-acc-btn{
     font-weight: 800;
     padding: 2px 8px;
     border-radius: 8px;
     background: rgba(214,177,77,0.15);
     border: 1px solid rgba(214,177,77,0.35);
-    color: var(--ink);
+    color: #111;
     transition: background-color .15s ease;
   }
   .mobile-acc-btn[aria-expanded="true"]{ background: rgba(214,177,77,0.28); }
-
-  /* 브랜드 텍스트 색 유지 */
-  .brand-sub{ color: var(--burgundy); font-weight: 800; font-size: 12px; }
 </style>
 
 <div class="sticky-blur">
@@ -105,7 +110,7 @@
       <div class="leading-tight">
         <div class="text-sm font-extrabold tracking-tight" style="color:var(--accent)">FINDS Lab.</div>
         <!-- 여기 색상 변경 -->
-        <div class="text-[12px] font-extrabold brand-sub">Dongduk Women's University</div>
+        <div class="text-[12px] font-extrabold" style="color: var(--brand-burgundy);">Dongduk Women's University</div>
       </div>
     </a>
 
@@ -215,7 +220,7 @@
 </div>
 
 <script>
-  // 모바일 전체 토글
+  // 모바일 전체 토글 (원래 로직 유지)
   (function(){
     const btn = document.getElementById('btnMobile');
     const nav = document.getElementById('mobileNav');
@@ -227,7 +232,7 @@
     });
   })();
 
-  // 모바일 아코디언
+  // 모바일 아코디언 (원래 구조 유지)
   (function(){
     document.querySelectorAll('.mobile-acc-btn').forEach(btn => {
       const id = btn.getAttribute('aria-controls');
