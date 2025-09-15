@@ -141,7 +141,7 @@ permalink: /archives-playlist.html
   }
 
   .collapsible-section.open .collapsible-content {
-    max-height: 600px;
+    max-height: 2000px; /* 충분히 큰 값으로 변경 */
   }
 
   .content-inner {
@@ -440,7 +440,7 @@ permalink: /archives-playlist.html
 <!-- ===== Collapsible Playlist Section ===== -->
 <div class="playlist-container">
   <div class="collapsible-section" id="ischoi-section">
-    <div class="collapsible-header" onclick="toggleSection('ischoi-section')">
+    <div class="collapsible-header" id="toggleHeader">
       <h2 class="collapsible-title"><span class="name-highlight">Insu Choi</span>'s Playlist</h2>
       <svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -534,7 +534,12 @@ window.PLAYLIST_DATA = {
 /* ===== Collapsible Section Toggle ===== */
 function toggleSection(sectionId) {
   const section = document.getElementById(sectionId);
-  section.classList.toggle('open');
+  if (section) {
+    section.classList.toggle('open');
+    console.log('Toggled section:', sectionId, section.classList.contains('open'));
+  } else {
+    console.error('Section not found:', sectionId);
+  }
 }
 
 /* ===== Banner Click Effect ===== */
@@ -1000,8 +1005,23 @@ function resetProgress() {
   document.getElementById('duration').textContent = '0:00';
 }
 
-// DOM 바인딩
+// DOM 바인딩 - 제일 먼저 토글 기능 설정
 document.addEventListener('DOMContentLoaded', function() {
+  // 토글 기능 먼저 설정
+  var toggleHeader = document.getElementById('toggleHeader');
+  var section = document.getElementById('ischoi-section');
+  
+  if (toggleHeader && section) {
+    toggleHeader.addEventListener('click', function() {
+      section.classList.toggle('open');
+      console.log('Section toggled, is open:', section.classList.contains('open'));
+    });
+    console.log('Toggle handler attached');
+  } else {
+    console.error('Toggle elements not found');
+  }
+  
+  // 플레이어 초기화
   document.getElementById('progressSlider').value = 0;
   document.getElementById('volumeSlider').value = 30;
   loadPlaylistJson();
