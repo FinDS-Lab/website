@@ -8,171 +8,148 @@
   <meta name="description" content="Financial Data Science Lab. (FINDS Lab.) — Dongduk Women's University" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}"/>
-  
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&family=Noto+Sans:wght@400;600;700;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
-  
+
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Tailwind 설정
     tailwind.config = {
       theme: {
         container: { center: true, screens: { xl: '72rem' } },
         extend: {
           fontFamily: {
-            sans: ['Noto Sans KR','Noto Sans','Roboto', 'ui-sans-serif','system-ui','Apple SD Gothic Neo','Apple Color Emoji','Segoe UI Emoji']
+            sans: ['Noto Sans KR','Noto Sans','Roboto','ui-sans-serif','system-ui','Apple SD Gothic Neo','Apple Color Emoji','Segoe UI Emoji']
           }
         }
       }
     }
   </script>
-  
+
   <!-- Site CSS -->
   <link rel="preload" as="style" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
-  
-  <!-- 전역 스타일 -->
+
+  <!-- (선택) Google Analytics 4: 필요 시 site/_includes/ga.html로 분리해서 include 하세요
+  {% comment %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXYYYYZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXYYYYZ');
+  </script>
+  {% endcomment %}
+  -->
+
+  <!-- 전역 레이아웃 보정 -->
   <style>
-    /* 서브메뉴 FOUC 방지 - 최우선 적용 */
-    .submenu-panel {
-      display: none !important;
-    }
-    
-    /* 호버시에만 표시 */
-    .menu-group:hover .submenu-panel,
-    [data-menu][data-open="true"] .submenu-panel {
-      display: block !important;
-    }
-    
-    :root {
-      /* 헤더/푸터 색상 */
+    :root{
+      --header-height: 70px; /* 데스크톱 헤더 높이 */
       --accent: rgb(214, 177, 77);
       --accent2: rgb(172, 14, 14);
-      --header-height: 70px; /* 헤더 기본 높이 */
     }
-    
-    /* Fixed 헤더를 위한 body 패딩 */
-    body {
-      padding-top: 70px; /* 헤더 높이만큼 상단 패딩 추가 */
-      margin: 0;
+
+    /* 고정 헤더로 인한 본문 상단 패딩 */
+    body{
+      padding-top: var(--header-height);
+      margin:0;
     }
-    
-    @media (max-width: 768px) {
-      body {
-        padding-top: 60px; /* 모바일에서는 작은 헤더 */
-      }
+    @media (max-width: 768px){
+      :root{ --header-height: 60px; }
     }
-    
-    /* 스킵 링크 */
+
+    /* Skip link (접근성) */
     .skip-link {
-      position: absolute; 
-      left: -9999px; 
-      top: auto; 
-      width: 1px; 
-      height: 1px; 
-      overflow: hidden;
+      position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
     }
     .skip-link:focus {
-      left: 16px; 
-      top: 80px; /* 헤더 아래에 표시 */
-      width: auto; 
-      height: auto; 
-      z-index: 10000;
-      background: #fff; 
-      color: #111; 
-      padding: .5rem .75rem; 
-      border-radius: .5rem;
-      border: 1px solid #e5e7eb; 
-      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      left: 16px; top: calc(var(--header-height) + 10px);
+      width: auto; height: auto; z-index: 10000;
+      background: #fff; color: #111; padding: .5rem .75rem; border-radius: .5rem;
+      border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0,0,0,.1);
     }
-    
-    /* 메인 컨텐츠 영역 */
-    main {
-      position: relative;
-      z-index: 1;
-      min-height: calc(100vh - 70px);
+
+    /* 메인 영역 기본 높이 */
+    main{
+      position: relative; z-index: 1;
+      min-height: calc(100vh - var(--header-height));
     }
-    
-    @media (max-width: 768px) {
-      main {
-        min-height: calc(100vh - 60px);
-      }
-    }
-    
-    /* index 페이지의 특별한 처리 */
-    main > .main-container {
-      padding: 0; /* index.md의 자체 패딩 사용 */
-    }
-    
-    /* index가 아닌 일반 페이지들 */
-    main > .main-container.page-container {
-      padding: 2rem 1rem;
-    }
-    
-    /* 앵커 링크 오프셋 */
-    .content-offset { 
-      scroll-margin-top: 90px; /* 헤더 높이 + 여백 */
-    }
-    
-    /* reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { 
-        animation-duration: .001ms !important; 
-        animation-iteration-count: 1 !important; 
-        transition-duration: .001ms !important; 
-        scroll-behavior: auto !important; 
-      }
+
+    /* index(홈)와 일반 페이지 구분: 홈은 패딩 없음 */
+    main > .main-container { padding: 0; }
+    main > .main-container.page-container { padding: 2rem 1rem; }
+
+    /* 앵커 오프셋 */
+    .content-offset{ scroll-margin-top: calc(var(--header-height) + 20px); }
+
+    /* === 중요 수정 1: FOUC 방지 스코프 한정 ===
+       전역 .submenu-panel을 숨기지 말고 '헤더 내부'로 한정 */
+    header .submenu-panel { display: none; }
+    header .menu-group:hover .submenu-panel,
+    header [data-menu][data-open="true"] .submenu-panel { display: block; }
+
+    /* === 중요 수정 2: 헤더가 항상 최상단에 오도록 === */
+    .site-header, header{ position: sticky; top: 0; z-index: 1000; }
+
+    /* 히어로/캐러셀 등 첫 섹션 오버레이가 헤더를 덮지 않도록 */
+    .hero-section, .carousel-container, .carousel-overlay{ z-index: 0; }
+
+    /* (임시 디버그) 헤더 링크 가시성 — 필요 시 주석 해제
+    header nav a { color:#111 !important; }
+    */
+
+    /* 모션 감소 선호 반영 */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
     }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col">
   <!-- Skip to content -->
   <a href="#main" class="skip-link">본문으로 건너뛰기</a>
-  
-  <!-- Header Include -->
+
+  <!-- Header -->
   {% include header.html %}
-  
-  <!-- Main Content Container -->
+
+  <!-- Main -->
   <main id="main" class="content-offset grow">
-    <!-- index 페이지는 패딩 없이, 다른 페이지는 패딩 적용 -->
     {% if page.url == "/" or page.url == "/index.html" %}
-    <div class="main-container max-w-7xl mx-auto">
-      {{ content }}
-    </div>
+      <div class="main-container max-w-7xl mx-auto">
+        {{ content }}
+      </div>
     {% else %}
-    <div class="main-container page-container max-w-7xl mx-auto">
-      {{ content }}
-    </div>
+      <div class="main-container page-container max-w-7xl mx-auto">
+        {{ content }}
+      </div>
     {% endif %}
   </main>
-  
-  <!-- Footer Include -->
+
+  <!-- Footer -->
   {% include footer.html %}
-  
-  <!-- Site JS -->
+
+  <!-- Site JS (전역 스크립트) -->
   <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
-  
-  <!-- 헤더 관련 스크립트 -->
+
+  <!-- 헤더 보조 스크립트: 부드러운 스크롤/앵커 보정 -->
   <script>
-    // 헤더 높이는 이미 CSS에서 설정되어 있으므로, 동적 측정은 제거
     (function () {
-      // 스무스 스크롤 (사용자 선호 반영)
       var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
       if (!prefersReducedMotion.matches && 'scrollBehavior' in document.documentElement.style) {
         document.documentElement.style.scrollBehavior = 'smooth';
       }
-      
-      // 앵커 링크 처리
+
+      // 초기 해시가 있는 경우, 헤더 높이만큼 보정
       if (window.location.hash) {
         setTimeout(function() {
           var target = document.querySelector(window.location.hash);
           if (target) {
-            var headerHeight = 70; // 고정값 사용
-            var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-            window.scrollTo(0, targetPosition);
+            var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 70;
+            var top = target.getBoundingClientRect().top + window.pageYOffset - headerH - 20;
+            window.scrollTo(0, top);
           }
         }, 100);
       }
