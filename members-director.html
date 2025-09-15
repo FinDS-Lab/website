@@ -433,68 +433,15 @@ permalink: /members-director.html
    padding:1.5rem;
  }
 
-/* Layout Grid */
- 
+ /* Layout Grid */
 .main-grid{
   display:grid;
   grid-template-columns:340px 1fr;
   gap:1.5rem;
   max-width: 100%;
   overflow-x: hidden;
-  align-items: flex-start; /* start 대신 flex-start로 변경 */
 }
 
-
-/* Sticky Profile Sidebar with smooth animation - PC only */
-@media (min-width: 969px) {
-  .main-grid > aside {
-    position: sticky;
-    top: 20px;
-    height: fit-content;
-    align-self: start;
-    transition: top 0.3s ease;
-  }
-  
-  .main-grid > aside .director-card {
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  .main-grid > aside .director-card::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .main-grid > aside .director-card::-webkit-scrollbar-track {
-    background: #f3f4f6;
-    border-radius: 3px;
-  }
-  
-  .main-grid > aside .director-card::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 3px;
-    transition: background 0.2s;
-  }
-  
-  .main-grid > aside .director-card::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dark);
-  }
-}
- 
-/* PC에서만 Profile 카드가 스크롤 따라오게 함 */
-@media (min-width: 969px) {
-  .main-grid > aside {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 20px;
-    z-index: 100; /* z-index 추가 */
-  }
-  
-  aside .director-card {
-    position: relative; /* sticky 컨테이너 내부 요소 */
-  }
-}
- 
 @media (max-width: 968px) {
   .main-grid{
     grid-template-columns:1fr;
@@ -535,8 +482,8 @@ permalink: /members-director.html
  }
 
  .profile-info{margin-top:1.5rem;}
- .profile-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid #f3f4f6;}
- .profile-item:last-child{border-bottom:none;}
+.profile-item{display:flex;align-items:flex-start;gap:12px;padding:16px 0;border-bottom:1px solid #f3f4f6;}
+.profile-item:last-child{border-bottom:none;padding-bottom:20px;}
  .profile-emoji{font-size:20px;line-height:1;margin-top:2px;}
  .profile-content{flex:1;}
  .profile-label{display:block;font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;}
@@ -545,7 +492,7 @@ permalink: /members-director.html
  .profile-value a:hover{text-decoration:underline;}
 
  /* Action Buttons */
- .button-group{display:flex;gap:8px;margin-top:1.5rem;}
+.button-group{display:flex;gap:8px;margin-top:2rem;margin-bottom:0.5rem;}
  .action-btn{
    flex:1;
    display:inline-flex;
@@ -3857,89 +3804,4 @@ function closeResumeModal(event) {
 }
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
