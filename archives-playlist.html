@@ -745,15 +745,36 @@ function finalizeTrackSetup() {
 }
 
 function generateShuffleOrder() {
-  shuffledOrder = orderPool.slice();
-  for (var i = shuffledOrder.length - 1; i > 0; i--) {
+  // 첫 번째 곡은 항상 index 0으로 고정
+  shuffledOrder = [0];
+  
+  // 나머지 곡들의 인덱스 배열 생성 (가중치 반영)
+  var remainingPool = [];
+  tracks.forEach(function(t, idx) {
+    if (idx === 0) return; // 첫 번째 곡은 이미 추가했으므로 스킵
+    
+    var w = Math.max(1, parseInt(t.weight || 1, 10));
+    for (var i = 0; i < w; i++) {
+      remainingPool.push(idx);
+    }
+  });
+  
+  // 나머지 곡들을 셔플
+  for (var i = remainingPool.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-    var tmp = shuffledOrder[i];
-    shuffledOrder[i] = shuffledOrder[j];
-    shuffledOrder[j] = tmp;
+    var tmp = remainingPool[i];
+    remainingPool[i] = remainingPool[j];
+    remainingPool[j] = tmp;
   }
+  
+  // 첫 번째 곡 다음에 셔플된 나머지 곡들 추가
+  shuffledOrder = shuffledOrder.concat(remainingPool);
+  
+  // 시작 위치는 0 (첫 번째 곡)
   orderPos = 0;
-  currentVideoIndex = shuffledOrder[orderPos] || 0;
+  currentVideoIndex = 0; // 항상 첫 번째 곡으로 시작
+  
+  console.log('Playlist order generated. First track fixed, others shuffled.');
 }
 
 // YouTube IFrame API
