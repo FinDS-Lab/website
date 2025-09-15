@@ -434,6 +434,16 @@ permalink: /members-director.html
  }
 
 /* Layout Grid */
+ 
+.main-grid{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:1.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+  align-items: flex-start; /* start 대신 flex-start로 변경 */
+}
+
 
 /* Sticky Profile Sidebar with smooth animation - PC only */
 @media (min-width: 969px) {
@@ -471,15 +481,6 @@ permalink: /members-director.html
   }
 }
  
-.main-grid{
-  display:grid;
-  grid-template-columns:340px 1fr;
-  gap:1.5rem;
-  max-width: 100%;
-  overflow-x: hidden;
-  align-items: flex-start; /* start 대신 flex-start로 변경 */
-}
-
 /* PC에서만 Profile 카드가 스크롤 따라오게 함 */
 @media (min-width: 969px) {
   .main-grid > aside {
@@ -3856,6 +3857,7 @@ function closeResumeModal(event) {
 }
 
 </script>
+
 
 
 
