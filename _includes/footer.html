@@ -14,22 +14,25 @@
       gtag('config', 'G-RSGEYHWRHR');
     </script>
 
-    <!-- ✅ _data/playlist.json 주입 (옵션 A) -->
+    <!-- ✅ _data/playlist.json 주입 (옵션 A, Jekyll에서 렌더링됨) -->
     <script>
       window.PLAYLIST_DATA = {{ site.data.playlist | jsonify }};
     </script>
+    <!-- 안전장치: Jekyll 미동작 시 에러 방지 -->
+    <script>
+      window.PLAYLIST_DATA = window.PLAYLIST_DATA || null;
+    </script>
 
-    <!-- Footer styles -->
+    <!-- Styles -->
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      /* Tailwind 없이 hidden 클래스 사용 시 필요 */
+      .hidden { display: none !important; }
 
       /* ===== 음악 플레이어 박스 ===== */
       .music-player-box {
-        width: 90%;                 /* 화면의 85~90% 중 90% */
+        width: 90%;                /* 화면의 85~90% */
         max-width: 900px;
         margin: 0 auto;
         background: #f8fafc;
@@ -113,15 +116,8 @@
       }
 
       /* 줄2: 제목만 중앙 */
-      .title-row{ 
-        text-align:center; 
-        margin-bottom:8px; 
-      }
-      .title-viewport{
-        position:relative;
-        width:100%;
-        overflow:hidden;
-      }
+      .title-row{ text-align:center; margin-bottom:8px; }
+      .title-viewport{ position:relative; width:100%; overflow:hidden; }
       #musicTitle.song-title{
         display:inline-block;          /* 마키 애니메이션용 */
         font-size:10px;
@@ -132,7 +128,7 @@
         will-change:transform;
       }
 
-      /* 재생중이 아닐 땐 멈춤 */
+      /* 재생중이 아닐 땐 마키 멈춤 */
       #musicPlayer:not(.playing) .song-title{ animation:none !important; }
 
       /* 좌↔우 왕복 스크롤 (JS가 --overflow, --marquee-duration 세팅) */
@@ -142,173 +138,68 @@
       }
 
       /* 줄3: 시간 + 진행바 */
-      .progress-row{
-        display:flex;
-        align-items:center;
-        gap:6px;
-      }
+      .progress-row{ display:flex; align-items:center; gap:6px; }
       .time-text { 
-        font-family:monospace; 
-        font-size:10px; 
-        color:#64748b; 
-        width:32px;
-        text-align:center;
-        flex-shrink:0;
+        font-family:monospace; font-size:10px; color:#64748b; 
+        width:32px; text-align:center; flex-shrink:0;
       }
       .progress-container { 
-        position:relative; 
-        height:10px;
-        flex:1;                     /* 넓게 */
-        min-width:80px;
-        max-width:100%;
-        display:flex;
-        align-items:center;
+        position:relative; height:10px; flex:1; 
+        min-width:80px; max-width:100%; display:flex; align-items:center;
       }
       .progress-track {
-        position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        left:0;
-        right:0;
-        height:4px;
-        background:#e2e8f0;
-        border-radius:2px;
+        position:absolute; top:50%; transform:translateY(-50%);
+        left:0; right:0; height:4px; background:#e2e8f0; border-radius:2px;
       }
       .progress-fill {
-        position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        left:0;
-        height:4px;
-        background:#94a3b8;
-        border-radius:2px;
-        width:0%;
-        transition:width 0.1s;
-        pointer-events:none;
+        position:absolute; top:50%; transform:translateY(-50%);
+        left:0; height:4px; background:#94a3b8; border-radius:2px;
+        width:0%; transition:width 0.1s; pointer-events:none;
       }
       .progress-slider {
-        position:absolute;
-        top:50%;
-        left:0;
-        transform:translateY(-50%);
-        width:100%;
-        height:10px;
-        background:transparent;
-        outline:none;
-        -webkit-appearance:none;
-        appearance:none;
-        cursor:pointer;
-        z-index:2;
-        margin:0;
-        padding:0;
+        position:absolute; top:50%; left:0; transform:translateY(-50%);
+        width:100%; height:10px; background:transparent; outline:none;
+        -webkit-appearance:none; appearance:none; cursor:pointer;
+        z-index:2; margin:0; padding:0;
       }
-      .progress-slider::-webkit-slider-runnable-track {
-        width:100%;
-        height:10px;
-        background:transparent;
-        cursor:pointer;
-      }
+      .progress-slider::-webkit-slider-runnable-track { width:100%; height:10px; background:transparent; cursor:pointer; }
       .progress-slider::-webkit-slider-thumb {
-        -webkit-appearance:none;
-        appearance:none;
-        width:10px;
-        height:10px;
-        background:#475569;
-        border-radius:50%;
-        cursor:pointer;
-        position:relative;
-        z-index:3;
-        margin-top:0;
-        border:0;
+        -webkit-appearance:none; appearance:none; width:10px; height:10px;
+        background:#475569; border-radius:50%; cursor:pointer; position:relative; z-index:3; margin-top:0; border:0;
       }
-      .progress-slider::-moz-range-track {
-        width:100%;
-        height:10px;
-        background:transparent;
-        cursor:pointer;
-        border:none;
-      }
+      .progress-slider::-moz-range-track { width:100%; height:10px; background:transparent; cursor:pointer; border:none; }
       .progress-slider::-moz-range-thumb {
-        width:10px;
-        height:10px;
-        background:#475569;
-        border-radius:50%;
-        cursor:pointer;
-        border:none;
-        position:relative;
-        z-index:3;
+        width:10px; height:10px; background:#475569; border-radius:50%; cursor:pointer; border:none; position:relative; z-index:3;
       }
-      .progress-slider::-ms-track {
-        width:100%;
-        height:10px;
-        background:transparent;
-        border-color:transparent;
-        color:transparent;
-      }
-      .progress-slider::-ms-thumb {
-        width:10px;
-        height:10px;
-        background:#475569;
-        border-radius:50%;
-        cursor:pointer;
-        border:none;
-      }
+      .progress-slider::-ms-track { width:100%; height:10px; background:transparent; border-color:transparent; color:transparent; }
+      .progress-slider::-ms-thumb { width:10px; height:10px; background:#475569; border-radius:50%; cursor:pointer; border:none; }
 
-      /* 버튼들(재사용) */
+      /* 버튼들 */
       .nav-btn {
-        width:26px;
-        height:26px;
-        padding:5px;
-        background:white;
-        border:1px solid #e2e8f0;
-        border-radius:50%;
-        cursor:pointer;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        transition:all 0.2s;
-        flex-shrink:0;
+        width:26px; height:26px; padding:5px; background:white;
+        border:1px solid #e2e8f0; border-radius:50%; cursor:pointer;
+        display:flex; align-items:center; justify-content:center;
+        transition:all 0.2s; flex-shrink:0;
       }
       .nav-btn svg { width:13px; height:13px; color:#64748b; }
-
       .play-btn {
-        width:34px;
-        height:34px;
-        padding:7px;
-        background:white;
-        border:1px solid #e2e8f0;
-        border-radius:50%;
+        width:34px; height:34px; padding:7px; background:white;
+        border:1px solid #e2e8f0; border-radius:50%;
         box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);
-        cursor:pointer;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        transition:all 0.2s;
-        flex-shrink:0;
+        cursor:pointer; display:flex; align-items:center; justify-content:center;
+        transition:all 0.2s; flex-shrink:0;
       }
       .play-btn svg { width:18px; height:18px; color:#475569; }
+      .nav-btn:hover, .play-btn:hover { background:#f1f5f9; transform:scale(1.05); }
 
-      .nav-btn:hover, .play-btn:hover {
-        background:#f1f5f9;
-        transform:scale(1.05);
-      }
+      /* 페이드인 (기본 표시 + 부드럽게 노출) */
+      .fade-in { animation: fadeIn 0.5s ease forwards; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 
       /* Footer 및 Copyright */
-      footer {
-        width:100%;
-        padding:20px 15px;
-      }
-      .footer-container {
-        max-width: 1000px;           /* 상단 박스와 맞춤 */
-        margin: 0 auto;
-        text-align:center;
-      }
-      .copyright {
-        margin-top:16px;
-        font-size:11px;
-        color:#94a3b8;
-        text-align:center;
-      }
+      footer { width:100%; padding:20px 15px; }
+      .footer-container { max-width: 1000px; margin: 0 auto; text-align:center; }
+      .copyright { margin-top:16px; font-size:11px; color:#94a3b8; text-align:center; }
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
@@ -317,7 +208,7 @@
         .music-player-box { background:rgba(30,41,59,.9); border-color:#334155; }
         .nav-btn, .play-btn { background:rgba(51,65,85,.9); border-color:#475569; }
         .nav-btn:hover, .play-btn:hover { background:rgba(71,85,105,.9); }
-        /* 다크모드에서도 요청 색 유지(아티스트/제목) */
+        /* 요청 색 유지 */
         #musicArtist.music-artist { color:#e0c46d; }
         #musicTitle.song-title { color:#d6b14d; }
         .progress-track, .volume-slider { background:rgba(71,85,105,.6); }
@@ -330,10 +221,7 @@
 
       /* 모바일 반응형 */
       @media (max-width: 540px) {
-        .music-player-box { 
-          width: 92%;
-          padding: 12px;
-        }
+        .music-player-box { width: 92%; padding: 12px; }
         .top-row { gap:8px; }
         #musicArtist.music-artist { font-size:9px; }
         #musicTitle.song-title { font-size:10px; }
@@ -367,11 +255,7 @@
       }
 
       /* 에러 메시지 */
-      .error-message {
-        color:#ef4444;
-        font-size:10px;
-        text-align:center;
-      }
+      .error-message { color:#ef4444; font-size:10px; text-align:center; }
     </style>
   </head>
   <body>
@@ -380,8 +264,8 @@
     <footer class="border-t border-slate-200" id="siteFooter">
       <div class="footer-container">
         
-        <!-- 음악 플레이어만 -->
-        <div id="musicPlayer" style="opacity: 0; animation: fadeIn 0.5s ease forwards;">
+        <!-- 음악 플레이어 -->
+        <div id="musicPlayer" class="fade-in">
           <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
 
             <!-- 줄1: 좌(이전/재생/다음) — 중앙(아티스트) — 우(볼륨) -->
@@ -451,18 +335,15 @@
       </div>
     </footer>
 
-    <!-- YouTube IFrame API를 위한 div -->
-    <div id="youtube-player" style="display: none;"></div>
+    <!-- YouTube IFrame API용 (숨김) -->
+    <div id="youtube-player" style="display:none;"></div>
 
     <!-- 플레이어 스크립트 -->
     <script>
       // Google Analytics 이벤트 추적
       function trackEvent(category, action, label) {
         if (typeof gtag !== 'undefined') {
-          gtag('event', action, {
-            'event_category': category,
-            'event_label': label
-          });
+          gtag('event', action, { 'event_category': category, 'event_label': label });
         }
       }
 
@@ -502,16 +383,12 @@
         var n = parseFloat(v);
         return Number.isFinite(n) ? n : null;
       }
-      function collapseSpaces(s) {
-        return (s || '').replace(/\s+/g, ' ').trim();
-      }
-      function forceSingleLine(text) {
-        return collapseSpaces(String(text || '').replace(/[\r\n]+/g, ' '));
-      }
+      function collapseSpaces(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
+      function forceSingleLine(text) { return collapseSpaces(String(text || '').replace(/[\r\n]+/g, ' ')); }
 
       // ===================== playlist.json 로드 =====================
       function loadPlaylistJson() {
-        // Jekyll이 이미 삽입한 PLAYLIST_DATA 변수 사용 (권장)
+        // Jekyll이 삽입한 PLAYLIST_DATA 변수 사용 (권장)
         if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
           buildFromJson(PLAYLIST_DATA);
           trackEvent('Music Player', 'playlist_loaded', 'jekyll_data');
@@ -729,9 +606,7 @@
       }
 
       // ===================== 제목/아티스트 분리 + 스크롤 =====================
-      function sanitize(s){
-        return String(s || '').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim();
-      }
+      function sanitize(s){ return String(s || '').replace(/[\r\n]+/g,' ').replace(/\s+/g,' ').trim(); }
       function stripDecorations(title){
         return sanitize(title)
           .replace(/\s*\([^)]*\)\s*$/g,'')
@@ -925,7 +800,7 @@
             }
           });
 
-          // 진행 바 드래그
+          // 진행 바 드래گ
           var progressSlider = document.getElementById('progressSlider');
           var startDrag = function() { isDragging = true; };
           var endDrag = function() { setTimeout(function() { isDragging = false; }, 100); };
