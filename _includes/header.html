@@ -1,63 +1,179 @@
-<!-- Header / Global Nav -->
+<!-- ====== Header / Global Nav (White · Gold · Burgundy) ====== -->
+<style>
+  :root{
+    --white: #ffffff;
+    --ink: #111111;               /* 텍스트(순흑) */
+    --gold: rgb(214,177,77);      /* 포인트 */
+    --burgundy: rgb(172,14,14);   /* 서브 포인트(학교명/알림 등) */
+    --gold-08: rgba(214,177,77,.08);
+    --gold-14: rgba(214,177,77,.14);
+    --gold-20: rgba(214,177,77,.20);
+    --gold-28: rgba(214,177,77,.28);
+  }
+
+  /* 상단 바 */
+  .sticky-blur{
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.96);
+    backdrop-filter: saturate(1.15) blur(8px);
+    -webkit-backdrop-filter: saturate(1.15) blur(8px);
+    border-bottom: 1px solid var(--gold-20);
+  }
+
+  /* 공통 버튼/링크 포커스 */
+  .focus-ring:focus-visible{
+    outline: none;
+    box-shadow: 0 0 0 3px var(--gold-28);
+    border-radius: 10px;
+  }
+
+  /* 브랜드 로고 테두리 */
+  .brand-ring{
+    box-shadow: inset 0 0 0 1px var(--gold-20);
+  }
+
+  /* 1차 메뉴 */
+  .nav-link{
+    color: var(--ink);
+    font-weight: 800;
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background-color .15s ease, box-shadow .15s ease;
+  }
+  .nav-link:hover{ background: var(--gold-14); }
+  .nav-link[aria-current="page"]{
+    background: var(--gold-20);
+    box-shadow: inset 0 -2px 0 0 var(--gold);
+  }
+
+  /* 드롭다운 패널 */
+  .menu-group{ position: relative; }
+  .submenu-panel{
+    position: absolute; left: 0; top: calc(100% + 8px);
+    min-width: 220px;
+    background: var(--white);
+    border: 1px solid var(--gold-20);
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    display: none;
+  }
+  .menu-group[aria-expanded="true"] .submenu-panel{ display: block; }
+
+  .submenu-item{
+    display: block;
+    color: var(--ink);
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: background-color .15s ease;
+  }
+  .submenu-item:hover{ background: var(--gold-08); }
+
+  /* 모바일 네비 */
+  .mobile-card{
+    background: var(--white);
+    border: 1px solid var(--gold-20);
+    border-radius: 14px;
+    padding: 12px;
+  }
+  .mobile-link{
+    color: var(--ink);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-weight: 800;
+  }
+  .mobile-link:hover{ background: var(--gold-14); }
+
+  .mobile-acc-btn{
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 32px;
+    border-radius: 8px;
+    background: var(--gold-08);
+    color: var(--ink);
+    font-weight: 800;
+    border: 1px solid var(--gold-20);
+    transition: background-color .15s ease;
+  }
+  .mobile-acc-btn[aria-expanded="true"]{ background: var(--gold-14); }
+
+  .mobile-acc-panel{ display: none; }
+  .mobile-acc-panel[aria-hidden="false"]{ display: grid; }
+
+  /* 유틸 (간격) */
+  .container{ max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+  .gap-6{ gap: 1.5rem; }
+  .gap-4{ gap: 1rem; }
+  .hidden{ display: none; }
+
+  /* 반응형 */
+  @media (min-width: 768px){
+    .md-flex{ display: flex; }
+    .md-hidden{ display: none; }
+  }
+</style>
+
 <div class="sticky-blur">
-  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+  <div class="container" style="padding-top:.75rem; padding-bottom:.75rem; display:flex; align-items:center; justify-content:space-between;" >
     <!-- Brand -->
-    <a href="{{ '/' | relative_url }}" class="flex items-center gap-3" aria-label="FINDS Lab Home">
+    <a href="{{ '/' | relative_url }}" class="focus-ring" aria-label="FINDS Lab Home" style="display:flex; align-items:center; gap:.75rem;">
       <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo"
-           class="h-9 w-9 rounded-lg ring-1 ring-slate-200 object-contain bg-white" />
-      <div class="leading-tight">
-        <div class="text-sm font-extrabold tracking-tight" style="color:var(--accent)">FINDS Lab.</div>
-        <!-- 여기 색상 변경 -->
-        <div class="text-[12px] font-extrabold" style="color: rgb(172, 14, 14);">Dongduk Women's University</div>
+           class="brand-ring" style="height:36px; width:36px; border-radius:10px; object-fit:contain; background:#fff;" />
+      <div style="line-height:1.15;">
+        <div class="text-sm" style="font-weight:800; letter-spacing:.01em; color:var(--gold);">FINDS Lab.</div>
+        <!-- 학교명: 버건디 -->
+        <div style="font-size:12px; font-weight:800; color: var(--burgundy);">Dongduk Women's University</div>
       </div>
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
-      <a class="nav-link" href="{{ '/' | relative_url }}"><b>Home</b></a>
+    <nav class="md-flex hidden" style="align-items:center;" aria-label="Primary">
+      <div class="gap-6" style="display:flex; align-items:center;">
+        <a class="nav-link focus-ring" href="{{ '/' | relative_url }}"><b>Home</b></a>
 
-      <!-- About -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/about-introduction.html' | relative_url }}"><b>About FINDS</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="About FINDS submenu">
-          <a class="block submenu-item" href="{{ '/about-introduction.html'  | relative_url }}" role="menuitem">Introduction</a>
-          <a class="block submenu-item" href="{{ '/about-vision-area.html'   | relative_url }}" role="menuitem">Research Areas</a>
-          <a class="block submenu-item" href="{{ '/about-honors.html'        | relative_url }}" role="menuitem">Honors & Awards</a>
-          <a class="block submenu-item" href="{{ '/about-location.html'      | relative_url }}" role="menuitem">Location</a>
+        <!-- About -->
+        <div class="menu-group" data-menu aria-expanded="false">
+          <a class="nav-link focus-ring" href="{{ '/about-introduction.html' | relative_url }}"><b>About FINDS</b></a>
+          <div class="submenu-panel js-submenu" role="menu" aria-label="About FINDS submenu">
+            <a class="submenu-item focus-ring" href="{{ '/about-introduction.html'  | relative_url }}" role="menuitem">Introduction</a>
+            <a class="submenu-item focus-ring" href="{{ '/about-vision-area.html'   | relative_url }}" role="menuitem">Research Areas</a>
+            <a class="submenu-item focus-ring" href="{{ '/about-honors.html'        | relative_url }}" role="menuitem">Honors & Awards</a>
+            <a class="submenu-item focus-ring" href="{{ '/about-location.html'      | relative_url }}" role="menuitem">Location</a>
+          </div>
         </div>
-      </div>
 
-      <!-- Members -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/members-director.html' | relative_url }}"><b>Members</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="Members submenu">
-          <a class="block submenu-item" href="{{ '/members-director.html'   | relative_url }}" role="menuitem">Director</a>
-          <a class="block submenu-item" href="{{ '/members-current.html'    | relative_url }}" role="menuitem">Current Members</a>
-          <a class="block submenu-item" href="{{ '/members-alumni.html'     | relative_url }}" role="menuitem">Alumni</a>
+        <!-- Members -->
+        <div class="menu-group" data-menu aria-expanded="false">
+          <a class="nav-link focus-ring" href="{{ '/members-director.html' | relative_url }}"><b>Members</b></a>
+          <div class="submenu-panel js-submenu" role="menu" aria-label="Members submenu">
+            <a class="submenu-item focus-ring" href="{{ '/members-director.html'   | relative_url }}" role="menuitem">Director</a>
+            <a class="submenu-item focus-ring" href="{{ '/members-current.html'    | relative_url }}" role="menuitem">Current Members</a>
+            <a class="submenu-item focus-ring" href="{{ '/members-alumni.html'     | relative_url }}" role="menuitem">Alumni</a>
+          </div>
         </div>
-      </div>
 
-      <a class="nav-link" href="{{ '/publications.html' | relative_url }}"><b>Publications</b></a>
-      <a class="nav-link" href="{{ '/lectures.html'     | relative_url }}"><b>Lectures</b></a>
-      <a class="nav-link" href="{{ '/projects.html'     | relative_url }}"><b>Projects</b></a>
+        <a class="nav-link focus-ring" href="{{ '/publications.html' | relative_url }}"><b>Publications</b></a>
+        <a class="nav-link focus-ring" href="{{ '/lectures.html'     | relative_url }}"><b>Lectures</b></a>
+        <a class="nav-link focus-ring" href="{{ '/projects.html'     | relative_url }}"><b>Projects</b></a>
 
-      <!-- Archives -->
-      <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/archives-news.html' | relative_url }}"><b>Archives</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="Archives submenu">
-          <a class="block submenu-item" href="{{ '/archives-news.html'    | relative_url }}" role="menuitem">News</a>
-          <a class="block submenu-item" href="{{ '/archives-notice.html'     | relative_url }}" role="menuitem">Notice</a>
-          <a class="block submenu-item" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
-          <a class="block submenu-item" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
+        <!-- Archives -->
+        <div class="menu-group" data-menu aria-expanded="false">
+          <a class="nav-link focus-ring" href="{{ '/archives-news.html' | relative_url }}"><b>Archives</b></a>
+          <div class="submenu-panel js-submenu" role="menu" aria-label="Archives submenu">
+            <a class="submenu-item focus-ring" href="{{ '/archives-news.html'    | relative_url }}" role="menuitem">News</a>
+            <a class="submenu-item focus-ring" href="{{ '/archives-notice.html'  | relative_url }}" role="menuitem">Notice</a>
+            <a class="submenu-item focus-ring" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
+            <a class="submenu-item focus-ring" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
+          </div>
         </div>
       </div>
     </nav>
 
     <!-- Mobile Toggle -->
-    <div class="flex items-center gap-2">
-      <button id="btnMobile" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200 bg-white"
+    <div class="gap-4" style="display:flex; align-items:center;">
+      <button id="btnMobile" class="md-hidden focus-ring"
+              style="display:inline-flex; align-items:center; justify-content:center; height:40px; width:40px; border-radius:10px; border:1px solid var(--gold-20); background:var(--white);"
               aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
@@ -65,54 +181,94 @@
   </div>
 
   <!-- Mobile Nav -->
-  <div id="mobileNav" class="md:hidden max-w-7xl mx-auto px-4 pb-3 hidden">
-    <div class="grid gap-2 bg-white border border-slate-200 rounded-xl p-3 max-h-[70vh] overflow-y-auto">
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/' | relative_url }}">Home</a>
+  <div id="mobileNav" class="md-hidden hidden" style="padding: 0 1rem .75rem;">
+    <div class="mobile-card" style="display:grid; gap:.5rem; max-height:70vh; overflow:auto;">
+      <a class="mobile-link focus-ring" href="{{ '/' | relative_url }}">Home</a>
 
       <!-- About (Accordion) -->
-      <div class="px-3 py-2">
-        <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-about">▾</button>
+      <div style="padding:.5rem .75rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <a class="mobile-link focus-ring" style="padding:0;" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+          <button class="mobile-acc-btn focus-ring" aria-expanded="false" aria-controls="mob-about" type="button">▾</button>
         </div>
-        <div id="mob-about" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-vision-area.html'  | relative_url }}">Research Area</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-honors.html'       | relative_url }}">Honors & Awards</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-location.html'     | relative_url }}">Location</a>
+        <div id="mob-about" class="mobile-acc-panel" aria-hidden="true" style="padding-left:.75rem; gap:.25rem; font-size:14px;">
+          <a class="mobile-link focus-ring" href="{{ '/about-introduction.html' | relative_url }}" style="font-weight:700; padding:.25rem 0;">Introduction</a>
+          <a class="mobile-link focus-ring" href="{{ '/about-vision-area.html'  | relative_url }}" style="font-weight:700; padding:.25rem 0;">Research Area</a>
+          <a class="mobile-link focus-ring" href="{{ '/about-honors.html'       | relative_url }}" style="font-weight:700; padding:.25rem 0;">Honors & Awards</a>
+          <a class="mobile-link focus-ring" href="{{ '/about-location.html'     | relative_url }}" style="font-weight:700; padding:.25rem 0;">Location</a>
         </div>
       </div>
 
       <!-- Members (Accordion) -->
-      <div class="px-3 py-2">
-        <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/members-director.html' | relative_url }}">Members</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-members">▾</button>
+      <div style="padding:.5rem .75rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <a class="mobile-link focus-ring" style="padding:0;" href="{{ '/members-director.html' | relative_url }}">Members</a>
+          <button class="mobile-acc-btn focus-ring" aria-expanded="false" aria-controls="mob-members" type="button">▾</button>
         </div>
-        <div id="mob-members" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-director.html'   | relative_url }}">Director</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-current.html'    | relative_url }}">Current Members</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-alumni.html'     | relative_url }}">Alumni</a>
+        <div id="mob-members" class="mobile-acc-panel" aria-hidden="true" style="padding-left:.75rem; gap:.25rem; font-size:14px;">
+          <a class="mobile-link focus-ring" href="{{ '/members-director.html'   | relative_url }}" style="font-weight:700; padding:.25rem 0;">Director</a>
+          <a class="mobile-link focus-ring" href="{{ '/members-current.html'    | relative_url }}" style="font-weight:700; padding:.25rem 0;">Current Members</a>
+          <a class="mobile-link focus-ring" href="{{ '/members-alumni.html'     | relative_url }}" style="font-weight:700; padding:.25rem 0;">Alumni</a>
         </div>
       </div>
 
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/publications.html' | relative_url }}">Publications</a>
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/lectures.html'     | relative_url }}">Lectures</a>
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/projects.html'     | relative_url }}">Projects</a>
+      <a class="mobile-link focus-ring" href="{{ '/publications.html' | relative_url }}">Publications</a>
+      <a class="mobile-link focus-ring" href="{{ '/lectures.html'     | relative_url }}">Lectures</a>
+      <a class="mobile-link focus-ring" href="{{ '/projects.html'     | relative_url }}">Projects</a>
 
       <!-- Archives (Accordion) -->
-      <div class="px-3 py-2">
-        <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-archives">▾</button>
+      <div style="padding:.5rem .75rem;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <a class="mobile-link focus-ring" style="padding:0;" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+          <button class="mobile-acc-btn focus-ring" aria-expanded="false" aria-controls="mob-archives" type="button">▾</button>
         </div>
-        <div id="mob-archives" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-news.html'    | relative_url }}">News</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-notice.html'     | relative_url }}">Notice</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
+        <div id="mob-archives" class="mobile-acc-panel" aria-hidden="true" style="padding-left:.75rem; gap:.25rem; font-size:14px;">
+          <a class="mobile-link focus-ring" href="{{ '/archives-news.html'    | relative_url }}" style="font-weight:700; padding:.25rem 0;">News</a>
+          <a class="mobile-link focus-ring" href="{{ '/archives-notice.html'  | relative_url }}" style="font-weight:700; padding:.25rem 0;">Notice</a>
+          <a class="mobile-link focus-ring" href="{{ '/archives-seminar.html' | relative_url }}" style="font-weight:700; padding:.25rem 0;">Seminar</a>
+          <a class="mobile-link focus-ring" href="{{ '/archives-gallery.html' | relative_url }}" style="font-weight:700; padding:.25rem 0;">Gallery</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  /* ===== Desktop: hover/포커스 드롭다운 ===== */
+  const groups = Array.from(document.querySelectorAll('[data-menu]'));
+  groups.forEach(g => {
+    const open = () => g.setAttribute('aria-expanded', 'true');
+    const close = () => g.setAttribute('aria-expanded', 'false');
+
+    g.addEventListener('mouseenter', open);
+    g.addEventListener('mouseleave', close);
+
+    // 키보드 접근
+    g.addEventListener('focusin', open);
+    g.addEventListener('focusout', (e) => {
+      // 그룹 밖으로 포커스가 나가면 닫기
+      if(!g.contains(e.relatedTarget)) close();
+    });
+  });
+
+  /* ===== Mobile: 전체 토글 ===== */
+  const btnMobile = document.getElementById('btnMobile');
+  const mobileNav = document.getElementById('mobileNav');
+  btnMobile?.addEventListener('click', () => {
+    const expanded = btnMobile.getAttribute('aria-expanded') === 'true';
+    btnMobile.setAttribute('aria-expanded', String(!expanded));
+    mobileNav.classList.toggle('hidden', expanded);
+  });
+
+  /* ===== Mobile: 아코디언 ===== */
+  const accBtns = Array.from(document.querySelectorAll('.mobile-acc-btn'));
+  accBtns.forEach(btn => {
+    const panelId = btn.getAttribute('aria-controls');
+    const panel = document.getElementById(panelId);
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      panel?.setAttribute('aria-hidden', String(expanded));
+    });
+  });
+</script>
