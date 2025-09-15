@@ -32,13 +32,13 @@ title: home
   }
 
   /* =========================
-     HERO Section
+     HERO Section - 상단 여백 추가로 메뉴와 겹침 방지
      ========================= */
   .hero-section {
     position: relative;
     width: 100%;
     max-width: var(--container-max);
-    margin: 0 auto 1.5rem;
+    margin: 3rem auto 1.5rem;  /* 상단 마진 증가 (0 -> 3rem) */
     padding: 0 var(--pad-desktop);
     height: 480px;
     display: block;
@@ -46,13 +46,30 @@ title: home
     overflow: clip;
   }
   @media (max-width: 1024px) {
-    .hero-section { padding: 0 var(--pad-tablet); height: 420px; }
+    .hero-section { 
+      padding: 0 var(--pad-tablet); 
+      height: 420px; 
+      margin-top: 2.5rem;  /* 태블릿 상단 마진 */
+    }
   }
   @media (max-width: 540px) {
-    .hero-section { padding: 0 var(--pad-mobile); height: 340px; }
+    .hero-section { 
+      padding: 0 var(--pad-mobile); 
+      height: 340px; 
+      margin-top: 2rem;  /* 모바일 상단 마진 */
+    }
   }
-  @media (max-width: 480px) { .hero-section { height: 320px; } }
-  @media (max-width: 380px) { .hero-section { height: 300px; } }
+  @media (max-width: 480px) { 
+    .hero-section { 
+      height: 320px; 
+      margin-top: 1.5rem;  /* 작은 모바일 상단 마진 */
+    } 
+  }
+  @media (max-width: 380px) { 
+    .hero-section { 
+      height: 300px; 
+    } 
+  }
 
   .carousel-container {
     width: 100%;
