@@ -1,78 +1,102 @@
-<!-- ====== Header / Global Nav (White · Gold · Burgundy) ====== -->
+<!-- ================= Header / Global Nav (White · Gold · Burgundy) ================= -->
 <style>
   :root{
     --white: #ffffff;
-    --ink: #111111;               /* 텍스트(순흑) */
-    --gold: rgb(214,177,77);      /* 포인트 */
-    --burgundy: rgb(172,14,14);   /* 서브 포인트(학교명/알림 등) */
+    --ink: #111111;                 /* 본문 텍스트는 순흑만 사용 */
+    --gold: rgb(214,177,77);        /* 포인트 */
+    --burgundy: rgb(172,14,14);     /* 서브 포인트 */
     --gold-08: rgba(214,177,77,.08);
-    --gold-14: rgba(214,177,77,.14);
-    --gold-20: rgba(214,177,77,.20);
-    --gold-28: rgba(214,177,77,.28);
+    --gold-12: rgba(214,177,77,.12);
+    --gold-18: rgba(214,177,77,.18);
+    --gold-26: rgba(214,177,77,.26);
   }
 
   /* 상단 바 */
   .sticky-blur{
     position: sticky; top: 0; z-index: 50;
     background: rgba(255,255,255,.96);
-    backdrop-filter: saturate(1.15) blur(8px);
-    -webkit-backdrop-filter: saturate(1.15) blur(8px);
-    border-bottom: 1px solid var(--gold-20);
+    backdrop-filter: saturate(1.1) blur(8px);
+    -webkit-backdrop-filter: saturate(1.1) blur(8px);
+    border-bottom: 1px solid var(--gold-18);
   }
 
-  /* 공통 버튼/링크 포커스 */
+  /* 컨테이너/레이아웃 유틸 */
+  .container{ max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
+  .flex{ display:flex; }
+  .items-center{ align-items:center; }
+  .justify-between{ justify-content:space-between; }
+  .gap-6{ gap: 1.5rem; }
+  .gap-4{ gap: 1rem; }
+  .hidden{ display:none; }
+  @media (min-width: 768px){
+    .md-flex{ display:flex; }
+    .md-hidden{ display:none; }
+  }
+
+  /* 포커스 링 */
   .focus-ring:focus-visible{
     outline: none;
-    box-shadow: 0 0 0 3px var(--gold-28);
+    box-shadow: 0 0 0 3px var(--gold-26);
     border-radius: 10px;
   }
 
-  /* 브랜드 로고 테두리 */
+  /* 브랜드 */
   .brand-ring{
-    box-shadow: inset 0 0 0 1px var(--gold-20);
+    box-shadow: inset 0 0 0 1px var(--gold-18);
+    background: var(--white);
+    border-radius: 10px;
+    height: 36px; width: 36px; object-fit: contain;
   }
 
   /* 1차 메뉴 */
   .nav-link{
     color: var(--ink);
     font-weight: 800;
-    padding: 6px 10px;
-    border-radius: 10px;
-    transition: background-color .15s ease, box-shadow .15s ease;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: background-color .15s ease, box-shadow .15s ease, transform .15s ease;
+    display: inline-flex; align-items:center; line-height:1;
+    position: relative;
   }
-  .nav-link:hover{ background: var(--gold-14); }
+  .nav-link:hover{ background: var(--gold-12); }
   .nav-link[aria-current="page"]{
-    background: var(--gold-20);
+    background: var(--gold-18);
     box-shadow: inset 0 -2px 0 0 var(--gold);
   }
 
-  /* 드롭다운 패널 */
-  .menu-group{ position: relative; }
+  /* 드롭다운 그룹 */
+  .menu-group{ position: relative; padding-bottom: 8px; } /* 갭 브릿지 */
+  .menu-group::after{
+    /* 트리거와 패널 사이 마우스가 지나가는 '브릿지' */
+    content:""; position:absolute; left:0; right:0; height:10px; top:100%;
+  }
+
+  /* 서브메뉴 패널 */
   .submenu-panel{
-    position: absolute; left: 0; top: calc(100% + 8px);
+    position: absolute; left: 0; top: calc(100% + 0px); /* 갭 제거 */
     min-width: 220px;
     background: var(--white);
-    border: 1px solid var(--gold-20);
+    border: 1px solid var(--gold-18);
     border-radius: 14px;
-    padding: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    padding: 10px;
+    box-shadow: 0 14px 40px rgba(0,0,0,.08);
     display: none;
   }
   .menu-group[aria-expanded="true"] .submenu-panel{ display: block; }
 
+  /* 서브메뉴 아이템 */
   .submenu-item{
-    display: block;
-    color: var(--ink);
-    padding: 8px 10px;
-    border-radius: 10px;
-    transition: background-color .15s ease;
+    display:block; color: var(--ink);
+    padding: 9px 12px; border-radius: 10px;
+    transition: background-color .15s ease, transform .12s ease;
+    white-space: nowrap;
   }
   .submenu-item:hover{ background: var(--gold-08); }
 
-  /* 모바일 네비 */
+  /* 모바일 카드/링크/아코디언 */
   .mobile-card{
     background: var(--white);
-    border: 1px solid var(--gold-20);
+    border: 1px solid var(--gold-18);
     border-radius: 14px;
     padding: 12px;
   }
@@ -81,97 +105,87 @@
     border-radius: 10px;
     padding: 8px 12px;
     font-weight: 800;
+    display: inline-block;
   }
-  .mobile-link:hover{ background: var(--gold-14); }
-
+  .mobile-link:hover{ background: var(--gold-12); }
   .mobile-acc-btn{
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 36px; height: 32px;
-    border-radius: 8px;
-    background: var(--gold-08);
-    color: var(--ink);
-    font-weight: 800;
-    border: 1px solid var(--gold-20);
-    transition: background-color .15s ease;
+    display:inline-flex; align-items:center; justify-content:center;
+    width: 36px; height: 32px; border-radius: 8px;
+    background: var(--gold-08); border: 1px solid var(--gold-18);
+    color: var(--ink); font-weight: 800;
+    transition: background-color .15s ease, transform .15s ease;
   }
-  .mobile-acc-btn[aria-expanded="true"]{ background: var(--gold-14); }
+  .mobile-acc-btn[aria-expanded="true"]{ background: var(--gold-12); }
+  .mobile-acc-panel{ display:none; }
+  .mobile-acc-panel[aria-hidden="false"]{ display:grid; }
 
-  .mobile-acc-panel{ display: none; }
-  .mobile-acc-panel[aria-hidden="false"]{ display: grid; }
+  /* 배지/서브텍스트(버건디 포인트) */
+  .brand-sub{ font-size:12px; font-weight:800; color: var(--burgundy); }
 
-  /* 유틸 (간격) */
-  .container{ max-width: 80rem; margin: 0 auto; padding: 0 1rem; }
-  .gap-6{ gap: 1.5rem; }
-  .gap-4{ gap: 1rem; }
-  .hidden{ display: none; }
-
-  /* 반응형 */
-  @media (min-width: 768px){
-    .md-flex{ display: flex; }
-    .md-hidden{ display: none; }
+  /* 모션 선호 */
+  @media (prefers-reduced-motion: reduce){
+    .nav-link, .submenu-item, .mobile-acc-btn{ transition: none; }
   }
 </style>
 
 <div class="sticky-blur">
-  <div class="container" style="padding-top:.75rem; padding-bottom:.75rem; display:flex; align-items:center; justify-content:space-between;" >
-    <!-- Brand -->
-    <a href="{{ '/' | relative_url }}" class="focus-ring" aria-label="FINDS Lab Home" style="display:flex; align-items:center; gap:.75rem;">
-      <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo"
-           class="brand-ring" style="height:36px; width:36px; border-radius:10px; object-fit:contain; background:#fff;" />
-      <div style="line-height:1.15;">
-        <div class="text-sm" style="font-weight:800; letter-spacing:.01em; color:var(--gold);">FINDS Lab.</div>
-        <!-- 학교명: 버건디 -->
-        <div style="font-size:12px; font-weight:800; color: var(--burgundy);">Dongduk Women's University</div>
-      </div>
-    </a>
+  <div class="container" style="padding:.75rem 1rem;">
+    <div class="flex items-center justify-between">
+      <!-- Brand -->
+      <a href="{{ '/' | relative_url }}" class="focus-ring" aria-label="FINDS Lab Home" style="display:flex; align-items:center; gap:.75rem;">
+        <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo" class="brand-ring" />
+        <div style="line-height:1.12;">
+          <div style="font-weight:800; letter-spacing:.01em; color:var(--gold); font-size:14px;">FINDS Lab.</div>
+          <div class="brand-sub">Dongduk Women's University</div>
+        </div>
+      </a>
 
-    <!-- Desktop Nav -->
-    <nav class="md-flex hidden" style="align-items:center;" aria-label="Primary">
-      <div class="gap-6" style="display:flex; align-items:center;">
-        <a class="nav-link focus-ring" href="{{ '/' | relative_url }}"><b>Home</b></a>
+      <!-- Desktop Nav -->
+      <nav class="md-flex hidden" aria-label="Primary" style="align-items:center;">
+        <div class="flex items-center gap-6">
+          <a class="nav-link focus-ring" href="{{ '/' | relative_url }}"><b>Home</b></a>
 
-        <!-- About -->
-        <div class="menu-group" data-menu aria-expanded="false">
-          <a class="nav-link focus-ring" href="{{ '/about-introduction.html' | relative_url }}"><b>About FINDS</b></a>
-          <div class="submenu-panel js-submenu" role="menu" aria-label="About FINDS submenu">
-            <a class="submenu-item focus-ring" href="{{ '/about-introduction.html'  | relative_url }}" role="menuitem">Introduction</a>
-            <a class="submenu-item focus-ring" href="{{ '/about-vision-area.html'   | relative_url }}" role="menuitem">Research Areas</a>
-            <a class="submenu-item focus-ring" href="{{ '/about-honors.html'        | relative_url }}" role="menuitem">Honors & Awards</a>
-            <a class="submenu-item focus-ring" href="{{ '/about-location.html'      | relative_url }}" role="menuitem">Location</a>
+          <!-- About -->
+          <div class="menu-group" data-menu aria-expanded="false">
+            <a class="nav-link focus-ring" href="{{ '/about-introduction.html' | relative_url }}"><b>About FINDS</b></a>
+            <div class="submenu-panel js-submenu" role="menu" aria-label="About FINDS submenu">
+              <a class="submenu-item focus-ring" href="{{ '/about-introduction.html'  | relative_url }}" role="menuitem">Introduction</a>
+              <a class="submenu-item focus-ring" href="{{ '/about-vision-area.html'   | relative_url }}" role="menuitem">Research Areas</a>
+              <a class="submenu-item focus-ring" href="{{ '/about-honors.html'        | relative_url }}" role="menuitem">Honors & Awards</a>
+              <a class="submenu-item focus-ring" href="{{ '/about-location.html'      | relative_url }}" role="menuitem">Location</a>
+            </div>
+          </div>
+
+          <!-- Members -->
+          <div class="menu-group" data-menu aria-expanded="false">
+            <a class="nav-link focus-ring" href="{{ '/members-director.html' | relative_url }}"><b>Members</b></a>
+            <div class="submenu-panel js-submenu" role="menu" aria-label="Members submenu">
+              <a class="submenu-item focus-ring" href="{{ '/members-director.html'   | relative_url }}" role="menuitem">Director</a>
+              <a class="submenu-item focus-ring" href="{{ '/members-current.html'    | relative_url }}" role="menuitem">Current Members</a>
+              <a class="submenu-item focus-ring" href="{{ '/members-alumni.html'     | relative_url }}" role="menuitem">Alumni</a>
+            </div>
+          </div>
+
+          <a class="nav-link focus-ring" href="{{ '/publications.html' | relative_url }}"><b>Publications</b></a>
+          <a class="nav-link focus-ring" href="{{ '/lectures.html'     | relative_url }}"><b>Lectures</b></a>
+          <a class="nav-link focus-ring" href="{{ '/projects.html'     | relative_url }}"><b>Projects</b></a>
+
+          <!-- Archives -->
+          <div class="menu-group" data-menu aria-expanded="false">
+            <a class="nav-link focus-ring" href="{{ '/archives-news.html' | relative_url }}"><b>Archives</b></a>
+            <div class="submenu-panel js-submenu" role="menu" aria-label="Archives submenu">
+              <a class="submenu-item focus-ring" href="{{ '/archives-news.html'    | relative_url }}" role="menuitem">News</a>
+              <a class="submenu-item focus-ring" href="{{ '/archives-notice.html'  | relative_url }}" role="menuitem">Notice</a>
+              <a class="submenu-item focus-ring" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
+              <a class="submenu-item focus-ring" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
+            </div>
           </div>
         </div>
+      </nav>
 
-        <!-- Members -->
-        <div class="menu-group" data-menu aria-expanded="false">
-          <a class="nav-link focus-ring" href="{{ '/members-director.html' | relative_url }}"><b>Members</b></a>
-          <div class="submenu-panel js-submenu" role="menu" aria-label="Members submenu">
-            <a class="submenu-item focus-ring" href="{{ '/members-director.html'   | relative_url }}" role="menuitem">Director</a>
-            <a class="submenu-item focus-ring" href="{{ '/members-current.html'    | relative_url }}" role="menuitem">Current Members</a>
-            <a class="submenu-item focus-ring" href="{{ '/members-alumni.html'     | relative_url }}" role="menuitem">Alumni</a>
-          </div>
-        </div>
-
-        <a class="nav-link focus-ring" href="{{ '/publications.html' | relative_url }}"><b>Publications</b></a>
-        <a class="nav-link focus-ring" href="{{ '/lectures.html'     | relative_url }}"><b>Lectures</b></a>
-        <a class="nav-link focus-ring" href="{{ '/projects.html'     | relative_url }}"><b>Projects</b></a>
-
-        <!-- Archives -->
-        <div class="menu-group" data-menu aria-expanded="false">
-          <a class="nav-link focus-ring" href="{{ '/archives-news.html' | relative_url }}"><b>Archives</b></a>
-          <div class="submenu-panel js-submenu" role="menu" aria-label="Archives submenu">
-            <a class="submenu-item focus-ring" href="{{ '/archives-news.html'    | relative_url }}" role="menuitem">News</a>
-            <a class="submenu-item focus-ring" href="{{ '/archives-notice.html'  | relative_url }}" role="menuitem">Notice</a>
-            <a class="submenu-item focus-ring" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
-            <a class="submenu-item focus-ring" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Mobile Toggle -->
-    <div class="gap-4" style="display:flex; align-items:center;">
+      <!-- Mobile Toggle -->
       <button id="btnMobile" class="md-hidden focus-ring"
-              style="display:inline-flex; align-items:center; justify-content:center; height:40px; width:40px; border-radius:10px; border:1px solid var(--gold-20); background:var(--white);"
+              style="display:inline-flex; align-items:center; justify-content:center; height:40px; width:40px; border-radius:10px; border:1px solid var(--gold-18); background:var(--white);"
               aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -193,7 +207,7 @@
         </div>
         <div id="mob-about" class="mobile-acc-panel" aria-hidden="true" style="padding-left:.75rem; gap:.25rem; font-size:14px;">
           <a class="mobile-link focus-ring" href="{{ '/about-introduction.html' | relative_url }}" style="font-weight:700; padding:.25rem 0;">Introduction</a>
-          <a class="mobile-link focus-ring" href="{{ '/about-vision-area.html'  | relative_url }}" style="font-weight:700; padding:.25rem 0;">Research Area</a>
+          <a class="mobile-link focus-ring" href="{{ '/about-vision-area.html'  | relative_url }}" style="font-weight:700; padding:.25rem 0;">Research Areas</a>
           <a class="mobile-link focus-ring" href="{{ '/about-honors.html'       | relative_url }}" style="font-weight:700; padding:.25rem 0;">Honors & Awards</a>
           <a class="mobile-link focus-ring" href="{{ '/about-location.html'     | relative_url }}" style="font-weight:700; padding:.25rem 0;">Location</a>
         </div>
@@ -234,20 +248,53 @@
 </div>
 
 <script>
-  /* ===== Desktop: hover/포커스 드롭다운 ===== */
+  /* ===== Hover intent / Delay 설정 ===== */
+  const OPEN_DELAY  = 70;   // 살짝 올렸을 때만 열리도록
+  const CLOSE_DELAY = 240;  // 이동 중 바로 닫히지 않도록
+
+  /* ===== Desktop: hover + keyboard 제어 ===== */
   const groups = Array.from(document.querySelectorAll('[data-menu]'));
   groups.forEach(g => {
-    const open = () => g.setAttribute('aria-expanded', 'true');
-    const close = () => g.setAttribute('aria-expanded', 'false');
+    let openTimer = null;
+    let closeTimer = null;
 
-    g.addEventListener('mouseenter', open);
-    g.addEventListener('mouseleave', close);
+    const submenu = g.querySelector('.submenu-panel');
+    const trigger = g.querySelector('.nav-link');
 
-    // 키보드 접근
-    g.addEventListener('focusin', open);
+    const open = () => {
+      clearTimeout(closeTimer);
+      if (g.getAttribute('aria-expanded') === 'true') return;
+      openTimer = setTimeout(() => {
+        g.setAttribute('aria-expanded', 'true');
+      }, OPEN_DELAY);
+    };
+
+    const close = () => {
+      clearTimeout(openTimer);
+      closeTimer = setTimeout(() => {
+        g.setAttribute('aria-expanded', 'false');
+      }, CLOSE_DELAY);
+    };
+
+    // 포인터 진입/이탈
+    g.addEventListener('pointerenter', open);
+    g.addEventListener('pointerleave', (e) => {
+      if (!g.contains(e.relatedTarget)) close();
+    });
+
+    // 트리거/패널 개별 보호
+    trigger?.addEventListener('pointerenter', open);
+    trigger?.addEventListener('pointerleave', (e) => { if (!g.contains(e.relatedTarget)) close(); });
+    submenu?.addEventListener('pointerenter', open);
+    submenu?.addEventListener('pointerleave', (e) => { if (!g.contains(e.relatedTarget)) close(); });
+
+    // 키보드 접근성
+    g.addEventListener('focusin', () => {
+      clearTimeout(closeTimer);
+      g.setAttribute('aria-expanded', 'true');
+    });
     g.addEventListener('focusout', (e) => {
-      // 그룹 밖으로 포커스가 나가면 닫기
-      if(!g.contains(e.relatedTarget)) close();
+      if (!g.contains(e.relatedTarget)) close();
     });
   });
 
