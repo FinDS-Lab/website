@@ -1,5 +1,5 @@
 <!-- Header / Global Nav -->
-<div class="sticky-blur" style="background: rgba(214, 177, 77, 0.92); backdrop-filter: blur(12px); box-shadow: 0 1px 3px rgba(255,255,255,0.2); border-bottom: 1px solid rgba(255,255,255,0.4); position: sticky; top: 0; z-index: 1000;">
+<header class="fixed-header" style="position: fixed; top: 0; left: 0; right: 0; z-index: 9999; background: rgba(214, 177, 77, 0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.4); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
     
     <!-- Brand -->
@@ -20,21 +20,21 @@
       <!-- About -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white/95 backdrop-filter backdrop-blur-sm rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="About FINDS submenu">
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}" role="menuitem">Introduction</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}" role="menuitem">Research Areas</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}" role="menuitem">Honors & Awards</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}" role="menuitem">Location</a>
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}">Research Areas</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}">Location</a>
         </div>
       </div>
       
       <!-- Members -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/members-director.html' | relative_url }}">Members</a>
-        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white/95 backdrop-filter backdrop-blur-sm rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="Members submenu">
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}" role="menuitem">Director</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}" role="menuitem">Current Members</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}" role="menuitem">Alumni</a>
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}">Director</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}">Current Members</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
         </div>
       </div>
       
@@ -45,11 +45,11 @@
       <!-- Archives -->
       <div class="relative menu-group" data-menu>
         <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white/95 backdrop-filter backdrop-blur-sm rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="Archives submenu">
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}" role="menuitem">News</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}" role="menuitem">Notice</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
-          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
+        <div class="submenu-panel absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-white/70 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu">
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}">News</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
+          <a class="block px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
         </div>
       </div>
     </nav>
@@ -70,7 +70,7 @@
   
   <!-- Mobile Nav -->
   <div id="mobileNav" class="md:hidden max-w-7xl mx-auto px-4 pb-3 hidden">
-    <div class="grid gap-2 bg-white/98 backdrop-filter backdrop-blur-sm border border-white/50 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg">
+    <div class="grid gap-2 bg-white/98 border border-white/50 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg">
       <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
@@ -119,18 +119,18 @@
       </div>
     </div>
   </div>
-</div>
+</header>
 
 <style>
 /* 호버 시 서브메뉴 표시 */
-.menu-group:hover .js-submenu {
+.menu-group:hover .submenu-panel {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
 /* 서브메뉴 초기 상태 */
-.js-submenu {
+.submenu-panel {
   transform: translateY(-10px);
 }
 
@@ -173,5 +173,16 @@
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* 헤더 높이를 위한 spacer */
+.header-spacer {
+  height: 70px;
+}
+
+@media (max-width: 768px) {
+  .header-spacer {
+    height: 60px;
+  }
 }
 </style>
