@@ -1,248 +1,185 @@
 <!-- Header / Global Nav -->
-<style>
-  /* 색 변수: 페이지 어디서든 보이도록 기본값 지정 */
-  :root {
-    --accent: rgb(214,177,77);      /* Gold */
-    --brand-burgundy: rgb(172,14,14);
-  }
-
-  /* 헤더 배경/경계 강화 */
-  .sticky-blur{
-    position: sticky; top: 0; z-index: 1000;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-
-  /* 1차 메뉴: 공통 금색 배경 + 흰 글씨 + 그림자 */
-  .nav-link{
-    background: var(--accent);
-    color: #fff !important;
-    font-weight: 800;
-    padding: 8px 12px;
-    border-radius: 10px;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    display: inline-flex; align-items: center;
-    transition: background-color .15s ease, box-shadow .15s ease, transform .06s ease;
-  }
-  .nav-link:hover{
-    background: rgb(200,165,72);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.18);
-    transform: translateY(-1px);
-  }
-  .nav-link:active{
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  }
-
-  /* 드롭다운 패널: 항상 위에, 호버 시 표시 */
-  .menu-group{ position: relative; }
-  .submenu-panel{
-    position: absolute; left: 0; top: 100%;
-    z-index: 1100;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,0.06);
-    border-radius: 12px;
-    padding: 8px;
-    min-width: 220px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.10);
-    display: none;                /* 기본 숨김 */
-    margin-top: 8px;
-  }
-  /* 트리거/그룹에 마우스를 올리면 서브메뉴 표시 */
-  .menu-group:hover > .submenu-panel,
-  .menu-group:focus-within > .submenu-panel{
-    display: block;
-  }
-
-  /* 서브메뉴 항목: 호버 시도 금색 배경 + 흰 글씨 */
-  .submenu-item{
-    color: #111;
-    padding: 8px 10px;
-    border-radius: 8px;
-    transition: background-color .15s ease, color .15s ease;
-    white-space: nowrap;
-  }
-  .submenu-item:hover{
-    background: var(--accent);
-    color: #fff;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
-  }
-
-  /* 모바일 링크도 동일 톤 */
-  .mobile-link{
-    background: var(--accent);
-    color: #fff !important;
-    font-weight: 800;
-    border-radius: 10px;
-    padding: 8px 12px;
-    text-shadow: 0 1px 0 rgba(0,0,0,0.25);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-    transition: background-color .15s ease, box-shadow .15s ease;
-    display: block;
-  }
-  .mobile-link:hover{
-    background: rgb(200,165,72);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.16);
-  }
-
-  /* 모바일 아코디언 버튼은 금색 테두리형 */
-  .mobile-acc-btn{
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 8px;
-    background: rgba(214,177,77,0.15);
-    border: 1px solid rgba(214,177,77,0.35);
-    color: #111;
-    transition: background-color .15s ease;
-  }
-  .mobile-acc-btn[aria-expanded="true"]{ background: rgba(214,177,77,0.28); }
-</style>
-
-<div class="sticky-blur">
+<div class="sticky-blur" style="background: rgb(214, 177, 77); backdrop-filter: blur(12px); box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
   <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    
     <!-- Brand -->
-    <a href="{{ '/' | relative_url }}" class="flex items-center gap-3" aria-label="FINDS Lab Home">
-      <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo"
-           class="h-9 w-9 rounded-lg ring-1 ring-slate-200 object-contain bg-white" />
+    <a href="{{ '/' | relative_url }}" class="flex items-center gap-3 group" aria-label="FINDS Lab Home">
+      <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" 
+           alt="FINDS Lab Logo" 
+           class="h-10 w-10 rounded-lg ring-2 ring-white/30 object-contain bg-white shadow-sm transition-transform group-hover:scale-105" />
       <div class="leading-tight">
-        <div class="text-sm font-extrabold tracking-tight" style="color:var(--accent)">FINDS Lab.</div>
-        <!-- 여기 색상 변경 -->
-        <div class="text-[12px] font-extrabold" style="color: var(--brand-burgundy);">Dongduk Women's University</div>
+        <div class="text-sm font-extrabold tracking-tight text-white drop-shadow-sm">FINDS Lab.</div>
+        <div class="text-[11px] font-bold text-white/90 tracking-wide">Dongduk Women's University</div>
       </div>
     </a>
-
-    <!-- Desktop Nav (원래 구조 그대로) -->
+    
+    <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
-      <a class="nav-link" href="{{ '/' | relative_url }}"><b>Home</b></a>
-
+      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/' | relative_url }}">Home</a>
+      
       <!-- About -->
       <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/about-introduction.html' | relative_url }}"><b>About FINDS</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="About FINDS submenu">
-          <a class="block submenu-item" href="{{ '/about-introduction.html'  | relative_url }}" role="menuitem">Introduction</a>
-          <a class="block submenu-item" href="{{ '/about-vision-area.html'   | relative_url }}" role="menuitem">Research Areas</a>
-          <a class="block submenu-item" href="{{ '/about-honors.html'        | relative_url }}" role="menuitem">Honors & Awards</a>
-          <a class="block submenu-item" href="{{ '/about-location.html'      | relative_url }}" role="menuitem">Location</a>
+        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="About FINDS submenu">
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}" role="menuitem">Introduction</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}" role="menuitem">Research Areas</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}" role="menuitem">Honors & Awards</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}" role="menuitem">Location</a>
         </div>
       </div>
-
+      
       <!-- Members -->
       <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/members-director.html' | relative_url }}"><b>Members</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="Members submenu">
-          <a class="block submenu-item" href="{{ '/members-director.html'   | relative_url }}" role="menuitem">Director</a>
-          <a class="block submenu-item" href="{{ '/members-current.html'    | relative_url }}" role="menuitem">Current Members</a>
-          <a class="block submenu-item" href="{{ '/members-alumni.html'     | relative_url }}" role="menuitem">Alumni</a>
+        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/members-director.html' | relative_url }}">Members</a>
+        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="Members submenu">
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}" role="menuitem">Director</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}" role="menuitem">Current Members</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}" role="menuitem">Alumni</a>
         </div>
       </div>
-
-      <a class="nav-link" href="{{ '/publications.html' | relative_url }}"><b>Publications</b></a>
-      <a class="nav-link" href="{{ '/lectures.html'     | relative_url }}"><b>Lectures</b></a>
-      <a class="nav-link" href="{{ '/projects.html'     | relative_url }}"><b>Projects</b></a>
-
+      
+      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/publications.html' | relative_url }}">Publications</a>
+      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
+      <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/projects.html' | relative_url }}">Projects</a>
+      
       <!-- Archives -->
       <div class="relative menu-group" data-menu>
-        <a class="nav-link" href="{{ '/archives-news.html' | relative_url }}"><b>Archives</b></a>
-        <div class="submenu-panel js-submenu" role="menu" aria-label="Archives submenu">
-          <a class="block submenu-item" href="{{ '/archives-news.html'    | relative_url }}" role="menuitem">News</a>
-          <a class="block submenu-item" href="{{ '/archives-notice.html'  | relative_url }}" role="menuitem">Notice</a>
-          <a class="block submenu-item" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
-          <a class="block submenu-item" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
+        <a class="nav-link text-white font-semibold hover:text-white/90 transition-colors" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+        <div class="submenu-panel js-submenu absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[180px] opacity-0 invisible transition-all duration-200" role="menu" aria-label="Archives submenu">
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}" role="menuitem">News</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}" role="menuitem">Notice</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}" role="menuitem">Seminar</a>
+          <a class="block submenu-item px-4 py-2 text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}" role="menuitem">Gallery</a>
         </div>
       </div>
     </nav>
-
+    
     <!-- Mobile Toggle -->
     <div class="flex items-center gap-2">
-      <button id="btnMobile" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-slate-200 bg-white"
-              aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+      <button id="btnMobile" 
+              class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition-colors" 
+              aria-label="Open menu" 
+              aria-expanded="false" 
+              aria-controls="mobileNav">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
   </div>
-
+  
   <!-- Mobile Nav -->
   <div id="mobileNav" class="md:hidden max-w-7xl mx-auto px-4 pb-3 hidden">
-    <div class="grid gap-2 bg-white border border-slate-200 rounded-xl p-3 max-h-[70vh] overflow-y-auto">
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/' | relative_url }}">Home</a>
-
+    <div class="grid gap-2 bg-white border border-gray-200 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg">
+      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/' | relative_url }}">Home</a>
+      
       <!-- About (Accordion) -->
       <div class="px-3 py-2">
         <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-about">▾</button>
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-about">▾</button>
         </div>
         <div id="mob-about" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-vision-area.html'  | relative_url }}">Research Area</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-honors.html'       | relative_url }}">Honors & Awards</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/about-location.html'     | relative_url }}">Location</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/about-location.html' | relative_url }}">Location</a>
         </div>
       </div>
-
+      
       <!-- Members (Accordion) -->
       <div class="px-3 py-2">
         <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/members-director.html' | relative_url }}">Members</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-members">▾</button>
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/members-director.html' | relative_url }}">Members</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-members">▾</button>
         </div>
         <div id="mob-members" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-director.html'   | relative_url }}">Director</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-current.html'    | relative_url }}">Current Members</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/members-alumni.html'     | relative_url }}">Alumni</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-director.html' | relative_url }}">Director</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-current.html' | relative_url }}">Current Members</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
         </div>
       </div>
-
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/publications.html' | relative_url }}">Publications</a>
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/lectures.html'     | relative_url }}">Lectures</a>
-      <a class="px-3 py-2 rounded-md font-extrabold mobile-link" href="{{ '/projects.html'     | relative_url }}">Projects</a>
-
+      
+      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/publications.html' | relative_url }}">Publications</a>
+      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
+      <a class="px-3 py-2 rounded-md font-bold text-gray-800 hover:bg-amber-50 hover:text-amber-700 transition-colors" href="{{ '/projects.html' | relative_url }}">Projects</a>
+      
       <!-- Archives (Accordion) -->
       <div class="px-3 py-2">
         <div class="flex items-center justify-between">
-          <a class="block font-extrabold mb-1 mobile-link" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
-          <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-archives">▾</button>
+          <a class="block font-bold mb-1 text-gray-800" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
+          <button class="mobile-acc-btn text-gray-600 hover:text-amber-700 transition-colors" aria-expanded="false" aria-controls="mob-archives">▾</button>
         </div>
         <div id="mob-archives" class="pl-3 grid text-[14px] mobile-acc-panel hidden">
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-news.html'    | relative_url }}">News</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-notice.html'  | relative_url }}">Notice</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
-          <a class="py-1 font-bold mobile-link" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-news.html' | relative_url }}">News</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
+          <a class="py-1.5 text-gray-600 hover:text-amber-700 transition-colors" href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-  // 모바일 전체 토글 (원래 로직 유지)
-  (function(){
-    const btn = document.getElementById('btnMobile');
-    const nav = document.getElementById('mobileNav');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('hidden', expanded);
-    });
-  })();
+<style>
+/* 호버 시 서브메뉴 표시 */
+.menu-group:hover .js-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
-  // 모바일 아코디언 (원래 구조 유지)
-  (function(){
-    document.querySelectorAll('.mobile-acc-btn').forEach(btn => {
-      const id = btn.getAttribute('aria-controls');
-      const panel = document.getElementById(id);
-      if (!panel) return;
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        panel.classList.toggle('hidden', expanded);
-      });
-    });
-  })();
-</script>
+/* 서브메뉴 초기 상태 */
+.js-submenu {
+  transform: translateY(-10px);
+}
+
+/* 모바일 아코디언 애니메이션 */
+.mobile-acc-panel {
+  transition: all 0.3s ease;
+}
+
+.mobile-acc-panel:not(.hidden) {
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 스티키 헤더 스크롤 효과 */
+.sticky-blur {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+/* 링크 언더라인 효과 */
+.nav-link {
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+</style>
