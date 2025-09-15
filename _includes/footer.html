@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>FINDS Lab Footer Player</title>
+    <title>FINDS Lab Footer Player - Improved Time Display</title>
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RSGEYHWRHR"></script>
@@ -38,8 +38,8 @@
 
       /* ===== 음악 플레이어 박스 (흰색 배경 + 금색 테두리) ===== */
       .music-player-box {
-        width: 85%;                 /* ✅ 모든 화면에서 85% */
-        max-width: none;            /* ✅ 450px 제한 제거 */
+        width: 85%;
+        max-width: none;
         margin: 0 auto;
         background: #ffffff;
         border: 2px solid rgb(214, 177, 77);
@@ -79,7 +79,7 @@
       #musicArtist {
         font-size: 13px;
         font-weight: 700;
-        color: #B8892F; /* ✅ 기존 rgb(214,177,77)보다 한 톤 진한 금갈색 */
+        color: #B8892F;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
@@ -99,18 +99,45 @@
         max-width: 100%;
       }
 
-      /* 줄5: 진행바/시간 */
+      /* 줄5: 진행바/시간 - 개선된 디자인 */
       .progress-row {
-        gap: 10px;
+        gap: 12px;
       }
       
+      /* ✨ 개선된 시간 표시 디자인 */
       .time-text {
-        font-family: 'SF Mono', 'Monaco', monospace;
-        font-size: 11px;
-        color: #94a3b8;
-        width: 42px;
+        font-family: 'SF Mono', 'Roboto Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 12px;
+        font-weight: 500;
+        color: #6b7280;
+        min-width: 45px;
+        padding: 4px 8px;
+        background: rgba(214, 177, 77, 0.08);
+        border: 1px solid rgba(214, 177, 77, 0.2);
+        border-radius: 8px;
         text-align: center;
         flex-shrink: 0;
+        transition: all 0.2s ease;
+        letter-spacing: 0.5px;
+      }
+      
+      /* 현재 시간은 좀 더 강조 */
+      #currentTime {
+        color: rgb(214, 177, 77);
+        font-weight: 600;
+      }
+      
+      /* 전체 시간은 부드럽게 */
+      #duration {
+        color: #9ca3af;
+      }
+      
+      /* 호버 효과 (데스크톱) */
+      @media (hover: hover) {
+        .time-text:hover {
+          background: rgba(214, 177, 77, 0.12);
+          border-color: rgba(214, 177, 77, 0.3);
+        }
       }
       
       .progress-container {
@@ -273,7 +300,7 @@
       }
 
       .footer-container {
-        max-width: none;   /* ✅ 1000px 제한 제거 */
+        max-width: none;
         width: 100%;
         text-align: center;
       }
@@ -286,13 +313,11 @@
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
-        /* Footer는 항상 흰색 유지 */
         footer {
           background-color: #ffffff !important;
           border-top-color: #e2e8f0 !important;
         }
         
-        /* 플레이어 박스도 흰색 유지 */
         .music-player-box {
           background: #ffffff !important;
           border-color: rgb(214, 177, 77);
@@ -312,8 +337,18 @@
           background: rgba(214, 177, 77, 0.15);
         }
         
+        /* 다크모드에서 시간 표시 */
         .time-text {
-          color: #94a3b8;
+          background: rgba(214, 177, 77, 0.1);
+          border-color: rgba(214, 177, 77, 0.25);
+        }
+        
+        #currentTime {
+          color: rgb(214, 177, 77);
+        }
+        
+        #duration {
+          color: #9ca3af;
         }
         
         .copyright {
@@ -325,33 +360,46 @@
           border-color: #ffffff;
         }
         
-        /* ✅ 다크모드에서도 금갈색 유지 (이전 빨강 제거) */
         #musicArtist {
-          color: #9A6E1F !important; /* 기본보다 살짝 더 깊은 금갈색 */
+          color: #9A6E1F !important;
         }
       }
 
       /* 모바일 최적화 - 태블릿 */
       @media (max-width: 768px) {
         .music-player-box {
-          width: 85%;      /* ✅ 통일: 85% 유지 */
+          width: 85%;
           padding: 16px 18px;
         }
         
         .player-row {
           margin-bottom: 8px;
         }
+        
+        .progress-row {
+          gap: 10px;
+        }
+        
+        .time-text {
+          font-size: 11px;
+          min-width: 42px;
+          padding: 3px 6px;
+        }
       }
 
       /* 모바일 최적화 - 스마트폰 */
       @media (max-width: 540px) {
         .music-player-box {
-          width: 85%;      /* ✅ 통일: 85% 유지 */
+          width: 85%;
           padding: 14px 16px;
         }
         
         .player-row {
           margin-bottom: 7px;
+        }
+        
+        .progress-row {
+          gap: 8px;
         }
         
         #musicTitle {
@@ -376,9 +424,13 @@
           width: 100px;
         }
         
+        /* 모바일에서 시간 표시 최적화 */
         .time-text {
           font-size: 10px;
-          width: 38px;
+          min-width: 40px;
+          padding: 3px 5px;
+          border-radius: 6px;
+          font-weight: 500;
         }
       }
       
@@ -388,13 +440,17 @@
         }
         
         .music-player-box {
-          width: 85%;      /* ✅ 통일: 85% 유지 */
+          width: 85%;
           padding: 12px 14px;
           border-radius: 16px;
         }
         
         .player-row {
           margin-bottom: 6px;
+        }
+        
+        .progress-row {
+          gap: 6px;
         }
         
         #musicTitle {
@@ -436,10 +492,13 @@
           height: 16px;
         }
         
+        /* 작은 화면에서 시간 표시 */
         .time-text {
           font-size: 9px;
-          width: 42px;
+          min-width: 38px;
           padding: 2px 4px;
+          border-radius: 5px;
+          letter-spacing: 0.3px;
         }
         
         .progress-slider::-webkit-slider-thumb,
@@ -453,12 +512,16 @@
 
       @media (max-width: 350px) {
         .music-player-box {
-          width: 85%;      /* ✅ 통일: 85% 유지 */
+          width: 85%;
           padding: 10px 12px;
         }
         
         .player-row {
           margin-bottom: 5px;
+        }
+        
+        .progress-row {
+          gap: 5px;
         }
         
         #musicTitle {
@@ -500,6 +563,16 @@
           height: 15px;
         }
         
+        /* 아주 작은 화면에서 시간 표시 */
+        .time-text {
+          font-size: 9px;
+          min-width: 35px;
+          padding: 2px 3px;
+          border-radius: 4px;
+          border-width: 0.5px;
+          background: rgba(214, 177, 77, 0.06);
+        }
+        
         .progress-slider::-webkit-slider-thumb,
         .progress-slider::-moz-range-thumb,
         .volume-slider::-webkit-slider-thumb,
@@ -528,6 +601,20 @@
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+      
+      /* 재생 중일 때 시간 애니메이션 */
+      .music-player-box.playing #currentTime {
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
         }
       }
     </style>
@@ -829,9 +916,11 @@
         var musicPlayer = document.getElementById('musicPlayer');
         var playIcon = document.getElementById('playIcon');
         var pauseIcon = document.getElementById('pauseIcon');
+        var playerBox = document.querySelector('.music-player-box');
         
         if (event.data == YT.PlayerState.PLAYING) {
           musicPlayer.classList.add('playing');
+          if (playerBox) playerBox.classList.add('playing');
           playIcon.classList.add('hidden');
           pauseIcon.classList.remove('hidden');
           updateVideoTitle();
@@ -852,12 +941,14 @@
           }
         } else if (event.data == YT.PlayerState.PAUSED) {
           musicPlayer.classList.remove('playing');
+          if (playerBox) playerBox.classList.remove('playing');
           playIcon.classList.remove('hidden');
           pauseIcon.classList.add('hidden');
           stopProgressUpdate();
           trackEvent('Music Player', 'pause', (document.getElementById('musicTitle')?.textContent) || '');
         } else if (event.data == YT.PlayerState.ENDED) {
           musicPlayer.classList.remove('playing');
+          if (playerBox) playerBox.classList.remove('playing');
           playIcon.classList.remove('hidden');
           pauseIcon.classList.add('hidden');
           stopProgressUpdate();
