@@ -13,8 +13,8 @@
       </div>
     </a>
     
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+    <!-- Desktop Nav - flex 클래스 먼저, hidden md:flex 순서 중요 -->
+    <nav class="flex items-center gap-6 hidden md:flex" aria-label="Primary" style="display: none;">
       <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About -->
@@ -61,7 +61,8 @@
               class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/20 border border-white/30 text-white hover:bg-white/30 transition-colors" 
               aria-label="Open menu" 
               aria-expanded="false" 
-              aria-controls="mobileNav">
+              aria-controls="mobileNav"
+              style="display: none;">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -69,9 +70,9 @@
     </div>
   </div>
   
-  <!-- Mobile Nav - site.js와 호환되도록 수정 -->
-  <div id="mobileNav" class="md:hidden hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; z-index: 9998;">
-    <div class="grid gap-2 bg-white border border-gray-200 p-3 max-h-[70vh] overflow-y-auto shadow-2xl mx-4 my-3" style="background: white !important;">
+  <!-- Mobile Nav - 완전 불투명 흰색 배경 -->
+  <div id="mobileNav" class="md:hidden hidden" style="position: absolute; top: 100%; left: 0; right: 0; background: white; z-index: 9998; display: none;">
+    <div class="grid gap-2 bg-white border border-gray-200 rounded-xl p-3 max-h-[70vh] overflow-y-auto shadow-lg mx-4 my-3">
       <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
       
       <!-- About (Accordion) -->
@@ -125,32 +126,31 @@
 
 <style>
 /* ========= 헤더 네비 시인성 업그레이드 ========= */
-/* 모든 탭 높이/정렬 통일 */
 .nav-link{
   display:inline-flex; align-items:center; justify-content:center;
   height:46px; padding:0 14px; border-radius:10px;
   font-weight:800; line-height:1;
-  color:#ffffff;
+  color:#ffffff !important;  /* 중요: 흰색 유지 */
   text-shadow: 0 1px 1px rgba(0,0,0,.18);
   transition: background-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-/* hover/focus */
 .nav-link:hover,
 .menu-group:hover > .nav-link{
-  color:#ffffff;
+  color:#ffffff !important;
   background: rgba(0,0,0,.15);
   text-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
+
 .nav-link:focus-visible{
   outline: none;
-  color:#ffffff;
+  color:#ffffff !important;
   background: rgba(0,0,0,.20);
   text-shadow: 0 2px 6px rgba(0,0,0,.35);
   box-shadow: 0 0 0 3px rgba(255,255,255,.45);
 }
 
-/* 드롭다운 위치/모양 */
+/* 드롭다운 */
 .menu-group{ position:relative; }
 .submenu-panel{
   display:none; position:absolute; top:calc(100% + 8px); left:0;
@@ -158,10 +158,13 @@
   box-shadow:0 12px 40px rgba(0,0,0,.12);
   min-width:180px; padding:8px 0; z-index:50;
 }
-.menu-group:hover > .submenu-panel,
-.menu-group[data-open="true"] > .submenu-panel{ display:block; }
 
-/* 드롭다운 항목 */
+/* site.css의 hover 규칙과 호환 */
+.menu-group:hover > .submenu-panel,
+.menu-group[data-open="true"] > .submenu-panel{ 
+  display:block !important; 
+}
+
 .submenu-panel a{
   display:block; padding:8px 14px; font-weight:700; font-size:14px;
   color:#1f2937; border-radius:8px; transition: background-color .15s ease, color .15s ease;
@@ -169,11 +172,6 @@
 .submenu-panel a:hover{
   background:#fff7e0;
   color:#8a6a12;
-}
-
-/* 모바일 메뉴 표시 상태 - site.js의 show 클래스 사용 */
-#mobileNav.show {
-  display: block !important;
 }
 
 /* 모바일 링크 */
@@ -190,17 +188,37 @@
   font-weight:700; color:#555; border-radius:6px;
 }
 .mobile-acc-panel a:hover{ background:#fff7e0; color:#8a6a12; }
+.mobile-acc-panel:not(.hidden) { display:grid; gap:4px; }
 
-/* hidden 클래스가 제거되면 표시 */
-.mobile-acc-panel:not(.hidden) { 
-  display:grid; 
-  gap:4px; 
+/* site.js show 클래스 지원 */
+#mobileNav.show {
+  display: block !important;
 }
 
-/* (중요) 이전에 쓰던 '밑줄 애니메이션' 규칙은 비활성화 */
-.nav-link::after{ content:none !important; }
+/* 모바일 버튼 표시 */
+@media (max-width: 767px) {
+  #btnMobile {
+    display: inline-flex !important;
+  }
+  #mobileNav.hidden {
+    display: none !important;
+  }
+}
 
-/* 모바일 헤더 높이 조정 */
+/* 데스크톱 네비 표시 */
+@media (min-width: 768px) {
+  nav[aria-label="Primary"] {
+    display: flex !important;
+  }
+  #btnMobile {
+    display: none !important;
+  }
+  #mobileNav {
+    display: none !important;
+  }
+}
+
+/* 헤더 높이 조정 */
 @media (max-width: 768px) {
   .fixed-header {
     height: 60px !important;
