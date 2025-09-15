@@ -13,10 +13,9 @@ permalink: /members-current.html
       --gold-dark: rgb(194, 157, 57);
 
       --phd-gold: rgb(214, 177, 77);
-      --ms-red: rgb(172, 14, 14);
-      --combined-gold: rgb(234, 207, 127);
-      --undergrad-pink: rgb(236, 72, 153); /* legacy (not used now) */
-      --primary-dark: #111827; /* black */
+      --ms-light-gold: rgb(245, 225, 150);
+      --undergrad-red: rgb(172, 14, 14);
+      --primary-dark: #111827;
     }
 
     /* Banner */
@@ -120,24 +119,73 @@ permalink: /members-current.html
     .stat-number{ font-size:28px;font-weight:900;color:#111827; }
     .stat-label{ font-size:12px;color:#6b7280;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px; }
     .stat-card.phd-stat{ border-top:3px solid var(--phd-gold); }
-    .stat-card.ms-stat{ border-top:3px solid var(--ms-red); }
-    .stat-card.combined-stat{ border-top:3px solid var(--combined-gold); }
-    /* UNDERGRAD stat top border -> black */
-    .stat-card.undergrad-stat{ border-top:3px solid var(--primary-dark); }
+    .stat-card.ms-stat{ border-top:3px solid var(--ms-light-gold); }
+    .stat-card.undergrad-stat{ border-top:3px solid var(--undergrad-red); }
     .stat-card.total-stat{ border-top:3px solid var(--primary-dark); }
 
     /* Section Headers */
-    .section-header{ margin-top:2rem;margin-bottom:1.5rem;padding-bottom:0.75rem;border-bottom:2px solid #e5e7eb; }
-    .section-title{ font-size:22px;font-weight:900;color:#111827;display:inline-flex;align-items:center;gap:0.75rem; }
-    .degree-badge-header{ display:inline-flex;align-items:center;justify-content:center;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px; }
-    .degree-badge-header.phd{ background:var(--phd-gold);color:#111827; }
-    .degree-badge-header.ms{ background:var(--ms-red);color:#fff; }
-    .degree-badge-header.combined{ background:var(--combined-gold);color:#111827; }
-    /* UNDERGRAD header badge: white background + black border/text */
-    .degree-badge-header.undergrad{
-      background:#fff;
-      color:var(--primary-dark);
-      border:2px solid var(--primary-dark);
+    .section-header{ 
+      margin-top:2rem;
+      margin-bottom:1.5rem;
+      padding:20px 24px;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--phd-gold) 0%, var(--ms-light-gold) 50%, var(--phd-gold) 100%);
+    }
+    .section-header.ms::before {
+      background: linear-gradient(90deg, var(--ms-light-gold) 0%, rgb(250, 235, 180) 50%, var(--ms-light-gold) 100%);
+    }
+    .section-header.undergrad::before {
+      background: linear-gradient(90deg, var(--undergrad-red) 0%, rgb(192, 34, 34) 50%, var(--undergrad-red) 100%);
+    }
+    
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      background: linear-gradient(135deg, var(--phd-gold), var(--ms-light-gold));
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+    .section-icon.ms {
+      background: linear-gradient(135deg, var(--ms-light-gold), rgb(250, 235, 180));
+    }
+    .section-icon.undergrad {
+      background: linear-gradient(135deg, var(--undergrad-red), rgb(192, 34, 34));
+    }
+    
+    .section-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .section-main-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: #111827;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    
+    .section-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     /* Grid Layout */
@@ -150,10 +198,8 @@ permalink: /members-current.html
 
     .card-banner{ height:6px; }
     .card-banner.phd{ background:var(--phd-gold); }
-    .card-banner.ms{ background:var(--ms-red); }
-    .card-banner.combined{ background:var(--combined-gold); }
-    /* UNDERGRAD card banner -> black */
-    .card-banner.undergrad{ background:var(--primary-dark); }
+    .card-banner.ms{ background:var(--ms-light-gold); }
+    .card-banner.undergrad{ background:var(--undergrad-red); }
 
     .card-content{ padding:20px; }
     .member-info{ display:flex;gap:16px; }
@@ -167,10 +213,15 @@ permalink: /members-current.html
     /* Member Details */
     .member-details{ flex:1;min-width:0; }
     .member-name{ font-size:18px;font-weight:900;color:#111827;margin-bottom:4px; word-break:keep-all; overflow-wrap:anywhere; }
-    .member-role{ display:inline-flex;align-items:center;padding:3px 10px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px; }
-    .member-role.combined{ background:var(--combined-gold);border-color:var(--combined-gold);color:#111827; }
-    /* UNDERGRAD role badge -> black */
-    .member-role.undergrad{ background:var(--primary-dark);border-color:var(--primary-dark);color:#fff; }
+    .member-role{ 
+      display:inline-flex;align-items:center;padding:3px 10px;
+      background:#f8fafc;border:1px solid #e5e7eb;border-radius:999px;
+      font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px; 
+    }
+    .member-role.phd{ background:var(--phd-gold);border-color:var(--phd-gold);color:#111827; }
+    .member-role.ms{ background:var(--ms-light-gold);border-color:var(--ms-light-gold);color:#111827; }
+    .member-role.undergrad{ background:var(--undergrad-red);border-color:var(--undergrad-red);color:#fff; }
+    
     .member-period{ font-size:12px;color:#6b7280;margin-bottom:12px; }
     .member-field{ font-size:13px;color:#374151;margin-bottom:6px; word-break:keep-all; overflow-wrap:anywhere; }
     .member-field strong{ font-weight:700;color:#111827; }
@@ -178,51 +229,122 @@ permalink: /members-current.html
     .member-email:hover{ text-decoration:underline; }
 
     .btn-details{
-      margin-top:12px;padding:8px 16px;background:#111827;color:#fff;border:none;border-radius:0.5rem;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:4px;
+      margin-top:12px;padding:8px 16px;background:#111827;color:#fff;border:none;border-radius:0.5rem;
+      font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:4px;
     }
     .btn-details:hover{ background:#1f2937;transform:translateX(2px); }
     .btn-details.phd:hover{ background:var(--phd-gold);color:#111827; }
-    .btn-details.ms:hover{ background:var(--ms-red); }
-    .btn-details.combined:hover{ background:var(--combined-gold);color:#111827; }
-    /* UNDERGRAD button hover -> black (already black base) */
-    .btn-details.undergrad:hover{ background:var(--primary-dark); color:#fff; }
+    .btn-details.ms:hover{ background:var(--ms-light-gold);color:#111827; }
+    .btn-details.undergrad:hover{ background:var(--undergrad-red);color:#fff; }
 
-    /* Modal */
-    .modal-overlay{ position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;display:none;opacity:0;transition:opacity 0.3s; }
+    /* Modal - Improved Design */
+    .modal-overlay{ 
+      position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;
+      display:none;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(3px);
+    }
     .modal-overlay.show{ display:block;opacity:1; }
+    
     .modal-panel{
       position:fixed;top:50%;left:50%;transform:translate(-50%, -50%) scale(0.95);
-      width:90%;max-width:600px;max-height:85vh;background:#fff;border-radius:1rem;z-index:9999;display:none;opacity:0;transition:all 0.3s;overflow:hidden;
+      width:90%;max-width:650px;max-height:90vh;background:#fff;border-radius:1.25rem;
+      z-index:9999;display:none;opacity:0;transition:all 0.3s;overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
     }
     .modal-panel.show{ display:flex;flex-direction:column;opacity:1;transform:translate(-50%, -50%) scale(1); }
-    .modal-header{ padding:20px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center; }
-    .modal-title{ font-size:18px;font-weight:900;color:#111827; }
-    .modal-close{ width:32px;height:32px;border-radius:0.5rem;border:none;background:#f3f4f6;color:#111827;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s; }
-    .modal-close:hover{ background:#e5e7eb; }
-    .modal-degree{ padding:12px 20px;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.5px; }
+    
+    .modal-header{ 
+      padding:18px 20px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;
+      background:linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    .modal-title{ font-size:16px;font-weight:900;color:#111827; }
+    .modal-close{ 
+      width:30px;height:30px;border-radius:0.5rem;border:none;background:#fff;
+      color:#6b7280;font-size:18px;cursor:pointer;display:flex;align-items:center;
+      justify-content:center;transition:all 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.1);
+    }
+    .modal-close:hover{ background:#f3f4f6;color:#111827; }
+    
+    .modal-degree{ 
+      padding:10px 20px;font-size:12px;font-weight:800;text-transform:uppercase;
+      letter-spacing:0.5px;display:flex;align-items:center;gap:8px;
+    }
     .modal-degree.phd{ background:var(--phd-gold);color:#111827; }
-    .modal-degree.ms{ background:var(--ms-red);color:#fff; }
-    .modal-degree.combined{ background:var(--combined-gold);color:#111827; }
-    /* UNDERGRAD modal bar -> black */
-    .modal-degree.undergrad{ background:var(--primary-dark);color:#fff; }
+    .modal-degree.ms{ background:var(--ms-light-gold);color:#111827; }
+    .modal-degree.undergrad{ background:var(--undergrad-red);color:#fff; }
+    
     .modal-body{ padding:20px;overflow-y:auto;flex:1; }
-    .modal-section{ margin-bottom:24px; }
+    .modal-section{ margin-bottom:20px; }
     .modal-section:last-child{ margin-bottom:0; }
-    .modal-section-title{ font-size:15px;font-weight:900;color:#111827;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #f3f4f6; }
-    .edu-item{ background:#f8fafc;border:1px solid #e5e7eb;border-radius:0.75rem;padding:14px;margin-bottom:10px; }
-    .edu-degree{ display:inline-flex;padding:2px 8px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;font-size:11px;font-weight:800;margin-bottom:8px; }
-    .edu-degree.phd{ border-color:var(--phd-gold);color:var(--phd-gold); }
-    .edu-degree.ms{ border-color:var(--ms-red);color:var(--ms-red); }
+    .modal-section-title{ 
+      font-size:13px;font-weight:900;color:#111827;margin-bottom:10px;
+      padding-bottom:6px;border-bottom:2px solid #f3f4f6;text-transform:uppercase;letter-spacing:0.5px;
+    }
+    
+    .edu-item{ 
+      background:linear-gradient(135deg, #f8fafc 0%, #fff 100%);
+      border:1px solid #e5e7eb;border-radius:0.75rem;padding:12px;margin-bottom:8px;
+      transition:all 0.2s;
+    }
+    .edu-item:hover{ box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+    
+    .edu-degree{ 
+      display:inline-flex;padding:2px 8px;background:#fff;border:1px solid #e5e7eb;
+      border-radius:999px;font-size:10px;font-weight:800;margin-bottom:6px;
+    }
+    .edu-degree.phd, .edu-degree.phdms{ border-color:var(--phd-gold);color:var(--phd-gold); }
+    .edu-degree.ms{ border-color:var(--ms-light-gold);color:#a08030; }
     .edu-degree.bs{ border-color:#6b7280;color:#6b7280; }
-    .edu-school{ font-weight:800;color:#111827;font-size:14px; }
-    .edu-year{ font-size:12px;color:#6b7280;float:right; }
-    .edu-dept{ font-size:13px;color:#374151;margin-top:4px; }
+    .edu-degree.ongoing{ border-color:var(--undergrad-red);color:var(--undergrad-red); }
+    
+    .edu-school{ font-weight:800;color:#111827;font-size:13px; }
+    .edu-year{ font-size:11px;color:#6b7280;float:right; }
+    .edu-dept{ font-size:12px;color:#374151;margin-top:3px; }
+    
+    .modal-list{ 
+      list-style:none;padding:0;margin:0;
+    }
+    .modal-list li{ 
+      padding:10px 12px;background:#f8fafc;border-radius:0.5rem;margin-bottom:8px;
+      font-size:12px;line-height:1.5;color:#374151;border-left:3px solid #e5e7eb;
+      transition:all 0.2s;
+    }
+    .modal-list li:hover{ 
+      background:#f1f5f9;border-left-color:#94a3b8;transform:translateX(2px);
+    }
 
+    /* Mobile optimizations for modal */
     @media (max-width: 640px) {
-      .modal-panel{ width:100%;height:100%;max-width:100%;max-height:100%;border-radius:0; }
+      .modal-panel{ 
+        width:100%;height:100%;max-width:100%;max-height:100%;border-radius:0;
+      }
+      .modal-header{ padding:16px; }
+      .modal-title{ font-size:15px; }
+      .modal-close{ width:28px;height:28px;font-size:16px; }
+      .modal-degree{ padding:8px 16px;font-size:11px; }
+      .modal-body{ padding:16px; }
+      .modal-section{ margin-bottom:18px; }
+      .modal-section-title{ font-size:12px; }
+      .edu-item{ padding:10px; }
+      .edu-degree{ font-size:9px;padding:2px 6px; }
+      .edu-school{ font-size:12px; }
+      .edu-year{ font-size:10px; }
+      .edu-dept{ font-size:11px; }
+      .modal-list li{ padding:8px 10px;font-size:11px; }
+    }
+    
+    @media (max-width: 480px) {
       .member-info{ flex-direction:column;text-align:center; }
       .member-avatar{ margin:0 auto; }
       .member-name{ font-size:16px; }
+      .modal-title{ font-size:14px; }
+      .modal-section-title{ font-size:11px; }
+      .stats-container{ grid-template-columns:repeat(2, 1fr);gap:10px; }
+      .stat-card{ padding:12px 8px; }
+      .stat-number{ font-size:22px; }
+      .stat-label{ font-size:10px; }
+      .section-header{ padding:16px 18px; }
+      .section-icon{ width:40px;height:40px;font-size:20px; }
+      .section-main-title{ font-size:17px; }
     }
   </style>
 
@@ -334,36 +456,34 @@ function generateDiamondNetwork() {
   <div class="stats-container">
     <div class="stat-card phd-stat">
       <div class="stat-number" id="phdCount">0</div>
-      <div class="stat-label">Ph.D. Program</div>
-    </div>
-    <div class="stat-card combined-stat">
-      <div class="stat-number" id="combinedCount">0</div>
-      <div class="stat-label">Ph.D.–M.S. Combined Program</div>
+      <div class="stat-label">Ph.D. Students</div>
     </div>
     <div class="stat-card ms-stat">
       <div class="stat-number" id="msCount">0</div>
-      <div class="stat-label">M.S. Program</div>
+      <div class="stat-label">M.S. Students</div>
     </div>
     <div class="stat-card undergrad-stat">
       <div class="stat-number" id="undergradCount">0</div>
-      <div class="stat-label">Undergraduate Researcher Program</div>
+      <div class="stat-label">Undergraduate Researchers</div>
     </div>
     <div class="stat-card total-stat">
       <div class="stat-number" id="totalCount">0</div>
-      <div class="stat-label">Total Students</div>
+      <div class="stat-label">Total Members</div>
     </div>
   </div>
 
   <!-- Ph.D. Students -->
   <div class="section-header">
-    <h2 class="section-title">
-      <span class="degree-badge-header phd">Ph.D.</span>
-      Ph.D. Students
-    </h2>
+    <div class="section-content">
+      <div class="section-icon">🎓</div>
+      <div class="section-text">
+        <div class="section-main-title">Ph.D. Students</div>
+      </div>
+    </div>
   </div>
 
   <div class="members-grid">
-    <!-- PhD Student -->
+    <!-- PhD Student 1 -->
     <div class="member-card" data-degree="phd">
       <div class="card-banner phd"></div>
       <div class="card-content">
@@ -375,7 +495,7 @@ function generateDiamondNetwork() {
                onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
           <div class="member-details">
             <h3 class="member-name">김박사 (Kim Ph.D.)</h3>
-            <span class="member-role">Ph.D. Candidate</span>
+            <span class="member-role phd">Ph.D. Candidate</span>
             <div class="member-period">Sep 2019 - Present</div>
             <div class="member-field"><strong>Research:</strong> Reinforcement Learning, Game AI</div>
             <div class="member-field">
@@ -389,37 +509,27 @@ function generateDiamondNetwork() {
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Ph.D.–M.S. Combined Program Students -->
-  <div class="section-header">
-    <h2 class="section-title">
-      <span class="degree-badge-header combined">Ph.D.–M.S.</span>
-      Ph.D.–M.S. Combined Program Students
-    </h2>
-  </div>
-
-  <div class="members-grid">
-    <!-- Combined Student -->
-    <div class="member-card" data-degree="combined">
-      <div class="card-banner combined"></div>
+    
+    <!-- PhD Student 2 -->
+    <div class="member-card" data-degree="phd">
+      <div class="card-banner phd"></div>
       <div class="card-content">
         <div class="member-info">
-          <img src="{{ '/assets/img/members/lee-combined.jpg' | relative_url }}"
-               alt="Lee Combined"
+          <img src="{{ '/assets/img/members/lee-phd.jpg' | relative_url }}"
+               alt="Lee Ph.D."
                class="member-avatar"
                loading="lazy" decoding="async"
                onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
           <div class="member-details">
-            <h3 class="member-name">이석박 (Lee Combined)</h3>
-            <span class="member-role combined">Ph.D.–M.S. Combined</span>
-            <div class="member-period">Mar 2023 - Present</div>
+            <h3 class="member-name">이박사 (Lee Ph.D.)</h3>
+            <span class="member-role phd">Ph.D. Student</span>
+            <div class="member-period">Mar 2021 - Present</div>
             <div class="member-field"><strong>Research:</strong> Deep Learning for Finance, Portfolio Optimization</div>
             <div class="member-field">
               <strong>Email:</strong>
-              <a href="mailto:lee.combined@example.edu" class="member-email">lee.combined@example.edu</a>
+              <a href="mailto:lee.phd@example.edu" class="member-email">lee.phd@example.edu</a>
             </div>
-            <button type="button" class="btn-details combined" onclick="openModal('lee-combined', 'combined'); return false;">
+            <button type="button" class="btn-details phd" onclick="openModal('lee-phd', 'phd'); return false;">
               View Profile →
             </button>
           </div>
@@ -429,11 +539,13 @@ function generateDiamondNetwork() {
   </div>
 
   <!-- M.S. Students -->
-  <div class="section-header">
-    <h2 class="section-title">
-      <span class="degree-badge-header ms">M.S.</span>
-      M.S. Students
-    </h2>
+  <div class="section-header ms">
+    <div class="section-content">
+      <div class="section-icon ms">📖</div>
+      <div class="section-text">
+        <div class="section-main-title">M.S. Students</div>
+      </div>
+    </div>
   </div>
 
   <div class="members-grid">
@@ -449,7 +561,7 @@ function generateDiamondNetwork() {
                onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
           <div class="member-details">
             <h3 class="member-name">박석사 (Park Master)</h3>
-            <span class="member-role">Master Student</span>
+            <span class="member-role ms">Master Student</span>
             <div class="member-period">Mar 2024 - Present</div>
             <div class="member-field"><strong>Research:</strong> Financial NLP, Evaluation</div>
             <div class="member-field">
@@ -466,11 +578,13 @@ function generateDiamondNetwork() {
   </div>
 
   <!-- Undergraduate Researchers -->
-  <div class="section-header">
-    <h2 class="section-title">
-      <span class="degree-badge-header undergrad">U.R.</span>
-      Undergraduate Researchers
-    </h2>
+  <div class="section-header undergrad">
+    <div class="section-content">
+      <div class="section-icon undergrad">📚</div>
+      <div class="section-text">
+        <div class="section-main-title">Undergraduate Researchers</div>
+      </div>
+    </div>
   </div>
 
   <div class="members-grid">
@@ -511,7 +625,9 @@ function generateDiamondNetwork() {
     <h3 class="modal-title" id="modalTitle">Member Profile</h3>
     <button type="button" class="modal-close" aria-label="Close" onclick="closeModal()">✕</button>
   </div>
-  <div class="modal-degree" id="modalDegree">Student</div>
+  <div class="modal-degree" id="modalDegree">
+    <span id="modalDegreeText">Student</span>
+  </div>
   <div class="modal-body" id="modalBody">
     <!-- Content will be dynamically inserted here -->
   </div>
@@ -537,19 +653,20 @@ const memberData = {
       'Big Data Competition Excellence Award, NH Investment & Securities, 2023'
     ]
   },
-  'lee-combined': {
-    name: '이석박 (Lee Combined)',
-    role: 'Ph.D.–M.S. Combined',
+  'lee-phd': {
+    name: '이박사 (Lee Ph.D.)',
+    role: 'Ph.D. Student',
     education: [
-      {degree: 'Ph.D.–M.S.', school: 'Dongduk Women\'s University', year: 'Expected 2028', dept: 'Business Analytics'},
-      {degree: 'B.S.', school: 'Dongduk Women\'s University', year: '2023', dept: 'Applied Mathematics'}
+      {degree: 'Ph.D.', school: 'Dongduk Women\'s University', year: 'Expected 2026', dept: 'Business Analytics'},
+      {degree: 'M.S.', school: 'Seoul National University', year: '2020', dept: 'Financial Engineering'},
+      {degree: 'B.S.', school: 'KAIST', year: '2018', dept: 'Applied Mathematics'}
     ],
     publications: [
-      'Lee, C. & Kim, S. (2024). "Neural Network Approaches to Portfolio Management". KDD Workshop on AI in Finance.'
+      'Lee, P. & Kim, S. (2024). "Neural Network Approaches to Portfolio Management". KDD Workshop on AI in Finance.'
     ],
     honors: [
-      'Graduate Fellowship, Dongduk Women\'s University, 2023-2028',
-      'Summa Cum Laude, Dongduk Women\'s University, 2023'
+      'Graduate Fellowship, Dongduk Women\'s University, 2021-2026',
+      'Magna Cum Laude, KAIST, 2018'
     ]
   },
   'park-master': {
@@ -584,13 +701,11 @@ const memberData = {
 /* ===== Stats: auto-count by DOM ===== */
 function updateStatistics() {
   const phdCount = document.querySelectorAll('.member-card[data-degree="phd"]').length;
-  const combinedCount = document.querySelectorAll('.member-card[data-degree="combined"]').length;
   const msCount = document.querySelectorAll('.member-card[data-degree="ms"]').length;
   const undergradCount = document.querySelectorAll('.member-card[data-degree="undergrad"]').length;
-  const totalCount = phdCount + combinedCount + msCount + undergradCount;
+  const totalCount = phdCount + msCount + undergradCount;
 
   animateNumber('phdCount', phdCount);
-  animateNumber('combinedCount', combinedCount);
   animateNumber('msCount', msCount);
   animateNumber('undergradCount', undergradCount);
   animateNumber('totalCount', totalCount);
@@ -620,7 +735,7 @@ function openModal(memberId, degreeType) {
 
   document.getElementById('modalTitle').textContent = member.name;
   const degreeEl = document.getElementById('modalDegree');
-  degreeEl.textContent = member.role;
+  document.getElementById('modalDegreeText').textContent = member.role;
   degreeEl.className = 'modal-degree ' + degreeType;
 
   let bodyContent = '';
@@ -629,7 +744,7 @@ function openModal(memberId, degreeType) {
   if (member.education && member.education.length > 0) {
     bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Education</h4>';
     member.education.forEach(edu => {
-      const degreeClass = edu.degree.toLowerCase().replaceAll('.', '').replaceAll('-', '');
+      const degreeClass = edu.degree.toLowerCase().replaceAll('.', '').replaceAll('-', '').replaceAll('–', '');
       bodyContent += `
         <div class="edu-item">
           <span class="edu-degree ${degreeClass}">${edu.degree}</span>
@@ -643,16 +758,16 @@ function openModal(memberId, degreeType) {
 
   // Publications
   if (member.publications && member.publications.length > 0) {
-    bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Publications</h4><ol class="modal-list">';
+    bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Publications</h4><ul class="modal-list">';
     member.publications.forEach(pub => { bodyContent += `<li>${pub}</li>`; });
-    bodyContent += '</ol></div>';
+    bodyContent += '</ul></div>';
   }
 
   // Honors
   if (member.honors && member.honors.length > 0) {
-    bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Honors & Awards</h4><ol class="modal-list">';
+    bodyContent += '<div class="modal-section"><h4 class="modal-section-title">Honors & Awards</h4><ul class="modal-list">';
     member.honors.forEach(h => { bodyContent += `<li>${h}</li>`; });
-    bodyContent += '</ol></div>';
+    bodyContent += '</ul></div>';
   }
 
   document.getElementById('modalBody').innerHTML = bodyContent;
