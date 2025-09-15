@@ -286,41 +286,47 @@
 
       /* 다크모드 */
       @media (prefers-color-scheme: dark) {
+        /* Footer는 항상 흰색 유지 */
         footer {
-          background-color: #0b0f19;
-          border-top-color: #1e293b;
+          background-color: #ffffff !important;
+          border-top-color: #e2e8f0 !important;
         }
         
+        /* 플레이어 박스도 흰색 유지 */
         .music-player-box {
-          background: #1e293b;
+          background: #ffffff !important;
           border-color: rgb(214, 177, 77);
           box-shadow: 0 3px 20px rgba(214, 177, 77, 0.25);
         }
         
         .nav-btn, .play-btn {
-          background: #2d3748;
+          background: #ffffff !important;
           border-color: rgb(214, 177, 77);
         }
         
         .nav-btn:hover, .play-btn:hover {
-          background: rgba(214, 177, 77, 0.2);
+          background: rgba(214, 177, 77, 0.08) !important;
         }
         
         .progress-track, .volume-slider {
-          background: rgba(214, 177, 77, 0.25);
+          background: rgba(214, 177, 77, 0.15);
         }
         
         .time-text {
-          color: #cbd5e1;
+          color: #94a3b8;
         }
         
         .copyright {
-          color: #64748b;
+          color: #94a3b8;
         }
         
         .progress-slider::-webkit-slider-thumb,
         .progress-slider::-moz-range-thumb {
-          border-color: #1e293b;
+          border-color: #ffffff;
+        }
+        
+        #musicArtist {
+          color: rgb(172, 14, 14) !important;
         }
       }
 
