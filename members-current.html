@@ -156,7 +156,7 @@ permalink: /members-current.html
     .stat-card.undergrad-stat{ border-top:3px solid var(--undergrad-red); }
     .stat-card.total-stat{ border-top:3px solid var(--primary-dark); }
 
-    /* ENHANCED Section Headers */
+    /* ENHANCED Section Headers with Toggle */
     .section-header{ 
       margin-top:3rem;
       margin-bottom:2rem;
@@ -173,6 +173,8 @@ permalink: /members-current.html
       box-shadow: 0 4px 20px rgba(0,0,0,0.06);
       border: 2px solid transparent;
       transition: all 0.3s ease;
+      cursor: pointer;
+      user-select: none;
     }
     
     /* PhD Style */
@@ -247,6 +249,49 @@ permalink: /members-current.html
       100% { background-position: 200% 0; }
     }
     
+    /* Toggle Button */
+    .toggle-btn {
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .section-header.phd .toggle-btn {
+      border: 1px solid var(--phd-gold);
+      color: var(--phd-gold);
+    }
+    .section-header.ms .toggle-btn {
+      border: 1px solid var(--ms-light-gold);
+      color: rgb(180, 160, 80);
+    }
+    .section-header.undergrad .toggle-btn {
+      border: 1px solid var(--undergrad-red);
+      color: var(--undergrad-red);
+    }
+    
+    .toggle-btn:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .toggle-btn.collapsed {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .toggle-btn.collapsed:hover {
+      transform: translateY(-50%) rotate(180deg) scale(1.1);
+    }
+    
     /* Icon Container */
     .section-icon-wrapper {
       position: relative;
@@ -286,6 +331,21 @@ permalink: /members-current.html
     }
     .section-header-content:hover .section-icon {
       transform: rotate(-5deg) scale(1.05);
+    }
+    
+    /* Collapsed state for grid */
+    .members-grid.collapsed {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      margin-bottom: 0;
+      transition: all 0.4s ease;
+    }
+    
+    .members-grid.expanded {
+      max-height: 5000px;
+      opacity: 1;
+      transition: all 0.4s ease;
     }
     
     .section-text {
@@ -403,10 +463,11 @@ permalink: /members-current.html
     .btn-details.ms:hover{ background:var(--ms-light-gold);color:#111827; }
     .btn-details.undergrad:hover{ background:var(--undergrad-red);color:#fff; }
 
-    /* Enhanced Modal styles */
+    /* Enhanced Modal styles (Optimized for performance) */
     .modal-overlay{ 
       position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9998;
       display:none;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(8px);
+      will-change: opacity;
     }
     .modal-overlay.show{ display:block;opacity:1; }
     
@@ -415,6 +476,7 @@ permalink: /members-current.html
       width:90%;max-width:750px;max-height:85vh;background:#fff;border-radius:1.5rem;
       z-index:9999;display:none;opacity:0;transition:all 0.3s;overflow:hidden;
       box-shadow:0 25px 70px rgba(0,0,0,0.4);
+      will-change: transform, opacity;
     }
     .modal-panel.show{ display:flex;flex-direction:column;opacity:1;transform:translate(-50%, -50%) scale(1); }
     
@@ -483,22 +545,6 @@ permalink: /members-current.html
       overflow:hidden;
     }
     
-    .modal-degree::before {
-      content:'';
-      position:absolute;
-      top:0;
-      left:-100%;
-      width:100%;
-      height:100%;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation:shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left:-100%; }
-      50%, 100% { left:100%; }
-    }
-    
     .modal-degree.phd {
       background:linear-gradient(135deg, var(--phd-gold), var(--gold-dark));
       color:#fff;
@@ -522,21 +568,9 @@ permalink: /members-current.html
       background:#fafbfc;
     }
     
-    /* Modal Sections */
+    /* Modal Sections (removed animations for performance) */
     .modal-section {
       margin-bottom:28px;
-      animation:fadeInUp 0.4s ease-out;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity:0;
-        transform:translateY(10px);
-      }
-      to {
-        opacity:1;
-        transform:translateY(0);
-      }
     }
     
     .modal-section:last-child {
@@ -577,15 +611,8 @@ permalink: /members-current.html
       border-radius:12px;
       padding:16px;
       margin-bottom:12px;
-      transition:all 0.2s;
       position:relative;
       overflow:hidden;
-    }
-    
-    .edu-item:hover {
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      transform:translateX(4px);
-      border-color:#d1d5db;
     }
     
     .edu-item::before {
@@ -616,13 +643,7 @@ permalink: /members-current.html
       padding:16px 18px;
       margin-bottom:12px;
       border:1px solid #e5e7eb;
-      transition:all 0.2s;
       border-left:3px solid var(--phd-gold);
-    }
-    
-    .pub-item:hover {
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      transform:translateY(-2px);
     }
     
     .pub-title {
@@ -663,7 +684,6 @@ permalink: /members-current.html
       border-radius:12px;
       padding:14px 16px;
       margin-bottom:12px;
-      transition:all 0.2s;
       position:relative;
       padding-left:44px;
     }
@@ -675,11 +695,6 @@ permalink: /members-current.html
       top:50%;
       transform:translateY(-50%);
       font-size:20px;
-    }
-    
-    .award-item:hover {
-      box-shadow:0 4px 12px rgba(251,191,36,0.2);
-      transform:translateY(-2px);
     }
     
     .award-title {
@@ -736,13 +751,6 @@ permalink: /members-current.html
       font-size:11px;
       color:#374151;
       font-weight:600;
-      transition:all 0.2s;
-    }
-    
-    .skill-tag:hover {
-      background:linear-gradient(135deg, var(--phd-gold), var(--gold-dark));
-      color:#fff;
-      transform:scale(1.05);
     }
     
     /* Project Items */
@@ -752,12 +760,6 @@ permalink: /members-current.html
       border-radius:12px;
       padding:16px;
       margin-bottom:12px;
-      transition:all 0.2s;
-    }
-    
-    .project-item:hover {
-      box-shadow:0 4px 12px rgba(0,0,0,0.08);
-      border-color:#d1d5db;
     }
     
     .project-title {
@@ -1042,13 +1044,16 @@ function renderMembers() {
     const categoryMembers = allMembers.filter(m => m.degree === category.degree);
     if (categoryMembers.length === 0) return;
     
-    // Create section header
+    // Create section header with toggle functionality
     const sectionHTML = `
       <div class="section-header ${category.class}">
-        <div class="section-header-content">
+        <div class="section-header-content" onclick="toggleSection('${category.degree}')">
           <div class="member-count">
             <span class="count-number">${categoryMembers.length}</span>
             <span>${categoryMembers.length === 1 ? 'MEMBER' : 'MEMBERS'}</span>
+          </div>
+          <div class="toggle-btn" id="toggle-${category.degree}">
+            ▼
           </div>
           <div class="section-content">
             <div class="section-icon-wrapper">
@@ -1061,7 +1066,7 @@ function renderMembers() {
           </div>
         </div>
       </div>
-      <div class="members-grid" id="${category.degree}-grid"></div>
+      <div class="members-grid expanded" id="${category.degree}-grid"></div>
     `;
     
     container.insertAdjacentHTML('beforeend', sectionHTML);
@@ -1072,6 +1077,24 @@ function renderMembers() {
       grid.insertAdjacentHTML('beforeend', createMemberCard(member));
     });
   });
+}
+
+// Toggle section function
+function toggleSection(degree) {
+  const grid = document.getElementById(`${degree}-grid`);
+  const toggleBtn = document.getElementById(`toggle-${degree}`);
+  
+  if (grid.classList.contains('expanded')) {
+    // Collapse
+    grid.classList.remove('expanded');
+    grid.classList.add('collapsed');
+    toggleBtn.classList.add('collapsed');
+  } else {
+    // Expand
+    grid.classList.remove('collapsed');
+    grid.classList.add('expanded');
+    toggleBtn.classList.remove('collapsed');
+  }
 }
 
 // Create member card HTML
@@ -1158,7 +1181,7 @@ function animateNumber(elementId, finalValue) {
   requestAnimationFrame(tick);
 }
 
-// Open modal with member details
+// Open modal with member details (Optimized version)
 function openModal(memberId) {
   const member = allMembers.find(m => m.id === memberId);
   if (!member) return;
@@ -1167,7 +1190,10 @@ function openModal(memberId) {
   const displayName = member.name.ko ? `${member.name.ko} (${member.name.en})` : member.name.en;
   const role = member.role.en || member.role;
   
-  let modalHTML = `
+  // Use array and join for better performance
+  let modalParts = [];
+  
+  modalParts.push(`
     <div class="modal-header">
       <h3 class="modal-title">
         <span style="font-size:24px;">${member.degree === 'phd' ? '🎓' : member.degree === 'ms' ? '📖' : '📚'}</span>
@@ -1180,48 +1206,46 @@ function openModal(memberId) {
       <span style="font-size:11px;opacity:0.9;">${member.period.start} - ${member.period.expected_graduation || 'Present'}</span>
     </div>
     <div class="modal-body">
-  `;
+  `);
   
-  // Contact Information
+  // Contact Information (simplified without hover effects)
   if (member.contact) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.1s;">
+    modalParts.push(`
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">📧</span>
           Contact Information
         </h4>
         <div style="background:#fff;border-radius:12px;padding:16px;border:1px solid #e5e7eb;">
-          ${member.contact.email ? `<div style="margin-bottom:8px;"><strong style="color:#6b7280;font-size:11px;">EMAIL</strong><br><a href="mailto:${member.contact.email}" style="color:#3b82f6;text-decoration:none;font-size:14px;">${member.contact.email}</a></div>` : ''}
+          ${member.contact.email ? `<div style="margin-bottom:8px;"><strong style="color:#6b7280;font-size:11px;">EMAIL</strong><br><span style="color:#3b82f6;font-size:14px;">${member.contact.email}</span></div>` : ''}
           ${member.contact.office ? `<div style="margin-bottom:8px;"><strong style="color:#6b7280;font-size:11px;">OFFICE</strong><br><span style="color:#374151;font-size:14px;">${member.contact.office}</span></div>` : ''}
           ${member.contact.phone ? `<div><strong style="color:#6b7280;font-size:11px;">PHONE</strong><br><span style="color:#374151;font-size:14px;">${member.contact.phone}</span></div>` : ''}
         </div>
       </div>
-    `;
+    `);
   }
   
-  // Research Interests
+  // Research Interests (simplified)
   if (member.research && member.research.interests) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.2s;">
+    modalParts.push(`
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">🔬</span>
           Research Interests
         </h4>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          ${member.research.interests.map(interest => `
-            <span style="padding:8px 16px;background:linear-gradient(135deg,#e0e7ff,#c7d2fe);border-radius:999px;font-size:13px;color:#312e81;font-weight:600;transition:all 0.2s;cursor:default;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-              ${interest}
-            </span>
-          `).join('')}
+          ${member.research.interests.map(interest => 
+            `<span style="padding:8px 16px;background:linear-gradient(135deg,#e0e7ff,#c7d2fe);border-radius:999px;font-size:13px;color:#312e81;font-weight:600;">${interest}</span>`
+          ).join('')}
         </div>
       </div>
-    `;
+    `);
   }
   
-  // Education
+  // Education (simplified)
   if (member.education && member.education.length > 0) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.3s;">
+    let eduHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">🎓</span>
           Education
@@ -1229,7 +1253,7 @@ function openModal(memberId) {
     `;
     member.education.forEach(edu => {
       const yearStr = edu.end || (edu.expected ? `Expected ${edu.expected}` : 'Present');
-      modalHTML += `
+      eduHTML += `
         <div class="edu-item">
           <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
             <span class="edu-degree-badge">${edu.degree}</span>
@@ -1240,24 +1264,24 @@ function openModal(memberId) {
           ${edu.location ? `<div style="font-size:12px;color:#6b7280;">${edu.location}</div>` : ''}
           ${edu.gpa ? `<div style="font-size:12px;color:#059669;margin-top:6px;">GPA: ${edu.gpa}</div>` : ''}
           ${edu.honors ? `<div style="font-size:12px;color:#dc2626;margin-top:4px;">🏆 ${edu.honors}</div>` : ''}
-          ${edu.thesis ? `<div style="font-size:12px;color:#4b5563;margin-top:6px;font-style:italic;">"${edu.thesis}"</div>` : ''}
         </div>
       `;
     });
-    modalHTML += '</div>';
+    eduHTML += '</div>';
+    modalParts.push(eduHTML);
   }
   
-  // Publications
+  // Publications (no URL links)
   if (member.publications && member.publications.length > 0) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.4s;">
+    let pubHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">📝</span>
           Publications
         </h4>
     `;
     member.publications.forEach(pub => {
-      modalHTML += `
+      pubHTML += `
         <div class="pub-item">
           <div class="pub-title">${pub.title}</div>
           ${pub.authors ? `<div class="pub-authors">${pub.authors.join(', ')}</div>` : ''}
@@ -1265,24 +1289,24 @@ function openModal(memberId) {
             <span class="pub-venue">${pub.venue}</span>
             <span class="pub-year">${pub.year}</span>
           </div>
-          ${pub.url ? `<a href="${pub.url}" target="_blank" style="display:inline-block;margin-top:8px;font-size:11px;color:#3b82f6;text-decoration:none;">View Paper →</a>` : ''}
         </div>
       `;
     });
-    modalHTML += '</div>';
+    pubHTML += '</div>';
+    modalParts.push(pubHTML);
   }
   
-  // Awards & Honors
+  // Awards & Honors (simplified)
   if (member.awards && member.awards.length > 0) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.5s;">
+    let awardHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">🏆</span>
           Awards & Honors
         </h4>
     `;
     member.awards.forEach(award => {
-      modalHTML += `
+      awardHTML += `
         <div class="award-item">
           <div class="award-title">${award.title}</div>
           <div class="award-org">${award.organization} ${award.year ? `• ${award.year}` : ''}</div>
@@ -1290,20 +1314,21 @@ function openModal(memberId) {
         </div>
       `;
     });
-    modalHTML += '</div>';
+    awardHTML += '</div>';
+    modalParts.push(awardHTML);
   }
   
-  // Projects
+  // Projects (simplified)
   if (member.projects && member.projects.length > 0) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.6s;">
+    let projHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">💼</span>
           Research Projects
         </h4>
     `;
     member.projects.forEach(project => {
-      modalHTML += `
+      projHTML += `
         <div class="project-item">
           <div class="project-title">${project.title}</div>
           <span class="project-role">${project.role}</span>
@@ -1318,35 +1343,14 @@ function openModal(memberId) {
         </div>
       `;
     });
-    modalHTML += '</div>';
+    projHTML += '</div>';
+    modalParts.push(projHTML);
   }
   
-  // Teaching Experience
-  if (member.teaching && member.teaching.length > 0) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.7s;">
-        <h4 class="modal-section-title">
-          <span class="modal-section-icon">👨‍🏫</span>
-          Teaching Experience
-        </h4>
-        <div style="background:#fff;border-radius:12px;padding:16px;border:1px solid #e5e7eb;">
-    `;
-    member.teaching.forEach(teach => {
-      modalHTML += `
-        <div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f3f4f6;">
-          <div style="font-weight:700;color:#111827;font-size:13px;">${teach.course}</div>
-          <div style="font-size:12px;color:#3b82f6;margin:4px 0;">${teach.role}</div>
-          <div style="font-size:11px;color:#6b7280;">${teach.semester} • ${teach.university}</div>
-        </div>
-      `;
-    });
-    modalHTML += '</div></div>';
-  }
-  
-  // Skills
+  // Skills (simplified)
   if (member.skills) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.8s;">
+    let skillHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">⚡</span>
           Technical Skills
@@ -1355,7 +1359,7 @@ function openModal(memberId) {
     `;
     
     if (member.skills.programming) {
-      modalHTML += `
+      skillHTML += `
         <div class="skill-category">
           <div class="skill-category-title">Programming</div>
           <div class="skill-tags">
@@ -1366,7 +1370,7 @@ function openModal(memberId) {
     }
     
     if (member.skills.frameworks) {
-      modalHTML += `
+      skillHTML += `
         <div class="skill-category">
           <div class="skill-category-title">Frameworks</div>
           <div class="skill-tags">
@@ -1376,37 +1380,14 @@ function openModal(memberId) {
       `;
     }
     
-    if (member.skills.tools) {
-      modalHTML += `
-        <div class="skill-category">
-          <div class="skill-category-title">Tools</div>
-          <div class="skill-tags">
-            ${member.skills.tools.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-          </div>
-        </div>
-      `;
-    }
-    
-    if (member.skills.languages) {
-      modalHTML += `
-        <div class="skill-category">
-          <div class="skill-category-title">Languages</div>
-          <div class="skill-tags">
-            ${Object.entries(member.skills.languages).map(([lang, level]) => 
-              `<span class="skill-tag">${lang}: ${level}</span>`
-            ).join('')}
-          </div>
-        </div>
-      `;
-    }
-    
-    modalHTML += '</div></div>';
+    skillHTML += '</div></div>';
+    modalParts.push(skillHTML);
   }
   
-  // Social Links
+  // Social Links (keep URLs only here)
   if (member.social) {
-    modalHTML += `
-      <div class="modal-section" style="animation-delay:0.9s;">
+    let socialHTML = `
+      <div class="modal-section">
         <h4 class="modal-section-title">
           <span class="modal-section-icon">🔗</span>
           Links & Profiles
@@ -1415,42 +1396,33 @@ function openModal(memberId) {
     `;
     
     if (member.social.github) {
-      modalHTML += `<a href="${member.social.github}" target="_blank" style="padding:8px 16px;background:#24292e;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-        GitHub
-      </a>`;
+      socialHTML += `<a href="${member.social.github}" target="_blank" style="padding:8px 16px;background:#24292e;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">GitHub</a>`;
     }
     if (member.social.linkedin) {
-      modalHTML += `<a href="${member.social.linkedin}" target="_blank" style="padding:8px 16px;background:#0077b5;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-        LinkedIn
-      </a>`;
+      socialHTML += `<a href="${member.social.linkedin}" target="_blank" style="padding:8px 16px;background:#0077b5;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">LinkedIn</a>`;
     }
     if (member.social.google_scholar) {
-      modalHTML += `<a href="${member.social.google_scholar}" target="_blank" style="padding:8px 16px;background:#4285f4;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-        Google Scholar
-      </a>`;
-    }
-    if (member.social.personal_website) {
-      modalHTML += `<a href="${member.social.personal_website}" target="_blank" style="padding:8px 16px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-        Website
-      </a>`;
+      socialHTML += `<a href="${member.social.google_scholar}" target="_blank" style="padding:8px 16px;background:#4285f4;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">Google Scholar</a>`;
     }
     if (member.cv) {
-      modalHTML += `<a href="${member.cv}" target="_blank" style="padding:8px 16px;background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
-        📄 Download CV
-      </a>`;
+      socialHTML += `<a href="${member.cv}" target="_blank" style="padding:8px 16px;background:#dc2626;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">📄 Download CV</a>`;
     }
     
-    modalHTML += '</div></div>';
+    socialHTML += '</div></div>';
+    modalParts.push(socialHTML);
   }
   
-  modalHTML += '</div>'; // Close modal-body
+  modalParts.push('</div>'); // Close modal-body
   
-  modalPanel.innerHTML = modalHTML;
+  // Set innerHTML once with joined string for better performance
+  modalPanel.innerHTML = modalParts.join('');
   
-  // Show modal
-  document.getElementById('modalOverlay').classList.add('show');
-  document.getElementById('modalPanel').classList.add('show');
-  document.body.style.overflow = 'hidden';
+  // Show modal with minimal DOM operations
+  requestAnimationFrame(() => {
+    document.getElementById('modalOverlay').classList.add('show');
+    document.getElementById('modalPanel').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  });
 }
 
 function closeModal() {
