@@ -633,13 +633,55 @@ function toNumberOrNull(v) {
   return Number.isFinite(n) ? n : null;
 }
 
-// Playlist 로드
+// Playlist 로드 - 수정된 버전
 function loadPlaylistJson() {
   if (typeof PLAYLIST_DATA !== 'undefined' && PLAYLIST_DATA) {
-    buildFromJson(PLAYLIST_DATA);
-    return;
+    // PLAYLIST_DATA가 null이 아니고 올바른 구조인지 확인
+    if (PLAYLIST_DATA && PLAYLIST_DATA.items) {
+      buildFromJson(PLAYLIST_DATA);
+      return;
+    }
   }
-  handlePlaylistError();
+  
+  // Jekyll 데이터가 없으면 fallback으로 직접 로드 시도
+  var baseurl = '';
+  if (window.location.pathname.indexOf('/website') === 0) baseurl = '/website';
+  var paths = [
+    baseurl + '/assets/playlist.json',
+    baseurl + '/assets/data/playlist.json',
+    baseurl + '/_data/playlist.json',
+    '/assets/playlist.json',
+    './playlist.json'
+  ];
+  
+  var tryLoad = function(index) {
+    if (index >= paths.length) { 
+      handlePlaylistError(); 
+      return; 
+    }
+    var url = paths[index];
+    fetch(url + '?t=' + Date.now())
+      .then(function(res) { 
+        if (!res.ok) throw new Error('HTTP ' + res.status); 
+        return res.json(); 
+      })
+      .then(function(json) {
+        // 중첩된 구조 처리
+        if (json.itemsByPerson && json.itemsByPerson.ischoi) {
+          buildFromJson(json.itemsByPerson.ischoi);
+        } else if (json.items) {
+          buildFromJson(json);
+        } else {
+          tryLoad(index + 1);
+        }
+      })
+      .catch(function() { 
+        tryLoad(index + 1); 
+      });
+  };
+  
+  // fallback 시도
+  tryLoad(0);
 }
 
 function handlePlaylistError() {
