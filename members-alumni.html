@@ -1,8 +1,11 @@
----
-layout: default
-title: alumni
-permalink: /members-alumni.html
----
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni - Research Lab</title>
+</head>
+<body>
 
 <!-- ===== Gold Interactive Banner (Hearts/Clubs/Spades/Diamonds) ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
@@ -109,9 +112,9 @@ permalink: /members-alumni.html
     <div class="banner-content">
       <div>
         <nav aria-label="Breadcrumb" class="breadcrumbs-banner" onclick="event.stopPropagation()">
-          <a href="{{ '/' | relative_url }}">Home</a>
+          <a href="#">Home</a>
           <span class="sep">›</span>
-          <a href="{{ '/members-alumni.html' | relative_url }}">Members</a>
+          <a href="#">Members</a>
           <span class="sep">›</span>
           <span aria-current="page">Alumni</span>
         </nav>
@@ -208,6 +211,30 @@ function generateDiamondNetwork() {
 
 <!-- ===== Styles ===== -->
 <style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #fafafa;
+  }
+  
+  .max-w-7xl {
+    max-width: 80rem;
+  }
+  
+  .mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mt-6 { margin-top: 1.5rem; }
+  .mt-8 { margin-top: 2rem; }
+  .pb-8 { padding-bottom: 2rem; }
+
   /* Section Headers */
   .section-header{
     margin-top:2rem;
@@ -257,6 +284,7 @@ function generateDiamondNetwork() {
     background: linear-gradient(135deg, var(--phd-gold), var(--ms-light-gold));
     color: white;
     text-shadow: 0 1px 2px rgba(0,0,0,.1);
+    flex-shrink: 0;
   }
   
   .section-icon.undergraduate {
@@ -574,18 +602,10 @@ function generateDiamondNetwork() {
     font-weight:600;
   }
   
-  .position-title{
-    font-weight:700;
-    color:#111827;
-    font-size:13px;
-    word-break: keep-all;
-    overflow-wrap: anywhere;
-  }
-  
   .position-company{
-    font-size:12px;
-    color:#6b7280;
-    margin-top:2px;
+    font-size:13px;
+    color:#111827;
+    font-weight:600;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
@@ -659,10 +679,10 @@ function generateDiamondNetwork() {
     color:#111827;
   }
 
-  /* Statistics */
+  /* Statistics - 2x3 Grid */
   .stats-container{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns:repeat(3, 1fr);
     gap:16px;
     margin-bottom:2rem;
     margin-top:2rem;
@@ -690,12 +710,21 @@ function generateDiamondNetwork() {
     border-top:3px solid var(--ms-light-gold);
   }
   
+  .stat-card.ms-phd-stat{
+    border-top:3px solid;
+    border-image: linear-gradient(90deg, var(--ms-light-gold) 0%, var(--phd-gold) 100%) 1;
+  }
+  
   .stat-card.undergrad-stat{
     border-top:3px solid var(--undergrad-red);
   }
   
   .stat-card.total-stat{
     border-top:3px solid var(--primary-dark);
+  }
+  
+  .stat-card.since-stat{
+    border-top:3px solid #64748b;
   }
   
   .stat-number{
@@ -710,6 +739,12 @@ function generateDiamondNetwork() {
     margin-top:4px;
     text-transform:uppercase;
     letter-spacing:0.5px;
+  }
+  
+  .since-date {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
   }
   
   /* Mobile responsive */
@@ -737,6 +772,10 @@ function generateDiamondNetwork() {
     
     .stat-label{
       font-size:10px;
+    }
+    
+    .since-date {
+      font-size: 14px;
     }
     
     .section-header{
@@ -784,6 +823,10 @@ function generateDiamondNetwork() {
       letter-spacing:0.3px;
     }
     
+    .since-date {
+      font-size: 12px;
+    }
+    
     .section-header{
       padding:14px 16px;
     }
@@ -810,37 +853,44 @@ function generateDiamondNetwork() {
       font-size:8px;
       padding:2px 5px;
     }
+    
+    .position-company{
+      font-size:11px;
+    }
   }
 </style>
 
 <!-- ===== Content ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-8 pb-8">
 
-  <!-- Statistics -->
+  <!-- Statistics - 2x3 Grid -->
   <div class="stats-container">
-    <div class="stat-card phd-stat">
-      <div class="stat-number" id="phdCount">0</div>
-      <div class="stat-label">Ph.D. Alumni</div>
-    </div>
+    <!-- Top Row -->
     <div class="stat-card ms-stat">
       <div class="stat-number" id="msCount">0</div>
       <div class="stat-label">M.S. Alumni</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-number" id="gradCount">0</div>
-      <div class="stat-label">Total Graduate Alumni</div>
+    <div class="stat-card phd-stat">
+      <div class="stat-number" id="phdCount">0</div>
+      <div class="stat-label">Ph.D. Alumni</div>
     </div>
+    <div class="stat-card ms-phd-stat">
+      <div class="stat-number" id="msPhdCount">0</div>
+      <div class="stat-label">M.S.+Ph.D.</div>
+    </div>
+    
+    <!-- Bottom Row -->
     <div class="stat-card undergrad-stat">
       <div class="stat-number" id="undergradCount">0</div>
-      <div class="stat-label">Undergraduate Researcher Alumni</div>
+      <div class="stat-label">Undergraduate</div>
     </div>
     <div class="stat-card total-stat">
       <div class="stat-number" id="totalCount">0</div>
       <div class="stat-label">Total Alumni</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-number" id="sinceYear">2025</div>
-      <div class="stat-label">Since</div>
+    <div class="stat-card since-stat">
+      <div class="since-date">Since</div>
+      <div class="since-date" id="sinceDate">2019.09.01</div>
     </div>
   </div>
 
@@ -858,8 +908,8 @@ function generateDiamondNetwork() {
       <tr>
         <th style="width:30%">Name</th>
         <th style="width:20%">Period</th>
-        <th style="width:25%">Thesis/Dissertation</th>
-        <th style="width:25%">Current Affiliation</th>
+        <th style="width:30%">Thesis/Dissertation</th>
+        <th style="width:20%">Current Affiliation</th>
       </tr>
     </thead>
     <tbody id="graduateTableBody">
@@ -886,8 +936,8 @@ function generateDiamondNetwork() {
       <tr>
         <th style="width:30%">Name</th>
         <th style="width:20%">Period</th>
-        <th style="width:25%">Capstone/Project</th>
-        <th style="width:25%">Current Affiliation</th>
+        <th style="width:30%">Capstone/Project</th>
+        <th style="width:20%">Current Affiliation</th>
       </tr>
     </thead>
     <tbody id="undergradTableBody">
@@ -922,7 +972,6 @@ const graduateAlumniData = [
         url: 'https://example.com/thesis/jung-phd-2025.pdf'
       }
     },
-    position: 'Assistant Research Scientist',
     company: 'Lorem Institute of Quantitative Finance'
   },
   {
@@ -948,7 +997,6 @@ const graduateAlumniData = [
         url: 'https://example.com/thesis/kang-ms-2020.pdf'
       }
     },
-    position: 'Data Scientist',
     company: 'Ipsum Asset Management'
   },
   {
@@ -968,7 +1016,6 @@ const graduateAlumniData = [
         url: 'https://example.com/thesis/yoon-ms-2025.pdf'
       }
     },
-    position: 'Quant Researcher',
     company: 'Dolor Capital Partners'
   }
 ];
@@ -991,8 +1038,25 @@ const undergradAlumniData = [
         url: 'https://example.com/thesis/jang-bs-2024.pdf'
       }
     },
-    position: 'Risk Analyst',
     company: 'KB Securities'
+  },
+  {
+    name: '박학사',
+    nameKo: '(Park B.S.)',
+    degrees: ['ur'],
+    periods: {
+      ur: '2021.03 – 2023.02'
+    },
+    education: [
+      {degree: 'bs', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2023'}
+    ],
+    thesis: {
+      ur: {
+        title: 'Deep Learning for Customer Churn Prediction',
+        url: 'https://example.com/thesis/park-bs-2023.pdf'
+      }
+    },
+    company: 'Samsung SDS'
   }
 ];
 
@@ -1085,7 +1149,6 @@ function generateTable(data, bodyId, section) {
           ` : ''}
         </td>
         <td>
-          <div class="position-title">${alum.position}</div>
           <div class="position-company">${alum.company}</div>
         </td>
       </tr>
@@ -1149,8 +1212,7 @@ function generateCards(data, containerId, section) {
           <div class="alumni-card-section">
             <div class="alumni-card-label">Current Affiliation</div>
             <div class="alumni-card-value">
-              <div style="font-weight:700">${alum.position}</div>
-              <div>${alum.company}</div>
+              <div style="font-weight:700">${alum.company}</div>
             </div>
           </div>
           
@@ -1209,24 +1271,28 @@ function generateCards(data, containerId, section) {
 function calculateStats() {
   let phdCount = 0;
   let msCount = 0;
+  let msPhdCount = 0;
 
-  // Count degrees across graduate alumni only for PhD/MS tallies
+  // Count degrees across graduate alumni
   graduateAlumniData.forEach(alum => {
-    if (alum.degrees.includes('phd')) phdCount++;
-    if (alum.degrees.includes('ms')) msCount++;
+    if (alum.degrees.includes('phd') && !alum.degrees.includes('ms')) {
+      phdCount++; // PhD only
+    } else if (alum.degrees.includes('ms') && !alum.degrees.includes('phd')) {
+      msCount++; // MS only
+    } else if (alum.degrees.includes('ms') && alum.degrees.includes('phd')) {
+      msPhdCount++; // Both MS and PhD
+    }
   });
 
-  const gradCount = graduateAlumniData.length;          // Total Graduate Alumni
-  const undergradCount = undergradAlumniData.length;    // Undergraduate Researcher Alumni
-  const totalCount = gradCount + undergradCount;        // Total Alumni
+  const undergradCount = undergradAlumniData.length;
+  const totalCount = graduateAlumniData.length + undergradCount;
 
   // Animate numbers
-  animateNumber('phdCount', phdCount);
   animateNumber('msCount', msCount);
-  animateNumber('gradCount', gradCount);
+  animateNumber('phdCount', phdCount);
+  animateNumber('msPhdCount', msPhdCount);
   animateNumber('undergradCount', undergradCount);
   animateNumber('totalCount', totalCount);
-  document.getElementById('sinceYear').textContent = 2019;
 }
 
 // Number animation
@@ -1252,3 +1318,6 @@ generateTable(undergradAlumniData, 'undergradTableBody', 'undergrad');
 generateCards(undergradAlumniData, 'undergradCardsMobile', 'undergrad');
 calculateStats();
 </script>
+
+</body>
+</html>
