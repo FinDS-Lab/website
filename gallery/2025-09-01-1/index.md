@@ -124,7 +124,7 @@ images:
     justify-content: center;
     overflow: hidden;
     position: relative;
-    max-height: 150px;
+    padding: 8px;
   }
   
   .image-wrapper img {
@@ -136,19 +136,6 @@ images:
   
   .image-item:hover .image-wrapper img {
     transform: scale(1.05);
-  }
-  
-  .image-info {
-    padding: 12px 16px;
-    border-top: 1px solid #f3f4f6;
-    background: linear-gradient(to bottom, #ffffff, #fafafa);
-  }
-  
-  .image-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #374151;
-    text-align: center;
   }
   
   /* Modal/Lightbox */
@@ -416,9 +403,6 @@ images:
               <div class="image-wrapper">
                 <img src="{{ img_url }}" alt="{{ img }}" loading="lazy">
               </div>
-              <div class="image-info">
-                <div class="image-name">{{ img }}</div>
-              </div>
             </div>
           {% endfor %}
         </div>
@@ -439,9 +423,6 @@ images:
               <div class="image-item" onclick="openLightbox('{{ img_file.path | relative_url }}', {{ forloop.index0 }})">
                 <div class="image-wrapper">
                   <img src="{{ img_file.path | relative_url }}" alt="{{ img_file.name }}" loading="lazy">
-                </div>
-                <div class="image-info">
-                  <div class="image-name">{{ img_file.name }}</div>
                 </div>
               </div>
             {% endfor %}
