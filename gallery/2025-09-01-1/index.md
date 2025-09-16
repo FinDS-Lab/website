@@ -97,8 +97,22 @@ images:
   /* Image Grid (갤러리 페이지 적정 크기) */
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 16px;
+    justify-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* 이미지가 1개일 때 가운데 정렬 */
+  .image-grid:has(.image-item:only-child) {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .image-grid:has(.image-item:only-child) .image-item {
+    max-width: 300px;
+    width: 100%;
   }
   
   .image-item {
@@ -310,8 +324,13 @@ images:
     }
     
     .image-grid {
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 12px;
+    }
+    
+    .image-grid:has(.image-item:only-child) {
+      grid-template-columns: 1fr;
+      max-width: 250px;
     }
     
     .nav-button {
