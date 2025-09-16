@@ -9,6 +9,7 @@ title: home
     --gold-light: rgb(234, 207, 127);
     --red: rgb(172, 14, 14);
     --red-dark: rgb(127, 10, 10);
+    --pantone-1788c: rgb(238, 39, 55);  /* Pantone 1788C */
 
     /* 공통 레이아웃 기준 */
     --container-max: 1200px;
@@ -141,18 +142,20 @@ title: home
   @media (max-width:380px){ .btn-hero{ font-size: clamp(10.5px, 3.6vw, 12px); padding: 10px 12px; min-height: 40px; } }
   @media (max-width:340px){ .btn-hero{ font-size: clamp(10px, 3.8vw, 11.5px); } }
 
+  /* 버튼 색상 변경: 골드 배경에 흰색 글씨 */
   .btn-hero.primary, .btn-hero.secondary{
-    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
-    color:#fff; border:2px solid transparent;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    color:#fff; 
+    border:2px solid transparent;
   }
   .btn-hero.primary:hover, .btn-hero.secondary:hover{
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(172, 14, 14, 0.3);
+    box-shadow: 0 10px 25px rgba(214, 177, 77, 0.3);
   }
   @media (hover:none){
     .btn-hero.primary:active, .btn-hero.secondary:active{
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(172, 14, 14, 0.3);
+      box-shadow: 0 10px 25px rgba(214, 177, 77, 0.3);
     }
   }
 
@@ -192,12 +195,13 @@ title: home
   .logo-box img{ width:140px; height:140px; object-fit:contain; position:relative; z-index:1; }
   @media (max-width:480px){ .logo-box img{ width:110px; height:110px; } }
 
+  /* Intro content 색상 변경 */
   .intro-content h2{ color:var(--red); font-size:24px; font-weight:900; margin-bottom:8px; }
   @media (max-width:480px){ .intro-content h2{ font-size:20px; } }
   .intro-content h3{ font-size:32px; margin-bottom:4px; }
   @media (max-width:480px){ .intro-content h3{ font-size:24px; } }
   .intro-content .lab-name{ color:var(--gold); font-weight:900; }
-  .intro-content .lab-full{ font-size:18px; color:#000; margin-left:0; }
+  .intro-content .lab-full{ font-size:18px; color:var(--pantone-1788c); margin-left:0; }
   @media (max-width:768px){ .intro-content .lab-full{ display:block; margin-left:0; margin-top:8px; } }
   .intro-content .description{ margin-top:16px; font-size:16px; line-height:1.8; color:#4b5563; }
   @media (max-width:480px){ .intro-content .description{ font-size:14px; line-height:1.7; } }
@@ -237,8 +241,9 @@ title: home
   }
   @media (max-width:480px){ .update-icon{ width:28px; height:28px; font-size:16px; } }
 
+  /* More 버튼 색상 변경 */
   .update-more{
-    color:var(--red); font-weight:700; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:4px;
+    color:var(--gold); font-weight:700; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:4px;
     transition:gap .2s; padding:4px 8px; margin:-4px -8px;
   }
   .update-more:hover{ gap:8px; }
@@ -257,10 +262,18 @@ title: home
   .update-item:hover::before{ height:60%; }
   @media (hover:none){ .update-item:active{ background:#fef9f3; } }
 
-  .update-date{ display:flex; align-items:baseline; gap:6px; margin-bottom:8px; }
-  .date-day{ font-size:24px; font-weight:900; color:var(--red); }
-  @media (max-width:480px){ .date-day{ font-size:20px; } }
-  .date-month{ font-size:12px; font-weight:700; color:#9ca3af; }
+  /* 날짜 표시 스타일 변경 */
+  .update-date{ 
+    font-size:14px; 
+    font-weight:700; 
+    color:var(--gold); 
+    margin-bottom:8px; 
+  }
+  @media (max-width:480px){ 
+    .update-date{ 
+      font-size:13px; 
+    } 
+  }
 
   .update-item-title{
     font-size:15px; font-weight:800; color:#1f2937; line-height:1.5; display:block; cursor:pointer;
@@ -392,8 +405,7 @@ title: home
         {% for post in news_items limit:3 %}
           <div class="update-item" onclick="window.location.href='{{ post.url | relative_url }}'">
             <div class="update-date">
-              <span class="date-day">{{ post.date | date: "%d" }}</span>
-              <span class="date-month">{{ post.date | date: "%Y.%m" }}</span>
+              {{ post.date | date: "%Y.%m.%d" }}
             </div>
             <span class="update-item-title keep-words">{{ post.title }}</span>
             {% if post.category %}
@@ -431,8 +443,7 @@ title: home
         {% for post in notice_items limit:3 %}
           <div class="update-item" onclick="window.location.href='{{ post.url | relative_url }}'">
             <div class="update-date">
-              <span class="date-day">{{ post.date | date: "%d" }}</span>
-              <span class="date-month">{{ post.date | date: "%Y.%m" }}</span>
+              {{ post.date | date: "%Y.%m.%d" }}
             </div>
             <span class="update-item-title keep-words">{{ post.title }}</span>
             {% if post.category %}
