@@ -4,26 +4,22 @@ title: gallery
 permalink: /archives-gallery.html
 ---
 
-<!-- ===== Styles ===== -->
+<!-- ===== Unified Styles ===== -->
 <style>
-  /* Breadcrumbs (for old image banner & general use) */
-  .breadcrumbs{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:12px}
-  .breadcrumbs a{color:#e5e7eb}
-  .breadcrumbs a:hover{text-decoration:underline}
-  .breadcrumbs .sep{opacity:.8}
-
-  /* ====== NEW: Animated Gradient Banner (responsive) ====== */
   :root {
     --gold: rgb(214, 177, 77);
+    --gold-light: rgba(214, 177, 77, 0.1);
     --gold-mid: rgb(234, 197, 97);
     --gold-dark: rgb(194, 157, 57);
   }
+
+  /* Banner 스타일 (통일) */
   .banner-section {
-    background: linear-gradient(135deg,
-      var(--gold) 0%,
-      var(--gold-mid) 25%,
-      var(--gold-dark) 50%,
-      var(--gold) 75%,
+    background: linear-gradient(135deg, 
+      var(--gold) 0%, 
+      var(--gold-mid) 25%, 
+      var(--gold-dark) 50%, 
+      var(--gold) 75%, 
       var(--gold-mid) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
@@ -34,11 +30,53 @@ permalink: /archives-gallery.html
     box-shadow: 0 10px 30px rgba(0,0,0,.08);
     cursor: pointer;
   }
+
   @keyframes gradientShift {
-    0% { background-position: 0% 50%;}
-    50% { background-position: 100% 50%;}
-    100% { background-position: 0% 50%;}
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
+
+  /* 네트워크 버스트 애니메이션 (통일) */
+  .network-burst {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    opacity: 0;
+    animation: burstAnimation 2s ease-out forwards;
+  }
+
+  @keyframes burstAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.3) rotate(0deg);
+    }
+    30% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(2) rotate(180deg);
+    }
+  }
+
+  .network-burst svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .burst-line {
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: 1.5;
+    fill: none;
+  }
+
+  .burst-dot {
+    fill: rgba(255, 255, 255, 0.95);
+  }
+
+  /* 텍스트 컨테이너 (통일) */
   .banner-content {
     position: relative;
     z-index: 10;
@@ -48,162 +86,490 @@ permalink: /archives-gallery.html
     justify-content: flex-start;
     min-height: 200px;
   }
+
+  /* Breadcrumbs (통일) */
   .banner-breadcrumbs {
-    display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
-    font-size:13px;font-weight:600;margin-bottom:8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
   }
-  .banner-breadcrumbs a{color:rgba(255,255,255,.92);text-decoration:none;transition:color .2s}
-  .banner-breadcrumbs a:hover{color:#fff;text-decoration:underline}
-  .banner-breadcrumbs .sep{color:rgba(255,255,255,.75)}
-  .banner-breadcrumbs span:not(.sep):not(a){color:#fff;font-weight:700}
+  
+  .banner-breadcrumbs a {
+    color: rgba(255,255,255,0.92);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .banner-breadcrumbs a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
+  .banner-breadcrumbs .sep {
+    color: rgba(255,255,255,0.75);
+  }
+  
+  .banner-breadcrumbs span:not(.sep):not(a) {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* 제목 (통일) */
   .banner-title {
     font-size: 2.5rem;
     font-weight: 900;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,.12);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.12);
     letter-spacing: -0.02em;
     margin: 0;
   }
 
-  /* Network burst particles (click effect) */
-  .network-burst {
-    position:absolute;width:200px;height:200px;pointer-events:none;opacity:0;
-    animation: burstAnimation 2s ease-out forwards;
-  }
-  @keyframes burstAnimation {
-    0% {opacity:0;transform:scale(.3) rotate(0deg)}
-    30% {opacity:.85}
-    100% {opacity:0;transform:scale(2) rotate(180deg)}
-  }
-  .network-burst svg{width:100%;height:100%}
-  .burst-line{stroke:rgba(255,255,255,.7);stroke-width:1.5;fill:none}
-  .burst-dot{fill:rgba(255,255,255,.95)}
-
   /* ===== Search Container ===== */
-  .search-container{
-    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-    background:#f8fafc;border:1px solid #e5e7eb;border-radius:1rem;padding:16px;margin-top:20px;
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 16px;
+    margin-top: 20px;
   }
-  .search-box{flex:1;min-width:0;}
-  .search-box input{width:100%;border:1px solid #e5e7eb;border-radius:.6rem;padding:.6rem .8rem;font-size:14px;box-sizing:border-box;}
-  .search-count{font-size:13px;color:#6b7280;font-weight:600;background:#fff;padding:.4rem .8rem;border:1px solid #e5e7eb;border-radius:.5rem;white-space:nowrap;}
+  
+  .search-box {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .search-box input {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: .6rem;
+    padding: .6rem .8rem;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .search-count {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+    background: #fff;
+    padding: .4rem .8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: .5rem;
+    white-space: nowrap;
+  }
 
   /* ===== Gallery Grid ===== */
-  .gallery-grid{display:grid;gap:20px;margin-top:24px;grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));}
-  @media (max-width: 640px){
-    .gallery-grid{grid-template-columns:1fr;gap:16px;}
-    .search-count{text-align:center;width:100%;}
+  .gallery-grid {
+    display: grid;
+    gap: 20px;
+    margin-top: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
   /* ===== Gallery Card ===== */
-  .gallery-card{background:#fff;border:1px solid #e5e7eb;border-radius:1rem;overflow:hidden;transition:all .2s;cursor:pointer;display:flex;flex-direction:column;}
-  .gallery-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1);}
-
-  /* Thumbnail - Changed to contain to prevent image cutoff */
-  .gallery-thumb{
-    width:100%;
-    height:200px;
-    background-color:#f3f4f6;
-    background-size:contain;  /* Changed from cover to contain */
-    background-position:center;
-    background-repeat:no-repeat;
-    position:relative;
-    overflow:hidden;
+  .gallery-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all .2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
   }
   
-  /* Alternative: If you want the image to fill but show more of it, use cover with object-fit */
-  /* .gallery-thumb{
-    width:100%;
-    height:200px;
-    background-color:#f3f4f6;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    position:relative;
-    overflow:hidden;
-  } */
+  .gallery-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.1);
+  }
+
+  .gallery-thumb {
+    width: 100%;
+    height: 200px;
+    background-color: #f3f4f6;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+  }
   
-  .gallery-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.3));opacity:0;transition:opacity .2s;}
-  .gallery-card:hover .gallery-thumb::after{opacity:1;}
-
-  /* Card Content */
-  .gallery-content{padding:16px;flex:1;display:flex;flex-direction:column;}
-
-  /* Date Badge */
-  .gallery-date{
-    display:inline-flex;align-items:center;padding:3px 8px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:999px;font-size:11px;font-weight:600;color:#6b7280;margin-bottom:10px;align-self:flex-start;
+  .gallery-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 70%, rgba(0,0,0,.3));
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  
+  .gallery-card:hover .gallery-thumb::after {
+    opacity: 1;
   }
 
-  /* Title */
-  .gallery-title{
-    font-size:16px;font-weight:800;color:#111827;line-height:1.4;margin-bottom:8px;
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  .gallery-content {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
-  /* Tags */
-  .gallery-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px;}
-  .gallery-tag{display:inline-flex;padding:3px 10px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;font-size:11px;font-weight:600;color:#374151;}
+  .gallery-date {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
+
+  .gallery-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .gallery-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 12px;
+  }
+  
+  .gallery-tag {
+    display: inline-flex;
+    padding: 3px 10px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #374151;
+  }
 
   /* ===== Modal Styles ===== */
-  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9998;display:none;opacity:0;transition:opacity .3s;}
-  .modal-overlay.show{display:block;opacity:1;}
-  .modal-panel{
-    position:fixed;top:50%;left:50%;transform:translate(-50%, -50%) scale(.95);
-    width:90%;max-width:1100px;max-height:85vh;background:#fff;border-radius:1rem;z-index:9999;display:none;opacity:0;transition:all .3s;overflow:hidden;
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    z-index: 9998;
+    display: none;
+    opacity: 0;
+    transition: opacity .3s;
   }
-  .modal-panel.show{display:flex;flex-direction:column;opacity:1;transform:translate(-50%, -50%) scale(1);}
-  .modal-header{padding:16px 20px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;background:#f8fafc;position:sticky;top:0;z-index:1;}
-  .modal-title{font-size:18px;font-weight:900;color:#111827;margin-right:8px;}
-  .modal-close{width:36px;height:36px;border-radius:.5rem;border:none;background:#fff;color:#111827;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-  .modal-close:hover{background:#e5e7eb;}
-  .modal-footer{display:none;position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;padding:10px;z-index:1;}
-  .modal-close-mobile{width:100%;padding:12px 16px;border-radius:.75rem;border:1px solid #e5e7eb;background:#111827;color:#fff;font-weight:800;font-size:14px;}
-  @media (max-width:640px){.modal-footer{display:block;}}
-  .modal-body{flex:1;overflow-y:auto;padding:16px 20px;}
-  .modal-meta{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
-  .modal-date{display:inline-flex;align-items:center;padding:4px 12px;background:#111827;color:#fff;border-radius:999px;font-size:12px;font-weight:700;}
-  .modal-tags-container{display:flex;gap:8px;flex-wrap:wrap;}
-  .modal-tag{display:inline-flex;padding:4px 12px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:999px;font-size:12px;font-weight:600;color:#374151;}
-  .modal-gallery{display:grid;gap:12px;margin-top:12px;}
-  .modal-image{position:relative;width:100%;border-radius:.75rem;overflow:hidden;background:#0f172a;}
-  .modal-image::before{content:"";display:block;padding-top:56.25%;}
-  .modal-image > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  
+  .modal-overlay.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .modal-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.95);
+    width: 90%;
+    max-width: 1100px;
+    max-height: 85vh;
+    background: #fff;
+    border-radius: 1rem;
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: all .3s;
+    overflow: hidden;
+  }
+  
+  .modal-panel.show {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  
+  .modal-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #111827;
+    margin-right: 8px;
+  }
+  
+  .modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: .5rem;
+    border: none;
+    background: #fff;
+    color: #111827;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+  }
+  
+  .modal-close:hover {
+    background: #e5e7eb;
+  }
+  
+  .modal-footer {
+    display: none;
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .modal-close-mobile {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: .75rem;
+    border: 1px solid #e5e7eb;
+    background: #111827;
+    color: #fff;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  
+  @media (max-width:640px) {
+    .modal-footer {
+      display: block;
+    }
+  }
+  
+  .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+  }
+  
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .modal-date {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: #111827;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .modal-tags-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  
+  .modal-tag {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .modal-gallery {
+    display: grid;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  
+  .modal-image {
+    position: relative;
+    width: 100%;
+    border-radius: .75rem;
+    overflow: hidden;
+    background: #0f172a;
+  }
+  
+  .modal-image::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
+  
+  .modal-image > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   /* ===== Lightbox ===== */
-  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;}
-  .lightbox.show{display:flex;}
-  .lightbox-image{max-width:100%;max-height:100%;object-fit:contain;}
-  .lightbox-close{
-    position:absolute;top:20px;right:20px;width:40px;height:40px;background:rgba(255,255,255,.1);
-    border:2px solid rgba(255,255,255,.3);border-radius:50%;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.95);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
   }
-  .lightbox-close:hover{background:rgba(255,255,255,.2);transform:scale(1.1);}
+  
+  .lightbox.show {
+    display: flex;
+  }
+  
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,.1);
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+  }
+  
+  .lightbox-close:hover {
+    background: rgba(255,255,255,.2);
+    transform: scale(1.1);
+  }
 
-  /* ===== Empty State ===== */
-  .empty-state{grid-column:1/-1;padding:60px 20px;text-align:center;}
-  .empty-icon{width:80px;height:80px;margin:0 auto 20px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;}
-  .empty-title{font-size:18px;font-weight:800;color:#111827;margin-bottom:8px;}
-  .empty-text{font-size:14px;color:#6b7280;}
+  /* ===== Empty State (통일) ===== */
+  .empty-state {
+    grid-column: 1/-1;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .empty-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+  
+  .empty-text {
+    font-size: 14px;
+    color: #6b7280;
+  }
 
-  /* ===== Responsive tweaks ===== */
-  @media (max-width:768px){
-    .banner-title{font-size:2rem}
-    .banner-content{padding:28px 20px;min-height:160px}
-    .banner-section{min-height:160px}
+  /* 반응형 (통일) */
+  @media (max-width: 768px) {
+    .banner-title { font-size: 2rem; }
+    .banner-content { 
+      padding: 28px 20px;
+      min-height: 160px;
+    }
+    .banner-section {
+      min-height: 160px;
+    }
   }
-  @media (max-width:640px){
-    .gallery-thumb{height:160px}
-    .gallery-title{font-size:15px}
-    .modal-panel{width:100%;height:100%;max-width:100%;max-height:100%;border-radius:0}
+
+  @media (max-width: 640px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .search-count {
+      text-align: center;
+      width: 100%;
+    }
+    .gallery-thumb {
+      height: 160px;
+    }
+    .gallery-title {
+      font-size: 15px;
+    }
+    .modal-panel {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 0;
+    }
+    .banner-title { font-size: 1.75rem; }
+    .banner-content { 
+      padding: 24px 16px;
+      min-height: 140px;
+    }
+    .banner-section {
+      min-height: 140px;
+    }
+    .banner-breadcrumbs { font-size: 12px; }
   }
-  @media (max-width:480px){
-    .banner-title{font-size:1.6rem}
-    .banner-content{padding:22px 16px;min-height:130px}
-    .banner-section{min-height:130px}
+
+  @media (max-width: 480px) {
+    .banner-content { 
+      padding: 20px 16px;
+      min-height: 120px;
+    }
+    .banner-section {
+      min-height: 120px;
+    }
+    .banner-title { font-size: 1.5rem; }
+    .banner-breadcrumbs { font-size: 11px; }
   }
 </style>
 
-<!-- ===== NEW: Animated Banner (Home › Archives › Gallery) ===== -->
+<!-- ===== Page Title / Banner ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
     <div class="banner-content">
@@ -231,9 +597,8 @@ permalink: /archives-gallery.html
   </div>
 </section>
 
-<!-- ===== Gallery Grid (Jekyll Integration) ===== -->
+<!-- ===== Gallery Grid ===== -->
 <section class="max-w-7xl mx-auto px-4 pb-8">
-  {% comment %} Collect and sort gallery pages {% endcomment %}
   {% assign all_items = site.pages | concat: site.posts %}
   {% assign galleries = "" | split: "" %}
   {% for item in all_items %}
@@ -252,26 +617,18 @@ permalink: /archives-gallery.html
   {% if galleries_sorted.size == 0 %}
     <div class="empty-state">
       <div class="empty-icon">📷</div>
-      <div class="empty-title">No gallery items found</div>
-      <div class="empty-text">Gallery albums will appear here once created</div>
+      <div class="empty-title">갤러리 항목이 없습니다</div>
+      <div class="empty-text">갤러리 앨범이 생성되면 여기에 표시됩니다</div>
     </div>
   {% else %}
     <div class="gallery-grid" id="galleryGrid">
       {% for gallery in galleries_sorted %}
-
-        {%- comment -%}
-        Build source base path from the file location, not the permalink.
-        Example: "/gallery/2025-09-01-1/"
-        {%- endcomment -%}
         {% assign base = '/' | append: gallery.path | remove: gallery.name | replace: '//','/' %}
         {% assign last_char = base | slice: -1, 1 %}
         {% unless base contains '/' and last_char == '/' %}
           {% assign base = base | append: '/' %}
         {% endunless %}
 
-        {%- comment -%}
-        Resolve thumbnail url from front matter or discovered images under source folder
-        {%- endcomment -%}
         {% assign thumb_url = nil %}
         {% if gallery.thumb %}
           {% if gallery.thumb contains '://' or gallery.thumb[0] == '/' %}
@@ -281,9 +638,6 @@ permalink: /archives-gallery.html
           {% endif %}
         {% endif %}
 
-        {%- comment -%}
-        Build images_csv from front matter (source-folder based), else discover from static_files under source folder
-        {%- endcomment -%}
         {% assign images_csv = '' %}
         {% assign has_images_from_front_matter = false %}
 
@@ -341,9 +695,6 @@ permalink: /archives-gallery.html
           {% assign thumb_url = '/assets/img/placeholders/gallery.jpg' | relative_url %}
         {% endunless %}
 
-        {%- comment -%}
-        Search text (title + tags)
-        {%- endcomment -%}
         {% assign search_text = gallery.title | downcase %}
         {% if gallery.tags %}
           {% assign tags_text = gallery.tags | join: ' ' | downcase %}
@@ -385,8 +736,7 @@ permalink: /archives-gallery.html
     <h3 class="modal-title" id="modalTitle">Gallery</h3>
     <button type="button" class="modal-close" aria-label="Close" onclick="closeGalleryModal()">✕</button>
   </div>
-  <div class="modal-body" id="modalBody"><!-- Content will be inserted here --></div>
-  <!-- Mobile friendly close -->
+  <div class="modal-body" id="modalBody"></div>
   <div class="modal-footer">
     <button type="button" class="modal-close-mobile" onclick="closeGalleryModal()">Close</button>
   </div>
@@ -398,9 +748,9 @@ permalink: /archives-gallery.html
   <img class="lightbox-image" id="lightboxImage" alt="">
 </div>
 
-<!-- ===== Scripts ===== -->
+<!-- JavaScript (통일된 네트워크 패턴 포함) -->
 <script>
-/* ===== NEW: Animated banner click effect ===== */
+// Network burst animation
 function createNetworkBurst(event, element) {
   const rect = element.getBoundingClientRect();
   const x = event.clientX - rect.left - 100;
@@ -418,6 +768,7 @@ function createNetworkBurst(event, element) {
   element.appendChild(networkDiv);
   setTimeout(()=>{ element.removeChild(networkDiv); }, 2000);
 }
+
 function generateHeartNetwork(){
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const heartPath='M100,140 C80,120 40,100 40,70 C40,50 55,35 70,35 C85,35 95,45 100,55 C105,45 115,35 130,35 C145,35 160,50 160,70 C160,100 120,120 100,140 Z';
@@ -428,6 +779,7 @@ function generateHeartNetwork(){
   nodes.forEach(n=>{svg+=`<circle cx="${n.x}" cy="${n.y}" r="${3+Math.random()*2}" class="burst-dot"/>`});
   svg+='</svg>'; return svg;
 }
+
 function generateClubNetwork(){
   let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const circles=[{x:100,y:60,r:25},{x:75,y:85,r:25},{x:125,y:85,r:25}];
@@ -440,6 +792,7 @@ function generateClubNetwork(){
   nodes.forEach(n=>{svg+=`<circle cx="${n.x}" cy="${n.y}" r="${2+Math.random()*2}" class="burst-dot"/>`});
   svg+='</svg>'; return svg;
 }
+
 function generateSpadeNetwork(){
   let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const spadePath='M100,50 C80,50 60,65 60,85 C60,105 75,110 85,110 C90,110 95,108 100,105 C105,108 110,110 115,110 C125,110 140,105 140,85 C140,65 120,50 100,50 Z';
@@ -452,6 +805,7 @@ function generateSpadeNetwork(){
   nodes.forEach((n,i)=>{const r=(i===0||i===7)?4:3; svg+=`<circle cx="${n.x}" cy="${n.y}" r="${r}" class="burst-dot"/>`});
   svg+='</svg>'; return svg;
 }
+
 function generateDiamondNetwork(){
   let svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const diamondPath='M100,40 L140,100 L100,160 L60,100 Z';
@@ -467,7 +821,7 @@ function generateDiamondNetwork(){
   svg+='</svg>'; return svg;
 }
 
-/* Open Gallery Modal with dynamic grid */
+// Gallery functions
 function openGalleryModal(card){
   const title = card.dataset.title;
   const date = card.dataset.date;
@@ -507,8 +861,8 @@ function openGalleryModal(card){
     bodyContent += `
       <div class="empty-state" style="padding:40px 20px;">
         <div class="empty-icon">🖼️</div>
-        <div class="empty-title">No images available</div>
-        <div class="empty-text">Images will be displayed here once uploaded</div>
+        <div class="empty-title">이미지가 없습니다</div>
+        <div class="empty-text">업로드되면 여기에 표시됩니다</div>
       </div>`;
   }
 
@@ -527,25 +881,23 @@ function openGalleryModal(card){
   enableSwipeClose(document.getElementById('modalPanel'));
 }
 
-/* Close Gallery Modal */
 function closeGalleryModal(){
   document.getElementById('modalOverlay').classList.remove('show');
   document.getElementById('modalPanel').classList.remove('show');
   document.body.style.overflow = '';
 }
 
-/* Lightbox */
 function openLightbox(imageSrc){
   event.stopPropagation();
   const img = document.getElementById('lightboxImage');
   img.src = imageSrc;
   document.getElementById('lightbox').classList.add('show');
 }
+
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('show');
 }
 
-/* ESC handling */
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){
     const lb = document.getElementById('lightbox');
@@ -554,7 +906,7 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-/* Search */
+// Search functionality
 (function(){
   const searchInput = document.getElementById('searchInput');
   const searchCount = document.getElementById('searchCount');
@@ -583,8 +935,8 @@ document.addEventListener('keydown', function(e){
         emptyDiv.className = 'empty-state';
         emptyDiv.innerHTML = `
           <div class="empty-icon">🔍</div>
-          <div class="empty-title">No results found</div>
-          <div class="empty-text">Try adjusting your search term</div>`;
+          <div class="empty-title">검색 결과가 없습니다</div>
+          <div class="empty-text">다른 검색어로 시도해보세요</div>`;
         galleryGrid.appendChild(emptyDiv);
       }
     } else {
@@ -596,7 +948,6 @@ document.addEventListener('keydown', function(e){
   searchInput.addEventListener('input', filterGallery);
 })();
 
-/* Swipe-down to close (mobile-friendly) */
 function enableSwipeClose(panel){
   let startY = null, startX = null, moved = false;
   function onTouchStart(e){ const t = e.touches[0]; startY = t.clientY; startX = t.clientX; moved = false; }
