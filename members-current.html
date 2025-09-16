@@ -156,7 +156,7 @@ permalink: /members-current.html
     .stat-card.undergrad-stat{ border-top:3px solid var(--undergrad-red); }
     .stat-card.total-stat{ border-top:3px solid var(--primary-dark); }
 
-    /* ENHANCED Section Headers with Toggle */
+    /* ENHANCED Section Headers with Toggle (Fixed Layout) */
     .section-header{ 
       margin-top:3rem;
       margin-bottom:2rem;
@@ -165,7 +165,7 @@ permalink: /members-current.html
     }
     
     .section-header-content {
-      padding:28px 32px;
+      padding:24px 28px;
       background: #fff;
       border-radius: 20px;
       position: relative;
@@ -175,6 +175,7 @@ permalink: /members-current.html
       transition: all 0.3s ease;
       cursor: pointer;
       user-select: none;
+      min-height: 100px;
     }
     
     /* PhD Style */
@@ -249,22 +250,31 @@ permalink: /members-current.html
       100% { background-position: 200% 0; }
     }
     
-    /* Toggle Button */
+    /* Section Content Layout */
+    .section-content {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding-right: 140px; /* Space for member count and toggle */
+    }
+    
+    /* Toggle Button - Fixed Position */
     .toggle-btn {
       position: absolute;
-      right: 32px;
+      right: 24px;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 8px;
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 14px;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 2;
     }
     
     .section-header.phd .toggle-btn {
@@ -292,20 +302,55 @@ permalink: /members-current.html
       transform: translateY(-50%) rotate(180deg) scale(1.1);
     }
     
+    /* Member count badge - Fixed Position */
+    .member-count {
+      position: absolute;
+      top: 50%;
+      right: 65px;
+      transform: translateY(-50%);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    
+    .section-header.phd .member-count {
+      background: rgba(214, 177, 77, 0.15);
+      color: var(--phd-gold);
+      border: 1px solid rgba(214, 177, 77, 0.3);
+    }
+    .section-header.ms .member-count {
+      background: rgba(245, 225, 150, 0.2);
+      color: rgb(160, 140, 60);
+      border: 1px solid rgba(245, 225, 150, 0.4);
+    }
+    .section-header.undergrad .member-count {
+      background: rgba(172, 14, 14, 0.1);
+      color: var(--undergrad-red);
+      border: 1px solid rgba(172, 14, 14, 0.2);
+    }
+    
     /* Icon Container */
     .section-icon-wrapper {
       position: relative;
       display: inline-block;
+      flex-shrink: 0;
     }
     
     .section-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 28px;
       position: relative;
       z-index: 2;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
@@ -323,6 +368,32 @@ permalink: /members-current.html
     .section-header.undergrad .section-icon {
       background: linear-gradient(135deg, var(--undergrad-red), rgb(152, 14, 14));
       box-shadow: 0 6px 20px rgba(172, 14, 14, 0.25);
+    }
+    
+    .section-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .section-main-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: #111827;
+      letter-spacing: -0.3px;
+      margin: 0;
+      word-break: keep-all;
+      line-height: 1.2;
+    }
+    
+    .section-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.3;
     }
     
     /* Hover animation */
@@ -346,6 +417,95 @@ permalink: /members-current.html
       max-height: 5000px;
       opacity: 1;
       transition: all 0.4s ease;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .section-header { 
+        margin-top: 2rem; 
+        margin-bottom: 1.5rem;
+      }
+      
+      .section-header-content { 
+        padding: 18px 20px;
+        min-height: 80px;
+      }
+      
+      .section-content {
+        padding-right: 50px; /* Less space needed on mobile */
+        gap: 14px;
+      }
+      
+      .section-icon { 
+        width: 44px; 
+        height: 44px; 
+        font-size: 22px;
+        border-radius: 10px;
+      }
+      
+      .section-main-title { 
+        font-size: 17px;
+      }
+      
+      .section-subtitle { 
+        font-size: 11px;
+      }
+      
+      .member-count { 
+        position: static;
+        transform: none;
+        margin-top: 12px;
+        padding: 4px 10px; 
+        font-size: 10px;
+        align-self: flex-start;
+      }
+      
+      .toggle-btn {
+        right: 16px;
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
+      
+      /* Stack layout on very small screens */
+      @media (max-width: 480px) {
+        .section-header-content {
+          padding: 16px;
+          min-height: auto;
+        }
+        
+        .section-content {
+          flex-direction: row;
+          align-items: center;
+          padding-right: 40px;
+        }
+        
+        .section-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        }
+        
+        .section-main-title {
+          font-size: 15px;
+        }
+        
+        .section-subtitle {
+          font-size: 10px;
+          display: none; /* Hide subtitle on very small screens */
+        }
+        
+        .member-count {
+          display: none; /* Hide member count on very small screens */
+        }
+        
+        .toggle-btn {
+          right: 12px;
+          width: 22px;
+          height: 22px;
+          font-size: 11px;
+        }
+      }
     }
     
     .section-text {
@@ -1029,7 +1189,7 @@ function loadAllMembers() {
   }
 }
 
-// Render members grouped by degree
+// Render members grouped by degree (Fixed Layout)
 function renderMembers() {
   const container = document.getElementById('membersContainer');
   container.innerHTML = '';
@@ -1044,14 +1204,19 @@ function renderMembers() {
     const categoryMembers = allMembers.filter(m => m.degree === category.degree);
     if (categoryMembers.length === 0) return;
     
+    // Check if mobile to adjust layout
+    const isMobile = window.innerWidth <= 768;
+    
     // Create section header with toggle functionality
     const sectionHTML = `
       <div class="section-header ${category.class}">
         <div class="section-header-content" onclick="toggleSection('${category.degree}')">
-          <div class="member-count">
-            <span class="count-number">${categoryMembers.length}</span>
-            <span>${categoryMembers.length === 1 ? 'MEMBER' : 'MEMBERS'}</span>
-          </div>
+          ${!isMobile ? `
+            <div class="member-count">
+              <span class="count-number">${categoryMembers.length}</span>
+              <span>${categoryMembers.length === 1 ? 'MEMBER' : 'MEMBERS'}</span>
+            </div>
+          ` : ''}
           <div class="toggle-btn" id="toggle-${category.degree}">
             ▼
           </div>
@@ -1061,9 +1226,15 @@ function renderMembers() {
             </div>
             <div class="section-text">
               <h2 class="section-main-title">${category.title}</h2>
-              <p class="section-subtitle">${category.subtitle}</p>
+              ${!isMobile ? `<p class="section-subtitle">${category.subtitle}</p>` : ''}
             </div>
           </div>
+          ${isMobile ? `
+            <div class="member-count">
+              <span class="count-number">${categoryMembers.length}</span>
+              <span>${categoryMembers.length === 1 ? '' : 's'}</span>
+            </div>
+          ` : ''}
         </div>
       </div>
       <div class="members-grid expanded" id="${category.degree}-grid"></div>
