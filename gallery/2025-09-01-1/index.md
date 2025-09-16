@@ -394,10 +394,15 @@ images:
   <article class="content-card">
     <div class="content-body">
       {% comment %}
-      이미지 경로 설정: 현재 파일 위치 기준
-      예: /gallery/2025-09-01-1/index.md → /gallery/2025-09-01-1/
+      이미지 경로 설정: 파일의 실제 경로 기준 (archives-gallery.html과 동일한 방식)
+      page.path = gallery/2025-09-01-1/index.md
+      src_dir = /gallery/2025-09-01-1/
       {% endcomment %}
-      {% assign src_dir = page.url | append: '/' | replace: '//', '/' %}
+      {% assign src_dir = '/' | append: page.path | remove: page.name | replace: '//','/' %}
+      {% assign last_char = src_dir | slice: -1, 1 %}
+      {% unless src_dir contains '/' and last_char == '/' %}
+        {% assign src_dir = src_dir | append: '/' %}
+      {% endunless %}
       
       {% if page.images and page.images.size > 0 %}
         <div class="image-grid">
@@ -417,14 +422,12 @@ images:
           {% endfor %}
         </div>
       {% else %}
-        <!-- Fallback: 현재 디렉토리의 모든 이미지 파일 탐색 -->
-        {% assign gallery_path = page.url %}
-        {% assign imgs = site.static_files | where_exp: "f", "f.path contains gallery_path" %}
+        <!-- Fallback: site.static_files 방식 (archives-gallery.html과 동일) -->
+        {% assign gallery_files = site.static_files | where_exp: "f", "f.path contains src_dir" %}
         {% assign image_files = "" | split: "" %}
-        
-        {% for f in imgs %}
+        {% for f in gallery_files %}
           {% assign ext = f.extname | downcase %}
-          {% if ext == ".jpg" or ext == ".jpeg" or ext == ".png" or ext == ".webp" or ext == ".gif" %}
+          {% if ext == '.jpg' or ext == '.jpeg' or ext == '.png' or ext == '.webp' or ext == '.gif' %}
             {% assign image_files = image_files | push: f %}
           {% endif %}
         {% endfor %}
