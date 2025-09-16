@@ -94,11 +94,11 @@ images:
     padding: 32px;
   }
   
-  /* Image Grid (갤러리 전용) */
+  /* Image Grid (갤러리 페이지 적정 크기) */
   .image-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
   }
   
   .image-item {
@@ -124,6 +124,7 @@ images:
     justify-content: center;
     overflow: hidden;
     position: relative;
+    max-height: 150px;
   }
   
   .image-wrapper img {
@@ -361,7 +362,7 @@ images:
   }
 </style>
 
-<section class="max-w-5xl mx-auto px-4 mt-8 pb-12">
+<section class="max-w-3xl mx-auto px-4 mt-8 pb-12">
   <!-- Hero Section (상세 페이지 통일 디자인) -->
   <div class="hero-section">
     <div class="hero-header">
