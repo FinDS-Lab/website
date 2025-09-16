@@ -2,7 +2,7 @@
 layout: default
 title: "FINDS Lab. Logo"
 date: 2025-09-01
-permalink: /gallery/2025-09-01-open/
+permalink: /gallery/2025-09-01-1/
 tags: [logo]
 thumb: logo-finds.png
 images:
