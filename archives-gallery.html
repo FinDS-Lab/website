@@ -128,7 +128,7 @@ permalink: /archives-gallery.html
     margin: 0;
   }
 
-  /* ===== Search Container ===== */
+  /* Search Container */
   .search-container {
     display: flex;
     align-items: center;
@@ -166,7 +166,7 @@ permalink: /archives-gallery.html
     white-space: nowrap;
   }
 
-  /* ===== Gallery Grid ===== */
+  /* Gallery Grid */
   .gallery-grid {
     display: grid;
     gap: 20px;
@@ -174,7 +174,7 @@ permalink: /archives-gallery.html
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
-  /* ===== Gallery Card ===== */
+  /* Gallery Card */
   .gallery-card {
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -267,15 +267,16 @@ permalink: /archives-gallery.html
     color: #374151;
   }
 
-  /* ===== Modal Styles ===== */
+  /* Modal Styles (개선된 디자인) */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.7);
+    background: rgba(0,0,0,.85);
     z-index: 9998;
     display: none;
     opacity: 0;
     transition: opacity .3s;
+    backdrop-filter: blur(10px);
   }
   
   .modal-overlay.show {
@@ -289,15 +290,16 @@ permalink: /archives-gallery.html
     left: 50%;
     transform: translate(-50%, -50%) scale(.95);
     width: 90%;
-    max-width: 1100px;
-    max-height: 85vh;
+    max-width: 1200px;
+    max-height: 90vh;
     background: #fff;
-    border-radius: 1rem;
+    border-radius: 20px;
     z-index: 9999;
     display: none;
     opacity: 0;
     transition: all .3s;
     overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   }
   
   .modal-panel.show {
@@ -307,30 +309,60 @@ permalink: /archives-gallery.html
     transform: translate(-50%, -50%) scale(1);
   }
   
-  .modal-header {
-    padding: 16px 20px;
-    border-bottom: 1px solid #e5e7eb;
+  /* Modal Hero Section (상세 페이지 스타일 적용) */
+  .modal-hero {
+    background: linear-gradient(135deg, #f5f3ff 0%, #fef3c7 100%);
+    border-bottom: 1px solid rgba(214,177,77,0.2);
+    padding: 24px 32px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background: #f8fafc;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+    align-items: flex-start;
+  }
+  
+  .modal-hero-content {
+    flex: 1;
+  }
+  
+  .modal-category {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #6b7280;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
   }
   
   .modal-title {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 900;
     color: #111827;
-    margin-right: 8px;
+    margin: 0 0 12px 0;
+  }
+  
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .modal-meta-pill {
+    background: white;
+    border: 2px solid var(--gold);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
   
   .modal-close {
     width: 36px;
     height: 36px;
-    border-radius: .5rem;
-    border: none;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
     background: #fff;
     color: #111827;
     font-size: 20px;
@@ -339,93 +371,42 @@ permalink: /archives-gallery.html
     align-items: center;
     justify-content: center;
     transition: all .2s;
+    flex-shrink: 0;
+    margin-left: 20px;
   }
   
   .modal-close:hover {
-    background: #e5e7eb;
-  }
-  
-  .modal-footer {
-    display: none;
-    position: sticky;
-    bottom: 0;
-    background: #fff;
-    border-top: 1px solid #e5e7eb;
-    padding: 10px;
-    z-index: 1;
-  }
-  
-  .modal-close-mobile {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: .75rem;
-    border: 1px solid #e5e7eb;
-    background: #111827;
+    background: var(--gold);
+    border-color: var(--gold);
     color: #fff;
-    font-weight: 800;
-    font-size: 14px;
+    transform: rotate(90deg);
   }
   
-  @media (max-width:640px) {
-    .modal-footer {
-      display: block;
-    }
-  }
-  
+  /* Modal Body */
   .modal-body {
     flex: 1;
     overflow-y: auto;
-    padding: 16px 20px;
-  }
-  
-  .modal-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-  
-  .modal-date {
-    display: inline-flex;
-    align-items: center;
-    padding: 4px 12px;
-    background: #111827;
-    color: #fff;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  
-  .modal-tags-container {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  
-  .modal-tag {
-    display: inline-flex;
-    padding: 4px 12px;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #374151;
+    padding: 32px;
   }
   
   .modal-gallery {
     display: grid;
-    gap: 12px;
-    margin-top: 12px;
+    gap: 16px;
+    margin-top: 0;
   }
   
   .modal-image {
     position: relative;
     width: 100%;
-    border-radius: .75rem;
+    border-radius: 12px;
     overflow: hidden;
     background: #0f172a;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .modal-image:hover {
+    transform: scale(1.02);
   }
   
   .modal-image::before {
@@ -439,10 +420,11 @@ permalink: /archives-gallery.html
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #f9fafb;
   }
 
-  /* ===== Lightbox ===== */
+  /* Lightbox (이미지 확대 보기) */
   .lightbox {
     position: fixed;
     inset: 0;
@@ -452,6 +434,7 @@ permalink: /archives-gallery.html
     align-items: center;
     justify-content: center;
     padding: 20px;
+    backdrop-filter: blur(10px);
   }
   
   .lightbox.show {
@@ -462,14 +445,16 @@ permalink: /archives-gallery.html
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
   
   .lightbox-close {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     background: rgba(255,255,255,.1);
     border: 2px solid rgba(255,255,255,.3);
     border-radius: 50%;
@@ -487,7 +472,7 @@ permalink: /archives-gallery.html
     transform: scale(1.1);
   }
 
-  /* ===== Empty State (통일) ===== */
+  /* Empty State (통일) */
   .empty-state {
     grid-column: 1/-1;
     padding: 60px 20px;
@@ -545,6 +530,12 @@ permalink: /archives-gallery.html
       max-height: 100%;
       border-radius: 0;
     }
+    .modal-hero {
+      padding: 20px;
+    }
+    .modal-title {
+      font-size: 20px;
+    }
     .banner-title { font-size: 1.75rem; }
     .banner-content { 
       padding: 24px 16px;
@@ -569,7 +560,7 @@ permalink: /archives-gallery.html
   }
 </style>
 
-<!-- ===== Page Title / Banner ===== -->
+<!-- Page Title / Banner -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
     <div class="banner-content">
@@ -587,7 +578,7 @@ permalink: /archives-gallery.html
   </div>
 </section>
 
-<!-- ===== Search ===== -->
+<!-- Search -->
 <section class="max-w-7xl mx-auto px-4">
   <div class="search-container">
     <div class="search-box">
@@ -597,7 +588,7 @@ permalink: /archives-gallery.html
   </div>
 </section>
 
-<!-- ===== Gallery Grid ===== -->
+<!-- Gallery Grid -->
 <section class="max-w-7xl mx-auto px-4 pb-8">
   {% assign all_items = site.pages | concat: site.posts %}
   {% assign galleries = "" | split: "" %}
@@ -639,10 +630,8 @@ permalink: /archives-gallery.html
         {% endif %}
 
         {% assign images_csv = '' %}
-        {% assign has_images_from_front_matter = false %}
 
         {% if gallery.images and gallery.images.size > 0 %}
-          {% assign has_images_from_front_matter = true %}
           {% for _img in gallery.images %}
             {% assign _img_url = '' %}
             {% if _img contains '://' or _img[0] == '/' %}
@@ -729,26 +718,27 @@ permalink: /archives-gallery.html
   {% endif %}
 </section>
 
-<!-- ===== Modal ===== -->
+<!-- Modal -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeGalleryModal()"></div>
-<div class="modal-panel" id="modalPanel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-header">
-    <h3 class="modal-title" id="modalTitle">Gallery</h3>
+<div class="modal-panel" id="modalPanel" role="dialog" aria-modal="true">
+  <div class="modal-hero">
+    <div class="modal-hero-content">
+      <p class="modal-category">Gallery</p>
+      <h2 class="modal-title" id="modalTitle">Gallery</h2>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
     <button type="button" class="modal-close" aria-label="Close" onclick="closeGalleryModal()">✕</button>
   </div>
   <div class="modal-body" id="modalBody"></div>
-  <div class="modal-footer">
-    <button type="button" class="modal-close-mobile" onclick="closeGalleryModal()">Close</button>
-  </div>
 </div>
 
-<!-- ===== Lightbox ===== -->
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img class="lightbox-image" id="lightboxImage" alt="">
 </div>
 
-<!-- JavaScript (통일된 네트워크 패턴 포함) -->
+<!-- JavaScript -->
 <script>
 // Network burst animation
 function createNetworkBurst(event, element) {
@@ -821,25 +811,29 @@ function generateDiamondNetwork(){
   svg+='</svg>'; return svg;
 }
 
-// Gallery functions
+// Gallery Modal
 function openGalleryModal(card){
   const title = card.dataset.title;
   const date = card.dataset.date;
   const tags = card.dataset.tags ? card.dataset.tags.split(',').filter(Boolean) : [];
-  const url  = card.dataset.url;
   const images = card.dataset.images ? card.dataset.images.split(',').filter(Boolean) : [];
 
+  // Modal Header
   document.getElementById('modalTitle').textContent = title;
-
-  let bodyContent = '<div class="modal-meta">';
-  if (date) bodyContent += `<span class="modal-date">${date}</span>`;
-  if (tags.length){
-    bodyContent += '<div class="modal-tags-container">';
-    tags.forEach(tag => bodyContent += `<span class="modal-tag">#${tag}</span>`);
-    bodyContent += '</div>';
+  
+  // Modal Meta
+  let metaContent = '';
+  if (date) {
+    metaContent += `<div class="modal-meta-pill"><span>📅</span><span>${date}</span></div>`;
   }
-  bodyContent += '</div>';
+  if (tags.length) {
+    tags.forEach(tag => {
+      metaContent += `<div class="modal-meta-pill"><span>#</span><span>${tag}</span></div>`;
+    });
+  }
+  document.getElementById('modalMeta').innerHTML = metaContent;
 
+  // Modal Body
   const n = images.length;
   let cols = 1;
   if (n === 1){ cols = 1; }
@@ -848,8 +842,9 @@ function openGalleryModal(card){
   else if (n === 4){ cols = 2; }
   else if (n >= 5){ cols = 3; }
 
+  let bodyContent = '';
   if (n > 0){
-    bodyContent += `<div class="modal-gallery" id="modalGallery" style="grid-template-columns:repeat(${cols}, 1fr);">`;
+    bodyContent = `<div class="modal-gallery" style="grid-template-columns:repeat(${cols}, 1fr);">`;
     images.forEach((img, idx) => {
       bodyContent += `
         <div class="modal-image" onclick="openLightbox('${img}')" role="button" aria-label="Open image ${idx+1}">
@@ -858,7 +853,7 @@ function openGalleryModal(card){
     });
     bodyContent += '</div>';
   } else {
-    bodyContent += `
+    bodyContent = `
       <div class="empty-state" style="padding:40px 20px;">
         <div class="empty-icon">🖼️</div>
         <div class="empty-title">이미지가 없습니다</div>
@@ -866,19 +861,12 @@ function openGalleryModal(card){
       </div>`;
   }
 
-  const bodyEl = document.getElementById('modalBody');
-  bodyEl.innerHTML = bodyContent;
+  document.getElementById('modalBody').innerHTML = bodyContent;
 
-  if (n === 1){
-    const g = document.getElementById('modalGallery');
-    if (g){ g.style.maxWidth = '1200px'; g.style.margin = '0 auto'; }
-  }
-
+  // Show modal
   document.getElementById('modalOverlay').classList.add('show');
   document.getElementById('modalPanel').classList.add('show');
   document.body.style.overflow = 'hidden';
-
-  enableSwipeClose(document.getElementById('modalPanel'));
 }
 
 function closeGalleryModal(){
@@ -887,6 +875,7 @@ function closeGalleryModal(){
   document.body.style.overflow = '';
 }
 
+// Lightbox
 function openLightbox(imageSrc){
   event.stopPropagation();
   const img = document.getElementById('lightboxImage');
@@ -898,6 +887,7 @@ function closeLightbox(){
   document.getElementById('lightbox').classList.remove('show');
 }
 
+// ESC handling
 document.addEventListener('keydown', function(e){
   if (e.key === 'Escape'){
     const lb = document.getElementById('lightbox');
@@ -906,7 +896,7 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-// Search functionality
+// Search
 (function(){
   const searchInput = document.getElementById('searchInput');
   const searchCount = document.getElementById('searchCount');
@@ -947,23 +937,4 @@ document.addEventListener('keydown', function(e){
   updateCount(totalCount);
   searchInput.addEventListener('input', filterGallery);
 })();
-
-function enableSwipeClose(panel){
-  let startY = null, startX = null, moved = false;
-  function onTouchStart(e){ const t = e.touches[0]; startY = t.clientY; startX = t.clientX; moved = false; }
-  function onTouchMove(e){
-    if (startY === null) return;
-    const t = e.touches[0];
-    const dy = t.clientY - startY;
-    const dx = t.clientX - startX;
-    if (Math.abs(dy) > Math.abs(dx) && dy > 30){ moved = true; }
-  }
-  function onTouchEnd(){ if (moved) closeGalleryModal(); startY = startX = null; moved = false; }
-  panel.removeEventListener('touchstart', onTouchStart);
-  panel.removeEventListener('touchmove', onTouchMove);
-  panel.removeEventListener('touchend', onTouchEnd);
-  panel.addEventListener('touchstart', onTouchStart, {passive:true});
-  panel.addEventListener('touchmove', onTouchMove, {passive:true});
-  panel.addEventListener('touchend', onTouchEnd, {passive:true});
-}
 </script>
