@@ -364,19 +364,49 @@ permalink: /archives-playlist.html
   .hidden { display: none !important; }
 
   /* Responsive */
-  @media (max-width: 768px) {
-    .banner-title { font-size: 2rem; }
-    .banner-content { padding: 28px 20px; min-height: 160px; }
-    .banner-section { min-height: 160px; }
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-title { font-size: 2rem; }
+  .banner-content { 
+    padding: 28px 20px;
+    min-height: 160px;
   }
+  .banner-section {
+    min-height: 160px;
+  }
+}
 
-  @media (max-width: 540px) {
-    #musicTitle { font-size: 14px; }
-    #musicArtist { font-size: 11px; }
-    .nav-btn { width: 28px; height: 28px; }
-    .play-btn { width: 35px; height: 35px; }
-    .volume-slider { width: 100px; }
+@media (max-width: 640px) {
+  .banner-title { font-size: 1.75rem; }
+  .banner-content { 
+    padding: 24px 16px;
+    min-height: 140px;
   }
+  .banner-section {
+    min-height: 140px;
+  }
+  .banner-breadcrumbs { font-size: 12px; }
+}
+
+@media (max-width: 540px) {
+  #musicTitle { font-size: 14px; }
+  #musicArtist { font-size: 11px; }
+  .nav-btn { width: 28px; height: 28px; }
+  .play-btn { width: 35px; height: 35px; }
+  .volume-slider { width: 100px; }
+}
+
+@media (max-width: 480px) {
+  .banner-content { 
+    padding: 20px 16px;
+    min-height: 120px;
+  }
+  .banner-section {
+    min-height: 120px;
+  }
+  .banner-title { font-size: 1.5rem; }
+  .banner-breadcrumbs { font-size: 11px; }
+}
 </style>
 
 <!-- ===== Banner Section ===== -->
