@@ -250,12 +250,12 @@ permalink: /members-current.html
       100% { background-position: 200% 0; }
     }
     
-    /* Section Content Layout */
+    /* Section Content Layout (Simplified without member count) */
     .section-content {
       display: flex;
       align-items: center;
       gap: 20px;
-      padding-right: 140px; /* Space for member count and toggle */
+      padding-right: 50px; /* Space for toggle button only */
     }
     
     /* Toggle Button - Fixed Position */
@@ -419,7 +419,7 @@ permalink: /members-current.html
       transition: all 0.4s ease;
     }
     
-    /* Mobile Responsive */
+    /* Mobile Responsive (Simplified) */
     @media (max-width: 768px) {
       .section-header { 
         margin-top: 2rem; 
@@ -432,7 +432,7 @@ permalink: /members-current.html
       }
       
       .section-content {
-        padding-right: 50px; /* Less space needed on mobile */
+        padding-right: 50px;
         gap: 14px;
       }
       
@@ -449,15 +449,6 @@ permalink: /members-current.html
       
       .section-subtitle { 
         font-size: 11px;
-      }
-      
-      .member-count { 
-        position: static;
-        transform: none;
-        margin-top: 12px;
-        padding: 4px 10px; 
-        font-size: 10px;
-        align-self: flex-start;
       }
       
       .toggle-btn {
@@ -492,11 +483,6 @@ permalink: /members-current.html
         
         .section-subtitle {
           font-size: 10px;
-          display: none; /* Hide subtitle on very small screens */
-        }
-        
-        .member-count {
-          display: none; /* Hide member count on very small screens */
         }
         
         .toggle-btn {
@@ -1189,7 +1175,7 @@ function loadAllMembers() {
   }
 }
 
-// Render members grouped by degree (Fixed Layout)
+// Render members grouped by degree (Without member count)
 function renderMembers() {
   const container = document.getElementById('membersContainer');
   container.innerHTML = '';
@@ -1204,19 +1190,10 @@ function renderMembers() {
     const categoryMembers = allMembers.filter(m => m.degree === category.degree);
     if (categoryMembers.length === 0) return;
     
-    // Check if mobile to adjust layout
-    const isMobile = window.innerWidth <= 768;
-    
-    // Create section header with toggle functionality
+    // Create section header with toggle functionality (removed member count)
     const sectionHTML = `
       <div class="section-header ${category.class}">
         <div class="section-header-content" onclick="toggleSection('${category.degree}')">
-          ${!isMobile ? `
-            <div class="member-count">
-              <span class="count-number">${categoryMembers.length}</span>
-              <span>${categoryMembers.length === 1 ? 'MEMBER' : 'MEMBERS'}</span>
-            </div>
-          ` : ''}
           <div class="toggle-btn" id="toggle-${category.degree}">
             ▼
           </div>
@@ -1226,15 +1203,9 @@ function renderMembers() {
             </div>
             <div class="section-text">
               <h2 class="section-main-title">${category.title}</h2>
-              ${!isMobile ? `<p class="section-subtitle">${category.subtitle}</p>` : ''}
+              <p class="section-subtitle">${category.subtitle}</p>
             </div>
           </div>
-          ${isMobile ? `
-            <div class="member-count">
-              <span class="count-number">${categoryMembers.length}</span>
-              <span>${categoryMembers.length === 1 ? '' : 's'}</span>
-            </div>
-          ` : ''}
         </div>
       </div>
       <div class="members-grid expanded" id="${category.degree}-grid"></div>
@@ -1248,24 +1219,6 @@ function renderMembers() {
       grid.insertAdjacentHTML('beforeend', createMemberCard(member));
     });
   });
-}
-
-// Toggle section function
-function toggleSection(degree) {
-  const grid = document.getElementById(`${degree}-grid`);
-  const toggleBtn = document.getElementById(`toggle-${degree}`);
-  
-  if (grid.classList.contains('expanded')) {
-    // Collapse
-    grid.classList.remove('expanded');
-    grid.classList.add('collapsed');
-    toggleBtn.classList.add('collapsed');
-  } else {
-    // Expand
-    grid.classList.remove('collapsed');
-    grid.classList.add('expanded');
-    toggleBtn.classList.remove('collapsed');
-  }
 }
 
 // Create member card HTML
