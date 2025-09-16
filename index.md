@@ -196,12 +196,12 @@ title: home
   @media (max-width:480px){ .logo-box img{ width:110px; height:110px; } }
 
   /* Intro content 색상 변경 */
-  .intro-content h2{ color:var(--red); font-size:24px; font-weight:900; margin-bottom:8px; }
+  .intro-content h2{ color: rgb(172, 14, 14); font-size:24px; font-weight:900; margin-bottom:8px; }
   @media (max-width:480px){ .intro-content h2{ font-size:20px; } }
   .intro-content h3{ font-size:32px; margin-bottom:4px; }
   @media (max-width:480px){ .intro-content h3{ font-size:24px; } }
   .intro-content .lab-name{ color:var(--gold); font-weight:900; }
-  .intro-content .lab-full{ font-size:18px; color:var(--pantone-1788c); margin-left:0; }
+  .intro-content .lab-full{ font-size:18px; color: rgb(238, 39, 55); margin-left:0; }
   @media (max-width:768px){ .intro-content .lab-full{ display:block; margin-left:0; margin-top:8px; } }
   .intro-content .description{ margin-top:16px; font-size:16px; line-height:1.8; color:#4b5563; }
   @media (max-width:480px){ .intro-content .description{ font-size:14px; line-height:1.7; } }
