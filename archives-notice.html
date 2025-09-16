@@ -4,27 +4,30 @@ title: notice
 permalink: /archives-notice.html
 ---
 
-<!-- ===== Styles (Seminar와 동일 톤) ===== -->
+<!-- ===== Unified Styles ===== -->
 <style>
   :root {
     --gold: rgb(214, 177, 77);
     --gold-light: rgba(214, 177, 77, 0.1);
+    --gold-mid: rgb(234, 197, 97);
     --gold-dark: rgb(194, 157, 57);
   }
 
-  /* Banner 스타일 */
+  /* Banner 스타일 (통일) */
   .banner-section {
     background: linear-gradient(135deg, 
-      rgb(214, 177, 77) 0%, 
-      rgb(234, 197, 97) 25%, 
-      rgb(194, 157, 57) 50%, 
-      rgb(214, 177, 77) 75%, 
-      rgb(234, 197, 97) 100%);
+      var(--gold) 0%, 
+      var(--gold-mid) 25%, 
+      var(--gold-dark) 50%, 
+      var(--gold) 75%, 
+      var(--gold-mid) 100%);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     position: relative;
     overflow: hidden;
     min-height: 200px;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
     cursor: pointer;
   }
 
@@ -34,7 +37,7 @@ permalink: /archives-notice.html
     100% { background-position: 0% 50%; }
   }
 
-  /* 동적으로 생성될 네트워크 패턴 */
+  /* 네트워크 버스트 애니메이션 (통일) */
   .network-burst {
     position: absolute;
     width: 200px;
@@ -50,7 +53,7 @@ permalink: /archives-notice.html
       transform: scale(0.3) rotate(0deg);
     }
     30% {
-      opacity: 0.8;
+      opacity: 0.85;
     }
     100% {
       opacity: 0;
@@ -70,10 +73,10 @@ permalink: /archives-notice.html
   }
 
   .burst-dot {
-    fill: rgba(255, 255, 255, 0.9);
+    fill: rgba(255, 255, 255, 0.95);
   }
 
-  /* 텍스트 컨테이너 - 왼쪽 하단 배치 */
+  /* 텍스트 컨테이너 (통일) */
   .banner-content {
     position: relative;
     z-index: 10;
@@ -84,8 +87,8 @@ permalink: /archives-notice.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs (banner 안) */
-  .breadcrumbs {
+  /* Breadcrumbs (통일) */
+  .banner-breadcrumbs {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
@@ -94,35 +97,39 @@ permalink: /archives-notice.html
     font-weight: 600;
     margin-bottom: 8px;
   }
-  .breadcrumbs a {
-    color: rgba(255,255,255,0.9);
-    transition: color 0.2s;
+  
+  .banner-breadcrumbs a {
+    color: rgba(255,255,255,0.92);
     text-decoration: none;
+    transition: color 0.2s;
   }
-  .breadcrumbs a:hover {
+  
+  .banner-breadcrumbs a:hover {
     color: #fff;
     text-decoration: underline;
   }
-  .breadcrumbs .sep {
-    color: rgba(255,255,255,0.7);
+  
+  .banner-breadcrumbs .sep {
+    color: rgba(255,255,255,0.75);
   }
-  .breadcrumbs span:not(.sep):not(a) {
+  
+  .banner-breadcrumbs span:not(.sep):not(a) {
     color: #fff;
     font-weight: 700;
   }
 
-  /* 제목 */
+  /* 제목 (통일) */
   .banner-title {
     font-size: 2.5rem;
     font-weight: 900;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.12);
     letter-spacing: -0.02em;
     margin: 0;
   }
 
-  /* 메인 컨테이너 (세미나와 통일) */
-  .notice-container {
+  /* 메인 컨테이너 (통일) */
+  .content-container {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 1rem;
@@ -130,7 +137,7 @@ permalink: /archives-notice.html
     margin-top: 1.5rem;
   }
 
-  /* 리스트 행 (세미나와 통일) */
+  /* 리스트 행 (통일) */
   .board-row {
     display: grid;
     grid-template-columns: 80px 1fr 100px;
@@ -140,10 +147,16 @@ permalink: /archives-notice.html
     border-bottom: 1px solid #f3f4f6;
     transition: all 0.2s;
   }
-  .board-row:last-child { border-bottom: none; }
-  .board-row:hover { background: #fafbfc; }
+  
+  .board-row:last-child {
+    border-bottom: none;
+  }
+  
+  .board-row:hover {
+    background: #fafbfc;
+  }
 
-  /* 날짜 박스 (그라데이션 + hover 시 강조) */
+  /* 날짜 박스 (통일) */
   .date-box {
     display: flex;
     flex-direction: column;
@@ -156,16 +169,34 @@ permalink: /archives-notice.html
     border-radius: 0.75rem;
     transition: all 0.2s;
   }
+  
   .board-row:hover .date-box {
     border-color: var(--gold);
     background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
   }
-  .date-d { font-weight: 900; font-size: 24px; line-height: 1; color: #111827; }
-  .date-ym { font-weight: 700; font-size: 11px; color: #6b7280; margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
+  
+  .date-d {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 1;
+    color: #111827;
+  }
+  
+  .date-ym {
+    font-weight: 700;
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 
-  /* 본문(제목/요약) */
-  .notice-content { flex: 1; }
-  .notice-title {
+  /* 본문 (통일) */
+  .item-content {
+    flex: 1;
+  }
+  
+  .item-title {
     font-weight: 900;
     font-size: 16px;
     color: #111827;
@@ -174,7 +205,11 @@ permalink: /archives-notice.html
     display: block;
     transition: color .2s;
   }
-  .notice-title:hover { color: var(--gold); }
+  
+  .item-title:hover {
+    color: var(--gold);
+  }
+  
   .excerpt {
     margin-top: 8px;
     font-size: 13px;
@@ -186,7 +221,7 @@ permalink: /archives-notice.html
     overflow: hidden;
   }
 
-  /* 버튼 (세미나 통일) */
+  /* 버튼 (통일) */
   .btn-more {
     display: inline-flex;
     align-items: center;
@@ -202,19 +237,37 @@ permalink: /archives-notice.html
     transition: all .2s;
     white-space: nowrap;
   }
+  
   .btn-more:hover {
     background: #f8fafc;
     border-color: var(--gold);
     color: #111827;
   }
 
-  /* 비어있을 때 */
-  .empty-state { padding: 60px 20px; text-align: center; }
-  .empty-icon { font-size: 48px; margin-bottom: 16px; }
-  .empty-title { font-size: 18px; font-weight: 800; color: #111827; margin-bottom: 8px; }
-  .empty-text { font-size: 14px; color: #6b7280; }
+  /* 비어있을 때 (통일) */
+  .empty-state {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .empty-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 8px;
+  }
+  
+  .empty-text {
+    font-size: 14px;
+    color: #6b7280;
+  }
 
-  /* 반응형 */
+  /* 반응형 (통일) */
   @media (max-width: 768px) {
     .banner-title { font-size: 2rem; }
     .banner-content { 
@@ -224,19 +277,26 @@ permalink: /archives-notice.html
     .banner-section {
       min-height: 160px;
     }
-    .network-pattern {
-      width: 70%;
-      right: -60px;
-    }
   }
 
   @media (max-width: 640px) {
-    .board-row { grid-template-columns: 1fr; gap: 12px; padding: 16px; position: relative; }
-    .date-box { width: 60px; height: 60px; position: absolute; top: 16px; right: 16px; }
+    .board-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 16px;
+      position: relative;
+    }
+    .date-box {
+      width: 60px;
+      height: 60px;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
     .date-d { font-size: 20px; }
     .date-ym { font-size: 10px; }
-    .notice-content { padding-right: 76px; }
-    .notice-title { font-size: 15px; }
+    .item-content { padding-right: 76px; }
+    .item-title { font-size: 15px; }
     .excerpt { font-size: 12px; margin-top: 6px; }
     .btn-more { display: none; }
     .banner-title { font-size: 1.75rem; }
@@ -247,15 +307,11 @@ permalink: /archives-notice.html
     .banner-section {
       min-height: 140px;
     }
-    .breadcrumbs { font-size: 12px; }
-    .network-pattern {
-      width: 80%;
-      right: -80px;
-    }
+    .banner-breadcrumbs { font-size: 12px; }
   }
 
   @media (max-width: 480px) {
-    .notice-title { font-size: 14px; }
+    .item-title { font-size: 14px; }
     .excerpt { -webkit-line-clamp: 3; }
     .banner-content { 
       padding: 20px 16px;
@@ -265,17 +321,16 @@ permalink: /archives-notice.html
       min-height: 120px;
     }
     .banner-title { font-size: 1.5rem; }
-    .breadcrumbs { font-size: 11px; }
+    .banner-breadcrumbs { font-size: 11px; }
   }
 </style>
 
 <!-- ===== Page Title / Banner ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
-  <div class="banner-section rounded-2xl shadow-lg" onclick="createNetworkBurst(event, this)">
-    <!-- 콘텐츠 - 왼쪽 하단 -->
+  <div class="banner-section" onclick="createNetworkBurst(event, this)">
     <div class="banner-content">
       <div>
-        <nav aria-label="Breadcrumb" class="breadcrumbs">
+        <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
           <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
           <a href="{{ '/archives-news.html' | relative_url }}" onclick="event.stopPropagation()">Archives</a>
@@ -288,21 +343,18 @@ permalink: /archives-notice.html
   </div>
 </section>
 
-<!-- JavaScript for card suit patterns -->
+<!-- JavaScript for card suit patterns (통일) -->
 <script>
 function createNetworkBurst(event, element) {
-  // 클릭 위치 계산
   const rect = element.getBoundingClientRect();
   const x = event.clientX - rect.left - 100;
   const y = event.clientY - rect.top - 100;
   
-  // 랜덤 네트워크 패턴 생성
   const networkDiv = document.createElement('div');
   networkDiv.className = 'network-burst';
   networkDiv.style.left = x + 'px';
   networkDiv.style.top = y + 'px';
   
-  // 카드 무늬 패턴 (동일 확률)
   const patterns = [
     generateHeartNetwork(),
     generateClubNetwork(), 
@@ -313,70 +365,49 @@ function createNetworkBurst(event, element) {
   const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
   networkDiv.innerHTML = randomPattern;
   
-  // DOM에 추가
   element.appendChild(networkDiv);
   
-  // 애니메이션 끝나면 제거
   setTimeout(function() {
     element.removeChild(networkDiv);
   }, 2000);
 }
 
-// 하트 네트워크
 function generateHeartNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
-  
-  // 중앙 하트
   const heartPath = 'M100,140 C80,120 40,100 40,70 C40,50 55,35 70,35 C85,35 95,45 100,55 C105,45 115,35 130,35 C145,35 160,50 160,70 C160,100 120,120 100,140 Z';
   svg += `<path d="${heartPath}" fill="none" class="burst-line" stroke-width="2"/>`;
-  
-  // 하트 주변 노드들
   const nodes = [
-    {x: 70, y: 35}, {x: 130, y: 35}, // 상단
-    {x: 40, y: 70}, {x: 160, y: 70}, // 중간
-    {x: 100, y: 140}, // 하단
-    {x: 60, y: 50}, {x: 140, y: 50}, // 추가 노드
+    {x: 70, y: 35}, {x: 130, y: 35},
+    {x: 40, y: 70}, {x: 160, y: 70},
+    {x: 100, y: 140},
+    {x: 60, y: 50}, {x: 140, y: 50},
     {x: 80, y: 90}, {x: 120, y: 90}
   ];
-  
-  // 노드 간 연결
   const connections = [
     [0, 1], [0, 2], [1, 3], [2, 4], [3, 4],
     [0, 5], [1, 6], [5, 7], [6, 8], [7, 8]
   ];
-  
   connections.forEach(([from, to]) => {
     svg += `<line x1="${nodes[from].x}" y1="${nodes[from].y}" x2="${nodes[to].x}" y2="${nodes[to].y}" class="burst-line" opacity="0.5"/>`;
   });
-  
-  // 노드 그리기
   nodes.forEach(node => {
     svg += `<circle cx="${node.x}" cy="${node.y}" r="${3 + Math.random() * 2}" class="burst-dot"/>`;
   });
-  
   svg += '</svg>';
   return svg;
 }
 
-// 클로버 네트워크
 function generateClubNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
-  
-  // 클로버의 세 잎
   const circles = [
-    {x: 100, y: 60, r: 25}, // 상단
-    {x: 75, y: 85, r: 25}, // 왼쪽
-    {x: 125, y: 85, r: 25} // 오른쪽
+    {x: 100, y: 60, r: 25},
+    {x: 75, y: 85, r: 25},
+    {x: 125, y: 85, r: 25}
   ];
-  
   circles.forEach(circle => {
     svg += `<circle cx="${circle.x}" cy="${circle.y}" r="${circle.r}" fill="none" class="burst-line" stroke-width="2"/>`;
   });
-  
-  // 줄기
   svg += `<line x1="100" y1="100" x2="100" y2="140" class="burst-line" stroke-width="3"/>`;
-  
-  // 네트워크 노드들
   const nodes = [];
   circles.forEach(circle => {
     for(let i = 0; i < 6; i++) {
@@ -387,12 +418,8 @@ function generateClubNetwork() {
       });
     }
   });
-  
-  // 중심 노드 추가
   nodes.push({x: 100, y: 100});
   nodes.push({x: 100, y: 140});
-  
-  // 가까운 노드들 연결
   for(let i = 0; i < nodes.length; i++) {
     for(let j = i + 1; j < nodes.length; j++) {
       const dist = Math.sqrt(Math.pow(nodes[i].x - nodes[j].x, 2) + Math.pow(nodes[i].y - nodes[j].y, 2));
@@ -401,118 +428,84 @@ function generateClubNetwork() {
       }
     }
   }
-  
-  // 노드 그리기
   nodes.forEach(node => {
     svg += `<circle cx="${node.x}" cy="${node.y}" r="${2 + Math.random() * 2}" class="burst-dot"/>`;
   });
-  
   svg += '</svg>';
   return svg;
 }
 
-// 스페이드 네트워크
 function generateSpadeNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
-  
-  // 스페이드 모양
   const spadePath = 'M100,50 C80,50 60,65 60,85 C60,105 75,110 85,110 C90,110 95,108 100,105 C105,108 110,110 115,110 C125,110 140,105 140,85 C140,65 120,50 100,50 Z';
   svg += `<path d="${spadePath}" fill="none" class="burst-line" stroke-width="2"/>`;
-  
-  // 스페이드 줄기
   svg += `<path d="M100,105 L90,130 L110,130 Z" fill="none" class="burst-line" stroke-width="2"/>`;
   svg += `<line x1="100" y1="130" x2="100" y2="145" class="burst-line" stroke-width="3"/>`;
-  
-  // 노드 배치
   const nodes = [
-    {x: 100, y: 50}, // 상단
-    {x: 75, y: 70}, {x: 125, y: 70}, // 상부 측면
-    {x: 60, y: 85}, {x: 140, y: 85}, // 중간
-    {x: 85, y: 110}, {x: 115, y: 110}, // 하부
-    {x: 100, y: 105}, // 중심
-    {x: 90, y: 130}, {x: 110, y: 130}, // 줄기 상단
-    {x: 100, y: 145} // 줄기 하단
+    {x: 100, y: 50},
+    {x: 75, y: 70}, {x: 125, y: 70},
+    {x: 60, y: 85}, {x: 140, y: 85},
+    {x: 85, y: 110}, {x: 115, y: 110},
+    {x: 100, y: 105},
+    {x: 90, y: 130}, {x: 110, y: 130},
+    {x: 100, y: 145}
   ];
-  
-  // 연결 패턴
   const connections = [
     [0, 1], [0, 2], [1, 3], [2, 4],
     [3, 5], [4, 6], [5, 7], [6, 7],
     [7, 8], [7, 9], [8, 10], [9, 10]
   ];
-  
   connections.forEach(([from, to]) => {
     svg += `<line x1="${nodes[from].x}" y1="${nodes[from].y}" x2="${nodes[to].x}" y2="${nodes[to].y}" class="burst-line" opacity="0.4"/>`;
   });
-  
-  // 노드 그리기
   nodes.forEach((node, i) => {
     const size = i === 0 || i === 7 ? 4 : 3;
     svg += `<circle cx="${node.x}" cy="${node.y}" r="${size}" class="burst-dot"/>`;
   });
-  
   svg += '</svg>';
   return svg;
 }
 
-// 다이아몬드 네트워크
 function generateDiamondNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
-  
-  // 다이아몬드 모양
   const diamondPath = 'M100,40 L140,100 L100,160 L60,100 Z';
   svg += `<path d="${diamondPath}" fill="none" class="burst-line" stroke-width="2"/>`;
-  
-  // 내부 격자 패턴
   svg += `<line x1="100" y1="40" x2="100" y2="160" class="burst-line" opacity="0.5"/>`;
   svg += `<line x1="60" y1="100" x2="140" y2="100" class="burst-line" opacity="0.5"/>`;
   svg += `<line x1="80" y1="70" x2="120" y2="130" class="burst-line" opacity="0.3"/>`;
   svg += `<line x1="120" y1="70" x2="80" y2="130" class="burst-line" opacity="0.3"/>`;
-  
-  // 노드 배치 - 다이아몬드 정점과 내부
   const nodes = [
-    {x: 100, y: 40}, // 상단
-    {x: 140, y: 100}, // 오른쪽
-    {x: 100, y: 160}, // 하단
-    {x: 60, y: 100}, // 왼쪽
-    {x: 100, y: 100}, // 중심
-    {x: 80, y: 70}, {x: 120, y: 70}, // 상부 내부
-    {x: 80, y: 130}, {x: 120, y: 130}, // 하부 내부
-    {x: 120, y: 100}, {x: 80, y: 100} // 측면 내부
+    {x: 100, y: 40},
+    {x: 140, y: 100},
+    {x: 100, y: 160},
+    {x: 60, y: 100},
+    {x: 100, y: 100},
+    {x: 80, y: 70}, {x: 120, y: 70},
+    {x: 80, y: 130}, {x: 120, y: 130},
+    {x: 120, y: 100}, {x: 80, y: 100}
   ];
-  
-  // 추가 연결선
   for(let i = 0; i < 4; i++) {
     svg += `<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[4].x}" y2="${nodes[4].y}" class="burst-line" opacity="0.3"/>`;
   }
-  
-  // 노드 그리기 (크기 변화)
   nodes.forEach((node, i) => {
     const size = i < 4 ? 4 : i === 4 ? 5 : 2.5;
     svg += `<circle cx="${node.x}" cy="${node.y}" r="${size}" class="burst-dot" opacity="${i === 4 ? 1 : 0.8}"/>`;
   });
-  
-  // 반짝임 효과
   for(let i = 0; i < 4; i++) {
     const angle = (i * Math.PI) / 2;
     const x = 100 + 30 * Math.cos(angle);
     const y = 100 + 30 * Math.sin(angle);
     svg += `<circle cx="${x}" cy="${y}" r="1.5" class="burst-dot" opacity="0.6"/>`;
   }
-  
   svg += '</svg>';
   return svg;
 }
 </script>
 
-<!-- ===== Notice List (oldest → newest) ===== -->
+<!-- ===== Notice List ===== -->
 <section class="max-w-7xl mx-auto px-4">
-  <div class="notice-container">
+  <div class="content-container">
     <ul id="notice-list" role="list">
-      {% comment %}
-      모든 페이지/포스트를 합쳐 /notice/ 경로에 있고 date가 있는 항목만 수집
-      정렬: 오래된 것 → 최신
-      {% endcomment %}
       {% assign all_items = site.pages | concat: site.posts %}
       {% assign Notice = "" | split: "" %}
       {% for item in all_items %}
@@ -536,16 +529,13 @@ function generateDiamondNetwork() {
           {% assign month_name = post.date | date: "%b" %}
 
           <li class="board-row" role="listitem">
-            <!-- Date box (Seminar 스타일) -->
             <div class="date-box">
               <div class="date-d">{{ d }}</div>
               <div class="date-ym">{{ month_name | upcase }} {{ y }}</div>
             </div>
 
-            <!-- Content -->
-            <div class="notice-content">
-              <a class="notice-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-
+            <div class="item-content">
+              <a class="item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
               <div class="excerpt">
                 {% if post.excerpt %}
                   {{ post.excerpt | strip_html | strip | truncate: 160 }}
@@ -553,12 +543,9 @@ function generateDiamondNetwork() {
                   {{ post.content | strip_html | strip | truncate: 160 }}
                 {% endif %}
               </div>
-
-              <!-- Mobile date -->
               <div class="sm:hidden mt-2 text-[12px] text-slate-500">{{ y }}.{{ m }}.{{ d }}</div>
             </div>
 
-            <!-- Button -->
             <div class="btn-cell hidden sm:block">
               <a class="btn-more" href="{{ post.url | relative_url }}">Read&nbsp;More</a>
             </div>
