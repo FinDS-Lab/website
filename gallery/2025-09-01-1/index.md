@@ -16,7 +16,7 @@ images:
     --accent-red: rgb(172, 14, 14);
   }
   
-  /* Hero Section (통일) */
+  /* Hero Section (상세 페이지 통일 디자인) */
   .hero-section {
     background: linear-gradient(135deg, #f5f3ff 0%, #fef3c7 100%);
     border: 1px solid rgba(214,177,77,0.2);
@@ -82,7 +82,7 @@ images:
     box-shadow: 0 4px 12px rgba(214,177,77,0.2);
   }
   
-  /* Content Card (통일) */
+  /* Content Card (상세 페이지 통일 디자인) */
   .content-card {
     background: white;
     border-radius: 20px;
@@ -94,7 +94,7 @@ images:
     padding: 32px;
   }
   
-  /* Image Grid */
+  /* Image Grid (갤러리 전용) */
   .image-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -103,7 +103,7 @@ images:
   
   .image-item {
     background: white;
-    border: 1px solid #e5e7eb;
+    border: 2px solid #e5e7eb;
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.2s;
@@ -245,7 +245,7 @@ images:
     right: 20px;
   }
   
-  /* Footer Navigation (통일) */
+  /* Footer Navigation (상세 페이지 통일 디자인) */
   .footer-nav {
     padding: 24px 32px;
     border-top: 1px solid #e5e7eb;
@@ -362,7 +362,7 @@ images:
 </style>
 
 <section class="max-w-5xl mx-auto px-4 mt-8 pb-12">
-  <!-- Hero Section -->
+  <!-- Hero Section (상세 페이지 통일 디자인) -->
   <div class="hero-section">
     <div class="hero-header">
       <span class="hero-icon">📷</span>
@@ -390,15 +390,22 @@ images:
     </div>
   </div>
 
-  <!-- Content Card -->
+  <!-- Content Card (상세 페이지 통일 디자인) -->
   <article class="content-card">
     <div class="content-body">
-      {% assign src_dir = '/' | append: page.path | remove: page.name | replace: '//','/' %}
+      {% comment %}
+      이미지 경로 설정: 현재 파일 위치 기준
+      예: /gallery/2025-09-01-1/index.md → /gallery/2025-09-01-1/
+      {% endcomment %}
+      {% assign src_dir = page.url | append: '/' | replace: '//', '/' %}
       
       {% if page.images and page.images.size > 0 %}
         <div class="image-grid">
           {% for img in page.images %}
-            {% assign img_url = src_dir | append: img | replace: '//','/' | relative_url %}
+            {% comment %}
+            이미지 URL 생성: 현재 디렉토리 + 이미지 파일명
+            {% endcomment %}
+            {% assign img_url = src_dir | append: img | replace: '//', '/' | relative_url %}
             <div class="image-item" onclick="openLightbox('{{ img_url }}', {{ forloop.index0 }})">
               <div class="image-wrapper">
                 <img src="{{ img_url }}" alt="{{ img }}" loading="lazy">
@@ -410,27 +417,27 @@ images:
           {% endfor %}
         </div>
       {% else %}
-        <!-- Fallback: site.static_files 방식 -->
-        {% assign here = src_dir %}
-        {% assign files = site.static_files | where_exp: "f", "f.path contains here" %}
+        <!-- Fallback: 현재 디렉토리의 모든 이미지 파일 탐색 -->
+        {% assign gallery_path = page.url %}
+        {% assign imgs = site.static_files | where_exp: "f", "f.path contains gallery_path" %}
+        {% assign image_files = "" | split: "" %}
         
-        {% assign imgs = "" | split: "" %}
-        {% for f in files %}
+        {% for f in imgs %}
           {% assign ext = f.extname | downcase %}
           {% if ext == ".jpg" or ext == ".jpeg" or ext == ".png" or ext == ".webp" or ext == ".gif" %}
-            {% assign imgs = imgs | push: f %}
+            {% assign image_files = image_files | push: f %}
           {% endif %}
         {% endfor %}
         
-        {% if imgs.size > 0 %}
+        {% if image_files.size > 0 %}
           <div class="image-grid">
-            {% for it in imgs %}
-              <div class="image-item" onclick="openLightbox('{{ it.path | relative_url }}', {{ forloop.index0 }})">
+            {% for img_file in image_files %}
+              <div class="image-item" onclick="openLightbox('{{ img_file.path | relative_url }}', {{ forloop.index0 }})">
                 <div class="image-wrapper">
-                  <img src="{{ it.path | relative_url }}" alt="{{ it.name }}" loading="lazy">
+                  <img src="{{ img_file.path | relative_url }}" alt="{{ img_file.name }}" loading="lazy">
                 </div>
                 <div class="image-info">
-                  <div class="image-name">{{ it.name }}</div>
+                  <div class="image-name">{{ img_file.name }}</div>
                 </div>
               </div>
             {% endfor %}
@@ -439,13 +446,13 @@ images:
           <div class="empty-state">
             <div class="empty-icon">🖼️</div>
             <div class="empty-title">이미지가 없습니다</div>
-            <div class="empty-text">갤러리 이미지를 표시하려면 front matter의 images 배열에 파일명을 추가하세요.</div>
+            <div class="empty-text">갤러리 이미지를 표시하려면 front matter의 images 배열에 파일명을 추가하거나,<br>현재 디렉토리에 이미지 파일을 업로드하세요.</div>
           </div>
         {% endif %}
       {% endif %}
     </div>
     
-    <!-- Footer Navigation -->
+    <!-- Footer Navigation (상세 페이지 통일 디자인) -->
     <div class="footer-nav">
       <a href="{{ '/archives-gallery.html' | relative_url }}" class="nav-button">
         <span>←</span>
@@ -484,6 +491,8 @@ document.addEventListener('DOMContentLoaded', function() {
       galleryImages.push(img.src);
     }
   });
+  
+  console.log('Gallery images loaded:', galleryImages.length);
 });
 
 // 라이트박스 열기
@@ -496,13 +505,11 @@ function openLightbox(imageSrc, index) {
   lightbox.classList.add('show');
   document.body.style.overflow = 'hidden';
   
-  // 네비게이션 버튼 표시/숨김
   updateNavButtons();
 }
 
 // 라이트박스 닫기
 function closeLightbox(event) {
-  // 이벤트가 버튼이나 이미지에서 발생한 경우 무시
   if (event && event.target && (
     event.target.classList.contains('lightbox-image') ||
     event.target.classList.contains('lightbox-nav')
@@ -521,7 +528,6 @@ function navigateLightbox(event, direction) {
   
   currentImageIndex += direction;
   
-  // 인덱스 범위 체크
   if (currentImageIndex < 0) {
     currentImageIndex = galleryImages.length - 1;
   } else if (currentImageIndex >= galleryImages.length) {
@@ -539,7 +545,6 @@ function updateNavButtons() {
   const prevBtn = document.querySelector('.lightbox-prev');
   const nextBtn = document.querySelector('.lightbox-next');
   
-  // 이미지가 1개뿐이면 네비게이션 버튼 숨김
   if (galleryImages.length <= 1) {
     prevBtn.style.display = 'none';
     nextBtn.style.display = 'none';
@@ -549,7 +554,7 @@ function updateNavButtons() {
   }
 }
 
-// ESC 키로 닫기
+// 키보드 네비게이션
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     const lightbox = document.getElementById('lightbox');
@@ -558,7 +563,6 @@ document.addEventListener('keydown', function(e) {
     }
   }
   
-  // 화살표 키로 네비게이션
   if (e.key === 'ArrowLeft') {
     const lightbox = document.getElementById('lightbox');
     if (lightbox.classList.contains('show')) {
