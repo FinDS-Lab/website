@@ -422,6 +422,7 @@ title: home
       <div class="carousel-track" id="carouselTrack">
         <!-- Slide 1 -->
         <div class="carousel-slide">
+          <img src="{{ '/assets/img/hero/slide-1.jpg' | relative_url }}" alt="FINDS Lab Hero 1" loading="eager">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
@@ -438,6 +439,7 @@ title: home
 
         <!-- Slide 2 -->
         <div class="carousel-slide">
+          <img src="{{ '/assets/img/hero/slide-2.jpg' | relative_url }}" alt="FINDS Lab Hero 2" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
@@ -452,6 +454,7 @@ title: home
 
         <!-- Slide 3 -->
         <div class="carousel-slide">
+          <img src="{{ '/assets/img/hero/slide-3.jpg' | relative_url }}" alt="FINDS Lab Hero 3" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
