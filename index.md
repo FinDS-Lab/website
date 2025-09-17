@@ -131,6 +131,7 @@ title: home
     padding: 0 5%;
     height: 100%; 
     overflow: hidden;
+    z-index: 2; /* 금색 오버레이 위에 표시 */
   }
   @media (max-width: 768px) { .carousel-overlay { padding: 0 20px; align-items: center; } }
 
