@@ -76,27 +76,10 @@ title: home
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: linear-gradient(
-      135deg,
-      var(--gold) 0%,
-      rgb(234, 197, 97) 25%,
-      rgb(194, 157, 57) 50%,
-      var(--gold) 75%,
-      rgb(234, 197, 97) 100%
-    );
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    background: #000;
     border-radius: 1.5rem;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
   }
-  
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
   @media (max-width: 768px) { .carousel-container { border-radius: 1rem; } }
 
   .carousel-wrapper { position:relative; width:100%; height:100%; overflow:hidden; }
@@ -113,6 +96,7 @@ title: home
     position: relative;
     flex: 0 0 100%;
     flex-shrink: 0;
+    background: #000;
     overflow: hidden;
   }
   .carousel-slide img { 
@@ -120,12 +104,12 @@ title: home
     height: 100%; 
     object-fit: cover; 
     display: block;
-    opacity: 0.3; /* 이미지를 30% 투명도로 보이게 */
   }
 
   .carousel-overlay {
     position: absolute; 
     inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
     display: flex; 
     align-items: center; 
     padding: 0 5%;
