@@ -211,58 +211,60 @@ title: home
   /* Primary 버튼 - 방사형 그라데이션 */
   .btn-hero.primary {
     background: radial-gradient(ellipse at center, 
-      rgba(255,255,255,0.25) 0%, 
-      rgba(255,255,255,0.12) 50%, 
-      rgba(255,255,255,0.08) 100%);
+      rgba(214, 177, 77, 0.25) 0%, 
+      rgba(214, 177, 77, 0.12) 50%, 
+      rgba(214, 177, 77, 0.08) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(214, 177, 77, 0.35);
     box-shadow: 
-      inset 0 1px 0 rgba(255,255,255,0.2),
-      0 4px 12px rgba(0,0,0,0.15),
+      inset 0 1px 0 rgba(214, 177, 77, 0.2),
+      0 4px 12px rgba(214, 177, 77, 0.15),
       0 1px 3px rgba(0,0,0,0.1);
+    text-shadow: 0 1px 2px rgba(214, 177, 77, 0.2);
   }
   
   /* Secondary 버튼 - 더 투명한 방사형 */
   .btn-hero.secondary {
     background: radial-gradient(ellipse at center, 
-      rgba(255,255,255,0.15) 0%, 
-      rgba(255,255,255,0.08) 50%, 
-      rgba(255,255,255,0.05) 100%);
+      rgba(214, 177, 77, 0.15) 0%, 
+      rgba(214, 177, 77, 0.08) 50%, 
+      rgba(214, 177, 77, 0.05) 100%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     color: #fff;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(214, 177, 77, 0.3);
     box-shadow: 
-      inset 0 1px 0 rgba(255,255,255,0.15),
-      0 2px 8px rgba(0,0,0,0.12);
+      inset 0 1px 0 rgba(214, 177, 77, 0.15),
+      0 2px 8px rgba(214, 177, 77, 0.12);
+    text-shadow: 0 1px 2px rgba(214, 177, 77, 0.15);
   }
 
   /* 호버 효과 - 빛나는 효과 추가 */
   .btn-hero.primary:hover {
     background: radial-gradient(ellipse at center, 
-      rgba(255,255,255,0.35) 0%, 
-      rgba(255,255,255,0.18) 50%, 
-      rgba(255,255,255,0.1) 100%);
-    border-color: rgba(255,255,255,0.4);
+      rgba(214, 177, 77, 0.35) 0%, 
+      rgba(214, 177, 77, 0.18) 50%, 
+      rgba(214, 177, 77, 0.1) 100%);
+    border-color: rgba(214, 177, 77, 0.5);
     transform: translateY(-2px) scale(1.02);
     box-shadow: 
-      inset 0 1px 0 rgba(255,255,255,0.3),
-      0 8px 20px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(214, 177, 77, 0.3),
+      0 8px 20px rgba(214, 177, 77, 0.2),
       0 2px 4px rgba(0,0,0,0.15);
   }
 
   .btn-hero.secondary:hover {
     background: radial-gradient(ellipse at center, 
-      rgba(255,255,255,0.25) 0%, 
-      rgba(255,255,255,0.12) 50%, 
-      rgba(255,255,255,0.08) 100%);
-    border-color: rgba(255,255,255,0.35);
+      rgba(214, 177, 77, 0.25) 0%, 
+      rgba(214, 177, 77, 0.12) 50%, 
+      rgba(214, 177, 77, 0.08) 100%);
+    border-color: rgba(214, 177, 77, 0.45);
     transform: translateY(-2px) scale(1.02);
     box-shadow: 
-      inset 0 1px 0 rgba(255,255,255,0.25),
-      0 6px 16px rgba(0,0,0,0.18),
+      inset 0 1px 0 rgba(214, 177, 77, 0.25),
+      0 6px 16px rgba(214, 177, 77, 0.18),
       0 2px 4px rgba(0,0,0,0.12);
   }
 
