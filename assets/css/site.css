@@ -28,6 +28,30 @@ img[width][height] { height:auto; }
 html { scrollbar-gutter: stable both-edges; }
 @media (max-width: 360px){ html, body { min-width: 360px; } }
 
+/* ========== 전체 사이트 단어 단위 줄바꿈 (추가) ========== */
+* {
+  word-break: keep-all !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+/* 주요 텍스트 요소들에 대한 세부 설정 */
+p, span, div, h1, h2, h3, h4, h5, h6, 
+li, td, th, a, button, label, input, textarea,
+.nav-link, .submenu-item, .card, .home-panel {
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+/* 긴 영문 URL이나 코드 처리 */
+code, pre, .url, .email {
+  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
+}
+
 /* 작은 유틸들 */
 .line-1{ overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
 .tag-gold{
