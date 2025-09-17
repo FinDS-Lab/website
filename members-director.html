@@ -164,7 +164,7 @@ permalink: /members-director.html
 .intro-section .intro-content {
   margin-left: 0 !important;
   padding-left: 0 !important;
-  text-align: left;               /* 혹시 가운데 정렬이면 왼쪽으로 */
+  text-align: left;
 }
 
 /* 헤딩/문단의 남는 좌측 여백 제거 */
@@ -178,17 +178,17 @@ permalink: /members-director.html
 /* FINDS Lab. / 풀네임을 줄 맨앞에 정확히 시작시키기 */
 .intro-section .lab-name,
 .intro-section .lab-full {
-  display: block;                 /* span -> block로 바꿔 줄 시작 정렬 통일 */
-  margin: 0;                      /* 남는 여백 제거 */
+  display: block;
+  margin: 0;
   padding: 0;
 }
 
 /* 풀네임과 한국어 설명 사이 간격(원하시면 조절) */
 .intro-section .lab-full {
-  margin-top: 2px;                /* 살짝만 띄우기 */
+  margin-top: 2px;
 }
 .intro-section .description {
-  margin-top: 8px;                /* “엔터 2번” 대신 적당한 간격 */
+  margin-top: 8px;
 }
   
  </style>
@@ -329,7 +329,6 @@ permalink: /members-director.html
 <!-- ===== Styles ===== -->
 <style>
  /* Word break prevention for Korean/English */
-/* Word break prevention for Korean/English */
 * {
   word-break: keep-all !important;
   word-wrap: break-word !important;
@@ -347,7 +346,7 @@ permalink: /members-director.html
 
  /* director 페이지 전용 변수 - site.css 오버라이드 */
  .director-page {
-   --accent: rgb(214, 177, 77) !important; /* Gold로 강제 변경 */
+   --accent: rgb(214, 177, 77) !important;
    --gold:#d6b14d;
    --gold-light:#eacf7d;
    --gold-fg:#111827;
@@ -409,13 +408,13 @@ permalink: /members-director.html
 
  .card-head{
    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-   color:#ffffff;  /* 흰색으로 변경 */
+   color:#ffffff;
    font-weight:900;
    padding:1rem 1.25rem;
    font-size:18px;
    position:relative;
    overflow:hidden;
-   text-shadow: 0 1px 3px rgba(0,0,0,0.2);  /* 가독성을 위한 그림자 추가 */
+   text-shadow: 0 1px 3px rgba(0,0,0,0.2);
  }
 
  .card-head::after{
@@ -516,8 +515,7 @@ permalink: /members-director.html
    box-shadow:0 4px 12px rgba(172,14,14,0.3);
  }
 
- /* Publication Stats - Simple 3 column layout */
-/* Publication Stats - 5 row layout */
+ /* Publication Stats - 5 row layout */
 .pub-stats{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
@@ -678,7 +676,6 @@ permalink: /members-director.html
     gap: 6px;
   }
   
-  /* Same positioning as desktop */
   .pub-stat.journal-scie { grid-column: 1; grid-row: 1; }
   .pub-stat.journal-ssci { grid-column: 2; grid-row: 1; }
   .pub-stat.journal-ahci { grid-column: 3; grid-row: 1; }
@@ -689,13 +686,11 @@ permalink: /members-director.html
   .pub-stat.journal-kci { grid-column: 2; grid-row: 3; }
   .pub-stat.conf-domestic { grid-column: 3; grid-row: 3; }
   
-  /* Citation spans all 3 columns */
   .pub-stat.citation { 
     grid-column: 1 / -1;
     grid-row: 4; 
   }
   
-  /* Index stats row */
   .pub-stat.index-g { grid-column: 1; grid-row: 5; }
   .pub-stat.index-h { grid-column: 2; grid-row: 5; }
   .pub-stat.index-i10 { grid-column: 3; grid-row: 5; }
@@ -969,23 +964,18 @@ permalink: /members-director.html
  }
  
 /* 멘티 칩 - 참여 횟수별 점진적 색상 변화 */
-/* 1회 참여 - 기본 */
-/* 멘티 칩 - 참여 횟수별 점진적 색상 변화 */
-/* 1회 참여 - 거의 흰색 */
 .mentee-chip[data-count="1"] {
   background: #fffef9;
   border-color: #e5e7eb;
   color: #374151;
 }
 
-/* 2회 참여 - 매우 연한 금색 */
 .mentee-chip[data-count="2"] {
   background: rgba(214, 177, 77, 0.08);
   border-color: rgba(214, 177, 77, 0.25);
   color: #92400e;
 }
 
-/* 3회 참여 - 연한 금색 */
 .mentee-chip[data-count="3"] {
   background: rgba(214, 177, 77, 0.2);
   border-color: rgba(214, 177, 77, 0.45);
@@ -993,7 +983,6 @@ permalink: /members-director.html
   font-weight: 600;
 }
 
-/* 4회 참여 - 중간 금색 */
 .mentee-chip[data-count="4"] {
   background: rgba(214, 177, 77, 0.4);
   border-color: rgba(214, 177, 77, 0.7);
@@ -1002,7 +991,6 @@ permalink: /members-director.html
   box-shadow: 0 1px 3px rgba(214, 177, 77, 0.2);
 }
 
-/* 5회 참여 - 진한 금색 */
 .mentee-chip[data-count="5"] {
   background: rgba(214, 177, 77, 0.65);
   border-color: rgba(194, 157, 57, 0.9);
@@ -1011,7 +999,6 @@ permalink: /members-director.html
   box-shadow: 0 2px 5px rgba(194, 157, 57, 0.3);
 }
 
-/* 6회 이상 참여 - 매우 진한 금색 그라디언트 */
 .mentee-chip[data-count="6"],
 .mentee-chip[data-count="7"],
 .mentee-chip[data-count="8"],
@@ -1025,7 +1012,6 @@ permalink: /members-director.html
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* 호버 효과도 점진적으로 */
 .mentee-chip[data-count="4"]:hover,
 .mentee-chip[data-count="5"]:hover {
   transform: translateY(-2px);
@@ -1040,7 +1026,6 @@ permalink: /members-director.html
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(174, 137, 37, 0.5);
 }
-
  
  .mentee-chip:hover{
    box-shadow:0 4px 12px rgba(0,0,0,0.15);
@@ -1091,7 +1076,7 @@ permalink: /members-director.html
 .mentee-modal-body{padding:24px;}
 .mentee-info-row {
   display: flex;
-  align-items: flex-start;  /* 상단 정렬 */
+  align-items: flex-start;
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid #f3f4f6;
@@ -1102,8 +1087,8 @@ permalink: /members-director.html
   text-align: center;
   color: var(--gold);
   font-size: 16px;
-  margin-top: 2px;  /* 아이콘을 약간 아래로 내려서 텍스트와 정렬 */
-  flex-shrink: 0;  /* 추가: 아이콘 크기 고정 */
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 .mentee-info-label {
   font-weight: 700;
@@ -1112,13 +1097,12 @@ permalink: /members-director.html
   font-size: 12px;
   white-space: nowrap;
   flex-shrink: 0;
-  padding-top: 2px;  /* 추가: 이모지와 높이 맞춤 */
+  padding-top: 2px;
 }
 .mentee-info-value{
    color:#111827;font-weight:600;font-size:13px;flex:1;
 }
 
-/* Entry Year - 단일 뱃지 */
 .single-year {
   display: inline-flex;
   align-items: center;
@@ -1132,7 +1116,6 @@ permalink: /members-director.html
   min-width: 55px;
 }
 
-/* Participation Years - 그리드 레이아웃 */
 .participation-years {
   display: inline-flex;
   gap: 6px;
@@ -1155,7 +1138,6 @@ permalink: /members-director.html
   min-width: 55px;
 }
 
-/* 모바일 스타일 - 완전히 재설계 */
 @media (max-width: 640px) {
   .mentee-modal-content {
     max-width: 95%;
@@ -1187,17 +1169,15 @@ permalink: /members-director.html
     flex: 1;
   }
   
-  /* Entry Year - 모바일에서 일관된 스타일 */
   .single-year {
     display: inline-flex;
     padding: 3px 8px;
     font-size: 11px;
     min-width: 48px;
-    max-width: 48px;  /* 최대 너비도 고정 */
+    max-width: 48px;
     text-align: center;
   }
   
-  /* Participation Years - 모바일에서 Entry Year와 동일한 스타일 */
   .participation-years {
     display: inline-flex;
     flex-wrap: wrap;
@@ -1211,9 +1191,9 @@ permalink: /members-director.html
     padding: 3px 8px;
     font-size: 11px;
     min-width: 48px;
-    max-width: 48px;  /* Entry Year와 동일한 최대 너비 */
+    max-width: 48px;
     text-align: center;
-    flex: 0 0 48px;  /* 고정 너비 */
+    flex: 0 0 48px;
   }
 }
 
@@ -1242,10 +1222,9 @@ permalink: /members-director.html
   font-weight: 700;
   color: #6b7280;
   white-space: nowrap;
-  min-width: 65px;  /* 레이블 최소 너비 고정 */
+  min-width: 65px;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .network-controls {
     flex-direction: column;
@@ -1254,7 +1233,6 @@ permalink: /members-director.html
     padding: 12px;
   }
   
-  /* 각 그룹을 별도 줄로 */
   .control-group {
     display: flex;
     align-items: center;
@@ -1269,7 +1247,6 @@ permalink: /members-director.html
     font-size: 12px;
   }
   
-  /* Threshold 줄 */
   .control-group:first-child .slider-container {
     flex: 1;
     margin: 0 12px;
@@ -1279,10 +1256,9 @@ permalink: /members-director.html
     width: 100% !important;
   }
   
-  /* Zoom 줄 - 왼쪽 정렬로 변경 */
   .control-group:last-child {
     display: flex;
-    justify-content: flex-start;  /* space-between에서 flex-start로 변경 */
+    justify-content: flex-start;
     gap: 12px;
   }
   
@@ -1314,7 +1290,6 @@ permalink: /members-director.html
   border: none;
 }
 
-/* Threshold 슬라이더 값 - 금색 */
 .slider-badge {
   display: inline-flex;
   align-items: center;
@@ -1329,7 +1304,6 @@ permalink: /members-director.html
   box-shadow: 0 2px 4px rgba(214,177,77,0.3);
 }
 
-/* Zoom 레벨 표시 - 다른 색상 (파란색 계열) */
 #zoomLevel {
   background: #6b7280;
   color: white;
@@ -1354,7 +1328,7 @@ permalink: /members-director.html
   border-color: var(--gold);
   transform: translateY(-1px);
 }
-/* Network slider 기본 설정 */
+
 .network-slider {
   width: 250px;
   -webkit-appearance: none;
@@ -1365,8 +1339,6 @@ permalink: /members-director.html
   outline: none;
 }
 
-/* Mobile responsiveness */
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .network-controls {
     flex-direction: column;
@@ -1375,7 +1347,6 @@ permalink: /members-director.html
     padding: 10px;
   }
   
-  /* 첫 번째 그룹(Threshold) 전체 너비 사용 */
   .control-group:first-child {
     display: flex;
     align-items: center;
@@ -1399,7 +1370,6 @@ permalink: /members-director.html
     max-width: 100%;
   }
   
-  /* 두 번째 그룹(Zoom) 가운데 정렬 */
   .control-group:last-child {
     justify-content: center;
   }
@@ -1427,19 +1397,19 @@ permalink: /members-director.html
   }
   
   #networkCanvas {
-    height: 450px !important;  /* 400px에서 450px로 증가 */
+    height: 450px !important;
   }
 }
 
 @media (max-width: 480px) {
   .network-slider {
-    width: 100% !important;  /* 전체 너비 유지 */
+    width: 100% !important;
     min-width: 150px;
   }
   
   .slider-label {
     font-size: 11px !important;
-    flex-shrink: 0;  /* 라벨 크기 고정 */
+    flex-shrink: 0;
   }
   
   .zoom-btn {
@@ -1458,7 +1428,6 @@ permalink: /members-director.html
   }
 }
 
-/* main-grid 모바일 완전 분리 */
 @media (max-width: 968px) {
   .main-grid {
     display: block !important;
@@ -1470,7 +1439,6 @@ permalink: /members-director.html
   }
 }
 
-/* overflow 방지 */
 .director-page,
 .main-grid,
 .director-card {
@@ -1478,7 +1446,6 @@ permalink: /members-director.html
   overflow-x: hidden !important;
 }
 
-/* 긴 텍스트 처리 */
 .profile-value a,
 .desc,
 .title {
@@ -1491,11 +1458,17 @@ permalink: /members-director.html
 /* Enhanced Network Canvas Styles */
 #networkCanvas {
   width: 100%;
-  height: 500px;  /* 기본값 */
+  height: 500px;
   border-radius: 16px;
   background: radial-gradient(ellipse at center, #fafbfc 0%, #f3f4f6 100%);
   margin-top: 1rem;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#networkCanvas:hover {
+  box-shadow: inset 0 4px 8px rgba(0,0,0,0.06);
 }
 
 @media (max-width: 768px) {
@@ -1522,7 +1495,6 @@ permalink: /members-director.html
  border: 1px solid rgba(214,177,77,0.1);
 }
 
- /* ===== 모바일 반응형 추가 수정 ===== */
 @media (max-width: 640px) {
   .director-page.max-w-7xl {
     max-width: 100% !important;
@@ -1566,7 +1538,6 @@ permalink: /members-director.html
   }
 }
 
-/* Advisor 모바일 반응형 추가 */
 @media (max-width: 640px) {
   .advisor-info {
     flex-direction: column;
@@ -1694,7 +1665,7 @@ permalink: /members-director.html
 .breakdown-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap:8px;
   padding-left: 0;
 }
 
@@ -1733,7 +1704,6 @@ permalink: /members-director.html
   color: #6b7280;
 }
 
-/* 모바일 스타일 */
 @media (max-width: 640px) {
   .collab-modal-content {
     max-width: 95%;
@@ -1815,6 +1785,7 @@ permalink: /members-director.html
 .activity-item:hover .activity-logo {
   filter: grayscale(0%);
 }
+
 /* Activity Modal - Same style as other modals */
 .activity-modal {
   position: fixed;
@@ -1874,6 +1845,7 @@ permalink: /members-director.html
   background: rgba(255,255,255,0.3);
   transform: scale(1.1);
 }
+
 .activity-modal-title {
   font-size: 19px;
   font-weight: 900;
@@ -1928,7 +1900,6 @@ permalink: /members-director.html
   display: inline-block;
 }
 
-/* Mobile responsive - 2x3 grid on mobile */
 @media (max-width: 640px) {
   .activities-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1963,7 +1934,7 @@ permalink: /members-director.html
   }
 }
  
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   #pdfCanvas {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -1971,12 +1942,13 @@ permalink: /members-director.html
   }
 }
 
-/* Leadership Toggle Section */
+/* Unified Leadership Toggle Section for Education/Employment/Activities */
 .leadership-toggle-section {
   margin-top: 12px;
-  border: 1px solid rgba(239,68,68,0.15);
+  border: 1px solid rgba(214,177,77,0.15);
   border-radius: 8px;
   overflow: hidden;
+  background: white;
 }
 
 .leadership-toggle-header {
@@ -1984,23 +1956,40 @@ permalink: /members-director.html
   align-items: center;
   gap: 6px;
   padding: 10px 14px;
-  background: linear-gradient(135deg, rgba(239,68,68,0.03) 0%, rgba(236,72,153,0.03) 100%);
+  background: linear-gradient(135deg, rgba(214,177,77,0.03) 0%, rgba(234,197,97,0.03) 100%);
   cursor: pointer;
   user-select: none;
   font-weight: 800;
   font-size: 13px;
-  color: #dc2626;
+  color: var(--gold-dark);
   transition: all 0.2s;
+  position: relative;
 }
 
 .leadership-toggle-header:hover {
-  background: linear-gradient(135deg, rgba(239,68,68,0.06) 0%, rgba(236,72,153,0.06) 100%);
+  background: linear-gradient(135deg, rgba(214,177,77,0.08) 0%, rgba(234,197,97,0.08) 100%);
+}
+
+.leadership-toggle-header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.leadership-toggle-header.active::before {
+  width: 5px;
 }
 
 .leadership-toggle-header .toggle-icon {
   margin-left: auto;
   transition: transform 0.3s;
   font-size: 11px;
+  color: var(--gold);
 }
 
 .leadership-toggle-header.active .toggle-icon {
@@ -2011,7 +2000,7 @@ permalink: /members-director.html
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
-  background: #fff;
+  background: linear-gradient(135deg, rgba(214,177,77,0.02) 0%, rgba(234,197,97,0.02) 100%);
 }
 
 .leadership-content-wrapper.show {
@@ -2021,17 +2010,30 @@ permalink: /members-director.html
 
 .leadership-item {
   padding: 12px 14px;
-  border-top: 1px solid rgba(239,68,68,0.08);
+  border-top: 1px solid rgba(214,177,77,0.08);
+  position: relative;
+  padding-left: 28px;
 }
 
 .leadership-item:first-child {
   border-top: none;
 }
 
+.leadership-item::before {
+  content: "👑";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
 .leadership-role {
   font-size: 13px;
   color: #111827;
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .leadership-affiliation {
@@ -2049,31 +2051,7 @@ permalink: /members-director.html
   border-radius: 4px;
 }
 
-/* 모바일 반응형 */
-@media (max-width: 640px) {
-  .leadership-toggle-header {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  
-  .leadership-item {
-    padding: 10px 12px;
-  }
-  
-  .leadership-role {
-    font-size: 12px;
-  }
-  
-  .leadership-affiliation {
-    font-size: 11px;
-  }
-  
-  .leadership-period {
-    font-size: 10px;
-  }
-}
-
-/* Activity Leadership Styles */
+/* Activity Leadership Section - Unified Style */
 .activity-leadership-section {
   margin-top: 16px;
   padding-top: 16px;
@@ -2086,24 +2064,35 @@ permalink: /members-director.html
   gap: 6px;
   font-weight: 800;
   font-size: 13px;
-  color: rgb(172, 14, 14);  /* 변경됨 */
+  color: var(--gold-dark);
   margin-bottom: 12px;
 }
-
 
 .activity-leadership-item {
   padding: 10px 0;
   border-bottom: 1px solid #f9fafb;
+  position: relative;
+  padding-left: 20px;
 }
 
 .activity-leadership-item:last-child {
   border-bottom: none;
 }
 
+.activity-leadership-item::before {
+  content: "👑";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  opacity: 0.7;
+}
+
 .activity-leadership-role {
   font-weight: 700;
   font-size: 14px;
-  color: rgb(163, 102, 52);  /* 갈색/청동색으로 변경 */
+  color: var(--gold-dark);
   margin-bottom: 4px;
 }
 
@@ -2112,12 +2101,12 @@ permalink: /members-director.html
   color: #374151;
   font-weight: 700;
   padding: 3px 8px;
-  background: rgba(239,68,68,0.08);
+  background: rgba(214,177,77,0.08);
   border-radius: 6px;
   display: inline-block;
 }
 
- /* Activity Generation Badge */
+/* Activity Generation Badge */
 .activity-generation {
   margin-bottom: 16px;
   text-align: center;
@@ -2136,12 +2125,35 @@ permalink: /members-director.html
   box-shadow: 0 2px 6px rgba(214,177,77,0.3);
 }
 
-/* Founding member special style */
-.generation-badge:contains("Founding") {
+.generation-badge.founding {
   background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
   box-shadow: 0 2px 6px rgba(220,38,38,0.3);
 }
- 
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .leadership-toggle-header {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .leadership-item {
+    padding: 10px 12px;
+    padding-left: 24px;
+  }
+  
+  .leadership-role {
+    font-size: 12px;
+  }
+  
+  .leadership-affiliation {
+    font-size: 11px;
+  }
+  
+  .leadership-period {
+    font-size: 10px;
+  }
+}
 </style>
 
 <!-- ===== Main Content ===== -->
@@ -2188,7 +2200,7 @@ permalink: /members-director.html
             <div class="profile-content">
               <span class="profile-label">E-mail</span>
               <span class="profile-value" style="display: flex; align-items: center; gap: 8px;">
-                <a href="mailto:ischoi@dwu.ac.kr">ischoi@dwu.ac.kr</a>
+                <a href="mailto:ischoi@dongduk.ac.kr">ischoi@dongduk.ac.kr</a>
                 <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">
                   📋
                 </button>
@@ -2366,7 +2378,7 @@ permalink: /members-director.html
           </div>
         </div>
 
-        <!-- Leadership 토글 섹션 -->
+        <!-- Leadership 토글 섹션 - 통일된 스타일 -->
         <div class="leadership-toggle-section">
           <div class="leadership-toggle-header" onclick="toggleLeadership(this)">
             <span>👑</span>
@@ -2466,7 +2478,7 @@ permalink: /members-director.html
           </div>
         </div>
 
-        <!-- Leadership 토글 섹션 -->
+        <!-- Leadership 토글 섹션 - 통일된 스타일 -->
         <div class="leadership-toggle-section">
           <div class="leadership-toggle-header" onclick="toggleLeadership(this)">
             <span>👑</span>
@@ -2475,7 +2487,7 @@ permalink: /members-director.html
           </div>
           <div class="leadership-content-wrapper">
             <div class="leadership-item">
-              <div class="leadership-role"><b>Head of Culture & Public Relations</b></div>
+              <div class="leadership-role"><b>Head of Culture &amp; Public Relations</b></div>
               <div class="leadership-affiliation">41st Student Council, College of Engineering</div>
               <div class="leadership-period">2017.01. - 2017.11.</div>
             </div>
@@ -2553,8 +2565,8 @@ permalink: /members-director.html
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2014.06. – Recent</div>
         <div class="title"><b>Founder</b></div>
-        <div class="desc" style="display: block;">JL Creatives & Contents (JL C&C)</div>
-        <div class="desc-ko"><b>설립자</b> / JL C&C</div>
+        <div class="desc" style="display: block;">JL Creatives &amp; Contents (JL C&amp;C)</div>
+        <div class="desc-ko"><b>설립자</b> / JL C&amp;C</div>
       </li>
     </ul>
   </div>
@@ -2666,7 +2678,7 @@ permalink: /members-director.html
       </div>
       <div class="pub-stat journal-ahci">
         <div class="pub-stat-number" id="stat-ahci">0</div>
-        <div class="pub-stat-label">A&HCI</div>
+        <div class="pub-stat-label">A&amp;HCI</div>
       </div>
       <div class="pub-stat journal-esci">
         <div class="pub-stat-number" id="stat-esci">0</div>
@@ -2793,33 +2805,13 @@ permalink: /members-director.html
   </div>
 </div>
 
-    </div>
-  </div>
-</div>
-
-<!-- Activity Modal -->
-<div class="activity-modal" id="activityModal" onclick="closeActivityModal(event)">
-  <div class="activity-modal-content" onclick="event.stopPropagation()">
-    <div class="activity-modal-header">
-      <h2 class="activity-modal-title" id="activityModalTitle">Activity</h2>
-      <button class="activity-modal-close" onclick="closeActivityModal()">&times;</button>
-    </div>
-    <div class="activity-modal-body" id="activityModalBody">
-      <!-- Content will be populated by JavaScript -->
-    </div>
-  </div>
-</div>
-
 <!-- Scripts -->
 <script>
-
-
-   {% if site.data.authors %}
+  {% if site.data.authors %}
     const AUTHORS = {{ site.data.authors | jsonify }};
   {% else %}
     const AUTHORS = {};
   {% endif %}
- 
 
  // ===== Research Interests Toggle =====
  function toggleRI(header) {
@@ -2836,7 +2828,7 @@ permalink: /members-director.html
 
 // 이메일 복사 함수
 function copyEmail() {
-  const email = 'ischoi@dwu.ac.kr';
+  const email = 'ischoi@dongduk.ac.kr';
   const btn = document.querySelector('.email-copy-btn');
   
   navigator.clipboard.writeText(email).then(() => {
@@ -3005,7 +2997,7 @@ function buildMentoringYears() {
    document.body.style.overflow = '';
  }
 
- // ===== Clean and Elegant Collaboration Network =====
+ // ===== Enhanced Reactive Collaboration Network =====
  // Load publications data from Jekyll
  const PUBS = {{ site.data.pubs | jsonify }};
  const DIRECTOR_ID = 1;
@@ -3013,7 +3005,7 @@ function buildMentoringYears() {
  // Count collaborations (only papers including director)
 function countCollaborations() {
   const counts = {};
-  const typeBreakdown = {}; // 각 저자별 publication 타입 카운트
+  const typeBreakdown = {};
   let directorPapers = 0;
   
   PUBS.forEach(pub => {
@@ -3022,13 +3014,11 @@ function countCollaborations() {
     
     directorPapers++;
     
-    // publication 타입 결정 (4가지로 세분화)
     const ig = Array.isArray(pub.indexing_group) ? pub.indexing_group : [pub.indexing_group];
     const types = Array.isArray(pub.type) ? pub.type : [pub.type];
     
-    let pubType = 'journal'; // 기본값
+    let pubType = 'journal';
     
-    // type 필드 우선 체크
     if (types.includes('book')) {
       pubType = 'book';
     } else if (types.includes('report')) {
@@ -3057,24 +3047,23 @@ function countCollaborations() {
   return { counts, typeBreakdown, directorPapers };
 }
 
- // Initialize variables
-// Initialize variables
-
- // Animation variables (Initialize variables 섹션 바로 뒤에 추가)
+ // Animation variables
 let animationFrame = null;
 let nodeAnimations = new Map();
 let time = 0;
+let particles = [];
  
  const isMobileInit = window.innerWidth <= 768;
  let currentThreshold = isMobileInit ? 5 : 3;
  let { counts: collaborations, typeBreakdown, directorPapers } = countCollaborations();
  let maxCollaborations = Math.max(...Object.values(collaborations), 1);
  let hoveredNode = null;
+ let selectedNode = null;
  let networkInitialized = false;
 
  // UI Elements
  const slider = document.getElementById('networkSlider');
- const sliderValue = document.getElementById('sliderValue'); // 이 요소가 없어도 에러 방지
+ const sliderValue = document.getElementById('sliderValue');
  const infoEl = document.getElementById('networkInfo');
  
  // Setup slider
@@ -3084,14 +3073,12 @@ let time = 0;
  
    slider.addEventListener('input', function() {
      currentThreshold = parseInt(this.value);
-     // sliderValue가 존재하면 업데이트, 없으면 무시
      if (sliderValue) {
        sliderValue.textContent = currentThreshold + '%';
      }
      updateNetworkInfo();
      if (networkInitialized) {
        buildNetwork();
-       drawNetwork();
      }
    });
  }
@@ -3104,33 +3091,25 @@ function updateNetworkInfo() {
 
   infoEl.innerHTML = `<span style="color:#d6b14d">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators with <b>${thresholdCount}+</b> papers<br>(≥${currentThreshold}% of ${directorPapers} total)`;
 }
+
  // Canvas setup
   const canvas = document.getElementById('networkCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let nodes = [];
+  let connections = [];
   let zoomLevel = 1;
-  let baseRadius = 120; // 기본 반경
+  let baseRadius = 120;
 
    window.zoomNetwork = function(factor) {
      zoomLevel *= factor;
      zoomLevel = Math.max(0.3, Math.min(2, zoomLevel));
-     const zoomLevelEl = document.getElementById('zoomLevel');
-     if (zoomLevelEl) {
-       zoomLevelEl.textContent = Math.round(zoomLevel * 100) + '%';
-     }
      buildNetwork();
-     drawNetwork();
    }
    
    window.resetZoom = function() {
      zoomLevel = 1;
-     const zoomLevelEl = document.getElementById('zoomLevel');
-     if (zoomLevelEl) {
-       zoomLevelEl.textContent = '100%';
-     }
      buildNetwork();
-     drawNetwork();
    }
 
   // Size canvas
@@ -3139,14 +3118,13 @@ function sizeCanvas() {
   const isMobile = window.innerWidth <= 768;
   const isSmallMobile = window.innerWidth <= 480;
   
-  // 화면 크기별 높이 설정
   let canvasHeight;
   if (isSmallMobile) {
-    canvasHeight = 350;  // 작은 모바일
+    canvasHeight = 350;
   } else if (isMobile) {
-    canvasHeight = 400;  // 일반 모바일
+    canvasHeight = 400;
   } else {
-    canvasHeight = 500;  // 데스크톱
+    canvasHeight = 500;
   }
   
   canvas.width = rect.width * window.devicePixelRatio;
@@ -3155,13 +3133,46 @@ function sizeCanvas() {
   ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
 }
 
+// Particle system for enhanced effects
+class Particle {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.vx = (Math.random() - 0.5) * 2;
+    this.vy = (Math.random() - 0.5) * 2;
+    this.life = 1;
+    this.decay = 0.01;
+    this.color = color;
+    this.radius = 2 + Math.random() * 2;
+  }
+  
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life -= this.decay;
+    this.vx *= 0.99;
+    this.vy *= 0.99;
+  }
+  
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = this.life;
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius * this.life, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
 function buildNetwork() {
   nodes = [];
+  connections = [];
   const centerX = canvas.width / (2 * window.devicePixelRatio);
   const centerY = canvas.height / (2 * window.devicePixelRatio);
   const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
 
-  // Director at center with animation
+  // Director at center
   nodes.push({
     id: DIRECTOR_ID,
     name: AUTHORS[DIRECTOR_ID]?.en || 'Director',
@@ -3172,65 +3183,66 @@ function buildNetwork() {
     radius: 35 * zoomLevel,
     isCenter: true,
     frequency: 999,
-    pulsePhase: 0
+    pulsePhase: 0,
+    glowIntensity: 0
   });
 
-  // Get collaborators sorted by frequency and filtered by threshold
+  // Get collaborators
   const coAuthors = Object.entries(collaborations)
     .filter(([id, freq]) => freq >= thresholdCount)
     .sort((a, b) => b[1] - a[1]);
 
-  // Arrange in concentric circles based on frequency
-  const rings = [];
-  const ringSizes = [8, 12, 16];
-  let ringIndex = 0;
-  let nodesInRing = [];
+  // Arrange in dynamic spiral pattern
+  const angleStep = (Math.PI * 2) / Math.max(8, coAuthors.length);
+  const radiusStep = 60 * zoomLevel;
+  
+  coAuthors.forEach(([id, freq], index) => {
+    const spiralAngle = index * angleStep;
+    const spiralRadius = baseRadius * zoomLevel + (Math.floor(index / 8) * radiusStep);
+    const percentage = Math.round((freq / directorPapers) * 100);
+    
+    const x = centerX + Math.cos(spiralAngle) * spiralRadius;
+    const y = centerY + Math.sin(spiralAngle) * spiralRadius;
 
-  coAuthors.forEach(([id, freq]) => {
-    if (nodesInRing.length >= ringSizes[Math.min(ringIndex, ringSizes.length - 1)]) {
-      rings.push(nodesInRing);
-      nodesInRing = [];
-      ringIndex++;
-    }
-    nodesInRing.push({ id: parseInt(id), freq });
-  });
-  if (nodesInRing.length > 0) rings.push(nodesInRing);
-
-  // Place nodes in rings with zoom and floating animation
-  rings.forEach((ring, rIdx) => {
-    const radius = (baseRadius + rIdx * 80) * zoomLevel;
-    ring.forEach((item, nIdx) => {
-      const angle = (nIdx / ring.length) * Math.PI * 2 - Math.PI / 2;
-      const freq = item.freq;
-      const percentage = Math.round((freq / directorPapers) * 100);
-      
-      const x = centerX + Math.cos(angle) * radius;
-      const y = centerY + Math.sin(angle) * radius;
-
-      nodes.push({
-        id: item.id,
-        name: AUTHORS[item.id]?.en || `Author ${item.id}`,
-        x: x,
-        y: y,
-        baseX: x,
-        baseY: y,
-        radius: (10 + (freq / maxCollaborations) * 15) * zoomLevel,
-        frequency: freq,
-        percentage: percentage,
-        ring: rIdx,
-        typeBreakdown: typeBreakdown[item.id],
-        floatPhase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.5 + Math.random() * 0.5
-      });
+    const node = {
+      id: parseInt(id),
+      name: AUTHORS[id]?.en || `Author ${id}`,
+      x: x,
+      y: y,
+      baseX: x,
+      baseY: y,
+      targetX: x,
+      targetY: y,
+      radius: (10 + (freq / maxCollaborations) * 15) * zoomLevel,
+      frequency: freq,
+      percentage: percentage,
+      typeBreakdown: typeBreakdown[id],
+      floatPhase: Math.random() * Math.PI * 2,
+      floatSpeed: 0.5 + Math.random() * 0.5,
+      velocity: { x: 0, y: 0 },
+      glowIntensity: 0,
+      connectionGlow: 0
+    };
+    
+    nodes.push(node);
+    
+    // Create connection object
+    connections.push({
+      source: nodes[0],
+      target: node,
+      strength: freq / maxCollaborations,
+      pulsePhase: Math.random() * Math.PI * 2,
+      glowing: false
     });
   });
   
-  // Initialize animations for new nodes
+  // Initialize animations
   nodes.forEach(node => {
     if (!nodeAnimations.has(node.id)) {
       nodeAnimations.set(node.id, {
         hover: 0,
-        pulse: 0
+        pulse: 0,
+        select: 0
       });
     }
   });
@@ -3251,9 +3263,7 @@ function buildNetwork() {
     'Domestic Conference': 0
   };
   
-  // PUBS는 이미 로드되어 있음
   PUBS.forEach(pub => {
-    // indexing_group이 배열일 수도 있음
     const indexingGroups = Array.isArray(pub.indexing_group) 
       ? pub.indexing_group 
       : (pub.indexing_group ? [pub.indexing_group] : []);
@@ -3274,244 +3284,408 @@ function buildNetwork() {
   document.getElementById('stat-other').textContent = stats['Other International'];
   document.getElementById('stat-intl-conf').textContent = stats['International Conference'];
   
-  // KCI는 Excellent와 Accredited 합산
   const kciTotal = stats['KCI Excellent'] + stats['KCI Accredited'];
   document.getElementById('stat-kci').textContent = kciTotal;
   
   document.getElementById('stat-dom-conf').textContent = stats['Domestic Conference'];
 }
 
-// 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', countPublications);
  
-  // Draw the network
+  // Enhanced draw function with reactive effects
   function drawNetwork() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Background
     const centerX = canvas.width / (2 * window.devicePixelRatio);
     const centerY = canvas.height / (2 * window.devicePixelRatio);
 
-    // Subtle radial gradient
-    const bgGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 300);
+    // Dynamic gradient background
+    const bgGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 350);
     bgGrad.addColorStop(0, '#fefefe');
-    bgGrad.addColorStop(1, '#f9fafb');
+    bgGrad.addColorStop(0.5, '#fbfcfd');
+    bgGrad.addColorStop(1, '#f3f4f6');
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw subtle grid dots for background
+    // Animated grid dots
     ctx.fillStyle = '#e5e7eb';
     for (let x = 20; x < canvas.width / window.devicePixelRatio; x += 30) {
       for (let y = 20; y < canvas.height / window.devicePixelRatio; y += 30) {
+        const distance = Math.hypot(x - centerX, y - centerY);
+        const opacity = 0.3 + Math.sin(time * 0.5 + distance * 0.01) * 0.2;
+        ctx.globalAlpha = opacity;
         ctx.beginPath();
         ctx.arc(x, y, 1, 0, Math.PI * 2);
         ctx.fill();
       }
     }
+    ctx.globalAlpha = 1;
 
-    // Draw connections
-    nodes.slice(1).forEach(node => {
-      const grad = ctx.createLinearGradient(nodes[0].x, nodes[0].y, node.x, node.y);
-      const alpha = 0.15 + (node.frequency / maxCollaborations) * 0.25;
+    // Draw connections with dynamic effects
+    connections.forEach(conn => {
+      const pulse = Math.sin(time * 2 + conn.pulsePhase) * 0.3 + 0.7;
+      const alpha = (0.15 + conn.strength * 0.25) * pulse;
+      
+      // Glow effect for connections
+      if (hoveredNode === conn.target || selectedNode === conn.target) {
+        ctx.shadowColor = 'rgba(214, 177, 77, 0.5)';
+        ctx.shadowBlur = 10;
+      }
+      
+      const grad = ctx.createLinearGradient(
+        conn.source.x, conn.source.y,
+        conn.target.x, conn.target.y
+      );
+      
       grad.addColorStop(0, `rgba(172, 14, 14, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(214, 177, 77, ${alpha})`);
-      grad.addColorStop(1, `rgba(214, 177, 77, ${alpha * 0.5})`);
+      grad.addColorStop(0.3, `rgba(214, 177, 77, ${alpha})`);
+      grad.addColorStop(0.7, `rgba(214, 177, 77, ${alpha * 0.8})`);
+      grad.addColorStop(1, `rgba(234, 197, 97, ${alpha * 0.5})`);
 
       ctx.beginPath();
-      ctx.moveTo(nodes[0].x, nodes[0].y);
-      ctx.lineTo(node.x, node.y);
+      ctx.moveTo(conn.source.x, conn.source.y);
+      ctx.lineTo(conn.target.x, conn.target.y);
       ctx.strokeStyle = grad;
-      ctx.lineWidth = Math.max(0.5, node.frequency / maxCollaborations * 2);
+      ctx.lineWidth = Math.max(0.5, conn.strength * 3) * (hoveredNode === conn.target ? 1.5 : 1);
       ctx.stroke();
+      
+      ctx.shadowColor = 'transparent';
+      ctx.shadowBlur = 0;
     });
 
-    // Draw nodes
+    // Draw particles
+    particles = particles.filter(p => p.life > 0);
+    particles.forEach(p => {
+      p.update();
+      p.draw(ctx);
+    });
+
+    // Draw nodes with enhanced effects
     nodes.forEach(node => {
       const isHovered = hoveredNode === node;
-      const scale = isHovered ? 1.1 : 1;
+      const isSelected = selectedNode === node;
+      const anim = nodeAnimations.get(node.id);
+      
+      // Smooth animation transitions
+      if (anim) {
+        anim.hover = anim.hover * 0.9 + (isHovered ? 1 : 0) * 0.1;
+        anim.select = anim.select * 0.9 + (isSelected ? 1 : 0) * 0.1;
+        anim.pulse = (Math.sin(time * 2) + 1) / 2;
+      }
+      
+      const scale = 1 + anim.hover * 0.15 + anim.select * 0.1;
+      const glowAmount = anim.hover * 15 + anim.select * 20;
 
-      // Shadow
-      ctx.shadowColor = isHovered ? 'rgba(214, 177, 77, 0.3)' : 'rgba(0, 0, 0, 0.1)';
-      ctx.shadowBlur = isHovered ? 15 : 8;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 2;
+      // Enhanced shadow and glow
+      if (isHovered || isSelected) {
+        ctx.shadowColor = node.isCenter ? 'rgba(239, 68, 68, 0.4)' : 'rgba(214, 177, 77, 0.4)';
+        ctx.shadowBlur = glowAmount;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 2;
+      } else {
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.1)';
+        ctx.shadowBlur = 5;
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 2;
+      }
 
-      // Node circle
+      // Node circle with gradient
       ctx.beginPath();
       ctx.arc(node.x, node.y, node.radius * scale, 0, Math.PI * 2);
 
       if (node.isCenter) {
-        // Director node - red gradient
+        // Animated gradient for director
         const grad = ctx.createRadialGradient(
           node.x - node.radius * 0.3,
           node.y - node.radius * 0.3,
           0,
-          node.x, node.y, node.radius
+          node.x, node.y, node.radius * scale
         );
-        grad.addColorStop(0, '#ef4444');
+        const pulse = anim.pulse;
+        grad.addColorStop(0, `rgb(${239 + pulse * 16}, ${68 + pulse * 20}, ${68 + pulse * 20})`);
         grad.addColorStop(1, '#b91c1c');
         ctx.fillStyle = grad;
       } else {
-        // Collaborator nodes - gold gradient based on frequency
+        // Dynamic gradient for collaborators
         const grad = ctx.createRadialGradient(
           node.x - node.radius * 0.3,
           node.y - node.radius * 0.3,
           0,
-          node.x, node.y, node.radius
+          node.x, node.y, node.radius * scale
         );
         const ratio = node.frequency / maxCollaborations;
+        const intensity = anim.hover * 0.2;
+        
         if (ratio > 0.66) {
-          grad.addColorStop(0, '#fbbf24');
-          grad.addColorStop(1, '#d97706');
+          grad.addColorStop(0, `rgba(251, 191, 36, ${0.9 + intensity})`);
+          grad.addColorStop(1, `rgba(217, 119, 6, ${0.9 + intensity})`);
         } else if (ratio > 0.33) {
-          grad.addColorStop(0, '#fde047');
-          grad.addColorStop(1, '#facc15');
+          grad.addColorStop(0, `rgba(253, 224, 71, ${0.9 + intensity})`);
+          grad.addColorStop(1, `rgba(250, 204, 21, ${0.9 + intensity})`);
         } else {
-          grad.addColorStop(0, '#fef3c7');
-          grad.addColorStop(1, '#fde68a');
+          grad.addColorStop(0, `rgba(254, 243, 199, ${0.9 + intensity})`);
+          grad.addColorStop(1, `rgba(253, 230, 138, ${0.9 + intensity})`);
         }
         ctx.fillStyle = grad;
       }
       ctx.fill();
 
-      // Border
-      ctx.strokeStyle = node.isCenter ? 'rgba(185, 28, 28, 0.3)' : 'rgba(217, 119, 6, 0.3)';
-      ctx.lineWidth = 1.5;
+      // Animated border
+      ctx.strokeStyle = node.isCenter 
+        ? `rgba(185, 28, 28, ${0.3 + anim.hover * 0.3})` 
+        : `rgba(217, 119, 6, ${0.3 + anim.hover * 0.3})`;
+      ctx.lineWidth = 1.5 + anim.hover;
       ctx.stroke();
 
       ctx.shadowColor = 'transparent';
 
-      // Text labels
-      ctx.fillStyle = '#1f2937';
-      ctx.font = node.isCenter ? 'bold 12px Inter, sans-serif' : '11px Inter, sans-serif';
+      // Labels with better positioning
+      ctx.fillStyle = `rgba(31, 41, 55, ${0.8 + anim.hover * 0.2})`;
+      ctx.font = node.isCenter 
+        ? `bold ${12 + anim.hover * 2}px Inter, sans-serif` 
+        : `${11 + anim.hover}px Inter, sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // Name below node
       ctx.fillText(node.name, node.x, node.y + node.radius + 14);
 
-      // Paper count for collaborators
       if (!node.isCenter) {
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '9px Inter, sans-serif';
+        ctx.fillStyle = `rgba(107, 114, 128, ${0.7 + anim.hover * 0.3})`;
+        ctx.font = `${9 + anim.hover * 0.5}px Inter, sans-serif`;
         ctx.fillText(`${node.frequency} papers (${node.percentage}%)`, node.x, node.y + node.radius + 26);
+      }
+      
+      // Spawn particles on hover
+      if (isHovered && Math.random() < 0.1) {
+        const color = node.isCenter ? 'rgba(239, 68, 68, 0.6)' : 'rgba(214, 177, 77, 0.6)';
+        particles.push(new Particle(node.x, node.y, color));
       }
     });
 
- // Hover tooltip - 금색 테마의 세련된 디자인
+    // Enhanced tooltip
     if (hoveredNode && !hoveredNode.isCenter) {
-      const padding = 16;
-      const nameWidth = ctx.measureText(hoveredNode.name).width + padding * 2;
-      const tooltipHeight = 32;
-      let tooltipX = hoveredNode.x - nameWidth / 2;
-      let tooltipY = hoveredNode.y - hoveredNode.radius - tooltipHeight - 15;
-
-      // Keep tooltip in bounds
-      tooltipX = Math.max(10, Math.min(tooltipX, canvas.width / window.devicePixelRatio - nameWidth - 10));
-      tooltipY = Math.max(10, tooltipY);
-
-      // 그림자 효과
-      ctx.shadowColor = 'rgba(214, 177, 77, 0.3)';
-      ctx.shadowBlur = 12;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 2;
-
-      // 툴팁 배경 - 흰색 배경
-      ctx.fillStyle = '#ffffff';
-      ctx.strokeStyle = '#d6b14d';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.roundRect(tooltipX, tooltipY, nameWidth, tooltipHeight, 8);
-      ctx.fill();
-      ctx.stroke();
-
-      // 그림자 제거
-      ctx.shadowColor = 'transparent';
-
-      // 이름 텍스트 - 금색
-      ctx.fillStyle = '#92400e';
-      ctx.font = 'bold 13px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(hoveredNode.name, tooltipX + nameWidth / 2, tooltipY + tooltipHeight / 2 + 4);
+      drawTooltip(hoveredNode);
     }
   }
 
-  // Animation loop
-  function animate() {
-    time += 0.016; // 약 60fps
+  function drawTooltip(node) {
+    const padding = 16;
+    const lines = [
+      node.name,
+      `${node.frequency} collaborative works`,
+      `${node.percentage}% co-authorship rate`
+    ];
     
-    // Update node positions with floating animation
+    ctx.font = 'bold 13px Inter, sans-serif';
+    const maxWidth = Math.max(...lines.map(line => ctx.measureText(line).width)) + padding * 2;
+    const lineHeight = 20;
+    const tooltipHeight = lines.length * lineHeight + padding;
+    
+    let tooltipX = node.x - maxWidth / 2;
+    let tooltipY = node.y - node.radius - tooltipHeight - 20;
+
+    tooltipX = Math.max(10, Math.min(tooltipX, canvas.width / window.devicePixelRatio - maxWidth - 10));
+    tooltipY = Math.max(10, tooltipY);
+
+    // Glassmorphism effect
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+    ctx.strokeStyle = '#d6b14d';
+    ctx.lineWidth = 2;
+    ctx.shadowColor = 'rgba(214, 177, 77, 0.3)';
+    ctx.shadowBlur = 15;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 4;
+    
+    ctx.beginPath();
+    ctx.roundRect(tooltipX, tooltipY, maxWidth, tooltipHeight, 8);
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.shadowColor = 'transparent';
+
+    // Tooltip content
+    ctx.fillStyle = '#111827';
+    ctx.textAlign = 'center';
+    
+    lines.forEach((line, index) => {
+      ctx.font = index === 0 ? 'bold 13px Inter, sans-serif' : '12px Inter, sans-serif';
+      ctx.fillStyle = index === 0 ? '#92400e' : '#6b7280';
+      ctx.fillText(line, tooltipX + maxWidth / 2, tooltipY + padding + (index + 0.5) * lineHeight);
+    });
+  }
+
+  // Animation loop with physics
+  function animate() {
+    time += 0.016;
+    
+    // Update node positions with floating and physics
     nodes.forEach(node => {
       if (!node.isCenter) {
-        // 부드러운 떠다니는 효과
-        const floatX = Math.sin(time * node.floatSpeed + node.floatPhase) * 2;
-        const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatPhase) * 2;
+        // Floating effect
+        const floatX = Math.sin(time * node.floatSpeed + node.floatPhase) * 3;
+        const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatPhase) * 3;
         
-        node.x = node.baseX + floatX;
-        node.y = node.baseY + floatY;
+        // Spring physics toward base position
+        const dx = (node.baseX + floatX) - node.x;
+        const dy = (node.baseY + floatY) - node.y;
+        
+        node.velocity.x += dx * 0.02;
+        node.velocity.y += dy * 0.02;
+        node.velocity.x *= 0.9;
+        node.velocity.y *= 0.9;
+        
+        node.x += node.velocity.x;
+        node.y += node.velocity.y;
       } else {
-        // 중앙 노드는 부드럽게 펄스
+        // Center node pulse
         node.pulsePhase = Math.sin(time * 0.8) * 0.05 + 1;
       }
+    });
+    
+    // Update connections
+    connections.forEach(conn => {
+      conn.pulsePhase += 0.02;
     });
     
     drawNetwork();
     animationFrame = requestAnimationFrame(animate);
   }
 
-  // Mouse interaction
+  // Enhanced mouse interaction
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
+    const prevHovered = hoveredNode;
     hoveredNode = null;
+    
     nodes.forEach(node => {
       const dx = x - node.x;
       const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < node.radius + 10) {
         hoveredNode = node;
+        
+        // Push nearby nodes away slightly
+        nodes.forEach(other => {
+          if (other !== node && !other.isCenter) {
+            const odx = other.x - node.x;
+            const ody = other.y - node.y;
+            const odist = Math.sqrt(odx * odx + ody * ody);
+            
+            if (odist < 100 && odist > 0) {
+              const force = (100 - odist) / 100 * 0.5;
+              other.velocity.x += (odx / odist) * force;
+              other.velocity.y += (ody / odist) * force;
+            }
+          }
+        });
       }
     });
 
+    // Create particles on hover change
+    if (hoveredNode && hoveredNode !== prevHovered) {
+      for (let i = 0; i < 5; i++) {
+        const color = hoveredNode.isCenter ? 'rgba(239, 68, 68, 0.4)' : 'rgba(214, 177, 77, 0.4)';
+        particles.push(new Particle(hoveredNode.x, hoveredNode.y, color));
+      }
+    }
+
     canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
-    // drawNetwork() 제거 - animate()가 처리
   });
 
   canvas.addEventListener('mouseleave', () => {
     hoveredNode = null;
-    // drawNetwork() 제거 - animate()가 처리
   });
 
-  // Click event for modal
+  // Click interaction
   canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
     nodes.forEach(node => {
-      if (node.isCenter) return; // Director 노드는 제외
+      if (node.isCenter) return;
       
       const dx = x - node.x;
       const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
+      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 10) {
+        selectedNode = node;
+        
+        // Create burst of particles
+        for (let i = 0; i < 15; i++) {
+          const color = 'rgba(214, 177, 77, 0.6)';
+          particles.push(new Particle(node.x, node.y, color));
+        }
+        
         openCollabModal(node);
       }
     });
   });
 
+  // Touch support
+  let touchStartDistance = 0;
+  let initialZoom = 1;
+
+  function getTouchDistance(touches) {
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      touchStartDistance = getTouchDistance(e.touches);
+      initialZoom = zoomLevel;
+    }
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2 && touchStartDistance > 0) {
+      e.preventDefault();
+      const currentDistance = getTouchDistance(e.touches);
+      const scale = currentDistance / touchStartDistance;
+      
+      zoomLevel = initialZoom * scale;
+      zoomLevel = Math.max(0.5, Math.min(3, zoomLevel));
+      
+      buildNetwork();
+    }
+  });
+
+  canvas.addEventListener('touchend', (e) => {
+    if (e.touches.length < 2) {
+      touchStartDistance = 0;
+    }
+  });
+
+  // Double tap to reset
+  let lastTap = 0;
+  canvas.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    
+    if (tapLength < 300 && tapLength > 0) {
+      e.preventDefault();
+      resetZoom();
+    }
+    lastTap = currentTime;
+  });
+
   // Modal functions
   window.openCollabModal = function(node) {
-      // 한국어 이름이 있는지 확인
-      const authorKo = AUTHORS[node.id]?.ko;
-      const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
-      
-      document.getElementById('collabModalName').textContent = displayName;
-      const modalBody = document.getElementById('collabModalBody');
-      
-      const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
-      
-      modalBody.innerHTML = `
+    const authorKo = AUTHORS[node.id]?.ko;
+    const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
+    
+    document.getElementById('collabModalName').textContent = displayName;
+    const modalBody = document.getElementById('collabModalBody');
+    
+    const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
+    
+    modalBody.innerHTML = `
       <div class="collab-info-row">
         <span class="collab-info-icon">📊</span>
         <span class="collab-info-label">Total Works</span>
@@ -3551,10 +3725,11 @@ document.addEventListener('DOMContentLoaded', countPublications);
         </div>
       </div>
     `;
-      
-      document.getElementById('collabModal').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
+    
+    document.getElementById('collabModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    selectedNode = null;
+  }
  
   window.closeCollabModal = function(event) {
     if (event && event.target !== event.currentTarget && !event.target.classList.contains('collab-modal-close')) {
@@ -3562,86 +3737,31 @@ document.addEventListener('DOMContentLoaded', countPublications);
     }
     document.getElementById('collabModal').classList.remove('show');
     document.body.style.overflow = '';
+    selectedNode = null;
   }
- // 터치 줌 기능 추가
-let touchStartDistance = 0;
-let initialZoom = 1;
-
-// 두 터치 포인트 간 거리 계산
-function getTouchDistance(touches) {
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-// 터치 시작
-canvas.addEventListener('touchstart', (e) => {
-  if (e.touches.length === 2) {
-    e.preventDefault();
-    touchStartDistance = getTouchDistance(e.touches);
-    initialZoom = zoomLevel;
-  }
-});
-
-// 터치 이동 (핀치 줌)
-canvas.addEventListener('touchmove', (e) => {
-  if (e.touches.length === 2 && touchStartDistance > 0) {
-    e.preventDefault();
-    const currentDistance = getTouchDistance(e.touches);
-    const scale = currentDistance / touchStartDistance;
-    
-    zoomLevel = initialZoom * scale;
-    zoomLevel = Math.max(0.5, Math.min(3, zoomLevel)); // 줌 범위 제한
-    
-    buildNetwork();
-    drawNetwork();
-  }
-});
-
-// 터치 종료
-canvas.addEventListener('touchend', (e) => {
-  if (e.touches.length < 2) {
-    touchStartDistance = 0;
-  }
-});
-
-// 더블 탭으로 줌 리셋
-let lastTap = 0;
-canvas.addEventListener('touchend', (e) => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-  
-  if (tapLength < 300 && tapLength > 0) {
-    e.preventDefault();
-    resetZoom();
-  }
-  lastTap = currentTime;
-});
  
   // Initialize
   sizeCanvas();
   buildNetwork();
   updateNetworkInfo();
-  drawNetwork();
   networkInitialized = true;
+  animate();
 
   // Handle resize
   window.addEventListener('resize', () => {
     sizeCanvas();
     buildNetwork();
-    drawNetwork();
   });
 
-   // Cleanup on page unload
+  // Cleanup
   window.addEventListener('beforeunload', () => {
     if (animationFrame) {
       cancelAnimationFrame(animationFrame);
     }
   });
- 
 }
 
- // Leadership 토글 함수
+ // Leadership toggle function
 function toggleLeadership(header) {
   header.classList.toggle('active');
   const content = header.nextElementSibling;
@@ -3652,9 +3772,7 @@ function openResumeModal() {
   document.getElementById('resumeModal').classList.add('show');
   document.body.style.overflow = 'hidden';
   
-  // Google Drive 파일 ID
   const fileId = '1zpEwO0DSBH8VZmbi8lI9RBpqf3xckRTK';
-  // Google Docs Viewer URL
   const viewerUrl = `https://drive.google.com/file/d/${fileId}/preview`;
   
   const iframe = document.getElementById('pdfViewer');
@@ -3665,7 +3783,7 @@ function openResumeModal() {
 const activitiesData = {
   'captima': {
     name: 'CAPTIMA (Computer Applications for Optima)',
-    generation: '27th Generation', // 기수 추가
+    generation: '27th Generation',
     periods: [
       { status: 'Member', dates: '2013.03. - 2018.02.' },
       { status: 'Alumni', dates: '2018.03. - Present' }
@@ -3677,7 +3795,7 @@ const activitiesData = {
   },
   'kfac': {
     name: 'KFAC (KAIST Financial Analysis Club)',
-    generation: '25th Generation', // 기수 추가
+    generation: '25th Generation',
     periods: [
       { status: 'Member', dates: '2018.03. - 2019.02.' },
       { status: 'Alumni', dates: '2019.03. - Present' }
@@ -3688,7 +3806,7 @@ const activitiesData = {
   },
   'mensa': {
     name: 'MENSA Korea',
-    generation: null, // 기수 없음
+    generation: null,
     periods: [
       { status: 'Member', dates: '2019.01. - Present' }
     ],
@@ -3696,7 +3814,7 @@ const activitiesData = {
   },
   'field': {
     name: 'FIELD (Future Industrial Engineering Leaders and Dreamers)',
-    generation: '11th - 16th Generation', // 창립 멤버
+    generation: '11th - 16th Generation',
     periods: [
       { status: 'Member', dates: '2019.03. - 2024.12.' },
       { status: 'Alumni', dates: '2020.01. - Present' }
@@ -3705,7 +3823,7 @@ const activitiesData = {
   },
   'fba': {
     name: 'FBA Quant',
-    generation: '12th Generation', // 기수 추가
+    generation: '12th Generation',
     periods: [
       { status: 'Member', dates: '2022.01. - 2022.12.' },
       { status: 'Alumni', dates: '2023.01. - Present' }
@@ -3714,7 +3832,7 @@ const activitiesData = {
   },
   'dading': {
     name: 'DadingCoding',
-    generation: '6th Generation', // 기수 없음
+    generation: '6th Generation',
     periods: [
       { status: 'Member', dates: '2024.02. - 2024.07.' },
       { status: 'Alumni', dates: '2024.08. - Present' }
@@ -3727,7 +3845,6 @@ function openActivityModal(activityId) {
   const activity = activitiesData[activityId];
   if (!activity) return;
   
-  // 동아리 이름과 풀네임 분리
   const shortName = activity.name.split('(')[0].trim();
   const fullName = activity.name.match(/\((.*?)\)/)?.[1];
   
@@ -3741,7 +3858,6 @@ function openActivityModal(activityId) {
   
   let html = '';
   
-  // Generation info (if exists)
   if (activity.generation) {
     const isFoundingMember = activity.generation.toLowerCase().includes('founding');
     html += `
@@ -3751,7 +3867,6 @@ function openActivityModal(activityId) {
     `;
   }
   
-  // Membership periods
   activity.periods.forEach(period => {
     html += `
       <div class="activity-period">
@@ -3761,7 +3876,6 @@ function openActivityModal(activityId) {
     `;
   });
   
-  // Leadership section (if exists)
   if (activity.leadership && activity.leadership.length > 0) {
     html += `
       <div class="activity-leadership-section">
@@ -3799,9 +3913,7 @@ function closeResumeModal(event) {
   if (event && event.target !== event.currentTarget && !event.target.classList.contains('collab-modal-close')) return;
   document.getElementById('resumeModal').classList.remove('show');
   document.body.style.overflow = '';
-  // iframe src 초기화
   document.getElementById('pdfViewer').src = '';
 }
 
 </script>
-
