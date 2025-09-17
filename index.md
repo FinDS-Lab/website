@@ -105,6 +105,19 @@ title: home
     object-fit: cover; 
     display: block;
   }
+  
+  /* 이미지 위에 금색 오버레이 추가 */
+  .carousel-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+      rgba(214, 177, 77, 0.2) 0%, 
+      rgba(234, 207, 127, 0.15) 50%,
+      rgba(214, 177, 77, 0.1) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
 
   .carousel-overlay {
     position: absolute; 
@@ -153,7 +166,12 @@ title: home
     font-weight: 900; 
     line-height: 1.2; 
     margin-bottom: 18px;
-    text-shadow: 0 2px 4px rgba(0,0,0,.2);
+    text-shadow: 0 2px 4px rgba(214, 177, 77, 0.15),
+                 0 1px 2px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #fff 0%, rgba(234, 207, 127, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   @media (max-width:540px){ .hero-title{ font-size:24px; margin-bottom:16px; } }
   @media (max-width:380px){ .hero-title{ font-size:22px; margin-bottom:14px; } }
