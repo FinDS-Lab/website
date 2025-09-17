@@ -115,6 +115,13 @@ title: home
     flex-shrink: 0;
     overflow: hidden;
   }
+  .carousel-slide img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+    opacity: 0.3; /* 이미지를 30% 투명도로 보이게 */
+  }
 
   .carousel-overlay {
     position: absolute; 
