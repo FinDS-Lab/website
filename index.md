@@ -109,7 +109,10 @@ title: home
   .carousel-overlay {
     position: absolute; 
     inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    background: linear-gradient(135deg, 
+      rgba(214, 177, 77, 0.15) 0%, 
+      rgba(0, 0, 0, 0.6) 30%,
+      rgba(0, 0, 0, 0.3) 100%);
     display: flex; 
     align-items: center; 
     padding: 0 5%;
@@ -129,7 +132,9 @@ title: home
 
   .tag-badge{
     display:inline-block; 
-    background: rgba(255,255,255,0.2);
+    background: linear-gradient(135deg, 
+      rgba(214, 177, 77, 0.25) 0%, 
+      rgba(214, 177, 77, 0.15) 100%);
     backdrop-filter: blur(10px);
     color:#fff; 
     padding:6px 16px; 
@@ -138,7 +143,8 @@ title: home
     font-size:14px; 
     letter-spacing:.5px; 
     margin-bottom:16px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(214, 177, 77, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
   @media (max-width:480px){ .tag-badge{ font-size:12px; padding:4px 12px; margin-bottom:12px; } }
 
