@@ -76,10 +76,27 @@ title: home
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #000;
+    background: linear-gradient(
+      135deg,
+      var(--gold) 0%,
+      rgb(234, 197, 97) 25%,
+      rgb(194, 157, 57) 50%,
+      var(--gold) 75%,
+      rgb(234, 197, 97) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
     border-radius: 1.5rem;
     position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
   }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
   @media (max-width: 768px) { .carousel-container { border-radius: 1rem; } }
 
   .carousel-wrapper { position:relative; width:100%; height:100%; overflow:hidden; }
@@ -96,32 +113,51 @@ title: home
     position: relative;
     flex: 0 0 100%;
     flex-shrink: 0;
-    background: #000;
     overflow: hidden;
   }
-  .carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .carousel-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
-    display: flex; align-items: center; padding: 0 5%;
-    height: 100%; overflow: hidden;
+    position: absolute; 
+    inset: 0;
+    display: flex; 
+    align-items: center; 
+    padding: 0 5%;
+    height: 100%; 
+    overflow: hidden;
   }
   @media (max-width: 768px) { .carousel-overlay { padding: 0 20px; align-items: center; } }
 
   .carousel-content {
-    max-width: 600px; color: white; animation: fadeInUp 0.8s ease-out;
-    max-height: 90%; overflow: hidden;
+    max-width: 600px; 
+    color: white; 
+    animation: fadeInUp 0.8s ease-out;
+    max-height: 90%; 
+    overflow: hidden;
   }
   @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
 
   .tag-badge{
-    display:inline-block; background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    color:#000; padding:6px 16px; border-radius:999px; font-weight:900; font-size:14px; letter-spacing:.5px; margin-bottom:16px;
+    display:inline-block; 
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    color:#fff; 
+    padding:6px 16px; 
+    border-radius:999px; 
+    font-weight:900; 
+    font-size:14px; 
+    letter-spacing:.5px; 
+    margin-bottom:16px;
+    border: 1px solid rgba(255,255,255,0.3);
   }
   @media (max-width:480px){ .tag-badge{ font-size:12px; padding:4px 12px; margin-bottom:12px; } }
 
-  .hero-title{ font-size: clamp(22px, 5vw, 44px); font-weight: 900; line-height: 1.2; margin-bottom: 18px; }
+  .hero-title{ 
+    font-size: clamp(22px, 5vw, 44px); 
+    font-weight: 900; 
+    line-height: 1.2; 
+    margin-bottom: 18px;
+    text-shadow: 0 2px 4px rgba(0,0,0,.2);
+  }
   @media (max-width:540px){ .hero-title{ font-size:24px; margin-bottom:16px; } }
   @media (max-width:380px){ .hero-title{ font-size:22px; margin-bottom:14px; } }
 
@@ -133,29 +169,97 @@ title: home
   @media (max-width:540px){ .hero-buttons{ max-width: var(--cta-w-mobile); gap: 10px; } }
   @media (max-width:480px){ .hero-buttons{ gap: 8px; } }
 
+  /* 버튼 스타일 - 고급스러운 방사형 그라데이션 */
   .btn-hero{
-    min-height: 44px; padding: 12px 18px; border-radius: 8px; font-weight: 700; font-size: 14px;
-    line-height: 1.1; text-decoration: none; transition: all .3s; display: inline-block; width: 100%;
-    text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    min-height: 44px; 
+    padding: 12px 18px; 
+    border-radius: 12px; 
+    font-weight: 600; 
+    font-size: 14px;
+    line-height: 1.1; 
+    text-decoration: none; 
+    transition: all .4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    display: inline-block; 
+    width: 100%;
+    text-align: center; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    position: relative;
+    overflow: hidden;
   }
   @media (max-width:540px){ .btn-hero{ font-size: clamp(11px, 3.4vw, 13px); padding: 11px 14px; letter-spacing: .1px; } }
   @media (max-width:380px){ .btn-hero{ font-size: clamp(10.5px, 3.6vw, 12px); padding: 10px 12px; min-height: 40px; } }
   @media (max-width:340px){ .btn-hero{ font-size: clamp(10px, 3.8vw, 11.5px); } }
 
-  /* 버튼 색상 - 금색 */
-  .btn-hero.primary, .btn-hero.secondary{
-    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-    color:#fff; 
-    border:2px solid transparent;
+  /* Primary 버튼 - 방사형 그라데이션 */
+  .btn-hero.primary {
+    background: radial-gradient(ellipse at center, 
+      rgba(255,255,255,0.25) 0%, 
+      rgba(255,255,255,0.12) 50%, 
+      rgba(255,255,255,0.08) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+    box-shadow: 
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      0 4px 12px rgba(0,0,0,0.15),
+      0 1px 3px rgba(0,0,0,0.1);
   }
-  .btn-hero.primary:hover, .btn-hero.secondary:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(214, 177, 77, 0.3);
+  
+  /* Secondary 버튼 - 더 투명한 방사형 */
+  .btn-hero.secondary {
+    background: radial-gradient(ellipse at center, 
+      rgba(255,255,255,0.15) 0%, 
+      rgba(255,255,255,0.08) 50%, 
+      rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 
+      inset 0 1px 0 rgba(255,255,255,0.15),
+      0 2px 8px rgba(0,0,0,0.12);
   }
+
+  /* 호버 효과 - 빛나는 효과 추가 */
+  .btn-hero.primary:hover {
+    background: radial-gradient(ellipse at center, 
+      rgba(255,255,255,0.35) 0%, 
+      rgba(255,255,255,0.18) 50%, 
+      rgba(255,255,255,0.1) 100%);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      0 8px 20px rgba(0,0,0,0.2),
+      0 2px 4px rgba(0,0,0,0.15);
+  }
+
+  .btn-hero.secondary:hover {
+    background: radial-gradient(ellipse at center, 
+      rgba(255,255,255,0.25) 0%, 
+      rgba(255,255,255,0.12) 50%, 
+      rgba(255,255,255,0.08) 100%);
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      inset 0 1px 0 rgba(255,255,255,0.25),
+      0 6px 16px rgba(0,0,0,0.18),
+      0 2px 4px rgba(0,0,0,0.12);
+  }
+
+  /* 클릭 효과 */
+  .btn-hero:active {
+    transform: translateY(0) scale(0.98);
+  }
+
   @media (hover:none){
     .btn-hero.primary:active, .btn-hero.secondary:active{
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(214, 177, 77, 0.3);
+      background: radial-gradient(ellipse at center, 
+        rgba(255,255,255,0.3) 0%, 
+        rgba(255,255,255,0.15) 100%);
     }
   }
 
@@ -165,9 +269,23 @@ title: home
   }
   @media (max-width:480px){ .carousel-dots{ bottom:14px; } }
 
-  .dot{ width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); border:none; cursor:pointer; transition:all .3s; padding:0; position:relative; }
+  .dot{ 
+    width:8px; 
+    height:8px; 
+    border-radius:50%; 
+    background:rgba(255,255,255,.4); 
+    border:none; 
+    cursor:pointer; 
+    transition:all .3s; 
+    padding:0; 
+    position:relative; 
+  }
   .dot::before{ content:''; position:absolute; top:-8px; left:-8px; right:-8px; bottom:-8px; }
-  .dot.active{ width:24px; border-radius:4px; background:var(--gold); }
+  .dot.active{ 
+    width:24px; 
+    border-radius:4px; 
+    background:rgba(255,255,255,0.9); 
+  }
 
   /* =========================
      INTRO Section
@@ -204,7 +322,19 @@ title: home
   .intro-content .lab-full{ font-size:18px; color: rgb(172, 14, 14); margin-left:0; }
   @media (max-width:768px){ .intro-content .lab-full{ display:block; margin-left:0; margin-top:8px; } }
   .intro-content .description{ margin-top:16px; font-size:16px; line-height:1.8; color:#4b5563; }
-  @media (max-width:480px){ .intro-content .description{ font-size:14px; line-height:1.7; } }
+  @media (max-width:480px){ 
+    .intro-content .description{ 
+      font-size:14px; 
+      line-height:1.7; 
+    }
+    /* 모바일에서 2줄로 표시 */
+    .intro-content .description br.mobile-break { display: block; }
+  }
+  /* 데스크톱에서는 줄바꿈 숨김 */
+  .intro-content .description br.mobile-break { display: none; }
+  @media (max-width:480px){ 
+    .intro-content .description br.mobile-break { display: block; }
+  }
 
   /* =========================
      UPDATES Section
@@ -301,7 +431,6 @@ title: home
       <div class="carousel-track" id="carouselTrack">
         <!-- Slide 1 -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-1.jpg' | relative_url }}" alt="FINDS Lab Hero 1" loading="eager">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
@@ -310,7 +439,7 @@ title: home
               </h1>
               <div class="hero-buttons">
                 <a href="{{ '/about-introduction.html' | relative_url }}" class="btn-hero primary">Introduction</a>
-                <a href="{{ '/about-honors.html' | relative_url }}" class="btn-hero secondary">Honors</a>
+                <a href="{{ '/about-honors.html' | relative_url }}" class="btn-hero secondary">Honors & Awards</a>
               </div>
             </div>
           </div>
@@ -318,7 +447,6 @@ title: home
 
         <!-- Slide 2 -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-2.jpg' | relative_url }}" alt="FINDS Lab Hero 2" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
@@ -333,7 +461,6 @@ title: home
 
         <!-- Slide 3 -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-3.jpg' | relative_url }}" alt="FINDS Lab Hero 3" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab.</span>
@@ -373,7 +500,8 @@ title: home
       </span>
     </h3>
     <p class="description keep-words">
-      동덕여자대학교 경영대학 경영융합학부 <b>금융데이터인텔리전스 연구실</b> 홈페이지입니다.
+      동덕여자대학교 경영대학 경영융합학부<br class="mobile-break">
+      <b>금융데이터인텔리전스 연구실</b> 홈페이지입니다.
     </p>
   </div>
 </section>
