@@ -333,14 +333,16 @@ permalink: /members-director.html
 
 .profile-dept {
   color: #6b7280;
-  font-size: 13px;
+  font-size: 12px;  /* 13px에서 12px로 축소 */
   padding-left: 8px;
   border-left: 2px solid #e5e7eb;
+  font-weight: 400;  /* 더 가늘게 */
 }
 
 .profile-org {
   color: var(--gold);
-  font-weight: 600;
+  font-weight: 700;  /* 600에서 700으로 강조 */
+  font-size: 14px;  /* 크기 명시적 지정 */
   margin-top: 4px;
 }
 
@@ -2492,13 +2494,13 @@ permalink: /members-director.html
           </div>
         </div>
         <div class="profile-item">
-          <span class="profile-emoji">🏛️</span>
-          <div class="profile-content">
-            <span class="profile-label">Affiliation</span>
-            <div class="profile-dept">Division of Business Administration</div>
-            <div class="profile-org">Dongduk Women's University</div>
-          </div>
-        </div>
+  <span class="profile-emoji">🏛️</span>
+  <div class="profile-content">
+    <span class="profile-label">Affiliation</span>
+    <div class="profile-dept">Division of Business Administration</div>
+    <div class="profile-org">Dongduk Women's University</div>
+  </div>
+</div>
         <div class="profile-item">
           <span class="profile-emoji">📍</span>
           <div class="profile-content">
@@ -3992,6 +3994,7 @@ function updateProfileOnScroll() {
 window.addEventListener('scroll', updateProfileOnScroll);
  
 </script>
+
 
 
 
