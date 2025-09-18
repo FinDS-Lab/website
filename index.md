@@ -144,12 +144,14 @@ title: home
   }
   @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
 
+  /* 태그 배지 - 투명도 개선 */
   .tag-badge{
     display:inline-block; 
     background: linear-gradient(135deg, 
-      rgba(214, 177, 77, 0.25) 0%, 
-      rgba(214, 177, 77, 0.15) 100%);
-    backdrop-filter: blur(10px);
+      rgba(214, 177, 77, 0.35) 0%,  /* 0.25에서 0.35로 증가 */
+      rgba(214, 177, 77, 0.25) 100%); /* 0.15에서 0.25로 증가 */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     color:#fff; 
     padding:6px 16px; 
     border-radius:999px; 
@@ -157,22 +159,21 @@ title: home
     font-size:14px; 
     letter-spacing:.5px; 
     margin-bottom:16px;
-    border: 1px solid rgba(214, 177, 77, 0.3);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(214, 177, 77, 0.4); /* 0.3에서 0.4로 증가 */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 그림자 강화 */
   }
   @media (max-width:480px){ .tag-badge{ font-size:12px; padding:4px 12px; margin-bottom:12px; } }
 
+  /* 히어로 타이틀 - 가독성 개선 */
   .hero-title{ 
     font-size: clamp(22px, 5vw, 44px); 
     font-weight: 900; 
     line-height: 1.2; 
     margin-bottom: 18px;
-    text-shadow: 0 2px 4px rgba(214, 177, 77, 0.15),
-                 0 1px 2px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #fff 0%, rgba(234, 207, 127, 0.9) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), /* 더 강한 그림자 */
+                 0 1px 3px rgba(0, 0, 0, 0.7);
+    color: #fff; /* 그라데이션 대신 순수 흰색 사용 */
+    letter-spacing: -0.02em;
   }
   @media (max-width:540px){ .hero-title{ font-size:24px; margin-bottom:16px; } }
   @media (max-width:380px){ .hero-title{ font-size:22px; margin-bottom:14px; } }
@@ -185,7 +186,7 @@ title: home
   @media (max-width:540px){ .hero-buttons{ max-width: var(--cta-w-mobile); gap: 10px; } }
   @media (max-width:480px){ .hero-buttons{ gap: 8px; } }
 
-  /* 버튼 스타일 - 고급스러운 방사형 그라데이션 */
+  /* 버튼 스타일 - 투명도 개선 */
   .btn-hero{
     min-height: 44px; 
     padding: 12px 18px; 
@@ -208,64 +209,64 @@ title: home
   @media (max-width:380px){ .btn-hero{ font-size: clamp(10.5px, 3.6vw, 12px); padding: 10px 12px; min-height: 40px; } }
   @media (max-width:340px){ .btn-hero{ font-size: clamp(10px, 3.8vw, 11.5px); } }
 
-  /* Primary 버튼 - 방사형 그라데이션 */
+  /* Primary 버튼 - 투명도 감소, 더 진한 색상 */
   .btn-hero.primary {
     background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.25) 0%, 
-      rgba(214, 177, 77, 0.12) 50%, 
-      rgba(214, 177, 77, 0.08) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+      rgba(214, 177, 77, 0.4) 0%,    /* 0.25에서 0.4로 증가 */
+      rgba(214, 177, 77, 0.25) 50%,  /* 0.12에서 0.25로 증가 */
+      rgba(214, 177, 77, 0.15) 100%); /* 0.08에서 0.15로 증가 */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     color: #fff;
-    border: 1px solid rgba(214, 177, 77, 0.35);
-    box-shadow: 
-      inset 0 1px 0 rgba(214, 177, 77, 0.2),
-      0 4px 12px rgba(214, 177, 77, 0.15),
-      0 1px 3px rgba(0,0,0,0.1);
-    text-shadow: 0 1px 2px rgba(214, 177, 77, 0.2);
-  }
-  
-  /* Secondary 버튼 - 더 투명한 방사형 */
-  .btn-hero.secondary {
-    background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.15) 0%, 
-      rgba(214, 177, 77, 0.08) 50%, 
-      rgba(214, 177, 77, 0.05) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    color: #fff;
-    border: 1px solid rgba(214, 177, 77, 0.3);
-    box-shadow: 
-      inset 0 1px 0 rgba(214, 177, 77, 0.15),
-      0 2px 8px rgba(214, 177, 77, 0.12);
-    text-shadow: 0 1px 2px rgba(214, 177, 77, 0.15);
-  }
-
-  /* 호버 효과 - 빛나는 효과 추가 */
-  .btn-hero.primary:hover {
-    background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.35) 0%, 
-      rgba(214, 177, 77, 0.18) 50%, 
-      rgba(214, 177, 77, 0.1) 100%);
-    border-color: rgba(214, 177, 77, 0.5);
-    transform: translateY(-2px) scale(1.02);
+    border: 1px solid rgba(214, 177, 77, 0.5); /* 0.35에서 0.5로 증가 */
     box-shadow: 
       inset 0 1px 0 rgba(214, 177, 77, 0.3),
-      0 8px 20px rgba(214, 177, 77, 0.2),
-      0 2px 4px rgba(0,0,0,0.15);
+      0 4px 12px rgba(214, 177, 77, 0.25),
+      0 1px 3px rgba(0,0,0,0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Secondary 버튼 - 투명도 감소 */
+  .btn-hero.secondary {
+    background: radial-gradient(ellipse at center, 
+      rgba(214, 177, 77, 0.25) 0%,   /* 0.15에서 0.25로 증가 */
+      rgba(214, 177, 77, 0.15) 50%,  /* 0.08에서 0.15로 증가 */
+      rgba(214, 177, 77, 0.1) 100%); /* 0.05에서 0.1로 증가 */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #fff;
+    border: 1px solid rgba(214, 177, 77, 0.4); /* 0.3에서 0.4로 증가 */
+    box-shadow: 
+      inset 0 1px 0 rgba(214, 177, 77, 0.2),
+      0 2px 8px rgba(214, 177, 77, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  /* 호버 효과 - 더 강한 효과 */
+  .btn-hero.primary:hover {
+    background: radial-gradient(ellipse at center, 
+      rgba(214, 177, 77, 0.5) 0%,    /* 더 진하게 */
+      rgba(214, 177, 77, 0.3) 50%, 
+      rgba(214, 177, 77, 0.2) 100%);
+    border-color: rgba(214, 177, 77, 0.6);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      inset 0 1px 0 rgba(214, 177, 77, 0.4),
+      0 8px 20px rgba(214, 177, 77, 0.3),
+      0 2px 4px rgba(0,0,0,0.2);
   }
 
   .btn-hero.secondary:hover {
     background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.25) 0%, 
-      rgba(214, 177, 77, 0.12) 50%, 
-      rgba(214, 177, 77, 0.08) 100%);
-    border-color: rgba(214, 177, 77, 0.45);
+      rgba(214, 177, 77, 0.35) 0%, 
+      rgba(214, 177, 77, 0.2) 50%, 
+      rgba(214, 177, 77, 0.12) 100%);
+    border-color: rgba(214, 177, 77, 0.55);
     transform: translateY(-2px) scale(1.02);
     box-shadow: 
-      inset 0 1px 0 rgba(214, 177, 77, 0.25),
-      0 6px 16px rgba(214, 177, 77, 0.18),
-      0 2px 4px rgba(0,0,0,0.12);
+      inset 0 1px 0 rgba(214, 177, 77, 0.3),
+      0 6px 16px rgba(214, 177, 77, 0.25),
+      0 2px 4px rgba(0,0,0,0.15);
   }
 
   /* 클릭 효과 */
@@ -306,52 +307,191 @@ title: home
   }
 
   /* =========================
-     INTRO Section
+     INTRO Section - Director 페이지 스타일 통합
      ========================= */
-  .intro-section{
+  .intro-banner {
     max-width: var(--container-max);
-    margin: 80px auto;
+    margin: 60px auto 0;
     padding: 0 var(--pad-desktop);
-    display:grid; grid-template-columns:180px 1fr; gap:40px; align-items:center;
     box-sizing: border-box;
   }
-  @media (max-width:768px){
-    .intro-section{ grid-template-columns:1fr; margin:60px auto; text-align:center; padding:0 var(--pad-tablet); gap:30px; }
-  }
-  @media (max-width:480px){ .intro-section{ margin:40px auto; padding:0 var(--pad-mobile); gap:24px; } }
-
-  .logo-box{
-    width:180px; height:180px; background:#fff; border-radius:24px; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 20px 40px rgba(0,0,0,.08); position:relative; overflow:hidden;
-  }
-  @media (max-width:768px){ .logo-box{ margin:0 auto; } }
-  @media (max-width:480px){ .logo-box{ width:150px; height:150px; border-radius:20px; } }
-  .logo-box::before{ content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(214,177,77,.1) 0%, rgba(172,14,14,.1) 100%); opacity:0; transition:.3s; }
-  .logo-box:hover::before{ opacity:1; }
-  .logo-box img{ width:140px; height:140px; object-fit:contain; position:relative; z-index:1; }
-  @media (max-width:480px){ .logo-box img{ width:110px; height:110px; } }
-
-  /* Intro content 색상 */
-  .intro-content h2{ color: rgb(172, 14, 14); font-size:24px; font-weight:900; margin-bottom:8px; }
-  @media (max-width:480px){ .intro-content h2{ font-size:20px; } }
-  .intro-content h3{ font-size:32px; margin-bottom:4px; }
-  @media (max-width:480px){ .intro-content h3{ font-size:24px; } }
-  .intro-content .lab-name{ color:var(--gold); font-weight:900; }
-  .intro-content .lab-full{ font-size:18px; color: rgb(172, 14, 14); margin-left:0; }
-  @media (max-width:768px){ .intro-content .lab-full{ display:block; margin-left:0; margin-top:8px; } }
-  .intro-content .description{ margin-top:16px; font-size:16px; line-height:1.8; color:#4b5563; }
-  @media (max-width:480px){ 
-    .intro-content .description{ 
-      font-size:14px; 
-      line-height:1.7; 
+  @media (max-width: 768px) {
+    .intro-banner {
+      padding: 0 var(--pad-tablet);
+      margin: 40px auto 0;
     }
-    /* 모바일에서 2줄로 표시 */
-    .intro-content .description br.mobile-break { display: block; }
   }
-  /* 데스크톱에서는 줄바꿈 숨김 */
-  .intro-content .description br.mobile-break { display: none; }
-  @media (max-width:480px){ 
-    .intro-content .description br.mobile-break { display: block; }
+  @media (max-width: 480px) {
+    .intro-banner {
+      padding: 0 var(--pad-mobile);
+      margin: 30px auto 0;
+    }
+  }
+
+  .intro-card {
+    background: linear-gradient(
+      135deg,
+      var(--gold) 0%,
+      rgb(234, 197, 97) 25%,
+      rgb(194, 157, 57) 50%,
+      var(--gold) 75%,
+      rgb(234, 197, 97) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    position: relative;
+    overflow: hidden;
+    padding: 48px 40px;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: 36px 28px;
+    }
+  }
+  @media (max-width: 480px) {
+    .intro-card {
+      padding: 28px 20px;
+      border-radius: 0.75rem;
+    }
+  }
+
+  .intro-card-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card-content {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+  }
+
+  .intro-logo-wrapper {
+    flex-shrink: 0;
+  }
+
+  .intro-logo-box {
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.1);
+    border: 2px solid rgba(255,255,255,0.8);
+  }
+
+  @media (max-width: 768px) {
+    .intro-logo-box {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+    }
+  }
+
+  .intro-logo-box img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    .intro-logo-box img {
+      width: 75px;
+      height: 75px;
+    }
+  }
+
+  .intro-text-content {
+    flex: 1;
+    color: #fff;
+  }
+
+  .intro-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 480px) {
+    .intro-subtitle {
+      font-size: 12px;
+    }
+  }
+
+  .intro-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,.15);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px 0;
+    line-height: 1.2;
+  }
+
+  @media (max-width: 768px) {
+    .intro-title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .intro-title {
+      font-size: 24px;
+    }
+  }
+
+  .intro-lab-name {
+    color: #fff;
+    display: inline-block;
+  }
+
+  .intro-lab-full {
+    font-size: 18px;
+    color: rgba(255,255,255,0.95);
+    font-weight: 700;
+    margin-top: 4px;
+    display: block;
+  }
+
+  @media (max-width: 480px) {
+    .intro-lab-full {
+      font-size: 14px;
+    }
+  }
+
+  .intro-description {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .intro-description {
+      font-size: 14px;
+      line-height: 1.5;
+    }
   }
 
   /* =========================
@@ -359,15 +499,15 @@ title: home
      ========================= */
   .updates-section{
     max-width: var(--container-max);
-    margin: 0 auto 80px;
+    margin: 40px auto 80px;
     padding: 0 var(--pad-desktop);
     display:grid; grid-template-columns:repeat(2,1fr); gap:32px;
     box-sizing: border-box;
   }
   @media (max-width:768px){
-    .updates-section{ grid-template-columns:1fr; gap:24px; margin-bottom:60px; padding:0 var(--pad-tablet); }
+    .updates-section{ grid-template-columns:1fr; gap:24px; margin: 30px auto 60px; padding:0 var(--pad-tablet); }
   }
-  @media (max-width:480px){ .updates-section{ padding:0 var(--pad-mobile); gap:20px; margin-bottom:40px; } }
+  @media (max-width:480px){ .updates-section{ padding:0 var(--pad-mobile); gap:20px; margin: 20px auto 40px; } }
 
   .update-card{ background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,.05); transition:.3s; }
   @media (max-width:480px){ .update-card{ border-radius:16px; } }
@@ -504,26 +644,30 @@ title: home
   </div>
 </section>
 
-<!-- Introduction Section -->
-<section class="intro-section">
-  <div class="logo-container">
-    <div class="logo-box">
-      <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo">
+<!-- Introduction Section - 새로운 디자인 -->
+<section class="intro-banner">
+  <div class="intro-card">
+    <div class="intro-card-content">
+      <div class="intro-logo-wrapper">
+        <div class="intro-logo-box">
+          <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="FINDS Lab Logo">
+        </div>
+      </div>
+      
+      <div class="intro-text-content">
+        <div class="intro-subtitle">Dongduk Women's University</div>
+        <h2 class="intro-title">
+          <span class="intro-lab-name">FINDS Lab.</span>
+          <span class="intro-lab-full">
+            <b>Fin</b>ancial <b>D</b>ata Intelligence & <b>S</b>olutions Laboratory
+          </span>
+        </h2>
+        <p class="intro-description">
+          동덕여자대학교 경영대학 경영융합학부<br>
+          <b>금융데이터인텔리전스 연구실</b> 홈페이지입니다.
+        </p>
+      </div>
     </div>
-  </div>
-
-  <div class="intro-content keep-words">
-    <h2 class="keep-words">Dongduk Women's University</h2>
-    <h3 class="keep-words">
-      <span class="lab-name keep-words">FINDS Lab.</span><br>
-      <span class="lab-full keep-words">
-        <b>Fin</b>ancial <b>D</b>ata Intelligence & <b>S</b>olutions Laboratory
-      </span>
-    </h3>
-    <p class="description keep-words">
-      동덕여자대학교 경영대학 경영융합학부<br class="mobile-break">
-      <b>금융데이터인텔리전스 연구실</b> 홈페이지입니다.
-    </p>
   </div>
 </section>
 
