@@ -2029,14 +2029,153 @@ function formatAuthorsForCitation(authors, style) {
   }
 }
 
-/* ===== Generate Citations ===== */
-function generateCitation(pub, style) {
+/* ===== Convert publication to Citation.js format ===== */
+function pubToCitationJS(pub) {
+  const cslData = {
+    id: pub.id || Math.random().toString(36).substr(2, 9),
+    type: 'article-journal', // default
+    title: pub.title || 'Untitled',
+    author: [],
+    issued: {
+      'date-parts': [[pub.year || new Date().getFullYear()]]
+    }
+  };
+  
+  // Determine CSL type
+  const pubType = primaryType(pub);
+  if (pubType === 'conference') {
+    cslData.type = 'paper-conference';
+  } else if (pubType === 'book') {
+    cslData.type = 'book';
+  } else if (pubType === 'thesis') {
+    cslData.type = 'thesis';
+  } else if (pubType === 'report') {
+    cslData.type = 'report';
+  }
+  
+  // Add authors
+  if (pub.authors && pub.authors.length > 0) {
+    cslData.author = pub.authors.map(authorId => {
+      const author = AUTHORS?.[authorId];
+      if (author && author.en) {
+        const nameParts = author.en.trim().split(/\s+/);
+        const family = nameParts[nameParts.length - 1];
+        const given = nameParts.slice(0, -1).join(' ');
+        return { family, given };
+      }
+      return { literal: `Author ${authorId}` };
+    });
+  }
+  
+  // Add venue/container
+  const venue = arr(pub.venue).filter(Boolean).join(', ');
+  if (venue) {
+    if (pubType === 'conference') {
+      cslData['container-title'] = venue;
+      cslData['event'] = venue;
+    } else {
+      cslData['container-title'] = venue;
+    }
+  }
+  
+  // Add other metadata
+  if (pub.volume) cslData.volume = String(pub.volume);
+  if (pub.issue) cslData.issue = String(pub.issue);
+  if (pub.pages) cslData.page = pub.pages;
+  if (pub.doi) cslData.DOI = pub.doi;
+  if (pub.isbn) cslData.ISBN = pub.isbn;
+  if (pub.publisher) cslData.publisher = pub.publisher;
+  
+  // Add full date if available
+  if (pub.published_date) {
+    const date = new Date(pub.published_date);
+    cslData.issued = {
+      'date-parts': [[date.getFullYear(), date.getMonth() + 1, date.getDate()]]
+    };
+  }
+  
+  return cslData;
+}
+
+/* ===== Generate Citations using Citation.js ===== */
+function generateCitationWithCitationJS(pub, style) {
+  try {
+    // Special handling for Korean APA
+    if (style === 'korean-apa') {
+      return generateKoreanAPACitation(pub);
+    }
+    
+    // Convert pub to CSL-JSON format
+    const cslData = pubToCitationJS(pub);
+    
+    // Create Citation.js instance
+    const cite = new Cite(cslData);
+    
+    // Map our style names to Citation.js format names
+    const styleMap = {
+      'apa': 'apa-7th',      // APA 7th edition
+      'mla': 'mla-9th',       // MLA 9th edition
+      'chicago': 'chicago-note-bibliography-16th-edition',
+      'harvard': 'harvard-cite-them-right',
+      'vancouver': 'vancouver',
+      'ieee': 'ieee'
+    };
+    
+    // Get the Citation.js style name
+    const citeStyle = styleMap[style] || 'apa-7th';
+    
+    // Generate citation
+    let citation = '';
+    try {
+      citation = cite.format('bibliography', {
+        format: 'html',
+        template: citeStyle,
+        lang: 'en-US'
+      });
+    } catch (styleError) {
+      // If specific style fails, fall back to basic APA
+      citation = cite.format('bibliography', {
+        format: 'html',
+        template: 'apa',
+        lang: 'en-US'
+      });
+    }
+    
+    // Clean up the citation (remove wrapper divs if any)
+    citation = citation.replace(/<div[^>]*>|<\/div>/g, '');
+    citation = citation.replace(/^\s*\n|\n\s*$/g, '');
+    
+    return citation;
+  } catch (error) {
+    console.error('Citation.js error:', error);
+    // Fall back to manual formatting if Citation.js fails
+    return generateManualCitation(pub, style);
+  }
+}
+
+/* ===== Generate Korean APA Citation ===== */
+function generateKoreanAPACitation(pub) {
+  const authors = formatAuthorsForCitation(pub.authors, 'korean');
+  const title = pub.title_ko || pub.title || '제목 없음';
+  const year = pub.year || new Date().getFullYear();
+  const venue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
+  
+  let citation = `${authors} (${year}). ${title}. `;
+  if (venue) citation += `<em>${venue}</em>`;
+  if (pub.volume) citation += `, <em>${pub.volume}</em>`;
+  if (pub.issue) citation += `(${pub.issue})`;
+  if (pub.pages) citation += `, ${pub.pages}`;
+  citation += '.';
+  if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
+  
+  return citation;
+}
+
+/* ===== Manual Citation Formatting (Fallback) ===== */
+function generateManualCitation(pub, style) {
   const title = pub.title || "Untitled";
   const year = pub.year || new Date().getFullYear();
   const venue = arr(pub.venue).filter(Boolean).join(", ") || "";
-  const isJournal = arr(pub.type).includes('journal');
-  const isConference = arr(pub.type).includes('conference');
-  const isBook = arr(pub.type).includes('book');
   
   let citation = '';
   
@@ -2106,22 +2245,10 @@ function generateCitation(pub, style) {
       break;
       
     case 'korean-apa':
-      // Use Korean title and venue if available
-      const koreanTitle = pub.title_ko || pub.title || "제목 없음";
-      const koreanVenue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
-      const koreanAuthors = formatAuthorsForCitation(pub.authors, 'korean');
-      
-      citation = `${koreanAuthors} (${year}). ${koreanTitle}. `;
-      if (koreanVenue) citation += `<em>${koreanVenue}</em>`;
-      if (pub.volume) citation += `, <em>${pub.volume}</em>`;
-      if (pub.issue) citation += `(${pub.issue})`;
-      if (pub.pages) citation += `, ${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
-      break;
+      return generateKoreanAPACitation(pub);
       
     default:
-      citation = generateCitation(pub, 'apa');
+      citation = generateManualCitation(pub, 'apa');
   }
   
   return citation;
@@ -2132,7 +2259,8 @@ function openCite(pub) {
   const styleSelect = document.getElementById('citationStyle');
   const selectedStyle = styleSelect.value;
   
-  const citation = generateCitation(pub, selectedStyle);
+  // Use Citation.js for citation generation
+  const citation = generateCitationWithCitationJS(pub, selectedStyle);
   const citationId = 'cite-' + Math.random().toString(36).slice(2, 9);
   
   let citationsHTML = `
@@ -2163,23 +2291,6 @@ function getStyleLabel(styleId) {
     'korean-apa': 'Korean APA (한글)'
   };
   return labels[styleId] || styleId;
-}
-
-function generateKoreanCitation(pub) {
-  const authors = formatAuthorsForCitation(pub.authors, 'korean');
-  const title = pub.title_ko || pub.title || '제목 없음';
-  const year = pub.year || new Date().getFullYear();
-  const venue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
-  
-  let citation = `${authors} (${year}). ${title}`;
-  if (venue) citation += `. <em>${venue}</em>`;
-  if (pub.volume) citation += `, <em>${pub.volume}</em>`;
-  if (pub.issue) citation += `(${pub.issue})`;
-  if (pub.pages) citation += `, ${pub.pages}`;
-  citation += '.';
-  if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
-  
-  return citation;
 }
 
 function copyText(id) {
