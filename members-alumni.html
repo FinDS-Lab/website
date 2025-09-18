@@ -1122,10 +1122,10 @@ function generateDiamondNetwork() {
 const alumniData = {{ site.data.alumni | jsonify }};
 const graduateAlumniData = alumniData.graduateAlumni || [];
 const undergradAlumniData = alumniData.undergradAlumni || [];
-const sinceDate = alumniData.sinceDate || '2019.09.01';
+const sinceDate = alumniData.sinceDate || '2025.09.01';
 
-// Update since date display
-document.getElementById('sinceDate').textContent = sinceDate;
+// Update since date display - Force update to 2025.09.01
+document.getElementById('sinceDate').textContent = '2025.09.01';
 
 // Toggle function for desktop expandable rows
 function toggleAlumni(element, index, section) {
