@@ -498,4 +498,161 @@ function generateDiamondNetwork() {
     <!-- Professor's Office -->
     <section class="card">
       <div class="card-header secondary">
-        <div class="text-base font-
+        <div class="text-base font-extrabold">최인수 교수 연구실</div>
+        <div class="subtitle">Prof. Insu Choi's Office</div>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-3">동덕여자대학교 인문관 706호</h3>
+      
+      <div class="address-section">
+        <div class="address-korean">
+          📍 (02748) 서울특별시 성북구 화랑로13길 60<br>
+          동덕여자대학교 <strong>인문관 706호</strong>
+        </div>
+        <div class="address-english">
+          <strong>Room 706</strong>, <strong>Humanities Hall</strong><br>
+          Dongduk Women's University<br>
+          60 Hwarang-ro 13-gil, Seongbuk-gu, Seoul
+        </div>
+        <button class="copy-btn" data-copy-addr title="주소 복사">
+          📋 Copy address
+        </button>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<!-- ===== Page-specific Scripts ===== -->
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=2288f6c721287408c4bdc22f994230ad&libraries=services&autoload=false"></script>
+<script>
+  (function(){
+    // ----- Constants -----
+    const PLACE_NAME   = '동덕여자대학교 인문관';
+    const ADDRESS_TEXT = '(02748) 서울특별시 성북구 화랑로13길 60 동덕여자대학교 인문관 706호';
+    // 검색 실패 시 사용할 근사 좌표
+    const FALLBACK = { lat: 37.6067, lng: 127.0505 };
+
+    const elMap = document.getElementById('kakao-map');
+    const elErr = document.getElementById('mapError');
+    const elBtnRecenter = document.getElementById('btnRecenter');
+    const elBtnDirections = document.getElementById('btnDirections');
+
+    /** Kakao objs */
+    let map = null;
+    let marker = null;
+    let infoWindow = null;
+    let finalCenter = null;
+
+    function showError(msg){
+      elErr.style.display = 'block';
+      elErr.textContent = msg;
+    }
+
+    function setDirectionsLink(lat, lng, name){
+      const url = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`;
+      elBtnDirections.setAttribute('href', url);
+    }
+
+    function createOrMoveMarker(latLng) {
+      if (!marker) {
+        marker = new kakao.maps.Marker({ position: latLng });
+        marker.setMap(map);
+      } else {
+        marker.setPosition(latLng);
+      }
+    }
+
+    function openInfo(latLng, name) {
+      const html = `
+        <div style="padding:8px 10px;line-height:1.4;">
+          <div style="font-weight:700;font-size:12px;margin-bottom:2px;">${name}</div>
+          <div style="font-weight:500;color:#4b5563;font-size:10px;">FINDS Lab.</div>
+        </div>`;
+      if (!infoWindow) {
+        infoWindow = new kakao.maps.InfoWindow({ content: html, removable: false });
+      } else {
+        infoWindow.setContent(html);
+      }
+      infoWindow.open(map, marker);
+    }
+
+    function wireButtons(){
+      elBtnRecenter.addEventListener('click', function(){
+        if(map && finalCenter){
+          map.setCenter(finalCenter);
+          map.setLevel(3);
+        }
+      });
+
+      document.querySelectorAll('[data-copy-addr]').forEach(btn=>{
+        btn.addEventListener('click', async ()=>{
+          try{
+            await navigator.clipboard.writeText(ADDRESS_TEXT);
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(()=>{ 
+              btn.textContent = originalText;
+              btn.classList.remove('copied');
+            }, 2000);
+          }catch(err){
+            alert('복사에 실패했습니다. 잠시 후 다시 시도해주세요.');
+          }
+        });
+      });
+    }
+
+    function locateByKeyword(){
+      const places = new kakao.maps.services.Places();
+      places.keywordSearch(PLACE_NAME, function(data, status){
+        if(status === kakao.maps.services.Status.OK && data && data.length){
+          // "인문관" 포함 결과 우선 사용
+          const exact = data.find(d => (d.place_name||'').includes('인문관')) || data[0];
+          const lat = parseFloat(exact.y), lng = parseFloat(exact.x);
+          finalCenter = new kakao.maps.LatLng(lat, lng);
+          map.setCenter(finalCenter);
+          map.setLevel(3);
+          createOrMoveMarker(finalCenter);
+          openInfo(finalCenter, exact.place_name || PLACE_NAME);
+          setDirectionsLink(lat, lng, exact.place_name || PLACE_NAME);
+        }else{
+          // 검색 실패 시: Fallback에 단일 마커
+          finalCenter = new kakao.maps.LatLng(FALLBACK.lat, FALLBACK.lng);
+          map.setCenter(finalCenter);
+          createOrMoveMarker(finalCenter);
+          openInfo(finalCenter, PLACE_NAME);
+          setDirectionsLink(FALLBACK.lat, FALLBACK.lng, PLACE_NAME);
+          showError('지오코딩 결과를 찾지 못해 근사 위치로 표시했습니다.');
+        }
+      }, { size: 5 });
+    }
+
+    function bootstrap(){
+      try{
+        kakao.maps.load(function(){
+          const initCenter = new kakao.maps.LatLng(FALLBACK.lat, FALLBACK.lng);
+          map = new kakao.maps.Map(elMap, { center: initCenter, level: 3 });
+
+          if (kakao.maps.CopyrightPosition) {
+            map.setCopyrightPosition(kakao.maps.CopyrightPosition.BOTTOMRIGHT, true);
+          }
+
+          locateByKeyword();
+          wireButtons();
+        });
+      }catch(e){
+        showError('지도를 불러오는 중 오류가 발생했습니다. 네트워크 상태를 확인해주세요.');
+      }
+    }
+
+    // autoload=false 이므로 명시적으로 부팅
+    if (window.kakao && kakao.maps) {
+      bootstrap();
+    } else {
+      window.addEventListener('load', ()=>{
+        if(window.kakao && kakao.maps){ bootstrap(); }
+        else showError('카카오 지도 SDK 로딩에 실패했습니다.');
+      });
+    }
+  })();
+</script>
+
