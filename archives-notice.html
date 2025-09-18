@@ -1,10 +1,7 @@
-<nav aria-label="Breadcrumb" class="banner-breadcrumbs">
-          <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
-          <span class="sep">›</span>
-          <span---
+---
 layout: default
-title: news
-permalink: /archives-news.html
+title: notice
+permalink: /archives-notice.html
 ---
 
 <!-- ===== Unified Styles ===== -->
@@ -90,7 +87,7 @@ permalink: /archives-news.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs - 금색 배경, 흰색 텍스트, 로고 포함 */
+  /* Breadcrumbs - 금색 배경, 흰색 텍스트 */
   .banner-breadcrumbs {
     display: flex;
     align-items: center;
@@ -102,13 +99,6 @@ permalink: /archives-news.html
     padding: 8px 12px;
     border-radius: 999px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  
-  /* 로고 이미지 */
-  .breadcrumb-logo {
-    width: 20px;
-    height: 20px;
-    opacity: 0.95;
   }
   
   .banner-breadcrumbs a {
@@ -281,6 +271,48 @@ permalink: /archives-news.html
     color: #6b7280;
   }
 
+  /* 개별 게시글 페이지 브레드크럼 스타일 - _layouts/post.html에서 사용 */
+  .post-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border-radius: 999px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    max-width: fit-content;
+  }
+
+  .post-breadcrumb .breadcrumb-logo {
+    width: 20px;
+    height: 20px;
+    opacity: 0.95;
+  }
+
+  .post-breadcrumb a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .post-breadcrumb a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  .post-breadcrumb .sep {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 2px;
+  }
+
+  .post-breadcrumb .current {
+    color: #fff;
+    font-weight: 800;
+  }
+
   /* 반응형 (통일) */
   @media (max-width: 768px) {
     .banner-title { font-size: 2rem; }
@@ -291,9 +323,13 @@ permalink: /archives-news.html
     .banner-section {
       min-height: 160px;
     }
-    .breadcrumb-logo { 
-      width: 18px; 
-      height: 18px; 
+    .post-breadcrumb {
+      font-size: 12px;
+      padding: 8px 14px;
+    }
+    .post-breadcrumb .breadcrumb-logo {
+      width: 18px;
+      height: 18px;
     }
   }
 
@@ -329,12 +365,16 @@ permalink: /archives-news.html
       font-size: 12px;
       padding: 6px 10px;
     }
-    .breadcrumb-logo { 
-      width: 16px; 
-      height: 16px; 
+    .post-breadcrumb {
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+    .post-breadcrumb .breadcrumb-logo {
+      width: 16px;
+      height: 16px;
     }
   }
-  
+
   @media (max-width: 480px) {
     .item-title { font-size: 14px; }
     .excerpt { -webkit-line-clamp: 3; }
@@ -353,21 +393,32 @@ permalink: /archives-news.html
   }
 </style>
 
+<!-- 
+개별 게시글 페이지 레이아웃 예시 (_layouts/post.html)
+<nav class="post-breadcrumb">
+  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
+  <a href="/">Home</a>
+  <span class="sep">›</span>
+  <a href="/archives-notice.html">Notice</a>
+  <span class="sep">›</span>
+  <span class="current">게시글 제목</span>
+  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
+</nav>
+-->
+
 <!-- ===== Page Title / Banner ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
     <div class="banner-content">
       <div>
         <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
-          <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
           <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
-          <span>Archives</span>
+          <a href="{{ '/archives-news.html' | relative_url }}" onclick="event.stopPropagation()">Archives</a>
           <span class="sep">›</span>
-          <span aria-current="page">News</span>
-          <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
+          <span aria-current="page">Notice</span>
         </nav>
-        <h1 class="banner-title">News</h1>
+        <h1 class="banner-title">Notice</h1>
       </div>
     </div>
   </div>
@@ -532,27 +583,27 @@ function generateDiamondNetwork() {
 }
 </script>
 
-<!-- ===== News List ===== -->
+<!-- ===== Notice List ===== -->
 <section class="max-w-7xl mx-auto px-4">
   <div class="content-container">
-    <ul id="news-list" role="list">
+    <ul id="notice-list" role="list">
       {% assign all_items = site.pages | concat: site.posts %}
-      {% assign news = "" | split: "" %}
+      {% assign Notice = "" | split: "" %}
       {% for item in all_items %}
-        {% if item.url and item.url contains '/news/' and item.date %}
-          {% assign news = news | push: item %}
+        {% if item.url and item.url contains '/notice/' and item.date %}
+          {% assign Notice = Notice | push: item %}
         {% endif %}
       {% endfor %}
-      {% assign news = news | sort: 'date' %}
+      {% assign Notice = Notice | sort: 'date' %}
 
-      {% if news.size == 0 %}
+      {% if Notice.size == 0 %}
         <li class="empty-state">
-          <div class="empty-icon">🗞️</div>
-          <div class="empty-title">뉴스 게시글이 없습니다</div>
+          <div class="empty-icon">📢</div>
+          <div class="empty-title">공지사항이 없습니다</div>
           <div class="empty-text">새로운 소식이 등록되면 여기에 표시됩니다</div>
         </li>
       {% else %}
-        {% for post in news %}
+        {% for post in Notice %}
           {% assign y = post.date | date: "%Y" %}
           {% assign m = post.date | date: "%m" %}
           {% assign d = post.date | date: "%d" %}
