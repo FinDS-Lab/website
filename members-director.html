@@ -2883,12 +2883,6 @@ permalink: /members-director.html
         <div class="desc-ko">대한산업공학회 (KIIE) 종신회원</div>
       </li>
       <li>
-        <div class="year">2024.12. – Present</div>
-        <div class="title">Lifetime Member</div>
-        <div class="desc">Korean Operations Research and Management Science Society (KORMS)</div>
-        <div class="desc-ko">한국경영과학회 (KORMS) 종신회원</div>
-      </li>
-      <li>
         <div class="year">2023.09. – Present</div>
         <div class="title">Lifetime Member</div>
         <div class="desc">Korean Securities Association (KSA)</div>
@@ -2911,9 +2905,13 @@ permalink: /members-director.html
 </div>
 
 <!-- Reviewer Experience -->
+<!-- Reviewer Experience -->
 <div class="director-card">
-  <div class="card-head">Reviewer Experience</div>
-  <div class="card-body">
+  <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleReviewerSection()">
+    <span>Reviewer Experience</span>
+    <span id="reviewerToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
+  </div>
+  <div class="card-body" id="reviewerSection" style="display: none;">
     <div class="reviewer-grid" id="reviewerGrid">
       <!-- Content will be populated by JavaScript -->
     </div>
@@ -3152,6 +3150,26 @@ permalink: /members-director.html
   const reviewerData = { journals: [], conferences: [] };
 {% endif %}
 
+// Reviewer Section Toggle
+function toggleReviewerSection() {
+  const section = document.getElementById('reviewerSection');
+  const toggle = document.getElementById('reviewerToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+    
+    // 처음 열 때만 데이터를 로드
+    if (!section.dataset.loaded) {
+      populateReviewerExperience();
+      section.dataset.loaded = 'true';
+    }
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+ 
 // Populate reviewer experience
 function populateReviewerExperience() {
   const journalGrid = document.getElementById('reviewerGrid');
@@ -3794,7 +3812,8 @@ function animateNumber(element, start, end, duration) {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-  updatePublicationStats();
+  // populateReviewerExperience(); // 자동 로드 비활성화
 });
 </script>
+
 
