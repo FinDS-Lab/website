@@ -260,27 +260,34 @@ permalink: /members-director.html
   margin-top: 8px;
 }
 
-/* Employment 부서/기관 구분 스타일 */
-/* Employment 부서/기관 구분 스타일 */
-.desc-affiliation {
-  color: var(--gold);
-  font-size: 15px;  /* 12px에서 15px로 증가 - 기관명 크게 */
-  margin-top: 4px;
-  padding-left: 8px;
-  border-left: 2px solid var(--gold);
-  font-weight: 700;  /* 600에서 700으로 - 더 굵게 */
-}
-
+/* Employment 부서/기관 구분 스타일 - 이 부분을 찾아서 교체 */
 .desc-dept {
   color: #6b7280;
-  font-size: 12px;  /* 13px → 12px */
-  margin-top: 2px;
-  font-weight: 400;  /* 더 가늘게 */
+  font-size: 14px;  /* 13px → 14px 통일 */
+  font-weight: 600;  /* 굵기 통일 */
+  margin-top: 4px;
 }
 
+.desc-affiliation {
+  color: #111827;  /* 검은색으로 변경 */
+  font-size: 14px;  /* 크기 통일 */
+  margin-top: 2px;
+  font-weight: 600;  /* 굵기 통일 */
+}
+
+/* desc 안의 bold 텍스트 스타일 부분 삭제 또는 수정 */
+.desc b {
+  font-size: 14px;  /* 통일 */
+  font-weight: 600;
+}
+
+.desc-ko {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 2px;
+  font-weight: 400;
+}
 /* Profile 고정 스크롤 (PC) */
-/* Profile 고정 스크롤 (PC) */
-/* Profile 고정 스크롤 (PC) - 이 부분을 찾아서 교체 */
 @media (min-width: 969px) {
   .main-grid {
     align-items: flex-start;
@@ -2509,7 +2516,7 @@ permalink: /members-director.html
    <!-- Profile Sidebar -->
 <!-- Profile Sidebar -->
 <aside>
-  <div class="director-card profile-card">  <!-- profile-card 클래스 추가 -->
+  <div class="director-card profile-card">  <!-- profile-card 클래스 확인 -->
     <div class="card-head">Profile</div>
     <div class="card-body">
       <div class="profile-photo">
@@ -2711,8 +2718,8 @@ permalink: /members-director.html
         >
         <div class="year date-bold">2025.02.</div>
         <div class="title">Ph.D. in Engineering</div>
-        <div class="desc">in <b>Industrial and Systems Engineering</b></div>
-        <div class="desc-affiliation"><b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
+        <div class="desc-dept">Industrial and Systems Engineering</div>
+        <div class="desc-affiliation">Korea Advanced Institute of Science and Technology (KAIST)</div>
         <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 공학박사</div>
 
         <div class="advisor-section">
@@ -2736,7 +2743,7 @@ permalink: /members-director.html
             <span class="toggle-icon">▶</span>
           </div>
           <div class="leadership-content-wrapper">
-             <div class="leadership-item">
+            <div class="leadership-item">
               <div class="leadership-role"><b>Member</b></div>
               <div class="leadership-affiliation">Graduate School Central Operations Committee</div>
               <div class="leadership-period">2021.09. - 2025.01.</div>
@@ -2770,8 +2777,8 @@ permalink: /members-director.html
         >
         <div class="year date-bold">2021.02.</div>
         <div class="title">Master of Science (M.S.)</div>
-        <div class="desc">in <b>Industrial and Systems Engineering</b></div>
-        <div class="desc-affiliation"><b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
+        <div class="desc-dept">Industrial and Systems Engineering</div>
+        <div class="desc-affiliation">Korea Advanced Institute of Science and Technology (KAIST)</div>
         <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 공학석사</div>
 
         <div class="advisor-section">
@@ -2807,9 +2814,9 @@ permalink: /members-director.html
           onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'"
         >
         <div class="year date-bold">2018.02.</div>
-        <div class="title" style="display:block;">Bachelor of Engineering (B.E.)</div>
-        <div class="desc">in <b>Industrial and Management Systems Engineering</b></div>
-        <div class="desc-affiliation"><b>Kyung Hee University</b></div>
+        <div class="title">Bachelor of Engineering (B.E.)</div>
+        <div class="desc-dept">Industrial and Management Systems Engineering</div>
+        <div class="desc-affiliation">Kyung Hee University</div>
         <div class="desc-ko">경희대학교 산업경영공학 공학사</div>
 
         <div class="advisor-section">
@@ -2874,63 +2881,63 @@ permalink: /members-director.html
         <img src="{{ '/assets/img/logos/dwu.png' | relative_url }}" alt="DWU" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.09. – Present</div>
-        <div class="title"><b>Assistant Professor</b></div>
+        <div class="title">Assistant Professor</div>
         <div class="desc-dept">Division of Business Administration</div>
         <div class="desc-affiliation">Dongduk Women's University</div>
-        <div class="desc-ko"><b>조교수</b> / 동덕여자대학교 경영융합학부</div>
+        <div class="desc-ko">조교수 / 동덕여자대학교 경영융합학부</div>
       </li>
-        <li>
+      <li>
         <img src="{{ '/assets/img/logos/finds.png' | relative_url }}" alt="FINDS Lab" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.06. – Present</div>
-        <div class="title"><b>Director</b></div>
-        <div class="desc-dept">FINDS Lab.</div>
-        <div class="desc-affiliation">Financial Data Science Laboratory</div>
-        <div class="desc-ko"><b>디렉터</b> / FINDS Lab.</div>
+        <div class="title">Director</div>
+        <div class="desc-affiliation">FINDS Lab.</div>
+        <div class="desc-ko">디렉터 / FINDS Lab.</div>
       </li>
       <li>
         <img src="{{ '/assets/img/logos/kangnam.png' | relative_url }}" alt="Kangnam" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.03. – 2026.02.</div>
-        <div class="title"><b>Lecturer</b></div>
+        <div class="title">Lecturer</div>
         <div class="desc-dept">Department of Electronic and Semiconductor Engineering</div>
         <div class="desc-affiliation">Kangnam University</div>
-        <div class="desc-ko"><b>강사</b> / 강남대학교 전자반도체공학부</div>
+        <div class="desc-ko">강사 / 강남대학교 전자반도체공학부</div>
       </li>
       <li>
         <img src="{{ '/assets/img/logos/korea.png' | relative_url }}" alt="Korea University" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.03. – 2026.02.</div>
-        <div class="title"><b>Lecturer</b></div>
+        <div class="title">Lecturer</div>
         <div class="desc-dept">Digital Business Major</div>
         <div class="desc-affiliation">Korea University</div>
-        <div class="desc-ko"><b>강사</b> / 고려대학교 디지털비즈니스전공</div>
+        <div class="desc-ko">강사 / 고려대학교 디지털비즈니스전공</div>
       </li>
       <li>
         <img src="{{ '/assets/img/logos/kyunghee.png' | relative_url }}" alt="Kyung Hee" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2024.03. – 2024.08.</div>
-        <div class="title"><b>Lecturer</b></div>
+        <div class="title">Lecturer</div>
         <div class="desc-dept">Department of Industrial and Management Systems Engineering</div>
         <div class="desc-affiliation">Kyung Hee University</div>
-        <div class="desc-ko"><b>강사</b> / 경희대학교 산업경영공학과</div>
+        <div class="desc-ko">강사 / 경희대학교 산업경영공학과</div>
       </li>
       <li>
         <img src="{{ '/assets/img/logos/ey.png' | relative_url }}" alt="EY" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2020.03. – 2020.05.</div>
-        <div class="title"><b>Intern</b></div>
+        <div class="title">Intern</div>
         <div class="desc-dept">Performance Improvement Department</div>
         <div class="desc-affiliation">EY Consulting</div>
-        <div class="desc-ko"><b>인턴</b> / EY컨설팅 성과개선팀</div>
+        <div class="desc-ko">인턴 / EY컨설팅 성과개선팀</div>
       </li>
       <li>
         <img src="{{ '/assets/img/logos/jl.png' | relative_url }}" alt="JL" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2014.06. – Recent</div>
-        <div class="title"><b>Founder</b></div>
-        <div class="desc-affiliation">JL Creatives & Contents (JL C&C)</div>
-        <div class="desc-ko"><b>설립자</b> / JL C&C</div>
+        <div class="title">Founder</div>
+        <div class="desc-dept">JL Creatives & Contents (JL C&C)</div>
+        <div class="desc-affiliation">Creative Agency</div>
+        <div class="desc-ko">설립자 / JL C&C</div>
       </li>
     </ul>
   </div>
@@ -4143,43 +4150,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== Profile Sticky Position Control =====
 // Profile 카드가 스크롤을 따라다니도록 설정
+// ===== Profile Sticky Position Control =====
 function adjustProfileSticky() {
   const profileAside = document.querySelector('.main-grid aside');
-  const profileCard = document.querySelector('.director-card'); // profile-card 클래스 제거
+  const profileCard = document.querySelector('.director-card.profile-card');
   
-  // profileCard가 Profile 카드인지 확인 (card-head가 Profile인지 체크)
   if (!profileAside || !profileCard) return;
-  
-  const cardHead = profileCard.querySelector('.card-head');
-  if (!cardHead || cardHead.textContent !== 'Profile') return;
   
   // PC에서만 sticky 적용 (969px 이상)
   if (window.innerWidth >= 969) {
-    // 네비게이션 바가 있다면 그 높이를 고려
-    const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
-    const navHeight = navbar ? navbar.offsetHeight : 0;
-    
-    // sticky top 위치 설정 (네비게이션 바 높이 + 여백)
-    profileAside.style.position = 'sticky';
-    profileAside.style.top = (navHeight + 20) + 'px';
-    profileAside.style.alignSelf = 'flex-start';
-    profileAside.style.height = 'fit-content';
-    
-    // Profile 카드 최대 높이 설정 (화면 높이 - 상하 여백)
-    const maxHeight = window.innerHeight - navHeight - 40;
-    profileCard.style.maxHeight = maxHeight + 'px';
-    profileCard.style.overflowY = 'auto';
-    
-    // 스크롤바 스타일을 위해 클래스 추가
-    profileCard.classList.add('sticky-profile');
-    
-  } else {
-    // 모바일에서는 sticky 해제
-    profileAside.style.position = 'relative';
-    profileAside.style.top = 'auto';
-    profileCard.style.maxHeight = 'none';
-    profileCard.style.overflowY = 'visible';
-    profileCard.classList.remove('sticky-profile');
+    // sticky는 CSS에서 처리되므로 추가 설정 불필요
+    // 필요시 top 위치만 조정
+    const banner = document.querySelector('.banner-section');
+    if (banner) {
+      const bannerBottom = banner.getBoundingClientRect().bottom + window.scrollY;
+      // 배너가 화면에서 사라지면 상단에 고정
+      if (window.scrollY > bannerBottom) {
+        profileAside.style.top = '20px';
+      }
+    }
   }
 }
 
@@ -4211,6 +4200,7 @@ function updateProfileOnScroll() {
 window.addEventListener('scroll', updateProfileOnScroll);
  
 </script>
+
 
 
 
