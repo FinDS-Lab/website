@@ -687,13 +687,12 @@ permalink: /members-alumni.html
       color:#111827;
     }
 
-    /* Statistics - 1x3 Grid for desktop, responsive for mobile */
+    /* Statistics - 1x3 Grid for all screen sizes */
     .stats-container{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
       gap:16px;
       margin-bottom:2rem;
-      margin-top:2rem;
     }
     
     .stat-card{
@@ -747,14 +746,23 @@ permalink: /members-alumni.html
       font-weight: 700;
     }
     
+    .since-label {
+      font-size: 11px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    
     .since-date {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       color: #111827;
       line-height: 1.2;
     }
     
-    /* Mobile responsive for stats - maintain 3 columns */
+    /* Mobile responsive - maintain 3 columns */
     @media (max-width: 768px) {
       .alumni-table-desktop{
         display:none;
@@ -784,6 +792,10 @@ permalink: /members-alumni.html
       
       .since-date {
         font-size: 16px;
+      }
+      
+      .since-label {
+        font-size: 9px;
       }
       
       .section-header{
@@ -832,8 +844,22 @@ permalink: /members-alumni.html
         letter-spacing:0.2px;
       }
       
-      .since-date {
-        font-size: 14px;
+      /* Alumni Since mobile styles */
+      #alumni-since-container {
+        margin-bottom: 1rem !important;
+      }
+      
+      #alumni-since-box {
+        padding: 10px 12px !important;
+      }
+      
+      #alumni-since-text {
+        font-size: 10px !important;
+      }
+      
+      #sinceDate {
+        font-size: 16px !important;
+        margin-left: 8px !important;
       }
       
       .section-header{
@@ -895,8 +921,12 @@ permalink: /members-alumni.html
         font-size:7px;
       }
       
-      .since-date {
-        font-size: 12px;
+      #alumni-since-text {
+        font-size: 9px !important;
+      }
+      
+      #sinceDate {
+        font-size: 14px !important;
       }
     }
   </style>
@@ -1005,6 +1035,14 @@ function generateDiamondNetwork() {
 <!-- ===== Content ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-8 pb-8">
 
+  <!-- Alumni Since - Full width -->
+  <div style="margin-bottom:1.5rem; margin-top:2rem;">
+    <div style="background:#fff; border:1px solid #e5e7eb; border-radius:0.75rem; padding:14px 20px; border-top:3px solid #64748b; text-align:center;">
+      <span style="font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;">Alumni Since</span>
+      <span style="font-size:20px; color:#111827; font-weight:900; margin-left:12px;" id="sinceDate">2025.09.01</span>
+    </div>
+  </div>
+
   <!-- Statistics - 1x3 Grid -->
   <div class="stats-container">
     <div class="stat-card ms-stat">
@@ -1019,12 +1057,6 @@ function generateDiamondNetwork() {
       <div class="stat-number" id="undergradCount">0</div>
       <div class="stat-label">Undergrad<br>Research Alumni</div>
     </div>
-  </div>
-
-  <!-- Alumni Since display -->
-  <div style="text-align:center; margin-bottom:2rem;">
-    <div style="font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;">Alumni Since</div>
-    <div style="font-size:24px; color:#111827; font-weight:900; margin-top:4px;" id="sinceDate">2019.09.01</div>
   </div>
 
   <!-- Graduate Students Section -->
