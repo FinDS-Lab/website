@@ -185,27 +185,11 @@ permalink: /members-director.html
       position: relative;
     }
 /* Profile Styles */
+/* Profile Styles - 통일된 디자인 */
 .profile-card {
   position: sticky;
   top: 20px;
-  /* max-height와 overflow-y 삭제 */
 }
-
-/* 스크롤바 관련 스타일 모두 삭제 */
-/*
-.profile-card::-webkit-scrollbar {
-  width: 6px;
-}
-.profile-card::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
-}
-.profile-card::-webkit-scrollbar-thumb {
-  background: var(--gold);
-  border-radius: 3px;
-  opacity: 0.7;
-}
-*/
 
 .profile-photo {
   border-radius: 12px;
@@ -219,6 +203,23 @@ permalink: /members-director.html
   display: block;
 }
 
+/* 이름과 한글 이름 스타일 통일 */
+.profile-name {
+  text-align: center;
+  margin: 1rem 0 0.25rem;
+  font-size: 1.25rem; /* 1.5rem에서 축소 */
+  font-weight: 900;
+  color: #111827; /* 검은색으로 통일 */
+}
+
+.profile-name-ko {
+  text-align: center;
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 400; /* 일반 굵기 */
+}
+
 .profile-info {
   margin-top: 1.5rem;
 }
@@ -227,21 +228,21 @@ permalink: /members-director.html
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 14px 0;
+  padding: 12px 0; /* 14px에서 12px로 통일 */
   border-bottom: 1px solid #f3f4f6;
 }
 
 .profile-item:first-child {
-  padding-top: 12px;
+  padding-top: 10px; /* 12px에서 10px로 */
 }
 
 .profile-item:last-child {
   border-bottom: none;
-  padding-bottom: 20px;
+  padding-bottom: 16px; /* 20px에서 16px로 */
 }
 
 .profile-emoji {
-  font-size: 20px;
+  font-size: 18px; /* 20px에서 18px로 축소 */
   line-height: 1;
   margin-top: 2px;
 }
@@ -261,15 +262,16 @@ permalink: /members-director.html
 }
 
 .profile-value {
-  font-size: 14px;
+  font-size: 13px; /* 14px에서 13px로 축소 */
   color: #111827;
   font-weight: 500;
 }
 
 .profile-position {
-  font-weight: 700;
+  font-weight: 600; /* 700에서 600으로 */
   color: #111827;
   margin-bottom: 2px;
+  font-size: 13px; /* 크기 명시 */
 }
 
 .profile-dept {
@@ -281,9 +283,9 @@ permalink: /members-director.html
 }
 
 .profile-org {
-  color: var(--gold);
-  font-weight: 700;
-  font-size: 14px;
+  color: #111827; /* 금색에서 검은색으로 변경 */
+  font-weight: 600; /* 700에서 600으로 */
+  font-size: 13px; /* 14px에서 13px로 */
   margin-top: 4px;
 }
     /* Button Styles */
@@ -1637,73 +1639,81 @@ permalink: /members-director.html
 <section class="director-page max-w-7xl mx-auto px-4 pb-8">
   <div class="main-grid" style="margin-top:2rem;">
     
-    <!-- Profile Sidebar -->
-    <aside>
-      <div class="director-card profile-card">
-        <div class="card-head">Profile</div>
-        <div class="card-body">
-          <div class="profile-photo">
-            <img src="{{ '/assets/img/members/director.jpg' | relative_url }}" alt="Insu Choi" 
-                 onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
+  <!-- Profile Sidebar -->
+<aside>
+  <div class="director-card profile-card">
+    <div class="card-head">Profile</div>
+    <div class="card-body">
+      <div class="profile-photo">
+        <img src="{{ '/assets/img/members/director.jpg' | relative_url }}" alt="Insu Choi" 
+             onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
+      </div>
+      
+      <h1 style="text-align:center; margin:1rem 0 0.25rem; font-size:1.25rem; font-weight:900; color:#111827;">
+        Insu Choi<span style="font-size:0.875rem; font-weight:400; color:#6b7280; margin-left:4px;">, Ph.D.</span>
+      </h1>
+      <p style="text-align:center; margin:0; color:#6b7280; font-size:0.875rem; font-weight:400;">최인수</p>
+      
+      <div class="profile-info">
+        <div class="profile-item">
+          <span class="profile-emoji" style="font-size:18px;">👨‍🏫</span>
+          <div class="profile-content">
+            <span class="profile-label">Position</span>
+            <div style="font-size:13px; font-weight:600; color:#111827; margin-bottom:2px;">Director, FINDS Lab.</div>
+            <div style="font-size:13px; font-weight:600; color:#111827;">Assistant Professor</div>
           </div>
-          
-          <h1 style="text-align:center; margin:1rem 0 0.25rem; font-size:1.5rem; font-weight:900;">
-            Insu Choi, Ph.D.
-          </h1>
-          <p style="text-align:center; margin:0; color:#6b7280; font-size:0.875rem;">최인수</p>
-          
-          <div class="profile-info">
-            <div class="profile-item">
-              <span class="profile-emoji">👨‍🏫</span>
-              <div class="profile-content">
-                <span class="profile-label">Position</span>
-                <div class="profile-position">Director, FINDS Lab.</div>
-                <div class="profile-position">Assistant Professor</div>
-              </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji" style="font-size:18px;">🏛️</span>
+          <div class="profile-content">
+            <span class="profile-label">Affiliation</span>
+            <div style="color:#6b7280; font-size:12px; padding-left:8px; border-left:2px solid #e5e7eb; font-weight:400;">
+              Division of Business Administration
             </div>
-            <div class="profile-item">
-              <span class="profile-emoji">🏛️</span>
-              <div class="profile-content">
-                <span class="profile-label">Affiliation</span>
-                <div class="profile-dept">Division of Business Administration</div>
-                <div class="profile-org">Dongduk Women's University</div>
-              </div>
-            </div>
-            <div class="profile-item">
-              <span class="profile-emoji">📍</span>
-              <div class="profile-content">
-                <span class="profile-label">Office</span>
-                <span class="profile-value">Humanities Hall · Room 706 (인문관 706호)</span>
-              </div>
-            </div>
-            <div class="profile-item">
-              <span class="profile-emoji">📧</span>
-              <div class="profile-content">
-                <span class="profile-label">E-mail</span>
-                <span class="profile-value" style="display: flex; align-items: center; gap: 8px;">
-                  <a href="mailto:ischoi@dwu.ac.kr">ischoi@dwu.ac.kr</a>
-                  <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">📋</button>
-                </span>
-              </div>
-            </div>
-            <div class="profile-item">
-              <span class="profile-emoji">📞</span>
-              <div class="profile-content">
-                <span class="profile-label">Phone</span>
-                <span class="profile-value">02-940-4424 (+82-2-940-4424)</span>
-              </div>
+            <div style="color:#111827; font-size:13px; font-weight:600; margin-top:4px;">
+              Dongduk Women's University
             </div>
           </div>
-          
-          <div class="button-group">
-            <button class="action-btn" onclick="openResumeModal()">View CV</button>
-            <button class="action-btn" onclick="window.open('https://scholar.google.com/citations?user=EXAMPLE', '_blank')">
-              Google Scholar
-            </button>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji" style="font-size:18px;">📍</span>
+          <div class="profile-content">
+            <span class="profile-label">Office</span>
+            <span style="font-size:13px; color:#111827; font-weight:500;">
+              Humanities Hall · Room 706 (인문관 706호)
+            </span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji" style="font-size:18px;">📧</span>
+          <div class="profile-content">
+            <span class="profile-label">E-mail</span>
+            <span style="font-size:13px; color:#111827; font-weight:500; display:flex; align-items:center; gap:8px;">
+              <a href="mailto:ischoi@dwu.ac.kr" style="color:#3b82f6; text-decoration:none;">ischoi@dwu.ac.kr</a>
+              <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">📋</button>
+            </span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji" style="font-size:18px;">📞</span>
+          <div class="profile-content">
+            <span class="profile-label">Phone</span>
+            <span style="font-size:13px; color:#111827; font-weight:500;">
+              02-940-4424 (+82-2-940-4424)
+            </span>
           </div>
         </div>
       </div>
-    </aside>
+      
+      <div class="button-group">
+        <button class="action-btn" onclick="openResumeModal()">View CV</button>
+        <button class="action-btn" onclick="window.open('https://scholar.google.com/citations?user=EXAMPLE', '_blank')">
+          Google Scholar
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>
 
     <!-- Main Content Area -->
     <main>
@@ -3232,4 +3242,5 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
 
