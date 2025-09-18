@@ -1639,7 +1639,7 @@ permalink: /members-director.html
 <section class="director-page max-w-7xl mx-auto px-4 pb-8">
   <div class="main-grid" style="margin-top:2rem;">
     
-  <!-- Profile Sidebar -->
+<!-- Profile Sidebar -->
 <aside>
   <div class="director-card profile-card">
     <div class="card-head">Profile</div>
@@ -1659,19 +1659,33 @@ permalink: /members-director.html
           <span class="profile-emoji" style="font-size:18px;">👨‍🏫</span>
           <div class="profile-content">
             <span class="profile-label">Position</span>
-            <div style="font-size:13px; font-weight:600; color:#111827; margin-bottom:2px;">Director, FINDS Lab.</div>
-            <div style="font-size:13px; font-weight:600; color:#111827;">Assistant Professor</div>
+            <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:2px;">
+              <span style="font-size:13px; font-weight:700; color:#111827;">Director</span>
+              <span style="font-size:12px; font-weight:400; color:#6b7280;">·</span>
+              <span style="font-size:12px; font-weight:500; color:#6b7280;">FINDS Lab.</span>
+            </div>
           </div>
         </div>
         <div class="profile-item">
           <span class="profile-emoji" style="font-size:18px;">🏛️</span>
           <div class="profile-content">
             <span class="profile-label">Affiliation</span>
-            <div style="color:#6b7280; font-size:12px; padding-left:8px; border-left:2px solid #e5e7eb; font-weight:400;">
-              Division of Business Administration
-            </div>
-            <div style="color:#111827; font-size:13px; font-weight:600; margin-top:4px;">
-              Dongduk Women's University
+            <div style="display:flex; flex-direction:column; gap:3px;">
+              <div style="font-size:13px; font-weight:600; color:#111827;">
+                Assistant Professor
+              </div>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <div style="width:3px; height:3px; background:#e5e7eb; border-radius:50%;"></div>
+                <span style="font-size:12px; color:#6b7280; font-weight:400;">
+                  Division of Business Administration
+                </span>
+              </div>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <div style="width:3px; height:3px; background:#e5e7eb; border-radius:50%;"></div>
+                <span style="font-size:12px; color:#6b7280; font-weight:400;">
+                  Dongduk Women's University
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -1689,7 +1703,7 @@ permalink: /members-director.html
           <div class="profile-content">
             <span class="profile-label">E-mail</span>
             <span style="font-size:13px; color:#111827; font-weight:500; display:flex; align-items:center; gap:8px;">
-              <a href="mailto:ischoi@dongduk.ac.kr" style="color:#3b82f6; text-decoration:none;">ischoi@dwu.ac.kr</a>
+              <a href="mailto:ischoi@dongduk.ac.kr" style="color:#3b82f6; text-decoration:none;">ischoi@dongduk.ac.kr</a>
               <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">📋</button>
             </span>
           </div>
@@ -2438,7 +2452,7 @@ function toggleMentoring(header, year) {
 }
 
 function copyEmail() {
-  const email = 'ischoi@dwu.ac.kr';
+  const email = 'ischoi@dongduk.ac.kr';
   const btn = document.querySelector('.email-copy-btn');
   
   navigator.clipboard.writeText(email).then(() => {
@@ -3242,6 +3256,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
 
 
 
