@@ -72,15 +72,76 @@ permalink: /projects.html
       word-break: keep-all;
       overflow-wrap: break-word;
     }
-    .breadcrumbs-banner {
-      display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
-      font-size: 13px; font-weight: 600; margin-bottom: 8px;
-      word-break: keep-all; overflow-wrap: break-word;
-    }
-    .breadcrumbs-banner a { color: rgba(255,255,255,.92); text-decoration: none; transition: color .2s; }
-    .breadcrumbs-banner a:hover { color: #fff; text-decoration: underline; }
-    .breadcrumbs-banner .sep { color: rgba(255,255,255,.8); }
-    .breadcrumbs-banner span:not(.sep):not(a) { color: #fff; font-weight: 800; }
+   .breadcrumbs-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+  border: 1px solid rgba(214, 177, 77, 0.2);
+  transition: all 0.3s ease;
+}
+
+.breadcrumbs-banner:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+  transform: translateY(-1px);
+}
+
+.breadcrumbs-banner a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+  font-weight: 600;
+}
+
+.breadcrumbs-banner a:hover {
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+}
+
+.breadcrumbs-banner a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.breadcrumbs-banner a:hover::after {
+  width: 100%;
+}
+
+.breadcrumbs-banner .sep {
+  color: var(--gold-light);
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.6;
+}
+
+.breadcrumbs-banner span:not(.sep):not(a) {
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+/* Breadcrumb 아이콘 추가 */
+.breadcrumbs-banner::before {
+  content: '📊';
+  font-size: 14px;
+  margin-right: 2px;
+  opacity: 0.8;
+}
 
     .banner-title {
       font-size: 2.25rem;
@@ -93,19 +154,33 @@ permalink: /projects.html
       overflow-wrap: break-word;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .banner-content { padding: 24px 18px; min-height: 160px; }
-      .banner-section { min-height: 160px; }
-      .banner-title { font-size: 1.9rem; }
-      .breadcrumbs-banner { font-size: 12px; }
-    }
-    @media (max-width: 480px) {
-      .banner-content { padding: 20px 16px; min-height: 130px; }
-      .banner-section { min-height: 130px; }
-      .banner-title { font-size: 1.6rem; }
-      .breadcrumbs-banner { font-size: 11px; }
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  .banner-content { padding: 24px 18px; min-height: 160px; }
+  .banner-section { min-height: 160px; }
+  .banner-title { font-size: 1.9rem; }
+  .breadcrumbs-banner { 
+    font-size: 12px;
+    padding: 8px 14px;
+    gap: 0.6rem;
+  }
+  .breadcrumbs-banner::before {
+    font-size: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .banner-content { padding: 20px 16px; min-height: 130px; }
+  .banner-section { min-height: 130px; }
+  .banner-title { font-size: 1.6rem; }
+  .breadcrumbs-banner { 
+    font-size: 10px;
+    gap: 0.4rem;
+    padding: 6px 10px;
+  }
+  .breadcrumbs-banner::before {
+    display: none;
+  }
+}
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
