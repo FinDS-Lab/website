@@ -491,6 +491,13 @@ function generateDiamondNetwork() {
   .meta-item{display:contents;font-size:12px}
   .meta-label{font-weight:800;color:#374151;font-size:12px;line-height:1.6;white-space:nowrap}
   .meta-value{color:#111827;font-size:12px;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
+  
+  /* Funding Agency list style */
+  .funding-list{list-style:none;padding:0;margin:0}
+  .funding-list li{position:relative;padding-left:14px;margin-bottom:6px}
+  .funding-list li::before{content:"•";position:absolute;left:0;color:#9ca3af;font-weight:bold}
+  .funding-list .agency-en{color:#111827;display:block}
+  .funding-list .agency-ko{color:#9ca3af;display:block;font-size:11px;margin-top:2px}
 
   .ko-muted{color:#9ca3af}
 
@@ -518,6 +525,10 @@ function generateDiamondNetwork() {
     .chip{font-size:10px;padding:.35rem .7rem}
     
     .type-notch{width:6px;left:10px;top:10px;bottom:10px}
+    
+    .funding-list li{padding-left:10px}
+    .funding-list .agency-en{font-size:9px}
+    .funding-list .agency-ko{font-size:8px}
   }
 </style>
 
@@ -595,6 +606,8 @@ function generateDiamondNetwork() {
   function computeStatus(period){
     const end = parseEndDate(period);
     const today = new Date();
+    // Check if end date is valid (not epoch) and compare with today
+    if (end.getTime() === 0) return "ongoing"; // If no end date, assume ongoing
     return (end.getTime() >= today.getTime()) ? "ongoing" : "completed";
   }
 
@@ -719,7 +732,16 @@ function generateDiamondNetwork() {
     const r = project.roles || {};
     const pi = r.principalInvestigator ? esc(r.principalInvestigator) : '—';
     const lead= r.leadResearcher ? esc(r.leadResearcher) : '—';
-    const res = (r.researchers && r.researchers.length) ? r.researchers.map(esc).join(', ') : '—';
+    
+    // Handle researchers display (singular/plural)
+    let researchersDisplay = '—';
+    if (r.researchers && r.researchers.length > 0) {
+      if (r.researchers.length === 1) {
+        researchersDisplay = esc(r.researchers[0]);
+      } else {
+        researchersDisplay = r.researchers.map(esc).join(', ');
+      }
+    }
 
     let outerClass;
     if (status === 'completed') {
@@ -737,14 +759,34 @@ function generateDiamondNetwork() {
 
     const notchColor = fundingColor;
 
-    const agencyEn = project.fundingAgency || '';
-    const agencyKo = project.fundingAgencyKo || '';
-    
-    const agencyValue = agencyKo
-      ? `${esc(agencyEn)} <span class="ko-muted">· ${esc(agencyKo)}</span>`
-      : esc(agencyEn);
+    // Handle funding agencies (array or single)
+    let agencyValue = '';
+    if (Array.isArray(project.fundingAgency)) {
+      // Multiple funding agencies
+      agencyValue = '<ul class="funding-list">';
+      project.fundingAgency.forEach((agency, index) => {
+        const agencyKo = Array.isArray(project.fundingAgencyKo) ? project.fundingAgencyKo[index] : project.fundingAgencyKo;
+        agencyValue += '<li>';
+        agencyValue += `<span class="agency-en">${esc(agency)}</span>`;
+        if (agencyKo) {
+          agencyValue += `<span class="agency-ko">${esc(agencyKo)}</span>`;
+        }
+        agencyValue += '</li>';
+      });
+      agencyValue += '</ul>';
+    } else {
+      // Single funding agency
+      const agencyEn = project.fundingAgency || '';
+      const agencyKo = project.fundingAgencyKo || '';
+      
+      if (agencyKo) {
+        agencyValue = `<div>${esc(agencyEn)}<br><span class="ko-muted" style="font-size:11px;margin-top:2px;display:inline-block">${esc(agencyKo)}</span></div>`;
+      } else {
+        agencyValue = esc(agencyEn);
+      }
+    }
 
-    // Build meta items HTML - WITHOUT Amount
+    // Build meta items HTML
     let metaItemsHTML = `
       <div class="meta-item">
         <span class="meta-label">Period</span>
@@ -755,6 +797,9 @@ function generateDiamondNetwork() {
         <span class="meta-value">${agencyValue}</span>
       </div>`;
     
+    // Determine researcher label (singular/plural)
+    const researcherLabel = (r.researchers && r.researchers.length === 1) ? 'Researcher' : 'Researchers';
+    
     // Check project type for role display
     if (project.type === 'academic') {
       // For academic projects, show only Lead Researcher and Researchers
@@ -764,8 +809,8 @@ function generateDiamondNetwork() {
         <span class="meta-value">${lead}</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Researchers</span>
-        <span class="meta-value">${res}</span>
+        <span class="meta-label">${researcherLabel}</span>
+        <span class="meta-value">${researchersDisplay}</span>
       </div>`;
     } else if (r.principalInvestigator === '최인수') {
       // If PI is 최인수, show all three fields
@@ -779,8 +824,8 @@ function generateDiamondNetwork() {
         <span class="meta-value">${lead}</span>
       </div>
       <div class="meta-item">
-        <span class="meta-label">Researchers</span>
-        <span class="meta-value">${res}</span>
+        <span class="meta-label">${researcherLabel}</span>
+        <span class="meta-value">${researchersDisplay}</span>
       </div>`;
     } else {
       // If PI is not 최인수, only show PI and Lead Researcher
@@ -853,7 +898,7 @@ function generateDiamondNetwork() {
     render();
   };
 
-  // Calculate statistics (Amount 제거)
+  // Calculate statistics
   function calculateStatistics() {
     let governmentCount = 0;
     let industryCount = 0;
