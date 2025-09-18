@@ -1,7 +1,10 @@
----
+<nav aria-label="Breadcrumb" class="banner-breadcrumbs">
+          <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
+          <span class="sep">›</span>
+          <span---
 layout: default
-title: notice
-permalink: /archives-notice.html
+title: news
+permalink: /archives-news.html
 ---
 
 <!-- ===== Unified Styles ===== -->
@@ -331,7 +334,7 @@ permalink: /archives-notice.html
       height: 16px; 
     }
   }
-
+  
   @media (max-width: 480px) {
     .item-title { font-size: 14px; }
     .excerpt { -webkit-line-clamp: 3; }
@@ -359,12 +362,12 @@ permalink: /archives-notice.html
           <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
           <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
-          <a href="{{ '/archives-news.html' | relative_url }}" onclick="event.stopPropagation()">Archives</a>
+          <span>Archives</span>
           <span class="sep">›</span>
-          <span aria-current="page">Notice</span>
+          <span aria-current="page">News</span>
           <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
         </nav>
-        <h1 class="banner-title">Notice</h1>
+        <h1 class="banner-title">News</h1>
       </div>
     </div>
   </div>
@@ -529,27 +532,27 @@ function generateDiamondNetwork() {
 }
 </script>
 
-<!-- ===== Notice List ===== -->
+<!-- ===== News List ===== -->
 <section class="max-w-7xl mx-auto px-4">
   <div class="content-container">
-    <ul id="notice-list" role="list">
+    <ul id="news-list" role="list">
       {% assign all_items = site.pages | concat: site.posts %}
-      {% assign Notice = "" | split: "" %}
+      {% assign news = "" | split: "" %}
       {% for item in all_items %}
-        {% if item.url and item.url contains '/notice/' and item.date %}
-          {% assign Notice = Notice | push: item %}
+        {% if item.url and item.url contains '/news/' and item.date %}
+          {% assign news = news | push: item %}
         {% endif %}
       {% endfor %}
-      {% assign Notice = Notice | sort: 'date' %}
+      {% assign news = news | sort: 'date' %}
 
-      {% if Notice.size == 0 %}
+      {% if news.size == 0 %}
         <li class="empty-state">
-          <div class="empty-icon">📢</div>
-          <div class="empty-title">공지사항이 없습니다</div>
+          <div class="empty-icon">🗞️</div>
+          <div class="empty-title">뉴스 게시글이 없습니다</div>
           <div class="empty-text">새로운 소식이 등록되면 여기에 표시됩니다</div>
         </li>
       {% else %}
-        {% for post in Notice %}
+        {% for post in news %}
           {% assign y = post.date | date: "%Y" %}
           {% assign m = post.date | date: "%m" %}
           {% assign d = post.date | date: "%d" %}
