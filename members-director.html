@@ -282,13 +282,13 @@ permalink: /members-director.html
     position: sticky;
     top: 20px;
     height: fit-content;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
+    align-self: flex-start;  /* 추가: 상단 정렬 */
   }
   
-  .profile-card {
-    position: sticky;
-    top: 20px;
+  /* profile-card는 삭제하거나 다음과 같이 수정 */
+  .director-card.profile-card {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
   }
 }
 
@@ -2443,9 +2443,9 @@ permalink: /members-director.html
  <div class="main-grid" style="margin-top:2rem;">
    
    <!-- Profile Sidebar -->
-   <aside>
-     <div class="director-card profile-card">
-       <div class="card-head">Profile</div>
+<aside>
+  <div class="director-card profile-card">  <!-- profile-card 클래스 추가됨 -->
+    <div class="card-head">Profile</div>
        <div class="card-body">
          <div class="profile-photo">
            <img src="{{ '/assets/img/members/director.jpg' | relative_url }}" alt="Insu Choi" 
@@ -3797,3 +3797,4 @@ document.addEventListener('DOMContentLoaded', function() {
   updatePublicationStats();
 });
 </script>
+
