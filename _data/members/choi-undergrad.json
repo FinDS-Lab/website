@@ -1,0 +1,87 @@
+{
+  "id": "choi-undergrad",
+  "name": {
+    "ko": "최학부",
+    "en": "Choi U.G."
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "period": {
+    "start": "2024-03",
+    "end": null,
+    "expected_graduation": "August 2026"
+  },
+  "contact": {
+    "email": "choi.ug@example.edu",
+    "office": "Building A, Room 105"
+  },
+  "research": {
+    "interests": [
+      "Machine Learning",
+      "Data Analytics",
+      "Financial Technology",
+      "Python Programming"
+    ],
+    "keywords": {
+      "ko": ["머신러닝", "데이터 분석", "핀테크", "파이썬"],
+      "en": ["Machine Learning", "Data Analytics", "FinTech", "Python"]
+    }
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Business Analytics",
+      "school": "Dongduk Women's University",
+      "location": "Seoul, Korea",
+      "start": "2022-03",
+      "end": null,
+      "expected": "August 2026",
+      "status": "ongoing",
+      "gpa": "4.0/4.5"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Dean's List",
+      "organization": "Dongduk Women's University",
+      "year": "2023-2024",
+      "description": "Academic excellence recognition"
+    },
+    {
+      "title": "Undergraduate Research Grant",
+      "organization": "Korea Foundation",
+      "year": 2024,
+      "description": "Research funding for undergraduate project"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Stock Market Dashboard Development",
+      "role": "Researcher",
+      "period": "2024-present",
+      "description": "Building interactive dashboard for stock market analysis",
+      "technologies": ["Python", "Dash", "Plotly", "pandas"],
+      "funding": "Undergraduate Research Program"
+    }
+  ],
+  "skills": {
+    "programming": ["Python", "R", "SQL"],
+    "frameworks": ["pandas", "NumPy", "scikit-learn"],
+    "tools": ["Jupyter", "Git", "Excel"],
+    "languages": {
+      "Korean": "Native",
+      "English": "Intermediate"
+    }
+  },
+  "social": {
+    "github": "https://github.com/choi-ug",
+    "linkedin": "https://linkedin.com/in/choi-ug",
+    "sns_instagram": "https://instagram.com/choi.ug"
+  },
+  "avatar": "/assets/img/members/choi-ug.jpg",
+  "updated_at": "2024-12-15"
+}
