@@ -87,7 +87,7 @@ permalink: /archives-gallery.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs (통일) */
+  /* Breadcrumbs (통일) - 금색 배경, 흰색 텍스트 */
   .banner-breadcrumbs {
     display: flex;
     flex-wrap: wrap;
@@ -96,16 +96,20 @@ permalink: /archives-gallery.html
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    padding: 8px 12px;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
   
   .banner-breadcrumbs a {
-    color: rgba(255,255,255,0.92);
+    color: #fff;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
   }
   
   .banner-breadcrumbs a:hover {
-    color: #fff;
+    opacity: 0.8;
     text-decoration: underline;
   }
   
@@ -126,6 +130,48 @@ permalink: /archives-gallery.html
     text-shadow: 0 2px 4px rgba(0,0,0,0.12);
     letter-spacing: -0.02em;
     margin: 0;
+  }
+
+  /* 개별 갤러리 포스트 페이지 브레드크럼 스타일 - _layouts/post.html에서 사용 */
+  .post-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    border-radius: 999px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+    font-size: 13px;
+    font-weight: 600;
+    max-width: fit-content;
+  }
+
+  .post-breadcrumb .breadcrumb-logo {
+    width: 20px;
+    height: 20px;
+    opacity: 0.95;
+  }
+
+  .post-breadcrumb a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .post-breadcrumb a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+
+  .post-breadcrumb .sep {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 2px;
+  }
+
+  .post-breadcrumb .current {
+    color: #fff;
+    font-weight: 800;
   }
 
   /* Search Container */
@@ -302,6 +348,14 @@ permalink: /archives-gallery.html
     .banner-section {
       min-height: 160px;
     }
+    .post-breadcrumb {
+      font-size: 12px;
+      padding: 8px 14px;
+    }
+    .post-breadcrumb .breadcrumb-logo {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   @media (max-width: 640px) {
@@ -341,6 +395,14 @@ permalink: /archives-gallery.html
       min-height: 140px;
     }
     .banner-breadcrumbs { font-size: 12px; }
+    .post-breadcrumb {
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+    .post-breadcrumb .breadcrumb-logo {
+      width: 16px;
+      height: 16px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -355,6 +417,19 @@ permalink: /archives-gallery.html
     .banner-breadcrumbs { font-size: 11px; }
   }
 </style>
+
+<!-- 
+개별 갤러리 포스트 페이지 레이아웃 예시 (_layouts/post.html 또는 _layouts/gallery.html)
+<nav class="post-breadcrumb">
+  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
+  <a href="/">Home</a>
+  <span class="sep">›</span>
+  <a href="/archives-gallery.html">Gallery</a>
+  <span class="sep">›</span>
+  <span class="current">갤러리 제목</span>
+  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
+</nav>
+-->
 
 <!-- Page Title / Banner -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
