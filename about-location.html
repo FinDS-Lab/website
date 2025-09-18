@@ -209,7 +209,14 @@ function generateDiamondNetwork() {
       #kakao-map{width:100%;height:380px;border-radius:12px;border:1px solid #e5e7eb}
       @media (min-width:768px){#kakao-map{height:460px}}
       .map-error{margin-top:10px;padding:12px;border-radius:8px;background:#fef2f2;color:#991b1b;font-weight:600;border:1px solid #fecaca;font-size:14px}
+      
+      /* 지도 카드 패딩 축소 */
       .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);transition:box-shadow 0.2s ease}
+      .card#kakao-map-wrap{padding:12px} /* 지도 카드만 패딩 줄임 */
+      @media (min-width:768px){
+        .card#kakao-map-wrap{padding:16px} /* PC에서 약간 더 여유 */
+      }
+      
       .card:hover{box-shadow:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -1px rgba(0,0,0,.06)}
       .info-row{display:flex;gap:12px;align-items:flex-start}
       
@@ -248,7 +255,7 @@ function generateDiamondNetwork() {
       
       /* 지도 컨트롤 버튼들 */
       .map-controls{
-        margin-top:12px;
+        margin-top:8px; /* 12px -> 8px */
         display:flex;
         align-items:center;
         justify-content:space-between;
@@ -339,6 +346,7 @@ function generateDiamondNetwork() {
       @media (max-width: 640px) {
         #kakao-map{height:300px}
         .card{padding:16px}
+        .card#kakao-map-wrap{padding:10px} /* 모바일에서도 지도 카드 패딩 줄임 */
         .card-header{margin:-16px -16px 12px -16px;padding:12px;font-size:14px}
         .card-header .subtitle{font-size:12px}
         .map-controls{flex-direction:column;align-items:stretch}
@@ -373,7 +381,7 @@ function generateDiamondNetwork() {
     <!-- FINDS Lab -->
     <section class="card">
       <div class="card-header">
-        <div class="text-base font-extrabold">금융데이터사이언스 연구실</div>
+        <div class="text-base font-extrabold">금융데이터인텔리전스 연구실</div>
         <div class="subtitle">FINDS Lab.</div>
       </div>
       <h3 class="text-lg font-bold text-slate-900 mb-3">동덕여자대학교 인문관 706호</h3>
@@ -555,6 +563,3 @@ function generateDiamondNetwork() {
     }
   })();
 </script>
-
-
-
