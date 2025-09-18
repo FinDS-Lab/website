@@ -3436,11 +3436,11 @@ function closeMenteeModal(event) {
 
 // ===== Collaboration Network System =====
 // ===== Collaboration Network System =====
-// 이전 코드의 방식으로 되돌리기
+// Load publications data from Jekyll
 const PUBS = {{ site.data.pubs | jsonify }};
 const DIRECTOR_ID = 1;
 
-// Count collaborations
+// Count collaborations (only papers including director)
 function countCollaborations() {
   const counts = {};
   const typeBreakdown = {};
@@ -3452,7 +3452,6 @@ function countCollaborations() {
     
     directorPapers++;
     
-    // publication 타입 결정
     const ig = Array.isArray(pub.indexing_group) ? pub.indexing_group : [pub.indexing_group];
     const types = Array.isArray(pub.type) ? pub.type : [pub.type];
     
@@ -3487,256 +3486,431 @@ function countCollaborations() {
 }
 
 // Initialize variables
-let networkChart = null;
-let currentThreshold = 3;
-let zoomLevel = 1;
+let animationFrame = null;
+let nodeAnimations = new Map();
+let time = 0;
+
+const isMobileInit = window.innerWidth <= 768;
+let currentThreshold = isMobileInit ? 5 : 3;
 let { counts: collaborations, typeBreakdown, directorPapers } = countCollaborations();
 let maxCollaborations = Math.max(...Object.values(collaborations), 1);
+let hoveredNode = null;
+let networkInitialized = false;
+
+// UI Elements
+const slider = document.getElementById('networkSlider');
+const infoEl = document.getElementById('networkInfo');
+
+// Setup slider
+if (slider) {
+  slider.value = isMobileInit ? 5 : 3;
+  currentThreshold = isMobileInit ? 5 : 3;
+
+  slider.addEventListener('input', function() {
+    currentThreshold = parseInt(this.value);
+    updateNetworkInfo();
+    if (networkInitialized) {
+      buildNetwork();
+      drawNetwork();
+    }
+  });
+}
+
+function updateNetworkInfo() {
+  const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
+  const visible = Object.entries(collaborations)
+    .filter(([id, freq]) => freq >= thresholdCount).length;
+  const total = Object.keys(collaborations).length;
+
+  infoEl.innerHTML = `<span style="color:#d6b14d">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators with <b>${thresholdCount}+</b> papers<br>(≥${currentThreshold}% of ${directorPapers} total)`;
+}
 
 // Canvas setup
 const canvas = document.getElementById('networkCanvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   let nodes = [];
-  let hoveredNode = null;
+  let zoomLevel = 1;
+  let baseRadius = 120;
 
-  // Size canvas
-  function sizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = canvas.offsetHeight;
+  window.zoomNetwork = function(factor) {
+    zoomLevel *= factor;
+    zoomLevel = Math.max(0.3, Math.min(2, zoomLevel));
+    buildNetwork();
+    drawNetwork();
   }
-
-  // Build network
-  function buildNetwork() {
-    nodes = [];
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
-
-    // Director at center
-    nodes.push({
-      id: DIRECTOR_ID,
-      name: 'Insu Choi',
-      x: centerX,
-      y: centerY,
-      radius: 12,
-      isCenter: true,
-      frequency: directorPapers
-    });
-
-    // Get filtered collaborators
-    const coAuthors = Object.entries(collaborations)
-      .filter(([id, freq]) => freq >= thresholdCount)
-      .sort((a, b) => b[1] - a[1]);
-
-    // Arrange in circle
-    const radius = Math.min(canvas.width, canvas.height) * 0.3 * zoomLevel;
-    
-    coAuthors.forEach(([id, freq], index) => {
-      const angle = (index / coAuthors.length) * 2 * Math.PI;
-      const x = centerX + Math.cos(angle) * radius;
-      const y = centerY + Math.sin(angle) * radius;
-      
-      nodes.push({
-        id: parseInt(id),
-        name: AUTHORS[id]?.en || `Author ${id}`,
-        x: x,
-        y: y,
-        radius: Math.max(4, Math.min(10, freq / 2)),
-        frequency: freq,
-        percentage: Math.round((freq / directorPapers) * 100),
-        typeBreakdown: typeBreakdown[id]
-      });
-    });
-    
-    networkChart = { nodes };
-  }
-
-  // Draw network
-  function drawNetwork() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Background
-    ctx.fillStyle = '#fafbfc';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw connections
-    nodes.slice(1).forEach(node => {
-      ctx.beginPath();
-      ctx.moveTo(nodes[0].x, nodes[0].y);
-      ctx.lineTo(node.x, node.y);
-      ctx.strokeStyle = `rgba(214, 177, 77, ${0.1 + (node.frequency / maxCollaborations) * 0.3})`;
-      ctx.lineWidth = Math.max(0.5, node.frequency / maxCollaborations * 2);
-      ctx.stroke();
-    });
-    
-    // Draw nodes
-    nodes.forEach(node => {
-      const isHovered = hoveredNode === node;
-      const scale = isHovered ? 1.2 : 1;
-      
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius * scale, 0, 2 * Math.PI);
-      
-      if (node.isCenter) {
-        ctx.fillStyle = 'rgb(214, 177, 77)';
-      } else {
-        const alpha = 0.5 + (node.frequency / directorPapers);
-        ctx.fillStyle = `rgba(214, 177, 77, ${alpha})`;
-      }
-      ctx.fill();
-      
-      // Label
-      ctx.fillStyle = '#374151';
-      ctx.font = node.isCenter ? 'bold 12px sans-serif' : '10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(node.name, node.x, node.y + node.radius + 12);
-      
-      if (!node.isCenter) {
-        ctx.font = '9px sans-serif';
-        ctx.fillStyle = '#6b7280';
-        ctx.fillText(`${node.frequency} papers`, node.x, node.y + node.radius + 24);
-      }
-    });
-  }
-
-  // Update network info
-  function updateNetwork() {
-    const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
-    const visible = Object.entries(collaborations)
-      .filter(([id, freq]) => freq >= thresholdCount).length;
-    const total = Object.keys(collaborations).length;
-    
-    const infoText = `Showing ${visible} of ${total} collaborators with ${thresholdCount}+ papers (≥${currentThreshold}% of ${directorPapers} total)`;
-    document.getElementById('networkInfo').innerHTML = `<span id="networkInfoText">${infoText}</span>`;
-    
+  
+  window.resetZoom = function() {
+    zoomLevel = 1;
     buildNetwork();
     drawNetwork();
   }
 
-  // Event listeners
-  const slider = document.getElementById('networkSlider');
-  slider.addEventListener('input', function(e) {
-    currentThreshold = parseInt(e.value);
-    updateNetwork();
-  });
+  // Size canvas
+  function sizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+    
+    let canvasHeight;
+    if (isSmallMobile) {
+      canvasHeight = 350;
+    } else if (isMobile) {
+      canvasHeight = 400;
+    } else {
+      canvasHeight = 500;
+    }
+    
+    canvas.width = rect.width * window.devicePixelRatio;
+    canvas.height = canvasHeight * window.devicePixelRatio;
+    canvas.style.height = canvasHeight + 'px';
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  }
 
-  canvas.addEventListener('click', function(e) {
+  function buildNetwork() {
+    nodes = [];
+    const centerX = canvas.width / (2 * window.devicePixelRatio);
+    const centerY = canvas.height / (2 * window.devicePixelRatio);
+    const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
+
+    // Director at center with animation
+    nodes.push({
+      id: DIRECTOR_ID,
+      name: AUTHORS[DIRECTOR_ID]?.en || 'Director',
+      x: centerX,
+      y: centerY,
+      baseX: centerX,
+      baseY: centerY,
+      radius: 35 * zoomLevel,
+      isCenter: true,
+      frequency: 999,
+      pulsePhase: 0
+    });
+
+    // Get collaborators sorted by frequency and filtered by threshold
+    const coAuthors = Object.entries(collaborations)
+      .filter(([id, freq]) => freq >= thresholdCount)
+      .sort((a, b) => b[1] - a[1]);
+
+    // Arrange in concentric circles based on frequency
+    const rings = [];
+    const ringSizes = [8, 12, 16];
+    let ringIndex = 0;
+    let nodesInRing = [];
+
+    coAuthors.forEach(([id, freq]) => {
+      if (nodesInRing.length >= ringSizes[Math.min(ringIndex, ringSizes.length - 1)]) {
+        rings.push(nodesInRing);
+        nodesInRing = [];
+        ringIndex++;
+      }
+      nodesInRing.push({ id: parseInt(id), freq });
+    });
+    if (nodesInRing.length > 0) rings.push(nodesInRing);
+
+    // Place nodes in rings with zoom and floating animation
+    rings.forEach((ring, rIdx) => {
+      const radius = (baseRadius + rIdx * 80) * zoomLevel;
+      ring.forEach((item, nIdx) => {
+        const angle = (nIdx / ring.length) * Math.PI * 2 - Math.PI / 2;
+        const freq = item.freq;
+        const percentage = Math.round((freq / directorPapers) * 100);
+        
+        const x = centerX + Math.cos(angle) * radius;
+        const y = centerY + Math.sin(angle) * radius;
+
+        nodes.push({
+          id: item.id,
+          name: AUTHORS[item.id]?.en || `Author ${item.id}`,
+          x: x,
+          y: y,
+          baseX: x,
+          baseY: y,
+          radius: (10 + (freq / maxCollaborations) * 15) * zoomLevel,
+          frequency: freq,
+          percentage: percentage,
+          ring: rIdx,
+          typeBreakdown: typeBreakdown[item.id],
+          floatPhase: Math.random() * Math.PI * 2,
+          floatSpeed: 0.5 + Math.random() * 0.5
+        });
+      });
+    });
+    
+    // Initialize animations for new nodes
+    nodes.forEach(node => {
+      if (!nodeAnimations.has(node.id)) {
+        nodeAnimations.set(node.id, {
+          hover: 0,
+          pulse: 0
+        });
+      }
+    });
+  }
+
+  // Draw the network
+  function drawNetwork() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Background
+    const centerX = canvas.width / (2 * window.devicePixelRatio);
+    const centerY = canvas.height / (2 * window.devicePixelRatio);
+
+    // Subtle radial gradient
+    const bgGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 300);
+    bgGrad.addColorStop(0, '#fefefe');
+    bgGrad.addColorStop(1, '#f9fafb');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw subtle grid dots for background
+    ctx.fillStyle = '#e5e7eb';
+    for (let x = 20; x < canvas.width / window.devicePixelRatio; x += 30) {
+      for (let y = 20; y < canvas.height / window.devicePixelRatio; y += 30) {
+        ctx.beginPath();
+        ctx.arc(x, y, 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Draw connections
+    nodes.slice(1).forEach(node => {
+      const grad = ctx.createLinearGradient(nodes[0].x, nodes[0].y, node.x, node.y);
+      const alpha = 0.15 + (node.frequency / maxCollaborations) * 0.25;
+      grad.addColorStop(0, `rgba(172, 14, 14, ${alpha})`);
+      grad.addColorStop(0.5, `rgba(214, 177, 77, ${alpha})`);
+      grad.addColorStop(1, `rgba(214, 177, 77, ${alpha * 0.5})`);
+
+      ctx.beginPath();
+      ctx.moveTo(nodes[0].x, nodes[0].y);
+      ctx.lineTo(node.x, node.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = Math.max(0.5, node.frequency / maxCollaborations * 2);
+      ctx.stroke();
+    });
+
+    // Draw nodes
+    nodes.forEach(node => {
+      const isHovered = hoveredNode === node;
+      const scale = isHovered ? 1.1 : 1;
+
+      // Shadow
+      ctx.shadowColor = isHovered ? 'rgba(214, 177, 77, 0.3)' : 'rgba(0, 0, 0, 0.1)';
+      ctx.shadowBlur = isHovered ? 15 : 8;
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 2;
+
+      // Node circle
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.radius * scale, 0, Math.PI * 2);
+
+      if (node.isCenter) {
+        // Director node - red gradient
+        const grad = ctx.createRadialGradient(
+          node.x - node.radius * 0.3,
+          node.y - node.radius * 0.3,
+          0,
+          node.x, node.y, node.radius
+        );
+        grad.addColorStop(0, '#ef4444');
+        grad.addColorStop(1, '#b91c1c');
+        ctx.fillStyle = grad;
+      } else {
+        // Collaborator nodes - gold gradient based on frequency
+        const grad = ctx.createRadialGradient(
+          node.x - node.radius * 0.3,
+          node.y - node.radius * 0.3,
+          0,
+          node.x, node.y, node.radius
+        );
+        const ratio = node.frequency / maxCollaborations;
+        if (ratio > 0.66) {
+          grad.addColorStop(0, '#fbbf24');
+          grad.addColorStop(1, '#d97706');
+        } else if (ratio > 0.33) {
+          grad.addColorStop(0, '#fde047');
+          grad.addColorStop(1, '#facc15');
+        } else {
+          grad.addColorStop(0, '#fef3c7');
+          grad.addColorStop(1, '#fde68a');
+        }
+        ctx.fillStyle = grad;
+      }
+      ctx.fill();
+
+      // Border
+      ctx.strokeStyle = node.isCenter ? 'rgba(185, 28, 28, 0.3)' : 'rgba(217, 119, 6, 0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.shadowColor = 'transparent';
+
+      // Text labels
+      ctx.fillStyle = '#1f2937';
+      ctx.font = node.isCenter ? 'bold 12px Inter, sans-serif' : '11px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Name below node
+      ctx.fillText(node.name, node.x, node.y + node.radius + 14);
+
+      // Paper count for collaborators
+      if (!node.isCenter) {
+        ctx.fillStyle = '#6b7280';
+        ctx.font = '9px Inter, sans-serif';
+        ctx.fillText(`${node.frequency} papers (${node.percentage}%)`, node.x, node.y + node.radius + 26);
+      }
+    });
+  }
+
+  // Animation loop
+  function animate() {
+    time += 0.016;
+    
+    nodes.forEach(node => {
+      if (node.isCenter) {
+        node.pulsePhase = Math.sin(time * 0.8) * 0.05 + 1;
+      } else {
+        const floatX = Math.sin(time * node.floatSpeed + node.floatPhase) * 2;
+        const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatPhase) * 2;
+        
+        if (hoveredNode === node) {
+          node.x = node.baseX + floatX * 2;
+          node.y = node.baseY + floatY * 2;
+        } else {
+          node.x = node.baseX + floatX;
+          node.y = node.baseY + floatY;
+        }
+      }
+    });
+    
+    drawNetwork();
+    animationFrame = requestAnimationFrame(animate);
+  }
+
+  // Mouse interaction
+  canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
+    hoveredNode = null;
     nodes.forEach(node => {
-      if (node.isCenter) return;
       const dx = x - node.x;
       const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) <= node.radius + 5) {
+      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
+        hoveredNode = node;
+      }
+    });
+
+    canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    hoveredNode = null;
+  });
+
+  // Click event for modal
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    nodes.forEach(node => {
+      if (node.isCenter) return;
+      
+      const dx = x - node.x;
+      const dy = y - node.y;
+      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
         openCollabModal(node);
       }
     });
   });
 
-  canvas.addEventListener('mousemove', function(e) {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  // Modal functions
+  window.openCollabModal = function(node) {
+    const authorKo = AUTHORS[node.id]?.ko;
+    const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
     
-    hoveredNode = null;
-    nodes.forEach(node => {
-      const dx = x - node.x;
-      const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) <= node.radius + 5) {
-        hoveredNode = node;
-      }
-    });
+    document.getElementById('collabModalName').textContent = displayName;
+    const modalBody = document.getElementById('collabModalBody');
     
-    canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
-    drawNetwork();
-  });
+    const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
+    
+    modalBody.innerHTML = `
+      <div class="collab-info-row">
+        <span class="collab-info-icon">📊</span>
+        <span class="collab-info-label">Total Works</span>
+        <span class="collab-info-value">${node.frequency}</span>
+      </div>
+      <div class="collab-info-row">
+        <span class="collab-info-icon">📈</span>
+        <span class="collab-info-label">Co-work Rate</span>
+        <span class="collab-info-value">${node.percentage}%</span>
+      </div>
+      <div class="collab-info-row">
+        <span class="collab-info-icon">📚</span>
+        <span class="collab-info-label">Breakdown</span>
+        <div class="collab-info-value">
+          <div class="breakdown-list">
+            <div class="breakdown-item">
+              <span class="breakdown-bullet">•</span>
+              <span class="breakdown-count">${breakdown.journal || 0}</span>
+              <span class="breakdown-type">journal paper${(breakdown.journal || 0) !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-bullet">•</span>
+              <span class="breakdown-count">${breakdown.conference || 0}</span>
+              <span class="breakdown-type">conference proceeding${(breakdown.conference || 0) !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-bullet">•</span>
+              <span class="breakdown-count">${breakdown.book || 0}</span>
+              <span class="breakdown-type">book${(breakdown.book || 0) !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="breakdown-item">
+              <span class="breakdown-bullet">•</span>
+              <span class="breakdown-count">${breakdown.report || 0}</span>
+              <span class="breakdown-type">report${(breakdown.report || 0) !== 1 ? 's' : ''}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('collabModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  window.closeCollabModal = function(event) {
+    if (event && event.target !== event.currentTarget && !event.target.classList.contains('collab-modal-close')) {
+      return;
+    }
+    document.getElementById('collabModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
 
   // Initialize
   sizeCanvas();
-  updateNetwork();
-  
+  buildNetwork();
+  updateNetworkInfo();
+  drawNetwork();
+  networkInitialized = true;
+  animate();
+
+  // Handle resize
   window.addEventListener('resize', () => {
     sizeCanvas();
-    updateNetwork();
+    buildNetwork();
+    drawNetwork();
   });
-}
 
-// Zoom functions
-function zoomNetwork(factor) {
-  zoomLevel *= factor;
-  zoomLevel = Math.max(0.5, Math.min(3, zoomLevel));
-  buildNetwork();
-  drawNetwork();
-}
-
-function resetZoom() {
-  zoomLevel = 1;
-  buildNetwork();
-  drawNetwork();
-}
-
-// Collaborator modal
-function openCollabModal(node) {
-  const author = AUTHORS[node.id] || {};
-  const modalTitle = author.name_ko || node.name;
-  const modalSubtitle = author.name_ko ? node.name : '';
-  
-  document.getElementById('collabModalName').textContent = modalTitle;
-  document.getElementById('collabModalSubtitle').textContent = modalSubtitle;
-  
-  const modalBody = document.getElementById('collabModalBody');
-  const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
-  
-  modalBody.innerHTML = `
-    <div class="collab-info-row">
-      <span class="collab-info-icon">📊</span>
-      <span class="collab-info-label">Papers Together</span>
-      <span class="collab-info-value">${node.frequency} papers</span>
-    </div>
-    ${author.affiliation ? `
-    <div class="collab-info-row">
-      <span class="collab-info-icon">🏛️</span>
-      <span class="collab-info-label">Affiliation</span>
-      <span class="collab-info-value">${author.affiliation}</span>
-    </div>
-    ` : ''}
-    ${author.position ? `
-    <div class="collab-info-row">
-      <span class="collab-info-icon">👨‍🏫</span>
-      <span class="collab-info-label">Position</span>
-      <span class="collab-info-value">${author.position}</span>
-    </div>
-    ` : ''}
-    <div class="collab-info-row">
-      <span class="collab-info-icon">📚</span>
-      <span class="collab-info-label">Paper Types</span>
-      <span class="collab-info-value">
-        <div class="breakdown-list">
-          ${Object.entries(breakdown)
-            .filter(([type, count]) => count > 0)
-            .sort((a, b) => b[1] - a[1])
-            .map(([type, count]) => `
-              <div class="breakdown-item">
-                <span class="breakdown-bullet">•</span>
-                <span class="breakdown-count">${count}</span>
-                <span class="breakdown-type">${type}</span>
-              </div>
-            `).join('')}
-        </div>
-      </span>
-    </div>
-  `;
-  
-  document.getElementById('collabModal').classList.add('show');
-}
-
-function closeCollabModal(event) {
-  if (event && event.target !== event.currentTarget) return;
-  document.getElementById('collabModal').classList.remove('show');
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (animationFrame) {
+      cancelAnimationFrame(animationFrame);
+    }
+  });
 }
 // ===== Activities Modal System =====
 const ACTIVITIES = {
@@ -3994,6 +4168,7 @@ function updateProfileOnScroll() {
 window.addEventListener('scroll', updateProfileOnScroll);
  
 </script>
+
 
 
 
