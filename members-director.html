@@ -277,21 +277,45 @@ permalink: /members-director.html
 }
 
 /* Profile 고정 스크롤 (PC) */
+/* Profile 고정 스크롤 (PC) */
 @media (min-width: 969px) {
-  .main-grid aside {
-    position: sticky;
-    top: 20px;
-    height: fit-content;
-    align-self: flex-start;  /* 추가: 상단 정렬 */
+  .main-grid {
+    align-items: flex-start; /* grid 아이템들을 상단 정렬 */
   }
   
-  /* profile-card는 삭제하거나 다음과 같이 수정 */
+  .main-grid aside {
+    position: sticky;
+    top: 80px; /* 네비게이션 바 높이를 고려해서 조정 */
+    align-self: flex-start;
+    height: fit-content;
+    max-height: calc(100vh - 100px); /* 화면 높이에서 상하 여백 제외 */
+  }
+  
   .director-card.profile-card {
-    max-height: calc(100vh - 40px);
+    max-height: calc(100vh - 100px);
     overflow-y: auto;
   }
+  
+  /* 스크롤바 스타일링 (선택사항) */
+  .director-card.profile-card::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .director-card.profile-card::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .director-card.profile-card::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 3px;
+    opacity: 0.7;
+  }
+  
+  .director-card.profile-card::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
 }
-
 /* Network Info 모바일 최적화 */
 @media (max-width: 768px) {
   #networkInfo {
@@ -707,6 +731,8 @@ permalink: /members-director.html
   gap:1.5rem;
   max-width: 100%;
   overflow-x: hidden;
+  align-items: flex-start; /* 추가: grid 아이템 상단 정렬 */
+  position: relative; /* 추가: sticky 포지셔닝 컨텍스트 */
 }
 
 @media (max-width: 968px) {
@@ -2443,70 +2469,71 @@ permalink: /members-director.html
  <div class="main-grid" style="margin-top:2rem;">
    
    <!-- Profile Sidebar -->
+<!-- Profile Sidebar -->
 <aside>
-  <div class="director-card profile-card">  <!-- profile-card 클래스 추가됨 -->
+  <div class="director-card profile-card">  <!-- profile-card 클래스 확인 -->
     <div class="card-head">Profile</div>
-       <div class="card-body">
-         <div class="profile-photo">
-           <img src="{{ '/assets/img/members/director.jpg' | relative_url }}" alt="Insu Choi" 
-                onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
-         </div>
-         
-         <h1 style="text-align:center; margin:1rem 0 0.25rem; font-size:1.5rem; font-weight:900; font-family:'Noto Sans KR','Noto Sans',sans-serif;">Insu Choi, Ph.D.</h1>
-         <p style="text-align:center; margin:0; color:#6b7280; font-size:0.875rem;">최인수</p>
-         
-         <div class="profile-info">
-           <div class="profile-item">
-             <span class="profile-emoji">👨‍🏫</span>
-             <div class="profile-content">
-               <span class="profile-label">Position</span>
-               <div class="profile-position">Director, FINDS Lab.</div>
-               <div class="profile-position">Assistant Professor</div>
-             </div>
-           </div>
-           <div class="profile-item">
-             <span class="profile-emoji">🏛️</span>
-             <div class="profile-content">
-               <span class="profile-label">Affiliation</span>
-               <div class="profile-dept">Division of Business Administration</div>
-               <div class="profile-org">Dongduk Women's University</div>
-             </div>
-           </div>
-           <div class="profile-item">
-             <span class="profile-emoji">📍</span>
-             <div class="profile-content">
-               <span class="profile-label">Office</span>
-               <span class="profile-value">Humanities Hall · Room 706 (인문관 706호)</span>
-             </div>
-           </div>
-           <div class="profile-item">
-            <span class="profile-emoji">📧</span>
-            <div class="profile-content">
-              <span class="profile-label">E-mail</span>
-              <span class="profile-value" style="display: flex; align-items: center; gap: 8px;">
-                <a href="mailto:ischoi@dwu.ac.kr">ischoi@dwu.ac.kr</a>
-                <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">
-                  📋
-                </button>
-              </span>
-            </div>
+    <div class="card-body">
+      <div class="profile-photo">
+        <img src="{{ '/assets/img/members/director.jpg' | relative_url }}" alt="Insu Choi" 
+             onerror="this.onerror=null; this.src='{{ '/assets/img/members/default.jpg' | relative_url }}'">
+      </div>
+      
+      <h1 style="text-align:center; margin:1rem 0 0.25rem; font-size:1.5rem; font-weight:900; font-family:'Noto Sans KR','Noto Sans',sans-serif;">Insu Choi, Ph.D.</h1>
+      <p style="text-align:center; margin:0; color:#6b7280; font-size:0.875rem;">최인수</p>
+      
+      <div class="profile-info">
+        <div class="profile-item">
+          <span class="profile-emoji">👨‍🏫</span>
+          <div class="profile-content">
+            <span class="profile-label">Position</span>
+            <div class="profile-position">Director, FINDS Lab.</div>
+            <div class="profile-position">Assistant Professor</div>
           </div>
-          <div class="profile-item">
-            <span class="profile-emoji">📞</span>
-            <div class="profile-content">
-              <span class="profile-label">Phone</span>
-              <span class="profile-value">02-940-4424 (+82-2-940-4424)</span>
-            </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji">🏛️</span>
+          <div class="profile-content">
+            <span class="profile-label">Affiliation</span>
+            <div class="profile-dept">Division of Business Administration</div>
+            <div class="profile-org">Dongduk Women's University</div>
           </div>
-         </div>
-         
-         <div class="button-group">
-           <button class="action-btn" onclick="openResumeModal()">View CV</button>
-           <button class="action-btn" onclick="window.open('https://scholar.google.com/citations?user=EXAMPLE', '_blank')">Google Scholar</button>
-         </div>
-       </div>
-     </div>
-   </aside>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji">📍</span>
+          <div class="profile-content">
+            <span class="profile-label">Office</span>
+            <span class="profile-value">Humanities Hall · Room 706 (인문관 706호)</span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji">📧</span>
+          <div class="profile-content">
+            <span class="profile-label">E-mail</span>
+            <span class="profile-value" style="display: flex; align-items: center; gap: 8px;">
+              <a href="mailto:ischoi@dwu.ac.kr">ischoi@dwu.ac.kr</a>
+              <button class="email-copy-btn" onclick="copyEmail()" title="이메일 복사">
+                📋
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="profile-item">
+          <span class="profile-emoji">📞</span>
+          <div class="profile-content">
+            <span class="profile-label">Phone</span>
+            <span class="profile-value">02-940-4424 (+82-2-940-4424)</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button class="action-btn" onclick="openResumeModal()">View CV</button>
+        <button class="action-btn" onclick="window.open('https://scholar.google.com/citations?user=EXAMPLE', '_blank')">Google Scholar</button>
+      </div>
+    </div>
+  </div>
+</aside>
 
    <!-- Main Content -->
    <main>
@@ -3814,6 +3841,70 @@ function animateNumber(element, start, end, duration) {
 document.addEventListener('DOMContentLoaded', function() {
   // populateReviewerExperience(); // 자동 로드 비활성화
 });
+
+ // ===== Profile Sticky Position Control =====
+// Profile 카드가 스크롤을 따라다니도록 설정
+function adjustProfileSticky() {
+  const profileAside = document.querySelector('.main-grid aside');
+  const profileCard = document.querySelector('.director-card.profile-card');
+  
+  if (!profileAside || !profileCard) return;
+  
+  // PC에서만 sticky 적용 (969px 이상)
+  if (window.innerWidth >= 969) {
+    // 네비게이션 바가 있다면 그 높이를 고려
+    const navbar = document.querySelector('nav') || document.querySelector('.navbar') || document.querySelector('header');
+    const navHeight = navbar ? navbar.offsetHeight : 0;
+    
+    // sticky top 위치 설정 (네비게이션 바 높이 + 여백)
+    profileAside.style.position = 'sticky';
+    profileAside.style.top = (navHeight + 20) + 'px';
+    profileAside.style.alignSelf = 'flex-start';
+    
+    // Profile 카드 최대 높이 설정 (화면 높이 - 상하 여백)
+    const maxHeight = window.innerHeight - navHeight - 40;
+    profileCard.style.maxHeight = maxHeight + 'px';
+    profileCard.style.overflowY = 'auto';
+    
+  } else {
+    // 모바일에서는 sticky 해제
+    profileAside.style.position = 'relative';
+    profileAside.style.top = 'auto';
+    profileCard.style.maxHeight = 'none';
+    profileCard.style.overflowY = 'visible';
+  }
+}
+
+// 페이지 로드 시 실행
+document.addEventListener('DOMContentLoaded', function() {
+  adjustProfileSticky();
+  
+  // Publication stats 애니메이션도 여기서 실행
+  updatePublicationStats();
+});
+
+// 윈도우 리사이즈 시 재조정
+window.addEventListener('resize', function() {
+  adjustProfileSticky();
+});
+
+// 스크롤 시 Profile 위치 미세 조정 (선택사항)
+let ticking = false;
+function updateProfileOnScroll() {
+  if (!ticking) {
+    window.requestAnimationFrame(function() {
+      const profileAside = document.querySelector('.main-grid aside');
+      if (profileAside && window.innerWidth >= 969) {
+        // 스크롤에 따른 추가 조정이 필요하면 여기에 추가
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+window.addEventListener('scroll', updateProfileOnScroll);
+ 
 </script>
+
 
 
