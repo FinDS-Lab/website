@@ -87,35 +87,77 @@ permalink: /archives-news.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs (통일) */
+  /* Breadcrumbs - 흰색 배경, 금색 텍스트로 변경 (다른 페이지와 동일) */
   .banner-breadcrumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: inline-flex;
     align-items: center;
+    gap: 0.75rem;
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 16px;
+    border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+    border: 1px solid rgba(214, 177, 77, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .banner-breadcrumbs:hover {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+    transform: translateY(-1px);
   }
   
   .banner-breadcrumbs a {
-    color: rgba(255,255,255,0.92);
+    color: var(--gold-dark);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: all 0.2s;
+    position: relative;
+    font-weight: 600;
   }
   
   .banner-breadcrumbs a:hover {
-    color: #fff;
-    text-decoration: underline;
+    color: var(--gold);
+    text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+  }
+
+  /* 링크 호버 시 밑줄 효과 */
+  .banner-breadcrumbs a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.2s ease;
+  }
+
+  .banner-breadcrumbs a:hover::after {
+    width: 100%;
   }
   
   .banner-breadcrumbs .sep {
-    color: rgba(255,255,255,0.75);
+    color: var(--gold-light);
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.6;
   }
   
   .banner-breadcrumbs span:not(.sep):not(a) {
-    color: #fff;
-    font-weight: 700;
+    color: var(--gold);
+    font-weight: 800;
+    letter-spacing: 0.3px;
+  }
+
+  /* Breadcrumb 아이콘 추가 (선택사항) */
+  .banner-breadcrumbs::before {
+    content: '📰';
+    font-size: 14px;
+    margin-right: 2px;
+    opacity: 0.8;
   }
 
   /* 제목 (통일) */
@@ -239,9 +281,11 @@ permalink: /archives-news.html
   }
   
   .btn-more:hover {
-    background: #f8fafc;
+    background: linear-gradient(135deg, var(--gold-light) 0%, rgba(214, 177, 77, 0.05) 100%);
     border-color: var(--gold);
-    color: #111827;
+    color: var(--gold-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(214, 177, 77, 0.2);
   }
 
   /* 비어있을 때 (통일) */
@@ -277,6 +321,14 @@ permalink: /archives-news.html
     .banner-section {
       min-height: 160px;
     }
+    .banner-breadcrumbs {
+      font-size: 12px;
+      padding: 8px 14px;
+      gap: 0.6rem;
+    }
+    .banner-breadcrumbs::before {
+      font-size: 12px;
+    }
   }
 
   @media (max-width: 640px) {
@@ -307,7 +359,14 @@ permalink: /archives-news.html
     .banner-section {
       min-height: 140px;
     }
-    .banner-breadcrumbs { font-size: 12px; }
+    .banner-breadcrumbs { 
+      font-size: 11px;
+      padding: 7px 12px;
+      gap: 0.5rem;
+    }
+    .banner-breadcrumbs::before {
+      display: none;
+    }
   }
   
   @media (max-width: 480px) {
@@ -321,7 +380,11 @@ permalink: /archives-news.html
       min-height: 120px;
     }
     .banner-title { font-size: 1.5rem; }
-    .banner-breadcrumbs { font-size: 11px; }
+    .banner-breadcrumbs { 
+      font-size: 10px;
+      gap: 0.4rem;
+      padding: 6px 10px;
+    }
   }
 </style>
 
@@ -333,7 +396,7 @@ permalink: /archives-news.html
         <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
           <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
-          <span>Archives</span>
+          <a href="{{ '/archives-news.html' | relative_url }}" onclick="event.stopPropagation()">Archives</a>
           <span class="sep">›</span>
           <span aria-current="page">News</span>
         </nav>
