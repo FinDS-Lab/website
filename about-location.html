@@ -9,13 +9,14 @@ permalink: /about-location.html
   <style>
     :root {
       --gold: rgb(214, 177, 77);
+      --gold-light: rgba(214, 177, 77, 0.1);
       --gold-mid: rgb(234, 197, 97);
       --gold-dark: rgb(194, 157, 57);
       --accent: #d4af37;
-      --accent2: #7c3aed;
+      --accent2: rgb(172, 14, 14);
     }
 
-    /* Banner (reduced height & paddings) */
+    /* Banner */
     .banner-section {
       background: linear-gradient(
         135deg,
@@ -29,7 +30,7 @@ permalink: /about-location.html
       animation: gradientShift 15s ease infinite;
       position: relative;
       overflow: hidden;
-      min-height: 120px;           /* ↓ from 200px */
+      min-height: 200px;
       border-radius: 1rem;
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
       cursor: pointer;
@@ -58,27 +59,92 @@ permalink: /about-location.html
     .burst-line { stroke: rgba(255,255,255,.8); stroke-width: 1.5; fill: none; }
     .burst-dot  { fill: rgba(255,255,255,.95); }
 
-    /* Banner content (left-bottom) - compacted */
+    /* Banner content */
     .banner-content {
       position: relative;
       z-index: 10;
-      padding: 20px 18px;          /* ↓ from 32px 24px */
+      padding: 32px 24px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-      min-height: 120px;           /* ↓ from 200px */
+      min-height: 200px;
     }
-    .breadcrumbs-banner {
-      display: flex; flex-wrap: wrap; gap: .45rem; align-items: center;
-      font-size: 12px; font-weight: 600; margin-bottom: 6px;
+
+    /* Breadcrumbs - 흰색 배경, 금색 텍스트 (통일) */
+    .banner-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+      border: 1px solid rgba(214, 177, 77, 0.2);
+      transition: all 0.3s ease;
     }
-    .breadcrumbs-banner a { color: rgba(255,255,255,.92); text-decoration: none; transition: color .2s; }
-    .breadcrumbs-banner a:hover { color: #fff; text-decoration: underline; }
-    .breadcrumbs-banner .sep { color: rgba(255,255,255,.8); }
-    .breadcrumbs-banner span:not(.sep):not(a) { color: #fff; font-weight: 800; }
+
+    .banner-breadcrumbs:hover {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+      transform: translateY(-1px);
+    }
+    
+    .banner-breadcrumbs a {
+      color: var(--gold-dark);
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+      font-weight: 600;
+    }
+    
+    .banner-breadcrumbs a:hover {
+      color: var(--gold);
+      text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+    }
+
+    /* 링크 호버 시 밑줄 효과 */
+    .banner-breadcrumbs a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.2s ease;
+    }
+
+    .banner-breadcrumbs a:hover::after {
+      width: 100%;
+    }
+    
+    .banner-breadcrumbs .sep {
+      color: var(--gold-light);
+      font-weight: 400;
+      margin: 0;
+      opacity: 0.6;
+    }
+    
+    .banner-breadcrumbs span:not(.sep):not(a) {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    /* Breadcrumb 아이콘 추가 */
+    .banner-breadcrumbs::before {
+      content: '📍';
+      font-size: 14px;
+      margin-right: 2px;
+      opacity: 0.8;
+    }
 
     .banner-title {
-      font-size: 1.9rem;           /* ↓ from 2.25rem */
+      font-size: 2.5rem;
       font-weight: 900;
       color: #fff;
       text-shadow: 0 2px 4px rgba(0,0,0,.12);
@@ -87,28 +153,61 @@ permalink: /about-location.html
       line-height: 1.15;
     }
 
-    /* Responsive for banner only */
+    /* Responsive for banner */
     @media (max-width: 768px) {
-      .banner-content { padding: 16px 14px; min-height: 100px; }
-      .banner-section { min-height: 100px; }
-      .banner-title { font-size: 1.6rem; }
-      .breadcrumbs-banner { font-size: 11px; }
+      .banner-content { 
+        padding: 28px 20px;
+        min-height: 160px;
+      }
+      .banner-section { min-height: 160px; }
+      .banner-title { font-size: 2rem; }
+      .banner-breadcrumbs {
+        font-size: 12px;
+        padding: 8px 14px;
+        gap: 0.6rem;
+      }
+      .banner-breadcrumbs::before {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 640px) {
+      .banner-content { 
+        padding: 24px 16px;
+        min-height: 140px;
+      }
+      .banner-section { min-height: 140px; }
+      .banner-title { font-size: 1.75rem; }
+      .banner-breadcrumbs { 
+        font-size: 11px;
+        padding: 7px 12px;
+        gap: 0.5rem;
+      }
+      .banner-breadcrumbs::before {
+        display: none;
+      }
     }
     @media (max-width: 480px) {
-      .banner-content { padding: 14px 12px; min-height: 84px; }
-      .banner-section { min-height: 84px; }
-      .banner-title { font-size: 1.35rem; }
-      .breadcrumbs-banner { font-size: 10.5px; }
+      .banner-content { 
+        padding: 20px 16px;
+        min-height: 120px;
+      }
+      .banner-section { min-height: 120px; }
+      .banner-title { font-size: 1.5rem; }
+      .banner-breadcrumbs { 
+        font-size: 10px;
+        gap: 0.4rem;
+        padding: 6px 10px;
+      }
     }
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
     <div class="banner-content">
       <div>
-        <nav aria-label="Breadcrumb" class="breadcrumbs-banner" onclick="event.stopPropagation()">
-          <a href="{{ '/' | relative_url }}">Home</a>
+        <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
+          <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
-          <a href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
+          <a href="{{ '/about-introduction.html' | relative_url }}" onclick="event.stopPropagation()">About FINDS</a>
           <span class="sep">›</span>
           <span aria-current="page">Location</span>
         </nav>
