@@ -1378,6 +1378,7 @@ permalink: /publications.html
           <option value="harvard">Harvard</option>
           <option value="vancouver">Vancouver</option>
           <option value="ieee">IEEE</option>
+          <option value="korean-apa">Korean APA (한글)</option>
         </select>
       </div>
       <div id="citeBody"></div>
@@ -2104,6 +2105,21 @@ function generateCitation(pub, style) {
       citation += '.';
       break;
       
+    case 'korean-apa':
+      // Use Korean title and venue if available
+      const koreanTitle = pub.title_ko || pub.title || "제목 없음";
+      const koreanVenue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
+      const koreanAuthors = formatAuthorsForCitation(pub.authors, 'korean');
+      
+      citation = `${koreanAuthors} (${year}). ${koreanTitle}. `;
+      if (koreanVenue) citation += `<em>${koreanVenue}</em>`;
+      if (pub.volume) citation += `, <em>${pub.volume}</em>`;
+      if (pub.issue) citation += `(${pub.issue})`;
+      if (pub.pages) citation += `, ${pub.pages}`;
+      citation += '.';
+      if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
+      break;
+      
     default:
       citation = generateCitation(pub, 'apa');
   }
@@ -2129,21 +2145,6 @@ function openCite(pub) {
     </div>
   `;
   
-  // Add Korean citation if applicable
-  if (pub.language === 'Korean' && pub.title_ko) {
-    const koreanCitation = generateKoreanCitation(pub);
-    const koreanId = 'cite-ko-' + Math.random().toString(36).slice(2, 9);
-    citationsHTML += `
-      <div class="cite-block">
-        <div class="cite-header">
-          <span class="cite-label">한글 (Korean APA)</span>
-          <button class="copy-btn" onclick="copyText('${koreanId}')">Copy</button>
-        </div>
-        <div class="cite-text" id="${koreanId}">${koreanCitation}</div>
-      </div>
-    `;
-  }
-  
   citeBody.innerHTML = citationsHTML;
   document.getElementById('citeModal').style.display = 'flex';
   
@@ -2158,7 +2159,8 @@ function getStyleLabel(styleId) {
     'chicago': 'Chicago (17th ed.)',
     'harvard': 'Harvard',
     'vancouver': 'Vancouver',
-    'ieee': 'IEEE'
+    'ieee': 'IEEE',
+    'korean-apa': 'Korean APA (한글)'
   };
   return labels[styleId] || styleId;
 }
