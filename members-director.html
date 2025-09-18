@@ -184,110 +184,108 @@ permalink: /members-director.html
       align-items: flex-start;
       position: relative;
     }
+/* Profile Styles */
+.profile-card {
+  position: sticky;
+  top: 20px;
+  /* max-height와 overflow-y 삭제 */
+}
 
-    /* Profile Styles */
-    .profile-card {
-      position: sticky;
-      top: 20px;
-      max-height: calc(100vh - 40px);
-      overflow-y: auto;
-    }
+/* 스크롤바 관련 스타일 모두 삭제 */
+/*
+.profile-card::-webkit-scrollbar {
+  width: 6px;
+}
+.profile-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+.profile-card::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+  opacity: 0.7;
+}
+*/
 
-    .profile-card::-webkit-scrollbar {
-      width: 6px;
-    }
+.profile-photo {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
-    .profile-card::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 3px;
-    }
+.profile-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    .profile-card::-webkit-scrollbar-thumb {
-      background: var(--gold);
-      border-radius: 3px;
-      opacity: 0.7;
-    }
+.profile-info {
+  margin-top: 1.5rem;
+}
 
-    .profile-photo {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
+.profile-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
 
-    .profile-photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+.profile-item:first-child {
+  padding-top: 12px;
+}
 
-    .profile-info {
-      margin-top: 1.5rem;
-    }
+.profile-item:last-child {
+  border-bottom: none;
+  padding-bottom: 20px;
+}
 
-    .profile-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 14px 0;
-      border-bottom: 1px solid #f3f4f6;
-    }
+.profile-emoji {
+  font-size: 20px;
+  line-height: 1;
+  margin-top: 2px;
+}
 
-    .profile-item:first-child {
-      padding-top: 12px;
-    }
+.profile-content {
+  flex: 1;
+}
 
-    .profile-item:last-child {
-      border-bottom: none;
-      padding-bottom: 20px;
-    }
+.profile-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  margin-bottom: 4px;
+}
 
-    .profile-emoji {
-      font-size: 20px;
-      line-height: 1;
-      margin-top: 2px;
-    }
+.profile-value {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 500;
+}
 
-    .profile-content {
-      flex: 1;
-    }
+.profile-position {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2px;
+}
 
-    .profile-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 700;
-      color: #6b7280;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      margin-bottom: 4px;
-    }
+.profile-dept {
+  color: #6b7280;
+  font-size: 12px;
+  padding-left: 8px;
+  border-left: 2px solid #e5e7eb;
+  font-weight: 400;
+}
 
-    .profile-value {
-      font-size: 14px;
-      color: #111827;
-      font-weight: 500;
-    }
-
-    .profile-position {
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 2px;
-    }
-
-    .profile-dept {
-      color: #6b7280;
-      font-size: 12px;
-      padding-left: 8px;
-      border-left: 2px solid #e5e7eb;
-      font-weight: 400;
-    }
-
-    .profile-org {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
+.profile-org {
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 4px;
+}
     /* Button Styles */
     .button-group {
       display: flex;
@@ -1415,24 +1413,23 @@ permalink: /members-director.html
       display: inline-block;
     }
 
-    /* Responsive Styles */
-    @media (max-width: 968px) {
-      .main-grid {
-        display: block !important;
-      }
-      
-      .main-grid > * {
-        width: 100% !important;
-        margin-bottom: 1.5rem;
-      }
-
-      .profile-card {
-        position: static !important;
-        top: auto !important;
-        max-height: none !important;
-        overflow-y: visible !important;
-      }
-    }
+/* Responsive Styles */
+@media (max-width: 968px) {
+  .main-grid {
+    display: block !important;
+  }
+  
+  .main-grid > * {
+    width: 100% !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-card {
+    position: static !important;
+    top: auto !important;
+    /* max-height와 overflow-y 라인 삭제 */
+  }
+}
 
     @media (max-width: 768px) {
       .banner-content {
@@ -2483,7 +2480,7 @@ function populateReviewerExperience() {
         <div class="reviewer-type ${typeClass}">${journal.type}</div>
         <div class="reviewer-name">${journal.name}</div>
         <div class="reviewer-publisher">${journal.publisher}</div>
-        <div class="reviewer-since">Since ${journal.since}</div>
+        <div class="reviewer-since">Since <b>${journal.since}</b></div>
       </div>
     `;
   });
@@ -2494,7 +2491,7 @@ function populateReviewerExperience() {
     conferenceHTML += `
       <div class="conference-reviewer-item">
         <div class="conference-name">${conf.name}</div>
-        <div class="conference-period">${conf.period}</div>
+        <div class="conference-period"><b>${conf.period}</b></div>
       </div>
     `;
   });
@@ -3235,3 +3232,4 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
