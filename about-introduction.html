@@ -9,13 +9,9 @@ permalink: /about-introduction.html
   <style>
     :root {
       --gold: rgb(214, 177, 77);
+      --gold-light: rgba(214, 177, 77, 0.1);
       --gold-mid: rgb(234, 197, 97);
       --gold-dark: rgb(194, 157, 57);
-
-      /* 통일된 배너/콘텐츠 높이 변수 (크기 맞춤 핵심) */
-      --banner-h-lg: 200px;
-      --banner-h-md: 160px;
-      --banner-h-sm: 130px;
     }
 
     /* Banner */
@@ -32,7 +28,7 @@ permalink: /about-introduction.html
       animation: gradientShift 15s ease infinite;
       position: relative;
       overflow: hidden;
-      min-height: var(--banner-h-lg); /* 통일된 높이 적용 */
+      min-height: 200px;
       border-radius: 1rem;
       box-shadow: 0 10px 30px rgba(0,0,0,.08);
       cursor: pointer;
@@ -69,19 +65,83 @@ permalink: /about-introduction.html
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
-      min-height: var(--banner-h-lg); /* 통일된 높이 적용 */
+      min-height: 200px;
     }
+
+    /* Breadcrumbs - 흰색 배경, 금색 텍스트 (통일된 스타일) */
     .breadcrumbs-banner {
-      display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
-      font-size: 13px; font-weight: 600; margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+      border: 1px solid rgba(214, 177, 77, 0.2);
+      transition: all 0.3s ease;
     }
-    .breadcrumbs-banner a { color: rgba(255,255,255,.92); text-decoration: none; transition: color .2s; }
-    .breadcrumbs-banner a:hover { color: #fff; text-decoration: underline; }
-    .breadcrumbs-banner .sep { color: rgba(255,255,255,.8); }
-    .breadcrumbs-banner span:not(.sep):not(a) { color: #fff; font-weight: 800; }
+
+    .breadcrumbs-banner:hover {
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+      transform: translateY(-1px);
+    }
+
+    .breadcrumbs-banner a {
+      color: var(--gold-dark);
+      text-decoration: none;
+      transition: all 0.2s;
+      position: relative;
+      font-weight: 600;
+    }
+
+    .breadcrumbs-banner a:hover {
+      color: var(--gold);
+      text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+    }
+
+    .breadcrumbs-banner a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.2s ease;
+    }
+
+    .breadcrumbs-banner a:hover::after {
+      width: 100%;
+    }
+
+    .breadcrumbs-banner .sep {
+      color: var(--gold-light);
+      font-weight: 400;
+      margin: 0;
+      opacity: 0.6;
+    }
+
+    .breadcrumbs-banner span:not(.sep):not(a) {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    /* Breadcrumb 아이콘 */
+    .breadcrumbs-banner::before {
+      content: '🔍';
+      font-size: 14px;
+      margin-right: 2px;
+      opacity: 0.8;
+    }
 
     .banner-title {
-      font-size: 2.25rem;
+      font-size: 2.5rem;
       font-weight: 900;
       color: #fff;
       text-shadow: 0 2px 4px rgba(0,0,0,.12);
@@ -91,16 +151,63 @@ permalink: /about-introduction.html
 
     /* Responsive */
     @media (max-width: 768px) {
-      .banner-content { padding: 24px 18px; min-height: var(--banner-h-md); }
-      .banner-section { min-height: var(--banner-h-md); }
-      .banner-title { font-size: 1.9rem; }
-      .breadcrumbs-banner { font-size: 12px; }
+      .banner-content { 
+        padding: 28px 20px; 
+        min-height: 160px; 
+      }
+      .banner-section { 
+        min-height: 160px; 
+      }
+      .banner-title { 
+        font-size: 2rem; 
+      }
+      .breadcrumbs-banner { 
+        font-size: 12px;
+        padding: 8px 14px;
+        gap: 0.6rem;
+      }
+      .breadcrumbs-banner::before {
+        font-size: 12px;
+      }
     }
+    
+    @media (max-width: 640px) {
+      .banner-title { 
+        font-size: 1.75rem; 
+      }
+      .banner-content { 
+        padding: 24px 16px;
+        min-height: 140px;
+      }
+      .banner-section {
+        min-height: 140px;
+      }
+      .breadcrumbs-banner { 
+        font-size: 11px;
+        padding: 7px 12px;
+        gap: 0.5rem;
+      }
+      .breadcrumbs-banner::before {
+        display: none;
+      }
+    }
+    
     @media (max-width: 480px) {
-      .banner-content { padding: 20px 16px; min-height: var(--banner-h-sm); }
-      .banner-section { min-height: var(--banner-h-sm); }
-      .banner-title { font-size: 1.6rem; }
-      .breadcrumbs-banner { font-size: 11px; }
+      .banner-content { 
+        padding: 20px 16px; 
+        min-height: 120px; 
+      }
+      .banner-section { 
+        min-height: 120px; 
+      }
+      .banner-title { 
+        font-size: 1.5rem; 
+      }
+      .breadcrumbs-banner { 
+        font-size: 10px;
+        gap: 0.4rem;
+        padding: 6px 10px;
+      }
     }
   </style>
 
@@ -216,33 +323,19 @@ function generateDiamondNetwork() {
     --ink: #111827;
     --slate: #374151;
     --card-pad: 2rem;
-
-    /* 동일 높이 변수 재사용 */
-    --banner-h-lg: 200px;
-    --banner-h-md: 160px;
-    --banner-h-sm: 130px;
   }
 
-  /* Main Content Section (너비 확장) */
+  /* Main Content Section */
   .content-section {
     background: #fff;
     border-radius: 1rem;
-    padding: var(--card-pad);
+    padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid rgba(0,0,0,0.05);
-    /* ▼ 기존 900px → 더 넓게 (컨테이너 내에서 시각적 균형) */
-    max-width: min(1100px, 100%);
     margin: 0 auto;
-    min-height: var(--banner-h-lg); /* 배너와 동일한 최소 높이 */
   }
-  @media (min-width: 1024px){ .content-section { padding: 2.25rem; } }
-  @media (max-width: 768px){ .content-section { padding: 1.5rem; min-height: var(--banner-h-md); } }
-  @media (max-width: 480px){ .content-section { min-height: var(--banner-h-sm); } }
 
-  /* ===== 텍스트 줄바꿈 (한글/영어 단어 단위) =====
-     - 기본: CJK 친화적 줄바꿈 유지(keep-all)
-     - 영어/긴 단어: 필요 시 줄바꿈(anywhere) + 하이픈 자동
-  */
+  /* 텍스트 줄바꿈 */
   .intro-text,
   .vision-main-text,
   .vision-h,
@@ -250,9 +343,9 @@ function generateDiamondNetwork() {
   .section-title,
   .concept-title,
   .concept-subtitle {
-    word-break: keep-all;       /* 한글: 단어 단위 유지 */
-    overflow-wrap: anywhere;    /* 영어/긴 URL 등 강제 줄바꿈 허용 */
-    hyphens: auto;              /* 영어 단어 하이픈 분리 (브라우저/언어 설정 의존) */
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 
   /* Text Styles */
@@ -279,7 +372,7 @@ function generateDiamondNetwork() {
   .concept-card {
     background: #fff; 
     border-radius: 1rem; 
-    padding: var(--card-pad);
+    padding: 2rem;
     text-align: center; 
     border: 1px solid #f3f4f6; 
     transition: all .3s; 
@@ -515,53 +608,99 @@ function generateDiamondNetwork() {
     font-size: 1.5rem;
   }
   
+  /* 모바일 반응형 개선 */
   @media (max-width: 768px) {
-    .intro-text { font-size: 15px; line-height: 1.9; }
+    .content-section {
+      padding: 2rem 1.5rem;
+    }
+    .intro-text { 
+      font-size: 15px; 
+      line-height: 1.9; 
+    }
     .vision-main { padding: 2rem; }
     .vision-main-title { font-size: 1.6rem; }
     .vision-main-text { font-size: 15px; }
     .vision-item { padding: 1.5rem; }
     .vision-h { font-size: 14px; }
     .vision-p { font-size: 13px; }
+    .concept-card { padding: 1.5rem; }
     .concept-title { font-size: 16px; }
     .concept-subtitle { font-size: 12px; }
+    .concept-icon { 
+      width: 50px; 
+      height: 50px; 
+      font-size: 24px; 
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .content-section {
+      padding: 1.75rem 1.25rem;
+    }
+    /* 모바일에서 가운데 정렬 해제 */
+    .intro-text {
+      text-align: left;
+    }
   }
   
   @media (max-width: 480px) {
-    .intro-text { font-size: 14px; line-height: 1.8; }
-    .vision-main-title { font-size: 1.4rem; }
+    .content-section {
+      padding: 1.5rem 1rem;
+    }
+    .intro-text { 
+      font-size: 14px; 
+      line-height: 1.8; 
+    }
+    .vision-main { padding: 1.5rem; }
+    .vision-main-title { 
+      font-size: 1.3rem;
+      line-height: 1.3;
+    }
     .vision-main-text { font-size: 14px; }
+    .vision-toggle-icon { 
+      font-size: 16px;
+      margin-left: 8px;
+    }
+    .vision-item { padding: 1.25rem; }
     .vision-h { font-size: 13px; }
     .vision-p { font-size: 12px; }
+    .concept-card { padding: 1.25rem; }
     .concept-title { font-size: 15px; }
     .concept-subtitle { font-size: 11px; }
+    .concept-icon { 
+      width: 45px; 
+      height: 45px; 
+      font-size: 22px; 
+    }
+    .section-title {
+      font-size: 1.25rem;
+    }
   }
 </style>
 
 <!-- ===== Main Content ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-8 pb-8">
-<!-- Korean Intro (optimized for readability) -->
-<div class="content-section">
-  <div style="text-align: center;">  <!-- 가운데 정렬 wrapper 추가 -->
-    <p class="intro-text">
-      <span class="highlight">동덕여자대학교 경영융합학부</span>
-      <span class="highlight-gold">금융데이터인텔리전스 연구실(FINDS Lab.)</span>에 오신 것을 환영합니다.<br>
-    </p>
-    <p class="intro-text">
-      오늘날 비즈니스와 금융 경제 환경은 <span class="highlight">데이터</span> 중심으로 빠르게 변화하고 있습니다.<br>
-      이제는 데이터를 얼마나 <span class="highlight">정교하게 분석하고 효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.<br>
-    </p>
-    <p class="intro-text">
-      저희 연구실은 <span class="highlight">금융데이터사이언스</span>,
-      <span class="highlight">비즈니스 애널리틱스</span>,
-      <span class="highlight">데이터 기반 의사결정</span>을 주요 연구 분야로 삼고 있습니다.<br>
-      금융 산업을 비롯한 다양한 산업과 조직에서 새로운
-      <span class="highlight-gold">발견(finds)</span>을 이끌어내고,<br>
-      의미 있는 인사이트를 발굴하는 것을 목표로 합니다.<br>
-    </p>
-  </div>  <!-- wrapper 닫기 -->
-</div>
-
+  <!-- Korean Intro -->
+  <div class="content-section">
+    <div style="text-align: center;">
+      <p class="intro-text">
+        <span class="highlight">동덕여자대학교 경영융합학부</span>
+        <span class="highlight-gold">금융데이터인텔리전스 연구실(FINDS Lab.)</span>에 오신 것을 환영합니다.
+      </p>
+      <p class="intro-text">
+        오늘날 비즈니스와 금융 경제 환경은 <span class="highlight">데이터</span> 중심으로 빠르게 변화하고 있습니다.<br class="hidden sm:inline">
+        이제는 데이터를 얼마나 <span class="highlight">정교하게 분석하고 효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
+      </p>
+      <p class="intro-text">
+        저희 연구실은 <span class="highlight">금융데이터사이언스</span>,
+        <span class="highlight">비즈니스 애널리틱스</span>,
+        <span class="highlight">데이터 기반 의사결정</span>을 주요 연구 분야로 삼고 있습니다.<br class="hidden sm:inline">
+        금융 산업을 비롯한 다양한 산업과 조직에서 새로운
+        <span class="highlight-gold">발견(finds)</span>을 이끌어내고,<br class="hidden sm:inline">
+        의미 있는 인사이트를 발굴하는 것을 목표로 합니다.
+      </p>
+    </div>
+  </div>
 
   <!-- Key Concepts -->
   <div class="mt-12">
@@ -584,7 +723,8 @@ function generateDiamondNetwork() {
       </div>
     </div>
   </div>
-<!-- Vision Section with Expandable Cards -->
+
+  <!-- Vision Section with Expandable Cards -->
   <div class="vision-container">
     <!-- Main Vision Card (Click to Expand) -->
     <div class="vision-main" onclick="toggleVisionGrid()" id="visionMain">
@@ -632,9 +772,8 @@ function generateDiamondNetwork() {
         </p>
       </article>
     </div>
-    </div>
-    </section>
-
+  </div>
+</section>
 
 <script>
 // Toggle Vision Grid
