@@ -759,26 +759,30 @@ function generateDiamondNetwork() {
 
     const notchColor = fundingColor;
 
-    // Handle funding agencies (array or single)
+    // Handle funding agencies (split by semicolon if needed)
     let agencyValue = '';
-    if (Array.isArray(project.fundingAgency)) {
-      // Multiple funding agencies
+    const agencyEn = project.fundingAgency || '';
+    const agencyKo = project.fundingAgencyKo || '';
+    
+    // Check if there are multiple agencies (separated by semicolon)
+    if (agencyEn.includes(';')) {
+      const agenciesEn = agencyEn.split(';').map(a => a.trim());
+      const agenciesKo = agencyKo ? agencyKo.split(';').map(a => a.trim()) : [];
+      
+      // Multiple funding agencies - use bullet list
       agencyValue = '<ul class="funding-list">';
-      project.fundingAgency.forEach((agency, index) => {
-        const agencyKo = Array.isArray(project.fundingAgencyKo) ? project.fundingAgencyKo[index] : project.fundingAgencyKo;
+      agenciesEn.forEach((agency, index) => {
+        const koAgency = agenciesKo[index] || '';
         agencyValue += '<li>';
         agencyValue += `<span class="agency-en">${esc(agency)}</span>`;
-        if (agencyKo) {
-          agencyValue += `<span class="agency-ko">${esc(agencyKo)}</span>`;
+        if (koAgency) {
+          agencyValue += `<span class="agency-ko">${esc(koAgency)}</span>`;
         }
         agencyValue += '</li>';
       });
       agencyValue += '</ul>';
     } else {
       // Single funding agency
-      const agencyEn = project.fundingAgency || '';
-      const agencyKo = project.fundingAgencyKo || '';
-      
       if (agencyKo) {
         agencyValue = `<div>${esc(agencyEn)}<br><span class="ko-muted" style="font-size:11px;margin-top:2px;display:inline-block">${esc(agencyKo)}</span></div>`;
       } else {
@@ -797,6 +801,9 @@ function generateDiamondNetwork() {
         <span class="meta-value">${agencyValue}</span>
       </div>`;
     
+    // Check if Lead Researcher and Researchers are the same
+    const leadAndResearchersSame = (r.leadResearcher && r.researchers && r.researchers.length === 1 && r.leadResearcher === r.researchers[0]);
+    
     // Determine researcher label (singular/plural)
     const researcherLabel = (r.researchers && r.researchers.length === 1) ? 'Researcher' : 'Researchers';
     
@@ -807,11 +814,15 @@ function generateDiamondNetwork() {
       <div class="meta-item">
         <span class="meta-label">Lead Researcher</span>
         <span class="meta-value">${lead}</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">${researcherLabel}</span>
-        <span class="meta-value">${researchersDisplay}</span>
       </div>`;
+      // Only show Researchers if it's different from Lead Researcher
+      if (!leadAndResearchersSame) {
+        metaItemsHTML += `
+        <div class="meta-item">
+          <span class="meta-label">${researcherLabel}</span>
+          <span class="meta-value">${researchersDisplay}</span>
+        </div>`;
+      }
     } else if (r.principalInvestigator === '최인수') {
       // If PI is 최인수, show all three fields
       metaItemsHTML += `
@@ -822,11 +833,15 @@ function generateDiamondNetwork() {
       <div class="meta-item">
         <span class="meta-label">Lead Researcher</span>
         <span class="meta-value">${lead}</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">${researcherLabel}</span>
-        <span class="meta-value">${researchersDisplay}</span>
       </div>`;
+      // Only show Researchers if it's different from Lead Researcher
+      if (!leadAndResearchersSame) {
+        metaItemsHTML += `
+        <div class="meta-item">
+          <span class="meta-label">${researcherLabel}</span>
+          <span class="meta-value">${researchersDisplay}</span>
+        </div>`;
+      }
     } else {
       // If PI is not 최인수, only show PI and Lead Researcher
       metaItemsHTML += `
