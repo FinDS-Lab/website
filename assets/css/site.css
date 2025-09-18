@@ -177,6 +177,123 @@ header .submenu-panel a:hover{ background:#fff7e0; color:#8a6a12; }
   box-shadow: var(--ring);
 }
 
+/* ========== Mobile Navigation ========== */
+/* 모바일 네비 패널 - 핵심 */
+.mobile-nav-panel {
+  position: absolute;
+  top: 70px;  /* 헤더 바로 아래 */
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 9998;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.mobile-nav-panel.show {
+  display: block !important;
+}
+
+.mobile-nav-inner {
+  max-width: 100%;
+  padding: 1rem;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+}
+
+/* 모바일 아코디언 래퍼 */
+.mobile-accordion-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 모바일 아코디언 헤더 */
+.mobile-accordion-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+/* 모바일 링크 - 높이 통일 */
+.mobile-link {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  color: #1f2937 !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  line-height: 1.5 !important;
+  min-height: 48px !important;
+}
+
+.mobile-link:hover {
+  background: #fff7e0 !important;
+  color: #8a6a12 !important;
+}
+
+/* 아코디언 헤더 내 링크 */
+.mobile-accordion-header .mobile-link {
+  flex: 1 !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+/* 아코디언 버튼 */
+.mobile-acc-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 8px 8px 0 !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #6b7280 !important;
+  transition: all 0.2s !important;
+  min-height: 48px !important;
+}
+
+.mobile-acc-btn:hover {
+  background: #fff7e0 !important;
+  color: #d97706 !important;
+}
+
+/* 모바일 아코디언 패널 - 중요! */
+.mobile-acc-panel {
+  margin: 4px 0 4px 24px !important;
+  padding: 0 !important;
+  display: none !important;  /* 기본적으로 숨김 */
+}
+
+/* hidden 클래스가 없을 때만 보이기 */
+.mobile-acc-panel:not(.hidden) {
+  display: grid !important;
+  gap: 2px !important;
+}
+
+.mobile-acc-panel a {
+  display: block !important;
+  padding: 8px 12px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #555 !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+}
+
+.mobile-acc-panel a:hover {
+  background: #fff7e0 !important;
+  color: #8a6a12 !important;
+}
+
 /* 모바일 메뉴 링크 */
 #mobileNav a{
   border-radius:.6rem;
