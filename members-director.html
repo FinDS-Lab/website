@@ -669,7 +669,7 @@ permalink: /members-director.html
     }
 
     .leadership-item {
-      padding: 12px 14px;
+      padding: 10px 12px;
       border-top: 1px solid rgba(239,68,68,0.08);
     }
 
@@ -678,16 +678,23 @@ permalink: /members-director.html
     }
 
     .leadership-role {
-      font-size: 13px;
+      font-size: 12px;
       color: #111827;
+      margin-bottom: 3px;
+    }
+    
+    .leadership-affiliation {
+      font-size: 11px;
+      color: #6b7280;
       margin-bottom: 4px;
+      font-weight: 400;
     }
 
     .leadership-period {
-      font-size: 11px;
+      font-size: 10px;
       color: #6b7280;
       display: inline-block;
-      padding: 2px 6px;
+      padding: 2px 5px;
       background: rgba(107,114,128,0.08);
       border-radius: 4px;
     }
@@ -2132,39 +2139,50 @@ permalink: /members-director.html
         </div>
       </div>
 
-      <!-- Activities -->
-      <div class="director-card">
-        <div class="card-head">Activities</div>
-        <div class="card-body">
-          <div class="activities-grid">
-            <div class="activity-item" onclick="openActivityModal('captima')">
-              <img src="{{ '/assets/img/logos/captima.png' | relative_url }}" alt="CAPTIMA" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-            <div class="activity-item" onclick="openActivityModal('kfac')">
-              <img src="{{ '/assets/img/logos/kfac.png' | relative_url }}" alt="KFAC" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-            <div class="activity-item" onclick="openActivityModal('mensa')">
-              <img src="{{ '/assets/img/logos/mensa.png' | relative_url }}" alt="MENSA Korea" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-            <div class="activity-item" onclick="openActivityModal('field')">
-              <img src="{{ '/assets/img/logos/field.png' | relative_url }}" alt="FIELD" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-            <div class="activity-item" onclick="openActivityModal('fba')">
-              <img src="{{ '/assets/img/logos/fba.png' | relative_url }}" alt="FBA Quant" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-            <div class="activity-item" onclick="openActivityModal('dading')">
-              <img src="{{ '/assets/img/logos/dading.png' | relative_url }}" alt="DadingCoding" class="activity-logo"
-                   onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
-            </div>
-          </div>
-        </div>
+<!-- Activities -->
+<div class="director-card">
+  <div class="card-head">Activities</div>
+  <div class="card-body">
+    <div class="activities-grid">
+      <div class="activity-item" onclick="openActivityModal('captima')">
+        <img src="{{ '/assets/img/logos/captima.png' | relative_url }}" 
+             alt="CAPTIMA" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
       </div>
-
+      <div class="activity-item" onclick="openActivityModal('kfac')">
+        <img src="{{ '/assets/img/logos/kfac.png' | relative_url }}" 
+             alt="KFAC" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+      </div>
+      <div class="activity-item" onclick="openActivityModal('mensa')">
+        <img src="{{ '/assets/img/logos/mensa.png' | relative_url }}" 
+             alt="MENSA Korea" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+      </div>
+      <div class="activity-item" onclick="openActivityModal('field')">
+        <img src="{{ '/assets/img/logos/field.png' | relative_url }}" 
+             alt="FIELD" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+      </div>
+      <div class="activity-item" onclick="openActivityModal('fba')">
+        <img src="{{ '/assets/img/logos/fba.png' | relative_url }}" 
+             alt="FBA Quant" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+      </div>
+      <div class="activity-item" onclick="openActivityModal('dading')">
+        <img src="{{ '/assets/img/logos/dading.png' | relative_url }}" 
+             alt="DadingCoding" 
+             class="activity-logo"
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+      </div>
+    </div>
+  </div>
+</div>
       <!-- Publication Statistics -->
       <div class="director-card">
         <div class="card-head">Publication Statistics</div>
@@ -2658,64 +2676,63 @@ function closeMenteeModal(event) {
 
 // ===== Activities System =====
 const ACTIVITIES = {
-  captima: {
-    name: 'CAPTIMA',
-    fullname: 'Capital Market Investment Analyst',
+  'captima': {
+    name: 'CAPTIMA (Computer Applications for Optima)',
+    generation: '27th Generation', // 기수 추가
     periods: [
-      { status: 'Active Member', dates: '2021.03. – Present' }
+      { status: 'Member', dates: '2013.03. - 2018.02.' },
+      { status: 'Alumni', dates: '2018.03. - Present' }
     ],
-    generation: '10th Generation',
-    leadership: []
-  },
-  kfac: {
-    name: 'KFAC',
-    fullname: 'Korea Financial Analysis Community',
-    periods: [
-      { status: 'Founding Member', dates: '2019.01. – Present' }
-    ],
-    generation: 'Founding Member',
     leadership: [
-      { role: 'Co-Founder', period: '2019.01. – 2020.12.' },
-      { role: 'Executive Committee', period: '2021.01. – 2023.12.' }
+      { role: 'President', dates: '2015.06. - 2015.12.' },
+      { role: 'Vice President', dates: '2013.12. - 2014.08.' }
     ]
   },
-  mensa: {
+  'kfac': {
+    name: 'KFAC (KAIST Financial Analysis Club)',
+    generation: '25th Generation', // 기수 추가
+    periods: [
+      { status: 'Member', dates: '2018.03. - 2019.02.' },
+      { status: 'Alumni', dates: '2019.03. - Present' }
+    ],
+    leadership: [
+      { role: 'Acting President', dates: '2021.03. - 2021.08.' }
+    ]
+  },
+  'mensa': {
     name: 'MENSA Korea',
-    fullname: 'High IQ Society',
+    generation: null, // 기수 없음
     periods: [
-      { status: 'Regular Member', dates: '2018.06. – Present' }
+      { status: 'Member', dates: '2019.01. - Present' }
     ],
-    generation: null,
-    leadership: []
+    leadership: null
   },
-  field: {
-    name: 'FIELD',
-    fullname: 'Financial & Industrial Engineering Lab Discussion',
+  'field': {
+    name: 'FIELD (Future Industrial Engineering Leaders and Dreamers)',
+    generation: '11th - 16th Generation', // 창립 멤버
     periods: [
-      { status: 'Active Member', dates: '2019.09. – 2025.02.' }
+      { status: 'Member', dates: '2019.03. - 2024.12.' },
+      { status: 'Alumni', dates: '2020.01. - Present' }
     ],
-    generation: '3rd Generation',
-    leadership: [
-      { role: 'President', period: '2022.01. – 2023.12.' }
-    ]
+    leadership: null
   },
-  fba: {
+  'fba': {
     name: 'FBA Quant',
-    fullname: 'Financial Business Analytics Quant Society',
+    generation: '12th Generation', // 기수 추가
     periods: [
-      { status: 'Research Member', dates: '2020.03. – 2023.08.' }
+      { status: 'Member', dates: '2022.01. - 2022.12.' },
+      { status: 'Alumni', dates: '2023.01. - Present' }
     ],
-    generation: '5th Generation',
-    leadership: []
+    leadership: null
   },
-  dading: {
+  'dading': {
     name: 'DadingCoding',
-    fullname: 'Data Science & Coding Community',
+    generation: '6th Generation', // 기수 없음
     periods: [
-      { status: 'Mentor', dates: '2022.01. – Present' }
+      { status: 'Member', dates: '2024.02. - 2024.07.' },
+      { status: 'Alumni', dates: '2024.08. - Present' }
     ],
-    generation: null,
-    leadership: []
+    leadership: null
   }
 };
 
@@ -3258,6 +3275,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
 
 
 
