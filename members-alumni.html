@@ -277,22 +277,13 @@ permalink: /members-alumni.html
     
     .section-text {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
+      align-items: center;
     }
     
     .section-main-title {
       font-size: 20px;
       font-weight: 900;
       color: #111827;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-    }
-    
-    .section-subtitle {
-      font-size: 14px;
-      font-weight: 600;
-      color: #64748b;
       word-break: keep-all;
       overflow-wrap: anywhere;
     }
@@ -1061,9 +1052,11 @@ function generateDiamondNetwork() {
 
   <!-- Graduate Students Section -->
   <div class="section-header">
-    <div class="section-icon">🎓</div>
-    <div class="section-text">
-      <div class="section-main-title">Graduate Alumni</div>
+    <div style="display: flex; align-items: center;">
+      <div class="section-icon">🎓</div>
+      <div class="section-text">
+        <div class="section-main-title">Graduate Alumni</div>
+      </div>
     </div>
   </div>
   
@@ -1089,9 +1082,11 @@ function generateDiamondNetwork() {
 
   <!-- Undergraduate Researchers Section -->
   <div class="section-header undergraduate">
-    <div class="section-icon undergraduate">📚</div>
-    <div class="section-text">
-      <div class="section-main-title">Undergraduate Research Alumni</div>
+    <div style="display: flex; align-items: center;">
+      <div class="section-icon undergraduate">📚</div>
+      <div class="section-text">
+        <div class="section-main-title">Undergraduate Research Alumni</div>
+      </div>
     </div>
   </div>
   
@@ -1154,10 +1149,14 @@ function toggleAlumni(element, index, section) {
 function toggleCard(index, section) {
   const header = document.getElementById(`card-header-${section}-${index}`);
   const body = document.getElementById(`card-body-${section}-${index}`);
+  const button = header.querySelector('.alumni-card-arrow-button');
+  const normalColor = button.getAttribute('data-button-color');
+  const darkColor = button.getAttribute('data-button-color-dark');
   
   if (body.classList.contains('show')) {
     body.classList.remove('show');
     header.classList.remove('expanded');
+    button.style.background = normalColor;
   } else {
     // Close all other cards
     document.querySelectorAll('.alumni-card-body').forEach(b => {
@@ -1165,10 +1164,16 @@ function toggleCard(index, section) {
     });
     document.querySelectorAll('.alumni-card-header').forEach(h => {
       h.classList.remove('expanded');
+      const otherButton = h.querySelector('.alumni-card-arrow-button');
+      if (otherButton) {
+        const otherNormalColor = otherButton.getAttribute('data-button-color');
+        otherButton.style.background = otherNormalColor;
+      }
     });
     
     body.classList.add('show');
     header.classList.add('expanded');
+    button.style.background = darkColor;
   }
 }
 
@@ -1249,6 +1254,10 @@ function generateCards(data, containerId, section) {
   const container = document.getElementById(containerId);
   let html = '';
   
+  // Determine button color based on section
+  const buttonColor = section === 'undergrad' ? 'var(--undergrad-red)' : 'var(--gold)';
+  const buttonColorDark = section === 'undergrad' ? 'rgb(127, 10, 10)' : 'var(--gold-dark)';
+  
   data.forEach((alum, index) => {
     html += `
       <div class="alumni-card">
@@ -1263,7 +1272,7 @@ function generateCards(data, containerId, section) {
               ${alum.degrees.map(d => `<span class="degree-tag ${d}">${d.toUpperCase()}</span>`).join('')}
             </div>
           </div>
-          <div class="alumni-card-arrow-button">
+          <div class="alumni-card-arrow-button" style="background: ${buttonColor};" data-button-color="${buttonColor}" data-button-color-dark="${buttonColorDark}">
             <span class="alumni-card-arrow">▶</span>
           </div>
         </div>
