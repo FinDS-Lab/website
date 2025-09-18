@@ -260,6 +260,28 @@ permalink: /members-director.html
   margin-top: 8px;
 }
 
+/* Timeline 스타일 수정 */
+.title {
+  font-weight: 900;
+  color: #1f2937;
+  margin-top: 8px;
+  font-size: 15px;  /* 폰트 크기 명시적 지정 */
+}
+
+.desc-dept {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.desc-affiliation {
+  color: #111827;
+  font-size: 14px;
+  margin-top: 2px;
+  font-weight: 600;
+}
+  
 /* Employment 부서/기관 구분 스타일 - 이 부분을 찾아서 교체 */
 .desc-dept {
   color: #6b7280;
@@ -2717,7 +2739,7 @@ permalink: /members-director.html
           onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'"
         >
         <div class="year date-bold">2025.02.</div>
-        <div class="title">Ph.D. in Engineering</div>
+        <div class="title">Doctor of Philosophy (Ph.D.) in Engineering</div>
         <div class="desc-dept">Industrial and Systems Engineering</div>
         <div class="desc-affiliation">Korea Advanced Institute of Science and Technology (KAIST)</div>
         <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 공학박사</div>
@@ -4200,6 +4222,7 @@ function updateProfileOnScroll() {
 window.addEventListener('scroll', updateProfileOnScroll);
  
 </script>
+
 
 
 
