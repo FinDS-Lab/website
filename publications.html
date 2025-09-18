@@ -11,12 +11,13 @@ permalink: /publications.html
      --gold: rgb(214, 177, 77);
      --gold-mid: rgb(234, 197, 97);
      --gold-dark: rgb(194, 157, 57);
+     --gold-light: rgb(234, 197, 97);
    }
 
    /* ===== Global word-wrapping (KO/EN word-based breaks) ===== */
    html, body, *, *::before, *::after {
-     word-break: keep-all;        /* CJK도 단어 단위로 끊기 */
-     overflow-wrap: break-word;   /* 너무 긴 단어는 단어 경계에 가깝게 줄바꿈 */
+     word-break: keep-all;
+     overflow-wrap: break-word;
    }
 
    /* Banner */
@@ -72,14 +73,78 @@ permalink: /publications.html
      justify-content: flex-start;
      min-height: 200px;
    }
+   
+   /* Updated Breadcrumb Style to match Projects */
    .breadcrumbs-banner {
-     display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
-     font-size: 13px; font-weight: 600; margin-bottom: 8px;
+     display: inline-flex;
+     align-items: center;
+     gap: 0.75rem;
+     font-size: 13px;
+     font-weight: 600;
+     margin-bottom: 16px;
+     background: rgba(255, 255, 255, 0.95);
+     backdrop-filter: blur(10px);
+     padding: 10px 16px;
+     border-radius: 999px;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+     border: 1px solid rgba(214, 177, 77, 0.2);
+     transition: all 0.3s ease;
    }
-   .breadcrumbs-banner a { color: rgba(255,255,255,.92); text-decoration: none; transition: color .2s; }
-   .breadcrumbs-banner a:hover { color: #fff; text-decoration: underline; }
-   .breadcrumbs-banner .sep { color: rgba(255,255,255,.8); }
-   .breadcrumbs-banner span:not(.sep):not(a) { color: #fff; font-weight: 800; }
+
+   .breadcrumbs-banner:hover {
+     background: rgba(255, 255, 255, 1);
+     box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+     transform: translateY(-1px);
+   }
+
+   .breadcrumbs-banner a {
+     color: var(--gold-dark);
+     text-decoration: none;
+     transition: all 0.2s;
+     position: relative;
+     font-weight: 600;
+   }
+
+   .breadcrumbs-banner a:hover {
+     color: var(--gold);
+     text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+   }
+
+   .breadcrumbs-banner a::after {
+     content: '';
+     position: absolute;
+     bottom: -2px;
+     left: 0;
+     width: 0;
+     height: 1px;
+     background: var(--gold);
+     transition: width 0.2s ease;
+   }
+
+   .breadcrumbs-banner a:hover::after {
+     width: 100%;
+   }
+
+   .breadcrumbs-banner .sep {
+     color: var(--gold-light);
+     font-weight: 400;
+     margin: 0;
+     opacity: 0.6;
+   }
+
+   .breadcrumbs-banner span:not(.sep):not(a) {
+     color: var(--gold);
+     font-weight: 800;
+     letter-spacing: 0.3px;
+   }
+
+   /* Breadcrumb icon */
+   .breadcrumbs-banner::before {
+     content: '📚';
+     font-size: 14px;
+     margin-right: 2px;
+     opacity: 0.8;
+   }
 
    .banner-title {
      font-size: 2.25rem;
@@ -95,13 +160,27 @@ permalink: /publications.html
      .banner-content { padding: 24px 18px; min-height: 160px; }
      .banner-section { min-height: 160px; }
      .banner-title { font-size: 1.9rem; }
-     .breadcrumbs-banner { font-size: 12px; }
+     .breadcrumbs-banner { 
+       font-size: 12px;
+       padding: 8px 14px;
+       gap: 0.6rem;
+     }
+     .breadcrumbs-banner::before {
+       font-size: 12px;
+     }
    }
    @media (max-width: 480px) {
      .banner-content { padding: 20px 16px; min-height: 130px; }
      .banner-section { min-height: 130px; }
      .banner-title { font-size: 1.6rem; }
-     .breadcrumbs-banner { font-size: 11px; }
+     .breadcrumbs-banner { 
+       font-size: 10px;
+       gap: 0.4rem;
+       padding: 6px 10px;
+     }
+     .breadcrumbs-banner::before {
+       display: none;
+     }
    }
  </style>
 
@@ -267,7 +346,10 @@ permalink: /publications.html
    return svg;
  }
 </script>
-<!-- ===== Statistics Section ===== -->
+
+<!-- Include Citeproc-js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/citeproc@2.4.62/lib/citeproc.js"></script>
+
 <!-- ===== Statistics Section ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
   <style>
@@ -632,10 +714,9 @@ permalink: /publications.html
    padding: 12px 16px;
    background: #f8fafc;
    border-bottom: 1px solid #e5e7eb;
-   transition: all 0.3s ease;  /* 추가 */
+   transition: all 0.3s ease;
  }
 
-/* 현재 연도 금색 스타일 - 새로 추가 */
 .year-head.current-year {
   background: linear-gradient(135deg, var(--journal-gold), rgb(234, 197, 97));
   color: #fff;
@@ -778,7 +859,6 @@ permalink: /publications.html
    font-weight: 700;
  }
 
- /* Date color based on publication type */
  .badge-pub.pub-conference .date-only { color: rgb(172, 14, 14); }
  .badge-pub.pub-journal   .date-only { color: rgb(214, 177, 77); }
  .badge-pub.pub-book      .date-only { color: rgb(220, 38, 38); }
@@ -972,6 +1052,30 @@ permalink: /publications.html
 
  .btn:hover { background: #f8fafc; }
 
+ /* Citation Styles Dropdown */
+ .citation-style-selector {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 16px;
+ }
+
+ .citation-style-selector label {
+   font-weight: 700;
+   font-size: 13px;
+   color: #374151;
+ }
+
+ .citation-style-selector select {
+   padding: .4rem .8rem;
+   border: 1px solid #e5e7eb;
+   border-radius: .6rem;
+   background: #fff;
+   font-weight: 600;
+   font-size: 13px;
+   cursor: pointer;
+ }
+
  /* Modal */
  .modal-backdrop {
    position: fixed;
@@ -1000,9 +1104,9 @@ permalink: /publications.html
    padding: 16px 20px;
    border-bottom: 1px solid #e5e7eb;
    background: #f8fafc;
+   position: relative;
  }
 
-/* Modal close button X style */
 .modal-close-btn {
   position: absolute;
   right: 16px;
@@ -1028,17 +1132,6 @@ permalink: /publications.html
 .modal-close-btn:hover {
   background: #f3f4f6;
   color: #111827;
-}
-
-/* Modal header 스타일 수정 - 상대 위치 추가 */
-.modal header {
-  position: relative;  /* 추가 */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f8fafc;
 }
  
  .modal-title {
@@ -1113,6 +1206,8 @@ permalink: /publications.html
    .chip { font-size: 11px; padding: .4rem .8rem; }
    .authorship-grid { grid-template-columns: 1fr; }
    .authorship-item { padding: 10px; }
+   .citation-style-selector { flex-direction: column; align-items: stretch; }
+   .citation-style-selector select { width: 100%; }
    
    .paper-header {
      flex-direction: column;
@@ -1150,8 +1245,6 @@ permalink: /publications.html
    .award-trophy { font-size: 14px; }
    .indexing-badge { font-size: 9px; padding: .2rem .4rem; }
  }
-
- 
 </style>
 
 <!-- ===== Toolbar (Search + Authorship Legend + Filters) ===== -->
@@ -1272,231 +1365,350 @@ permalink: /publications.html
 <section class="max-w-7xl mx-auto px-4 mt-6" id="pubWrap"></section>
 
 <!-- ===== Cite Modal ===== -->
-<!-- 수정된 코드 -->
 <div id="citeModal" class="modal-backdrop">
   <div class="modal">
     <header>
       <h3 class="modal-title">Citation Formats</h3>
       <button id="btnCloseCite" class="modal-close-btn" aria-label="Close">&times;</button>
     </header>
-    <div class="p-4" id="citeBody"></div>
+    <div class="p-4">
+      <div class="citation-style-selector">
+        <label for="citationStyle">Select Citation Style:</label>
+        <select id="citationStyle">
+          <option value="apa">APA (7th ed.)</option>
+          <option value="mla">MLA (9th ed.)</option>
+          <option value="chicago-note">Chicago (17th ed.)</option>
+          <option value="harvard">Harvard</option>
+          <option value="vancouver">Vancouver</option>
+          <option value="ieee">IEEE</option>
+        </select>
+      </div>
+      <div id="citeBody"></div>
+    </div>
   </div>
 </div>
 
 <script>
- /* ===== Title Case Function ===== */
-// Title Case 함수 - MLA, Chicago, Harvard용
-function toTitleCase(str) {
-  if (!str) return str;
+// Global Citeproc System - Initialize once
+let citeprocSystems = {};
+let currentPub = null;
+
+// CSL Styles definitions (simplified versions)
+const CSL_STYLES = {
+  'apa': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only">
+  <info>
+    <title>American Psychological Association 7th edition</title>
+    <id>http://www.zotero.org/styles/apa</id>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="et-al">et al.</term>
+    </terms>
+  </locale>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" and="symbol" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+  <macro name="issued">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="title"/>
+      </if>
+      <else>
+        <text variable="title" font-style="italic"/>
+      </else>
+    </choose>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author" suffix="."/>
+        <text macro="issued" prefix="(" suffix=")."/>
+        <text macro="title" suffix="."/>
+        <text variable="container-title" font-style="italic" suffix=","/>
+        <text variable="volume" font-style="italic"/>
+        <text variable="issue" prefix="(" suffix="),"/>
+        <text variable="page" suffix="."/>
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`,
   
-  // 소문자로 유지할 단어들
-  const lowercaseWords = new Set([
-    'a', 'an', 'the',
-    'and', 'but', 'or', 'nor', 'for', 'yet', 'so',
-    'as', 'at', 'by', 'for', 'from', 'in', 'into', 'of', 'on', 'to', 'up', 'via', 'with'
-  ]);
+  'mla': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+  <info>
+    <title>Modern Language Association 9th edition</title>
+    <id>http://www.zotero.org/styles/mla</id>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="first" and="text" delimiter=", "/>
+    </names>
+  </macro>
+  <macro name="title">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="title" quotes="true"/>
+      </if>
+      <else>
+        <text variable="title" font-style="italic"/>
+      </else>
+    </choose>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author" suffix="."/>
+        <text macro="title" suffix="."/>
+        <text variable="container-title" font-style="italic" suffix=","/>
+        <text variable="volume" prefix="vol. " suffix=","/>
+        <text variable="issue" prefix="no. " suffix=","/>
+        <date variable="issued">
+          <date-part name="year" suffix=","/>
+        </date>
+        <text variable="page" prefix="pp. " suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`,
   
-  // 보존해야 할 특수 약어들 (위와 동일)
-  const preserveTerms = {
-    'pcmci+': 'PCMCI+',
-    'covid-19': 'COVID-19',
-    'arimax': 'ARIMAX',
-    'etf': 'ETF',
-    'etfs': 'ETFs',
-    'ai': 'AI',
-    'xai': 'xAI',
-    'esg': 'ESG',
-    'r&d': 'R&D',
-    'tvp-var': 'TVP-VAR',
-    'dcc-garch': 'DCC-GARCH',
-    'ux/ui': 'UX/UI',
-    'nlp': 'NLP',
-    'nft': 'NFT',
-    'shap': 'SHAP',
-    'evar': 'EVaR',
-    'edar': 'EDaR',
-    'kospi': 'KOSPI',
-    'kosdaq': 'KOSDAQ'
-  };
+  'chicago-note': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0">
+  <info>
+    <title>Chicago Manual of Style 17th edition (note)</title>
+    <id>http://www.zotero.org/styles/chicago-note-bibliography</id>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="first" and="text" delimiter=", "/>
+    </names>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author" suffix="."/>
+        <text variable="title" quotes="true" suffix="."/>
+        <text variable="container-title" font-style="italic" suffix=""/>
+        <text variable="volume"/>
+        <date variable="issued" prefix="(" suffix="):">
+          <date-part name="year"/>
+        </date>
+        <text variable="page" suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`,
   
-  // 약어 보존
-  const preservePattern = /\b[A-Z]{2,}[\+\-&\/]?\b/gi;
-  const preserved = {};
-  let match;
-  while ((match = preservePattern.exec(str)) !== null) {
-    preserved[match[0].toLowerCase()] = match[0];
-  }
+  'harvard': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+  <info>
+    <title>Harvard</title>
+    <id>http://www.zotero.org/styles/harvard</id>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" and="text" sort-separator=", " initialize-with="." delimiter=", "/>
+    </names>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author"/>
+        <date variable="issued" prefix="(" suffix=")">
+          <date-part name="year"/>
+        </date>
+        <text variable="title" quotes="true" suffix=","/>
+        <text variable="container-title" font-style="italic" suffix=","/>
+        <text variable="volume" prefix="vol. " suffix=","/>
+        <text variable="issue" prefix="no. " suffix=","/>
+        <text variable="page" prefix="pp. " suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`,
   
-  // preserveTerms도 추가
-  Object.entries(preserveTerms).forEach(([lower, original]) => {
-    preserved[lower] = original;
-  });
+  'vancouver': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+  <info>
+    <title>Vancouver</title>
+    <id>http://www.zotero.org/styles/vancouver</id>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", "/>
+    </names>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author" suffix="."/>
+        <text variable="title" suffix="."/>
+        <text variable="container-title" suffix="."/>
+        <date variable="issued">
+          <date-part name="year" suffix=";"/>
+        </date>
+        <text variable="volume"/>
+        <text variable="issue" prefix="(" suffix="):"/>
+        <text variable="page" suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`,
   
-  // 나머지 코드는 동일...
-  const mainParts = str.split(/\s*[:—–-]\s*/);
-  
-  const result = mainParts.map((part, partIndex) => {
-    const words = part.split(/\s+/);
-    
-    return words.map((word, index) => {
-      if (!word) return word;
-      
-      const leadingPunct = word.match(/^[("'`\[{]+/) || [''];
-      const trailingPunct = word.match(/[)"'`\]},.:;!?]+$/) || [''];
-      let cleanWord = word.slice(leadingPunct[0].length, word.length - trailingPunct[0].length);
-      
-      if (!cleanWord) return word;
-      
-      // 약어 확인 및 복원
-      if (preserved[cleanWord.toLowerCase()]) {
-        cleanWord = preserved[cleanWord.toLowerCase()];
-      }
-      else if (index === 0 || index === words.length - 1) {
-        cleanWord = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
-      }
-      else if (lowercaseWords.has(cleanWord.toLowerCase())) {
-        cleanWord = cleanWord.toLowerCase();
-      }
-      else {
-        cleanWord = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
-      }
-      
-      return leadingPunct[0] + cleanWord + trailingPunct[0];
-    }).join(' ');
-  }).join(': ');
-  
-  return result;
+  'ieee': `<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0">
+  <info>
+    <title>IEEE</title>
+    <id>http://www.zotero.org/styles/ieee</id>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name initialize-with=". " delimiter=", " and="text"/>
+    </names>
+  </macro>
+  <bibliography>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author" suffix=","/>
+        <text variable="title" quotes="true" suffix=","/>
+        <text variable="container-title" font-style="italic" suffix=","/>
+        <text variable="volume" prefix="vol. " suffix=","/>
+        <text variable="issue" prefix="no. " suffix=","/>
+        <text variable="page" prefix="pp. " suffix=","/>
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+        <text variable="DOI" prefix=", doi: " suffix="."/>
+      </group>
+    </layout>
+  </bibliography>
+</style>`
+};
+
+/* ===== Load data from _data/pubs.json ===== */
+const PUBS_RAW = {{ site.data.pubs | jsonify | default: '[]' }};
+{% if site.data.authors %}
+const AUTHORS = {{ site.data.authors | jsonify }};
+{% else %}
+const AUTHORS = {};
+{% endif %}
+
+/* ===== Helper Functions ===== */
+function arr(v){ return Array.isArray(v) ? v : (v != null ? [v] : []); }
+function hasAny(haystack, needles){ const hs = arr(haystack); return arr(needles).some(x => hs.includes(x)); }
+function primaryType(pub){
+  const t = arr(pub.type);
+  if (t.includes('conference')) return 'conference';
+  if (t.includes('journal'))    return 'journal';
+  if (t.includes('book'))       return 'book';
+  if (t.includes('report'))     return 'report';
+  if (t.includes('thesis'))     return 'thesis';
+  return pub.type || '';
+}
+function primaryIndexing(pub){
+  const ig = arr(pub.indexing_group);
+  return ig[0] || '';
 }
 
- /* ===== Load data from _data/pubs.json ===== */
- const PUBS_RAW = {{ site.data.pubs | jsonify | default: '[]' }};
- {% if site.data.authors %}
- const AUTHORS = {{ site.data.authors | jsonify }};
- {% else %}
- const AUTHORS = {};
- {% endif %}
- /* ===== ADDED: small helpers for arrays/types/indexing ===== */
- function arr(v){ return Array.isArray(v) ? v : (v != null ? [v] : []); }
- function hasAny(haystack, needles){ const hs = arr(haystack); return arr(needles).some(x => hs.includes(x)); }
- function primaryType(pub){
-   const t = arr(pub.type);
-   if (t.includes('conference')) return 'conference';
-   if (t.includes('journal'))    return 'journal';
-   if (t.includes('book'))       return 'book';
-   if (t.includes('report'))     return 'report';
-   if (t.includes('thesis'))     return 'thesis';
-   return pub.type || '';
- }
- function primaryIndexing(pub){
-   const ig = arr(pub.indexing_group);
-   return ig[0] || '';
- }
+/* ===== Auto-numbering for code labels ===== */
+function autoNumberCodeLabels(pubs) {
+  const sorted = [...pubs].sort((a, b) => {
+    if (a.published_date && b.published_date) {
+      return new Date(a.published_date) - new Date(b.published_date);
+    }
+    if (a.published_date && !b.published_date) return -1;
+    if (!a.published_date && b.published_date) return 1;
+    return (a.year || 0) - (b.year || 0);
+  });
 
- /* ===== UPDATED: handle multiple code_label prefixes and output code_labels array ===== */
- function autoNumberCodeLabels(pubs) {
-   const sorted = [...pubs].sort((a, b) => {
-     if (a.published_date && b.published_date) {
-       return new Date(a.published_date) - new Date(b.published_date);
-     }
-     if (a.published_date && !b.published_date) return -1;
-     if (!a.published_date && b.published_date) return 1;
-     return (a.year || 0) - (b.year || 0);
-   });
+  const counts = { J:0, K:0, C:0, B:0, R:0, T:0 };
 
-   const counts = { J:0, K:0, C:0, B:0, R:0, T:0 };
+  for (let i = 0; i < sorted.length; i++) {
+    const pub = sorted[i];
+    const prefixes = arr(pub.code_label).map(x => String(x).replace(/[0-9]/g, ''));
+    const labels = [];
 
-   for (let i = 0; i < sorted.length; i++) {
-     const pub = sorted[i];
-     const prefixes = arr(pub.code_label).map(x => String(x).replace(/[0-9]/g, ''));
-     const labels = [];
+    if (prefixes.length === 0 && typeof pub.code_label === 'string') {
+      const pfx = pub.code_label.replace(/[0-9]/g, '');
+      if (pfx && counts[pfx] != null) {
+        counts[pfx]++;
+        labels.push(`${pfx}${counts[pfx]}`);
+      }
+    } else {
+      prefixes.forEach(pfx => {
+        if (!pfx) return;
+        if (counts[pfx] == null) counts[pfx] = 0;
+        counts[pfx]++;
+        labels.push(`${pfx}${counts[pfx]}`);
+      });
+    }
 
-     if (prefixes.length === 0 && typeof pub.code_label === 'string') {
-       const pfx = pub.code_label.replace(/[0-9]/g, '');
-       if (pfx && counts[pfx] != null) {
-         counts[pfx]++;
-         labels.push(`${pfx}${counts[pfx]}`);
-       }
-     } else {
-       prefixes.forEach(pfx => {
-         if (!pfx) return;
-         if (counts[pfx] == null) counts[pfx] = 0;
-         counts[pfx]++;
-         labels.push(`${pfx}${counts[pfx]}`);
-       });
-     }
+    pub.code_labels = labels;
+    pub.code_label  = labels[0] || pub.code_label || '';
+  }
 
-     pub.code_labels = labels;
-     pub.code_label  = labels[0] || pub.code_label || '';
-   }
+  const getMaxNum = (p) => {
+    const labels = arr(p.code_labels).length ? p.code_labels : arr(p.code_label);
+    let max = 0;
+    labels.forEach(l => {
+      const m = (String(l).match(/\d+/) || [0])[0];
+      max = Math.max(max, parseInt(m, 10) || 0);
+    });
+    return max;
+  };
 
-   const getMaxNum = (p) => {
-     const labels = arr(p.code_labels).length ? p.code_labels : arr(p.code_label);
-     let max = 0;
-     labels.forEach(l => {
-       const m = (String(l).match(/\d+/) || [0])[0];
-       max = Math.max(max, parseInt(m, 10) || 0);
-     });
-     return max;
-   };
+  return sorted.sort((a, b) => {
+    if ((b.year||0) !== (a.year||0)) return (b.year||0) - (a.year||0);
+    if (a.published_date && b.published_date) {
+      const dateComp = new Date(b.published_date) - new Date(a.published_date);
+      if (dateComp !== 0) return dateComp;
+    }
+    return getMaxNum(b) - getMaxNum(a);
+  });
+}
 
-   return sorted.sort((a, b) => {
-     if ((b.year||0) !== (a.year||0)) return (b.year||0) - (a.year||0);
-     if (a.published_date && b.published_date) {
-       const dateComp = new Date(b.published_date) - new Date(a.published_date);
-       if (dateComp !== 0) return dateComp;
-     }
-     return getMaxNum(b) - getMaxNum(a);
-   });
- }
+const PUBS = autoNumberCodeLabels(PUBS_RAW);
 
- const PUBS = autoNumberCodeLabels(PUBS_RAW);
-
-// Calculate publication statistics
 // Calculate publication statistics
 function calculatePublicationStats() {
   let journalCount = 0;
   let conferenceCount = 0;
   let bookCount = 0;
   let reportCount = 0;
-  let dissertationCount = 0;
 
   PUBS.forEach(pub => {
     const types = arr(pub.type);
     const indexing = arr(pub.indexing_group);
     
-    // Count journals
     if (types.includes('journal') || 
         indexing.some(ig => /SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other International|Other Domestic|Preprint/i.test(String(ig)))) {
       journalCount++;
     }
     
-    // Count conferences
     if (types.includes('conference') || 
         indexing.some(ig => /Conference/i.test(String(ig)))) {
       conferenceCount++;
     }
     
-    // Count books
     if (types.includes('book')) {
       bookCount++;
     }
     
-    // Count reports
     if (types.includes('report')) {
       reportCount++;
     }
-    
-    // Count dissertations/thesis (but don't include in total)
-    if (types.includes('thesis') || 
-        indexing.some(ig => /Thesis|Dissertation/i.test(String(ig)))) {
-      dissertationCount++;
-    }
   });
 
-  // Total = Journal + Conference + Book + Report (excluding dissertations)
   const totalCount = journalCount + conferenceCount + bookCount + reportCount;
 
-  // Update display with animation
   animateNumber('journalCount', journalCount);
   animateNumber('conferenceCount', conferenceCount);
   animateNumber('bookCount', bookCount);
@@ -1504,350 +1716,448 @@ function calculatePublicationStats() {
   animateNumber('totalPubCount', totalCount);
 }
 
- // Number animation effect
- function animateNumber(elementId, finalValue) {
-   const el = document.getElementById(elementId);
-   if (!el) return;
-   
-   const start = 0;
-   const duration = 800;
-   const startTime = performance.now();
-   
-   function tick(now) {
-     const progress = Math.min(1, (now - startTime) / duration);
-     const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-     const value = Math.round(start + (finalValue - start) * easeOutQuart);
-     el.textContent = value;
-     
-     if (progress < 1) {
-       requestAnimationFrame(tick);
-     }
-   }
-   
-   requestAnimationFrame(tick);
- }
- 
- /* ===== Filters ===== */
- const FILTER_GROUPS = {
-   type: [
-     {value: "journal", label: "Journal"},
-     {value: "conference", label: "Conference"},
-     {value: "book", label: "Book"},
-     {value: "report", label: "Report"},
-   ],
-   journal: [
-     {value: "SCIE", label: "SCIE"},
-     {value: "SSCI", label: "SSCI"},
-     {value: "A&HCI", label: "A&HCI"},
-     {value: "ESCI", label: "ESCI"},
-     {value: "Scopus", label: "Scopus"},
-     {value: "Other International", label: "Other International"},
-     {value: "KCI Excellent", label: "KCI Excellent"},
-     {value: "KCI Accredited", label: "KCI Accredited"},
-     {value: "Other Domestic", label: "Other Domestic"},
-     {value: "Preprint", label: "Preprint"}
-   ],
-   conference: [
-     {value: "International Conference", label: "International Conference"},
-     {value: "Domestic Conference", label: "Domestic Conference"}
-   ]
- };
+// Number animation effect
+function animateNumber(elementId, finalValue) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  
+  const start = 0;
+  const duration = 800;
+  const startTime = performance.now();
+  
+  function tick(now) {
+    const progress = Math.min(1, (now - startTime) / duration);
+    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+    const value = Math.round(start + (finalValue - start) * easeOutQuart);
+    el.textContent = value;
+    
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    }
+  }
+  
+  requestAnimationFrame(tick);
+}
 
- /* ===== State ===== */
- let q = "";
- const onFilters = {type: new Set(), journal: new Set(), conference: new Set()};
+/* ===== Convert publication to CSL-JSON format ===== */
+function pubToCSLJSON(pub) {
+  const cslItem = {
+    id: pub.id || Math.random().toString(36).substr(2, 9),
+    type: 'article-journal', // default
+    title: pub.title || 'Untitled',
+    author: [],
+    issued: {
+      'date-parts': [[pub.year || new Date().getFullYear()]]
+    }
+  };
+  
+  // Determine CSL type
+  const pubType = primaryType(pub);
+  if (pubType === 'conference') {
+    cslItem.type = 'paper-conference';
+  } else if (pubType === 'book') {
+    cslItem.type = 'book';
+  } else if (pubType === 'thesis') {
+    cslItem.type = 'thesis';
+  } else if (pubType === 'report') {
+    cslItem.type = 'report';
+  }
+  
+  // Add authors
+  if (pub.authors && pub.authors.length > 0) {
+    cslItem.author = pub.authors.map(authorId => {
+      const author = AUTHORS?.[authorId];
+      if (author && author.en) {
+        const nameParts = author.en.trim().split(/\s+/);
+        const family = nameParts[nameParts.length - 1];
+        const given = nameParts.slice(0, -1).join(' ');
+        return { family, given };
+      }
+      return { literal: `Author ${authorId}` };
+    });
+  }
+  
+  // Add venue/container
+  const venue = arr(pub.venue).filter(Boolean).join(', ');
+  if (venue) {
+    if (pubType === 'conference') {
+      cslItem['container-title'] = venue;
+      cslItem['event'] = venue;
+    } else {
+      cslItem['container-title'] = venue;
+    }
+  }
+  
+  // Add other metadata
+  if (pub.volume) cslItem.volume = pub.volume;
+  if (pub.issue) cslItem.issue = pub.issue;
+  if (pub.pages) cslItem.page = pub.pages;
+  if (pub.doi) cslItem.DOI = pub.doi;
+  if (pub.isbn) cslItem.ISBN = pub.isbn;
+  if (pub.publisher) cslItem.publisher = pub.publisher;
+  
+  // Add full date if available
+  if (pub.published_date) {
+    const date = new Date(pub.published_date);
+    cslItem.issued = {
+      'date-parts': [[date.getFullYear(), date.getMonth() + 1, date.getDate()]]
+    };
+  }
+  
+  return cslItem;
+}
 
- /* ===== DOM ===== */
- const searchInput = document.getElementById('pubSearch');
- const searchClear = document.getElementById('searchClear');
- const countEl = document.getElementById('count');
- const pubWrap = document.getElementById('pubWrap');
- const modal = document.getElementById('citeModal');
- const citeBody = document.getElementById('citeBody');
+/* ===== Initialize Citeproc Systems ===== */
+function initCiteprocSystems() {
+  Object.keys(CSL_STYLES).forEach(styleId => {
+    const sys = {
+      retrieveLocale: function(lang) {
+        // Simplified locale - in production, load full CSL locales
+        return `<?xml version="1.0" encoding="utf-8"?>
+<locale xmlns="http://purl.org/net/xbiblio/csl" version="1.0" xml:lang="en-US">
+  <terms>
+    <term name="et-al">et al.</term>
+    <term name="and">and</term>
+    <term name="accessed">accessed</term>
+    <term name="page" form="short">p.</term>
+    <term name="pages" form="short">pp.</term>
+  </terms>
+</locale>`;
+      },
+      retrieveItem: function(id) {
+        return currentPub ? pubToCSLJSON(currentPub) : {};
+      }
+    };
+    
+    try {
+      citeprocSystems[styleId] = new CSL.Engine(sys, CSL_STYLES[styleId]);
+    } catch (e) {
+      console.error(`Failed to initialize style ${styleId}:`, e);
+    }
+  });
+}
 
- /* ===== UPDATED: indexing_group/type can be arrays ===== */
- function determineLanguageMode(pub) {
-   const ig = arr(pub.indexing_group);
-   const t  = arr(pub.type);
+/* ===== Filters ===== */
+const FILTER_GROUPS = {
+  type: [
+    {value: "journal", label: "Journal"},
+    {value: "conference", label: "Conference"},
+    {value: "book", label: "Book"},
+    {value: "report", label: "Report"},
+  ],
+  journal: [
+    {value: "SCIE", label: "SCIE"},
+    {value: "SSCI", label: "SSCI"},
+    {value: "A&HCI", label: "A&HCI"},
+    {value: "ESCI", label: "ESCI"},
+    {value: "Scopus", label: "Scopus"},
+    {value: "Other International", label: "Other International"},
+    {value: "KCI Excellent", label: "KCI Excellent"},
+    {value: "KCI Accredited", label: "KCI Accredited"},
+    {value: "Other Domestic", label: "Other Domestic"},
+    {value: "Preprint", label: "Preprint"}
+  ],
+  conference: [
+    {value: "International Conference", label: "International Conference"},
+    {value: "Domestic Conference", label: "Domestic Conference"}
+  ]
+};
 
-   if (ig.includes("International Conference") || ig.includes("International - Domestic Joint Conference")) {
-     return 'english';
-   }
-   if (t.includes("journal") &&
-       !ig.some(x => String(x).includes("KCI") || String(x).includes("Domestic"))) {
-     return 'english';
-   }
-   if (ig.includes("Domestic Conference") || ig.some(x => String(x).includes("KCI"))) {
-     return 'korean';
-   }
-   if (t.includes("book") || t.includes("report") || ig.includes("Preprint") || ig.includes("Working Paper")) {
-     return (pub.language === 'Korean') ? 'korean' : 'english';
-   }
-   return (pub.language === 'Korean') ? 'korean' : 'english';
- }
+/* ===== State ===== */
+let q = "";
+const onFilters = {type: new Set(), journal: new Set(), conference: new Set()};
 
- function isDomesticPublication(indexing) {
-   const ig = arr(indexing);
-   if (ig.includes("International - Domestic Joint Conference")) return false;
-   return ig.some(x => String(x).includes("KCI") || String(x).includes("Domestic"));
- }
+/* ===== DOM ===== */
+const searchInput = document.getElementById('pubSearch');
+const searchClear = document.getElementById('searchClear');
+const countEl = document.getElementById('count');
+const pubWrap = document.getElementById('pubWrap');
+const modal = document.getElementById('citeModal');
+const citeBody = document.getElementById('citeBody');
 
- function formatMDY(iso) {
-   if (!iso) return "";
-   const d = new Date(iso + "T00:00:00");
-   return d.toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"});
- }
+/* ===== Helper functions ===== */
+function getAuthorName(authorId, useDomestic) {
+  const a = AUTHORS?.[authorId];
+  if (!a) return `Author ${authorId}`;
+  if (useDomestic && a.ko) return a.ko;
+  if (!useDomestic && a.en) return a.en;
+  return a.en || a.ko || `Author ${authorId}`;
+}
 
- function formatPubDateWithLabel(iso, labelText) {
-   if (!iso) return "";
-   const d = new Date(iso + "T00:00:00");
-   const dateStr = d.toLocaleDateString("en-US", {year: "numeric", month: "short", day: "numeric"});
+function determineLanguageMode(pub) {
+  const ig = arr(pub.indexing_group);
+  const t  = arr(pub.type);
 
-   const parts = (labelText || "").trim().split(/\s+/);
-   const hasOn = parts.length > 1 && parts[parts.length - 1].toLowerCase() === 'on';
-   const main = hasOn ? parts.slice(0, -1).join(' ') : labelText;
+  if (ig.includes("International Conference") || ig.includes("International - Domestic Joint Conference")) {
+    return 'english';
+  }
+  if (t.includes("journal") &&
+      !ig.some(x => String(x).includes("KCI") || String(x).includes("Domestic"))) {
+    return 'english';
+  }
+  if (ig.includes("Domestic Conference") || ig.some(x => String(x).includes("KCI"))) {
+    return 'korean';
+  }
+  if (t.includes("book") || t.includes("report") || ig.includes("Preprint") || ig.includes("Working Paper")) {
+    return (pub.language === 'Korean') ? 'korean' : 'english';
+  }
+  return (pub.language === 'Korean') ? 'korean' : 'english';
+}
 
-   return `<span class="label-word">${main}</span>${hasOn ? ' <span class="label-on">on</span>' : ''} <span class="date-only">${dateStr}</span>`;
- }
+function formatMDY(iso) {
+  if (!iso) return "";
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-US", {year: "numeric", month: "long", day: "numeric"});
+}
 
- /* ===== Build Filter Chips ===== */
- function buildChips() {
-   const typeChips = document.getElementById('typeChips');
-   typeChips.innerHTML = FILTER_GROUPS.type.map(it => {
-     const on = onFilters.type.has(it.value);
-     return `<button class="chip chip-${it.value} ${on ? 'is-on' : ''}" 
-             data-filter-type="type" data-filter-value="${it.value}">${it.label}</button>`;
-   }).join('');
+function formatPubDateWithLabel(iso, labelText) {
+  if (!iso) return "";
+  const d = new Date(iso + "T00:00:00");
+  const dateStr = d.toLocaleDateString("en-US", {year: "numeric", month: "short", day: "numeric"});
 
-   const journalChips = document.getElementById('journalChips');
-   journalChips.innerHTML = FILTER_GROUPS.journal.map(it => {
-     const on = onFilters.journal.has(it.value);
-     return `<button class="chip ${on ? 'is-on' : ''}" 
-             data-filter-type="journal" data-filter-value="${it.value}">${it.label}</button>`;
-   }).join('');
+  const parts = (labelText || "").trim().split(/\s+/);
+  const hasOn = parts.length > 1 && parts[parts.length - 1].toLowerCase() === 'on';
+  const main = hasOn ? parts.slice(0, -1).join(' ') : labelText;
 
-   const conferenceChips = document.getElementById('conferenceChips');
-   conferenceChips.innerHTML = FILTER_GROUPS.conference.map(it => {
-     const on = onFilters.conference.has(it.value);
-     return `<button class="chip ${on ? 'is-on' : ''}" 
-             data-filter-type="conference" data-filter-value="${it.value}">${it.label}</button>`;
-   }).join('');
+  return `<span class="label-word">${main}</span>${hasOn ? ' <span class="label-on">on</span>' : ''} <span class="date-only">${dateStr}</span>`;
+}
 
-   document.querySelectorAll('[data-filter-type]').forEach(btn => {
-     btn.onclick = () => {
-       const t = btn.dataset.filterType;
-       const v = btn.dataset.filterValue;
-       
-       if (onFilters[t].has(v)) {
-         onFilters[t].delete(v);
-       } else {
-         onFilters[t].add(v);
-       }
-       
-       buildChips();
-       render();
+/* ===== Build Filter Chips ===== */
+function buildChips() {
+  const typeChips = document.getElementById('typeChips');
+  typeChips.innerHTML = FILTER_GROUPS.type.map(it => {
+    const on = onFilters.type.has(it.value);
+    return `<button class="chip chip-${it.value} ${on ? 'is-on' : ''}" 
+            data-filter-type="type" data-filter-value="${it.value}">${it.label}</button>`;
+  }).join('');
 
-     }
-   });
- }
+  const journalChips = document.getElementById('journalChips');
+  journalChips.innerHTML = FILTER_GROUPS.journal.map(it => {
+    const on = onFilters.journal.has(it.value);
+    return `<button class="chip ${on ? 'is-on' : ''}" 
+            data-filter-type="journal" data-filter-value="${it.value}">${it.label}</button>`;
+  }).join('');
 
- /* ===== Badge helper ===== */
- function idxClass(group) {
-   const map = {
-     "SCIE": "idx-scie",
-     "SSCI": "idx-ssci",
-     "A&HCI": "idx-ahci",
-     "ESCI": "idx-esci",
-     "Scopus": "idx-scopus",
-     "Other International": "idx-other-intl",
-     "International Conference": "idx-intl-conf",
-     "Domestic Conference": "idx-domestic-conf",
-     "International - Domestic Joint Conference": "idx-joint-conf",
-     "KCI Excellent": "idx-kci-exc",
-     "KCI Accredited": "idx-kci",
-     "Other Domestic": "idx-other-domestic",
-     "Book": "idx-book",
-     "Report": "idx-report",
-     "Thesis / Dissertation": "idx-thesis",
-     "Preprint": "idx-preprint",
-     "Working Paper": "idx-working"
-   };
-   return `idx ${map[group] || ''}`;
- }
+  const conferenceChips = document.getElementById('conferenceChips');
+  conferenceChips.innerHTML = FILTER_GROUPS.conference.map(it => {
+    const on = onFilters.conference.has(it.value);
+    return `<button class="chip ${on ? 'is-on' : ''}" 
+            data-filter-type="conference" data-filter-value="${it.value}">${it.label}</button>`;
+  }).join('');
 
- /* ===== UPDATED: matches() supports array fields ===== */
- function matches(pub) {
-   if (onFilters.type.size > 0) {
-     let pubType = primaryType(pub);
-     if (arr(pub.indexing_group).includes("International - Domestic Joint Conference")) {
-       pubType = "conference";
-     }
-     if (!onFilters.type.has(pubType)) return false;
-   }
-   
-   const idxFilters = [...onFilters.journal, ...onFilters.conference];
-   if (idxFilters.length > 0) {
-     const ig = arr(pub.indexing_group);
-     if (!ig.some(g => idxFilters.includes(g))) return false;
-   }
-   
-   if (!q) return true;
-   
-   const langMode = determineLanguageMode(pub);
-   const useKorean = (langMode === 'korean');
-   const names = (pub.authors || []).map(id => getAuthorName(id, useKorean)).join(" ");
-   const title = (useKorean && pub.title_ko) ? pub.title_ko : (pub.title || "");
-   const venueJoined = arr((useKorean ? pub.venue_ko : pub.venue)).filter(Boolean).join(" ");
-   const text = (title + " " + names + " " + venueJoined).toLowerCase();
-   
-   return text.includes(q.toLowerCase());
- }
+  document.querySelectorAll('[data-filter-type]').forEach(btn => {
+    btn.onclick = () => {
+      const t = btn.dataset.filterType;
+      const v = btn.dataset.filterValue;
+      
+      if (onFilters[t].has(v)) {
+        onFilters[t].delete(v);
+      } else {
+        onFilters[t].add(v);
+      }
+      
+      buildChips();
+      render();
+    }
+  });
+}
 
- /* ===== UPDATED: render multiple indexing badges, multi-venue, and multi code labels ===== */
- function createCard(pub, key) {
-   const codes = arr(pub.code_labels).length ? pub.code_labels : (pub.code_label ? [pub.code_label] : []);
-   const leftType = arr(pub.indexing_group).includes("International - Domestic Joint Conference")
-     ? 'conference'
-     : primaryType(pub) || 'conference';
+/* ===== Badge helper ===== */
+function idxClass(group) {
+  const map = {
+    "SCIE": "idx-scie",
+    "SSCI": "idx-ssci",
+    "A&HCI": "idx-ahci",
+    "ESCI": "idx-esci",
+    "Scopus": "idx-scopus",
+    "Other International": "idx-other-intl",
+    "International Conference": "idx-intl-conf",
+    "Domestic Conference": "idx-domestic-conf",
+    "International - Domestic Joint Conference": "idx-joint-conf",
+    "KCI Excellent": "idx-kci-exc",
+    "KCI Accredited": "idx-kci",
+    "Other Domestic": "idx-other-domestic",
+    "Book": "idx-book",
+    "Report": "idx-report",
+    "Thesis / Dissertation": "idx-thesis",
+    "Preprint": "idx-preprint",
+    "Working Paper": "idx-working"
+  };
+  return `idx ${map[group] || ''}`;
+}
 
-   const langMode = determineLanguageMode(pub);
-   const useKorean = (langMode === 'korean');
-   const lang = pub.language || 'English';
-   const displayTitle = (useKorean && pub.title_ko) ? pub.title_ko : (pub.title || '');
-   
-   let venues = [];
-   if (useKorean) {
-     venues = arr(pub.venue_ko).filter(Boolean);
-     if (venues.length === 0) {
-       venues = arr(pub.venue).filter(Boolean);
-     }
-   } else {
-     venues = arr(pub.venue).filter(Boolean);
-   }
-   
-   // Format venue with italics for journal names
-   const isJournal = arr(pub.type).includes('journal');
-   const displayVenue = venues.length ? 
-     (isJournal ? venues.map(v => `<em>${v}</em>`).join('<br>') : venues.join('<br>')) : '';
+/* ===== Filter matching ===== */
+function matches(pub) {
+  if (onFilters.type.size > 0) {
+    let pubType = primaryType(pub);
+    if (arr(pub.indexing_group).includes("International - Domestic Joint Conference")) {
+      pubType = "conference";
+    }
+    if (!onFilters.type.has(pubType)) return false;
+  }
+  
+  const idxFilters = [...onFilters.journal, ...onFilters.conference];
+  if (idxFilters.length > 0) {
+    const ig = arr(pub.indexing_group);
+    if (!ig.some(g => idxFilters.includes(g))) return false;
+  }
+  
+  if (!q) return true;
+  
+  const langMode = determineLanguageMode(pub);
+  const useKorean = (langMode === 'korean');
+  const names = (pub.authors || []).map(id => getAuthorName(id, useKorean)).join(" ");
+  const title = (useKorean && pub.title_ko) ? pub.title_ko : (pub.title || "");
+  const venueJoined = arr((useKorean ? pub.venue_ko : pub.venue)).filter(Boolean).join(" ");
+  const text = (title + " " + names + " " + venueJoined).toLowerCase();
+  
+  return text.includes(q.toLowerCase());
+}
 
-   const authors = (pub.authors || []).map((id, idx) => {
-     let name = getAuthorName(id, useKorean);
-     
-     if (useKorean && name && /^[가-힣]{2}$/.test(name)) {
-       name = name.split('').join('&nbsp;&nbsp;');
-     }
-     
-     const mark = Array.isArray(pub.author_marks) ? (pub.author_marks[idx] || "") : "";
-     return `<span class="author-with-mark">${name}${mark ? `<sup>${String(mark)}</sup>` : ''}</span>`;
-   }).join(', ');
+/* ===== Create paper card ===== */
+function createCard(pub, key) {
+  const codes = arr(pub.code_labels).length ? pub.code_labels : (pub.code_label ? [pub.code_label] : []);
+  const leftType = arr(pub.indexing_group).includes("International - Domestic Joint Conference")
+    ? 'conference'
+    : primaryType(pub) || 'conference';
 
-   const langBadge = `<span class="badge-lang ${lang.toLowerCase()}">${lang}</span>`;
+  const langMode = determineLanguageMode(pub);
+  const useKorean = (langMode === 'korean');
+  const lang = pub.language || 'English';
+  const displayTitle = (useKorean && pub.title_ko) ? pub.title_ko : (pub.title || '');
+  
+  let venues = [];
+  if (useKorean) {
+    venues = arr(pub.venue_ko).filter(Boolean);
+    if (venues.length === 0) {
+      venues = arr(pub.venue).filter(Boolean);
+    }
+  } else {
+    venues = arr(pub.venue).filter(Boolean);
+  }
+  
+  const isJournal = arr(pub.type).includes('journal');
+  const displayVenue = venues.length ? 
+    (isJournal ? venues.map(v => `<em>${v}</em>`).join('<br>') : venues.join('<br>')) : '';
 
-   const indexingBadges = arr(pub.indexing_group).map(g => 
-     `<span class="indexing-badge ${idxClass(g)}">${g}</span>`).join('');
+  const authors = (pub.authors || []).map((id, idx) => {
+    let name = getAuthorName(id, useKorean);
+    
+    if (useKorean && name && /^[가-힣]{2}$/.test(name)) {
+      name = name.split('').join('&nbsp;&nbsp;');
+    }
+    
+    const mark = Array.isArray(pub.author_marks) ? (pub.author_marks[idx] || "") : "";
+    return `<span class="author-with-mark">${name}${mark ? `<sup>${String(mark)}</sup>` : ''}</span>`;
+  }).join(', ');
 
-   const hasJournalish = codes.some(c => String(c).startsWith('J')) ||
-                         arr(pub.type).includes('journal') ||
-                         arr(pub.indexing_group).some(x => /SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other/i.test(String(x)));
-   const dateLabelText = hasJournalish ? 'Published on' : 'Presented on';
+  const langBadge = `<span class="badge-lang ${lang.toLowerCase()}">${lang}</span>`;
 
-   let pubTypeClass = '';
-   if (arr(pub.type).includes('conference') || arr(pub.indexing_group).some(x => /Conference/.test(String(x)))) {
-     pubTypeClass = 'pub-conference';
-   }
-   if (arr(pub.type).includes('journal')   || arr(pub.indexing_group).some(x => /(SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other)/.test(String(x)))) {
-     pubTypeClass = 'pub-journal';
-   }
-   if (arr(pub.type).includes('book'))   pubTypeClass = 'pub-book';
-   if (arr(pub.type).includes('report')) pubTypeClass = 'pub-report';
-   if (arr(pub.type).includes('thesis')) pubTypeClass = 'pub-thesis';
-   if (arr(pub.indexing_group).includes('Preprint')) pubTypeClass = 'pub-preprint';
+  const indexingBadges = arr(pub.indexing_group).map(g => 
+    `<span class="indexing-badge ${idxClass(g)}">${g}</span>`).join('');
 
-   const pubDateBadge = pub.published_date ? 
-     `<span class="badge-pub ${pubTypeClass}">
-       <span class="val">${formatPubDateWithLabel(pub.published_date, dateLabelText)}</span>
-     </span>` : ``;
+  const hasJournalish = codes.some(c => String(c).startsWith('J')) ||
+                       arr(pub.type).includes('journal') ||
+                       arr(pub.indexing_group).some(x => /SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other/i.test(String(x)));
+  const dateLabelText = hasJournalish ? 'Published on' : 'Presented on';
 
-   let awardsHtml = '';
-   if (pub.awards && pub.awards > 0) {
-     const awardDetails = pub.award_details || [];
-     awardsHtml = '<div class="awards-container">';
-     for (let i = 0; i < pub.awards; i++) {
-       const tooltip = awardDetails[i] || `Award ${i + 1}`;
-       awardsHtml += `
-         <div class="award-tooltip">
-           <span class="award-trophy">🏆</span>
-           <span class="tooltiptext">${tooltip}</span>
-         </div>`;
-     }
-     awardsHtml += '</div>';
-   }
+  let pubTypeClass = '';
+  if (arr(pub.type).includes('conference') || arr(pub.indexing_group).some(x => /Conference/.test(String(x)))) {
+    pubTypeClass = 'pub-conference';
+  }
+  if (arr(pub.type).includes('journal')   || arr(pub.indexing_group).some(x => /(SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other)/.test(String(x)))) {
+    pubTypeClass = 'pub-journal';
+  }
+  if (arr(pub.type).includes('book'))   pubTypeClass = 'pub-book';
+  if (arr(pub.type).includes('report')) pubTypeClass = 'pub-report';
+  if (arr(pub.type).includes('thesis')) pubTypeClass = 'pub-thesis';
+  if (arr(pub.indexing_group).includes('Preprint')) pubTypeClass = 'pub-preprint';
 
-    let citationDetails = [];
-    if (pub.volume) citationDetails.push(`<div class="paper-detail-item"><span class="label">Vol.</span><span class="value">${pub.volume}</span></div>`);
-    if (pub.issue)  citationDetails.push(`<div class="paper-detail-item"><span class="label">No.</span><span class="value">${pub.issue}</span></div>`);
-    if (pub.pages)  citationDetails.push(`<div class="paper-detail-item"><span class="label">pp.</span><span class="value">${pub.pages}</span></div>`);
-    if (pub.isbn)   citationDetails.push(`<div class="paper-detail-item"><span class="label">ISBN</span><span class="value">${pub.isbn}</span></div>`);
-    if (pub.doi)    citationDetails.push(`<div class="paper-detail-item doi"><span class="label">DOI</span><a href="https://doi.org/${pub.doi}" target="_blank" class="value">${pub.doi}</a></div>`);
-    const detailsHtml = citationDetails.length ? `<div class="paper-details">${citationDetails.join('')}</div>` : '';
+  const pubDateBadge = pub.published_date ? 
+    `<span class="badge-pub ${pubTypeClass}">
+      <span class="val">${formatPubDateWithLabel(pub.published_date, dateLabelText)}</span>
+    </span>` : ``;
 
-    const pubKey = `pub_${key.replace('-', '_')}`;
-    window[pubKey] = pub;
-
-    const codeHtml = codes.length ? codes.join('<br>') : '&nbsp;';
-
-    return `
-      <li class="paper-card">
-        <div class="paper-row">
-          <div class="paper-left ${leftType} ${codes.length ? '' : 'empty'}" style="line-height:1.15;">
-            <span>${codeHtml}</span>
-          </div>
-          <div class="paper-body">
-            <div class="paper-header">
-              <div class="indexing-wrapper">
-               <div class="indexing-row">
-                 ${indexingBadges}
-                 ${awardsHtml}
-               </div>
-               <div class="indexing-row">
-                 ${pubDateBadge}
-               </div>
-               <div class="indexing-row">
-                 ${langBadge}
-               </div>
-              </div>
-            </div>
-            <h3 class="paper-title">${displayTitle || ''}</h3>
-            <div class="paper-meta">${authors}</div>
-            <div class="paper-venue">${displayVenue}</div>
-            ${detailsHtml}
-            <div class="paper-foot">
-              <button class="btn" onclick="openCite(window['${pubKey}'])">Cite</button>
-            </div>
-          </div>
-        </div>
-      </li>
-    `;
+  let awardsHtml = '';
+  if (pub.awards && pub.awards > 0) {
+    const awardDetails = pub.award_details || [];
+    awardsHtml = '<div class="awards-container">';
+    for (let i = 0; i < pub.awards; i++) {
+      const tooltip = awardDetails[i] || `Award ${i + 1}`;
+      awardsHtml += `
+        <div class="award-tooltip">
+          <span class="award-trophy">🏆</span>
+          <span class="tooltiptext">${tooltip}</span>
+        </div>`;
+    }
+    awardsHtml += '</div>';
   }
 
-  /* ===== Render ===== */
- function render() {
+  let citationDetails = [];
+  if (pub.volume) citationDetails.push(`<div class="paper-detail-item"><span class="label">Vol.</span><span class="value">${pub.volume}</span></div>`);
+  if (pub.issue)  citationDetails.push(`<div class="paper-detail-item"><span class="label">No.</span><span class="value">${pub.issue}</span></div>`);
+  if (pub.pages)  citationDetails.push(`<div class="paper-detail-item"><span class="label">pp.</span><span class="value">${pub.pages}</span></div>`);
+  if (pub.isbn)   citationDetails.push(`<div class="paper-detail-item"><span class="label">ISBN</span><span class="value">${pub.isbn}</span></div>`);
+  if (pub.doi)    citationDetails.push(`<div class="paper-detail-item doi"><span class="label">DOI</span><a href="https://doi.org/${pub.doi}" target="_blank" class="value">${pub.doi}</a></div>`);
+  const detailsHtml = citationDetails.length ? `<div class="paper-details">${citationDetails.join('')}</div>` : '';
+
+  const pubKey = `pub_${key.replace('-', '_')}`;
+  window[pubKey] = pub;
+
+  const codeHtml = codes.length ? codes.join('<br>') : '&nbsp;';
+
+  return `
+    <li class="paper-card">
+      <div class="paper-row">
+        <div class="paper-left ${leftType} ${codes.length ? '' : 'empty'}" style="line-height:1.15;">
+          <span>${codeHtml}</span>
+        </div>
+        <div class="paper-body">
+          <div class="paper-header">
+            <div class="indexing-wrapper">
+              <div class="indexing-row">
+                ${indexingBadges}
+                ${awardsHtml}
+              </div>
+              <div class="indexing-row">
+                ${pubDateBadge}
+              </div>
+              <div class="indexing-row">
+                ${langBadge}
+              </div>
+            </div>
+          </div>
+          <h3 class="paper-title">${displayTitle || ''}</h3>
+          <div class="paper-meta">${authors}</div>
+          <div class="paper-venue">${displayVenue}</div>
+          ${detailsHtml}
+          <div class="paper-foot">
+            <button class="btn" onclick="openCite(window['${pubKey}'])">Cite</button>
+          </div>
+        </div>
+      </div>
+    </li>
+  `;
+}
+
+/* ===== Render ===== */
+function render() {
   const filtered = (PUBS || []).filter(matches);
   const years = [...new Set(filtered.map(p => p.year))].sort((a, b) => b - a);
-  const currentYear = new Date().getFullYear(); // 현재 연도 가져오기
+  const currentYear = new Date().getFullYear();
   
   if (filtered.length === 0) {
     pubWrap.innerHTML = `<div class="empty-state">No publications found. Try adjusting your search or filters.</div>`;
   } else {
     const hasActiveFilters = onFilters.type.size > 0 || 
-                            onFilters.journal.size > 0 || 
-                            onFilters.conference.size > 0;
+                           onFilters.journal.size > 0 || 
+                           onFilters.conference.size > 0;
     const mostRecentYear = years[0];
     
     pubWrap.innerHTML = years.map(y => {
       const items = filtered.filter(p => p.year === y);
       const shouldCollapse = hasActiveFilters ? false : (y !== mostRecentYear);
-      const isCurrentYear = y === currentYear; // 현재 연도 확인
+      const isCurrentYear = y === currentYear;
       
       return `
         <div class="year-section">
@@ -1864,7 +2174,6 @@ function calculatePublicationStats() {
       `;
     }).join('');
 
-    // 토글 버튼 이벤트 핸들러
     document.querySelectorAll('.year-toggle').forEach(btn => {
       btn.onclick = () => {
         const y = btn.dataset.year;
@@ -1879,659 +2188,193 @@ function calculatePublicationStats() {
   countEl.textContent = `${filtered.length} of ${(PUBS || []).length}`;
 }
 
-  /* ===== Citation Modal Functions - FIXED ===== */
-function getAuthorName(authorId, useDomestic) {
-  const a = AUTHORS?.[authorId];
-  if (!a) return `Author ${authorId}`;
-  if (useDomestic && a.ko) return a.ko;
-  if (!useDomestic && a.en) return a.en;
-  return a.en || a.ko || `Author ${authorId}`;
-}
-  // 개선된 저자명 포맷팅 함수
-  function toInitials(name) {
-    const clean = (name || '').replace(/\*/g, '').trim();
-    const parts = clean.split(/\s+/);
-    const last = parts[parts.length - 1];
-    const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
-    return initials ? `${last}, ${initials}` : last;
-  }
-
-  function toInitialsReversed(name) {
-    const clean = (name || '').replace(/\*/g, '').trim();
-    const parts = clean.split(/\s+/);
-    if (parts.length === 1) return parts[0];
-    const last = parts[parts.length - 1];
-    const first = parts.slice(0, -1).join(" ");
-    return `${last}, ${first}`;
-  }
- 
-// APA용 sentence case 함수
-// Sentence case 함수 - APA, Vancouver용
-function toSentenceCase(str) {
-  if (!str) return str;
-  
-  // 보존해야 할 특수 약어들
-  const preserveTerms = {
-    'pcmci+': 'PCMCI+',
-    'covid-19': 'COVID-19',
-    'arimax': 'ARIMAX',
-    'etf': 'ETF',
-    'etfs': 'ETFs',
-    'ai': 'AI',
-    'xai': 'xAI',
-    'esg': 'ESG',
-    'r&d': 'R&D',
-    'tvp-var': 'TVP-VAR',
-    'dcc-garch': 'DCC-GARCH',
-    'ux/ui': 'UX/UI',
-    'nlp': 'NLP',
-    'nft': 'NFT',
-    'shap': 'SHAP',
-    'evar': 'EVaR',
-    'edar': 'EDaR',
-    'cpdag': 'CPDAG',
-    'kospi': 'KOSPI',
-    'kosdaq': 'KOSDAQ',
-    'ieee': 'IEEE',
-    'ijcai': 'IJCAI',
-    'aaai': 'AAAI',
-    'strl': 'STRL',
-    'ai4ts': 'AI4TS',
-    'isis': 'ISIS',
-    'inmic': 'INMIC',
-    'ack': 'ACK',
-    'ask': 'ASK',
-    'knhanes': 'KNHANES',
-    'dea': 'DEA',
-    'ahp': 'AHP',
-    'pvt': 'PVT',
-    'tlh': 'TLH',
-    'ted': 'TED'
-  };
-  
-  // 약어 패턴 - 특수문자 포함
-  const acronymPattern = /\b[A-Z]{2,}[\+\-&\/]?\b/gi;
-  const acronyms = str.match(acronymPattern) || [];
-  const acronymPositions = {};
-  
-  // 약어의 위치 저장
-  acronyms.forEach(acronym => {
-    acronymPositions[acronym.toLowerCase()] = acronym;
-  });
-  
-  // preserveTerms도 추가
-  Object.entries(preserveTerms).forEach(([lower, original]) => {
-    const regex = new RegExp('\\b' + lower.replace(/[+\-&\/]/g, '\\$&') + '\\b', 'gi');
-    if (regex.test(str)) {
-      acronymPositions[lower] = original;
-    }
-  });
-  
-  // 기본적으로 소문자로 변환
-  let result = str.toLowerCase();
-  
-  // 첫 글자 대문자
-  result = result.charAt(0).toUpperCase() + result.slice(1);
-  
-  // 콜론, 물음표, 느낌표 뒤 첫 글자 대문자
-  result = result.replace(/([:.!?]\s+)([a-z])/g, (match, p1, p2) => p1 + p2.toUpperCase());
-  
-  // 약어 복원
-  Object.entries(acronymPositions).forEach(([lower, original]) => {
-    const regex = new RegExp('\\b' + lower.replace(/[+\-&\/]/g, '\\$&') + '\\b', 'gi');
-    result = result.replace(regex, original);
-  });
-  
-  return result;
-}
- 
-// Title Case 함수 - MLA, Chicago, Harvard용 (주요 단어 대문자)
-function toTitleCase(str) {
-  if (!str) return str;
-  
-  // 소문자로 유지할 단어들 (관사, 전치사, 접속사)
-  const lowercaseWords = new Set([
-    'a', 'an', 'the',
-    'and', 'but', 'or', 'nor', 'for', 'yet', 'so',
-    'as', 'at', 'by', 'for', 'from', 'in', 'into', 'of', 'on', 'to', 'up', 'via', 'with'
-  ]);
-  
-  // 보존해야 할 특수 약어들
-  const preserveTerms = {
-    'pcmci+': 'PCMCI+',
-    'covid-19': 'COVID-19',
-    'arimax': 'ARIMAX',
-    'etf': 'ETF',
-    'etfs': 'ETFs',
-    'ai': 'AI',
-    'xai': 'xAI',
-    'esg': 'ESG',
-    'r&d': 'R&D',
-    'tvp-var': 'TVP-VAR',
-    'dcc-garch': 'DCC-GARCH',
-    'ux/ui': 'UX/UI',
-    'nlp': 'NLP',
-    'nft': 'NFT',
-    'shap': 'SHAP',
-    'evar': 'EVaR',
-    'edar': 'EDaR',
-    'cpdag': 'CPDAG',
-    'kospi': 'KOSPI',
-    'kosdaq': 'KOSDAQ',
-    'ieee': 'IEEE',
-    'ijcai': 'IJCAI',
-    'aaai': 'AAAI',
-    'strl': 'STRL',
-    'ai4ts': 'AI4TS',
-    'isis': 'ISIS',
-    'inmic': 'INMIC',
-    'ack': 'ACK',
-    'ask': 'ASK',
-    'knhanes': 'KNHANES',
-    'dea': 'DEA',
-    'ahp': 'AHP',
-    'pvt': 'PVT',
-    'tlh': 'TLH',
-    'ted': 'TED'
-  };
-  
-  // 약어 보존
-  const preservePattern = /\b[A-Z]{2,}[\+\-&\/]?\b/gi;
-  const preserved = {};
-  let match;
-  while ((match = preservePattern.exec(str)) !== null) {
-    preserved[match[0].toLowerCase()] = match[0];
-  }
-  
-  // preserveTerms도 추가
-  Object.entries(preserveTerms).forEach(([lower, original]) => {
-    preserved[lower] = original;
-  });
-  
-  // 콜론으로만 부제목 분리 (하이픈은 제외)
-  const mainParts = str.split(/\s*:\s+/);
-  
-  const result = mainParts.map((part, partIndex) => {
-    const words = part.split(/\s+/);
-    
-    return words.map((word, index) => {
-      if (!word) return word;
-      
-      // 하이픈이 포함된 단어 특별 처리
-      if (word.includes('-') && !preserved[word.toLowerCase()]) {
-        // 구두점 분리
-        const leadingPunct = word.match(/^[("'`\[{]+/) || [''];
-        const trailingPunct = word.match(/[)"'`\]},.:;!?]+$/) || [''];
-        let cleanWord = word.slice(leadingPunct[0].length, word.length - trailingPunct[0].length);
-        
-        // "Farthest-first" -> "Farthest-First" 
-        const hyphenatedParts = cleanWord.split('-').map((subword, subIndex) => {
-          if (subIndex === 0 || !lowercaseWords.has(subword.toLowerCase())) {
-            return subword.charAt(0).toUpperCase() + subword.slice(1).toLowerCase();
-          }
-          return subword.toLowerCase();
-        }).join('-');
-        
-        return leadingPunct[0] + hyphenatedParts + trailingPunct[0];
-      }
-      
-      // 구두점 분리
-      const leadingPunct = word.match(/^[("'`\[{]+/) || [''];
-      const trailingPunct = word.match(/[)"'`\]},.:;!?]+$/) || [''];
-      let cleanWord = word.slice(leadingPunct[0].length, word.length - trailingPunct[0].length);
-      
-      // 빈 단어 처리
-      if (!cleanWord) return word;
-      
-      // 약어인 경우 원래 형태 유지
-      if (preserved[cleanWord.toLowerCase()]) {
-        cleanWord = preserved[cleanWord.toLowerCase()];
-      }
-      // 첫 단어와 마지막 단어는 항상 대문자
-      else if (index === 0 || index === words.length - 1) {
-        cleanWord = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
-      }
-      // 소문자 단어 목록에 있으면 소문자
-      else if (lowercaseWords.has(cleanWord.toLowerCase())) {
-        cleanWord = cleanWord.toLowerCase();
-      }
-      // 나머지는 첫 글자 대문자
-      else {
-        cleanWord = cleanWord.charAt(0).toUpperCase() + cleanWord.slice(1).toLowerCase();
-      }
-      
-      return leadingPunct[0] + cleanWord + trailingPunct[0];
-    }).join(' ');
-  }).join(': '); // 콜론으로 다시 연결
-  
-  return result;
-}
-
-// formatAuthorsForCitation 함수 - 각 스타일별 정확한 포맷
-function formatAuthorsForCitation(authors, style) {
-  if (!authors || authors.length === 0) return "Anonymous";
-  
-  const authorNames = authors.map(id => getAuthorName(id, false));
-  
-  switch(style) {
-    case 'APA':
-      // APA 7th: Last, F. M. 형식
-      const apaAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
-        return initials ? `${last}, ${initials}` : last;
-      });
-      
-      if (apaAuthors.length === 1) {
-        return apaAuthors[0];
-      } else if (apaAuthors.length === 2) {
-        return apaAuthors[0] + ", & " + apaAuthors[1];
-      } else if (apaAuthors.length <= 20) {
-        return apaAuthors.slice(0, -1).join(", ") + ", & " + apaAuthors[apaAuthors.length - 1];
-      } else {
-        return apaAuthors.slice(0, 19).join(", ") + ", ... " + apaAuthors[apaAuthors.length - 1];
-      }
-      
-    case 'MLA':
-      // MLA 9th: 3명까지 모두, 4명 이상 et al.
-      if (authorNames.length === 1) {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        return first ? `${last}, ${first}` : last;
-      } else if (authorNames.length === 2) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        return `${formatted1}, and ${authorNames[1].replace(/\*/g, '').trim()}`;
-      } else if (authorNames.length === 3) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        return `${formatted1}, ${authorNames[1].replace(/\*/g, '').trim()}, and ${authorNames[2].replace(/\*/g, '').trim()}`;
-      } else {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        const formatted = first ? `${last}, ${first}` : last;
-        return `${formatted}, et al.`;
-      }
-      
-    case 'Chicago':
-      // Chicago 17th: 10명까지 모두, 11명 이상 처음 7명 + et al.
-      if (authorNames.length === 1) {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        return first ? `${last}, ${first}` : last;
-      } else if (authorNames.length <= 10) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        
-        const rest = authorNames.slice(1).map(name => name.replace(/\*/g, '').trim());
-        if (rest.length === 0) return formatted1;
-        if (rest.length === 1) return `${formatted1}, and ${rest[0]}`;
-        return `${formatted1}, ${rest.slice(0, -1).join(", ")}, and ${rest[rest.length - 1]}`;
-      } else {
-        const formattedNames = [];
-        // 첫 저자는 Last, First 형식
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        formattedNames.push(first1 ? `${last1}, ${first1}` : last1);
-        
-        // 나머지 6명은 일반 형식
-        for (let i = 1; i < 7; i++) {
-          formattedNames.push(authorNames[i].replace(/\*/g, '').trim());
-        }
-        return formattedNames.join(", ") + ", et al.";
-      }
-      
-    case 'Harvard':
-      // Harvard: 3명까지 모두, 4명 이상 et al.
-      const harvardAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join('');
-        return initials ? `${last}, ${initials}` : last;
-      });
-      
-      if (harvardAuthors.length === 1) {
-        return harvardAuthors[0];
-      } else if (harvardAuthors.length === 2) {
-        return harvardAuthors[0] + " and " + harvardAuthors[1];
-      } else if (harvardAuthors.length === 3) {
-        return harvardAuthors[0] + ", " + harvardAuthors[1] + " and " + harvardAuthors[2];
-      } else {
-        return harvardAuthors[0] + " et al.";
-      }
-      
-    case 'Vancouver':
-      // Vancouver: 6명까지 모두, 7명 이상 처음 6명 + et al.
-      const vanAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase()).join("");
-        return initials ? `${last} ${initials}` : last;
-      });
-      
-      if (vanAuthors.length <= 6) {
-        return vanAuthors.join(", ");
-      } else {
-        return vanAuthors.slice(0, 6).join(", ") + ", et al.";
-      }
-
-case 'Korean':
-  // 한글 저자명 처리 - AUTHORS 객체에서 ko 필드 사용
-  const koreanAuthors = authors.map(id => {
-    const author = AUTHORS?.[id];
-    if (!author) return `저자 ${id}`;
-    return author.ko || author.en || `저자 ${id}`;
-  });
-  return koreanAuthors.join(', ');
-    
-    default:
-      return authorNames.join(", ");
-  }
-}
-
-// openCite 함수에서 APA 부분 수정
-// openCite 함수 - 각 스타일별 정확한 포맷
+/* ===== Citation Modal Functions with Citeproc ===== */
 function openCite(pub) {
-  const title = pub.title || "Untitled";
-  const year = pub.year || new Date().getFullYear();
-  const venue = arr(pub.venue).filter(Boolean).join(", ") || "";
+  currentPub = pub;
   
-  const isJournal = arr(pub.type).includes('journal');
-  const isConference = arr(pub.type).includes('conference');
-  const isBook = arr(pub.type).includes('book');
-  const isThesis = arr(pub.type).includes('thesis');
-  const isReport = arr(pub.type).includes('report');
-  
-  const isKorean = pub.language === 'Korean';
-  
-  // APA 스타일 (sentence case - 첫 글자와 콜론 뒤만 대문자)
-  const apaTitle = toSentenceCase(title);
-  let apaFormat = `${formatAuthorsForCitation(pub.authors, 'APA')} (${year}). `;
-  
-  if (isJournal && venue) {
-    apaFormat += `${apaTitle}. <em>${venue}</em>`;
-    if (pub.volume) apaFormat += `, <em>${pub.volume}</em>`;
-    if (pub.issue) apaFormat += `(${pub.issue})`;
-    if (pub.pages) apaFormat += `, ${pub.pages}`;
-  } else if (isConference && venue) {
-    apaFormat += `${apaTitle}. In <em>${toTitleCase(venue)}</em>`;
-    if (pub.pages) apaFormat += ` (pp. ${pub.pages})`;
-  } else if (isBook) {
-    apaFormat += `<em>${apaTitle}</em>`;
-    if (pub.publisher) apaFormat += `. ${pub.publisher}`;
-  } else if (isThesis) {
-    apaFormat += `<em>${apaTitle}</em> [Doctoral dissertation`;
-    if (venue) apaFormat += `, ${venue}`;
-    apaFormat += `]`;
-  } else if (isReport) {
-    apaFormat += `<em>${apaTitle}</em>`;
-    if (pub.publisher || venue) apaFormat += `. ${pub.publisher || venue}`;
-  } else {
-    apaFormat += `${apaTitle}`;
-    if (venue) apaFormat += `. ${venue}`;
-  }
-  apaFormat += '.';
-  
-  if (pub.doi) {
-    apaFormat += ` https://doi.org/${pub.doi}`;
-  }
-  
-  // MLA 스타일 (title case - 주요 단어 대문자)
-  const mlaTitle = toTitleCase(title);
-  let mlaFormat = `${formatAuthorsForCitation(pub.authors, 'MLA')}. `;
-  
-  if (isJournal) {
-    mlaFormat += `"${mlaTitle}." <em>${toTitleCase(venue)}</em>`;
-    if (pub.volume) mlaFormat += `, vol. ${pub.volume}`;
-    if (pub.issue) mlaFormat += `, no. ${pub.issue}`;
-    mlaFormat += `, ${year}`;
-    if (pub.pages) mlaFormat += `, pp. ${pub.pages}`;
-  } else if (isConference) {
-    mlaFormat += `"${mlaTitle}." <em>${toTitleCase(venue)}</em>, ${year}`;
-    if (pub.pages) mlaFormat += `, pp. ${pub.pages}`;
-  } else if (isBook) {
-    mlaFormat += `<em>${mlaTitle}</em>`;
-    if (pub.publisher) mlaFormat += `. ${pub.publisher}`;
-    mlaFormat += `, ${year}`;
-  } else if (isThesis) {
-    mlaFormat += `<em>${mlaTitle}</em>. ${year}`;
-    if (venue) mlaFormat += `. ${venue}`;
-    mlaFormat += `, PhD dissertation`;
-  } else {
-    mlaFormat += `"${mlaTitle}."`;
-    if (venue) mlaFormat += ` ${venue},`;
-    mlaFormat += ` ${year}`;
-  }
-  mlaFormat += '.';
-  
-  if (pub.doi) {
-    mlaFormat += ` doi:${pub.doi}`;
-  }
-  
-  // Chicago 스타일 (title case)
-  const chicagoTitle = toTitleCase(title);
-  let chicagoFormat = `${formatAuthorsForCitation(pub.authors, 'Chicago')}. `;
-  
-  if (isJournal) {
-    chicagoFormat += `"${chicagoTitle}." <em>${toTitleCase(venue)}</em>`;
-    if (pub.volume) chicagoFormat += ` ${pub.volume}`;
-    if (pub.issue) chicagoFormat += `, no. ${pub.issue}`;
-    chicagoFormat += ` (${year})`;
-    if (pub.pages) chicagoFormat += `: ${pub.pages}`;
-  } else if (isConference) {
-    chicagoFormat += `"${chicagoTitle}." Paper presented at ${toTitleCase(venue)}, ${year}`;
-    if (pub.pages) chicagoFormat += `, ${pub.pages}`;
-  } else if (isBook) {
-    chicagoFormat += `<em>${chicagoTitle}</em>. `;
-    if (pub.publisher) chicagoFormat += `${pub.publisher}, `;
-    chicagoFormat += `${year}`;
-  } else if (isThesis) {
-    chicagoFormat += `"${chicagoTitle}." PhD diss., ${venue || 'University'}, ${year}`;
-  } else {
-    chicagoFormat += `"${chicagoTitle}."`;
-    if (venue) chicagoFormat += ` ${venue}`;
-    chicagoFormat += ` (${year})`;
-  }
-  chicagoFormat += '.';
-  
-  if (pub.doi) {
-    chicagoFormat += ` https://doi.org/${pub.doi}`;
-  }
-  
-  // Harvard 스타일 (title case)
-  const harvardTitle = toTitleCase(title);
-  let harvardFormat = `${formatAuthorsForCitation(pub.authors, 'Harvard')} (${year}) `;
-  
-  if (isJournal) {
-    harvardFormat += `'${harvardTitle}', <em>${toTitleCase(venue)}</em>`;
-    if (pub.volume) harvardFormat += `, vol. ${pub.volume}`;
-    if (pub.issue) harvardFormat += `, no. ${pub.issue}`;
-    if (pub.pages) harvardFormat += `, pp. ${pub.pages}`;
-  } else if (isConference) {
-    harvardFormat += `'${harvardTitle}', in <em>${toTitleCase(venue)}</em>`;
-    if (pub.pages) harvardFormat += `, pp. ${pub.pages}`;
-  } else if (isBook) {
-    harvardFormat += `<em>${harvardTitle}</em>`;
-    if (pub.publisher) harvardFormat += `, ${pub.publisher}`;
-  } else if (isThesis) {
-    harvardFormat += `'${harvardTitle}', PhD thesis, ${venue || 'University'}`;
-  } else {
-    harvardFormat += `'${harvardTitle}'`;
-    if (venue) harvardFormat += `, ${venue}`;
-  }
-  harvardFormat += '.';
-  
-  if (pub.doi) {
-    harvardFormat += ` Available at: https://doi.org/${pub.doi}`;
-  }
-  
-  // Vancouver 스타일 (sentence case)
-  const vancouverTitle = toSentenceCase(title);
-  let vancouverFormat = `${formatAuthorsForCitation(pub.authors, 'Vancouver')}. ${vancouverTitle}. `;
-  
-  if (venue) vancouverFormat += `${venue}. `;
-  vancouverFormat += `${year}`;
-  
-  if (isJournal) {
-    if (pub.volume) vancouverFormat += `;${pub.volume}`;
-    if (pub.issue) vancouverFormat += `(${pub.issue})`;
-    if (pub.pages) vancouverFormat += `:${pub.pages}`;
-  } else if (isConference) {
-    vancouverFormat += ` [conference paper]`;
-    if (pub.pages) vancouverFormat += `;${pub.pages}`;
-  } else if (isBook) {
-    vancouverFormat += ` [book]`;
-  } else if (isThesis) {
-    vancouverFormat += ` [dissertation]`;
-  }
-  vancouverFormat += '.';
-  
-  if (pub.doi) {
-    vancouverFormat += ` doi:${pub.doi}`;
-  }
-  
-  // 한글 Citation (Korean APA style)
-  let koreanFormat = '';
-  if (isKorean) {
-    const titleKo = pub.title_ko || title;
-    const venueKo = arr(pub.venue_ko).filter(Boolean).join(", ") || venue;
-    
-    koreanFormat = `${formatAuthorsForCitation(pub.authors, 'Korean')} (${year}). `;
-    
-    if (isJournal && venueKo) {
-      koreanFormat += `${titleKo}. <em>${venueKo}</em>`;
-      if (pub.volume) koreanFormat += `, <em>${pub.volume}</em>`;
-      if (pub.issue) koreanFormat += `(${pub.issue})`;
-      if (pub.pages) koreanFormat += `, ${pub.pages}`;
-    } else if (isConference && venueKo) {
-      koreanFormat += `${titleKo}. <em>${venueKo}</em>`;
-      if (pub.pages) koreanFormat += ` (pp. ${pub.pages})`;
-    } else if (isBook) {
-      koreanFormat += `<em>${titleKo}</em>`;
-      if (pub.publisher) koreanFormat += `. ${pub.publisher}`;
-    } else if (isThesis) {
-      koreanFormat += `<em>${titleKo}</em> [박사학위논문`;
-      if (venueKo) koreanFormat += `, ${venueKo}`;
-      koreanFormat += `]`;
-    } else if (isReport) {
-      koreanFormat += `<em>${titleKo}</em>`;
-      if (pub.publisher || venueKo) koreanFormat += `. ${pub.publisher || venueKo}`;
-    } else {
-      koreanFormat += `${titleKo}`;
-      if (venueKo) koreanFormat += `. ${venueKo}`;
-    }
-    koreanFormat += '.';
-    
-    if (pub.doi) {
-      koreanFormat += ` https://doi.org/${pub.doi}`;
-    }
-  }
-  
-  // formats 객체 생성
-  const formats = {
-    'APA (7th ed.)': apaFormat,
-    'MLA (9th ed.)': mlaFormat,
-    'Chicago (17th ed.)': chicagoFormat,
-    'Harvard': harvardFormat,
-    'Vancouver': vancouverFormat
-  };
-  
-  // 한글 논문인 경우 한글 Citation 추가
-  if (isKorean && koreanFormat) {
-    formats['한글 (Korean APA)'] = koreanFormat;
-  }
+  // Generate citations using selected style
+  const styleSelect = document.getElementById('citationStyle');
+  generateCitations();
+}
 
-  citeBody.innerHTML = Object.entries(formats).map(([label, text]) => {
-    const id = 'cite-' + Math.random().toString(36).slice(2, 9);
-    return `
+function generateCitations() {
+  if (!currentPub) return;
+  
+  const styleId = document.getElementById('citationStyle').value;
+  const citeproc = citeprocSystems[styleId];
+  
+  if (!citeproc) {
+    console.error(`Citation style ${styleId} not found`);
+    return;
+  }
+  
+  // Update the citeproc with current publication
+  const cslData = pubToCSLJSON(currentPub);
+  citeproc.updateItems([cslData.id]);
+  
+  // Generate bibliography
+  const result = citeproc.makeBibliography();
+  let formattedCitation = '';
+  
+  if (result && result[1] && result[1].length > 0) {
+    formattedCitation = result[1][0];
+  } else {
+    // Fallback to manual formatting if citeproc fails
+    formattedCitation = generateFallbackCitation(currentPub, styleId);
+  }
+  
+  // Also add Korean citation if applicable
+  let koreanCitation = '';
+  if (currentPub.language === 'Korean' && currentPub.title_ko) {
+    koreanCitation = generateKoreanCitation(currentPub);
+  }
+  
+  // Update modal content
+  const citationId = 'cite-' + Math.random().toString(36).slice(2, 9);
+  const koreanId = 'cite-ko-' + Math.random().toString(36).slice(2, 9);
+  
+  let citationsHTML = `
+    <div class="cite-block">
+      <div class="cite-header">
+        <span class="cite-label">${getStyleLabel(styleId)}</span>
+        <button class="copy-btn" onclick="copyText('${citationId}')">Copy</button>
+      </div>
+      <div class="cite-text" id="${citationId}">${formattedCitation}</div>
+    </div>
+  `;
+  
+  if (koreanCitation) {
+    citationsHTML += `
       <div class="cite-block">
         <div class="cite-header">
-          <span class="cite-label">${label}</span>
-          <button class="copy-btn" onclick="copyText('${id}')">Copy</button>
+          <span class="cite-label">한글 (Korean APA)</span>
+          <button class="copy-btn" onclick="copyText('${koreanId}')">Copy</button>
         </div>
-        <div class="cite-text" id="${id}">${text}</div>
+        <div class="cite-text" id="${koreanId}">${koreanCitation}</div>
       </div>
     `;
-  }).join('');
-
+  }
+  
+  citeBody.innerHTML = citationsHTML;
   document.getElementById('citeModal').style.display = 'flex';
 }
 
-  function copyText(id) {
-    const element = document.getElementById(id);
-    // HTML 태그 제거하고 텍스트만 복사
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = element.innerHTML;
-    const text = tempDiv.textContent || tempDiv.innerText || '';
-    
-    navigator.clipboard.writeText(text);
-    event.target.textContent = 'Copied!';
-    setTimeout(() => event.target.textContent = 'Copy', 1500);
-  }
-
-  /* ===== Init & Events ===== */
-  document.getElementById('pubSearch').oninput = (e) => {
-    q = e.target.value;
-    searchClear.classList.toggle('visible', q.length > 0);
-    render();
+function getStyleLabel(styleId) {
+  const labels = {
+    'apa': 'APA (7th ed.)',
+    'mla': 'MLA (9th ed.)',
+    'chicago-note': 'Chicago (17th ed.)',
+    'harvard': 'Harvard',
+    'vancouver': 'Vancouver',
+    'ieee': 'IEEE'
   };
+  return labels[styleId] || styleId;
+}
 
-  searchClear.onclick = () => {
-    searchInput.value = '';
-    q = '';
-    searchClear.classList.remove('visible');
-    searchInput.focus();
-    render();
-  };
+function generateFallbackCitation(pub, style) {
+  // Fallback formatting when citeproc fails
+  const authors = (pub.authors || []).map(id => getAuthorName(id, false)).join(', ');
+  const title = pub.title || 'Untitled';
+  const year = pub.year || new Date().getFullYear();
+  const venue = arr(pub.venue).filter(Boolean).join(', ');
+  
+  let citation = `${authors} (${year}). ${title}`;
+  if (venue) citation += `. ${venue}`;
+  if (pub.volume) citation += `, ${pub.volume}`;
+  if (pub.issue) citation += `(${pub.issue})`;
+  if (pub.pages) citation += `, ${pub.pages}`;
+  citation += '.';
+  if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
+  
+  return citation;
+}
 
-  document.getElementById('btnCloseCite').onclick = () => {
+function generateKoreanCitation(pub) {
+  const authors = (pub.authors || []).map(id => getAuthorName(id, true)).join(', ');
+  const title = pub.title_ko || pub.title || '제목 없음';
+  const year = pub.year || new Date().getFullYear();
+  const venue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
+  
+  let citation = `${authors} (${year}). ${title}`;
+  if (venue) citation += `. <em>${venue}</em>`;
+  if (pub.volume) citation += `, <em>${pub.volume}</em>`;
+  if (pub.issue) citation += `(${pub.issue})`;
+  if (pub.pages) citation += `, ${pub.pages}`;
+  citation += '.';
+  if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
+  
+  return citation;
+}
+
+function copyText(id) {
+  const element = document.getElementById(id);
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = element.innerHTML;
+  const text = tempDiv.textContent || tempDiv.innerText || '';
+  
+  navigator.clipboard.writeText(text);
+  event.target.textContent = 'Copied!';
+  setTimeout(() => event.target.textContent = 'Copy', 1500);
+}
+
+/* ===== Init & Events ===== */
+document.getElementById('pubSearch').oninput = (e) => {
+  q = e.target.value;
+  searchClear.classList.toggle('visible', q.length > 0);
+  render();
+};
+
+searchClear.onclick = () => {
+  searchInput.value = '';
+  q = '';
+  searchClear.classList.remove('visible');
+  searchInput.focus();
+  render();
+};
+
+document.getElementById('btnCloseCite').onclick = () => {
+  document.getElementById('citeModal').style.display = 'none';
+};
+
+document.getElementById('citeModal').onclick = (e) => {
+  if (e.target === document.getElementById('citeModal')) {
     document.getElementById('citeModal').style.display = 'none';
-  };
+  }
+};
 
-  document.getElementById('citeModal').onclick = (e) => {
-    if (e.target === document.getElementById('citeModal')) {
-      document.getElementById('citeModal').style.display = 'none';
-    }
-  };
+document.getElementById('citationStyle').onchange = () => {
+  if (currentPub) {
+    generateCitations();
+  }
+};
 
+document.getElementById('toggleFilters').onclick = () => {
+  const filterContent = document.getElementById('filterContent');
+  const toggleBtn = document.getElementById('toggleFilters');
+  const isHidden = filterContent.style.display === 'none';
+  
+  filterContent.style.display = isHidden ? 'block' : 'none';
+  toggleBtn.textContent = isHidden ? 'Collapse' : 'Expand';
+};
+
+document.getElementById('clearAllFilters').onclick = () => {
+  onFilters.type.clear();
+  onFilters.journal.clear();
+  onFilters.conference.clear();
+  searchInput.value = '';
+  q = '';
+  searchClear.classList.remove('visible');
   buildChips();
   render();
-  calculatePublicationStats(); // ← 여기에 추가!
+};
 
-  document.getElementById('toggleFilters').onclick = () => {
-    const filterContent = document.getElementById('filterContent');
-    const toggleBtn = document.getElementById('toggleFilters');
-    const isHidden = filterContent.style.display === 'none';
-    
-    filterContent.style.display = isHidden ? 'block' : 'none';
-    toggleBtn.textContent = isHidden ? 'Collapse' : 'Expand';
-  };
-  
-  document.getElementById('clearAllFilters').onclick = () => {
-    onFilters.type.clear();
-    onFilters.journal.clear();
-    onFilters.conference.clear();
-    searchInput.value = '';
-    q = '';
-    searchClear.classList.remove('visible');
-    buildChips();
-    render();
-  };
-  
-  window.openCite = openCite;
-  window.copyText = copyText;
+// Initialize everything
+initCiteprocSystems();
+buildChips();
+render();
+calculatePublicationStats();
+
+// Make functions globally available
+window.openCite = openCite;
+window.copyText = copyText;
 </script>
