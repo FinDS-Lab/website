@@ -87,35 +87,46 @@ permalink: /archives-notice.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs (통일) */
+  /* Breadcrumbs - 금색 배경, 흰색 텍스트, 로고 포함 */
   .banner-breadcrumbs {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
     align-items: center;
+    gap: 0.5rem;
     font-size: 13px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    padding: 8px 12px;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  
+  /* 로고 이미지 */
+  .breadcrumb-logo {
+    width: 20px;
+    height: 20px;
+    opacity: 0.95;
   }
   
   .banner-breadcrumbs a {
-    color: rgba(255,255,255,0.92);
+    color: #fff;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: opacity 0.2s;
   }
   
   .banner-breadcrumbs a:hover {
-    color: #fff;
+    opacity: 0.8;
     text-decoration: underline;
   }
   
   .banner-breadcrumbs .sep {
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.8);
+    margin: 0 2px;
   }
   
   .banner-breadcrumbs span:not(.sep):not(a) {
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
   }
 
   /* 제목 (통일) */
@@ -277,6 +288,10 @@ permalink: /archives-notice.html
     .banner-section {
       min-height: 160px;
     }
+    .breadcrumb-logo { 
+      width: 18px; 
+      height: 18px; 
+    }
   }
 
   @media (max-width: 640px) {
@@ -307,7 +322,14 @@ permalink: /archives-notice.html
     .banner-section {
       min-height: 140px;
     }
-    .banner-breadcrumbs { font-size: 12px; }
+    .banner-breadcrumbs { 
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+    .breadcrumb-logo { 
+      width: 16px; 
+      height: 16px; 
+    }
   }
 
   @media (max-width: 480px) {
@@ -321,7 +343,10 @@ permalink: /archives-notice.html
       min-height: 120px;
     }
     .banner-title { font-size: 1.5rem; }
-    .banner-breadcrumbs { font-size: 11px; }
+    .banner-breadcrumbs { 
+      font-size: 11px;
+      gap: 0.3rem;
+    }
   }
 </style>
 
@@ -331,11 +356,13 @@ permalink: /archives-notice.html
     <div class="banner-content">
       <div>
         <nav aria-label="Breadcrumb" class="banner-breadcrumbs">
+          <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
           <a href="{{ '/' | relative_url }}" onclick="event.stopPropagation()">Home</a>
           <span class="sep">›</span>
           <a href="{{ '/archives-news.html' | relative_url }}" onclick="event.stopPropagation()">Archives</a>
           <span class="sep">›</span>
           <span aria-current="page">Notice</span>
+          <img src="{{ '/assets/img/brand/logo-finds.png' | relative_url }}" alt="" class="breadcrumb-logo" onclick="event.stopPropagation()">
         </nav>
         <h1 class="banner-title">Notice</h1>
       </div>
