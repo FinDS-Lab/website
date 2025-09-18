@@ -88,38 +88,79 @@ permalink: /members-director.html
      min-height: 200px;
    }
 
-   .banner-breadcrumbs {
-     display: flex;
-     flex-wrap: wrap;
-     gap: .5rem;
+   /* Breadcrumbs - Alumni style */
+   .breadcrumbs-banner {
+     display: inline-flex;
      align-items: center;
+     gap: 0.75rem;
      font-size: 13px;
      font-weight: 600;
-     margin-bottom: 8px;
+     margin-bottom: 16px;
+     background: rgba(255, 255, 255, 0.95);
+     backdrop-filter: blur(10px);
+     padding: 10px 16px;
+     border-radius: 999px;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+     border: 1px solid rgba(214, 177, 77, 0.2);
+     transition: all 0.3s ease;
    }
 
-   .banner-breadcrumbs a {
-     color: rgba(255,255,255,.92);
+   .breadcrumbs-banner:hover {
+     background: rgba(255, 255, 255, 1);
+     box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+     transform: translateY(-1px);
+   }
+
+   .breadcrumbs-banner a {
+     color: var(--gold-dark);
      text-decoration: none;
-     transition: color .2s;
+     transition: all 0.2s;
+     position: relative;
+     font-weight: 600;
    }
 
-   .banner-breadcrumbs a:hover {
-     color: #fff;
-     text-decoration: underline;
+   .breadcrumbs-banner a:hover {
+     color: var(--gold);
+     text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
    }
 
-   .banner-breadcrumbs .sep {
-     color: rgba(255,255,255,.8);
+   .breadcrumbs-banner a::after {
+     content: '';
+     position: absolute;
+     bottom: -2px;
+     left: 0;
+     width: 0;
+     height: 1px;
+     background: var(--gold);
+     transition: width 0.2s ease;
    }
 
-   .banner-breadcrumbs span:not(.sep):not(a) {
-     color: #fff;
+   .breadcrumbs-banner a:hover::after {
+     width: 100%;
+   }
+
+   .breadcrumbs-banner .sep {
+     color: rgba(214, 177, 77, 0.4);
+     font-weight: 400;
+     margin: 0;
+   }
+
+   .breadcrumbs-banner span:not(.sep):not(a) {
+     color: var(--gold);
      font-weight: 800;
+     letter-spacing: 0.3px;
+   }
+
+   /* Breadcrumb 아이콘 */
+   .breadcrumbs-banner::before {
+     content: '👨‍🏫';
+     font-size: 14px;
+     margin-right: 2px;
+     opacity: 0.8;
    }
 
    .banner-title {
-     font-size: 2.25rem;
+     font-size: 2.5rem;
      font-weight: 900;
      color: #fff;
      text-shadow: 0 2px 4px rgba(0,0,0,.12);
@@ -130,33 +171,61 @@ permalink: /members-director.html
    /* Responsive */
    @media (max-width: 768px) {
      .banner-content {
-       padding: 24px 18px;
+       padding: 28px 20px;
        min-height: 160px;
      }
      .banner-section {
        min-height: 160px;
      }
      .banner-title {
-       font-size: 1.9rem;
+       font-size: 2rem;
      }
-     .banner-breadcrumbs {
+     .breadcrumbs-banner {
        font-size: 12px;
+       padding: 8px 14px;
+       gap: 0.6rem;
+     }
+     .breadcrumbs-banner::before {
+       font-size: 12px;
+     }
+   }
+
+   @media (max-width: 640px) {
+     .banner-title {
+       font-size: 1.75rem;
+     }
+     .banner-content {
+       padding: 24px 16px;
+       min-height: 140px;
+     }
+     .banner-section {
+       min-height: 140px;
+     }
+     .breadcrumbs-banner {
+       font-size: 11px;
+       padding: 7px 12px;
+       gap: 0.5rem;
+     }
+     .breadcrumbs-banner::before {
+       display: none;
      }
    }
 
    @media (max-width: 480px) {
      .banner-content {
        padding: 20px 16px;
-       min-height: 130px;
+       min-height: 120px;
      }
      .banner-section {
-       min-height: 130px;
+       min-height: 120px;
      }
      .banner-title {
-       font-size: 1.6rem;
+       font-size: 1.5rem;
      }
-     .banner-breadcrumbs {
-       font-size: 11px;
+     .breadcrumbs-banner {
+       font-size: 10px;
+       gap: 0.4rem;
+       padding: 6px 10px;
      }
    }
 
@@ -164,7 +233,7 @@ permalink: /members-director.html
 .intro-section .intro-content {
   margin-left: 0 !important;
   padding-left: 0 !important;
-  text-align: left;               /* 혹시 가운데 정렬이면 왼쪽으로 */
+  text-align: left;
 }
 
 /* 헤딩/문단의 남는 좌측 여백 제거 */
@@ -178,27 +247,33 @@ permalink: /members-director.html
 /* FINDS Lab. / 풀네임을 줄 맨앞에 정확히 시작시키기 */
 .intro-section .lab-name,
 .intro-section .lab-full {
-  display: block;                 /* span -> block로 바꿔 줄 시작 정렬 통일 */
-  margin: 0;                      /* 남는 여백 제거 */
+  display: block;
+  margin: 0;
   padding: 0;
 }
 
-/* 풀네임과 한국어 설명 사이 간격(원하시면 조절) */
+/* 풀네임과 한국어 설명 사이 간격 */
 .intro-section .lab-full {
-  margin-top: 2px;                /* 살짝만 띄우기 */
+  margin-top: 2px;
 }
 .intro-section .description {
-  margin-top: 8px;                /* “엔터 2번” 대신 적당한 간격 */
+  margin-top: 8px;
 }
 
 /* Employment 부서/기관 구분 스타일 */
 .desc-affiliation {
+  color: var(--gold);
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 8px;
+  border-left: 2px solid var(--gold);
+  font-weight: 600;
+}
+
+.desc-dept {
   color: #6b7280;
   font-size: 13px;
   margin-top: 2px;
-  padding-left: 12px;
-  border-left: 2px solid var(--gold);
-  font-style: italic;
 }
 
 /* Profile 고정 스크롤 (PC) */
@@ -211,9 +286,9 @@ permalink: /members-director.html
     overflow-y: auto;
   }
   
-  .director-card.profile-card {
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
+  .profile-card {
+    position: sticky;
+    top: 20px;
   }
 }
 
@@ -224,13 +299,172 @@ permalink: /members-director.html
     line-height: 1.5;
   }
 }
+
+/* Profile Position & Affiliation 개선 */
+.profile-position {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.profile-dept {
+  color: #6b7280;
+  font-size: 13px;
+  padding-left: 8px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.profile-org {
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Reviewer Experience Styles */
+.reviewer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.reviewer-item {
+  padding: 14px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f3f4f6 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.reviewer-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+}
+
+.reviewer-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #fff 0%, #fefcf8 100%);
+}
+
+.reviewer-type {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--gold);
+  color: white;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.reviewer-type.scie {
+  background: var(--gold);
+}
+
+.reviewer-type.ssci {
+  background: #3b82f6;
+}
+
+.reviewer-type.scopus {
+  background: #10b981;
+}
+
+.reviewer-type.esci {
+  background: #8b5cf6;
+}
+
+.reviewer-type.kci {
+  background: var(--red);
+}
+
+.reviewer-name {
+  font-weight: 700;
+  color: #111827;
+  font-size: 14px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.reviewer-publisher {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.reviewer-since {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.reviewer-since::before {
+  content: "📅";
+  font-size: 12px;
+}
+
+/* Conference Reviewer Section */
+.conference-reviewer {
+  margin-top: 16px;
+  padding: 14px;
+  background: linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(139,92,246,0.05) 100%);
+  border-radius: 10px;
+  border: 1px solid rgba(59,130,246,0.2);
+}
+
+.conference-reviewer-title {
+  font-weight: 800;
+  font-size: 13px;
+  color: #3b82f6;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.conference-reviewer-item {
+  padding: 8px 12px;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+  margin-top: 8px;
+}
+
+.conference-name {
+  font-weight: 700;
+  font-size: 13px;
+  color: #111827;
+  margin-bottom: 2px;
+}
+
+.conference-period {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .reviewer-grid {
+    grid-template-columns: 1fr;
+  }
+}
   
  </style>
 
  <div class="banner-section" onclick="createNetworkBurst(event, this)">
    <div class="banner-content">
      <div>
-       <nav aria-label="Breadcrumb" class="banner-breadcrumbs" onclick="event.stopPropagation()">
+       <nav aria-label="Breadcrumb" class="breadcrumbs-banner" onclick="event.stopPropagation()">
          <a href="{{ '/' | relative_url }}">Home</a>
          <span class="sep">›</span>
          <a href="{{ '/members-current.html' | relative_url }}">Members</a>
@@ -363,7 +597,6 @@ permalink: /members-director.html
 <!-- ===== Styles ===== -->
 <style>
  /* Word break prevention for Korean/English */
-/* Word break prevention for Korean/English */
 * {
   word-break: keep-all !important;
   word-wrap: break-word !important;
@@ -381,7 +614,7 @@ permalink: /members-director.html
 
  /* director 페이지 전용 변수 - site.css 오버라이드 */
  .director-page {
-   --accent: rgb(214, 177, 77) !important; /* Gold로 강제 변경 */
+   --accent: rgb(214, 177, 77) !important;
    --gold:#d6b14d;
    --gold-light:#eacf7d;
    --gold-fg:#111827;
@@ -418,7 +651,7 @@ permalink: /members-director.html
   color: white;
 }
  
- /* director 전용 카드 - site.css의 .card 오버라이드 */
+ /* director 전용 카드 */
 .director-card {
   background:#fff !important;
   border:1px solid #e5e7eb !important;
@@ -443,13 +676,13 @@ permalink: /members-director.html
 
  .card-head{
    background:linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-   color:#ffffff;  /* 흰색으로 변경 */
+   color:#ffffff;
    font-weight:900;
    padding:1rem 1.25rem;
    font-size:18px;
    position:relative;
    overflow:hidden;
-   text-shadow: 0 1px 3px rgba(0,0,0,0.2);  /* 가독성을 위한 그림자 추가 */
+   text-shadow: 0 1px 3px rgba(0,0,0,0.2);
  }
 
  .card-head::after{
@@ -481,6 +714,10 @@ permalink: /members-director.html
     grid-template-columns:1fr;
     gap:1.5rem;
     padding: 0 1rem;
+  }
+  
+  .main-grid aside {
+    position: relative !important;
   }
 }
 
@@ -550,8 +787,7 @@ permalink: /members-director.html
    box-shadow:0 4px 12px rgba(172,14,14,0.3);
  }
 
- /* Publication Stats - Simple 3 column layout */
-/* Publication Stats - 5 row layout */
+ /* Publication Stats - 5 row layout */
 .pub-stats{
   display:grid;
   grid-template-columns:repeat(3, minmax(0, 1fr));
@@ -712,7 +948,6 @@ permalink: /members-director.html
     gap: 6px;
   }
   
-  /* Same positioning as desktop */
   .pub-stat.journal-scie { grid-column: 1; grid-row: 1; }
   .pub-stat.journal-ssci { grid-column: 2; grid-row: 1; }
   .pub-stat.journal-ahci { grid-column: 3; grid-row: 1; }
@@ -723,13 +958,11 @@ permalink: /members-director.html
   .pub-stat.journal-kci { grid-column: 2; grid-row: 3; }
   .pub-stat.conf-domestic { grid-column: 3; grid-row: 3; }
   
-  /* Citation spans all 3 columns */
   .pub-stat.citation { 
     grid-column: 1 / -1;
     grid-row: 4; 
   }
   
-  /* Index stats row */
   .pub-stat.index-g { grid-column: 1; grid-row: 5; }
   .pub-stat.index-h { grid-column: 2; grid-row: 5; }
   .pub-stat.index-i10 { grid-column: 3; grid-row: 5; }
@@ -1003,23 +1236,18 @@ permalink: /members-director.html
  }
  
 /* 멘티 칩 - 참여 횟수별 점진적 색상 변화 */
-/* 1회 참여 - 기본 */
-/* 멘티 칩 - 참여 횟수별 점진적 색상 변화 */
-/* 1회 참여 - 거의 흰색 */
 .mentee-chip[data-count="1"] {
   background: #fffef9;
   border-color: #e5e7eb;
   color: #374151;
 }
 
-/* 2회 참여 - 매우 연한 금색 */
 .mentee-chip[data-count="2"] {
   background: rgba(214, 177, 77, 0.08);
   border-color: rgba(214, 177, 77, 0.25);
   color: #92400e;
 }
 
-/* 3회 참여 - 연한 금색 */
 .mentee-chip[data-count="3"] {
   background: rgba(214, 177, 77, 0.2);
   border-color: rgba(214, 177, 77, 0.45);
@@ -1027,7 +1255,6 @@ permalink: /members-director.html
   font-weight: 600;
 }
 
-/* 4회 참여 - 중간 금색 */
 .mentee-chip[data-count="4"] {
   background: rgba(214, 177, 77, 0.4);
   border-color: rgba(214, 177, 77, 0.7);
@@ -1036,7 +1263,6 @@ permalink: /members-director.html
   box-shadow: 0 1px 3px rgba(214, 177, 77, 0.2);
 }
 
-/* 5회 참여 - 진한 금색 */
 .mentee-chip[data-count="5"] {
   background: rgba(214, 177, 77, 0.65);
   border-color: rgba(194, 157, 57, 0.9);
@@ -1045,7 +1271,6 @@ permalink: /members-director.html
   box-shadow: 0 2px 5px rgba(194, 157, 57, 0.3);
 }
 
-/* 6회 이상 참여 - 매우 진한 금색 그라디언트 */
 .mentee-chip[data-count="6"],
 .mentee-chip[data-count="7"],
 .mentee-chip[data-count="8"],
@@ -1059,7 +1284,6 @@ permalink: /members-director.html
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* 호버 효과도 점진적으로 */
 .mentee-chip[data-count="4"]:hover,
 .mentee-chip[data-count="5"]:hover {
   transform: translateY(-2px);
@@ -1074,7 +1298,6 @@ permalink: /members-director.html
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(174, 137, 37, 0.5);
 }
-
  
  .mentee-chip:hover{
    box-shadow:0 4px 12px rgba(0,0,0,0.15);
@@ -1125,7 +1348,7 @@ permalink: /members-director.html
 .mentee-modal-body{padding:24px;}
 .mentee-info-row {
   display: flex;
-  align-items: flex-start;  /* 상단 정렬 */
+  align-items: flex-start;
   gap: 12px;
   padding: 12px 0;
   border-bottom: 1px solid #f3f4f6;
@@ -1136,8 +1359,8 @@ permalink: /members-director.html
   text-align: center;
   color: var(--gold);
   font-size: 16px;
-  margin-top: 2px;  /* 아이콘을 약간 아래로 내려서 텍스트와 정렬 */
-  flex-shrink: 0;  /* 추가: 아이콘 크기 고정 */
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 .mentee-info-label {
   font-weight: 700;
@@ -1146,7 +1369,7 @@ permalink: /members-director.html
   font-size: 12px;
   white-space: nowrap;
   flex-shrink: 0;
-  padding-top: 2px;  /* 추가: 이모지와 높이 맞춤 */
+  padding-top: 2px;
 }
 .mentee-info-value{
    color:#111827;font-weight:600;font-size:13px;flex:1;
@@ -1189,7 +1412,7 @@ permalink: /members-director.html
   min-width: 55px;
 }
 
-/* 모바일 스타일 - 완전히 재설계 */
+/* 모바일 스타일 */
 @media (max-width: 640px) {
   .mentee-modal-content {
     max-width: 95%;
@@ -1221,17 +1444,15 @@ permalink: /members-director.html
     flex: 1;
   }
   
-  /* Entry Year - 모바일에서 일관된 스타일 */
   .single-year {
     display: inline-flex;
     padding: 3px 8px;
     font-size: 11px;
     min-width: 48px;
-    max-width: 48px;  /* 최대 너비도 고정 */
+    max-width: 48px;
     text-align: center;
   }
   
-  /* Participation Years - 모바일에서 Entry Year와 동일한 스타일 */
   .participation-years {
     display: inline-flex;
     flex-wrap: wrap;
@@ -1245,9 +1466,9 @@ permalink: /members-director.html
     padding: 3px 8px;
     font-size: 11px;
     min-width: 48px;
-    max-width: 48px;  /* Entry Year와 동일한 최대 너비 */
+    max-width: 48px;
     text-align: center;
-    flex: 0 0 48px;  /* 고정 너비 */
+    flex: 0 0 48px;
   }
 }
 
@@ -1276,7 +1497,7 @@ permalink: /members-director.html
   font-weight: 700;
   color: #6b7280;
   white-space: nowrap;
-  min-width: 65px;  /* 레이블 최소 너비 고정 */
+  min-width: 65px;
 }
 
 /* Mobile responsiveness */
@@ -1288,7 +1509,6 @@ permalink: /members-director.html
     padding: 12px;
   }
   
-  /* 각 그룹을 별도 줄로 */
   .control-group {
     display: flex;
     align-items: center;
@@ -1303,7 +1523,6 @@ permalink: /members-director.html
     font-size: 12px;
   }
   
-  /* Threshold 줄 */
   .control-group:first-child .slider-container {
     flex: 1;
     margin: 0 12px;
@@ -1313,10 +1532,9 @@ permalink: /members-director.html
     width: 100% !important;
   }
   
-  /* Zoom 줄 - 왼쪽 정렬로 변경 */
   .control-group:last-child {
     display: flex;
-    justify-content: flex-start;  /* space-between에서 flex-start로 변경 */
+    justify-content: flex-start;
     gap: 12px;
   }
   
@@ -1363,7 +1581,7 @@ permalink: /members-director.html
   box-shadow: 0 2px 4px rgba(214,177,77,0.3);
 }
 
-/* Zoom 레벨 표시 - 다른 색상 (파란색 계열) */
+/* Zoom 레벨 표시 */
 #zoomLevel {
   background: #6b7280;
   color: white;
@@ -1388,6 +1606,7 @@ permalink: /members-director.html
   border-color: var(--gold);
   transform: translateY(-1px);
 }
+
 /* Network slider 기본 설정 */
 .network-slider {
   width: 250px;
@@ -1400,7 +1619,6 @@ permalink: /members-director.html
 }
 
 /* Mobile responsiveness */
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .network-controls {
     flex-direction: column;
@@ -1409,7 +1627,6 @@ permalink: /members-director.html
     padding: 10px;
   }
   
-  /* 첫 번째 그룹(Threshold) 전체 너비 사용 */
   .control-group:first-child {
     display: flex;
     align-items: center;
@@ -1433,13 +1650,12 @@ permalink: /members-director.html
     max-width: 100%;
   }
   
-  /* 두 번째 그룹(Zoom) 가운데 정렬 */
   .control-group:last-child {
     justify-content: center;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width:640px) {
   .director-page {
     padding-left: 0.75rem !important;
     padding-right: 0.75rem !important;
@@ -1461,19 +1677,19 @@ permalink: /members-director.html
   }
   
   #networkCanvas {
-    height: 450px !important;  /* 400px에서 450px로 증가 */
+    height: 450px !important;
   }
 }
 
 @media (max-width: 480px) {
   .network-slider {
-    width: 100% !important;  /* 전체 너비 유지 */
+    width: 100% !important;
     min-width: 150px;
   }
   
   .slider-label {
     font-size: 11px !important;
-    flex-shrink: 0;  /* 라벨 크기 고정 */
+    flex-shrink: 0;
   }
   
   .zoom-btn {
@@ -1525,7 +1741,7 @@ permalink: /members-director.html
 /* Enhanced Network Canvas Styles */
 #networkCanvas {
   width: 100%;
-  height: 500px;  /* 기본값 */
+  height: 500px;
   border-radius: 16px;
   background: radial-gradient(ellipse at center, #fafbfc 0%, #f3f4f6 100%);
   margin-top: 1rem;
@@ -1556,7 +1772,7 @@ permalink: /members-director.html
  border: 1px solid rgba(214,177,77,0.1);
 }
 
- /* ===== 모바일 반응형 추가 수정 ===== */
+/* 모바일 반응형 추가 수정 */
 @media (max-width: 640px) {
   .director-page.max-w-7xl {
     max-width: 100% !important;
@@ -1685,6 +1901,14 @@ permalink: /members-director.html
   text-align: center;
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   margin: 0;
+}
+
+.collab-modal-subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  margin-top: 4px;
 }
 
 .collab-modal-body { padding: 24px; }
@@ -1849,7 +2073,8 @@ permalink: /members-director.html
 .activity-item:hover .activity-logo {
   filter: grayscale(0%);
 }
-/* Activity Modal - Same style as other modals */
+
+/* Activity Modal */
 .activity-modal {
   position: fixed;
   top: 0;
@@ -1908,6 +2133,7 @@ permalink: /members-director.html
   background: rgba(255,255,255,0.3);
   transform: scale(1.1);
 }
+
 .activity-modal-title {
   font-size: 19px;
   font-weight: 900;
@@ -1962,7 +2188,7 @@ permalink: /members-director.html
   display: inline-block;
 }
 
-/* Mobile responsive - 2x3 grid on mobile */
+/* Mobile responsive */
 @media (max-width: 640px) {
   .activities-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1997,7 +2223,7 @@ permalink: /members-director.html
   }
 }
  
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   #pdfCanvas {
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
@@ -2114,7 +2340,7 @@ permalink: /members-director.html
   border-top: 2px solid #f3f4f6;
 }
 
- /* Activity Generation Badge */
+/* Activity Generation Badge */
 .activity-generation {
   margin-bottom: 16px;
   text-align: center;
@@ -2133,7 +2359,6 @@ permalink: /members-director.html
   box-shadow: 0 2px 6px rgba(214,177,77,0.3);
 }
 
-/* Founding member special style */
 .generation-badge:contains("Founding") {
   background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
   box-shadow: 0 2px 6px rgba(220,38,38,0.3);
@@ -2219,7 +2444,7 @@ permalink: /members-director.html
    
    <!-- Profile Sidebar -->
    <aside>
-     <div class="director-card">
+     <div class="director-card profile-card">
        <div class="card-head">Profile</div>
        <div class="card-body">
          <div class="profile-photo">
@@ -2235,14 +2460,16 @@ permalink: /members-director.html
              <span class="profile-emoji">👨‍🏫</span>
              <div class="profile-content">
                <span class="profile-label">Position</span>
-               <span class="profile-value">Director, FINDS Lab.</span>
+               <div class="profile-position">Director, FINDS Lab.</div>
+               <div class="profile-position">Assistant Professor</div>
              </div>
            </div>
            <div class="profile-item">
              <span class="profile-emoji">🏛️</span>
              <div class="profile-content">
                <span class="profile-label">Affiliation</span>
-               <span class="profile-value">Assistant Professor,<br>Dongduk Women's University</span>
+               <div class="profile-dept">Division of Business Administration</div>
+               <div class="profile-org">Dongduk Women's University</div>
              </div>
            </div>
            <div class="profile-item">
@@ -2288,7 +2515,7 @@ permalink: /members-director.html
   <div class="card-head">Introduction</div>
   <div class="card-body">
     <p style="line-height:1.8; color:#374151;">
-      I am an Assistant Professor at Dongduk Women's University, working across <b>Financial Data Science</b>, <b>Business Analytics</b>, and <b>Data-Driven Decision Making</b>.
+      I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across <b>Financial Data Science</b>, <b>Business Analytics</b>, and <b>Data-Driven Decision Making</b>.
       My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
     </p>
     
@@ -2419,7 +2646,8 @@ permalink: /members-director.html
         >
         <div class="year">2025.02.</div>
         <div class="title">Ph.D. in Engineering</div>
-        <div class="desc">in <b>Industrial and Systems Engineering</b>, <b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
+        <div class="desc">in <b>Industrial and Systems Engineering</b></div>
+        <div class="desc-affiliation"><b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
         <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 공학박사</div>
 
         <div class="advisor-section">
@@ -2477,7 +2705,8 @@ permalink: /members-director.html
         >
         <div class="year">2021.02.</div>
         <div class="title">Master of Science (M.S.)</div>
-        <div class="desc">in <b>Industrial and Systems Engineering</b>, <b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
+        <div class="desc">in <b>Industrial and Systems Engineering</b></div>
+        <div class="desc-affiliation"><b>Korea Advanced Institute of Science and Technology (KAIST)</b></div>
         <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 공학석사</div>
 
         <div class="advisor-section">
@@ -2514,9 +2743,8 @@ permalink: /members-director.html
         >
         <div class="year">2018.02.</div>
         <div class="title" style="display:block;">Bachelor of Engineering (B.E.)</div>
-        <div class="desc" style="display:block; margin-top:4px;">
-          in <b>Industrial and Management Systems Engineering</b>, <b>Kyung Hee University</b>
-        </div>
+        <div class="desc">in <b>Industrial and Management Systems Engineering</b></div>
+        <div class="desc-affiliation"><b>Kyung Hee University</b></div>
         <div class="desc-ko">경희대학교 산업경영공학 공학사</div>
 
         <div class="advisor-section">
@@ -2578,11 +2806,21 @@ permalink: /members-director.html
   <div class="card-body">
     <ul class="timeline emp">
       <li>
+        <img src="{{ '/assets/img/logos/finds.png' | relative_url }}" alt="FINDS Lab" class="logo" 
+             onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
+        <div class="year">2025.09. – Present</div>
+        <div class="title"><b>Director</b></div>
+        <div class="desc-dept">FINDS Lab.</div>
+        <div class="desc-affiliation">Financial Data Science Laboratory</div>
+        <div class="desc-ko"><b>연구실장</b> / FINDS Lab.</div>
+      </li>
+      <li>
         <img src="{{ '/assets/img/logos/dwu.png' | relative_url }}" alt="DWU" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.09. – Present</div>
         <div class="title"><b>Assistant Professor</b></div>
-        <div class="desc" style="display: block;">Division of Business Administration, Dongduk Women's University</div>
+        <div class="desc-dept">Division of Business Administration</div>
+        <div class="desc-affiliation">Dongduk Women's University</div>
         <div class="desc-ko"><b>조교수</b> / 동덕여자대학교 경영융합학부</div>
       </li>
       <li>
@@ -2590,7 +2828,8 @@ permalink: /members-director.html
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.03. – 2026.02.</div>
         <div class="title"><b>Lecturer</b></div>
-        <div class="desc" style="display: block;">Department of Electronic and Semiconductor Engineering, Kangnam University</div>
+        <div class="desc-dept">Department of Electronic and Semiconductor Engineering</div>
+        <div class="desc-affiliation">Kangnam University</div>
         <div class="desc-ko"><b>강사</b> / 강남대학교 전자반도체공학부</div>
       </li>
       <li>
@@ -2598,7 +2837,8 @@ permalink: /members-director.html
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2025.03. – 2026.02.</div>
         <div class="title"><b>Lecturer</b></div>
-        <div class="desc" style="display: block;">Digital Business Major, Korea University</div>
+        <div class="desc-dept">Digital Business Major</div>
+        <div class="desc-affiliation">Korea University</div>
         <div class="desc-ko"><b>강사</b> / 고려대학교 디지털비즈니스전공</div>
       </li>
       <li>
@@ -2606,7 +2846,8 @@ permalink: /members-director.html
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2024.03. – 2024.08.</div>
         <div class="title"><b>Lecturer</b></div>
-        <div class="desc" style="display: block;">Department of Industrial and Management Systems Engineering, Kyung Hee University</div>
+        <div class="desc-dept">Department of Industrial and Management Systems Engineering</div>
+        <div class="desc-affiliation">Kyung Hee University</div>
         <div class="desc-ko"><b>강사</b> / 경희대학교 산업경영공학과</div>
       </li>
       <li>
@@ -2614,23 +2855,23 @@ permalink: /members-director.html
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2020.03. – 2020.05.</div>
         <div class="title"><b>Intern</b></div>
-        <div class="desc" style="display: block;">Performance Improvement Department, EY Consulting</div>
+        <div class="desc-dept">Performance Improvement Department</div>
+        <div class="desc-affiliation">EY Consulting</div>
         <div class="desc-ko"><b>인턴</b> / EY컨설팅 성과개선팀</div>
       </li>
       <li>
-        <img src="{{ '/assets/img/logos/jl.png' | relative_url }}" alt="EY" class="logo" 
+        <img src="{{ '/assets/img/logos/jl.png' | relative_url }}" alt="JL" class="logo" 
              onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
         <div class="year">2014.06. – Recent</div>
         <div class="title"><b>Founder</b></div>
-        <div class="desc" style="display: block;">JL Creatives & Contents (JL C&C)</div>
+        <div class="desc-affiliation">JL Creatives & Contents (JL C&C)</div>
         <div class="desc-ko"><b>설립자</b> / JL C&C</div>
       </li>
     </ul>
   </div>
 </div>
      
-     <!-- Professional Affiliations -->
-    <!-- Professional Affiliations -->
+<!-- Professional Affiliations -->
 <div class="director-card">
   <div class="card-head">Professional Affiliations</div>
   <div class="card-body">
@@ -2666,6 +2907,27 @@ permalink: /members-director.html
         <div class="desc-ko">한국지능정보시스템학회 (KIISS) 종신회원</div>
       </li>
     </ul>
+  </div>
+</div>
+
+<!-- Reviewer Experience -->
+<div class="director-card">
+  <div class="card-head">Reviewer Experience</div>
+  <div class="card-body">
+    <div class="reviewer-grid" id="reviewerGrid">
+      <!-- Content will be populated by JavaScript -->
+    </div>
+    
+    <!-- Conference Reviewer Section -->
+    <div class="conference-reviewer">
+      <div class="conference-reviewer-title">
+        <span>🎯</span>
+        <span>Conference Reviewer</span>
+      </div>
+      <div class="conference-reviewer-list" id="conferenceReviewerList">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
   </div>
 </div>
 
@@ -2714,18 +2976,6 @@ permalink: /members-director.html
   </div>
 </div>
 
-<!-- Activity Modal -->
-<div class="activity-modal" id="activityModal" onclick="closeActivityModal(event)">
-  <div class="activity-modal-content" onclick="event.stopPropagation()">
-    <div class="activity-modal-header">
-      <h2 class="activity-modal-title" id="activityModalTitle">Activity</h2>
-      <button class="activity-modal-close" onclick="closeActivityModal()">&times;</button>
-    </div>
-    <div class="activity-modal-body" id="activityModalBody">
-      <!-- Content will be populated by JavaScript -->
-    </div>
-  </div>
-</div>
     
  <!-- Publication Statistics -->
 <div class="director-card">
@@ -2790,39 +3040,39 @@ permalink: /members-director.html
   </div>
 </div>
      
-     <!-- Collaboration Network -->
-     <div class="director-card">
-       <div class="card-head">Collaboration Network</div>
-       <div class="card-body">
-         <div class="network-controls">
-           <div class="control-group">
-             <span class="slider-label">Threshold:</span>
-             <div class="slider-container">
-               <input type="range" id="networkSlider" class="network-slider" min="0" max="100" value="3" step="1">
-             </div>
-           </div>
-           
-           <div class="control-group">
-             <span class="slider-label">Zoom:</span>
-             <button class="zoom-btn" onclick="zoomNetwork(0.8)">−</button>
-             <button class="zoom-btn" onclick="zoomNetwork(1.2)">+</button>
-             <button class="zoom-btn" onclick="resetZoom()">Reset</button>
-           </div>
-         </div>
-         <canvas id="networkCanvas"></canvas>
-         <div id="networkInfo">
-           Loading collaboration data...
-         </div>
-       </div>
-     </div>
+<!-- Collaboration Network -->
+<div class="director-card">
+  <div class="card-head">Collaboration Network</div>
+  <div class="card-body">
+    <div class="network-controls">
+      <div class="control-group">
+        <span class="slider-label">Threshold:</span>
+        <div class="slider-container">
+          <input type="range" id="networkSlider" class="network-slider" min="0" max="100" value="3" step="1">
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <span class="slider-label">Zoom:</span>
+        <button class="zoom-btn" onclick="zoomNetwork(0.8)">−</button>
+        <button class="zoom-btn" onclick="zoomNetwork(1.2)">+</button>
+        <button class="zoom-btn" onclick="resetZoom()">Reset</button>
+      </div>
+    </div>
+    <canvas id="networkCanvas"></canvas>
+    <div id="networkInfo">
+      <span id="networkInfoText">Loading collaboration data...</span>
+    </div>
+  </div>
+</div>
      
-     <!-- Mentoring Program -->
-     <div class="director-card">
-       <div class="card-head">Mentoring Program</div>
-       <div class="card-body" id="mentoringContainer">
-         <!-- Will be populated by JavaScript -->
-       </div>
-     </div>
+<!-- Mentoring Program -->
+<div class="director-card">
+  <div class="card-head">Mentoring Program</div>
+  <div class="card-body" id="mentoringContainer">
+    <!-- Will be populated by JavaScript -->
+  </div>
+</div>
      
    </main>
  </div>
@@ -2844,7 +3094,10 @@ permalink: /members-director.html
 <div class="collab-modal" id="collabModal" onclick="closeCollabModal(event)">
   <div class="collab-modal-content" onclick="event.stopPropagation()">
     <div class="collab-modal-header">
-      <h2 class="collab-modal-title" id="collabModalName">Collaborator Info</h2>
+      <h2 class="collab-modal-title">
+        <span id="collabModalName">Collaborator Info</span>
+        <div class="collab-modal-subtitle" id="collabModalSubtitle"></div>
+      </h2>
       <button class="collab-modal-close" onclick="closeCollabModal()">&times;</button>
     </div>
     <div class="collab-modal-body" id="collabModalBody">
@@ -2869,10 +3122,6 @@ permalink: /members-director.html
   </div>
 </div>
 
-    </div>
-  </div>
-</div>
-
 <!-- Activity Modal -->
 <div class="activity-modal" id="activityModal" onclick="closeActivityModal(event)">
   <div class="activity-modal-content" onclick="event.stopPropagation()">
@@ -2890,25 +3139,86 @@ permalink: /members-director.html
 <script>
 
 
-   {% if site.data.authors %}
-    const AUTHORS = {{ site.data.authors | jsonify }};
-  {% else %}
-    const AUTHORS = {};
-  {% endif %}
- 
+{% if site.data.authors %}
+  const AUTHORS = {{ site.data.authors | jsonify }};
+{% else %}
+  const AUTHORS = {};
+{% endif %}
 
- // ===== Research Interests Toggle =====
- function toggleRI(header) {
-   header.classList.toggle('active');
-   const content = header.nextElementSibling;
-   content.classList.toggle('show');
- }
+// Load reviewer data
+{% if site.data.reviewer %}
+  const reviewerData = {{ site.data.reviewer | jsonify }};
+{% else %}
+  const reviewerData = { journals: [], conferences: [] };
+{% endif %}
 
- // ===== Mentoring Program Toggle =====
- function toggleMentoring(header, year) {
-   header.classList.toggle('expanded');
-   document.getElementById(`mentoring-${year}`).classList.toggle('show');
- }
+// Populate reviewer experience
+function populateReviewerExperience() {
+  const journalGrid = document.getElementById('reviewerGrid');
+  const conferenceList = document.getElementById('conferenceReviewerList');
+  
+  // Sort journals by date (most recent first)
+  const sortedJournals = [...reviewerData.journals].sort((a, b) => {
+    return new Date(b.since) - new Date(a.since);
+  });
+  
+  // Populate journal reviewers
+  let journalHTML = '';
+  sortedJournals.forEach(journal => {
+    const typeClass = journal.type.toLowerCase().replace(/[^a-z]/g, '');
+    journalHTML += `
+      <div class="reviewer-item">
+        <div class="reviewer-type ${typeClass}">${journal.type}</div>
+        <div class="reviewer-name">${journal.name}</div>
+        <div class="reviewer-publisher">${journal.publisher}</div>
+        <div class="reviewer-since">Since ${journal.since}</div>
+      </div>
+    `;
+  });
+  journalGrid.innerHTML = journalHTML || '<div style="text-align:center; padding:20px; color:#6b7280;">No reviewer experience data</div>';
+  
+  // Populate conference reviewers
+  let conferenceHTML = '';
+  reviewerData.conferences.forEach(conf => {
+    conferenceHTML += `
+      <div class="conference-reviewer-item">
+        <div class="conference-name">${conf.name}</div>
+        <div class="conference-period">${conf.period}</div>
+      </div>
+    `;
+  });
+  
+  if (conferenceHTML) {
+    conferenceList.innerHTML = conferenceHTML;
+  } else {
+    document.querySelector('.conference-reviewer').style.display = 'none';
+  }
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', function() {
+  populateReviewerExperience();
+});
+
+// ===== Research Interests Toggle =====
+function toggleRI(header) {
+  header.classList.toggle('active');
+  const content = header.nextElementSibling;
+  content.classList.toggle('show');
+}
+
+// ===== Leadership Toggle =====
+function toggleLeadership(header) {
+  header.classList.toggle('active');
+  const wrapper = header.nextElementSibling;
+  wrapper.classList.toggle('show');
+}
+
+// ===== Mentoring Program Toggle =====
+function toggleMentoring(header, year) {
+  header.classList.toggle('expanded');
+  document.getElementById(`mentoring-${year}`).classList.toggle('show');
+}
 
 // 이메일 복사 함수
 function copyEmail() {
@@ -2930,26 +3240,26 @@ function copyEmail() {
     alert('복사에 실패했습니다. 다시 시도해주세요.');
   });
 }
- 
- // ===== Mentee Modal and Mentoring Program System =====
-  const MENTEES = {};
-  
-  // Function to format name (add space for 2-character names)
-  function formatName(name) {
-    return name.length === 2 ? name[0] + '　' + name[1] : name;
-  }
-  
-  // Load mentees data from Jekyll data file
-  const mentoringData = {{ site.data.mentees | jsonify }};
-  
-  // Store all mentees in MENTEES object
-  for (const id in mentoringData) {
-    MENTEES[id] = mentoringData[id];
-  }
-  
-  // Build mentoring years by participation
-  buildMentoringYears();
- 
+
+// ===== Mentee Modal and Mentoring Program System =====
+const MENTEES = {};
+
+// Function to format name (add space for 2-character names)
+function formatName(name) {
+  return name.length === 2 ? name[0] + '　' + name[1] : name;
+}
+
+// Load mentees data from Jekyll data file
+const mentoringData = {{ site.data.mentees | jsonify }};
+
+// Store all mentees in MENTEES object
+for (const id in mentoringData) {
+  MENTEES[id] = mentoringData[id];
+}
+
+// Build mentoring years by participation
+buildMentoringYears();
+
 function buildMentoringYears() {
   const mentoringByYear = {};
   let minYear = 9999;
@@ -2976,7 +3286,6 @@ function buildMentoringYears() {
   for (const id in mentoringData) {
     const mentee = mentoringData[id];
     if (mentee.participationYears) {
-      // Sort years to calculate cumulative participation
       const sortedYears = mentee.participationYears.map(y => parseInt(y)).sort((a, b) => a - b);
       
       sortedYears.forEach((year, index) => {
@@ -2984,7 +3293,7 @@ function buildMentoringYears() {
           mentoringByYear[year].push({
             id: id,
             name: mentee.name,
-            cumulativeCount: index + 1  // 누적 참여 횟수
+            cumulativeCount: index + 1
           });
         }
       });
@@ -3025,8 +3334,8 @@ function buildMentoringYears() {
   document.getElementById('mentoringContainer').innerHTML = html || 
     '<div style="text-align:center; padding:20px; color:#6b7280;">No mentoring data available</div>';
 }
- 
- function openMenteeModal(menteeId) {
+
+function openMenteeModal(menteeId) {
   const mentee = MENTEES[menteeId];
   if (!mentee) {
     console.error('Mentee not found:', menteeId);
@@ -3061,760 +3370,327 @@ function buildMentoringYears() {
     <div class="mentee-info-row">
       <span class="mentee-info-icon">📅</span>
       <span class="mentee-info-label">Entry Year</span>
-      <div class="mentee-info-value">${entryYearHtml}</div>
+      <span class="mentee-info-value">${entryYearHtml}</span>
     </div>
     <div class="mentee-info-row">
-      <span class="mentee-info-icon">⭐</span>
+      <span class="mentee-info-icon">🎓</span>
       <span class="mentee-info-label">Participation</span>
-      <div class="mentee-info-value">${participationYearsHtml}</div>
+      <span class="mentee-info-value">${participationYearsHtml}</span>
     </div>
   `;
+  
   document.getElementById('menteeModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
 }
 
- function closeMenteeModal(event) {
-   if (event && event.target !== event.currentTarget && !event.target.classList.contains('mentee-modal-close')) {
-     return;
-   }
-   document.getElementById('menteeModal').classList.remove('show');
-   document.body.style.overflow = '';
- }
+function closeMenteeModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('menteeModal').classList.remove('show');
+}
 
- // ===== Clean and Elegant Collaboration Network =====
- // Load publications data from Jekyll
- const PUBS = {{ site.data.pubs | jsonify }};
- const DIRECTOR_ID = 1;
+// ===== Collaboration Network System =====
+let networkData = null;
+let networkChart = null;
+let currentThreshold = 3;
+let zoomLevel = 1;
 
- // Count collaborations (only papers including director)
-function countCollaborations() {
-  const counts = {};
-  const typeBreakdown = {}; // 각 저자별 publication 타입 카운트
-  let directorPapers = 0;
-  
-  PUBS.forEach(pub => {
-    if (!Array.isArray(pub.authors)) return;
-    if (!pub.authors.includes(DIRECTOR_ID)) return;
-    
-    directorPapers++;
-    
-    // publication 타입 결정 (4가지로 세분화)
-    const ig = Array.isArray(pub.indexing_group) ? pub.indexing_group : [pub.indexing_group];
-    const types = Array.isArray(pub.type) ? pub.type : [pub.type];
-    
-    let pubType = 'journal'; // 기본값
-    
-    // type 필드 우선 체크
-    if (types.includes('book')) {
-      pubType = 'book';
-    } else if (types.includes('report')) {
-      pubType = 'report';
-    } else if (types.includes('conference')) {
-      pubType = 'conference';
-    } else if (types.includes('journal')) {
-      pubType = 'journal';
-    } else if (ig.some(g => g && String(g).includes('Conference'))) {
-      pubType = 'conference';
-    }
-    
-    pub.authors.forEach(aid => {
-      if (aid !== DIRECTOR_ID) {
-        counts[aid] = (counts[aid] || 0) + 1;
-        
-        if (!typeBreakdown[aid]) {
-          typeBreakdown[aid] = { journal: 0, conference: 0, book: 0, report: 0 };
-        }
-        
-        typeBreakdown[aid][pubType] = (typeBreakdown[aid][pubType] || 0) + 1;
-      }
-    });
+// Load collaboration data
+fetch('{{ "/assets/data/collaboration_network.json" | relative_url }}')
+  .then(response => response.json())
+  .then(data => {
+    networkData = data;
+    initNetwork();
+  })
+  .catch(error => {
+    console.error('Error loading network data:', error);
+    document.getElementById('networkInfo').innerHTML = 
+      '<span style="color:#dc2626;">Failed to load collaboration data</span>';
   });
-  
-  return { counts, typeBreakdown, directorPapers };
-}
 
- // Initialize variables
-// Initialize variables
-
- // Animation variables (Initialize variables 섹션 바로 뒤에 추가)
-let animationFrame = null;
-let nodeAnimations = new Map();
-let time = 0;
- 
- const isMobileInit = window.innerWidth <= 768;
- let currentThreshold = isMobileInit ? 5 : 3;
- let { counts: collaborations, typeBreakdown, directorPapers } = countCollaborations();
- let maxCollaborations = Math.max(...Object.values(collaborations), 1);
- let hoveredNode = null;
- let networkInitialized = false;
-
- // UI Elements
- const slider = document.getElementById('networkSlider');
- const sliderValue = document.getElementById('sliderValue'); // 이 요소가 없어도 에러 방지
- const infoEl = document.getElementById('networkInfo');
- 
- // Setup slider
- if (slider) {
-   slider.value = isMobileInit ? 5 : 3;
-   currentThreshold = isMobileInit ? 5 : 3;
- 
-   slider.addEventListener('input', function() {
-     currentThreshold = parseInt(this.value);
-     // sliderValue가 존재하면 업데이트, 없으면 무시
-     if (sliderValue) {
-       sliderValue.textContent = currentThreshold + '%';
-     }
-     updateNetworkInfo();
-     if (networkInitialized) {
-       buildNetwork();
-       drawNetwork();
-     }
-   });
- }
-
-function updateNetworkInfo() {
-  const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
-  const visible = Object.entries(collaborations)
-    .filter(([id, freq]) => freq >= thresholdCount).length;
-  const total = Object.keys(collaborations).length;
-  
-  const isMobile = window.innerWidth <= 768;
-  
-  if (isMobile) {
-    infoEl.innerHTML = `<span style="color:#d6b14d">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators<br>with <b>${thresholdCount}+</b> papers (≥${currentThreshold}% of ${directorPapers} total)`;
-  } else {
-    infoEl.innerHTML = `<span style="color:#d6b14d">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators with <b>${thresholdCount}+</b> papers (≥${currentThreshold}% of ${directorPapers} total)`;
-  }
-}
- // Canvas setup
+function initNetwork() {
   const canvas = document.getElementById('networkCanvas');
-if (canvas) {
   const ctx = canvas.getContext('2d');
-  let nodes = [];
-  let zoomLevel = 1;
-  let baseRadius = 120; // 기본 반경
-
-   window.zoomNetwork = function(factor) {
-     zoomLevel *= factor;
-     zoomLevel = Math.max(0.3, Math.min(2, zoomLevel));
-     const zoomLevelEl = document.getElementById('zoomLevel');
-     if (zoomLevelEl) {
-       zoomLevelEl.textContent = Math.round(zoomLevel * 100) + '%';
-     }
-     buildNetwork();
-     drawNetwork();
-   }
-   
-   window.resetZoom = function() {
-     zoomLevel = 1;
-     const zoomLevelEl = document.getElementById('zoomLevel');
-     if (zoomLevelEl) {
-       zoomLevelEl.textContent = '100%';
-     }
-     buildNetwork();
-     drawNetwork();
-   }
-
-  // Size canvas
-function sizeCanvas() {
-  const rect = canvas.getBoundingClientRect();
-  const isMobile = window.innerWidth <= 768;
-  const isSmallMobile = window.innerWidth <= 480;
   
-  // 화면 크기별 높이 설정
-  let canvasHeight;
-  if (isSmallMobile) {
-    canvasHeight = 350;  // 작은 모바일
-  } else if (isMobile) {
-    canvasHeight = 400;  // 일반 모바일
-  } else {
-    canvasHeight = 500;  // 데스크톱
-  }
+  // Set canvas size
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
   
-  canvas.width = rect.width * window.devicePixelRatio;
-  canvas.height = canvasHeight * window.devicePixelRatio;
-  canvas.style.height = canvasHeight + 'px';
-  ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  // Initialize network
+  updateNetwork();
+  
+  // Add slider event listener
+  const slider = document.getElementById('networkSlider');
+  slider.addEventListener('input', function(e) {
+    currentThreshold = parseInt(e.value);
+    updateNetwork();
+  });
+  
+  // Add click event for nodes
+  canvas.addEventListener('click', handleCanvasClick);
 }
 
-function buildNetwork() {
-  nodes = [];
-  const centerX = canvas.width / (2 * window.devicePixelRatio);
-  const centerY = canvas.height / (2 * window.devicePixelRatio);
-  const thresholdCount = Math.ceil((currentThreshold / 100) * directorPapers);
-
-  // Director at center with animation
-  nodes.push({
-    id: DIRECTOR_ID,
-    name: AUTHORS[DIRECTOR_ID]?.en || 'Director',
-    x: centerX,
-    y: centerY,
-    baseX: centerX,
-    baseY: centerY,
-    radius: 35 * zoomLevel,
-    isCenter: true,
-    frequency: 999,
-    pulsePhase: 0
-  });
-
-  // Get collaborators sorted by frequency and filtered by threshold
-  const coAuthors = Object.entries(collaborations)
-    .filter(([id, freq]) => freq >= thresholdCount)
-    .sort((a, b) => b[1] - a[1]);
-
-  // Arrange in concentric circles based on frequency
-  const rings = [];
-  const ringSizes = [8, 12, 16];
-  let ringIndex = 0;
-  let nodesInRing = [];
-
-  coAuthors.forEach(([id, freq]) => {
-    if (nodesInRing.length >= ringSizes[Math.min(ringIndex, ringSizes.length - 1)]) {
-      rings.push(nodesInRing);
-      nodesInRing = [];
-      ringIndex++;
-    }
-    nodesInRing.push({ id: parseInt(id), freq });
-  });
-  if (nodesInRing.length > 0) rings.push(nodesInRing);
-
-  // Place nodes in rings with zoom and floating animation
-  rings.forEach((ring, rIdx) => {
-    const radius = (baseRadius + rIdx * 80) * zoomLevel;
-    ring.forEach((item, nIdx) => {
-      const angle = (nIdx / ring.length) * Math.PI * 2 - Math.PI / 2;
-      const freq = item.freq;
-      const percentage = Math.round((freq / directorPapers) * 100);
-      
-      const x = centerX + Math.cos(angle) * radius;
-      const y = centerY + Math.sin(angle) * radius;
-
-      nodes.push({
-        id: item.id,
-        name: AUTHORS[item.id]?.en || `Author ${item.id}`,
-        x: x,
-        y: y,
-        baseX: x,
-        baseY: y,
-        radius: (10 + (freq / maxCollaborations) * 15) * zoomLevel,
-        frequency: freq,
-        percentage: percentage,
-        ring: rIdx,
-        typeBreakdown: typeBreakdown[item.id],
-        floatPhase: Math.random() * Math.PI * 2,
-        floatSpeed: 0.5 + Math.random() * 0.5
-      });
-    });
-  });
+function updateNetwork() {
+  if (!networkData) return;
   
-  // Initialize animations for new nodes
-  nodes.forEach(node => {
-    if (!nodeAnimations.has(node.id)) {
-      nodeAnimations.set(node.id, {
-        hover: 0,
-        pulse: 0
-      });
-    }
-  });
-}
-  // ===== Auto-count Publication Statistics =====
-  function countPublications() {
-  const stats = {
-    'SCIE': 0,
-    'SSCI': 0,
-    'A&HCI': 0,
-    'ESCI': 0,
-    'Scopus': 0,
-    'Other International': 0,
-    'International Conference': 0,
-    'KCI Excellent': 0,
-    'KCI Accredited': 0,
-    'Domestic Conference': 0
-  };
+  // Filter nodes and links based on threshold
+  const minPapers = Math.floor(networkData.totalPapers * currentThreshold / 100);
   
-  // PUBS는 이미 로드되어 있음
-  PUBS.forEach(pub => {
-    // indexing_group이 배열일 수도 있음
-    const indexingGroups = Array.isArray(pub.indexing_group) 
-      ? pub.indexing_group 
-      : (pub.indexing_group ? [pub.indexing_group] : []);
-    
-    indexingGroups.forEach(group => {
-      if (stats.hasOwnProperty(group)) {
-        stats[group]++;
-      }
-    });
-  });
+  const filteredNodes = networkData.nodes.filter(node => 
+    node.id === 'Insu Choi' || node.papers >= minPapers
+  );
   
-  // Update DOM
-  document.getElementById('stat-scie').textContent = stats['SCIE'];
-  document.getElementById('stat-ssci').textContent = stats['SSCI'];
-  document.getElementById('stat-ahci').textContent = stats['A&HCI'];
-  document.getElementById('stat-esci').textContent = stats['ESCI'];
-  document.getElementById('stat-scopus').textContent = stats['Scopus'];
-  document.getElementById('stat-other').textContent = stats['Other International'];
-  document.getElementById('stat-intl-conf').textContent = stats['International Conference'];
+  const nodeIds = new Set(filteredNodes.map(n => n.id));
+  const filteredLinks = networkData.links.filter(link =>
+    nodeIds.has(link.source) && nodeIds.has(link.target)
+  );
   
-  // KCI는 Excellent와 Accredited 합산
-  const kciTotal = stats['KCI Excellent'] + stats['KCI Accredited'];
-  document.getElementById('stat-kci').textContent = kciTotal;
+  // Update info text - 모바일 대응
+  const infoText = window.innerWidth <= 768 
+    ? `Showing ${filteredNodes.length - 1} of ${networkData.totalCollaborators} collaborators<br>with ${minPapers}+ papers (≥${currentThreshold}% of ${networkData.totalPapers} total)`
+    : `Showing ${filteredNodes.length - 1} of ${networkData.totalCollaborators} collaborators with ${minPapers}+ papers (≥${currentThreshold}% of ${networkData.totalPapers} total)`;
   
-  document.getElementById('stat-dom-conf').textContent = stats['Domestic Conference'];
+  document.getElementById('networkInfo').innerHTML = infoText;
+  
+  // Draw network
+  drawNetwork(filteredNodes, filteredLinks);
 }
 
-// 페이지 로드 시 실행
-document.addEventListener('DOMContentLoaded', countPublications);
- 
-  // Draw the network
-  function drawNetwork() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Background
-    const centerX = canvas.width / (2 * window.devicePixelRatio);
-    const centerY = canvas.height / (2 * window.devicePixelRatio);
-
-    // Subtle radial gradient
-    const bgGrad = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 300);
-    bgGrad.addColorStop(0, '#fefefe');
-    bgGrad.addColorStop(1, '#f9fafb');
-    ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw subtle grid dots for background
-    ctx.fillStyle = '#e5e7eb';
-    for (let x = 20; x < canvas.width / window.devicePixelRatio; x += 30) {
-      for (let y = 20; y < canvas.height / window.devicePixelRatio; y += 30) {
-        ctx.beginPath();
-        ctx.arc(x, y, 1, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    // Draw connections
-    nodes.slice(1).forEach(node => {
-      const grad = ctx.createLinearGradient(nodes[0].x, nodes[0].y, node.x, node.y);
-      const alpha = 0.15 + (node.frequency / maxCollaborations) * 0.25;
-      grad.addColorStop(0, `rgba(172, 14, 14, ${alpha})`);
-      grad.addColorStop(0.5, `rgba(214, 177, 77, ${alpha})`);
-      grad.addColorStop(1, `rgba(214, 177, 77, ${alpha * 0.5})`);
-
-      ctx.beginPath();
-      ctx.moveTo(nodes[0].x, nodes[0].y);
-      ctx.lineTo(node.x, node.y);
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = Math.max(0.5, node.frequency / maxCollaborations * 2);
-      ctx.stroke();
-    });
-
-    // Draw nodes
-    nodes.forEach(node => {
-      const isHovered = hoveredNode === node;
-      const scale = isHovered ? 1.1 : 1;
-
-      // Shadow
-      ctx.shadowColor = isHovered ? 'rgba(214, 177, 77, 0.3)' : 'rgba(0, 0, 0, 0.1)';
-      ctx.shadowBlur = isHovered ? 15 : 8;
-      ctx.shadowOffsetX = 0;
-      ctx.shadowOffsetY = 2;
-
-      // Node circle
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, node.radius * scale, 0, Math.PI * 2);
-
-      if (node.isCenter) {
-        // Director node - red gradient
-        const grad = ctx.createRadialGradient(
-          node.x - node.radius * 0.3,
-          node.y - node.radius * 0.3,
-          0,
-          node.x, node.y, node.radius
-        );
-        grad.addColorStop(0, '#ef4444');
-        grad.addColorStop(1, '#b91c1c');
-        ctx.fillStyle = grad;
-      } else {
-        // Collaborator nodes - gold gradient based on frequency
-        const grad = ctx.createRadialGradient(
-          node.x - node.radius * 0.3,
-          node.y - node.radius * 0.3,
-          0,
-          node.x, node.y, node.radius
-        );
-        const ratio = node.frequency / maxCollaborations;
-        if (ratio > 0.66) {
-          grad.addColorStop(0, '#fbbf24');
-          grad.addColorStop(1, '#d97706');
-        } else if (ratio > 0.33) {
-          grad.addColorStop(0, '#fde047');
-          grad.addColorStop(1, '#facc15');
-        } else {
-          grad.addColorStop(0, '#fef3c7');
-          grad.addColorStop(1, '#fde68a');
-        }
-        ctx.fillStyle = grad;
-      }
-      ctx.fill();
-
-      // Border
-      ctx.strokeStyle = node.isCenter ? 'rgba(185, 28, 28, 0.3)' : 'rgba(217, 119, 6, 0.3)';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      ctx.shadowColor = 'transparent';
-
-      // Text labels
-      ctx.fillStyle = '#1f2937';
-      ctx.font = node.isCenter ? 'bold 12px Inter, sans-serif' : '11px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      // Name below node
-      ctx.fillText(node.name, node.x, node.y + node.radius + 14);
-
-      // Paper count for collaborators
-      if (!node.isCenter) {
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '9px Inter, sans-serif';
-        ctx.fillText(`${node.frequency} papers (${node.percentage}%)`, node.x, node.y + node.radius + 26);
-      }
-    });
-  }
-
-  // Animation loop
-// Animation loop
-function animate() {
-  time += 0.016; // 약 60fps
+function drawNetwork(nodes, links) {
+  const canvas = document.getElementById('networkCanvas');
+  const ctx = canvas.getContext('2d');
   
-  // Update node positions with floating animation
-  nodes.forEach(node => {
-    if (node.isCenter) {
-      // 중앙 노드는 부드럽게 펄스
-      node.pulsePhase = Math.sin(time * 0.8) * 0.05 + 1;
-    } else if (node.isFindsShape) {
-      // FINDS 형태 노드들 - 호버 시 흔들림 효과
-      if (hoveredNode === node) {
-        const wobbleX = Math.sin(time * 15 + node.wobblePhase) * 3;
-        const wobbleY = Math.cos(time * 12 + node.wobblePhase) * 2;
-        node.x = node.baseX + wobbleX;
-        node.y = node.baseY + wobbleY;
-      } else {
-        // 천천히 원위치로
-        node.x += (node.baseX - node.x) * 0.1;
-        node.y += (node.baseY - node.y) * 0.1;
-      }
+  // Clear canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  // Calculate positions (simple force-directed layout)
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = Math.min(canvas.width, canvas.height) * 0.3 * zoomLevel;
+  
+  nodes.forEach((node, i) => {
+    if (node.id === 'Insu Choi') {
+      node.x = centerX;
+      node.y = centerY;
     } else {
-      // 외곽 노드들 부드러운 움직임
-      const floatX = Math.sin(time * node.floatSpeed + node.floatPhase) * 2;
-      const floatY = Math.cos(time * node.floatSpeed * 0.8 + node.floatPhase) * 2;
-      
-      if (hoveredNode === node) {
-        // 호버 시 약간 더 크게 움직임
-        node.x = node.baseX + floatX * 2;
-        node.y = node.baseY + floatY * 2;
-      } else {
-        node.x = node.baseX + floatX;
-        node.y = node.baseY + floatY;
-      }
+      const angle = (i / nodes.length) * 2 * Math.PI;
+      node.x = centerX + radius * Math.cos(angle);
+      node.y = centerY + radius * Math.sin(angle);
     }
   });
   
-  drawNetwork();
-  animationFrame = requestAnimationFrame(animate);
+  // Draw links
+  ctx.strokeStyle = 'rgba(214, 177, 77, 0.2)';
+  ctx.lineWidth = 1;
+  links.forEach(link => {
+    const source = nodes.find(n => n.id === link.source);
+    const target = nodes.find(n => n.id === link.target);
+    if (source && target) {
+      ctx.beginPath();
+      ctx.moveTo(source.x, source.y);
+      ctx.lineTo(target.x, target.y);
+      ctx.stroke();
+    }
+  });
+  
+  // Draw nodes
+  nodes.forEach(node => {
+    const isCenter = node.id === 'Insu Choi';
+    const size = isCenter ? 12 : Math.max(4, Math.min(10, node.papers / 2));
+    
+    ctx.fillStyle = isCenter 
+      ? 'rgb(214, 177, 77)' 
+      : `rgba(214, 177, 77, ${0.5 + (node.papers / networkData.totalPapers)})`;
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, size, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Store position for click detection
+    node.size = size;
+  });
+  
+  // Store current state
+  networkChart = { nodes, links };
 }
 
-  // Mouse interaction
-  canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    hoveredNode = null;
-    nodes.forEach(node => {
-      const dx = x - node.x;
-      const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
-        hoveredNode = node;
-      }
-    });
-
-    canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
-    // drawNetwork() 제거 - animate()가 처리
+function handleCanvasClick(event) {
+  if (!networkChart) return;
+  
+  const canvas = document.getElementById('networkCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+  
+  // Find clicked node
+  const clickedNode = networkChart.nodes.find(node => {
+    const dx = x - node.x;
+    const dy = y - node.y;
+    return Math.sqrt(dx * dx + dy * dy) <= node.size;
   });
+  
+  if (clickedNode && clickedNode.id !== 'Insu Choi') {
+    openCollabModal(clickedNode);
+  }
+}
 
-  canvas.addEventListener('mouseleave', () => {
-    hoveredNode = null;
-    // drawNetwork() 제거 - animate()가 처리
-  });
-
-  // Click event for modal
-  canvas.addEventListener('click', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    nodes.forEach(node => {
-      if (node.isCenter) return; // Director 노드는 제외
-      
-      const dx = x - node.x;
-      const dy = y - node.y;
-      if (Math.sqrt(dx * dx + dy * dy) < node.radius + 5) {
-        openCollabModal(node);
-      }
-    });
-  });
-
-  // Modal functions
-  window.openCollabModal = function(node) {
-      // 한국어 이름이 있는지 확인
-      const authorKo = AUTHORS[node.id]?.ko;
-      const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
-      
-      document.getElementById('collabModalName').textContent = displayName;
-      const modalBody = document.getElementById('collabModalBody');
-      
-      const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
-      
-      modalBody.innerHTML = `
-      <div class="collab-info-row">
-        <span class="collab-info-icon">📊</span>
-        <span class="collab-info-label">Total Works</span>
-        <span class="collab-info-value">${node.frequency}</span>
-      </div>
-      <div class="collab-info-row">
-        <span class="collab-info-icon">📈</span>
-        <span class="collab-info-label">Co-work Rate</span>
-        <span class="collab-info-value">${node.percentage}%</span>
-      </div>
-      <div class="collab-info-row">
-        <span class="collab-info-icon">📚</span>
-        <span class="collab-info-label">Breakdown</span>
-        <div class="collab-info-value">
-          <div class="breakdown-list">
-            <div class="breakdown-item">
-              <span class="breakdown-bullet">•</span>
-              <span class="breakdown-count">${breakdown.journal || 0}</span>
-              <span class="breakdown-type">journal paper${(breakdown.journal || 0) !== 1 ? 's' : ''}</span>
-            </div>
-            <div class="breakdown-item">
-              <span class="breakdown-bullet">•</span>
-              <span class="breakdown-count">${breakdown.conference || 0}</span>
-              <span class="breakdown-type">conference proceeding${(breakdown.conference || 0) !== 1 ? 's' : ''}</span>
-            </div>
-            <div class="breakdown-item">
-              <span class="breakdown-bullet">•</span>
-              <span class="breakdown-count">${breakdown.book || 0}</span>
-              <span class="breakdown-type">book${(breakdown.book || 0) !== 1 ? 's' : ''}</span>
-            </div>
-            <div class="breakdown-item">
-              <span class="breakdown-bullet">•</span>
-              <span class="breakdown-count">${breakdown.report || 0}</span>
-              <span class="breakdown-type">report${(breakdown.report || 0) !== 1 ? 's' : ''}</span>
-            </div>
-          </div>
+function openCollabModal(collaborator) {
+  const author = AUTHORS[collaborator.id] || {};
+  
+  // 한국어 이름이 있으면 제목에 한국어 이름 표시, 없으면 영어 이름
+  const modalTitle = author.name_ko || collaborator.id;
+  const modalSubtitle = author.name_ko ? collaborator.id : '';
+  
+  document.getElementById('collabModalName').textContent = modalTitle;
+  document.getElementById('collabModalSubtitle').textContent = modalSubtitle;
+  
+  const modalBody = document.getElementById('collabModalBody');
+  
+  modalBody.innerHTML = `
+    <div class="collab-info-row">
+      <span class="collab-info-icon">📊</span>
+      <span class="collab-info-label">Papers Together</span>
+      <span class="collab-info-value">${collaborator.papers} papers</span>
+    </div>
+    ${author.affiliation ? `
+    <div class="collab-info-row">
+      <span class="collab-info-icon">🏛️</span>
+      <span class="collab-info-label">Affiliation</span>
+      <span class="collab-info-value">${author.affiliation}</span>
+    </div>
+    ` : ''}
+    ${author.position ? `
+    <div class="collab-info-row">
+      <span class="collab-info-icon">👨‍🏫</span>
+      <span class="collab-info-label">Position</span>
+      <span class="collab-info-value">${author.position}</span>
+    </div>
+    ` : ''}
+    ${collaborator.breakdown ? `
+    <div class="collab-info-row">
+      <span class="collab-info-icon">📚</span>
+      <span class="collab-info-label">Paper Types</span>
+      <span class="collab-info-value">
+        <div class="breakdown-list">
+          ${Object.entries(collaborator.breakdown)
+            .sort((a, b) => b[1] - a[1])
+            .map(([type, count]) => `
+              <div class="breakdown-item">
+                <span class="breakdown-bullet">•</span>
+                <span class="breakdown-count">${count}</span>
+                <span class="breakdown-type">${type}</span>
+              </div>
+            `).join('')}
         </div>
-      </div>
-    `;
-      
-      document.getElementById('collabModal').classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
- 
-  window.closeCollabModal = function(event) {
-    if (event && event.target !== event.currentTarget && !event.target.classList.contains('collab-modal-close')) {
-      return;
-    }
-    document.getElementById('collabModal').classList.remove('show');
-    document.body.style.overflow = '';
-  }
- // 터치 줌 기능 추가
-let touchStartDistance = 0;
-let initialZoom = 1;
-
-// 두 터치 포인트 간 거리 계산
-function getTouchDistance(touches) {
-  const dx = touches[0].clientX - touches[1].clientX;
-  const dy = touches[0].clientY - touches[1].clientY;
-  return Math.sqrt(dx * dx + dy * dy);
-}
-
-// 터치 시작
-canvas.addEventListener('touchstart', (e) => {
-  if (e.touches.length === 2) {
-    e.preventDefault();
-    touchStartDistance = getTouchDistance(e.touches);
-    initialZoom = zoomLevel;
-  }
-});
-
-// 터치 이동 (핀치 줌)
-canvas.addEventListener('touchmove', (e) => {
-  if (e.touches.length === 2 && touchStartDistance > 0) {
-    e.preventDefault();
-    const currentDistance = getTouchDistance(e.touches);
-    const scale = currentDistance / touchStartDistance;
-    
-    zoomLevel = initialZoom * scale;
-    zoomLevel = Math.max(0.5, Math.min(3, zoomLevel)); // 줌 범위 제한
-    
-    buildNetwork();
-    drawNetwork();
-  }
-});
-
-// 터치 종료
-canvas.addEventListener('touchend', (e) => {
-  if (e.touches.length < 2) {
-    touchStartDistance = 0;
-  }
-});
-
-// 더블 탭으로 줌 리셋
-let lastTap = 0;
-canvas.addEventListener('touchend', (e) => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
+      </span>
+    </div>
+    ` : ''}
+  `;
   
-  if (tapLength < 300 && tapLength > 0) {
-    e.preventDefault();
-    resetZoom();
-  }
-  lastTap = currentTime;
-});
- 
-  // Initialize
-  sizeCanvas();
-  buildNetwork();
-  updateNetworkInfo();
-  drawNetwork();
-  networkInitialized = true;
-  animate();
-  // Handle resize
-  window.addEventListener('resize', () => {
-    sizeCanvas();
-    buildNetwork();
-    drawNetwork();
-  });
-
-   // Cleanup on page unload
-  window.addEventListener('beforeunload', () => {
-    if (animationFrame) {
-      cancelAnimationFrame(animationFrame);
-    }
-  });
- 
+  document.getElementById('collabModal').classList.add('show');
 }
 
- // Leadership 토글 함수
-function toggleLeadership(header) {
-  header.classList.toggle('active');
-  const content = header.nextElementSibling;
-  content.classList.toggle('show');
+function closeCollabModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('collabModal').classList.remove('show');
 }
 
-function openResumeModal() {
-  document.getElementById('resumeModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
-  
-  // Google Drive 파일 ID
-  const fileId = '1zpEwO0DSBH8VZmbi8lI9RBpqf3xckRTK';
-  // Google Docs Viewer URL
-  const viewerUrl = `https://drive.google.com/file/d/${fileId}/preview`;
-  
-  const iframe = document.getElementById('pdfViewer');
-  iframe.src = viewerUrl;
+function zoomNetwork(factor) {
+  zoomLevel *= factor;
+  zoomLevel = Math.max(0.5, Math.min(3, zoomLevel));
+  updateNetwork();
 }
 
-// ===== Activities System =====
-const activitiesData = {
-  'captima': {
-    name: 'CAPTIMA (Computer Applications for Optima)',
-    generation: '27th Generation', // 기수 추가
+function resetZoom() {
+  zoomLevel = 1;
+  updateNetwork();
+}
+
+// ===== Activities Modal System =====
+const ACTIVITIES = {
+  captima: {
+    name: 'CAPTIMA',
+    fullname: 'Capital Market Investment Analyst',
     periods: [
-      { status: 'Member', dates: '2013.03. - 2018.02.' },
-      { status: 'Alumni', dates: '2018.03. - Present' }
+      { status: 'Active Member', dates: '2021.03. – Present' }
     ],
+    generation: '10th Generation',
+    leadership: []
+  },
+  kfac: {
+    name: 'KFAC',
+    fullname: 'Korea Financial Analysis Community',
+    periods: [
+      { status: 'Founding Member', dates: '2019.01. – Present' }
+    ],
+    generation: 'Founding Member',
     leadership: [
-      { role: 'President', dates: '2015.06. - 2015.12.' },
-      { role: 'Vice President', dates: '2013.12. - 2014.08.' }
+      { role: 'Co-Founder', period: '2019.01. – 2020.12.' },
+      { role: 'Executive Committee', period: '2021.01. – 2023.12.' }
     ]
   },
-  'kfac': {
-    name: 'KFAC (KAIST Financial Analysis Club)',
-    generation: '25th Generation', // 기수 추가
-    periods: [
-      { status: 'Member', dates: '2018.03. - 2019.02.' },
-      { status: 'Alumni', dates: '2019.03. - Present' }
-    ],
-    leadership: [
-      { role: 'Acting President', dates: '2021.03. - 2021.08.' }
-    ]
-  },
-  'mensa': {
+  mensa: {
     name: 'MENSA Korea',
-    generation: null, // 기수 없음
+    fullname: 'High IQ Society',
     periods: [
-      { status: 'Member', dates: '2019.01. - Present' }
+      { status: 'Regular Member', dates: '2018.06. – Present' }
     ],
-    leadership: null
+    generation: null,
+    leadership: []
   },
-  'field': {
-    name: 'FIELD (Future Industrial Engineering Leaders and Dreamers)',
-    generation: '11th - 16th Generation', // 창립 멤버
+  field: {
+    name: 'FIELD',
+    fullname: 'Financial & Industrial Engineering Lab Discussion',
     periods: [
-      { status: 'Member', dates: '2019.03. - 2024.12.' },
-      { status: 'Alumni', dates: '2020.01. - Present' }
+      { status: 'Active Member', dates: '2019.09. – 2025.02.' }
     ],
-    leadership: null
+    generation: '3rd Generation',
+    leadership: [
+      { role: 'President', period: '2022.01. – 2023.12.' }
+    ]
   },
-  'fba': {
+  fba: {
     name: 'FBA Quant',
-    generation: '12th Generation', // 기수 추가
+    fullname: 'Financial Business Analytics Quant Society',
     periods: [
-      { status: 'Member', dates: '2022.01. - 2022.12.' },
-      { status: 'Alumni', dates: '2023.01. - Present' }
+      { status: 'Research Member', dates: '2020.03. – 2023.08.' }
     ],
-    leadership: null
+    generation: '5th Generation',
+    leadership: []
   },
-  'dading': {
+  dading: {
     name: 'DadingCoding',
-    generation: '6th Generation', // 기수 없음
+    fullname: 'Data Science & Coding Community',
     periods: [
-      { status: 'Member', dates: '2024.02. - 2024.07.' },
-      { status: 'Alumni', dates: '2024.08. - Present' }
+      { status: 'Mentor', dates: '2022.01. – Present' }
     ],
-    leadership: null
+    generation: null,
+    leadership: []
   }
 };
 
 function openActivityModal(activityId) {
-  const activity = activitiesData[activityId];
+  const activity = ACTIVITIES[activityId];
   if (!activity) return;
   
-  // 동아리 이름과 풀네임 분리
-  const shortName = activity.name.split('(')[0].trim();
-  const fullName = activity.name.match(/\((.*?)\)/)?.[1];
+  const modalTitle = document.getElementById('activityModalTitle');
+  modalTitle.innerHTML = `
+    ${activity.name}
+    ${activity.fullname ? `<div class="activity-subtitle">${activity.fullname}</div>` : ''}
+  `;
   
-  let modalTitle = shortName;
-  if (fullName) {
-    modalTitle += `<span class="activity-subtitle">${fullName}</span>`;
-  }
-  
-  document.getElementById('activityModalTitle').innerHTML = modalTitle;
   const modalBody = document.getElementById('activityModalBody');
   
   let html = '';
   
-  // Generation info (if exists)
+  // Generation badge if exists
   if (activity.generation) {
-    const isFoundingMember = activity.generation.toLowerCase().includes('founding');
     html += `
       <div class="activity-generation">
-        <span class="generation-badge ${isFoundingMember ? 'founding' : ''}">${activity.generation}</span>
+        <span class="generation-badge">${activity.generation}</span>
       </div>
     `;
   }
   
-  // Membership periods
+  // Activity periods
   activity.periods.forEach(period => {
     html += `
       <div class="activity-period">
@@ -3824,28 +3700,24 @@ function openActivityModal(activityId) {
     `;
   });
   
-  // Leadership section (토글 형태로 변경)
+  // Leadership if exists
   if (activity.leadership && activity.leadership.length > 0) {
     html += `
-      <div class="leadership-toggle-section" style="margin-top: 16px;">
-        <div class="leadership-toggle-header" onclick="toggleActivityLeadership(this)">
-          <span>👑</span>
-          <span>Leadership</span>
-          <span class="toggle-icon">▶</span>
-        </div>
-        <div class="leadership-content-wrapper">
-    `;
-    
-    activity.leadership.forEach(lead => {
-      html += `
-        <div class="leadership-item">
-          <div class="leadership-role"><b>${lead.role}</b></div>
-          <div class="leadership-period">${lead.dates}</div>
-        </div>
-      `;
-    });
-    
-    html += `
+      <div class="activity-leadership-section">
+        <div class="leadership-toggle-section">
+          <div class="leadership-toggle-header" onclick="toggleActivityLeadership(this)">
+            <span>👑</span>
+            <span>Leadership</span>
+            <span class="toggle-icon">▶</span>
+          </div>
+          <div class="leadership-content-wrapper">
+            ${activity.leadership.map(lead => `
+              <div class="leadership-item">
+                <div class="leadership-role"><b>${lead.role}</b></div>
+                <div class="leadership-period">${lead.period}</div>
+              </div>
+            `).join('')}
+          </div>
         </div>
       </div>
     `;
@@ -3853,33 +3725,75 @@ function openActivityModal(activityId) {
   
   modalBody.innerHTML = html;
   document.getElementById('activityModal').classList.add('show');
-  document.body.style.overflow = 'hidden';
 }
 
-// Activity Leadership 토글 함수 추가
 function toggleActivityLeadership(header) {
   header.classList.toggle('active');
-  const content = header.nextElementSibling;
-  content.classList.toggle('show');
+  const wrapper = header.nextElementSibling;
+  wrapper.classList.toggle('show');
 }
 
 function closeActivityModal(event) {
-  if (event && event.target !== event.currentTarget && !event.target.classList.contains('activity-modal-close')) {
-    return;
-  }
+  if (event && event.target !== event.currentTarget) return;
   document.getElementById('activityModal').classList.remove('show');
-  document.body.style.overflow = '';
 }
- 
+
+// ===== Resume Modal =====
+function openResumeModal() {
+  const pdfViewer = document.getElementById('pdfViewer');
+  pdfViewer.src = '{{ "/assets/pdf/cv_insu_choi.pdf" | relative_url }}';
+  document.getElementById('resumeModal').classList.add('show');
+}
+
 function closeResumeModal(event) {
-  if (event && event.target !== event.currentTarget && !event.target.classList.contains('collab-modal-close')) return;
+  if (event && event.target !== event.currentTarget) return;
   document.getElementById('resumeModal').classList.remove('show');
-  document.body.style.overflow = '';
-  // iframe src 초기화
   document.getElementById('pdfViewer').src = '';
 }
 
+// ===== Publication Statistics =====
+function updatePublicationStats() {
+  // These would normally be calculated from publication data
+  const stats = {
+    'stat-scie': 12,
+    'stat-ssci': 3,
+    'stat-ahci': 0,
+    'stat-esci': 2,
+    'stat-scopus': 5,
+    'stat-other': 1,
+    'stat-intl-conf': 18,
+    'stat-kci': 4,
+    'stat-dom-conf': 23
+  };
+  
+  for (const [id, value] of Object.entries(stats)) {
+    const element = document.getElementById(id);
+    if (element) {
+      animateNumber(element, 0, value, 1000);
+    }
+  }
+}
+
+function animateNumber(element, start, end, duration) {
+  const startTime = performance.now();
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    const current = Math.floor(start + (end - start) * progress);
+    element.textContent = current;
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  requestAnimationFrame(update);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  updatePublicationStats();
+});
 </script>
-
-
-
