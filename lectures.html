@@ -259,11 +259,17 @@ function generateDiamondNetwork() {
 .badge-role-lect{background:var(--lect-gold);color:#111}
 .badge-role-ta{background:var(--ta-red);color:#fff}
 
-/* Other badges - 학교 배지 스타일 수정: 흰색 배경, 금색 글씨, 금색 테두리 */
-.badge-school{
+/* Other badges - 학교 배지 스타일: 역할에 따라 다른 색상 */
+.badge-school-lect{
   background:#fff;
   color:var(--lect-gold);
   border:1px solid var(--lect-gold);
+  font-weight:800
+}
+.badge-school-ta{
+  background:#fff;
+  color:var(--ta-red);
+  border:1px solid var(--ta-red);
   font-weight:800
 }
 .badge-period{background:#f8fafc;border:1px solid #e5e7eb;color:#374151}
@@ -445,6 +451,7 @@ function generateDiamondNetwork() {
     const leftClass = item.role==="Lecturer" ? "lecturer" : "ta";
     const leftLabel = item.role==="Lecturer" ? "L" : "TA";
     const roleBadgeClass = item.role==="Lecturer" ? "badge-role-lect" : "badge-role-ta";
+    const schoolBadgeClass = item.role==="Lecturer" ? "badge-school-lect" : "badge-school-ta";
     
     const course = item.courses[0];
     // Process Korean text to prevent line breaks in angle brackets
@@ -459,7 +466,7 @@ function generateDiamondNetwork() {
         <div class="lecture-body">
           <!-- School -->
           <div class="meta">
-            <span class="badge badge-school text-en">${item.school}</span>
+            <span class="badge ${schoolBadgeClass} text-en">${item.school}</span>
           </div>
           <!-- Role -->
           <div class="meta">
