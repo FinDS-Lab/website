@@ -119,6 +119,7 @@ title: home
     z-index: 1;
   }
 
+  /* 오버레이 - 완벽한 중앙 정렬 */
   .carousel-overlay {
     position: absolute; 
     inset: 0;
@@ -127,20 +128,30 @@ title: home
       rgba(0, 0, 0, 0.6) 30%,
       rgba(0, 0, 0, 0.3) 100%);
     display: flex; 
-    align-items: center; 
-    padding: 0 5%;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    padding: 40px;
     height: 100%; 
     overflow: hidden;
-    z-index: 2; /* 금색 오버레이 위에 표시 */
+    z-index: 2;
   }
-  @media (max-width: 768px) { .carousel-overlay { padding: 0 20px; align-items: center; } }
+  @media (max-width: 768px) { 
+    .carousel-overlay { 
+      padding: 30px;
+    } 
+  }
+  @media (max-width: 540px) { 
+    .carousel-overlay { 
+      padding: 20px;
+    } 
+  }
 
   .carousel-content {
     max-width: 600px; 
     color: white; 
     animation: fadeInUp 0.8s ease-out;
-    max-height: 90%; 
-    overflow: hidden;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    width: 100%;
   }
   @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
 
@@ -148,8 +159,8 @@ title: home
   .tag-badge{
     display:inline-block; 
     background: linear-gradient(135deg, 
-      rgba(214, 177, 77, 0.35) 0%,  /* 0.25에서 0.35로 증가 */
-      rgba(214, 177, 77, 0.25) 100%); /* 0.15에서 0.25로 증가 */
+      rgba(214, 177, 77, 0.35) 0%,
+      rgba(214, 177, 77, 0.25) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color:#fff; 
@@ -159,28 +170,43 @@ title: home
     font-size:14px; 
     letter-spacing:.5px; 
     margin-bottom:16px;
-    border: 1px solid rgba(214, 177, 77, 0.4); /* 0.3에서 0.4로 증가 */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 그림자 강화 */
+    border: 1px solid rgba(214, 177, 77, 0.4);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
   @media (max-width:480px){ .tag-badge{ font-size:12px; padding:4px 12px; margin-bottom:12px; } }
 
-  /* 히어로 타이틀 - 가독성 개선 */
+  /* 히어로 타이틀 - 폰트 크기 감소 및 가독성 개선 */
   .hero-title{ 
-    font-size: clamp(22px, 5vw, 44px); 
+    font-size: clamp(20px, 4.5vw, 38px); /* 44px → 38px로 감소 */
     font-weight: 900; 
-    line-height: 1.2; 
-    margin-bottom: 18px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), /* 더 강한 그림자 */
+    line-height: 1.25; 
+    margin-bottom: 20px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5),
                  0 1px 3px rgba(0, 0, 0, 0.7);
-    color: #fff; /* 그라데이션 대신 순수 흰색 사용 */
+    color: #fff;
     letter-spacing: -0.02em;
   }
-  @media (max-width:540px){ .hero-title{ font-size:24px; margin-bottom:16px; } }
-  @media (max-width:380px){ .hero-title{ font-size:22px; margin-bottom:14px; } }
+  @media (max-width:540px){ 
+    .hero-title{ 
+      font-size: 22px; /* 24px → 22px로 감소 */
+      margin-bottom:18px; 
+    } 
+  }
+  @media (max-width:380px){ 
+    .hero-title{ 
+      font-size:20px; /* 22px → 20px로 감소 */
+      margin-bottom:16px; 
+    } 
+  }
 
   .hero-buttons{
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    width: 100%; max-width: var(--cta-w-desktop); margin: 0; justify-items: stretch;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px;
+    width: 100%; 
+    max-width: var(--cta-w-desktop); 
+    margin: 0 auto; /* 버튼 그룹도 중앙 정렬 */
+    justify-items: stretch;
   }
   @media (max-width:1024px){ .hero-buttons{ max-width: var(--cta-w-tablet); } }
   @media (max-width:540px){ .hero-buttons{ max-width: var(--cta-w-mobile); gap: 10px; } }
@@ -212,13 +238,13 @@ title: home
   /* Primary 버튼 - 투명도 감소, 더 진한 색상 */
   .btn-hero.primary {
     background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.4) 0%,    /* 0.25에서 0.4로 증가 */
-      rgba(214, 177, 77, 0.25) 50%,  /* 0.12에서 0.25로 증가 */
-      rgba(214, 177, 77, 0.15) 100%); /* 0.08에서 0.15로 증가 */
+      rgba(214, 177, 77, 0.4) 0%,
+      rgba(214, 177, 77, 0.25) 50%,
+      rgba(214, 177, 77, 0.15) 100%);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     color: #fff;
-    border: 1px solid rgba(214, 177, 77, 0.5); /* 0.35에서 0.5로 증가 */
+    border: 1px solid rgba(214, 177, 77, 0.5);
     box-shadow: 
       inset 0 1px 0 rgba(214, 177, 77, 0.3),
       0 4px 12px rgba(214, 177, 77, 0.25),
@@ -229,13 +255,13 @@ title: home
   /* Secondary 버튼 - 투명도 감소 */
   .btn-hero.secondary {
     background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.25) 0%,   /* 0.15에서 0.25로 증가 */
-      rgba(214, 177, 77, 0.15) 50%,  /* 0.08에서 0.15로 증가 */
-      rgba(214, 177, 77, 0.1) 100%); /* 0.05에서 0.1로 증가 */
+      rgba(214, 177, 77, 0.25) 0%,
+      rgba(214, 177, 77, 0.15) 50%,
+      rgba(214, 177, 77, 0.1) 100%);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     color: #fff;
-    border: 1px solid rgba(214, 177, 77, 0.4); /* 0.3에서 0.4로 증가 */
+    border: 1px solid rgba(214, 177, 77, 0.4);
     box-shadow: 
       inset 0 1px 0 rgba(214, 177, 77, 0.2),
       0 2px 8px rgba(214, 177, 77, 0.2);
@@ -245,7 +271,7 @@ title: home
   /* 호버 효과 - 더 강한 효과 */
   .btn-hero.primary:hover {
     background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.5) 0%,    /* 더 진하게 */
+      rgba(214, 177, 77, 0.5) 0%,
       rgba(214, 177, 77, 0.3) 50%, 
       rgba(214, 177, 77, 0.2) 100%);
     border-color: rgba(214, 177, 77, 0.6);
