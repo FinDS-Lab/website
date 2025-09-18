@@ -1,0 +1,115 @@
+{
+  "id": "park-ms",
+  "name": {
+    "ko": "박석사",
+    "en": "Park M.S."
+  },
+  "degree": "ms",
+  "role": {
+    "ko": "석사과정",
+    "en": "Master Student"
+  },
+  "status": "active",
+  "period": {
+    "start": "2024-03",
+    "end": null,
+    "expected_graduation": "February 2026"
+  },
+  "contact": {
+    "email": "park.ms@example.edu",
+    "office": "Building B, Room 205"
+  },
+  "research": {
+    "interests": [
+      "Natural Language Processing",
+      "Financial Text Mining",
+      "Sentiment Analysis",
+      "Deep Learning"
+    ],
+    "keywords": {
+      "ko": ["자연어처리", "금융 텍스트 마이닝", "감성 분석", "딥러닝"],
+      "en": ["NLP", "Financial Text Mining", "Sentiment Analysis", "Deep Learning"]
+    }
+  },
+  "education": [
+    {
+      "degree": "M.S.",
+      "field": "Business Analytics",
+      "school": "Dongduk Women's University",
+      "location": "Seoul, Korea",
+      "start": "2024-03",
+      "end": null,
+      "expected": "February 2026",
+      "status": "ongoing"
+    },
+    {
+      "degree": "B.S.",
+      "field": "Computer Science",
+      "school": "Ewha Womans University",
+      "location": "Seoul, Korea",
+      "start": "2019-03",
+      "end": "2024-02",
+      "gpa": "4.1/4.5",
+      "honors": "Cum Laude"
+    }
+  ],
+  "publications": [
+    {
+      "title": "Korean Financial News Sentiment Analysis using BERT",
+      "authors": ["Park, M.", "Kim, S."],
+      "venue": "Korea Finance Conference",
+      "year": 2024,
+      "type": "conference"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Best Paper Award",
+      "organization": "Korea Data Science Society",
+      "year": 2024,
+      "description": "Best paper in financial analytics category"
+    },
+    {
+      "title": "Excellence Scholarship",
+      "organization": "Dongduk Women's University",
+      "year": "2024-2025",
+      "description": "Merit-based scholarship for graduate studies"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Stock Price Prediction using News Analysis",
+      "role": "Researcher",
+      "period": "2024-present",
+      "description": "Developing models to predict stock movements based on news sentiment",
+      "technologies": ["Python", "BERT", "Transformers", "PostgreSQL"],
+      "funding": "University Research Grant"
+    }
+  ],
+  "teaching": [
+    {
+      "course": "Data Analysis with Python",
+      "role": "Teaching Assistant",
+      "semester": "2024 Fall",
+      "university": "Dongduk Women's University"
+    }
+  ],
+  "skills": {
+    "programming": ["Python", "R", "SQL", "Java"],
+    "frameworks": ["TensorFlow", "PyTorch", "Hugging Face", "Pandas"],
+    "tools": ["Git", "Jupyter", "Docker", "MongoDB"],
+    "languages": {
+      "Korean": "Native",
+      "English": "Fluent"
+    }
+  },
+  "social": {
+    "github": "https://github.com/park-ms",
+    "linkedin": "https://linkedin.com/in/park-ms",
+    "sns_instagram": "https://instagram.com/park.ms",
+    "personal_website": "https://park-ms.github.io"
+  },
+  "avatar": "/assets/img/members/park-ms.jpg",
+  "cv": "/assets/cv/park-ms-cv.pdf",
+  "updated_at": "2024-12-15"
+}
