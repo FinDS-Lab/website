@@ -69,31 +69,36 @@
     </div>
   </div>
   
-  <!-- Mobile Nav - 원래 구조 그대로 -->
-  <!-- Mobile Nav - 구조 통일 -->
+
+<!-- Mobile Nav - 구조 수정 -->
 <div id="mobileNav" class="mobile-nav-panel hidden">
   <div class="mobile-nav-inner">
     <a class="mobile-link" href="{{ '/' | relative_url }}">Home</a>
     
-    <!-- About (Accordion) - px-3 py-2 제거 -->
+    <!-- About (Accordion) -->
     <div class="mobile-accordion-wrapper">
       <div class="mobile-accordion-header">
         <a class="mobile-link" href="{{ '/about-introduction.html' | relative_url }}">About FINDS</a>
         <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-about">▾</button>
       </div>
       <div id="mob-about" class="mobile-acc-panel hidden">
-        <!-- 서브메뉴 내용 -->
+        <a href="{{ '/about-introduction.html' | relative_url }}">Introduction</a>
+        <a href="{{ '/about-vision-area.html' | relative_url }}">Research Area</a>
+        <a href="{{ '/about-honors.html' | relative_url }}">Honors & Awards</a>
+        <a href="{{ '/about-location.html' | relative_url }}">Location</a>
       </div>
     </div>
     
-    <!-- Members (Accordion) - px-3 py-2 제거 -->
+    <!-- Members (Accordion) -->
     <div class="mobile-accordion-wrapper">
       <div class="mobile-accordion-header">
         <a class="mobile-link" href="{{ '/members-director.html' | relative_url }}">Members</a>
         <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-members">▾</button>
       </div>
       <div id="mob-members" class="mobile-acc-panel hidden">
-        <!-- 서브메뉴 내용 -->
+        <a href="{{ '/members-director.html' | relative_url }}">Director</a>
+        <a href="{{ '/members-current.html' | relative_url }}">Current Members</a>
+        <a href="{{ '/members-alumni.html' | relative_url }}">Alumni</a>
       </div>
     </div>
     
@@ -101,14 +106,18 @@
     <a class="mobile-link" href="{{ '/lectures.html' | relative_url }}">Lectures</a>
     <a class="mobile-link" href="{{ '/projects.html' | relative_url }}">Projects</a>
     
-    <!-- Archives (Accordion) - px-3 py-2 제거 -->
+    <!-- Archives (Accordion) -->
     <div class="mobile-accordion-wrapper">
       <div class="mobile-accordion-header">
         <a class="mobile-link" href="{{ '/archives-news.html' | relative_url }}">Archives</a>
         <button class="mobile-acc-btn" aria-expanded="false" aria-controls="mob-archives">▾</button>
       </div>
       <div id="mob-archives" class="mobile-acc-panel hidden">
-        <!-- 서브메뉴 내용 -->
+        <a href="{{ '/archives-news.html' | relative_url }}">News</a>
+        <a href="{{ '/archives-notice.html' | relative_url }}">Notice</a>
+        <a href="{{ '/archives-seminar.html' | relative_url }}">Seminar</a>
+        <a href="{{ '/archives-gallery.html' | relative_url }}">Gallery</a>
+        <a href="{{ '/archives-playlist.html' | relative_url }}">Playlist</a>
       </div>
     </div>
   </div>
