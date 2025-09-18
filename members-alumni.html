@@ -223,69 +223,35 @@ permalink: /members-alumni.html
     .section-header{
       margin-top:2rem;
       margin-bottom:1.5rem;
-      padding:20px 24px;
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
+      padding:16px 20px;
+      border-radius: 12px;
       position: relative;
       overflow: hidden;
-    }
-    
-    .section-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--phd-gold) 0%, var(--ms-light-gold) 50%, var(--phd-gold) 100%);
-    }
-    
-    .section-header.undergraduate::before {
-      background: linear-gradient(90deg, var(--undergrad-red) 0%, rgb(192, 34, 34) 50%, var(--undergrad-red) 100%);
-    }
-    
-    .section-title{
-      font-size:24px;
-      font-weight:900;
-      color:#111827;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
-      margin: 0;
-    }
-    
-    .section-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
       background: linear-gradient(135deg, var(--phd-gold), var(--ms-light-gold));
       color: white;
-      text-shadow: 0 1px 2px rgba(0,0,0,.1);
-      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     
-    .section-icon.undergraduate {
+    .section-header.undergraduate {
       background: linear-gradient(135deg, var(--undergrad-red), rgb(192, 34, 34));
     }
     
-    .section-text {
+    .section-header-content {
       display: flex;
       align-items: center;
+      gap: 10px;
+    }
+    
+    .section-emoji {
+      font-size: 28px;
     }
     
     .section-main-title {
       font-size: 20px;
       font-weight: 900;
-      color: #111827;
-      word-break: keep-all;
-      overflow-wrap: anywhere;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      letter-spacing: -0.3px;
     }
 
     /* Desktop Table Styles */
@@ -790,7 +756,144 @@ permalink: /members-alumni.html
       }
       
       .section-header{
-        padding:16px 18px;
+        padding:14px 16px;
+      }
+      
+      .section-emoji{
+        font-size:24px;
+      }
+      
+      .section-main-title{
+        font-size:17px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .alumni-card-name-text{
+        font-size:12px;
+      }
+      
+      .alumni-card-value{
+        font-size:10px;
+      }
+      
+      .alumni-card-thesis-link{
+        font-size:9px;
+      }
+      
+      .stats-container{
+        grid-template-columns:repeat(3, 1fr);
+        gap:8px;
+      }
+      
+      .stat-card{
+        padding:12px 6px;
+      }
+      
+      .stat-number{
+        font-size:18px;
+      }
+      
+      .stat-label{
+        font-size:8px;
+        letter-spacing:0.2px;
+      }
+      
+      /* Alumni Since mobile styles */
+      #alumni-since-container {
+        margin-bottom: 1rem !important;
+      }
+      
+      #alumni-since-box {
+        padding: 10px 12px !important;
+      }
+      
+      #alumni-since-text {
+        font-size: 10px !important;
+      }
+      
+      #sinceDate {
+        font-size: 16px !important;
+        margin-left: 8px !important;
+      }
+      
+      .section-header{
+        padding:12px 14px;
+      }
+      
+      .section-emoji{
+        font-size:20px;
+      }
+      
+      .section-main-title{
+        font-size:15px;
+      }
+      
+      .alumni-card-header{
+        padding:8px 10px;
+      }
+      
+      .alumni-card-body{
+        padding:10px;
+      }
+      
+      .degree-tag{
+        font-size:8px;
+        padding:2px 5px;
+      }
+      
+      .position-company{
+        font-size:11px;
+      }
+      
+      .alumni-card-arrow-button{
+        width: 20px;
+        height: 20px;
+      }
+      
+      .alumni-card-arrow{
+        font-size: 9px;
+      }
+    }
+    
+    /* Very small mobile */
+    @media (max-width: 360px) {
+      .stats-container{
+        gap:6px;
+      }
+      
+      .stat-card{
+        padding:10px 4px;
+      }
+      
+      .stat-number{
+        font-size:16px;
+      }
+      
+      .stat-label{
+        font-size:7px;
+      }
+      
+      #alumni-since-text {
+        font-size: 9px !important;
+      }
+      
+      #sinceDate {
+        font-size: 14px !important;
+      }
+      
+      .section-header{
+        padding:10px 12px;
+      }
+      
+      .section-emoji{
+        font-size:18px;
+      }
+      
+      .section-main-title{
+        font-size:13px;
+      }
+    }16px 18px;
       }
       
       .section-icon{
@@ -1052,11 +1155,9 @@ function generateDiamondNetwork() {
 
   <!-- Graduate Students Section -->
   <div class="section-header">
-    <div style="display: flex; align-items: center;">
-      <div class="section-icon">🎓</div>
-      <div class="section-text">
-        <div class="section-main-title">Graduate Alumni</div>
-      </div>
+    <div class="section-header-content">
+      <span class="section-emoji">🎓</span>
+      <div class="section-main-title">Graduate Alumni</div>
     </div>
   </div>
   
@@ -1082,11 +1183,9 @@ function generateDiamondNetwork() {
 
   <!-- Undergraduate Researchers Section -->
   <div class="section-header undergraduate">
-    <div style="display: flex; align-items: center;">
-      <div class="section-icon undergraduate">📚</div>
-      <div class="section-text">
-        <div class="section-main-title">Undergraduate Research Alumni</div>
-      </div>
+    <div class="section-header-content">
+      <span class="section-emoji">📚</span>
+      <div class="section-main-title">Undergraduate Research Alumni</div>
     </div>
   </div>
   
