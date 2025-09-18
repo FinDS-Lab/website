@@ -915,10 +915,14 @@ function createAwardCard(item) {
 
 // 연도 섹션 생성
 function createYearSection(year, isExpanded) {
-  const data = honorsData[year] || [];
-  const awardsHtml = data.map(item => createAwardCard(item)).join('');
+  const data = honorsData[year] || []; // 데이터가 없으면 빈 배열
   const isCurrentYear = year === currentYear;
   const count = data.length;
+  
+  // awards-grid 내용 결정
+  const awardsContent = data.length > 0 
+    ? data.map(item => createAwardCard(item)).join('')
+    : '<div class="empty">No awards in this year</div>';
   
   return `
     <div class="year-section">
@@ -933,7 +937,7 @@ function createYearSection(year, isExpanded) {
       </div>
       <div class="awards-container ${isExpanded ? '' : 'hidden'}">
         <div class="awards-grid">
-          ${awardsHtml || '<div class="empty">이 연도에는 수상 내역이 없습니다</div>'}
+          ${awardsContent}
         </div>
       </div>
     </div>
@@ -941,17 +945,24 @@ function createYearSection(year, isExpanded) {
 }
 
 // 페이지 초기화
-// 페이지 초기화
 function initPage() {
   const container = document.getElementById('yearSections');
-  const recentYears = getRecentYears();
-  const allYears = Object.keys(honorsData).map(y => parseInt(y)).sort((a, b) => b - a);
+  const currentYear = new Date().getFullYear();
+  const startYear = 2013;
+  
+  // 데이터가 있는 연도들 확인
+  const dataYears = Object.keys(honorsData).map(y => parseInt(y));
+  
+  // 최근 3년 계산 (데이터 유무와 관계없이)
+  const recentYears = [currentYear, currentYear - 1, currentYear - 2];
   
   let html = '';
-  allYears.forEach(year => {
+  
+  // 현재 연도부터 2013년까지 역순으로 모든 연도 생성
+  for (let year = currentYear; year >= startYear; year--) {
     const isExpanded = recentYears.includes(year);
     html += createYearSection(year, isExpanded);
-  });
+  }
   
   container.innerHTML = html;
   
