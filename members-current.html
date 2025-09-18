@@ -137,6 +137,15 @@ permalink: /members-current.html
       border: 1px solid rgba(214, 177, 77, 0.2);
     }
 
+
+    /* 여기에 추가 */
+.breadcrumbs-banner::before {
+  content: '👥';  /* Members 페이지용 이모지 */
+  font-size: 14px;
+  margin-right: 2px;
+  opacity: 0.8;
+}
+    
     .breadcrumbs-banner a {
       color: var(--gold-dark);
       text-decoration: none;
@@ -735,7 +744,16 @@ permalink: /members-current.html
       .section-header { margin-top: 2rem; }
       .section-main-title { font-size: 18px; }
       .member-avatar { width: 75px; height: 94px; }
+        .breadcrumbs-banner::before {
+    font-size: 12px;  /* 모바일에서 크기 줄이기 */
+  }
     }
+    /* 640px 미디어 쿼리 추가 */
+@media (max-width: 640px) {
+  .breadcrumbs-banner::before {
+    display: none;
+  }
+}
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
