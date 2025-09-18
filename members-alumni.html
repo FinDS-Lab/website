@@ -143,7 +143,7 @@ permalink: /members-alumni.html
 
     /* Breadcrumb 아이콘 */
     .breadcrumbs-banner::before {
-      content: '🔍';
+      content: '🎓';
       font-size: 14px;
       margin-right: 2px;
       opacity: 0.8;
@@ -357,10 +357,17 @@ permalink: /members-alumni.html
       border-bottom:1px solid #e5e7eb;
       cursor:pointer;
       user-select:none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     
     .alumni-card-header:active{
       background:#f1f5f9;
+    }
+    
+    .alumni-card-left {
+      flex: 1;
     }
     
     .alumni-card-name{
@@ -378,15 +385,32 @@ permalink: /members-alumni.html
       line-height: 1.3;
     }
     
-    .alumni-card-arrow{
-      font-size:9px;
-      color:#6b7280;
-      transition:transform 0.2s;
+    /* Gold button with white arrow */
+    .alumni-card-arrow-button{
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
       flex-shrink: 0;
+      margin-left: 8px;
+    }
+    
+    .alumni-card-arrow{
+      font-size: 10px;
+      color: white;
+      transition: transform 0.2s;
     }
     
     .alumni-card-header.expanded .alumni-card-arrow{
-      transform:rotate(90deg);
+      transform: rotate(90deg);
+    }
+    
+    .alumni-card-header.expanded .alumni-card-arrow-button{
+      background: var(--gold-dark);
     }
     
     .alumni-card-badges{
@@ -663,7 +687,7 @@ permalink: /members-alumni.html
       color:#111827;
     }
 
-    /* Statistics - 2x3 Grid */
+    /* Statistics - 1x3 Grid for desktop, responsive for mobile */
     .stats-container{
       display:grid;
       grid-template-columns:repeat(3, 1fr);
@@ -686,17 +710,12 @@ permalink: /members-alumni.html
       box-shadow:0 4px 12px rgba(0,0,0,0.08);
     }
     
-    .stat-card.phd-stat{
-      border-top:3px solid var(--phd-gold);
-    }
-    
     .stat-card.ms-stat{
       border-top:3px solid var(--ms-light-gold);
     }
     
-    .stat-card.ms-phd-stat{
-      border-top:3px solid;
-      border-image: linear-gradient(90deg, var(--ms-light-gold) 0%, var(--phd-gold) 100%) 1;
+    .stat-card.phd-stat{
+      border-top:3px solid var(--phd-gold);
     }
     
     .stat-card.undergrad-stat{
@@ -715,23 +734,27 @@ permalink: /members-alumni.html
       font-size:28px;
       font-weight:900;
       color:#111827;
+      line-height: 1;
     }
     
     .stat-label{
-      font-size:12px;
+      font-size:11px;
       color:#6b7280;
-      margin-top:4px;
+      margin-top:6px;
       text-transform:uppercase;
-      letter-spacing:0.5px;
+      letter-spacing:0.4px;
+      line-height: 1.3;
+      font-weight: 700;
     }
     
     .since-date {
-      font-size: 16px;
-      font-weight: 700;
+      font-size: 20px;
+      font-weight: 800;
       color: #111827;
+      line-height: 1.2;
     }
     
-    /* Mobile responsive */
+    /* Mobile responsive for stats - maintain 3 columns */
     @media (max-width: 768px) {
       .alumni-table-desktop{
         display:none;
@@ -742,12 +765,12 @@ permalink: /members-alumni.html
       }
       
       .stats-container{
-        grid-template-columns:repeat(2, 1fr);
+        grid-template-columns:repeat(3, 1fr);
         gap:10px;
       }
       
       .stat-card{
-        padding:12px 8px;
+        padding:14px 8px;
       }
       
       .stat-number{
@@ -755,11 +778,12 @@ permalink: /members-alumni.html
       }
       
       .stat-label{
-        font-size:10px;
+        font-size:9px;
+        letter-spacing:0.3px;
       }
       
       .since-date {
-        font-size: 14px;
+        font-size: 16px;
       }
       
       .section-header{
@@ -791,24 +815,25 @@ permalink: /members-alumni.html
       }
       
       .stats-container{
+        grid-template-columns:repeat(3, 1fr);
         gap:8px;
       }
       
       .stat-card{
-        padding:10px 6px;
+        padding:12px 6px;
       }
       
       .stat-number{
-        font-size:20px;
+        font-size:18px;
       }
       
       .stat-label{
-        font-size:9px;
-        letter-spacing:0.3px;
+        font-size:8px;
+        letter-spacing:0.2px;
       }
       
       .since-date {
-        font-size: 12px;
+        font-size: 14px;
       }
       
       .section-header{
@@ -840,6 +865,38 @@ permalink: /members-alumni.html
       
       .position-company{
         font-size:11px;
+      }
+      
+      .alumni-card-arrow-button{
+        width: 20px;
+        height: 20px;
+      }
+      
+      .alumni-card-arrow{
+        font-size: 9px;
+      }
+    }
+    
+    /* Very small mobile */
+    @media (max-width: 360px) {
+      .stats-container{
+        gap:6px;
+      }
+      
+      .stat-card{
+        padding:10px 4px;
+      }
+      
+      .stat-number{
+        font-size:16px;
+      }
+      
+      .stat-label{
+        font-size:7px;
+      }
+      
+      .since-date {
+        font-size: 12px;
       }
     }
   </style>
@@ -948,42 +1005,33 @@ function generateDiamondNetwork() {
 <!-- ===== Content ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-8 pb-8">
 
-  <!-- Statistics - 2x3 Grid -->
+  <!-- Statistics - 1x3 Grid -->
   <div class="stats-container">
-    <!-- Top Row -->
     <div class="stat-card ms-stat">
       <div class="stat-number" id="msCount">0</div>
-      <div class="stat-label">M.S. Alumni</div>
+      <div class="stat-label">M.S.<br>Alumni</div>
     </div>
     <div class="stat-card phd-stat">
       <div class="stat-number" id="phdCount">0</div>
-      <div class="stat-label">Ph.D. Alumni</div>
+      <div class="stat-label">Ph.D.<br>Alumni</div>
     </div>
-    <div class="stat-card ms-phd-stat">
-      <div class="stat-number" id="msPhdCount">0</div>
-      <div class="stat-label">M.S.+Ph.D.</div>
-    </div>
-    
-    <!-- Bottom Row -->
     <div class="stat-card undergrad-stat">
       <div class="stat-number" id="undergradCount">0</div>
-      <div class="stat-label">Undergraduate</div>
+      <div class="stat-label">Undergrad<br>Research Alumni</div>
     </div>
-    <div class="stat-card total-stat">
-      <div class="stat-number" id="totalCount">0</div>
-      <div class="stat-label">Total Alumni</div>
-    </div>
-    <div class="stat-card since-stat">
-      <div class="since-date">Since</div>
-      <div class="since-date" id="sinceDate">2019.09.01</div>
-    </div>
+  </div>
+
+  <!-- Alumni Since display -->
+  <div style="text-align:center; margin-bottom:2rem;">
+    <div style="font-size:12px; color:#6b7280; text-transform:uppercase; letter-spacing:0.5px; font-weight:700;">Alumni Since</div>
+    <div style="font-size:24px; color:#111827; font-weight:900; margin-top:4px;" id="sinceDate">2019.09.01</div>
   </div>
 
   <!-- Graduate Students Section -->
   <div class="section-header">
     <div class="section-icon">🎓</div>
     <div class="section-text">
-      <div class="section-main-title">Graduate Research Alumni</div>
+      <div class="section-main-title">Graduate Alumni</div>
     </div>
   </div>
   
@@ -1038,112 +1086,14 @@ function generateDiamondNetwork() {
 </section>
 
 <script>
-// Alumni data - 대학원생
-const graduateAlumniData = [
-  {
-    name: '정박사',
-    nameKo: '(Jung Ph.D.)',
-    degrees: ['phd'],
-    periods: {
-      phd: '2019.09 – 2025.02'
-    },
-    education: [
-      {degree: 'phd', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2025'},
-      {degree: 'bs', school: 'Dongduk Women\'s University', dept: 'Mathematics', year: '2018'}
-    ],
-    thesis: {
-      phd: {
-        title: 'Deep Reinforcement Learning for Dynamic Portfolio Optimization',
-        url: 'https://example.com/thesis/jung-phd-2025.pdf'
-      }
-    },
-    company: 'Lorem Institute of Quantitative Finance'
-  },
-  {
-    name: '강박사',
-    nameKo: '(Kang Ph.D.)',
-    degrees: ['ms', 'phd'],
-    periods: {
-      ms: '2018.03 – 2020.02',
-      phd: '2020.03 – 2024.08'
-    },
-    education: [
-      {degree: 'phd', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2024'},
-      {degree: 'ms', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2020'},
-      {degree: 'bs', school: 'KAIST', dept: 'Industrial Engineering', year: '2017'}
-    ],
-    thesis: {
-      phd: {
-        title: 'Graph Neural Networks for Financial Market Prediction',
-        url: 'https://example.com/thesis/kang-phd-2024.pdf'
-      },
-      ms: {
-        title: 'Time Series Analysis for High-Frequency Trading',
-        url: 'https://example.com/thesis/kang-ms-2020.pdf'
-      }
-    },
-    company: 'Ipsum Asset Management'
-  },
-  {
-    name: '윤석사',
-    nameKo: '(Yoon M.S.)',
-    degrees: ['ms'],
-    periods: {
-      ms: '2023.03 – 2025.02'
-    },
-    education: [
-      {degree: 'ms', school: 'Dongduk Women\'s University', dept: 'Financial Data Science', year: '2025'},
-      {degree: 'bs', school: 'Korea University', dept: 'Computer Science', year: '2023'}
-    ],
-    thesis: {
-      ms: {
-        title: 'NLP-based Sentiment Analysis for Korean Financial News',
-        url: 'https://example.com/thesis/yoon-ms-2025.pdf'
-      }
-    },
-    company: 'Dolor Capital Partners'
-  }
-];
+// Get alumni data from Jekyll/Liquid
+const alumniData = {{ site.data.alumni | jsonify }};
+const graduateAlumniData = alumniData.graduateAlumni || [];
+const undergradAlumniData = alumniData.undergradAlumni || [];
+const sinceDate = alumniData.sinceDate || '2019.09.01';
 
-// Alumni data - 학부연구생
-const undergradAlumniData = [
-  {
-    name: '장학사',
-    nameKo: '(Jang B.S.)',
-    degrees: ['ur'],
-    periods: {
-      ur: '2022.09 – 2024.08'
-    },
-    education: [
-      {degree: 'bs', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2024'}
-    ],
-    thesis: {
-      ur: {
-        title: 'Machine Learning Approaches for Credit Risk Assessment',
-        url: 'https://example.com/thesis/jang-bs-2024.pdf'
-      }
-    },
-    company: 'KB Securities'
-  },
-  {
-    name: '박학사',
-    nameKo: '(Park B.S.)',
-    degrees: ['ur'],
-    periods: {
-      ur: '2021.03 – 2023.02'
-    },
-    education: [
-      {degree: 'bs', school: 'Dongduk Women\'s University', dept: 'Business Analytics', year: '2023'}
-    ],
-    thesis: {
-      ur: {
-        title: 'Deep Learning for Customer Churn Prediction',
-        url: 'https://example.com/thesis/park-bs-2023.pdf'
-      }
-    },
-    company: 'Samsung SDS'
-  }
-];
+// Update since date display
+document.getElementById('sinceDate').textContent = sinceDate;
 
 // Toggle function for desktop expandable rows
 function toggleAlumni(element, index, section) {
@@ -1271,14 +1221,18 @@ function generateCards(data, containerId, section) {
     html += `
       <div class="alumni-card">
         <div class="alumni-card-header" id="card-header-${section}-${index}" onclick="toggleCard(${index}, '${section}')">
-          <div class="alumni-card-name">
-            <span class="alumni-card-name-text">
-              ${alum.name} ${alum.nameKo}
-            </span>
-            <span class="alumni-card-arrow">▶</span>
+          <div class="alumni-card-left">
+            <div class="alumni-card-name">
+              <span class="alumni-card-name-text">
+                ${alum.name} ${alum.nameKo}
+              </span>
+            </div>
+            <div class="alumni-card-badges">
+              ${alum.degrees.map(d => `<span class="degree-tag ${d}">${d.toUpperCase()}</span>`).join('')}
+            </div>
           </div>
-          <div class="alumni-card-badges">
-            ${alum.degrees.map(d => `<span class="degree-tag ${d}">${d.toUpperCase()}</span>`).join('')}
+          <div class="alumni-card-arrow-button">
+            <span class="alumni-card-arrow">▶</span>
           </div>
         </div>
         <div class="alumni-card-body" id="card-body-${section}-${index}">
@@ -1356,28 +1310,26 @@ function generateCards(data, containerId, section) {
 function calculateStats() {
   let phdCount = 0;
   let msCount = 0;
-  let msPhdCount = 0;
 
-  // Count degrees across graduate alumni
+  // Count degrees across graduate alumni (not counting MS+PhD combinations)
   graduateAlumniData.forEach(alum => {
     if (alum.degrees.includes('phd') && !alum.degrees.includes('ms')) {
       phdCount++; // PhD only
     } else if (alum.degrees.includes('ms') && !alum.degrees.includes('phd')) {
       msCount++; // MS only
     } else if (alum.degrees.includes('ms') && alum.degrees.includes('phd')) {
-      msPhdCount++; // Both MS and PhD
+      // Count as total alumni, not separately
+      msCount++;
+      phdCount++;
     }
   });
 
   const undergradCount = undergradAlumniData.length;
-  const totalCount = graduateAlumniData.length + undergradCount;
 
   // Animate numbers
   animateNumber('msCount', msCount);
   animateNumber('phdCount', phdCount);
-  animateNumber('msPhdCount', msPhdCount);
   animateNumber('undergradCount', undergradCount);
-  animateNumber('totalCount', totalCount);
 }
 
 // Number animation
