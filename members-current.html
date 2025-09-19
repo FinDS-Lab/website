@@ -172,8 +172,8 @@ permalink: /members-current.html
   width: 100%;
 }
 
-.breadcrumbs-banner .sep {
-  color: var(--gold-dark);
+.banner-breadcrumbs .sep {
+  color: var(--gold-dark);  /* var(--gold-light)를 var(--gold-dark)로 변경 */
   font-weight: 400;
   margin: 0;
   opacity: 0.6;
@@ -214,6 +214,7 @@ permalink: /members-current.html
 }
 
 @media (max-width: 640px) {
+  .banner-title { font-size: 1.75rem; }
   .banner-content { 
     padding: 24px 16px;
     min-height: 140px;
@@ -221,13 +222,13 @@ permalink: /members-current.html
   .banner-section {
     min-height: 140px;
   }
-  .banner-title { font-size: 1.75rem; }
-  .breadcrumbs-banner { 
+  /* 아래 부분을 추가 */
+  .banner-breadcrumbs { 
     font-size: 11px;
     padding: 7px 12px;
     gap: 0.5rem;
   }
-  .breadcrumbs-banner::before {
+  .banner-breadcrumbs::before {
     display: none;
   }
 }
@@ -241,7 +242,8 @@ permalink: /members-current.html
     min-height: 120px;
   }
   .banner-title { font-size: 1.5rem; }
-  .breadcrumbs-banner { 
+  /* 아래 부분을 수정/추가 */
+  .banner-breadcrumbs { 
     font-size: 10px;
     gap: 0.4rem;
     padding: 6px 10px;
