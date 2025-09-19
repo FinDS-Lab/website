@@ -1010,15 +1010,15 @@ function generateDiamondNetwork() {
     </div>
   </div>
 
-  <!-- Statistics - 1x3 Grid -->
+  <!-- Statistics - 1x3 Grid (PhD / MS / Undergraduate) -->
   <div class="stats-container">
-    <div class="stat-card ms-stat">
-      <div class="stat-number" id="msCount">0</div>
-      <div class="stat-label">M.S.<br>Alumni</div>
-    </div>
     <div class="stat-card phd-stat">
       <div class="stat-number" id="phdCount">0</div>
       <div class="stat-label">Ph.D.<br>Alumni</div>
+    </div>
+    <div class="stat-card ms-stat">
+      <div class="stat-number" id="msCount">0</div>
+      <div class="stat-label">M.S.<br>Alumni</div>
     </div>
     <div class="stat-card undergrad-stat">
       <div class="stat-number" id="undergradCount">0</div>
@@ -1319,29 +1319,26 @@ function generateCards(data, containerId, section) {
   container.innerHTML = html;
 }
 
-// Calculate statistics with animation
+// Calculate statistics with proper counting
 function calculateStats() {
   let phdCount = 0;
   let msCount = 0;
 
-  // Count degrees across graduate alumni (not counting MS+PhD combinations)
+  // Count degrees - if alumni has both MS and PhD, count in both categories
   graduateAlumniData.forEach(alum => {
-    if (alum.degrees.includes('phd') && !alum.degrees.includes('ms')) {
-      phdCount++; // PhD only
-    } else if (alum.degrees.includes('ms') && !alum.degrees.includes('phd')) {
-      msCount++; // MS only
-    } else if (alum.degrees.includes('ms') && alum.degrees.includes('phd')) {
-      // Count as total alumni, not separately
-      msCount++;
+    if (alum.degrees.includes('phd')) {
       phdCount++;
+    }
+    if (alum.degrees.includes('ms')) {
+      msCount++;
     }
   });
 
   const undergradCount = undergradAlumniData.length;
 
   // Animate numbers
-  animateNumber('msCount', msCount);
   animateNumber('phdCount', phdCount);
+  animateNumber('msCount', msCount);
   animateNumber('undergradCount', undergradCount);
 }
 
