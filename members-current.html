@@ -115,7 +115,7 @@ permalink: /members-current.html
       min-height: 200px;
     }
 
-    /* Breadcrumbs - Alumni와 완전히 동일 */
+    /* Breadcrumbs */
     .breadcrumbs-banner {
       display: inline-flex;
       align-items: center;
@@ -838,6 +838,14 @@ permalink: /members-current.html
       background: #1877f2;
       color: #fff;
     }
+    .social-link.website {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+    .social-link.orcid {
+      background: #a6ce39;
+      color: #fff;
+    }
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
@@ -1035,12 +1043,12 @@ function renderMembers() {
   });
 }
 
-// Create member card HTML
+// Create member card HTML - JSON 구조에 맞게 수정
 function createMemberCard(member) {
   const displayName = member.name.ko ? `${member.name.ko} (${member.name.en})` : member.name.en;
-  const role = member.role.en || member.role;
+  const role = member.role?.en || member.role?.ko || 'Researcher';
   const period = formatPeriod(member.period);
-  const research = member.research.interests ? member.research.interests.slice(0, 2).join(', ') : '';
+  const research = member.research?.interests ? member.research.interests.slice(0, 2).join(', ') : '';
   const avatarPath = member.avatar || '/assets/img/members/default.jpg';
   
   return `
@@ -1077,8 +1085,10 @@ function formatPeriod(period) {
   const start = period.start;
   if (period.end) {
     return `${start} - ${period.end}`;
+  } else if (period.expected_graduation) {
+    return `${start} - Present (Expected: ${period.expected_graduation})`;
   } else {
-    return `${start} - Recent`;
+    return `${start} - Present`;
   }
 }
 
@@ -1112,7 +1122,7 @@ function animateNumber(elementId, finalValue) {
   requestAnimationFrame(tick);
 }
 
-// Open modal with member details - FIXED VERSION
+// Open modal with member details - JSON 구조에 맞게 완전히 수정
 function openModal(memberId) {
   const member = allMembers.find(m => m.id === memberId);
   if (!member) {
@@ -1122,7 +1132,7 @@ function openModal(memberId) {
   
   const modalPanel = document.getElementById('modalPanel');
   const displayName = member.name.ko ? `${member.name.ko} (${member.name.en})` : member.name.en;
-  const role = member.role.en || member.role;
+  const role = member.role?.en || member.role?.ko || 'Researcher';
   const avatarPath = member.avatar || '/assets/img/members/default.jpg';
   
   // Build complete modal HTML
@@ -1161,7 +1171,7 @@ function openModal(memberId) {
       </div>`;
   }
   
-  // Education Section
+  // Education Section - JSON 구조에 맞게 수정
   if (member.education && member.education.length > 0) {
     modalHTML += `
       <div class="modal-section">
@@ -1170,18 +1180,27 @@ function openModal(memberId) {
           Education
         </h3>`;
     member.education.forEach(edu => {
+      const institution = edu.school || edu.institution;
+      const major = edu.field || edu.major;
+      const period = edu.end ? `${edu.start} - ${edu.end}` : 
+                    edu.expected ? `${edu.start} - Present (Expected: ${edu.expected})` : 
+                    `${edu.start} - Present`;
+      
       modalHTML += `
         <div class="edu-item">
           <div style="font-weight:700;color:#111827;font-size:14px;">${edu.degree}</div>
-          <div style="color:#6b7280;font-size:13px;margin-top:4px;">${edu.institution}</div>
-          ${edu.major ? `<div style="color:#374151;font-size:12px;margin-top:2px;">Major: ${edu.major}</div>` : ''}
-          <div style="color:#9ca3af;font-size:12px;margin-top:4px;">${edu.period}</div>
+          <div style="color:#6b7280;font-size:13px;margin-top:4px;">${institution}</div>
+          ${major ? `<div style="color:#374151;font-size:12px;margin-top:2px;">Field: ${major}</div>` : ''}
+          ${edu.thesis ? `<div style="color:#374151;font-size:12px;margin-top:2px;">Thesis: ${edu.thesis}</div>` : ''}
+          ${edu.gpa ? `<div style="color:#374151;font-size:12px;margin-top:2px;">GPA: ${edu.gpa}</div>` : ''}
+          ${edu.honors ? `<div style="color:#d6b14d;font-size:12px;margin-top:2px;">🎖 ${edu.honors}</div>` : ''}
+          <div style="color:#9ca3af;font-size:12px;margin-top:4px;">${period}</div>
         </div>`;
     });
     modalHTML += `</div>`;
   }
   
-  // Publications Section
+  // Publications Section - JSON 구조에 맞게 수정
   if (member.publications && member.publications.length > 0) {
     modalHTML += `
       <div class="modal-section">
@@ -1190,11 +1209,13 @@ function openModal(memberId) {
           Publications
         </h3>`;
     member.publications.forEach(pub => {
+      const authorsString = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
       modalHTML += `
         <div class="pub-item">
           <div class="pub-title">${pub.title}</div>
-          <div style="font-size:12px;color:#6b7280;margin-top:4px;">${pub.authors}</div>
+          <div style="font-size:12px;color:#6b7280;margin-top:4px;">${authorsString}</div>
           <div class="pub-venue">${pub.venue}, ${pub.year}</div>
+          ${pub.url ? `<a href="${pub.url}" target="_blank" style="font-size:11px;color:#d6b14d;text-decoration:none;">🔗 View Paper</a>` : ''}
         </div>`;
     });
     modalHTML += `</div>`;
@@ -1213,28 +1234,90 @@ function openModal(memberId) {
         <div class="award-item">
           <div style="font-weight:700;color:#111827;font-size:13px;">${award.title}</div>
           <div style="color:#6b7280;font-size:12px;margin-top:2px;">${award.organization}, ${award.year}</div>
+          ${award.description ? `<div style="color:#374151;font-size:11px;margin-top:4px;">${award.description}</div>` : ''}
         </div>`;
     });
     modalHTML += `</div>`;
   }
   
-  // Skills Section
-  if (member.skills && member.skills.length > 0) {
+  // Skills Section - JSON 구조에 맞게 수정
+  if (member.skills) {
     modalHTML += `
       <div class="modal-section">
         <h3 class="modal-section-title">
           <span class="modal-section-icon">💡</span>
           Skills & Technologies
-        </h3>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">
-          ${member.skills.map(skill => 
-            `<span class="skill-tag">${skill}</span>`
-          ).join('')}
+        </h3>`;
+    
+    // Programming Languages
+    if (member.skills.programming && member.skills.programming.length > 0) {
+      modalHTML += `<div style="margin-bottom:12px;">
+        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Programming:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${member.skills.programming.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
         </div>
       </div>`;
+    }
+    
+    // Frameworks & Libraries
+    if (member.skills.frameworks && member.skills.frameworks.length > 0) {
+      modalHTML += `<div style="margin-bottom:12px;">
+        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Frameworks:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${member.skills.frameworks.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+        </div>
+      </div>`;
+    }
+    
+    // Tools
+    if (member.skills.tools && member.skills.tools.length > 0) {
+      modalHTML += `<div style="margin-bottom:12px;">
+        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Tools:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${member.skills.tools.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+        </div>
+      </div>`;
+    }
+    
+    modalHTML += `</div>`;
   }
   
-  // Contact & Social Links
+  // Social Network Service Section - 새로 추가
+  if (member.social && Object.keys(member.social).length > 0) {
+    modalHTML += `
+      <div class="modal-section">
+        <h3 class="modal-section-title">
+          <span class="modal-section-icon">🌐</span>
+          Social Network & Links
+        </h3>
+        <div>`;
+    
+    if (member.social.github) {
+      modalHTML += `<a href="${member.social.github}" target="_blank" class="social-link github">GitHub</a>`;
+    }
+    if (member.social.linkedin) {
+      modalHTML += `<a href="${member.social.linkedin}" target="_blank" class="social-link linkedin">LinkedIn</a>`;
+    }
+    if (member.social.google_scholar) {
+      modalHTML += `<a href="${member.social.google_scholar}" target="_blank" class="social-link scholar">Google Scholar</a>`;
+    }
+    if (member.social.orcid) {
+      modalHTML += `<a href="${member.social.orcid}" target="_blank" class="social-link orcid">ORCID</a>`;
+    }
+    if (member.social.personal_website) {
+      modalHTML += `<a href="${member.social.personal_website}" target="_blank" class="social-link website">Personal Website</a>`;
+    }
+    if (member.social.instagram) {
+      modalHTML += `<a href="${member.social.instagram}" target="_blank" class="social-link instagram">Instagram</a>`;
+    }
+    if (member.social.facebook) {
+      modalHTML += `<a href="${member.social.facebook}" target="_blank" class="social-link facebook">Facebook</a>`;
+    }
+    
+    modalHTML += `</div></div>`;
+  }
+  
+  // Contact Information
   modalHTML += `
     <div class="modal-section">
       <h3 class="modal-section-title">
@@ -1247,24 +1330,24 @@ function openModal(memberId) {
           <a href="mailto:${member.contact.email}" style="color:#d6b14d;text-decoration:none;">${member.contact.email}</a>
         </div>`;
   
-  if (member.social) {
-    modalHTML += `<div style="margin-top:12px;">`;
-    if (member.social.github) {
-      modalHTML += `<a href="${member.social.github}" target="_blank" class="social-link github">GitHub</a>`;
-    }
-    if (member.social.linkedin) {
-      modalHTML += `<a href="${member.social.linkedin}" target="_blank" class="social-link linkedin">LinkedIn</a>`;
-    }
-    if (member.social.scholar) {
-      modalHTML += `<a href="${member.social.scholar}" target="_blank" class="social-link scholar">Google Scholar</a>`;
-    }
-    if (member.social.instagram) {
-      modalHTML += `<a href="${member.social.instagram}" target="_blank" class="social-link instagram">Instagram</a>`;
-    }
-    if (member.social.facebook) {
-      modalHTML += `<a href="${member.social.facebook}" target="_blank" class="social-link facebook">Facebook</a>`;
-    }
-    modalHTML += `</div>`;
+  if (member.contact.office) {
+    modalHTML += `<div style="margin-bottom:8px;">
+      <strong>Office:</strong> ${member.contact.office}
+    </div>`;
+  }
+  
+  if (member.contact.phone) {
+    modalHTML += `<div style="margin-bottom:8px;">
+      <strong>Phone:</strong> ${member.contact.phone}
+    </div>`;
+  }
+  
+  if (member.cv) {
+    modalHTML += `<div style="margin-top:12px;">
+      <a href="${member.cv}" target="_blank" style="display:inline-block;padding:8px 16px;background:#111827;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">
+        📄 Download CV
+      </a>
+    </div>`;
   }
   
   modalHTML += `</div></div></div>`;
