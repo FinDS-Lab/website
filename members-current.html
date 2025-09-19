@@ -684,49 +684,6 @@ permalink: /members-current.html
       background: linear-gradient(180deg, var(--gold), var(--gold-dark));
     }
     
-    /* Publications */
-    .pub-item {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px 18px;
-      margin-bottom: 12px;
-      border: 1px solid var(--gray-light);
-      border-left: 3px solid var(--gold);
-    }
-    
-    .pub-title {
-      font-weight: 700;
-      color: var(--primary-dark);
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-    
-    .pub-venue {
-      font-size: 12px;
-      color: var(--red);
-      font-style: italic;
-    }
-    
-    /* Awards */
-    .award-item {
-      background: linear-gradient(135deg, #fffbeb, #fef3c7);
-      border: 1px solid var(--gold);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 12px;
-      position: relative;
-      padding-left: 44px;
-    }
-    
-    .award-item::before {
-      content: '🏆';
-      position: absolute;
-      left: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 20px;
-    }
-    
     /* Skills */
     .skill-tag {
       display: inline-block;
@@ -764,20 +721,12 @@ permalink: /members-current.html
       background: var(--gold);
       color: var(--primary-dark);
     }
-    .social-link.instagram {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: #fff;
-    }
-    .social-link.facebook {
-      background: #1877f2;
+    .social-link.orcid {
+      background: #a6ce39;
       color: #fff;
     }
     .social-link.website {
       background: var(--primary-dark);
-      color: #fff;
-    }
-    .social-link.orcid {
-      background: #a6ce39;
       color: #fff;
     }
   </style>
@@ -1051,7 +1000,7 @@ function animateNumber(elementId, finalValue) {
   requestAnimationFrame(tick);
 }
 
-// Open modal with member details - JSON 구조에 맞게 완전히 수정
+// Open modal with member details - SIMPLIFIED VERSION
 function openModal(memberId) {
   const member = allMembers.find(m => m.id === memberId);
   if (!member) {
@@ -1064,7 +1013,7 @@ function openModal(memberId) {
   const role = member.role?.en || member.role?.ko || 'Researcher';
   const avatarPath = member.avatar || '/assets/img/members/default.jpg';
   
-  // Build complete modal HTML
+  // Build simplified modal HTML - Only essential information
   let modalHTML = `
     <div class="modal-header">
       <h2 class="modal-title" id="modalTitle">
@@ -1100,7 +1049,7 @@ function openModal(memberId) {
       </div>`;
   }
   
-  // Education Section - JSON 구조에 맞게 수정
+  // Education Section - Simplified
   if (member.education && member.education.length > 0) {
     modalHTML += `
       <div class="modal-section">
@@ -1120,104 +1069,19 @@ function openModal(memberId) {
           <div style="font-weight:700;color:#111827;font-size:14px;">${edu.degree}</div>
           <div style="color:#6b7280;font-size:13px;margin-top:4px;">${institution}</div>
           ${major ? `<div style="color:#374151;font-size:12px;margin-top:2px;">Field: ${major}</div>` : ''}
-          ${edu.thesis ? `<div style="color:#374151;font-size:12px;margin-top:2px;">Thesis: ${edu.thesis}</div>` : ''}
-          ${edu.gpa ? `<div style="color:#374151;font-size:12px;margin-top:2px;">GPA: ${edu.gpa}</div>` : ''}
-          ${edu.honors ? `<div style="color:#d6b14d;font-size:12px;margin-top:2px;">🎖 ${edu.honors}</div>` : ''}
           <div style="color:#9ca3af;font-size:12px;margin-top:4px;">${period}</div>
         </div>`;
     });
     modalHTML += `</div>`;
   }
   
-  // Publications Section - JSON 구조에 맞게 수정
-  if (member.publications && member.publications.length > 0) {
-    modalHTML += `
-      <div class="modal-section">
-        <h3 class="modal-section-title">
-          <span class="modal-section-icon">📄</span>
-          Publications
-        </h3>`;
-    member.publications.forEach(pub => {
-      const authorsString = Array.isArray(pub.authors) ? pub.authors.join(', ') : pub.authors;
-      modalHTML += `
-        <div class="pub-item">
-          <div class="pub-title">${pub.title}</div>
-          <div style="font-size:12px;color:#6b7280;margin-top:4px;">${authorsString}</div>
-          <div class="pub-venue">${pub.venue}, ${pub.year}</div>
-          ${pub.url ? `<a href="${pub.url}" target="_blank" style="font-size:11px;color:#d6b14d;text-decoration:none;">🔗 View Paper</a>` : ''}
-        </div>`;
-    });
-    modalHTML += `</div>`;
-  }
-  
-  // Awards Section
-  if (member.awards && member.awards.length > 0) {
-    modalHTML += `
-      <div class="modal-section">
-        <h3 class="modal-section-title">
-          <span class="modal-section-icon">🏆</span>
-          Awards & Honors
-        </h3>`;
-    member.awards.forEach(award => {
-      modalHTML += `
-        <div class="award-item">
-          <div style="font-weight:700;color:#111827;font-size:13px;">${award.title}</div>
-          <div style="color:#6b7280;font-size:12px;margin-top:2px;">${award.organization}, ${award.year}</div>
-          ${award.description ? `<div style="color:#374151;font-size:11px;margin-top:4px;">${award.description}</div>` : ''}
-        </div>`;
-    });
-    modalHTML += `</div>`;
-  }
-  
-  // Skills Section - JSON 구조에 맞게 수정
-  if (member.skills) {
-    modalHTML += `
-      <div class="modal-section">
-        <h3 class="modal-section-title">
-          <span class="modal-section-icon">💡</span>
-          Skills & Technologies
-        </h3>`;
-    
-    // Programming Languages
-    if (member.skills.programming && member.skills.programming.length > 0) {
-      modalHTML += `<div style="margin-bottom:12px;">
-        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Programming:</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          ${member.skills.programming.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-        </div>
-      </div>`;
-    }
-    
-    // Frameworks & Libraries
-    if (member.skills.frameworks && member.skills.frameworks.length > 0) {
-      modalHTML += `<div style="margin-bottom:12px;">
-        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Frameworks:</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          ${member.skills.frameworks.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-        </div>
-      </div>`;
-    }
-    
-    // Tools
-    if (member.skills.tools && member.skills.tools.length > 0) {
-      modalHTML += `<div style="margin-bottom:12px;">
-        <div style="font-weight:700;font-size:12px;color:#6b7280;margin-bottom:6px;">Tools:</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;">
-          ${member.skills.tools.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
-        </div>
-      </div>`;
-    }
-    
-    modalHTML += `</div>`;
-  }
-  
-  // Social Network Service Section - 새로 추가
+  // Social Network Service Section - Only essential links
   if (member.social && Object.keys(member.social).length > 0) {
     modalHTML += `
       <div class="modal-section">
         <h3 class="modal-section-title">
           <span class="modal-section-icon">🌐</span>
-          Social Network & Links
+          Social Networks & Links
         </h3>
         <div>`;
     
@@ -1234,19 +1098,13 @@ function openModal(memberId) {
       modalHTML += `<a href="${member.social.orcid}" target="_blank" class="social-link orcid">ORCID</a>`;
     }
     if (member.social.personal_website) {
-      modalHTML += `<a href="${member.social.personal_website}" target="_blank" class="social-link website">Personal Website</a>`;
-    }
-    if (member.social.instagram) {
-      modalHTML += `<a href="${member.social.instagram}" target="_blank" class="social-link instagram">Instagram</a>`;
-    }
-    if (member.social.facebook) {
-      modalHTML += `<a href="${member.social.facebook}" target="_blank" class="social-link facebook">Facebook</a>`;
+      modalHTML += `<a href="${member.social.personal_website}" target="_blank" class="social-link website">Website</a>`;
     }
     
     modalHTML += `</div></div>`;
   }
   
-  // Contact Information
+  // Contact Information - Email only
   modalHTML += `
     <div class="modal-section">
       <h3 class="modal-section-title">
@@ -1257,29 +1115,11 @@ function openModal(memberId) {
         <div style="margin-bottom:8px;">
           <strong>Email:</strong> 
           <a href="mailto:${member.contact.email}" style="color:#d6b14d;text-decoration:none;">${member.contact.email}</a>
-        </div>`;
-  
-  if (member.contact.office) {
-    modalHTML += `<div style="margin-bottom:8px;">
-      <strong>Office:</strong> ${member.contact.office}
+        </div>
+      </div>
     </div>`;
-  }
   
-  if (member.contact.phone) {
-    modalHTML += `<div style="margin-bottom:8px;">
-      <strong>Phone:</strong> ${member.contact.phone}
-    </div>`;
-  }
-  
-  if (member.cv) {
-    modalHTML += `<div style="margin-top:12px;">
-      <a href="${member.cv}" target="_blank" style="display:inline-block;padding:8px 16px;background:#111827;color:#fff;border-radius:8px;text-decoration:none;font-size:12px;font-weight:600;">
-        📄 Download CV
-      </a>
-    </div>`;
-  }
-  
-  modalHTML += `</div></div></div>`;
+  modalHTML += `</div>`;
   
   // Set the modal content
   modalPanel.innerHTML = modalHTML;
