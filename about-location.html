@@ -304,13 +304,31 @@ function generateDiamondNetwork() {
   <div class="lg:col-span-2 card" id="kakao-map-wrap">
     <style>
       /* Page-local styles: map & cards reuse site tokens */
-      #kakao-map{width:100%;height:380px;border-radius:12px;border:1px solid #e5e7eb}
-      @media (min-width:768px){#kakao-map{height:460px}}
+#kakao-map{
+  width:100%;
+  height:380px;
+  min-height:300px;
+  max-height:500px;
+  border-radius:12px;
+  border:1px solid #e5e7eb
+}
+@media (min-width:768px){
+  #kakao-map{
+    height:460px;
+    min-height:400px;
+    max-height:600px
+  }
+}
       .map-error{margin-top:10px;padding:12px;border-radius:8px;background:#fef2f2;color:#991b1b;font-weight:600;border:1px solid #fecaca;font-size:14px}
       
       /* 지도 카드 패딩 축소 */
       .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);transition:box-shadow 0.2s ease}
-.card#kakao-map-wrap{padding:12px 12px 8px 12px} /* 아래 패딩 줄임 */
+.card#kakao-map-wrap{
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+} /* 아래 패딩 줄임 */
 @media (min-width:768px){
   .card#kakao-map-wrap{padding:16px 16px 10px 16px} /* PC에서도 아래 패딩 줄임 */
 }
@@ -353,11 +371,12 @@ function generateDiamondNetwork() {
       
       /* 지도 컨트롤 버튼들 - 폰트 크기 통일 */
 .map-controls{
-  margin-top:4px; /* 8px → 4px로 줄임 */
+  margin-top:0; /* margin 제거, gap으로 대체 */
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:8px
+  gap:8px;
+  flex-shrink:0; /* 컨트롤 영역 크기 고정 */
 }
       .control-btn{
         display:inline-flex;
@@ -654,6 +673,7 @@ function generateDiamondNetwork() {
     }
   })();
 </script>
+
 
 
 
