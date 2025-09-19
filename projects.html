@@ -17,7 +17,7 @@ permalink: /projects.html
       --completed-gray: #9ca3af;
     }
 
-    /* Banner */
+/* Banner */
     .banner-section {
       background: linear-gradient(
         135deg,
@@ -123,7 +123,7 @@ permalink: /projects.html
 }
 
 .breadcrumbs-banner .sep {
-  color: var(--gold-light);
+  color: var(--gold-dark);
   font-weight: 400;
   margin: 0;
   opacity: 0.6;
@@ -155,9 +155,9 @@ permalink: /projects.html
 
 /* Responsive */
 @media (max-width: 768px) {
-  .banner-content { padding: 24px 18px; min-height: 160px; }
+  .banner-content { padding: 28px 20px; min-height: 160px; }
   .banner-section { min-height: 160px; }
-  .banner-title { font-size: 1.9rem; }
+  .banner-title { font-size: 2rem; }
   .breadcrumbs-banner { 
     font-size: 12px;
     padding: 8px 14px;
@@ -167,17 +167,29 @@ permalink: /projects.html
     font-size: 12px;
   }
 }
+
+@media (max-width: 640px) {
+  .banner-title { font-size: 1.75rem; }
+  .banner-content { padding: 24px 16px; min-height: 140px; }
+  .banner-section { min-height: 140px; }
+  .breadcrumbs-banner { 
+    font-size: 11px;
+    padding: 7px 12px;
+    gap: 0.5rem;
+  }
+  .breadcrumbs-banner::before {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
-  .banner-content { padding: 20px 16px; min-height: 130px; }
-  .banner-section { min-height: 130px; }
-  .banner-title { font-size: 1.6rem; }
+  .banner-content { padding: 20px 16px; min-height: 120px; }
+  .banner-section { min-height: 120px; }
+  .banner-title { font-size: 1.5rem; }
   .breadcrumbs-banner { 
     font-size: 10px;
     gap: 0.4rem;
     padding: 6px 10px;
-  }
-  .breadcrumbs-banner::before {
-    display: none;
   }
 }
   </style>
