@@ -229,9 +229,16 @@ permalink: /members-alumni.html
       border-radius: 12px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, var(--phd-gold), var(--ms-light-gold));
       color: white;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .section-header.phd {
+      background: linear-gradient(135deg, var(--phd-gold), var(--gold-dark));
+    }
+    
+    .section-header.ms {
+      background: linear-gradient(135deg, var(--ms-light-gold), rgb(235, 205, 100));
     }
     
     .section-header.undergraduate {
@@ -1026,31 +1033,59 @@ function generateDiamondNetwork() {
     </div>
   </div>
 
-  <!-- Graduate Students Section -->
-  <div class="section-header">
+  <!-- PhD Alumni Section -->
+  <div class="section-header phd">
     <div class="section-header-content">
       <span class="section-emoji">🎓</span>
-      <div class="section-main-title">Graduate Alumni</div>
+      <div class="section-main-title">Ph.D. Alumni</div>
     </div>
   </div>
   
-  <!-- Desktop Table -->
+  <!-- PhD Desktop Table -->
   <table class="alumni-table-desktop">
     <thead>
       <tr>
         <th style="width:30%">Name</th>
         <th style="width:20%">Period</th>
-        <th style="width:30%">Thesis/Dissertation</th>
+        <th style="width:30%">Dissertation</th>
         <th style="width:20%">Current Affiliation</th>
       </tr>
     </thead>
-    <tbody id="graduateTableBody">
+    <tbody id="phdTableBody">
       <!-- Content will be dynamically generated -->
     </tbody>
   </table>
   
-  <!-- Mobile Cards -->
-  <div class="alumni-cards-mobile" id="graduateCardsMobile">
+  <!-- PhD Mobile Cards -->
+  <div class="alumni-cards-mobile" id="phdCardsMobile">
+    <!-- Content will be dynamically generated -->
+  </div>
+
+  <!-- MS Alumni Section -->
+  <div class="section-header ms">
+    <div class="section-header-content">
+      <span class="section-emoji">📖</span>
+      <div class="section-main-title">M.S. Alumni</div>
+    </div>
+  </div>
+  
+  <!-- MS Desktop Table -->
+  <table class="alumni-table-desktop">
+    <thead>
+      <tr>
+        <th style="width:30%">Name</th>
+        <th style="width:20%">Period</th>
+        <th style="width:30%">Thesis</th>
+        <th style="width:20%">Current Affiliation</th>
+      </tr>
+    </thead>
+    <tbody id="msTableBody">
+      <!-- Content will be dynamically generated -->
+    </tbody>
+  </table>
+  
+  <!-- MS Mobile Cards -->
+  <div class="alumni-cards-mobile" id="msCardsMobile">
     <!-- Content will be dynamically generated -->
   </div>
 
@@ -1090,6 +1125,17 @@ const alumniData = {{ site.data.alumni | jsonify }};
 const graduateAlumniData = alumniData.graduateAlumni || [];
 const undergradAlumniData = alumniData.undergradAlumni || [];
 const sinceDate = alumniData.sinceDate || '2025.06.14';
+
+// Separate PhD and MS alumni
+const phdAlumniData = graduateAlumniData.filter(alum => 
+  alum.degrees.includes('phd') && !alum.degrees.includes('ms')
+);
+const msAlumniData = graduateAlumniData.filter(alum => 
+  alum.degrees.includes('ms') && !alum.degrees.includes('phd')
+);
+const dualDegreeAlumniData = graduateAlumniData.filter(alum => 
+  alum.degrees.includes('ms') && alum.degrees.includes('phd')
+);
 
 // Update since date display - Changed to 2025.06.14
 document.getElementById('sinceDate').textContent = '2025.06.14.';
@@ -1149,12 +1195,44 @@ function toggleCard(index, section) {
   }
 }
 
-// Generate table content
-function generateTable(data, bodyId, section) {
+// Generate table content - Updated for PhD/MS separation
+function generateTable(data, bodyId, section, degreeType) {
   const tbody = document.getElementById(bodyId);
   let html = '';
   
   data.forEach((alum, index) => {
+    // Determine which thesis to show based on section
+    let thesisContent = '';
+    if (degreeType === 'phd') {
+      if (alum.thesis.phd) {
+        thesisContent = `
+          <span class="thesis-type">Ph.D. Dissertation</span>
+          <a href="${alum.thesis.phd.url}" target="_blank" class="thesis-link">${alum.thesis.phd.title}</a>
+        `;
+      }
+    } else if (degreeType === 'ms') {
+      if (alum.thesis.ms) {
+        thesisContent = `
+          <span class="thesis-type">Master's Thesis</span>
+          <a href="${alum.thesis.ms.url}" target="_blank" class="thesis-link">${alum.thesis.ms.title}</a>
+        `;
+      }
+    } else if (degreeType === 'dual') {
+      if (alum.thesis.phd) {
+        thesisContent += `
+          <span class="thesis-type">Ph.D. Dissertation</span>
+          <a href="${alum.thesis.phd.url}" target="_blank" class="thesis-link">${alum.thesis.phd.title}</a>
+        `;
+      }
+      if (alum.thesis.ms) {
+        thesisContent += `
+          ${alum.thesis.phd ? '<br><br>' : ''}
+          <span class="thesis-type">Master's Thesis</span>
+          <a href="${alum.thesis.ms.url}" target="_blank" class="thesis-link">${alum.thesis.ms.title}</a>
+        `;
+      }
+    }
+    
     // Main row
     html += `
       <tr class="alumni-row">
@@ -1169,29 +1247,27 @@ function generateTable(data, bodyId, section) {
         </td>
         <td>
           <div class="alumni-periods">
-            ${alum.degrees.map(d => `
+            ${degreeType === 'phd' && alum.periods.phd ? `
+              <div class="period-item">
+                <span class="period-degree phd">PH.D</span>
+                <span class="period-range">${alum.periods.phd}</span>
+              </div>
+            ` : ''}
+            ${degreeType === 'ms' && alum.periods.ms ? `
+              <div class="period-item">
+                <span class="period-degree ms">M.S</span>
+                <span class="period-range">${alum.periods.ms}</span>
+              </div>
+            ` : ''}
+            ${degreeType === 'dual' ? alum.degrees.map(d => `
               <div class="period-item">
                 <span class="period-degree ${d}">${d.toUpperCase()}</span>
                 <span class="period-range">${alum.periods[d]}</span>
               </div>
-            `).join('')}
+            `).join('') : ''}
           </div>
         </td>
-        <td>
-          ${alum.thesis.phd ? `
-            <span class="thesis-type">Ph.D. Dissertation</span>
-            <a href="${alum.thesis.phd.url}" target="_blank" class="thesis-link">${alum.thesis.phd.title}</a>
-          ` : ''}
-          ${alum.thesis.ms ? `
-            ${alum.thesis.phd ? '<br><br>' : ''}
-            <span class="thesis-type">Master's Thesis</span>
-            <a href="${alum.thesis.ms.url}" target="_blank" class="thesis-link">${alum.thesis.ms.title}</a>
-          ` : ''}
-          ${alum.thesis.ur ? `
-            <span class="thesis-type">Capstone Project</span>
-            <a href="${alum.thesis.ur.url}" target="_blank" class="thesis-link">${alum.thesis.ur.title}</a>
-          ` : ''}
-        </td>
+        <td>${thesisContent}</td>
         <td>
           <div class="position-company">${alum.company}</div>
         </td>
@@ -1221,16 +1297,55 @@ function generateTable(data, bodyId, section) {
   tbody.innerHTML = html;
 }
 
-// Generate mobile cards content
-function generateCards(data, containerId, section) {
+// Generate mobile cards content - Updated for PhD/MS separation
+function generateCards(data, containerId, section, buttonColor, buttonColorDark, degreeType) {
   const container = document.getElementById(containerId);
   let html = '';
   
-  // Determine button color based on section
-  const buttonColor = section === 'undergrad' ? 'var(--undergrad-red)' : 'var(--gold)';
-  const buttonColorDark = section === 'undergrad' ? 'rgb(127, 10, 10)' : 'var(--gold-dark)';
-  
   data.forEach((alum, index) => {
+    // Determine which thesis to show based on section
+    let thesisContent = '';
+    if (degreeType === 'phd' && alum.thesis.phd) {
+      thesisContent = `
+        <div style="margin-bottom:6px">
+          <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">Ph.D.</div>
+          <a href="${alum.thesis.phd.url}" target="_blank" class="alumni-card-thesis-link">
+            ${alum.thesis.phd.title}
+          </a>
+        </div>
+      `;
+    } else if (degreeType === 'ms' && alum.thesis.ms) {
+      thesisContent = `
+        <div style="margin-bottom:6px">
+          <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">M.S.</div>
+          <a href="${alum.thesis.ms.url}" target="_blank" class="alumni-card-thesis-link">
+            ${alum.thesis.ms.title}
+          </a>
+        </div>
+      `;
+    } else if (degreeType === 'dual') {
+      if (alum.thesis.phd) {
+        thesisContent += `
+          <div style="margin-bottom:6px">
+            <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">Ph.D.</div>
+            <a href="${alum.thesis.phd.url}" target="_blank" class="alumni-card-thesis-link">
+              ${alum.thesis.phd.title}
+            </a>
+          </div>
+        `;
+      }
+      if (alum.thesis.ms) {
+        thesisContent += `
+          <div style="margin-bottom:6px">
+            <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">M.S.</div>
+            <a href="${alum.thesis.ms.url}" target="_blank" class="alumni-card-thesis-link">
+              ${alum.thesis.ms.title}
+            </a>
+          </div>
+        `;
+      }
+    }
+    
     html += `
       <div class="alumni-card">
         <div class="alumni-card-header" id="card-header-${section}-${index}" onclick="toggleCard(${index}, '${section}')">
@@ -1252,12 +1367,24 @@ function generateCards(data, containerId, section) {
           <!-- Period -->
           <div class="alumni-card-section">
             <div class="alumni-card-label">Period</div>
-            ${alum.degrees.map(d => `
+            ${degreeType === 'phd' && alum.periods.phd ? `
+              <div class="alumni-card-period">
+                <span class="period-degree phd">PH.D</span>
+                <span class="period-range" style="font-size:10px">${alum.periods.phd}</span>
+              </div>
+            ` : ''}
+            ${degreeType === 'ms' && alum.periods.ms ? `
+              <div class="alumni-card-period">
+                <span class="period-degree ms">M.S</span>
+                <span class="period-range" style="font-size:10px">${alum.periods.ms}</span>
+              </div>
+            ` : ''}
+            ${degreeType === 'dual' ? alum.degrees.map(d => `
               <div class="alumni-card-period">
                 <span class="period-degree ${d}">${d.toUpperCase()}</span>
                 <span class="period-range" style="font-size:10px">${alum.periods[d]}</span>
               </div>
-            `).join('')}
+            `).join('') : ''}
           </div>
           
           <!-- Current Affiliation -->
@@ -1270,32 +1397,9 @@ function generateCards(data, containerId, section) {
           
           <!-- Thesis -->
           <div class="alumni-card-section">
-            <div class="alumni-card-label">${section === 'graduate' ? 'Thesis/Dissertation' : 'Capstone/Project'}</div>
+            <div class="alumni-card-label">${degreeType === 'phd' ? 'Dissertation' : degreeType === 'ms' ? 'Thesis' : 'Thesis/Dissertation'}</div>
             <div class="alumni-card-value">
-              ${alum.thesis.phd ? `
-                <div style="margin-bottom:6px">
-                  <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">Ph.D.</div>
-                  <a href="${alum.thesis.phd.url}" target="_blank" class="alumni-card-thesis-link">
-                    ${alum.thesis.phd.title}
-                  </a>
-                </div>
-              ` : ''}
-              ${alum.thesis.ms ? `
-                <div style="margin-bottom:6px">
-                  <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">M.S.</div>
-                  <a href="${alum.thesis.ms.url}" target="_blank" class="alumni-card-thesis-link">
-                    ${alum.thesis.ms.title}
-                  </a>
-                </div>
-              ` : ''}
-              ${alum.thesis.ur ? `
-                <div>
-                  <div style="font-weight:700;font-size:9px;color:#374151;margin-bottom:2px">U.R.</div>
-                  <a href="${alum.thesis.ur.url}" target="_blank" class="alumni-card-thesis-link">
-                    ${alum.thesis.ur.title}
-                  </a>
-                </div>
-              ` : ''}
+              ${thesisContent}
             </div>
           </div>
           
@@ -1358,10 +1462,18 @@ function animateNumber(elementId, finalValue) {
   }, 50);
 }
 
-// Initialize
-generateTable(graduateAlumniData, 'graduateTableBody', 'graduate');
-generateCards(graduateAlumniData, 'graduateCardsMobile', 'graduate');
-generateTable(undergradAlumniData, 'undergradTableBody', 'undergrad');
-generateCards(undergradAlumniData, 'undergradCardsMobile', 'undergrad');
+// Initialize - Updated for separate sections
+// PhD Alumni
+generateTable(phdAlumniData.concat(dualDegreeAlumniData), 'phdTableBody', 'phd', 'phd');
+generateCards(phdAlumniData.concat(dualDegreeAlumniData), 'phdCardsMobile', 'phd', 'var(--gold)', 'var(--gold-dark)', 'phd');
+
+// MS Alumni  
+generateTable(msAlumniData.concat(dualDegreeAlumniData), 'msTableBody', 'ms', 'ms');
+generateCards(msAlumniData.concat(dualDegreeAlumniData), 'msCardsMobile', 'ms', 'var(--ms-light-gold)', 'rgb(225, 195, 90)', 'ms');
+
+// Undergraduate Alumni
+generateTable(undergradAlumniData, 'undergradTableBody', 'undergrad', 'ur');
+generateCards(undergradAlumniData, 'undergradCardsMobile', 'undergrad', 'var(--undergrad-red)', 'rgb(127, 10, 10)', 'ur');
+
 calculateStats();
 </script>
