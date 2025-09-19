@@ -895,135 +895,6 @@ permalink: /members-alumni.html
       .section-main-title{
         font-size:13px;
       }
-    }16px 18px;
-      }
-      
-      .section-icon{
-        width:40px;
-        height:40px;
-        font-size:20px;
-      }
-      
-      .section-main-title{
-        font-size:17px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .alumni-card-name-text{
-        font-size:12px;
-      }
-      
-      .alumni-card-value{
-        font-size:10px;
-      }
-      
-      .alumni-card-thesis-link{
-        font-size:9px;
-      }
-      
-      .stats-container{
-        grid-template-columns:repeat(3, 1fr);
-        gap:8px;
-      }
-      
-      .stat-card{
-        padding:12px 6px;
-      }
-      
-      .stat-number{
-        font-size:18px;
-      }
-      
-      .stat-label{
-        font-size:8px;
-        letter-spacing:0.2px;
-      }
-      
-      /* Alumni Since mobile styles */
-      #alumni-since-container {
-        margin-bottom: 1rem !important;
-      }
-      
-      #alumni-since-box {
-        padding: 10px 12px !important;
-      }
-      
-      #alumni-since-text {
-        font-size: 10px !important;
-      }
-      
-      #sinceDate {
-        font-size: 16px !important;
-        margin-left: 8px !important;
-      }
-      
-      .section-header{
-        padding:14px 16px;
-      }
-      
-      .section-icon{
-        width:36px;
-        height:36px;
-        font-size:18px;
-      }
-      
-      .section-main-title{
-        font-size:15px;
-      }
-      
-      .alumni-card-header{
-        padding:8px 10px;
-      }
-      
-      .alumni-card-body{
-        padding:10px;
-      }
-      
-      .degree-tag{
-        font-size:8px;
-        padding:2px 5px;
-      }
-      
-      .position-company{
-        font-size:11px;
-      }
-      
-      .alumni-card-arrow-button{
-        width: 20px;
-        height: 20px;
-      }
-      
-      .alumni-card-arrow{
-        font-size: 9px;
-      }
-    }
-    
-    /* Very small mobile */
-    @media (max-width: 360px) {
-      .stats-container{
-        gap:6px;
-      }
-      
-      .stat-card{
-        padding:10px 4px;
-      }
-      
-      .stat-number{
-        font-size:16px;
-      }
-      
-      .stat-label{
-        font-size:7px;
-      }
-      
-      #alumni-since-text {
-        font-size: 9px !important;
-      }
-      
-      #sinceDate {
-        font-size: 14px !important;
-      }
     }
   </style>
 
@@ -1218,10 +1089,10 @@ function generateDiamondNetwork() {
 const alumniData = {{ site.data.alumni | jsonify }};
 const graduateAlumniData = alumniData.graduateAlumni || [];
 const undergradAlumniData = alumniData.undergradAlumni || [];
-const sinceDate = alumniData.sinceDate || '2025.09.01';
+const sinceDate = alumniData.sinceDate || '2025.06.14';
 
-// Update since date display - Force update to 2025.09.01
-document.getElementById('sinceDate').textContent = '2025.09.01';
+// Update since date display - Changed to 2025.06.14
+document.getElementById('sinceDate').textContent = '2025.06.14.';
 
 // Toggle function for desktop expandable rows
 function toggleAlumni(element, index, section) {
