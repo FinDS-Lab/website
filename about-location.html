@@ -306,21 +306,14 @@ function generateDiamondNetwork() {
     <style>
       /* Page-local styles */
 
-      /* ── FIXED HEIGHT MAP ──
-         고정 높이를 사용해 창 리사이즈/브라우저 줌에도 높이가 변하지 않도록 합니다. */
+      /* ── FIXED HEIGHT MAP ── */
       #kakao-map {
         width: 100%;
-        height: 480px !important; /* 원하는 고정값으로 조정 가능 */
+        height: 480px !important; /* 고정값 (필요 시 조정) */
         border-radius: 12px;
         border: 1px solid #e5e7eb;
-        flex: 0 0 auto;            /* flex 컨텍스트에서 크기 고정 */
+        flex: 0 0 auto; /* flex 컨텍스트에서 크기 고정 */
       }
-
-      /* 높이를 움직이던 미디어쿼리는 제거/비활성화 */
-      /* (참고용) 이전 규칙
-      @media (min-width: 768px) { #kakao-map { height: 500px; } }
-      @media (max-width: 640px) { #kakao-map { height: 320px; } }
-      */
 
       .map-error {
         margin-top: 10px;
@@ -343,63 +336,39 @@ function generateDiamondNetwork() {
         transition: box-shadow 0.2s ease;
       }
       
-      /* 지도 카드만 특별 처리 - 패딩 최소화 + 세로 stretch 해제 */
+      /* 지도 카드만: 패딩 최소 + 세로 stretch 해제 */
       .card#kakao-map-wrap {
         padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: 4px;
-        align-self: start;       /* grid에서 세로로 늘어나는 기본값(stretch) 방지 */
+        gap: 6px;
+        align-self: start; /* grid의 stretch 방지 */
       }
       
       .card:hover {
         box-shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -1px rgba(0,0,0,.06);
       }
       
-      /* 지도 컨트롤 영역 - 높이 고정 */
+      /* 지도 컨트롤 영역 */
       .map-controls {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 8px;
         height: 32px;
-        flex-shrink: 0; /* 축소 방지 */
+        flex-shrink: 0;
+        flex-wrap: nowrap; /* 줄바꿈 금지 */
       }
-      
-      /* 복사 버튼 스타일 */
-      .copy-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        height: 28px;
-        padding: 0 10px;
-        border-radius: 8px;
-        border: 1px solid #d1d5db;
-        background: #ffffff;
-        font-weight: 600;
+
+      /* 왼쪽 안내 문구: 항상 1줄 + 필요시 말줄임 */
+      .map-hint {
         font-size: 12px;
-        color: #374151;
-        cursor: pointer;
-        transition: all 0.15s ease;
-        white-space: nowrap;
-      }
-      
-      .copy-btn:hover {
-        background: #f8fafc;
-        border-color: #9ca3af;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(0,0,0,.1);
-      }
-      
-      .copy-btn:active {
-        transform: translateY(0);
-        box-shadow: 0 1px 2px rgba(0,0,0,.1);
-      }
-      
-      .copy-btn.copied {
-        background: #10b981;
-        border-color: #10b981;
-        color: white;
+        color: #6b7280; /* text-slate-500 유사 */
+        white-space: nowrap;        /* 줄바꿈 금지 */
+        overflow: hidden;           /* 넘치면 숨김 */
+        text-overflow: ellipsis;    /* … 처리 */
+        flex: 1 1 auto;             /* 남는 공간 채우고 버튼들과 함께 반응 */
+        min-width: 0;               /* flex 아이템 말줄임을 위해 필요 */
       }
       
       /* 컨트롤 버튼 */
@@ -417,6 +386,7 @@ function generateDiamondNetwork() {
         color: #374151;
         text-decoration: none;
         transition: all 0.15s ease;
+        white-space: nowrap; /* 버튼 텍스트도 1줄 유지 */
       }
       
       .control-btn:hover {
@@ -484,7 +454,7 @@ function generateDiamondNetwork() {
         .card { padding: 16px; }
         .card#kakao-map-wrap { 
           padding: 8px; 
-          gap: 4px;
+          gap: 6px;
         }
         .card-header { 
           margin: -16px -16px 12px -16px;
@@ -492,39 +462,37 @@ function generateDiamondNetwork() {
           font-size: 14px;
         }
         .card-header .subtitle { font-size: 12px; }
+
+        /* 모바일에서는 상하 배치로 더 여유롭게 */
         .map-controls { 
           flex-direction: column;
           align-items: stretch;
           height: auto;
           gap: 6px;
         }
-        .control-btn { justify-content: center; }
+        .map-hint {
+          font-size: 12px;
+        }
+        .control-btn { 
+          justify-content: center; 
+          font-size: 11px; 
+        }
         .address-section { padding: 10px; }
         .address-korean { font-size: 13px; }
         .address-english { font-size: 11px; }
-        .copy-btn { 
-          font-size: 11px;
-          height: 26px;
-          padding: 0 8px;
-        }
-        .control-btn { font-size: 11px; }
       }
     </style>
 
-    <!-- aria-label 수정: 인문관 -->
+    <!-- aria-label: 인문관 -->
     <div id="kakao-map" role="img" aria-label="동덕여자대학교 인문관 위치 지도"></div>
     <div id="mapError" class="map-error" style="display:none;"></div>
 
     <!-- 하단 툴바 -->
     <div class="map-controls">
-      <div class="text-xs text-slate-500" style="max-width: 180px;">📍 클릭하여 자세한 위치를 확인하세요</div>
-      <div class="flex gap-2">
-        <button id="btnRecenter" class="control-btn" title="지도 다시 맞추기">
-          🎯 Re-center
-        </button>
-        <a id="btnDirections" href="#" target="_blank" rel="noopener noreferrer" class="control-btn" title="카카오맵 길찾기">
-          🧭 Directions
-        </a>
+      <div class="map-hint">📍 클릭하여 자세한 위치를 확인하세요</div>
+      <div class="flex gap-2" style="display:flex;gap:8px;">
+        <button id="btnRecenter" class="control-btn" title="지도 다시 맞추기">🎯 Re-center</button>
+        <a id="btnDirections" href="#" target="_blank" rel="noopener noreferrer" class="control-btn" title="카카오맵 길찾기">🧭 Directions</a>
       </div>
     </div>
   </div>
@@ -549,9 +517,7 @@ function generateDiamondNetwork() {
           Dongduk Women's University<br>
           60 Hwarang-ro 13-gil, Seongbuk-gu, Seoul
         </div>
-        <button class="copy-btn" data-copy-addr title="주소 복사">
-          📋 Copy address
-        </button>
+        <button class="copy-btn" data-copy-addr title="주소 복사">📋 Copy address</button>
       </div>
     </section>
 
@@ -573,9 +539,7 @@ function generateDiamondNetwork() {
           Dongduk Women's University<br>
           60 Hwarang-ro 13-gil, Seongbuk-gu, Seoul
         </div>
-        <button class="copy-btn" data-copy-addr title="주소 복사">
-          📋 Copy address
-        </button>
+        <button class="copy-btn" data-copy-addr title="주소 복사">📋 Copy address</button>
       </div>
     </section>
   </aside>
