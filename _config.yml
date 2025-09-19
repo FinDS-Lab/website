@@ -34,10 +34,10 @@ include:
   - assets/docs
 # --- 추가: Open Graph / SEO 설정 ---
 # 사이트 전역에서 사용될 OG 기본 이미지
-og_image: "/assets/img/findslab-thumbnail.png"
+og_image: "/assets/img/thumbnail/findslab-thumbnail.png"
 
 # jekyll-seo-tag 같은 SEO 플러그인을 쓴다면 아래 image 키를 써도 됩니다
-image: "/assets/img/findslab-thumbnail.png"
+image: "/assets/img/thumbnail/findslab-thumbnail.png"
 
 # (선택) Twitter 카드에서 사이트 계정 지정 가능
 # twitter:
