@@ -4,32 +4,56 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}" />
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}"/>
 
-  <!-- Open Graph / Twitter Meta -->
-  {%- assign og_img = page.og_image | default: site.og_image -%}
-  {%- if og_img contains 'http' -%}
-    {%- assign og_img_abs = og_img -%}
+  {%- comment -%}
+    OG/Twitter 이미지 결정 로직
+    1) 페이지가 front matter에서 og_image 지정하면 우선
+    2) 없으면 전역 site.og_image 사용
+    절대 URL 보장을 위해 site.url + site.baseurl + 경로를 합칩니다.
+  {%- endcomment -%}
+  {%- assign og_img_src = page.og_image | default: site.og_image -%}
+  {%- if og_img_src contains 'http' -%}
+    {%- assign og_img_abs = og_img_src -%}
   {%- else -%}
-    {%- assign og_img_abs = site.url | append: site.baseurl | append: og_img -%}
+    {%- assign og_img_abs = site.url | append: site.baseurl | append: og_img_src -%}
   {%- endif -%}
 
+  {%- comment -%}
+    현재 페이지의 정규 URL(og:url, canonical)
+  {%- endcomment -%}
+  {%- assign page_abs_url = site.url | append: site.baseurl | append: page.url -%}
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ page_abs_url }}"/>
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="ko_KR" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="{{ site.title }}" />
   <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" />
   <meta property="og:description" content="{{ page.description | default: site.description }}" />
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}" />
-  <meta property="og:image" content="{{ og_img_abs }}?v=20250915" />
+  <meta property="og:url" content="{{ page_abs_url }}" />
+  <meta property="og:image" content="{{ og_img_abs }}?v={{ site.asset_version }}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}" />
   <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
-  <meta name="twitter:image" content="{{ og_img_abs }}?v=20250915" />
+  <meta name="twitter:image" content="{{ og_img_abs }}?v={{ site.asset_version }}" />
+
+  {%- comment -%}
+    (선택) jekyll-seo-tag 사용 시 아래 한 줄 활성화하면
+    title/description/canonical 등 자동 보강됩니다.
+    단, og:image는 위에서 이미 설정했으니 둘 다 써도 문제 없습니다.
+  {%- endcomment -%}
+  {%- comment -%} {% seo %} {%- endcomment -%}
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
