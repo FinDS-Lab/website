@@ -121,7 +121,7 @@ permalink: /members-current.html
     letter-spacing: -0.02em;
     margin: 0;
   }
-/* Breadcrumbs */
+/* Breadcrumbs - 흰색 배경, 금색 텍스트 (통일된 스타일) */
 .breadcrumbs-banner {
   display: inline-flex;
   align-items: center;
@@ -172,8 +172,8 @@ permalink: /members-current.html
   width: 100%;
 }
 
-.banner-breadcrumbs .sep {
-  color: var(--gold-dark);  /* var(--gold-light)를 var(--gold-dark)로 변경 */
+.breadcrumbs-banner .sep {
+  color: var(--gold-dark);
   font-weight: 400;
   margin: 0;
   opacity: 0.6;
@@ -193,16 +193,18 @@ permalink: /members-current.html
   opacity: 0.8;
 }
 
-/* 반응형 - Archives와 동일 */
+/* Responsive */
 @media (max-width: 768px) {
   .banner-content { 
-    padding: 28px 20px;
-    min-height: 160px;
+    padding: 28px 20px; 
+    min-height: 160px; 
   }
-  .banner-section {
-    min-height: 160px;
+  .banner-section { 
+    min-height: 160px; 
   }
-  .banner-title { font-size: 2rem; }
+  .banner-title { 
+    font-size: 2rem; 
+  }
   .breadcrumbs-banner { 
     font-size: 12px;
     padding: 8px 14px;
@@ -214,7 +216,9 @@ permalink: /members-current.html
 }
 
 @media (max-width: 640px) {
-  .banner-title { font-size: 1.75rem; }
+  .banner-title { 
+    font-size: 1.75rem; 
+  }
   .banner-content { 
     padding: 24px 16px;
     min-height: 140px;
@@ -222,28 +226,28 @@ permalink: /members-current.html
   .banner-section {
     min-height: 140px;
   }
-  /* 아래 부분을 추가 */
-  .banner-breadcrumbs { 
+  .breadcrumbs-banner { 
     font-size: 11px;
     padding: 7px 12px;
     gap: 0.5rem;
   }
-  .banner-breadcrumbs::before {
+  .breadcrumbs-banner::before {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
   .banner-content { 
-    padding: 20px 16px;
-    min-height: 120px;
+    padding: 20px 16px; 
+    min-height: 120px; 
   }
-  .banner-section {
-    min-height: 120px;
+  .banner-section { 
+    min-height: 120px; 
   }
-  .banner-title { font-size: 1.5rem; }
-  /* 아래 부분을 수정/추가 */
-  .banner-breadcrumbs { 
+  .banner-title { 
+    font-size: 1.5rem; 
+  }
+  .breadcrumbs-banner { 
     font-size: 10px;
     gap: 0.4rem;
     padding: 6px 10px;
