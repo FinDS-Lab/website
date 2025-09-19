@@ -305,25 +305,23 @@ function generateDiamondNetwork() {
   <div class="lg:col-span-2 card" id="kakao-map-wrap">
     <style>
       /* Page-local styles */
+
+      /* ── FIXED HEIGHT MAP ──
+         고정 높이를 사용해 창 리사이즈/브라우저 줌에도 높이가 변하지 않도록 합니다. */
       #kakao-map {
         width: 100%;
-        height: 440px; /* 높이 증가 */
+        height: 480px !important; /* 원하는 고정값으로 조정 가능 */
         border-radius: 12px;
         border: 1px solid #e5e7eb;
+        flex: 0 0 auto;            /* flex 컨텍스트에서 크기 고정 */
       }
-      
-      @media (min-width: 768px) {
-        #kakao-map {
-          height: 500px; /* PC에서 더 높게 */
-        }
-      }
-      
-      @media (max-width: 640px) {
-        #kakao-map {
-          height: 320px; /* 모바일에서는 적당히 */
-        }
-      }
-      
+
+      /* 높이를 움직이던 미디어쿼리는 제거/비활성화 */
+      /* (참고용) 이전 규칙
+      @media (min-width: 768px) { #kakao-map { height: 500px; } }
+      @media (max-width: 640px) { #kakao-map { height: 320px; } }
+      */
+
       .map-error {
         margin-top: 10px;
         padding: 12px;
@@ -345,19 +343,13 @@ function generateDiamondNetwork() {
         transition: box-shadow 0.2s ease;
       }
       
-      /* 지도 카드만 특별 처리 - 패딩 최소화 */
+      /* 지도 카드만 특별 처리 - 패딩 최소화 + 세로 stretch 해제 */
       .card#kakao-map-wrap {
-        padding: 10px; /* 전체 패딩 축소 */
+        padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: 4px; /* 지도와 컨트롤 사이 간격 최소화 */
-      }
-      
-      @media (min-width: 768px) {
-        .card#kakao-map-wrap {
-          padding: 12px; /* PC에서도 최소 패딩 */
-          gap: 6px;
-        }
+        gap: 4px;
+        align-self: start;       /* grid에서 세로로 늘어나는 기본값(stretch) 방지 */
       }
       
       .card:hover {
@@ -370,7 +362,7 @@ function generateDiamondNetwork() {
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        height: 32px; /* 높이 고정 */
+        height: 32px;
         flex-shrink: 0; /* 축소 방지 */
       }
       
