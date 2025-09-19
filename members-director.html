@@ -1978,14 +1978,15 @@ permalink: /members-director.html
             </li>
 
             <!-- Master -->
+<!-- Master -->
             <li>
               <img src="{{ '/assets/img/logos/kaist.png' | relative_url }}" alt="KAIST" class="logo"
                    onerror="this.onerror=null; this.src='{{ '/assets/img/logos/default.png' | relative_url }}'">
               <div class="year date-bold">2021.02.</div>
               <div class="title">Master of Science (M.S.)</div>
-              <div class="desc-dept">Industrial and Systems Engineering<회)</li>
-                </ul>
-              </div>
+              <div class="desc-dept">Industrial and Systems Engineering</div>
+              <div class="desc-affiliation">Korea Advanced Institute of Science and Technology (KAIST)</div>
+              <div class="desc-ko">한국과학기술원 (KAIST) 산업및시스템공학 이학석사</div>
             </li>
 
             <!-- Bachelor -->
@@ -2627,8 +2628,10 @@ function populateReviewerExperience() {
   let journalHTML = '';
   sortedJournals.forEach(journal => {
     const typeClass = journal.type.toLowerCase().replace(/[^a-z]/g, '');
+    const hasUrl = journal.url && journal.url.trim() !== '';
+    
     journalHTML += `
-      <div class="reviewer-item">
+      <div class="reviewer-item" ${hasUrl ? `onclick="window.open('${journal.url}', '_blank')"` : ''}>
         <div class="reviewer-type ${typeClass}">${journal.type}</div>
         <div class="reviewer-name">${journal.name}</div>
         <div class="reviewer-publisher">${journal.publisher}</div>
@@ -2640,8 +2643,10 @@ function populateReviewerExperience() {
   
   let conferenceHTML = '';
   reviewerData.conferences.forEach(conf => {
+    const hasUrl = conf.url && conf.url.trim() !== '';
+    
     conferenceHTML += `
-      <div class="conference-reviewer-item">
+      <div class="conference-reviewer-item" ${hasUrl ? `onclick="window.open('${conf.url}', '_blank'); event.stopPropagation();" style="cursor:pointer;"` : ''}>
         <div class="conference-name">${conf.name}</div>
         <div class="conference-period"><b>${conf.period}</b></div>
       </div>
@@ -3383,6 +3388,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
 
 
 
