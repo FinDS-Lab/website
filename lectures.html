@@ -73,148 +73,143 @@ permalink: /lectures.html
       justify-content: flex-start;
       min-height: 200px;
     }
+/* Breadcrumbs - 흰색 배경, 금색 텍스트로 변경 (Notice와 동일) */
+.breadcrumbs-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+  border: 1px solid rgba(214, 177, 77, 0.2);
+  transition: all 0.3s ease;
+}
 
-    /* Breadcrumbs - 흰색 배경, 금색 텍스트 (통일된 스타일) */
-    .breadcrumbs-banner {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 10px 16px;
-      border-radius: 999px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
-      border: 1px solid rgba(214, 177, 77, 0.2);
-      transition: all 0.3s ease;
-    }
+.breadcrumbs-banner:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+  transform: translateY(-1px);
+}
 
-    .breadcrumbs-banner:hover {
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
-      transform: translateY(-1px);
-    }
+.breadcrumbs-banner a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+  font-weight: 600;
+}
 
-    .breadcrumbs-banner a {
-      color: var(--gold-dark);
-      text-decoration: none;
-      transition: all 0.2s;
-      position: relative;
-      font-weight: 600;
-    }
+.breadcrumbs-banner a:hover {
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+}
 
-    .breadcrumbs-banner a:hover {
-      color: var(--gold);
-      text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
-    }
+/* 링크 호버 시 밑줄 효과 */
+.breadcrumbs-banner a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
 
-    .breadcrumbs-banner a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.2s ease;
-    }
+.breadcrumbs-banner a:hover::after {
+  width: 100%;
+}
 
-    .breadcrumbs-banner a:hover::after {
-      width: 100%;
-    }
+.breadcrumbs-banner .sep {
+  color: var(--gold-light);
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.6;
+}
 
-    .breadcrumbs-banner .sep {
-      color: rgba(214, 177, 77, 0.4);
-      font-weight: 400;
-      margin: 0;
-    }
+.breadcrumbs-banner span:not(.sep):not(a) {
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
 
-    .breadcrumbs-banner span:not(.sep):not(a) {
-      color: var(--gold);
-      font-weight: 800;
-      letter-spacing: 0.3px;
-    }
+/* Breadcrumb 아이콘 추가 (선택사항) */
+.breadcrumbs-banner::before {
+  content: '🔍';
+  font-size: 14px;
+  margin-right: 2px;
+  opacity: 0.8;
+}
 
-    /* Breadcrumb 아이콘 */
-    .breadcrumbs-banner::before {
-      content: '🔍';
-      font-size: 14px;
-      margin-right: 2px;
-      opacity: 0.8;
-    }
+/* 제목 (통일) */
+.banner-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
 
-  /* 제목 (통일) */
-  .banner-title {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.12);
-    letter-spacing: -0.02em;
-    margin: 0;
+/* 반응형 (통일) */
+@media (max-width: 768px) {
+  .banner-content { 
+    padding: 28px 20px;
+    min-height: 160px;
   }
+  .banner-section {
+    min-height: 160px;
+  }
+  .banner-title { font-size: 2rem; }
+  .breadcrumbs-banner {
+    font-size: 12px;
+    padding: 8px 14px;
+    gap: 0.6rem;
+  }
+  .breadcrumbs-banner::before {
+    font-size: 12px;
+  }
+}
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .banner-content { 
-        padding: 28px 20px; 
-        min-height: 160px; 
-      }
-      .banner-section { 
-        min-height: 160px; 
-      }
-      .banner-title { 
-        font-size: 2rem; 
-      }
-      .breadcrumbs-banner { 
-        font-size: 12px;
-        padding: 8px 14px;
-        gap: 0.6rem;
-      }
-      .breadcrumbs-banner::before {
-        font-size: 12px;
-      }
-    }
-    
-    @media (max-width: 640px) {
-      .banner-title { 
-        font-size: 1.75rem; 
-      }
-      .banner-content { 
-        padding: 24px 16px;
-        min-height: 140px;
-      }
-      .banner-section {
-        min-height: 140px;
-      }
-      .breadcrumbs-banner { 
-        font-size: 11px;
-        padding: 7px 12px;
-        gap: 0.5rem;
-      }
-      .breadcrumbs-banner::before {
-        display: none;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .banner-content { 
-        padding: 20px 16px; 
-        min-height: 120px; 
-      }
-      .banner-section { 
-        min-height: 120px; 
-      }
-      .banner-title { 
-        font-size: 1.5rem; 
-      }
-      .breadcrumbs-banner { 
-        font-size: 10px;
-        gap: 0.4rem;
-        padding: 6px 10px;
-      }
-    }
+@media (max-width: 640px) {
+  .banner-title { font-size: 1.75rem; }
+  .banner-content { 
+    padding: 24px 16px;
+    min-height: 140px;
+  }
+  .banner-section {
+    min-height: 140px;
+  }
+  .breadcrumbs-banner { 
+    font-size: 11px;
+    padding: 7px 12px;
+    gap: 0.5rem;
+  }
+  .breadcrumbs-banner::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-content { 
+    padding: 20px 16px;
+    min-height: 120px;
+  }
+  .banner-section {
+    min-height: 120px;
+  }
+  .banner-title { font-size: 1.5rem; }
+  .breadcrumbs-banner { 
+    font-size: 10px;
+    gap: 0.4rem;
+    padding: 6px 10px;
+  }
+}
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
