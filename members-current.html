@@ -121,50 +121,108 @@ permalink: /members-current.html
     letter-spacing: -0.02em;
     margin: 0;
   }
+/* Breadcrumbs */
+.breadcrumbs-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 3px rgba(255,255,255,0.5);
+  border: 1px solid rgba(214, 177, 77, 0.2);
+  transition: all 0.3s ease;
+}
 
-    /* Breadcrumbs */
-    .breadcrumbs-banner {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 16px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 10px 16px;
-      border-radius: 999px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      border: 1px solid rgba(214, 177, 77, 0.2);
-    }
+.breadcrumbs-banner:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12), inset 0 1px 3px rgba(255,255,255,0.8);
+  transform: translateY(-1px);
+}
 
+.breadcrumbs-banner a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+  font-weight: 600;
+}
 
-    /* 여기에 추가 */
+.breadcrumbs-banner a:hover {
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
+}
+
+.breadcrumbs-banner a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.2s ease;
+}
+
+.breadcrumbs-banner a:hover::after {
+  width: 100%;
+}
+
+.breadcrumbs-banner .sep {
+  color: var(--gold-dark);
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.6;
+}
+
+.breadcrumbs-banner span:not(.sep):not(a) {
+  color: var(--gold);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+/* Breadcrumb 아이콘 */
 .breadcrumbs-banner::before {
   content: '👥';  /* Members 페이지용 이모지 */
   font-size: 14px;
   margin-right: 2px;
   opacity: 0.8;
 }
-    
-    .breadcrumbs-banner a {
-      color: var(--gold-dark);
-      text-decoration: none;
-      font-weight: 600;
-    }
 
-    .breadcrumbs-banner a:hover {
-      color: var(--gold);
-    }
+/* 반응형 - Archives와 동일 */
+@media (max-width: 768px) {
+  .breadcrumbs-banner { 
+    font-size: 12px;
+    padding: 8px 14px;
+    gap: 0.6rem;
+  }
+  .breadcrumbs-banner::before {
+    font-size: 12px;
+  }
+}
 
-    .breadcrumbs-banner .sep {
-      color: rgba(214, 177, 77, 0.4);
-    }
+@media (max-width: 640px) {
+  .breadcrumbs-banner { 
+    font-size: 11px;
+    padding: 7px 12px;
+    gap: 0.5rem;
+  }
+  .breadcrumbs-banner::before {
+    display: none;
+  }
+}
 
-    .breadcrumbs-banner span:not(.sep):not(a) {
-      color: var(--gold);
-      font-weight: 800;
-    }
+@media (max-width: 480px) {
+  .breadcrumbs-banner { 
+    font-size: 10px;
+    gap: 0.4rem;
+    padding: 6px 10px;
+  }
+}
 
     /* Statistics Section */
     .stats-container {
