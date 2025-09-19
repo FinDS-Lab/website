@@ -1241,9 +1241,6 @@ function generateTable(data, bodyId, section, degreeType) {
             <span class="name-arrow">▶</span>
             ${alum.name} ${alum.nameKo}
           </div>
-          <div class="degree-badges">
-            ${alum.degrees.map(d => `<span class="degree-tag ${d}">${d.toUpperCase()}</span>`).join('')}
-          </div>
         </td>
         <td>
           <div class="alumni-periods">
@@ -1354,9 +1351,6 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
               <span class="alumni-card-name-text">
                 ${alum.name} ${alum.nameKo}
               </span>
-            </div>
-            <div class="alumni-card-badges">
-              ${alum.degrees.map(d => `<span class="degree-tag ${d}">${d.toUpperCase()}</span>`).join('')}
             </div>
           </div>
           <div class="alumni-card-arrow-button" style="background: ${buttonColor};" data-button-color="${buttonColor}" data-button-color-dark="${buttonColorDark}">
