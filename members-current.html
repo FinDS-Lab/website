@@ -630,6 +630,15 @@ permalink: /members-current.html
       overflow-y: auto;
       flex: 1;
       background: #fafbfc;
+      -webkit-overflow-scrolling: touch; /* Enable momentum scrolling on iOS */
+      scroll-behavior: auto; /* Disable smooth scrolling for faster response */
+      overscroll-behavior: contain; /* Prevent scroll chaining */
+    }
+    
+    /* Optimize scrolling performance */
+    .modal-body * {
+      transform: translateZ(0); /* Enable hardware acceleration */
+      will-change: auto; /* Don't overuse will-change */
     }
     
     /* Modal Sections */
