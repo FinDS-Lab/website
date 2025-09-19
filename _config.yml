@@ -1,13 +1,13 @@
 title: "FINDS Lab"
 description: "Financial Data Intelligence & Solutions Lab."
 
-# 사이트 기본 URL (GitHub Pages 도메인)
+# GitHub Pages 기본 도메인
 url: "https://finds-lab.github.io"
 
-# 프로젝트 페이지니까 반드시 repo 이름 붙여야 함
+# 프로젝트 페이지라서 저장소명 필요
 baseurl: "/website"
 
-# (선택) 테마가 필요 없다면 주석 처리
+# (선택) 테마 미사용 시 주석 처리 유지
 # theme: minima
 
 # 컬렉션 설정
@@ -32,13 +32,21 @@ defaults:
 # Include docs folder
 include:
   - assets/docs
-# --- 추가: Open Graph / SEO 설정 ---
-# 사이트 전역에서 사용될 OG 기본 이미지
+
+# --- Open Graph / SEO (전역) ---
+# 사이트 전역에서 사용할 기본 OG 이미지 (페이지가 별도 지정 안 했을 때 사용)
 og_image: "/assets/img/thumbnail/findslab-thumbnail.png"
 
-# jekyll-seo-tag 같은 SEO 플러그인을 쓴다면 아래 image 키를 써도 됩니다
+# jekyll-seo-tag 플러그인을 쓴다면 image 키도 인식됩니다 (선택)
 image: "/assets/img/thumbnail/findslab-thumbnail.png"
 
-# (선택) Twitter 카드에서 사이트 계정 지정 가능
+# (선택) Twitter 계정
 # twitter:
 #   username: finds_lab
+
+# 정적 자산/썸네일 캐시 버전(바꿀 때만 값 갱신)
+asset_version: "20250919"
+
+# (선택) SEO 플러그인 사용 시 주석 해제
+# plugins:
+#   - jekyll-seo-tag
