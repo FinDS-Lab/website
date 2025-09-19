@@ -295,143 +295,45 @@ permalink: /members-current.html
     .stat-card.undergrad-stat { border-top: 3px solid var(--undergrad-red); }
     .stat-card.total-stat { border-top: 3px solid var(--primary-dark); }
 
-    /* Section Headers - Simplified without toggle */
+    /* Section Headers - Alumni style matching */
     .section-header {
-      margin-top: 3rem;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      padding: 16px 20px;
+      border-radius: 12px;
       position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .section-header.phd {
+      background: linear-gradient(135deg, var(--phd-gold), var(--gold-dark));
+    }
+    
+    .section-header.ms {
+      background: linear-gradient(135deg, var(--ms-light-gold), rgb(235, 205, 100));
+    }
+    
+    .section-header.undergrad {
+      background: linear-gradient(135deg, var(--undergrad-red), rgb(192, 34, 34));
     }
     
     .section-header-content {
-      padding: 24px 28px;
-      background: #fff;
-      border-radius: 20px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      border: 2px solid transparent;
-      transition: all 0.3s ease;
-    }
-    
-    /* PhD Style with animation */
-    .section-header.phd .section-header-content {
-      background: linear-gradient(135deg, #fff 0%, rgba(214, 177, 77, 0.05) 100%);
-      border-color: var(--phd-gold);
-      box-shadow: 0 8px 32px rgba(214, 177, 77, 0.15);
-    }
-    .section-header.phd .section-header-content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, 
-        var(--phd-gold) 0%, 
-        var(--gold-mid) 25%, 
-        var(--phd-gold) 50%, 
-        var(--gold-dark) 75%, 
-        var(--phd-gold) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 3s linear infinite;
-    }
-    
-    /* MS Style with animation */
-    .section-header.ms .section-header-content {
-      background: linear-gradient(135deg, #fff 0%, rgba(245, 225, 150, 0.08) 100%);
-      border-color: var(--ms-light-gold);
-      box-shadow: 0 8px 32px rgba(245, 225, 150, 0.25);
-    }
-    .section-header.ms .section-header-content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, 
-        var(--ms-light-gold) 0%, 
-        rgb(250, 235, 180) 33%, 
-        var(--ms-light-gold) 66%, 
-        rgb(255, 245, 200) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 3s linear infinite;
-    }
-    
-    /* Undergrad Style with animation */
-    .section-header.undergrad .section-header-content {
-      background: linear-gradient(135deg, #fff 0%, rgba(172, 14, 14, 0.04) 100%);
-      border-color: var(--undergrad-red);
-      box-shadow: 0 8px 32px rgba(172, 14, 14, 0.12);
-    }
-    .section-header.undergrad .section-header-content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, 
-        var(--undergrad-red) 0%, 
-        rgb(192, 34, 34) 33%, 
-        var(--undergrad-red) 66%, 
-        rgb(152, 14, 14) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 3s linear infinite;
-    }
-    
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    
-    .section-content {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 10px;
     }
     
-    .section-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .section-emoji {
       font-size: 28px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-    
-    .section-header.phd .section-icon {
-      background: linear-gradient(135deg, var(--phd-gold), var(--gold-dark));
-    }
-    .section-header.ms .section-icon {
-      background: linear-gradient(135deg, var(--ms-light-gold), rgb(235, 205, 100));
-    }
-    .section-header.undergrad .section-icon {
-      background: linear-gradient(135deg, var(--undergrad-red), rgb(152, 14, 14));
-    }
-    
-    .section-text {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      flex: 1;
     }
     
     .section-main-title {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 900;
-      color: var(--primary-dark);
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
       letter-spacing: -0.3px;
-      margin: 0;
-    }
-    
-    .section-subtitle {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray);
-      margin: 0;
     }
 
     /* Grid Layout */
@@ -446,9 +348,41 @@ permalink: /members-current.html
         grid-template-columns: 1fr;
         gap: 16px;
       }
-      .section-header { margin-top: 2rem; }
-      .section-main-title { font-size: 18px; }
+      .section-header { 
+        margin-top: 2rem; 
+        padding: 14px 16px;
+      }
+      .section-emoji {
+        font-size: 24px;
+      }
+      .section-main-title { 
+        font-size: 17px; 
+      }
       .member-avatar { width: 75px; height: 94px; }
+    }
+    
+    @media (max-width: 480px) {
+      .section-header {
+        padding: 12px 14px;
+      }
+      .section-emoji {
+        font-size: 20px;
+      }
+      .section-main-title {
+        font-size: 15px;
+      }
+    }
+    
+    @media (max-width: 360px) {
+      .section-header {
+        padding: 10px 12px;
+      }
+      .section-emoji {
+        font-size: 18px;
+      }
+      .section-main-title {
+        font-size: 13px;
+      }
     }
 
     /* Member Cards */
@@ -1017,17 +951,12 @@ function renderMembers() {
     const categoryMembers = allMembers.filter(m => m.degree === category.degree);
     if (categoryMembers.length === 0) return;
     
-    // Create section header
+    // Create section header - Alumni style
     const sectionHTML = `
       <div class="section-header ${category.class}">
         <div class="section-header-content">
-          <div class="section-content">
-            <div class="section-icon">${category.icon}</div>
-            <div class="section-text">
-              <h2 class="section-main-title">${category.title}</h2>
-              <p class="section-subtitle">${category.subtitle}</p>
-            </div>
-          </div>
+          <span class="section-emoji">${category.icon}</span>
+          <div class="section-main-title">${category.title}</div>
         </div>
       </div>
       <div class="members-grid" id="${category.degree}-grid"></div>
