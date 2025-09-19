@@ -933,26 +933,26 @@ permalink: /members-director.html
     .conference-reviewer {
       margin-top: 16px;
       padding: 14px;
-      background: linear-gradient(135deg, rgba(59,130,246,0.05) 0%, rgba(139,92,246,0.05) 100%);
+      background: linear-gradient(135deg, rgba(172,14,14,0.05) 0%, rgba(172,14,14,0.08) 100%); /* 파란색에서 빨간색으로 변경 */
       border-radius: 10px;
-      border: 1px solid rgba(59,130,246,0.2);
+      border: 1px solid rgba(172,14,14,0.2); /* 파란색에서 빨간색으로 변경 */
     }
 
     .conference-reviewer-title {
       font-weight: 800;
       font-size: 13px;
-      color: #3b82f6;
+      color: var(--red); /* #3b82f6에서 var(--red)로 변경 */
       margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
-
+    
     .conference-reviewer-item {
       padding: 8px 12px;
       background: white;
       border-radius: 6px;
-      border-left: 3px solid #3b82f6;
+      border-left: 3px solid var(--red); /* #3b82f6에서 var(--red)로 변경 */
       margin-top: 8px;
     }
 
@@ -1425,14 +1425,16 @@ permalink: /members-director.html
 
     /* Activity Modal Specific */
     .activity-subtitle {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
       text-transform: none;
-      letter-spacing: normal;
-      text-shadow: none;
+      letter-spacing: -0.01em;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       display: block;
-      margin-top: 4px;
+      margin-top: 6px;
+      line-height: 1.4;
+      word-break: keep-all;
     }
 
     .activity-generation {
@@ -1542,147 +1544,190 @@ permalink: /members-director.html
     }
 
     @media (max-width: 640px) {
-      .banner-title {
-        font-size: 1.75rem;
-      }
-      
-      .banner-content {
-        padding: 24px 16px;
-        min-height: 140px;
-      }
-      
-      .breadcrumbs-banner::before {
-        display: none;
-      }
+  .banner-title {
+    font-size: 1.75rem;
+  }
+  
+  .banner-content {
+    padding: 24px 16px;
+    min-height: 140px;
+  }
+  
+  .breadcrumbs-banner::before {
+    display: none;
+  }
 
-      .main-grid {
-        padding: 0 0.5rem;
-      }
+  .main-grid {
+    padding: 0 0.5rem;
+  }
 
-      .card-body {
-        padding: 1rem !important;
-      }
+  .card-body {
+    padding: 1rem !important;
+  }
 
-      .activities-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-      }
-      
-      .activity-item {
-        height: 85px;
-        padding: 15px;
-      }
-      
-      .activity-logo {
-        width: 50px;
-        height: 50px;
-      }
+  .activities-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .activity-item {
+    height: 85px;
+    padding: 15px;
+  }
+  
+  .activity-logo {
+    width: 50px;
+    height: 50px;
+  }
 
-      .button-group {
-        flex-direction: column !important;
-      }
-      
-      .action-btn {
-        width: 100% !important;
-        padding: 0.75rem !important;
-      }
+  .button-group {
+    flex-direction: column !important;
+  }
+  
+  .action-btn {
+    width: 100% !important;
+    padding: 0.75rem !important;
+  }
 
-      /* Mobile Modal Styles */
-      .modal-content {
-        max-width: 95%;
-        width: 95%;
-      }
-      
-      .modal-body {
-        padding: 20px;
-      }
-      
-      .modal-info-row {
-        gap: 8px;
-        padding: 10px 0;
-      }
-      
-      .modal-info-label {
-        min-width: 80px;
-        font-size: 12px;
-      }
-      
-      .single-year,
-      .participation-year {
-        padding: 3px 8px;
-        font-size: 11px;
-        min-width: 48px;
-        max-width: 48px;
-      }
+  /* Mobile Modal Styles */
+  .modal-content {
+    max-width: 95%;
+    width: 95%;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-info-row {
+    gap: 8px;
+    padding: 10px 0;
+  }
+  
+  .modal-info-label {
+    min-width: 80px;
+    font-size: 12px;
+  }
+  
+  .single-year,
+  .participation-year {
+    padding: 3px 8px;
+    font-size: 11px;
+    min-width: 48px;
+    max-width: 48px;
+  }
 
-      .leadership-toggle-header {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-      
-      .leadership-item {
-        padding: 10px 12px;
-      }
+  .leadership-toggle-header {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .leadership-item {
+    padding: 10px 12px;
+  }
 
-      .advisor-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
-    }
+  .advisor-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  /* Activity Modal Mobile Styles - 추가 */
+  .modal-title {
+    font-size: 17px;
+    line-height: 1.3;
+  }
+  
+  .activity-subtitle {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .generation-badge {
+    font-size: 12px;
+    padding: 5px 14px;
+  }
+}
 
-    @media (max-width: 480px) {
-      .banner-content {
-        padding: 20px 16px;
-        min-height: 120px;
-      }
-      
-      .banner-title {
-        font-size: 1.5rem;
-      }
-      
-      .breadcrumbs-banner {
-        font-size: 10px;
-        gap: 0.4rem;
-        padding: 6px 10px;
-      }
+@media (max-width: 480px) {
+  .banner-content {
+    padding: 20px 16px;
+    min-height: 120px;
+  }
+  
+  .banner-title {
+    font-size: 1.5rem;
+  }
+  
+  .breadcrumbs-banner {
+    font-size: 10px;
+    gap: 0.4rem;
+    padding: 6px 10px;
+  }
 
-      #networkCanvas {
-        height: 350px !important;
-      }
+  #networkCanvas {
+    height: 350px !important;
+  }
 
-      .activities-grid {
-        gap: 10px;
-      }
-      
-      .activity-item {
-        height: 75px;
-        padding: 12px;
-      }
-      
-      .activity-logo {
-        width: 45px;
-        height: 45px;
-      }
+  .activities-grid {
+    gap: 10px;
+  }
+  
+  .activity-item {
+    height: 75px;
+    padding: 12px;
+  }
+  
+  .activity-logo {
+    width: 45px;
+    height: 45px;
+  }
 
-      .pub-stats {
-        gap: 6px;
-      }
-      
-      .pub-stat {
-        padding: 8px 4px;
-        min-height: 60px;
-      }
-      
-      .pub-stat-number {
-        font-size: 16px;
-      }
-      
-      .pub-stat-label {
-        font-size: 9px;
-        letter-spacing: 0;
-      }
-    }
+  .pub-stats {
+    gap: 6px;
+  }
+  
+  .pub-stat {
+    padding: 8px 4px;
+    min-height: 60px;
+  }
+  
+  .pub-stat-number {
+    font-size: 16px;
+  }
+  
+  .pub-stat-label {
+    font-size: 9px;
+    letter-spacing: 0;
+  }
+  
+  /* Activity Modal Mobile Styles - 추가 */
+  .modal-title {
+    font-size: 16px;
+  }
+  
+  .activity-subtitle {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  
+  .generation-badge {
+    font-size: 11px;
+    padding: 4px 12px;
+  }
+  
+  .activity-period {
+    padding: 10px 0;
+  }
+  
+  .activity-status {
+    font-size: 13px;
+  }
+  
+  .activity-dates {
+    font-size: 12px;
+  }
+}
   </style>
 
   <div class="banner-section" onclick="createNetworkBurst(event, this)">
@@ -2854,9 +2899,15 @@ function openActivityModal(activityId) {
   if (!activity) return;
   
   const modalTitle = document.getElementById('activityModalTitle');
+  
+  // 괄호 안의 내용을 추출
+  const nameMatch = activity.name.match(/^([^(]+)(?:\s*\((.+)\))?$/);
+  const mainName = nameMatch ? nameMatch[1].trim() : activity.name;
+  const subName = nameMatch && nameMatch[2] ? nameMatch[2].trim() : null;
+  
   modalTitle.innerHTML = `
-    ${activity.name}
-    ${activity.fullname ? `<div class="activity-subtitle">${activity.fullname}</div>` : ''}
+    ${mainName}
+    ${subName ? `<div class="activity-subtitle">${subName}</div>` : ''}
   `;
   
   const modalBody = document.getElementById('activityModalBody');
@@ -2892,7 +2943,7 @@ function openActivityModal(activityId) {
             ${activity.leadership.map(lead => `
               <div class="leadership-item">
                 <div class="leadership-role"><b>${lead.role}</b></div>
-                <div class="leadership-period">${lead.period}</div>
+                <div class="leadership-period date-bold">${lead.dates}</div>
               </div>
             `).join('')}
           </div>
@@ -3388,6 +3439,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNetwork();
 });
 </script>
+
 
 
 
