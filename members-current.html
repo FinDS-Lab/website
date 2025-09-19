@@ -172,18 +172,18 @@ permalink: /members-current.html
   width: 100%;
 }
 
-.breadcrumbs-banner .sep {
+.breadcrumbs-banner .sep {  /* banner-breadcrumbs → breadcrumbs-banner */
   color: var(--gold-dark);
   font-weight: 400;
   margin: 0;
   opacity: 0.6;
 }
-
+    
 .breadcrumbs-banner span:not(.sep):not(a) {
   color: var(--gold);
-  font-weight: 800;  /* 700 → 800으로 변경 */
+  font-weight: 800;  /* alumni와 동일하게 */
   letter-spacing: 0.3px;
-  /* font-size: 12px; 삭제 */
+  /* font-size 제거 - 부모의 13px 상속받음 */
 }
 /* Breadcrumb 아이콘 */
 .breadcrumbs-banner::before {
