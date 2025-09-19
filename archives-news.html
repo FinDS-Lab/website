@@ -576,7 +576,7 @@ function generateDiamondNetwork() {
           {% assign news = news | push: item %}
         {% endif %}
       {% endfor %}
-      {% assign news = news | sort: 'date' %}
+      {% assign news = news | sort: 'date' | reverse %}
 
       {% if news.size == 0 %}
         <li class="empty-state">
