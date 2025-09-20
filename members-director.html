@@ -3404,18 +3404,71 @@ function closeCollabModal(event) {
 
 // ===== Publication Statistics =====
 function updatePublicationStats() {
+  // Initialize counters
   const stats = {
-    'stat-scie': 12,
-    'stat-ssci': 3,
+    'stat-scie': 0,
+    'stat-ssci': 0,
     'stat-ahci': 0,
-    'stat-esci': 2,
-    'stat-scopus': 5,
-    'stat-other': 1,
-    'stat-intl-conf': 18,
-    'stat-kci': 4,
-    'stat-dom-conf': 23
+    'stat-esci': 0,
+    'stat-scopus': 0,
+    'stat-other': 0,
+    'stat-intl-conf': 0,
+    'stat-kci': 0,
+    'stat-dom-conf': 0
   };
   
+  // Count publications where director (ID: 1) is an author
+  PUBS.forEach(pub => {
+    // Check if director is an author
+    if (!Array.isArray(pub.authors) || !pub.authors.includes(DIRECTOR_ID)) {
+      return;
+    }
+    
+    // Get indexing groups and types
+    const indexingGroups = Array.isArray(pub.indexing_group) ? pub.indexing_group : [pub.indexing_group];
+    const types = Array.isArray(pub.type) ? pub.type : [pub.type];
+    
+    // Count based on indexing groups
+    indexingGroups.forEach(group => {
+      if (!group) return;
+      
+      const groupStr = String(group).toUpperCase();
+      
+      // International journals
+      if (groupStr.includes('SCIE')) {
+        stats['stat-scie']++;
+      } else if (groupStr.includes('SSCI')) {
+        stats['stat-ssci']++;
+      } else if (groupStr.includes('A&HCI') || groupStr.includes('AHCI')) {
+        stats['stat-ahci']++;
+      } else if (groupStr.includes('ESCI')) {
+        stats['stat-esci']++;
+      } else if (groupStr.includes('SCOPUS')) {
+        stats['stat-scopus']++;
+      } else if (groupStr.includes('KCI')) {
+        stats['stat-kci']++;
+      } else if (types.includes('journal') && !groupStr.includes('CONFERENCE')) {
+        // Other international journals
+        stats['stat-other']++;
+      }
+      
+      // Conferences
+      if (groupStr.includes('INTERNATIONAL') && groupStr.includes('CONFERENCE')) {
+        stats['stat-intl-conf']++;
+      } else if ((groupStr.includes('DOMESTIC') || groupStr.includes('KOREAN')) && groupStr.includes('CONFERENCE')) {
+        stats['stat-dom-conf']++;
+      } else if (types.includes('conference')) {
+        // Determine if international or domestic based on other fields
+        if (pub.venue && (pub.venue.includes('International') || pub.venue.includes('IEEE') || pub.venue.includes('ACM'))) {
+          stats['stat-intl-conf']++;
+        } else {
+          stats['stat-dom-conf']++;
+        }
+      }
+    });
+  });
+  
+  // Animate the numbers
   for (const [id, value] of Object.entries(stats)) {
     const element = document.getElementById(id);
     if (element) {
@@ -3509,6 +3562,7 @@ document.addEventListener('DOMContentLoaded', function() {
     header.nextElementSibling.classList.add('show');
 });
 </script>
+
 
 
 
