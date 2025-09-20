@@ -207,19 +207,6 @@ permalink: /archives-seminar.html
     display: block;
   }
   
-  .item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .item-title-wrapper {
-    flex: 1;
-    min-width: 0;
-  }
-  
   .item-title {
     font-weight: 900;
     font-size: 18px;
@@ -228,10 +215,12 @@ permalink: /archives-seminar.html
     text-decoration: none;
     display: block;
     transition: color .2s;
+    margin-bottom: 10px;
   }
   
   .item-title:hover {
     color: var(--gold);
+    text-decoration: underline;
   }
   
   /* Meta Pills */
@@ -628,23 +617,16 @@ function generateDiamondNetwork() {
         {% for post in seminars %}
           <li class="board-row" role="listitem">
             <div class="item-date">
-              {{ post.date | date: "%Y.%m.%d" }}
+              {{ post.date | date: "%Y.%m.%d." }}
             </div>
             
             <div class="item-content">
-              <div class="item-header">
-                <div class="item-title-wrapper">
-                  <a href="{{ post.url | relative_url }}" class="item-title">
-                    {{ post.title }}
-                  </a>
-                </div>
-                <a href="{{ post.url | relative_url }}" class="btn-more">
-                  Read More
-                </a>
-              </div>
+              <a href="{{ post.url | relative_url }}" class="item-title">
+                {{ post.title }}
+              </a>
               
               {% if post.host or post.venue %}
-              <div class="meta">
+              <div class="meta">"
                 {% if post.host %}
                   <span class="meta-pill">
                     <span class="meta-key">초청</span>
