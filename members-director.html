@@ -2354,8 +2354,11 @@ permalink: /members-director.html
 
 <!-- Activities -->
 <div class="director-card">
-  <div class="card-head">Activities</div>
-  <div class="card-body">
+  <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleActivitiesSection()">
+    <span>Activities</span>
+    <span id="activitiesToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
+  </div>
+  <div class="card-body" id="activitiesSection" style="display: none;">
     <div class="activities-grid">
       <div class="activity-item" onclick="openActivityModal('captima')">
         <img src="{{ '/assets/img/logos/captima.png' | relative_url }}" 
@@ -2399,10 +2402,13 @@ permalink: /members-director.html
 
 
       <!-- Collaboration Network -->
-      <div class="director-card">
-        <div class="card-head">Collaboration Network</div>
-        <div class="card-body">
-          <div class="network-controls">
+<div class="director-card">
+  <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleCollaborationSection()">
+    <span>Collaboration Network</span>
+    <span id="collaborationToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
+  </div>
+  <div class="card-body" id="collaborationSection" style="display: none;">
+    <div class="network-controls">
             <div class="control-group">
               <span class="slider-label">Threshold:</span>
               <div class="slider-container">
@@ -2424,9 +2430,13 @@ permalink: /members-director.html
       </div>
 
       <!-- Mentoring Program -->
-      <div class="director-card">
-        <div class="card-head">Mentoring Program</div>
-        <div class="card-body" id="mentoringContainer">
+<div class="director-card">
+  <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleMentoringSection()">
+    <span>Mentoring Program</span>
+    <span id="mentoringToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
+  </div>
+  <div class="card-body" id="mentoringSection" style="display: none;">
+    <div id="mentoringContainer">
           <!-- Content populated by JavaScript -->
         </div>
       </div>
@@ -3432,13 +3442,74 @@ function animateNumber(element, start, end, duration) {
   requestAnimationFrame(update);
 }
 
+// ===== Activities Section Toggle =====
+function toggleActivitiesSection() {
+  const section = document.getElementById('activitiesSection');
+  const toggle = document.getElementById('activitiesToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+
+// ===== Collaboration Network Toggle =====
+function toggleCollaborationSection() {
+  const section = document.getElementById('collaborationSection');
+  const toggle = document.getElementById('collaborationToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+    
+    // 처음 열 때만 네트워크 초기화
+    if (!networkInitialized) {
+      initNetwork();
+      networkInitialized = true;
+    }
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+
+// ===== Mentoring Program Toggle =====
+function toggleMentoringSection() {
+  const section = document.getElementById('mentoringSection');
+  const toggle = document.getElementById('mentoringToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+    
+    // 처음 열 때만 데이터 로드
+    if (!section.dataset.loaded) {
+      buildMentoringYears();
+      section.dataset.loaded = 'true';
+    }
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+  
+
 // ===== Initialize Everything on Page Load =====
 document.addEventListener('DOMContentLoaded', function() {
-  buildMentoringYears();
+  // buildMentoringYears()와 initNetwork()는 
+  // 이제 각 섹션이 처음 열릴 때 실행됨
   updatePublicationStats();
-  initNetwork();
+  
+  // Research Interests는 기본으로 열려있게 하려면
+  document.querySelectorAll('.ri-header').forEach(header => {
+    header.classList.add('active');
+    header.nextElementSibling.classList.add('show');
 });
 </script>
+
 
 
 
