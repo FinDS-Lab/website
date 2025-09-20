@@ -87,7 +87,7 @@ permalink: /archives-news.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs - 흰색 배경, 금색 텍스트로 변경 (다른 페이지와 동일) */
+  /* Breadcrumbs - 다른 페이지와 완전히 동일하게 */
   .banner-breadcrumbs {
     display: inline-flex;
     align-items: center;
@@ -123,7 +123,6 @@ permalink: /archives-news.html
     text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
   }
 
-  /* 링크 호버 시 밑줄 효과 */
   .banner-breadcrumbs a::after {
     content: '';
     position: absolute;
@@ -152,7 +151,6 @@ permalink: /archives-news.html
     letter-spacing: 0.3px;
   }
 
-  /* Breadcrumb 아이콘 추가 (선택사항) */
   .banner-breadcrumbs::before {
     content: '📰';
     font-size: 14px;
@@ -179,13 +177,10 @@ permalink: /archives-news.html
     margin-top: 1.5rem;
   }
 
-  /* 리스트 행 (통일) */
+  /* 리스트 행 (새로운 디자인) */
   .board-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 100px;
-    gap: 16px;
-    align-items: center;
-    padding: 16px 20px;
+    display: block;
+    padding: 20px 24px;
     border-bottom: 1px solid #f3f4f6;
     transition: all 0.2s;
   }
@@ -198,49 +193,36 @@ permalink: /archives-news.html
     background: #fafbfc;
   }
 
-  /* 날짜 박스 (통일) */
-  .date-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border: 2px solid #e5e7eb;
-    border-radius: 0.75rem;
-    transition: all 0.2s;
-  }
-  
-  .board-row:hover .date-box {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
-  }
-  
-  .date-d {
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 1;
-    color: #111827;
-  }
-  
-  .date-ym {
+  /* 날짜 텍스트 */
+  .item-date {
+    color: var(--gold);
+    font-size: 13px;
     font-weight: 700;
-    font-size: 11px;
-    color: #6b7280;
-    margin-top: 2px;
-    text-transform: uppercase;
+    margin-bottom: 8px;
     letter-spacing: 0.5px;
   }
 
-  /* 본문 (통일) */
+  /* 본문 */
   .item-content {
+    display: block;
+  }
+  
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .item-title-wrapper {
     flex: 1;
+    min-width: 0;
   }
   
   .item-title {
     font-weight: 900;
-    font-size: 16px;
+    font-size: 18px;
     color: #111827;
     line-height: 1.4;
     text-decoration: none;
@@ -253,31 +235,31 @@ permalink: /archives-news.html
   }
   
   .excerpt {
-    margin-top: 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: #64748b;
-    line-height: 1.5;
+    line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
-  /* 버튼 (통일) */
+  /* 버튼 */
   .btn-more {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border: 1px solid #e5e7eb;
     border-radius: .5rem;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 13px;
     color: #475569;
     background: #fff;
     text-decoration: none;
     transition: all .2s;
     white-space: nowrap;
+    flex-shrink: 0;
   }
   
   .btn-more:hover {
@@ -288,7 +270,7 @@ permalink: /archives-news.html
     box-shadow: 0 2px 8px rgba(214, 177, 77, 0.2);
   }
 
-  /* 비어있을 때 (통일) */
+  /* 비어있을 때 */
   .empty-state {
     padding: 60px 20px;
     text-align: center;
@@ -311,7 +293,7 @@ permalink: /archives-news.html
     color: #6b7280;
   }
 
-  /* 반응형 (통일) */
+  /* 반응형 */
   @media (max-width: 768px) {
     .banner-title { font-size: 2rem; }
     .banner-content { 
@@ -329,28 +311,37 @@ permalink: /archives-news.html
     .banner-breadcrumbs::before {
       font-size: 12px;
     }
+    .item-title {
+      font-size: 16px;
+    }
+    .board-row {
+      padding: 18px 20px;
+    }
   }
 
   @media (max-width: 640px) {
     .board-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
       padding: 16px;
-      position: relative;
     }
-    .date-box {
-      width: 60px;
-      height: 60px;
-      position: absolute;
-      top: 16px;
-      right: 16px;
+    .item-header {
+      gap: 12px;
     }
-    .date-d { font-size: 20px; }
-    .date-ym { font-size: 10px; }
-    .item-content { padding-right: 76px; }
-    .item-title { font-size: 15px; }
-    .excerpt { font-size: 12px; margin-top: 6px; }
-    .btn-more { display: none; }
+    .item-title { 
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .item-date {
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    .excerpt { 
+      font-size: 13px;
+      margin-bottom: 3px;
+    }
+    .btn-more { 
+      padding: 6px 12px;
+      font-size: 12px;
+    }
     .banner-title { font-size: 1.75rem; }
     .banner-content { 
       padding: 24px 16px;
@@ -370,8 +361,20 @@ permalink: /archives-news.html
   }
   
   @media (max-width: 480px) {
-    .item-title { font-size: 14px; }
-    .excerpt { -webkit-line-clamp: 3; }
+    .item-title { 
+      font-size: 14px; 
+    }
+    .item-date { 
+      font-size: 11px; 
+    }
+    .excerpt { 
+      -webkit-line-clamp: 2;
+      font-size: 12px;
+    }
+    .btn-more {
+      padding: 5px 10px;
+      font-size: 11px;
+    }
     .banner-content { 
       padding: 20px 16px;
       min-height: 120px;
@@ -406,7 +409,7 @@ permalink: /archives-news.html
   </div>
 </section>
 
-<!-- JavaScript for card suit patterns (통일) -->
+<!-- JavaScript for card suit patterns -->
 <script>
 function createNetworkBurst(event, element) {
   const rect = element.getBoundingClientRect();
@@ -586,30 +589,26 @@ function generateDiamondNetwork() {
         </li>
       {% else %}
         {% for post in news %}
-          {% assign y = post.date | date: "%Y" %}
-          {% assign m = post.date | date: "%m" %}
-          {% assign d = post.date | date: "%d" %}
-          {% assign month_name = post.date | date: "%b" %}
-
           <li class="board-row" role="listitem">
-            <div class="date-box">
-              <div class="date-d">{{ d }}</div>
-              <div class="date-ym">{{ month_name | upcase }} {{ y }}</div>
+            <div class="item-date">
+              {{ post.date | date: "%Y.%m.%d." }}
             </div>
 
             <div class="item-content">
-              <a class="item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <div class="item-header">
+                <div class="item-title-wrapper">
+                  <a class="item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </div>
+                <a class="btn-more" href="{{ post.url | relative_url }}">Read&nbsp;More</a>
+              </div>
+              
               <div class="excerpt">
                 {% if post.excerpt %}
-                  {{ post.excerpt | strip_html | strip | truncate: 160 }}
+                  {{ post.excerpt | strip_html | strip | truncate: 200 }}
                 {% else %}
-                  {{ post.content | strip_html | strip | truncate: 160 }}
+                  {{ post.content | strip_html | strip | truncate: 200 }}
                 {% endif %}
               </div>
-            </div>
-
-            <div class="btn-cell hidden sm:block">
-              <a class="btn-more" href="{{ post.url | relative_url }}">Read&nbsp;More</a>
             </div>
           </li>
         {% endfor %}
