@@ -4,8 +4,6 @@ title: publications
 permalink: /publications.html
 ---
 
-<script src="https://cdn.jsdelivr.net/npm/citation-js@0.6.8/build/citation.min.js"></script>
-
 <!-- ===== Gold Interactive Banner (Hearts/Clubs/Spades/Diamonds) ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
  <style>
@@ -1064,30 +1062,6 @@ permalink: /publications.html
 
  .btn:hover { background: #f8fafc; }
 
- /* Citation Styles Dropdown */
- .citation-style-selector {
-   display: flex;
-   align-items: center;
-   gap: 10px;
-   margin-bottom: 16px;
- }
-
- .citation-style-selector label {
-   font-weight: 700;
-   font-size: 13px;
-   color: #374151;
- }
-
- .citation-style-selector select {
-   padding: .4rem .8rem;
-   border: 1px solid #e5e7eb;
-   border-radius: .6rem;
-   background: #fff;
-   font-weight: 600;
-   font-size: 13px;
-   cursor: pointer;
- }
-
  /* Modal */
  .modal-backdrop {
    position: fixed;
@@ -1218,8 +1192,6 @@ permalink: /publications.html
    .chip { font-size: 11px; padding: .4rem .8rem; }
    .authorship-grid { grid-template-columns: 1fr; }
    .authorship-item { padding: 10px; }
-   .citation-style-selector { flex-direction: column; align-items: stretch; }
-   .citation-style-selector select { width: 100%; }
    
    .paper-header {
      flex-direction: column;
@@ -1383,21 +1355,7 @@ permalink: /publications.html
       <h3 class="modal-title">Citation Formats</h3>
       <button id="btnCloseCite" class="modal-close-btn" aria-label="Close">&times;</button>
     </header>
-    <div class="p-4" style="padding: 20px;">
-      <div class="citation-style-selector">
-        <label for="citationStyle">Select Citation Style:</label>
-        <select id="citationStyle">
-          <option value="apa">APA (7th ed.)</option>
-          <option value="mla">MLA (9th ed.)</option>
-          <option value="chicago">Chicago (17th ed.)</option>
-          <option value="harvard">Harvard</option>
-          <option value="vancouver">Vancouver</option>
-          <option value="ieee">IEEE</option>
-          <option value="korean-apa">Korean APA (한글)</option>
-        </select>
-      </div>
-      <div id="citeBody"></div>
-    </div>
+    <div class="p-4" style="padding: 20px;" id="citeBody"></div>
   </div>
 </div>
 
@@ -1899,400 +1857,51 @@ function render() {
   countEl.textContent = `${filtered.length} of ${(PUBS || []).length}`;
 }
 
-/* ===== Citation Formatting Functions ===== */
-function formatAuthorsForCitation(authors, style) {
-  if (!authors || authors.length === 0) return "Anonymous";
-  
-  const authorNames = authors.map(id => getAuthorName(id, false));
-  
-  switch(style) {
-    case 'apa':
-      const apaAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
-        return initials ? `${last}, ${initials}` : last;
-      });
-      
-      if (apaAuthors.length === 1) {
-        return apaAuthors[0];
-      } else if (apaAuthors.length === 2) {
-        return apaAuthors[0] + ", & " + apaAuthors[1];
-      } else if (apaAuthors.length <= 20) {
-        return apaAuthors.slice(0, -1).join(", ") + ", & " + apaAuthors[apaAuthors.length - 1];
-      } else {
-        return apaAuthors.slice(0, 19).join(", ") + ", ... " + apaAuthors[apaAuthors.length - 1];
-      }
-      
-    case 'mla':
-      if (authorNames.length === 1) {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        return first ? `${last}, ${first}` : last;
-      } else if (authorNames.length === 2) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        return `${formatted1}, and ${authorNames[1].replace(/\*/g, '').trim()}`;
-      } else if (authorNames.length === 3) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        return `${formatted1}, ${authorNames[1].replace(/\*/g, '').trim()}, and ${authorNames[2].replace(/\*/g, '').trim()}`;
-      } else {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        const formatted = first ? `${last}, ${first}` : last;
-        return `${formatted}, et al.`;
-      }
-      
-    case 'chicago':
-      if (authorNames.length === 1) {
-        const parts = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last = parts[parts.length - 1];
-        const first = parts.slice(0, -1).join(' ');
-        return first ? `${last}, ${first}` : last;
-      } else if (authorNames.length <= 10) {
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        const formatted1 = first1 ? `${last1}, ${first1}` : last1;
-        
-        const rest = authorNames.slice(1).map(name => name.replace(/\*/g, '').trim());
-        if (rest.length === 0) return formatted1;
-        if (rest.length === 1) return `${formatted1}, and ${rest[0]}`;
-        return `${formatted1}, ${rest.slice(0, -1).join(", ")}, and ${rest[rest.length - 1]}`;
-      } else {
-        const formattedNames = [];
-        const parts1 = authorNames[0].replace(/\*/g, '').trim().split(/\s+/);
-        const last1 = parts1[parts1.length - 1];
-        const first1 = parts1.slice(0, -1).join(' ');
-        formattedNames.push(first1 ? `${last1}, ${first1}` : last1);
-        
-        for (let i = 1; i < 7; i++) {
-          formattedNames.push(authorNames[i].replace(/\*/g, '').trim());
-        }
-        return formattedNames.join(", ") + ", et al.";
-      }
-      
-    case 'harvard':
-      const harvardAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join('');
-        return initials ? `${last}, ${initials}` : last;
-      });
-      
-      if (harvardAuthors.length === 1) {
-        return harvardAuthors[0];
-      } else if (harvardAuthors.length === 2) {
-        return harvardAuthors[0] + " and " + harvardAuthors[1];
-      } else if (harvardAuthors.length === 3) {
-        return harvardAuthors[0] + ", " + harvardAuthors[1] + " and " + harvardAuthors[2];
-      } else {
-        return harvardAuthors[0] + " et al.";
-      }
-      
-    case 'vancouver':
-      const vanAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase()).join("");
-        return initials ? `${last} ${initials}` : last;
-      });
-      
-      if (vanAuthors.length <= 6) {
-        return vanAuthors.join(", ");
-      } else {
-        return vanAuthors.slice(0, 6).join(", ") + ", et al.";
-      }
-      
-    case 'ieee':
-      const ieeeAuthors = authorNames.map(name => {
-        const clean = name.replace(/\*/g, '').trim();
-        const parts = clean.split(/\s+/);
-        const last = parts[parts.length - 1];
-        const initials = parts.slice(0, -1).map(p => p[0].toUpperCase() + '.').join(' ');
-        return initials ? `${initials} ${last}` : last;
-      });
-      
-      if (ieeeAuthors.length === 1) {
-        return ieeeAuthors[0];
-      } else if (ieeeAuthors.length === 2) {
-        return ieeeAuthors[0] + " and " + ieeeAuthors[1];
-      } else {
-        return ieeeAuthors.slice(0, -1).join(", ") + ", and " + ieeeAuthors[ieeeAuthors.length - 1];
-      }
-      
-    case 'korean':
-      const koreanAuthors = authors.map(id => {
-        const author = AUTHORS?.[id];
-        if (!author) return `저자 ${id}`;
-        return author.ko || author.en || `저자 ${id}`;
-      });
-      return koreanAuthors.join(', ');
-    
-    default:
-      return authorNames.join(", ");
-  }
-}
-
-/* ===== Convert publication to Citation.js format ===== */
-function pubToCitationJS(pub) {
-  const cslData = {
-    id: pub.id || Math.random().toString(36).substr(2, 9),
-    type: 'article-journal', // default
-    title: pub.title || 'Untitled',
-    author: [],
-    issued: {
-      'date-parts': [[pub.year || new Date().getFullYear()]]
-    }
-  };
-  
-  // Determine CSL type
-  const pubType = primaryType(pub);
-  if (pubType === 'conference') {
-    cslData.type = 'paper-conference';
-  } else if (pubType === 'book') {
-    cslData.type = 'book';
-  } else if (pubType === 'thesis') {
-    cslData.type = 'thesis';
-  } else if (pubType === 'report') {
-    cslData.type = 'report';
-  }
-  
-  // Add authors
-  if (pub.authors && pub.authors.length > 0) {
-    cslData.author = pub.authors.map(authorId => {
-      const author = AUTHORS?.[authorId];
-      if (author && author.en) {
-        const nameParts = author.en.trim().split(/\s+/);
-        const family = nameParts[nameParts.length - 1];
-        const given = nameParts.slice(0, -1).join(' ');
-        return { family, given };
-      }
-      return { literal: `Author ${authorId}` };
-    });
-  }
-  
-  // Add venue/container
-  const venue = arr(pub.venue).filter(Boolean).join(', ');
-  if (venue) {
-    if (pubType === 'conference') {
-      cslData['container-title'] = venue;
-      cslData['event'] = venue;
-    } else {
-      cslData['container-title'] = venue;
-    }
-  }
-  
-  // Add other metadata
-  if (pub.volume) cslData.volume = String(pub.volume);
-  if (pub.issue) cslData.issue = String(pub.issue);
-  if (pub.pages) cslData.page = pub.pages;
-  if (pub.doi) cslData.DOI = pub.doi;
-  if (pub.isbn) cslData.ISBN = pub.isbn;
-  if (pub.publisher) cslData.publisher = pub.publisher;
-  
-  // Add full date if available
-  if (pub.published_date) {
-    const date = new Date(pub.published_date);
-    cslData.issued = {
-      'date-parts': [[date.getFullYear(), date.getMonth() + 1, date.getDate()]]
-    };
-  }
-  
-  return cslData;
-}
-
-/* ===== Generate Citations using Citation.js ===== */
-function generateCitationWithCitationJS(pub, style) {
-  try {
-    // Special handling for Korean APA
-    if (style === 'korean-apa') {
-      return generateKoreanAPACitation(pub);
-    }
-    
-    // Convert pub to CSL-JSON format
-    const cslData = pubToCitationJS(pub);
-    
-    // Create Citation.js instance
-    const cite = new Cite(cslData);
-    
-    // Map our style names to Citation.js format names
-    const styleMap = {
-      'apa': 'apa-7th',      // APA 7th edition
-      'mla': 'mla-9th',       // MLA 9th edition
-      'chicago': 'chicago-note-bibliography-16th-edition',
-      'harvard': 'harvard-cite-them-right',
-      'vancouver': 'vancouver',
-      'ieee': 'ieee'
-    };
-    
-    // Get the Citation.js style name
-    const citeStyle = styleMap[style] || 'apa-7th';
-    
-    // Generate citation
-    let citation = '';
-    try {
-      citation = cite.format('bibliography', {
-        format: 'html',
-        template: citeStyle,
-        lang: 'en-US'
-      });
-    } catch (styleError) {
-      // If specific style fails, fall back to basic APA
-      citation = cite.format('bibliography', {
-        format: 'html',
-        template: 'apa',
-        lang: 'en-US'
-      });
-    }
-    
-    // Clean up the citation (remove wrapper divs if any)
-    citation = citation.replace(/<div[^>]*>|<\/div>/g, '');
-    citation = citation.replace(/^\s*\n|\n\s*$/g, '');
-    
-    return citation;
-  } catch (error) {
-    console.error('Citation.js error:', error);
-    // Fall back to manual formatting if Citation.js fails
-    return generateManualCitation(pub, style);
-  }
-}
-
-/* ===== Generate Korean APA Citation ===== */
-function generateKoreanAPACitation(pub) {
-  const authors = formatAuthorsForCitation(pub.authors, 'korean');
-  const title = pub.title_ko || pub.title || '제목 없음';
-  const year = pub.year || new Date().getFullYear();
-  const venue = arr(pub.venue_ko).filter(Boolean).join(', ') || arr(pub.venue).filter(Boolean).join(', ');
-  
-  let citation = `${authors} (${year}). ${title}. `;
-  if (venue) citation += `<em>${venue}</em>`;
-  if (pub.volume) citation += `, <em>${pub.volume}</em>`;
-  if (pub.issue) citation += `(${pub.issue})`;
-  if (pub.pages) citation += `, ${pub.pages}`;
-  citation += '.';
-  if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
-  
-  return citation;
-}
-
-/* ===== Manual Citation Formatting (Fallback) ===== */
-function generateManualCitation(pub, style) {
-  const title = pub.title || "Untitled";
-  const year = pub.year || new Date().getFullYear();
-  const venue = arr(pub.venue).filter(Boolean).join(", ") || "";
-  
-  let citation = '';
-  
-  switch(style) {
-    case 'apa':
-      citation = `${formatAuthorsForCitation(pub.authors, 'apa')} (${year}). ${title}. `;
-      if (venue) citation += `<em>${venue}</em>`;
-      if (pub.volume) citation += `, <em>${pub.volume}</em>`;
-      if (pub.issue) citation += `(${pub.issue})`;
-      if (pub.pages) citation += `, ${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
-      break;
-      
-    case 'mla':
-      citation = `${formatAuthorsForCitation(pub.authors, 'mla')}. "${title}." `;
-      if (venue) citation += `<em>${venue}</em>`;
-      if (pub.volume) citation += `, vol. ${pub.volume}`;
-      if (pub.issue) citation += `, no. ${pub.issue}`;
-      citation += `, ${year}`;
-      if (pub.pages) citation += `, pp. ${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` doi:${pub.doi}`;
-      break;
-      
-    case 'chicago':
-      citation = `${formatAuthorsForCitation(pub.authors, 'chicago')}. "${title}." `;
-      if (venue) citation += `<em>${venue}</em>`;
-      if (pub.volume) citation += ` ${pub.volume}`;
-      if (pub.issue) citation += `, no. ${pub.issue}`;
-      citation += ` (${year})`;
-      if (pub.pages) citation += `: ${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` https://doi.org/${pub.doi}`;
-      break;
-      
-    case 'harvard':
-      citation = `${formatAuthorsForCitation(pub.authors, 'harvard')} (${year}) '${title}', `;
-      if (venue) citation += `<em>${venue}</em>`;
-      if (pub.volume) citation += `, vol. ${pub.volume}`;
-      if (pub.issue) citation += `, no. ${pub.issue}`;
-      if (pub.pages) citation += `, pp. ${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` Available at: https://doi.org/${pub.doi}`;
-      break;
-      
-    case 'vancouver':
-      citation = `${formatAuthorsForCitation(pub.authors, 'vancouver')}. ${title}. `;
-      if (venue) citation += `${venue}. `;
-      citation += `${year}`;
-      if (pub.volume) citation += `;${pub.volume}`;
-      if (pub.issue) citation += `(${pub.issue})`;
-      if (pub.pages) citation += `:${pub.pages}`;
-      citation += '.';
-      if (pub.doi) citation += ` doi:${pub.doi}`;
-      break;
-      
-    case 'ieee':
-      citation = `${formatAuthorsForCitation(pub.authors, 'ieee')}, "${title}," `;
-      if (venue) citation += `<em>${venue}</em>`;
-      if (pub.volume) citation += `, vol. ${pub.volume}`;
-      if (pub.issue) citation += `, no. ${pub.issue}`;
-      if (pub.pages) citation += `, pp. ${pub.pages}`;
-      citation += `, ${year}`;
-      if (pub.doi) citation += `, doi: ${pub.doi}`;
-      citation += '.';
-      break;
-      
-    case 'korean-apa':
-      return generateKoreanAPACitation(pub);
-      
-    default:
-      citation = generateManualCitation(pub, 'apa');
-  }
-  
-  return citation;
-}
-
-/* ===== Open Citation Modal ===== */
+/* ===== Open Citation Modal - SIMPLIFIED VERSION ===== */
 function openCite(pub) {
-  const styleSelect = document.getElementById('citationStyle');
-  const selectedStyle = styleSelect.value;
-  
-  // Use Citation.js for citation generation
-  const citation = generateCitationWithCitationJS(pub, selectedStyle);
-  const citationId = 'cite-' + Math.random().toString(36).slice(2, 9);
-  
-  let citationsHTML = `
-    <div class="cite-block">
-      <div class="cite-header">
-        <span class="cite-label">${getStyleLabel(selectedStyle)}</span>
-        <button class="copy-btn" onclick="copyText('${citationId}')">Copy</button>
+  // Check if citations exist in the publication data
+  if (!pub.citations) {
+    citeBody.innerHTML = `
+      <div class="cite-block">
+        <div class="cite-text" style="color: #ef4444;">
+          Citation formats not available for this publication.
+        </div>
       </div>
-      <div class="cite-text" id="${citationId}">${citation}</div>
-    </div>
-  `;
+    `;
+    document.getElementById('citeModal').style.display = 'flex';
+    return;
+  }
+  
+  let citationsHTML = '';
+  
+  // Check if Korean language publication (has Korean citation)
+  const isKorean = pub.language === 'Korean';
+  
+  // Always show these formats
+  const formats = ['apa', 'mla', 'chicago', 'harvard', 'vancouver'];
+  
+  // Add Korean format if the publication is in Korean
+  if (isKorean && pub.citations.korean) {
+    formats.push('korean');
+  }
+  
+  formats.forEach(style => {
+    if (pub.citations[style]) {
+      const citationId = 'cite-' + style + '-' + Math.random().toString(36).slice(2, 9);
+      citationsHTML += `
+        <div class="cite-block">
+          <div class="cite-header">
+            <span class="cite-label">${getStyleLabel(style)}</span>
+            <button class="copy-btn" onclick="copyText('${citationId}')">Copy</button>
+          </div>
+          <div class="cite-text" id="${citationId}">${pub.citations[style]}</div>
+        </div>
+      `;
+    }
+  });
   
   citeBody.innerHTML = citationsHTML;
   document.getElementById('citeModal').style.display = 'flex';
-  
-  // Store current pub for style change
-  window.currentCitePub = pub;
 }
 
 function getStyleLabel(styleId) {
@@ -2302,10 +1911,9 @@ function getStyleLabel(styleId) {
     'chicago': 'Chicago (17th ed.)',
     'harvard': 'Harvard',
     'vancouver': 'Vancouver',
-    'ieee': 'IEEE',
-    'korean-apa': 'Korean APA (한글)'
+    'korean': '한글 (Korean APA)'
   };
-  return labels[styleId] || styleId;
+  return labels[styleId] || styleId.toUpperCase();
 }
 
 function copyText(id) {
@@ -2341,12 +1949,6 @@ document.getElementById('btnCloseCite').onclick = () => {
 document.getElementById('citeModal').onclick = (e) => {
   if (e.target === document.getElementById('citeModal')) {
     document.getElementById('citeModal').style.display = 'none';
-  }
-};
-
-document.getElementById('citationStyle').onchange = () => {
-  if (window.currentCitePub) {
-    openCite(window.currentCitePub);
   }
 };
 
