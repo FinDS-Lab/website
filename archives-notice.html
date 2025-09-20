@@ -179,13 +179,10 @@ permalink: /archives-notice.html
     margin-top: 1.5rem;
   }
 
-  /* 리스트 행 (통일) */
+  /* 리스트 행 (새로운 디자인) */
   .board-row {
-    display: grid;
-    grid-template-columns: 80px 1fr 100px;
-    gap: 16px;
-    align-items: center;
-    padding: 16px 20px;
+    display: block;
+    padding: 20px 24px;
     border-bottom: 1px solid #f3f4f6;
     transition: all 0.2s;
   }
@@ -198,54 +195,37 @@ permalink: /archives-notice.html
     background: #fafbfc;
   }
 
-  /* 날짜 박스 (통일) */
-  .date-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    border: 2px solid #e5e7eb;
-    border-radius: 0.75rem;
-    transition: all 0.2s;
-  }
-  
-  .board-row:hover .date-box {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
-  }
-  
-  .date-d {
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 1;
-    color: #111827;
-  }
-  
-  .date-ym {
+  /* 날짜 텍스트 (새로운 스타일) */
+  .item-date {
+    color: var(--gold);
+    font-size: 13px;
     font-weight: 700;
-    font-size: 11px;
-    color: #6b7280;
-    margin-top: 2px;
-    text-transform: uppercase;
+    margin-bottom: 8px;
     letter-spacing: 0.5px;
   }
 
-  /* 본문 (통일) */
+  /* 본문 */
   .item-content {
-    flex: 1;
+    display: block;
+  }
+  
+  .item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 10px;
   }
   
   .item-title {
     font-weight: 900;
-    font-size: 16px;
+    font-size: 18px;
     color: #111827;
     line-height: 1.4;
     text-decoration: none;
     display: block;
     transition: color .2s;
+    flex: 1;
   }
   
   .item-title:hover {
@@ -253,10 +233,9 @@ permalink: /archives-notice.html
   }
   
   .excerpt {
-    margin-top: 8px;
-    font-size: 13px;
+    font-size: 14px;
     color: #64748b;
-    line-height: 1.5;
+    line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -268,11 +247,11 @@ permalink: /archives-notice.html
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border: 1px solid #e5e7eb;
     border-radius: .5rem;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 13px;
     color: #475569;
     background: #fff;
     text-decoration: none;
@@ -311,66 +290,6 @@ permalink: /archives-notice.html
     color: #6b7280;
   }
 
-  /* 개별 게시글 페이지 브레드크럼 스타일 - _layouts/post.html에서 사용 */
-  .post-breadcrumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(214, 177, 77, 0.2);
-    margin-bottom: 24px;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .post-breadcrumb .breadcrumb-logo {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
-  }
-
-  .post-breadcrumb a {
-    color: var(--gold-dark);
-    text-decoration: none;
-    transition: all 0.2s;
-    position: relative;
-  }
-
-  .post-breadcrumb a:hover {
-    color: var(--gold);
-    text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
-  }
-
-  .post-breadcrumb a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gold);
-    transition: width 0.2s ease;
-  }
-
-  .post-breadcrumb a:hover::after {
-    width: 100%;
-  }
-
-  .post-breadcrumb .sep {
-    color: var(--gold-light);
-    opacity: 0.6;
-  }
-
-  .post-breadcrumb .current {
-    color: var(--gold);
-    font-weight: 800;
-    letter-spacing: 0.3px;
-  }
-
   /* 반응형 (통일) */
   @media (max-width: 768px) {
     .banner-title { font-size: 2rem; }
@@ -389,36 +308,28 @@ permalink: /archives-notice.html
     .banner-breadcrumbs::before {
       font-size: 12px;
     }
-    .post-breadcrumb {
-      font-size: 12px;
-      padding: 8px 14px;
+    .item-title {
+      font-size: 16px;
     }
-    .post-breadcrumb .breadcrumb-logo {
-      width: 18px;
-      height: 18px;
+    .board-row {
+      padding: 18px 20px;
     }
   }
 
   @media (max-width: 640px) {
     .board-row {
-      grid-template-columns: 1fr;
-      gap: 12px;
       padding: 16px;
-      position: relative;
     }
-    .date-box {
-      width: 60px;
-      height: 60px;
-      position: absolute;
-      top: 16px;
-      right: 16px;
+    .item-header {
+      flex-direction: column;
+      gap: 10px;
     }
-    .date-d { font-size: 20px; }
-    .date-ym { font-size: 10px; }
-    .item-content { padding-right: 76px; }
     .item-title { font-size: 15px; }
-    .excerpt { font-size: 12px; margin-top: 6px; }
-    .btn-more { display: none; }
+    .excerpt { font-size: 13px; }
+    .btn-more { 
+      width: 100%;
+      margin-top: 12px;
+    }
     .banner-title { font-size: 1.75rem; }
     .banner-content { 
       padding: 24px 16px;
@@ -435,18 +346,11 @@ permalink: /archives-notice.html
     .banner-breadcrumbs::before {
       display: none;
     }
-    .post-breadcrumb {
-      font-size: 11px;
-      padding: 6px 12px;
-    }
-    .post-breadcrumb .breadcrumb-logo {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   @media (max-width: 480px) {
     .item-title { font-size: 14px; }
+    .item-date { font-size: 12px; }
     .excerpt { -webkit-line-clamp: 3; }
     .banner-content { 
       padding: 20px 16px;
@@ -463,19 +367,6 @@ permalink: /archives-notice.html
     }
   }
 </style>
-
-<!-- 
-개별 게시글 페이지 레이아웃 예시 (_layouts/post.html)
-<nav class="post-breadcrumb">
-  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
-  <a href="/">Home</a>
-  <span class="sep">›</span>
-  <a href="/archives-notice.html">Notice</a>
-  <span class="sep">›</span>
-  <span class="current">게시글 제목</span>
-  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
-</nav>
--->
 
 <!-- ===== Page Title / Banner ===== -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
@@ -665,7 +556,7 @@ function generateDiamondNetwork() {
           {% assign Notice = Notice | push: item %}
         {% endif %}
       {% endfor %}
-      {% assign Notice = Notice | sort: 'date' %}
+      {% assign Notice = Notice | sort: 'date' | reverse %}
 
       {% if Notice.size == 0 %}
         <li class="empty-state">
@@ -675,30 +566,28 @@ function generateDiamondNetwork() {
         </li>
       {% else %}
         {% for post in Notice %}
-          {% assign y = post.date | date: "%Y" %}
-          {% assign m = post.date | date: "%m" %}
-          {% assign d = post.date | date: "%d" %}
-          {% assign month_name = post.date | date: "%b" %}
-
           <li class="board-row" role="listitem">
-            <div class="date-box">
-              <div class="date-d">{{ d }}</div>
-              <div class="date-ym">{{ month_name | upcase }} {{ y }}</div>
+            <div class="item-date">
+              {{ post.date | date: "%Y.%m.%d." }}
             </div>
 
             <div class="item-content">
-              <a class="item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <div class="item-header">
+                <a class="item-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                <a class="btn-more hidden sm:inline-flex" href="{{ post.url | relative_url }}">Read&nbsp;More</a>
+              </div>
+              
               <div class="excerpt">
                 {% if post.excerpt %}
-                  {{ post.excerpt | strip_html | strip | truncate: 160 }}
+                  {{ post.excerpt | strip_html | strip | truncate: 200 }}
                 {% else %}
-                  {{ post.content | strip_html | strip | truncate: 160 }}
+                  {{ post.content | strip_html | strip | truncate: 200 }}
                 {% endif %}
               </div>
-            </div>
-
-            <div class="btn-cell hidden sm:block">
-              <a class="btn-more" href="{{ post.url | relative_url }}">Read&nbsp;More</a>
+              
+              <a href="{{ post.url | relative_url }}" class="btn-more sm:hidden">
+                Read More
+              </a>
             </div>
           </li>
         {% endfor %}
