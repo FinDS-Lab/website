@@ -3071,7 +3071,17 @@ function closeCollabModal(event) {
 
 function openCollabModal(node) {
   const authorKo = AUTHORS[node.id]?.ko;
-  const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
+  const authorEn = node.name;
+  
+  // 이름 표시 로직 수정
+  let displayName;
+  if (authorKo) {
+    // 한글 이름이 있으면 한글만 표시
+    displayName = authorKo;
+  } else {
+    // 한글 이름이 없으면 영어 이름만 표시
+    displayName = authorEn;
+  }
   
   document.getElementById('collabModalName').textContent = displayName;
   const modalBody = document.getElementById('collabModalBody');
@@ -3121,7 +3131,6 @@ function openCollabModal(node) {
   
   document.getElementById('collabModal').classList.add('show');
 }
-
 // ===== Network Functions =====
 function countCollaborations() {
   const counts = {};
@@ -3572,6 +3581,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
   
 </script>
+
 
 
 
