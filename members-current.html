@@ -936,7 +936,7 @@ function createMemberCard(member) {
   const role = member.role?.en || member.role?.ko || 'Researcher';
   const period = formatPeriod(member.period);
   const research = member.research?.interests ? member.research.interests.slice(0, 2).join(', ') : '';
-  const avatarPath = member.avatar || '/assets/img/members/default.jpg';
+  const avatarPath = member.avatar || '/assets/img/members/man_default.png';
   
   return `
     <div class="member-card" data-degree="${member.degree}">
@@ -947,7 +947,7 @@ function createMemberCard(member) {
                alt="${displayName}"
                class="member-avatar"
                loading="lazy" decoding="async"
-               onerror="this.onerror=null; this.src='/assets/img/members/default.jpg'">
+               onerror="this.onerror=null; this.src='/assets/img/members/man_default.png'">
           <div class="member-details">
             <h3 class="member-name">${displayName}</h3>
             <span class="member-role ${member.degree}">${role}</span>
@@ -1020,7 +1020,7 @@ function openModal(memberId) {
   const modalPanel = document.getElementById('modalPanel');
   const displayName = member.name.ko ? `${member.name.ko} (${member.name.en})` : member.name.en;
   const role = member.role?.en || member.role?.ko || 'Researcher';
-  const avatarPath = member.avatar || '/assets/img/members/default.jpg';
+  const avatarPath = member.avatar || '/assets/img/members/man_default.png';
   
   // Build simplified modal HTML - Only essential information
   let modalHTML = `
@@ -1029,7 +1029,7 @@ function openModal(memberId) {
         <img src="${avatarPath}" 
              alt="${displayName}" 
              style="width:40px;height:40px;border-radius:8px;object-fit:cover;"
-             onerror="this.onerror=null; this.src='/assets/img/members/default.jpg'">
+             onerror="this.onerror=null; this.src='/assets/img/members/man_default.png'">
         ${displayName}
       </h2>
       <button type="button" class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
