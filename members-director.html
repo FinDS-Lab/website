@@ -2444,77 +2444,97 @@ permalink: /members-director.html
   </div>
 </section>
 
-<!-- Modals -->
-<div class="modal" id="menteeModal" onclick="closeMenteeModal(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h2 class="modal-title" id="menteeModalName">멘티 정보</h2>
-      <button class="modal-close" onclick="closeMenteeModal()">&times;</button>
-    </div>
-    <div class="modal-body" id="menteeModalBody">
-      <!-- Content populated by JavaScript -->
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="collabModal" onclick="closeCollabModal(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h2 class="modal-title" id="collabModalName">Collaborator Info</h2>
-      <button class="modal-close" onclick="closeCollabModal()">&times;</button>
-    </div>
-    <div class="modal-body" id="collabModalBody">
-      <!-- Content populated by JavaScript -->
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="activityModal" onclick="closeActivityModal(event)">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h2 class="modal-title" id="activityModalTitle">Activity</h2>
-      <button class="modal-close" onclick="closeActivityModal()">&times;</button>
-    </div>
-    <div class="modal-body" id="activityModalBody">
-      <!-- Content populated by JavaScript -->
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="resumeModal" onclick="closeResumeModal(event)">
-  <div class="modal-content" style="max-width: 900px; height: 85vh;" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h2 class="modal-title">Curriculum Vitae</h2>
-      <button class="modal-close" onclick="closeResumeModal()">&times;</button>
-    </div>
-    <div class="modal-body" style="padding:0; height: calc(100% - 60px); display: flex; flex-direction: column;">
-      <iframe id="pdfViewer" style="width:100%; height:100%; border:none; flex:1;" frameborder="0"></iframe>
-    </div>
-  </div>
-</div>
-
-<!-- Scripts -->
-<script src="{{ '/assets/js/director-network-burst.js' | relative_url }}"></script>
-<script src="{{ '/assets/js/director-main.js' | relative_url }}"></script>
-<!-- Scripts -->
+<!-- Scripts 섹션을 하나로 통합하고 맨 아래에 배치 -->
 <script>
-// Load data from Jekyll
-{% if site.data.authors %}
-  const AUTHORS = {{ site.data.authors | jsonify }};
-{% else %}
-  const AUTHORS = {};
-{% endif %}
+// ===== 전역 변수 선언 =====
+const DIRECTOR_ID = 1;
+let collaborations = {};
+let typeBreakdown = {};
+let directorPapers = 0;
+let maxCollaborations = 1;
+let currentThreshold = 3;
+let networkInitialized = false;
+let hoveredNode = null;
+let zoomLevel = 1;
+let animationFrame = null;
+let time = 0;
+let nodes = [];
 
-{% if site.data.reviewer %}
-  const reviewerData = {{ site.data.reviewer | jsonify }};
-{% else %}
-  const reviewerData = { journals: [], conferences: [] };
-{% endif %}
+// Jekyll 데이터 로드
+const AUTHORS = {% if site.data.authors %}{{ site.data.authors | jsonify }}{% else %}{}{% endif %};
+const reviewerData = {% if site.data.reviewer %}{{ site.data.reviewer | jsonify }}{% else %}{ journals: [], conferences: [] }{% endif %};
+const PUBS = {% if site.data.pubs %}{{ site.data.pubs | jsonify }}{% else %}[]{% endif %};
+const mentoringData = {% if site.data.mentees %}{{ site.data.mentees | jsonify }}{% else %}{}{% endif %};
 
-const PUBS = {{ site.data.pubs | jsonify }};
-const mentoringData = {{ site.data.mentees | jsonify }};
+// MENTEES 객체 생성
+const MENTEES = {};
+for (const id in mentoringData) {
+  MENTEES[id] = mentoringData[id];
+}
 
-// ===== Banner Network Burst =====
+// ===== ACTIVITIES 데이터 정의 =====
+const ACTIVITIES = {
+  'captima': {
+    name: 'CAPTIMA (Computer Applications for Optima)',
+    generation: '27th Generation',
+    periods: [
+      { status: 'Member', dates: '2013.03. - 2018.02.' },
+      { status: 'Alumni', dates: '2018.03. - Present' }
+    ],
+    leadership: [
+      { role: 'President', dates: '2015.06. - 2015.12.' },
+      { role: 'Vice President', dates: '2013.12. - 2014.08.' }
+    ]
+  },
+  'kfac': {
+    name: 'KFAC (KAIST Financial Analysis Club)',
+    generation: '25th Generation',
+    periods: [
+      { status: 'Member', dates: '2018.03. - 2019.02.' },
+      { status: 'Alumni', dates: '2019.03. - Present' }
+    ],
+    leadership: [
+      { role: 'Acting President', dates: '2021.03. - 2021.08.' }
+    ]
+  },
+  'mensa': {
+    name: 'MENSA Korea',
+    generation: null,
+    periods: [
+      { status: 'Member', dates: '2019.01. - Present' }
+    ],
+    leadership: null
+  },
+  'field': {
+    name: 'FIELD (Future Industrial Engineering Leaders and Dreamers)',
+    generation: '11th - 16th Generation',
+    periods: [
+      { status: 'Member', dates: '2019.03. - 2024.12.' },
+      { status: 'Alumni', dates: '2020.01. - Present' }
+    ],
+    leadership: null
+  },
+  'fba': {
+    name: 'FBA Quant',
+    generation: '12th Generation',
+    periods: [
+      { status: 'Member', dates: '2022.01. - 2022.12.' },
+      { status: 'Alumni', dates: '2023.01. - Present' }
+    ],
+    leadership: null
+  },
+  'dading': {
+    name: 'DadingCoding',
+    generation: '6th Generation',
+    periods: [
+      { status: 'Member', dates: '2024.02. - 2024.07.' },
+      { status: 'Alumni', dates: '2024.08. - Present' }
+    ],
+    leadership: null
+  }
+};
+
+// ===== Banner Network Burst Functions =====
 function createNetworkBurst(event, element) {
   const rect = element.getBoundingClientRect();
   const x = event.clientX - rect.left - 100;
@@ -2530,7 +2550,11 @@ function createNetworkBurst(event, element) {
   networkDiv.innerHTML = randomPattern();
 
   element.appendChild(networkDiv);
-  setTimeout(() => element.removeChild(networkDiv), 2000);
+  setTimeout(() => {
+    if (element.contains(networkDiv)) {
+      element.removeChild(networkDiv);
+    }
+  }, 2000);
 }
 
 function generateHeartNetwork() {
@@ -2554,29 +2578,29 @@ function generateHeartNetwork() {
 function generateClubNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const circles = [{x:100,y:60,r:25},{x:75,y:85,r:25},{x:125,y:85,r:25}];
-  circles.forEach(c => svg += `<circle cx="${c.x}" cy="${c.y}" r="${c.r}" class="burst-line" stroke-width="2"/>`);
+  circles.forEach(c => svg += `<circle cx="${c.x}" cy="${c.y}" r="${c.r}" class="burst-line" stroke-width="2" fill="none"/>`);
   svg += `<line x1="100" y1="100" x2="100" y2="140" class="burst-line" stroke-width="3"/>`;
   
-  const nodes = [];
+  const nodesList = [];
   circles.forEach(c => {
     for(let i = 0; i < 6; i++) {
       const a = i * 2 * Math.PI / 6;
-      nodes.push({x: c.x + c.r * Math.cos(a), y: c.y + c.r * Math.sin(a)});
+      nodesList.push({x: c.x + c.r * Math.cos(a), y: c.y + c.r * Math.sin(a)});
     }
   });
-  nodes.push({x:100,y:100},{x:100,y:140});
+  nodesList.push({x:100,y:100},{x:100,y:140});
   
-  for(let i = 0; i < nodes.length; i++) {
-    for(let j = i + 1; j < nodes.length; j++) {
-      const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+  for(let i = 0; i < nodesList.length; i++) {
+    for(let j = i + 1; j < nodesList.length; j++) {
+      const dx = nodesList[i].x - nodesList[j].x, dy = nodesList[i].y - nodesList[j].y;
       const d = Math.hypot(dx, dy);
       if(d < 40) {
-        svg += `<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[j].x}" y2="${nodes[j].y}" class="burst-line" opacity="${0.3+(1-d/40)*0.4}"/>`;
+        svg += `<line x1="${nodesList[i].x}" y1="${nodesList[i].y}" x2="${nodesList[j].x}" y2="${nodesList[j].y}" class="burst-line" opacity="${0.3+(1-d/40)*0.4}"/>`;
       }
     }
   }
   
-  nodes.forEach(n => svg += `<circle cx="${n.x}" cy="${n.y}" r="${2 + Math.random()*2}" class="burst-dot"/>`);
+  nodesList.forEach(n => svg += `<circle cx="${n.x}" cy="${n.y}" r="${2 + Math.random()*2}" class="burst-dot"/>`);
   svg += '</svg>';
   return svg;
 }
@@ -2584,15 +2608,15 @@ function generateClubNetwork() {
 function generateSpadeNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const spadePath = 'M100,50 C80,50 60,65 60,85 C60,105 75,110 85,110 C90,110 95,108 100,105 C105,108 110,110 115,110 C125,110 140,105 140,85 C140,65 120,50 100,50 Z';
-  svg += `<path d="${spadePath}" class="burst-line" stroke-width="2"/>`;
-  svg += `<path d="M100,105 L90,130 L110,130 Z" class="burst-line" stroke-width="2"/>`;
+  svg += `<path d="${spadePath}" class="burst-line" stroke-width="2" fill="none"/>`;
+  svg += `<path d="M100,105 L90,130 L110,130 Z" class="burst-line" stroke-width="2" fill="none"/>`;
   svg += `<line x1="100" y1="130" x2="100" y2="145" class="burst-line" stroke-width="3"/>`;
   
-  const nodes = [{x:100,y:50},{x:75,y:70},{x:125,y:70},{x:60,y:85},{x:140,y:85},{x:85,y:110},{x:115,y:110},{x:100,y:105},{x:90,y:130},{x:110,y:130},{x:100,y:145}];
+  const spadeNodes = [{x:100,y:50},{x:75,y:70},{x:125,y:70},{x:60,y:85},{x:140,y:85},{x:85,y:110},{x:115,y:110},{x:100,y:105},{x:90,y:130},{x:110,y:130},{x:100,y:145}];
   const conn = [[0,1],[0,2],[1,3],[2,4],[3,5],[4,6],[5,7],[6,7],[7,8],[7,9],[8,10],[9,10]];
   
-  conn.forEach(([f,t]) => svg += `<line x1="${nodes[f].x}" y1="${nodes[f].y}" x2="${nodes[t].x}" y2="${nodes[t].y}" class="burst-line" opacity=".4"/>`);
-  nodes.forEach((n,i) => svg += `<circle cx="${n.x}" cy="${n.y}" r="${(i===0||i===7)?4:3}" class="burst-dot"/>`);
+  conn.forEach(([f,t]) => svg += `<line x1="${spadeNodes[f].x}" y1="${spadeNodes[f].y}" x2="${spadeNodes[t].x}" y2="${spadeNodes[t].y}" class="burst-line" opacity=".4"/>`);
+  spadeNodes.forEach((n,i) => svg += `<circle cx="${n.x}" cy="${n.y}" r="${(i===0||i===7)?4:3}" class="burst-dot"/>`);
   
   svg += '</svg>';
   return svg;
@@ -2601,23 +2625,23 @@ function generateSpadeNetwork() {
 function generateDiamondNetwork() {
   let svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">';
   const diamond = 'M100,40 L140,100 L100,160 L60,100 Z';
-  svg += `<path d="${diamond}" class="burst-line" stroke-width="2"/>`;
+  svg += `<path d="${diamond}" class="burst-line" stroke-width="2" fill="none"/>`;
   svg += `<line x1="100" y1="40" x2="100" y2="160" class="burst-line" opacity=".55"/>`;
   svg += `<line x1="60" y1="100" x2="140" y2="100" class="burst-line" opacity=".55"/>`;
   
-  const nodes = [{x:100,y:40},{x:140,y:100},{x:100,y:160},{x:60,y:100},{x:100,y:100}];
+  const diamondNodes = [{x:100,y:40},{x:140,y:100},{x:100,y:160},{x:60,y:100},{x:100,y:100}];
   
   for(let i = 0; i < 4; i++) {
-    svg += `<line x1="${nodes[i].x}" y1="${nodes[i].y}" x2="${nodes[4].x}" y2="${nodes[4].y}" class="burst-line" opacity=".32"/>`;
+    svg += `<line x1="${diamondNodes[i].x}" y1="${diamondNodes[i].y}" x2="${diamondNodes[4].x}" y2="${diamondNodes[4].y}" class="burst-line" opacity=".32"/>`;
   }
   
-  nodes.forEach((n,i) => svg += `<circle cx="${n.x}" cy="${n.y}" r="${i<4?4:(i===4?5:2.5)}" class="burst-dot" opacity="${i===4?1:.85}"/>`);
+  diamondNodes.forEach((n,i) => svg += `<circle cx="${n.x}" cy="${n.y}" r="${i<4?4:(i===4?5:2.5)}" class="burst-dot" opacity="${i===4?1:.85}"/>`);
   
   svg += '</svg>';
   return svg;
 }
 
-// ===== Core Functions =====
+// ===== Core Toggle Functions =====
 function toggleRI(header) {
   header.classList.toggle('active');
   const content = header.nextElementSibling;
@@ -2632,7 +2656,10 @@ function toggleLeadership(header) {
 
 function toggleMentoring(header, year) {
   header.classList.toggle('expanded');
-  document.getElementById(`mentoring-${year}`).classList.toggle('show');
+  const mentoringContent = document.getElementById(`mentoring-${year}`);
+  if (mentoringContent) {
+    mentoringContent.classList.toggle('show');
+  }
 }
 
 function copyEmail() {
@@ -2653,7 +2680,7 @@ function copyEmail() {
   });
 }
 
-// ===== Reviewer Experience =====
+// ===== Section Toggle Functions =====
 function toggleReviewerSection() {
   const section = document.getElementById('reviewerSection');
   const toggle = document.getElementById('reviewerToggle');
@@ -2672,9 +2699,66 @@ function toggleReviewerSection() {
   }
 }
 
+function toggleActivitiesSection() {
+  const section = document.getElementById('activitiesSection');
+  const toggle = document.getElementById('activitiesToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+
+function toggleCollaborationSection() {
+  const section = document.getElementById('collaborationSection');
+  const toggle = document.getElementById('collaborationToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+    
+    if (!networkInitialized) {
+      setTimeout(() => {
+        initNetwork();
+        networkInitialized = true;
+      }, 100);
+    }
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+
+function toggleMentoringSection() {
+  const section = document.getElementById('mentoringSection');
+  const toggle = document.getElementById('mentoringToggle');
+  
+  if (section.style.display === 'none' || section.style.display === '') {
+    section.style.display = 'block';
+    toggle.style.transform = 'rotate(90deg)';
+    
+    if (!section.dataset.loaded) {
+      buildMentoringYears();
+      section.dataset.loaded = 'true';
+    }
+  } else {
+    section.style.display = 'none';
+    toggle.style.transform = 'rotate(0deg)';
+  }
+}
+
+// ===== Reviewer Experience Functions =====
 function populateReviewerExperience() {
   const journalGrid = document.getElementById('reviewerGrid');
   const conferenceList = document.getElementById('conferenceReviewerList');
+  
+  if (!reviewerData || !reviewerData.journals) {
+    journalGrid.innerHTML = '<div style="text-align:center; padding:20px; color:#6b7280;">No reviewer experience data</div>';
+    return;
+  }
   
   const sortedJournals = [...reviewerData.journals].sort((a, b) => {
     return new Date(b.since) - new Date(a.since);
@@ -2696,31 +2780,25 @@ function populateReviewerExperience() {
   });
   journalGrid.innerHTML = journalHTML || '<div style="text-align:center; padding:20px; color:#6b7280;">No reviewer experience data</div>';
   
-  let conferenceHTML = '';
-  reviewerData.conferences.forEach(conf => {
-    const hasUrl = conf.url && conf.url.trim() !== '';
-    
-    conferenceHTML += `
-      <div class="conference-reviewer-item" ${hasUrl ? `onclick="window.open('${conf.url}', '_blank'); event.stopPropagation();" style="cursor:pointer;"` : ''}>
-        <div class="conference-name">${conf.name}</div>
-        <div class="conference-period"><b>${conf.period}</b></div>
-      </div>
-    `;
-  });
-  
-  if (conferenceHTML) {
+  if (reviewerData.conferences && reviewerData.conferences.length > 0) {
+    let conferenceHTML = '';
+    reviewerData.conferences.forEach(conf => {
+      const hasUrl = conf.url && conf.url.trim() !== '';
+      
+      conferenceHTML += `
+        <div class="conference-reviewer-item" ${hasUrl ? `onclick="window.open('${conf.url}', '_blank'); event.stopPropagation();" style="cursor:pointer;"` : ''}>
+          <div class="conference-name">${conf.name}</div>
+          <div class="conference-period"><b>${conf.period}</b></div>
+        </div>
+      `;
+    });
     conferenceList.innerHTML = conferenceHTML;
   } else {
     document.querySelector('.conference-reviewer').style.display = 'none';
   }
 }
 
-// ===== Mentoring Program =====
-const MENTEES = {};
-for (const id in mentoringData) {
-  MENTEES[id] = mentoringData[id];
-}
-
+// ===== Mentoring Functions =====
 function formatName(name) {
   return name.length === 2 ? name[0] + '　' + name[1] : name;
 }
@@ -2791,10 +2869,13 @@ function buildMentoringYears() {
     }
   }
   
-  document.getElementById('mentoringContainer').innerHTML = html || 
-    '<div style="text-align:center; padding:20px; color:#6b7280;">No mentoring data available</div>';
+  const container = document.getElementById('mentoringContainer');
+  if (container) {
+    container.innerHTML = html || '<div style="text-align:center; padding:20px; color:#6b7280;">No mentoring data available</div>';
+  }
 }
 
+// ===== Modal Functions =====
 function openMenteeModal(menteeId) {
   const mentee = MENTEES[menteeId];
   if (!mentee) return;
@@ -2842,75 +2923,12 @@ function closeMenteeModal(event) {
   document.getElementById('menteeModal').classList.remove('show');
 }
 
-// ===== Activities System =====
-const ACTIVITIES = {
-  'captima': {
-    name: 'CAPTIMA (Computer Applications for Optima)',
-    generation: '27th Generation', // 기수 추가
-    periods: [
-      { status: 'Member', dates: '2013.03. - 2018.02.' },
-      { status: 'Alumni', dates: '2018.03. - Present' }
-    ],
-    leadership: [
-      { role: 'President', dates: '2015.06. - 2015.12.' },
-      { role: 'Vice President', dates: '2013.12. - 2014.08.' }
-    ]
-  },
-  'kfac': {
-    name: 'KFAC (KAIST Financial Analysis Club)',
-    generation: '25th Generation', // 기수 추가
-    periods: [
-      { status: 'Member', dates: '2018.03. - 2019.02.' },
-      { status: 'Alumni', dates: '2019.03. - Present' }
-    ],
-    leadership: [
-      { role: 'Acting President', dates: '2021.03. - 2021.08.' }
-    ]
-  },
-  'mensa': {
-    name: 'MENSA Korea',
-    generation: null, // 기수 없음
-    periods: [
-      { status: 'Member', dates: '2019.01. - Present' }
-    ],
-    leadership: null
-  },
-  'field': {
-    name: 'FIELD (Future Industrial Engineering Leaders and Dreamers)',
-    generation: '11th - 16th Generation', // 창립 멤버
-    periods: [
-      { status: 'Member', dates: '2019.03. - 2024.12.' },
-      { status: 'Alumni', dates: '2020.01. - Present' }
-    ],
-    leadership: null
-  },
-  'fba': {
-    name: 'FBA Quant',
-    generation: '12th Generation', // 기수 추가
-    periods: [
-      { status: 'Member', dates: '2022.01. - 2022.12.' },
-      { status: 'Alumni', dates: '2023.01. - Present' }
-    ],
-    leadership: null
-  },
-  'dading': {
-    name: 'DadingCoding',
-    generation: '6th Generation', // 기수 없음
-    periods: [
-      { status: 'Member', dates: '2024.02. - 2024.07.' },
-      { status: 'Alumni', dates: '2024.08. - Present' }
-    ],
-    leadership: null
-  }
-};
-
 function openActivityModal(activityId) {
   const activity = ACTIVITIES[activityId];
   if (!activity) return;
   
   const modalTitle = document.getElementById('activityModalTitle');
   
-  // 괄호 안의 내용을 추출
   const nameMatch = activity.name.match(/^([^(]+)(?:\s*\((.+)\))?$/);
   const mainName = nameMatch ? nameMatch[1].trim() : activity.name;
   const subName = nameMatch && nameMatch[2] ? nameMatch[2].trim() : null;
@@ -2977,7 +2995,6 @@ function closeActivityModal(event) {
   document.getElementById('activityModal').classList.remove('show');
 }
 
-// ===== Resume Modal =====
 function openResumeModal() {
   const pdfViewer = document.getElementById('pdfViewer');
   pdfViewer.src = '{{ "/assets/pdf/cv_insu_choi.pdf" | relative_url }}';
@@ -2990,24 +3007,77 @@ function closeResumeModal(event) {
   document.getElementById('pdfViewer').src = '';
 }
 
-// ===== Collaboration Network =====
-const DIRECTOR_ID = 1;
-let collaborations = {};
-let typeBreakdown = {};
-let directorPapers = 0;
-let maxCollaborations = 1;
-let currentThreshold = 3;
-let networkInitialized = false;
-let hoveredNode = null;
-let zoomLevel = 1;
-let animationFrame = null;
-let time = 0;
-let nodes = [];
+function closeCollabModal(event) {
+  if (event && event.target !== event.currentTarget) return;
+  document.getElementById('collabModal').classList.remove('show');
+}
 
+function openCollabModal(node) {
+  const authorKo = AUTHORS[node.id]?.ko;
+  const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
+  
+  document.getElementById('collabModalName').textContent = displayName;
+  const modalBody = document.getElementById('collabModalBody');
+  
+  const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
+  
+  modalBody.innerHTML = `
+    <div class="modal-info-row">
+      <span class="modal-info-icon">📊</span>
+      <span class="modal-info-label">Total Works</span>
+      <span class="modal-info-value">${node.frequency}</span>
+    </div>
+    <div class="modal-info-row">
+      <span class="modal-info-icon">📈</span>
+      <span class="modal-info-label">Co-work Rate</span>
+      <span class="modal-info-value">${node.percentage}%</span>
+    </div>
+    <div class="modal-info-row">
+      <span class="modal-info-icon">📚</span>
+      <span class="modal-info-label">Breakdown</span>
+      <div class="modal-info-value">
+        <div class="breakdown-list">
+          <div class="breakdown-item">
+            <span class="breakdown-bullet">•</span>
+            <span class="breakdown-count">${breakdown.journal || 0}</span>
+            <span class="breakdown-type">journal paper${(breakdown.journal || 0) !== 1 ? 's' : ''}</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-bullet">•</span>
+            <span class="breakdown-count">${breakdown.conference || 0}</span>
+            <span class="breakdown-type">conference proceeding${(breakdown.conference || 0) !== 1 ? 's' : ''}</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-bullet">•</span>
+            <span class="breakdown-count">${breakdown.book || 0}</span>
+            <span class="breakdown-type">book${(breakdown.book || 0) !== 1 ? 's' : ''}</span>
+          </div>
+          <div class="breakdown-item">
+            <span class="breakdown-bullet">•</span>
+            <span class="breakdown-count">${breakdown.report || 0}</span>
+            <span class="breakdown-type">report${(breakdown.report || 0) !== 1 ? 's' : ''}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  document.getElementById('collabModal').classList.add('show');
+}
+
+// ===== Network Functions =====
 function countCollaborations() {
   const counts = {};
   const breakdown = {};
   let papers = 0;
+  
+  if (!PUBS || !Array.isArray(PUBS)) {
+    collaborations = counts;
+    typeBreakdown = breakdown;
+    directorPapers = 0;
+    maxCollaborations = 1;
+    return;
+  }
   
   PUBS.forEach(pub => {
     if (!Array.isArray(pub.authors)) return;
@@ -3093,7 +3163,9 @@ function initNetwork() {
       .filter(([id, freq]) => freq >= thresholdCount).length;
     const total = Object.keys(collaborations).length;
     
-    infoEl.innerHTML = `<span style="color:rgb(214,177,77)">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators with <b>${thresholdCount}+</b> papers<br>(≥${currentThreshold}% of ${directorPapers} total)`;
+    if (infoEl) {
+      infoEl.innerHTML = `<span style="color:rgb(214,177,77)">●</span> Showing <b>${visible}</b> of <b>${total}</b> collaborators with <b>${thresholdCount}+</b> papers<br>(≥${currentThreshold}% of ${directorPapers} total)`;
+    }
   }
   
   function buildNetwork() {
@@ -3344,67 +3416,8 @@ function initNetwork() {
   animate();
 }
 
-function openCollabModal(node) {
-  const authorKo = AUTHORS[node.id]?.ko;
-  const displayName = authorKo ? `${node.name} (${authorKo})` : node.name;
-  
-  document.getElementById('collabModalName').textContent = displayName;
-  const modalBody = document.getElementById('collabModalBody');
-  
-  const breakdown = node.typeBreakdown || { journal: 0, conference: 0, book: 0, report: 0 };
-  
-  modalBody.innerHTML = `
-    <div class="modal-info-row">
-      <span class="modal-info-icon">📊</span>
-      <span class="modal-info-label">Total Works</span>
-      <span class="modal-info-value">${node.frequency}</span>
-    </div>
-    <div class="modal-info-row">
-      <span class="modal-info-icon">📈</span>
-      <span class="modal-info-label">Co-work Rate</span>
-      <span class="modal-info-value">${node.percentage}%</span>
-    </div>
-    <div class="modal-info-row">
-      <span class="modal-info-icon">📚</span>
-      <span class="modal-info-label">Breakdown</span>
-      <div class="modal-info-value">
-        <div class="breakdown-list">
-          <div class="breakdown-item">
-            <span class="breakdown-bullet">•</span>
-            <span class="breakdown-count">${breakdown.journal || 0}</span>
-            <span class="breakdown-type">journal paper${(breakdown.journal || 0) !== 1 ? 's' : ''}</span>
-          </div>
-          <div class="breakdown-item">
-            <span class="breakdown-bullet">•</span>
-            <span class="breakdown-count">${breakdown.conference || 0}</span>
-            <span class="breakdown-type">conference proceeding${(breakdown.conference || 0) !== 1 ? 's' : ''}</span>
-          </div>
-          <div class="breakdown-item">
-            <span class="breakdown-bullet">•</span>
-            <span class="breakdown-count">${breakdown.book || 0}</span>
-            <span class="breakdown-type">book${(breakdown.book || 0) !== 1 ? 's' : ''}</span>
-          </div>
-          <div class="breakdown-item">
-            <span class="breakdown-bullet">•</span>
-            <span class="breakdown-count">${breakdown.report || 0}</span>
-            <span class="breakdown-type">report${(breakdown.report || 0) !== 1 ? 's' : ''}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  
-  document.getElementById('collabModal').classList.add('show');
-}
-
-function closeCollabModal(event) {
-  if (event && event.target !== event.currentTarget) return;
-  document.getElementById('collabModal').classList.remove('show');
-}
-
-// ===== Publication Statistics =====
+// ===== Publication Statistics Functions =====
 function updatePublicationStats() {
-  // Initialize counters
   const stats = {
     'stat-scie': 0,
     'stat-ssci': 0,
@@ -3417,24 +3430,23 @@ function updatePublicationStats() {
     'stat-dom-conf': 0
   };
   
-  // Count publications where director (ID: 1) is an author
+  if (!PUBS || !Array.isArray(PUBS)) {
+    return;
+  }
+  
   PUBS.forEach(pub => {
-    // Check if director is an author
     if (!Array.isArray(pub.authors) || !pub.authors.includes(DIRECTOR_ID)) {
       return;
     }
     
-    // Get indexing groups and types
     const indexingGroups = Array.isArray(pub.indexing_group) ? pub.indexing_group : [pub.indexing_group];
     const types = Array.isArray(pub.type) ? pub.type : [pub.type];
     
-    // Count based on indexing groups
     indexingGroups.forEach(group => {
       if (!group) return;
       
       const groupStr = String(group).toUpperCase();
       
-      // International journals
       if (groupStr.includes('SCIE')) {
         stats['stat-scie']++;
       } else if (groupStr.includes('SSCI')) {
@@ -3448,17 +3460,14 @@ function updatePublicationStats() {
       } else if (groupStr.includes('KCI')) {
         stats['stat-kci']++;
       } else if (types.includes('journal') && !groupStr.includes('CONFERENCE')) {
-        // Other international journals
         stats['stat-other']++;
       }
       
-      // Conferences
       if (groupStr.includes('INTERNATIONAL') && groupStr.includes('CONFERENCE')) {
         stats['stat-intl-conf']++;
       } else if ((groupStr.includes('DOMESTIC') || groupStr.includes('KOREAN')) && groupStr.includes('CONFERENCE')) {
         stats['stat-dom-conf']++;
       } else if (types.includes('conference')) {
-        // Determine if international or domestic based on other fields
         if (pub.venue && (pub.venue.includes('International') || pub.venue.includes('IEEE') || pub.venue.includes('ACM'))) {
           stats['stat-intl-conf']++;
         } else {
@@ -3468,7 +3477,6 @@ function updatePublicationStats() {
     });
   });
   
-  // Animate the numbers
   for (const [id, value] of Object.entries(stats)) {
     const element = document.getElementById(id);
     if (element) {
@@ -3495,73 +3503,18 @@ function animateNumber(element, start, end, duration) {
   requestAnimationFrame(update);
 }
 
-// ===== Activities Section Toggle =====
-function toggleActivitiesSection() {
-  const section = document.getElementById('activitiesSection');
-  const toggle = document.getElementById('activitiesToggle');
-  
-  if (section.style.display === 'none' || section.style.display === '') {
-    section.style.display = 'block';
-    toggle.style.transform = 'rotate(90deg)';
-  } else {
-    section.style.display = 'none';
-    toggle.style.transform = 'rotate(0deg)';
-  }
-}
-
-// ===== Collaboration Network Toggle =====
-function toggleCollaborationSection() {
-  const section = document.getElementById('collaborationSection');
-  const toggle = document.getElementById('collaborationToggle');
-  
-  if (section.style.display === 'none' || section.style.display === '') {
-    section.style.display = 'block';
-    toggle.style.transform = 'rotate(90deg)';
-    
-    // 처음 열 때만 네트워크 초기화
-    if (!networkInitialized) {
-      initNetwork();
-      networkInitialized = true;
-    }
-  } else {
-    section.style.display = 'none';
-    toggle.style.transform = 'rotate(0deg)';
-  }
-}
-
-// ===== Mentoring Program Toggle =====
-function toggleMentoringSection() {
-  const section = document.getElementById('mentoringSection');
-  const toggle = document.getElementById('mentoringToggle');
-  
-  if (section.style.display === 'none' || section.style.display === '') {
-    section.style.display = 'block';
-    toggle.style.transform = 'rotate(90deg)';
-    
-    // 처음 열 때만 데이터 로드
-    if (!section.dataset.loaded) {
-      buildMentoringYears();
-      section.dataset.loaded = 'true';
-    }
-  } else {
-    section.style.display = 'none';
-    toggle.style.transform = 'rotate(0deg)';
-  }
-}
-  
-
-// ===== Initialize Everything on Page Load =====
+// ===== Initialize on Page Load =====
 document.addEventListener('DOMContentLoaded', function() {
-  // buildMentoringYears()와 initNetwork()는 
-  // 이제 각 섹션이 처음 열릴 때 실행됨
   updatePublicationStats();
   
-  // Research Interests는 기본으로 열려있게 하려면
+  // Research Interests 자동 열기
   document.querySelectorAll('.ri-header').forEach(header => {
     header.classList.add('active');
     header.nextElementSibling.classList.add('show');
+  });
 });
 </script>
+
 
 
 
