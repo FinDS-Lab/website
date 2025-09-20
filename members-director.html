@@ -556,6 +556,7 @@ permalink: /members-director.html
   background-size: 100% 100px;
   animation: flowLine 4s linear infinite;
   opacity: 0.6;
+  z-index: 1;  /* z-index 추가 */
 }
 
 @keyframes flowLine {
@@ -605,7 +606,7 @@ permalink: /members-director.html
   border: 3px solid var(--red);
   border-radius: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 10;  /* 2에서 10으로 변경 */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   animation: breathe 3s ease-in-out infinite;
 }
@@ -2295,75 +2296,139 @@ permalink: /members-director.html
   <div class="card-body">
     <style>
       /* Professional Affiliations 전용 타임라인 스타일 */
-      .timeline-affiliations {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        position: relative;
-      }
+     /* Professional Affiliations 타임라인 스타일 - Enhanced */
+.timeline-affiliations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
 
-      .timeline-affiliations::before {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: 8px;  /* 첫 번째 아이템과 맞춤 */
-        bottom: 1rem;
-        width: 3px;
-        background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
-        border-radius: 2px;
-      }
+/* 점선 배경 라인 */
+.timeline-affiliations::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  bottom: 1rem;
+  width: 3px;
+  border-left: 3px dashed rgba(214, 177, 77, 0.2);
+  border-radius: 2px;
+}
 
-      .timeline-affiliations > li {
-        position: relative;
-        padding-left: 48px;
-        padding-bottom: 1.75rem;
-      }
+/* 흐르는 애니메이션 라인 */
+.timeline-affiliations::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 8px;
+  bottom: 1rem;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--gold) 10%,
+    var(--gold-mid) 50%,
+    var(--gold) 90%,
+    transparent 100%
+  );
+  background-size: 100% 100px;
+  animation: flowLine 4s linear infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
 
-      .timeline-affiliations > li:last-child {
-        padding-bottom: 0;
-      }
+.timeline-affiliations > li {
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 1.75rem;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
 
-      .timeline-affiliations > li::before {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: 6px;  /* 텍스트 첫 줄과 정렬 */
-        width: 16px;
-        height: 16px;
-        background: var(--red);
-        border-radius: 50%;
-        transform: translateX(-50%);
-        box-shadow: 0 0 0 3px rgba(172,14,14,.08);
-        z-index: 1;
-      }
+.timeline-affiliations > li:last-child {
+  padding-bottom: 0;
+}
 
-      .timeline-affiliations .affiliation-year {
-        font-size: 16px;
-        font-weight: 900;
-        color: var(--red);
-        margin-bottom: 8px;
-        line-height: 1.2;
-      }
+.timeline-affiliations > li:nth-child(1) { animation-delay: 0.1s; }
+.timeline-affiliations > li:nth-child(2) { animation-delay: 0.2s; }
+.timeline-affiliations > li:nth-child(3) { animation-delay: 0.3s; }
+.timeline-affiliations > li:nth-child(4) { animation-delay: 0.4s; }
 
-      .timeline-affiliations .affiliation-title {
-        font-weight: 900;
-        color: #1f2937;
-        font-size: 15px;
-        margin-bottom: 6px;
-      }
+/* 숨쉬는 점 애니메이션 */
+.timeline-affiliations > li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 3px solid var(--red);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 10;  /* z-index 높게 설정 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: breathe 3s ease-in-out infinite;
+}
 
-      .timeline-affiliations .affiliation-org {
-        color: #111827;
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 4px;
-      }
+/* 각 점마다 다른 타이밍 */
+.timeline-affiliations > li:nth-child(1)::before { animation-delay: 0s; }
+.timeline-affiliations > li:nth-child(2)::before { animation-delay: 0.5s; }
+.timeline-affiliations > li:nth-child(3)::before { animation-delay: 1s; }
+.timeline-affiliations > li:nth-child(4)::before { animation-delay: 1.5s; }
 
-      .timeline-affiliations .affiliation-ko {
-        color: #9ca3af;
-        font-size: 12px;
-        font-weight: 400;
-      }
+/* 호버 효과 */
+.timeline-affiliations > li:hover::before {
+  width: 20px;
+  height: 20px;
+  background: var(--gold);
+  border-color: white;
+  box-shadow: 
+    0 0 0 3px var(--gold),
+    0 0 25px rgba(214, 177, 77, 0.5);
+  animation: none;
+}
+
+/* 스크롤 시 현재 위치 강조 */
+.timeline-affiliations > li.in-view::before {
+  background: var(--gold);
+  border-color: var(--gold);
+  width: 22px;
+  height: 22px;
+  box-shadow: 
+    0 0 0 4px rgba(214, 177, 77, 0.2),
+    0 0 30px rgba(214, 177, 77, 0.6);
+}
+
+/* 기존 텍스트 스타일 유지 */
+.timeline-affiliations .affiliation-year {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--red);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.timeline-affiliations .affiliation-title {
+  font-weight: 900;
+  color: #1f2937;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.timeline-affiliations .affiliation-org {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-affiliations .affiliation-ko {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 400;
+}
     </style>
 
     <ul class="timeline-affiliations">
@@ -3700,7 +3765,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
 // 스크롤에 따른 타임라인 하이라이트
 function highlightTimelineItems() {
-  const items = document.querySelectorAll('.timeline > li');
+  const items = document.querySelectorAll('.timeline > li, .timeline-affiliations > li');
   if (items.length === 0) return;
   
   const viewportMiddle = window.innerHeight / 2;
@@ -3717,7 +3782,6 @@ function highlightTimelineItems() {
     }
   });
 }
-
 // 초기 실행
 setTimeout(highlightTimelineItems, 100);
 
@@ -3741,6 +3805,7 @@ window.addEventListener('scroll', () => {
 });
   
 </script>
+
 
 
 
