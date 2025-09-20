@@ -1169,6 +1169,60 @@ permalink: /publications.html
 
  .copy-btn:hover { background: #f8fafc; }
 
+/* Citation Dropdown Styles */
+.citation-selector-container {
+  padding: 4px 0;
+}
+
+.citation-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.citation-dropdown {
+  width: 100%;
+  padding: 10px 36px 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+}
+
+.citation-dropdown:hover {
+  border-color: var(--journal-gold);
+  box-shadow: 0 0 0 3px rgba(214, 177, 77, 0.1);
+}
+
+.citation-dropdown:focus {
+  outline: none;
+  border-color: var(--journal-gold);
+  box-shadow: 0 0 0 3px rgba(214, 177, 77, 0.2);
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #6b7280;
+  font-size: 12px;
+  transition: color 0.2s;
+}
+
+.citation-dropdown-wrapper:hover .dropdown-arrow {
+  color: var(--journal-gold);
+}
+ 
  /* Empty */
  .empty-state {
    padding: 48px 20px;
@@ -1858,6 +1912,7 @@ function render() {
 }
 
 /* ===== Open Citation Modal - SIMPLIFIED VERSION ===== */
+/* ===== Open Citation Modal - DROPDOWN VERSION ===== */
 function openCite(pub) {
   // Check if citations exist in the publication data
   if (!pub.citations) {
@@ -1872,8 +1927,6 @@ function openCite(pub) {
     return;
   }
   
-  let citationsHTML = '';
-  
   // Check if Korean language publication (has Korean citation)
   const isKorean = pub.language === 'Korean';
   
@@ -1885,19 +1938,74 @@ function openCite(pub) {
     formats.push('korean');
   }
   
-  formats.forEach(style => {
-    if (pub.citations[style]) {
-      const citationId = 'cite-' + style + '-' + Math.random().toString(36).slice(2, 9);
-      citationsHTML += `
-        <div class="cite-block">
-          <div class="cite-header">
-            <span class="cite-label">${getStyleLabel(style)}</span>
-            <button class="copy-btn" onclick="copyText('${citationId}')">Copy</button>
-          </div>
-          <div class="cite-text" id="${citationId}">${pub.citations[style]}</div>
+  // Filter to only available formats
+  const availableFormats = formats.filter(f => pub.citations[f]);
+  
+  if (availableFormats.length === 0) {
+    citeBody.innerHTML = `
+      <div class="cite-block">
+        <div class="cite-text" style="color: #ef4444;">
+          No citation formats available.
         </div>
-      `;
-    }
+      </div>
+    `;
+    document.getElementById('citeModal').style.display = 'flex';
+    return;
+  }
+  
+  // Create dropdown selector
+  let citationsHTML = `
+    <div class="citation-selector-container">
+      <label for="citation-format-select" style="font-size: 13px; font-weight: 700; color: #374151; display: block; margin-bottom: 8px;">
+        Select Citation Format:
+      </label>
+      <div class="citation-dropdown-wrapper">
+        <select id="citation-format-select" class="citation-dropdown">
+          ${availableFormats.map(style => 
+            `<option value="${style}">${getStyleLabel(style)}</option>`
+          ).join('')}
+        </select>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+    </div>
+    <div id="citation-display-area" style="margin-top: 16px;">
+      <!-- Citation will be displayed here -->
+    </div>
+  `;
+  
+  citeBody.innerHTML = citationsHTML;
+  
+  // Store the publication data for use in the change handler
+  window.currentCitePub = pub;
+  
+  // Display the first format by default
+  displayCitation(availableFormats[0]);
+  
+  // Add event listener for dropdown change
+  document.getElementById('citation-format-select').addEventListener('change', (e) => {
+    displayCitation(e.target.value);
+  });
+  
+  document.getElementById('citeModal').style.display = 'flex';
+}
+
+function displayCitation(style) {
+  const pub = window.currentCitePub;
+  if (!pub || !pub.citations[style]) return;
+  
+  const citationId = 'cite-current-' + Math.random().toString(36).slice(2, 9);
+  const displayArea = document.getElementById('citation-display-area');
+  
+  displayArea.innerHTML = `
+    <div class="cite-block">
+      <div class="cite-header">
+        <span class="cite-label">${getStyleLabel(style)}</span>
+        <button class="copy-btn" onclick="copyText('${citationId}')">Copy</button>
+      </div>
+      <div class="cite-text" id="${citationId}">${pub.citations[style]}</div>
+    </div>
+  `;
+}
   });
   
   citeBody.innerHTML = citationsHTML;
