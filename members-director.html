@@ -517,7 +517,7 @@ permalink: /members-director.html
       color: #6b7280;
     }
 
-   /* Timeline Styles - Enhanced */
+ /* Timeline Styles - Enhanced */
 .timeline {
   list-style: none;
   margin: 0;
@@ -525,46 +525,38 @@ permalink: /members-director.html
   position: relative;
 }
 
-/* 점선 배경 라인 */
+/* 단일 그라데이션 라인으로 통합 */
 .timeline::before {
   content: "";
   position: absolute;
   left: 14px;
   top: 1rem;
   bottom: 1rem;
-  width: 3px;
-  border-left: 3px dashed rgba(214, 177, 77, 0.2);
+  width: 4px;
+  background: 
+    repeating-linear-gradient(
+      180deg,
+      var(--gold) 0px,
+      var(--gold) 8px,
+      transparent 8px,
+      transparent 16px
+    ),
+    linear-gradient(
+      180deg, 
+      rgba(214, 177, 77, 0.3) 0%, 
+      rgba(172, 14, 14, 0.3) 100%
+    );
   border-radius: 2px;
-}
-
-/* 흐르는 애니메이션 라인 */
-.timeline::after {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 1rem;
-  bottom: 1rem;
-  width: 3px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--gold) 10%,
-    var(--gold-mid) 50%,
-    var(--gold) 90%,
-    transparent 100%
-  );
-  background-size: 100% 100px;
+  transform: translateX(-50%);
   animation: flowLine 4s linear infinite;
-  opacity: 0.6;
-  z-index: 1;  /* z-index 추가 */
 }
 
 @keyframes flowLine {
   from {
-    background-position: 0 -100px;
+    background-position: 0 -16px;
   }
   to {
-    background-position: 0 100px;
+    background-position: 0 16px;
   }
 }
 
@@ -583,6 +575,79 @@ permalink: /members-director.html
 .timeline > li:nth-child(5) { animation-delay: 0.5s; }
 .timeline > li:nth-child(6) { animation-delay: 0.6s; }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 점을 box-shadow로 구현 - z-index 문제 완전 해결 */
+.timeline > li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 1.05rem;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, white 40%, var(--gold) 45%, var(--gold-dark) 100%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 1px rgba(214, 177, 77, 0.3),
+    0 0 20px rgba(214, 177, 77, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 각 점마다 다른 타이밍 */
+.timeline > li:nth-child(1)::before { animation-delay: 0s; }
+.timeline > li:nth-child(2)::before { animation-delay: 0.4s; }
+.timeline > li:nth-child(3)::before { animation-delay: 0.8s; }
+.timeline > li:nth-child(4)::before { animation-delay: 1.2s; }
+.timeline > li:nth-child(5)::before { animation-delay: 1.6s; }
+.timeline > li:nth-child(6)::before { animation-delay: 2s; }
+
+@keyframes pulse {
+  0%, 100% { 
+    box-shadow: 
+      inset 0 0 0 3px white,
+      0 0 0 1px rgba(214, 177, 77, 0.3),
+      0 0 20px rgba(214, 177, 77, 0.2);
+  }
+  50% { 
+    box-shadow: 
+      inset 0 0 0 3px white,
+      0 0 0 3px rgba(214, 177, 77, 0.2),
+      0 0 30px rgba(214, 177, 77, 0.4);
+  }
+}
+
+/* 호버 효과 */
+.timeline > li:hover::before {
+  background: radial-gradient(circle, white 30%, var(--red) 35%, var(--red-dark) 100%);
+  animation: none;
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 2px var(--red),
+    0 0 25px rgba(172, 14, 14, 0.4);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* 스크롤 시 현재 위치 강조 */
+.timeline > li.in-view::before {
+  background: radial-gradient(circle, white 30%, var(--red) 35%, var(--red-dark) 100%);
+  transform: translateX(-50%) scale(1.15);
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 3px rgba(172, 14, 14, 0.3),
+    0 0 35px rgba(172, 14, 14, 0.5);
+}
+    
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -2295,8 +2360,7 @@ permalink: /members-director.html
   <div class="card-head">Professional Affiliations</div>
   <div class="card-body">
     <style>
-      /* Professional Affiliations 전용 타임라인 스타일 */
-     /* Professional Affiliations 타임라인 스타일 - Enhanced */
+/* Professional Affiliations 타임라인 스타일 - Enhanced */
 .timeline-affiliations {
   list-style: none;
   margin: 0;
@@ -2304,38 +2368,30 @@ permalink: /members-director.html
   position: relative;
 }
 
-/* 점선 배경 라인 */
+/* 단일 그라데이션 라인으로 통합 */
 .timeline-affiliations::before {
   content: "";
   position: absolute;
   left: 14px;
   top: 8px;
   bottom: 1rem;
-  width: 3px;
-  border-left: 3px dashed rgba(214, 177, 77, 0.2);
+  width: 4px;
+  background: 
+    repeating-linear-gradient(
+      180deg,
+      var(--gold) 0px,
+      var(--gold) 8px,
+      transparent 8px,
+      transparent 16px
+    ),
+    linear-gradient(
+      180deg, 
+      rgba(214, 177, 77, 0.3) 0%, 
+      rgba(172, 14, 14, 0.3) 100%
+    );
   border-radius: 2px;
-}
-
-/* 흐르는 애니메이션 라인 */
-.timeline-affiliations::after {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 8px;
-  bottom: 1rem;
-  width: 3px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    var(--gold) 10%,
-    var(--gold-mid) 50%,
-    var(--gold) 90%,
-    transparent 100%
-  );
-  background-size: 100% 100px;
+  transform: translateX(-50%);
   animation: flowLine 4s linear infinite;
-  opacity: 0.6;
-  z-index: 1;
 }
 
 .timeline-affiliations > li {
@@ -2348,6 +2404,85 @@ permalink: /members-director.html
 
 .timeline-affiliations > li:last-child {
   padding-bottom: 0;
+}
+
+.timeline-affiliations > li:nth-child(1) { animation-delay: 0.1s; }
+.timeline-affiliations > li:nth-child(2) { animation-delay: 0.2s; }
+.timeline-affiliations > li:nth-child(3) { animation-delay: 0.3s; }
+.timeline-affiliations > li:nth-child(4) { animation-delay: 0.4s; }
+
+/* 점을 box-shadow로 구현 - z-index 문제 해결 */
+.timeline-affiliations > li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, white 40%, var(--gold) 45%, var(--gold-dark) 100%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 1px rgba(214, 177, 77, 0.3),
+    0 0 20px rgba(214, 177, 77, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 각 점마다 다른 타이밍 */
+.timeline-affiliations > li:nth-child(1)::before { animation-delay: 0s; }
+.timeline-affiliations > li:nth-child(2)::before { animation-delay: 0.5s; }
+.timeline-affiliations > li:nth-child(3)::before { animation-delay: 1s; }
+.timeline-affiliations > li:nth-child(4)::before { animation-delay: 1.5s; }
+
+/* 호버 효과 */
+.timeline-affiliations > li:hover::before {
+  background: radial-gradient(circle, white 30%, var(--red) 35%, var(--red-dark) 100%);
+  animation: none;
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 2px var(--red),
+    0 0 25px rgba(172, 14, 14, 0.4);
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* 스크롤 시 현재 위치 강조 */
+.timeline-affiliations > li.in-view::before {
+  background: radial-gradient(circle, white 30%, var(--red) 35%, var(--red-dark) 100%);
+  transform: translateX(-50%) scale(1.15);
+  box-shadow: 
+    inset 0 0 0 3px white,
+    0 0 0 3px rgba(172, 14, 14, 0.3),
+    0 0 35px rgba(172, 14, 14, 0.5);
+}
+
+/* 기존 텍스트 스타일 유지 */
+.timeline-affiliations .affiliation-year {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--red);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.timeline-affiliations .affiliation-title {
+  font-weight: 900;
+  color: #1f2937;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.timeline-affiliations .affiliation-org {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-affiliations .affiliation-ko {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .timeline-affiliations > li:nth-child(1) { animation-delay: 0.1s; }
@@ -3805,6 +3940,7 @@ window.addEventListener('scroll', () => {
 });
   
 </script>
+
 
 
 
