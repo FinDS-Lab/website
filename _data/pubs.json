@@ -538,7 +538,15 @@
     "venue": "2024 Winter Conference of the Korean Statistical Society",
     "venue_ko": "2024 한국통계학회 동계학술논문발표회",
     "published_date": "2024-11-22",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 22). An empirical verification of normality in financial time series data – focusing on moving-window-based normality tests [Paper presentation]. 2024 Winter Conference of the Korean Statistical Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"An Empirical Verification of Normality in Financial Time Series Data – Focusing on Moving-Window-Based Normality Tests.\" 2024 Winter Conference of the Korean Statistical Society, 22 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"An Empirical Verification of Normality in Financial Time Series Data – Focusing on Moving-Window-Based Normality Tests.\" Paper presented at the 2024 Winter Conference of the Korean Statistical Society, November 22, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'An empirical verification of normality in financial time series data – focusing on moving-window-based normality tests', paper presented at the 2024 Winter Conference of the Korean Statistical Society, 22 November.",
+      "vancouver": "Choi I, Kim WC. An empirical verification of normality in financial time series data – focusing on moving-window-based normality tests. Paper presented at: 2024 Winter Conference of the Korean Statistical Society; 2024 Nov 22.",
+      "korean": "최인수, 김우창. (2024). 금융 시계열의 정규성에 대한 경험적 검증 – 이동창 기반 정규성 검정을 중심으로. 2024 한국통계학회 동계학술논문발표회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -569,7 +577,15 @@
     "venue": "2024 Fall Conference of the Korean Institute of Information Technology",
     "venue_ko": "2024 한국정보기술학회 추계종합학술대회",
     "published_date": "2024-11-21",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 21). An analysis of household investment preferences and decision factors based on taxpayer perception survey [Paper presentation]. 2024 Fall Conference of the Korean Institute of Information Technology.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"An Analysis of Household Investment Preferences and Decision Factors Based on Taxpayer Perception Survey.\" 2024 Fall Conference of the Korean Institute of Information Technology, 21 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"An Analysis of Household Investment Preferences and Decision Factors Based on Taxpayer Perception Survey.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Information Technology, November 21, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'An analysis of household investment preferences and decision factors based on taxpayer perception survey', paper presented at the 2024 Fall Conference of the Korean Institute of Information Technology, 21 November.",
+      "vancouver": "Choi I, Kim WC. An analysis of household investment preferences and decision factors based on taxpayer perception survey. Paper presented at: 2024 Fall Conference of the Korean Institute of Information Technology; 2024 Nov 21.",
+      "korean": "최인수, 김우창. (2024). 납세자 의식 조사를 통한 가계의 투자 성향 및 의사 결정 요인 분석. 2024 한국정보기술학회 추계종합학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -584,7 +600,15 @@
     "venue": "2024 Fall Conference of the Korean Operations Research and Management Science Society",
     "venue_ko": "2024년 한국경영정보학회 추계국제학술대회",
     "published_date": "2024-11-15",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 15). Analysis of asset allocation results based on predictions for data-driven financial personas [Paper presentation]. 2024 Fall Conference of the Korean Operations Research and Management Science Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Analysis of Asset Allocation Results Based on Predictions for Data-Driven Financial Personas.\" 2024 Fall Conference of the Korean Operations Research and Management Science Society, 15 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Analysis of Asset Allocation Results Based on Predictions for Data-Driven Financial Personas.\" Paper presented at the 2024 Fall Conference of the Korean Operations Research and Management Science Society, November 15, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Analysis of asset allocation results based on predictions for data-driven financial personas', paper presented at the 2024 Fall Conference of the Korean Operations Research and Management Science Society, 15 November.",
+      "vancouver": "Choi I, Kim WC. Analysis of asset allocation results based on predictions for data-driven financial personas. Paper presented at: 2024 Fall Conference of the Korean Operations Research and Management Science Society; 2024 Nov 15.",
+      "korean": "최인수, 김우창. (2024). 데이터 기반 금융 페르소나별 예측치 기반의 자산 배분 결과 분석. 2024년 한국경영정보학회 추계국제학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -600,7 +624,15 @@
     "venue_ko": "2024 한국경영과학회 추계학술대회",
     "published_date": "2024-11-08",
     "awards": 1,
-    "award_details": ["2024 한국경영과학회 추계학술대회 경쟁 부문 우수상"]
+    "award_details": ["2024 한국경영과학회 추계학술대회 경쟁 부문 우수상"],
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 8). Utilization of conditional information transfer graphs for predicting downside risk in financial markets [Paper presentation]. 2024 Fall International Conference of the Korea Society of Management Information Systems.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Utilization of Conditional Information Transfer Graphs for Predicting Downside Risk in Financial Markets.\" 2024 Fall International Conference of the Korea Society of Management Information Systems, 8 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Utilization of Conditional Information Transfer Graphs for Predicting Downside Risk in Financial Markets.\" Paper presented at the 2024 Fall International Conference of the Korea Society of Management Information Systems, November 8, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Utilization of conditional information transfer graphs for predicting downside risk in financial markets', paper presented at the 2024 Fall International Conference of the Korea Society of Management Information Systems, 8 November.",
+      "vancouver": "Choi I, Kim WC. Utilization of conditional information transfer graphs for predicting downside risk in financial markets. Paper presented at: 2024 Fall International Conference of the Korea Society of Management Information Systems; 2024 Nov 8.",
+      "korean": "최인수, 김우창. (2024). 금융 시장 하방 위험의 예측을 위한 조건부 정보 전이 그래프의 활용. 2024 한국경영과학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -616,7 +648,15 @@
     "venue_ko": "2024 한국경영과학회 추계학술대회",
     "published_date": "2024-11-08",
     "awards": 1,
-    "award_details": ["제11회 경영과학 박사학위논문상 우수상"]
+    "award_details": ["제11회 경영과학 박사학위논문상 우수상"],
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 8). Elucidating data-inspired financial asset allocation approaches considering transparency [Paper presentation]. 2024 Fall Conference of the Korean Operations Research and Management Science Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Elucidating Data-Inspired Financial Asset Allocation Approaches Considering Transparency.\" 2024 Fall Conference of the Korean Operations Research and Management Science Society, 8 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Elucidating Data-Inspired Financial Asset Allocation Approaches Considering Transparency.\" Paper presented at the 2024 Fall Conference of the Korean Operations Research and Management Science Society, November 8, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Elucidating data-inspired financial asset allocation approaches considering transparency', paper presented at the 2024 Fall Conference of the Korean Operations Research and Management Science Society, 8 November.",
+      "vancouver": "Choi I, Kim WC. Elucidating data-inspired financial asset allocation approaches considering transparency. Paper presented at: 2024 Fall Conference of the Korean Operations Research and Management Science Society; 2024 Nov 8.",
+      "korean": "최인수, 김우창. (2024). 예측 기반의 분포 생성을 바탕으로 한 설명 가능한 포트폴리오. 2024 한국경영과학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -629,7 +669,14 @@
     "author_marks": ["1", "*"],
     "venue": "2024 한국지능정보시스템학회 추계국제학술대회",
     "published_date": "2024-11-01",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, November 1). A study on the use of spatiotemporal graphs based on linear and nonlinear statistical dependencies in financial time series forecasting [Paper presentation]. 2024 Fall International Conference of Korea Intelligent Information Systems Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"A Study on the Use of Spatiotemporal Graphs Based on Linear and Nonlinear Statistical Dependencies in Financial Time Series Forecasting.\" 2024 Fall International Conference of Korea Intelligent Information Systems Society, 1 Nov. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"A Study on the Use of Spatiotemporal Graphs Based on Linear and Nonlinear Statistical Dependencies in Financial Time Series Forecasting.\" Paper presented at the 2024 Fall International Conference of Korea Intelligent Information Systems Society, November 1, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'A study on the use of spatiotemporal graphs based on linear and nonlinear statistical dependencies in financial time series forecasting', paper presented at the 2024 Fall International Conference of Korea Intelligent Information Systems Society, 1 November.",
+      "vancouver": "Choi I, Kim WC. A study on the use of spatiotemporal graphs based on linear and nonlinear statistical dependencies in financial time series forecasting. Paper presented at: 2024 Fall International Conference of Korea Intelligent Information Systems Society; 2024 Nov 1."
+    }
   },
   {
     "year": 2024,
@@ -644,7 +691,15 @@
     "venue": "2024 Fall Conference of the Korean Society of Industrial and Systems Engineering",
     "venue_ko": "2024 한국산업경영시스템학회 추계학술대회",
     "published_date": "2024-11-01",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Ko, H., Kim, G., Park, S., Jung, N., & Kim, W. C. (2024, November 1). A comprehensive study on key research and future directions in supply chain finance and related fields [Paper presentation]. 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering.",
+      "mla": "Choi, Insu, et al. \"A Comprehensive Study on Key Research and Future Directions in Supply Chain Finance and Related Fields.\" 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, 1 Nov. 2024.",
+      "chicago": "Choi, Insu, Hyemin Ko, Gyubeom Kim, Sungwoo Park, Nari Jung, and Woo Chang Kim. \"A Comprehensive Study on Key Research and Future Directions in Supply Chain Finance and Related Fields.\" Paper presented at the 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, November 1, 2024.",
+      "harvard": "Choi, I, Ko, H, Kim, G, Park, S, Jung, N & Kim, WC 2024, 'A comprehensive study on key research and future directions in supply chain finance and related fields', paper presented at the 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, 1 November.",
+      "vancouver": "Choi I, Ko H, Kim G, Park S, Jung N, Kim WC. A comprehensive study on key research and future directions in supply chain finance and related fields. Paper presented at: 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering; 2024 Nov 1.",
+      "korean": "최인수, 고혜민, 김규범, 박성우, 정나리, 김우창. (2024). 공급망 금융 및 관련 제반 분야의 주요 연구와 연구 방향성에 대한 조사 연구. 2024 한국산업경영시스템학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -659,7 +714,15 @@
     "venue": "2024 Fall Conference of the Korean Society of Industrial and Systems Engineering",
     "venue_ko": "2024 한국산업경영시스템학회 추계학술대회",
     "published_date": "2024-11-01",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Byun, H., Choi, H., & Choi, I. (2024, November 1). A research on UX/UI design for a smart home integrated platform to build personalized living environments [Paper presentation]. 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering.",
+      "mla": "Byun, Hyelin, Hyunmin Choi, and Insu Choi. \"A Research on UX/UI Design for a Smart Home Integrated Platform to Build Personalized Living Environments.\" 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, 1 Nov. 2024.",
+      "chicago": "Byun, Hyelin, Hyunmin Choi, and Insu Choi. \"A Research on UX/UI Design for a Smart Home Integrated Platform to Build Personalized Living Environments.\" Paper presented at the 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, November 1, 2024.",
+      "harvard": "Byun, H, Choi, H & Choi, I 2024, 'A research on UX/UI design for a smart home integrated platform to build personalized living environments', paper presented at the 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering, 1 November.",
+      "vancouver": "Byun H, Choi H, Choi I. A research on UX/UI design for a smart home integrated platform to build personalized living environments. Paper presented at: 2024 Fall Conference of the Korean Society of Industrial and Systems Engineering; 2024 Nov 1.",
+      "korean": "변혜린, 최현민, 최인수. (2024). 개인에게 최적화된 주거환경 구축을 위한 스마트홈 통합 플랫폼의 UX/UI 설계에 관한 연구. 2024 한국산업경영시스템학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2023,
@@ -672,7 +735,14 @@
     "author_marks": ["1", "*"],
     "venue": "2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics",
     "published_date": "2023-10-26",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, October 26). An interpretation of interdependence of market fluctuation estimation framework via omnifarious bivariate distance functions [Paper presentation]. 2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"An Interpretation of Interdependence of Market Fluctuation Estimation Framework via Omnifarious Bivariate Distance Functions.\" 2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics, 26 Oct. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"An Interpretation of Interdependence of Market Fluctuation Estimation Framework via Omnifarious Bivariate Distance Functions.\" Paper presented at the 2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics, October 26, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'An interpretation of interdependence of market fluctuation estimation framework via omnifarious bivariate distance functions', paper presented at the 2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics, 26 October.",
+      "vancouver": "Choi I, Kim WC. An interpretation of interdependence of market fluctuation estimation framework via omnifarious bivariate distance functions. Paper presented at: 2023 Korean Association of Financial Engineering – Sungkyunkwan University International Conference on Finance and Economics; 2023 Oct 26."
+    }
   },
   {
     "year": 2024,
@@ -687,7 +757,15 @@
     "venue": "2024 Fall Conference of the Korean Institute of Industrial Engineers",
     "venue_ko": "2024 대한산업공학회 추계학술대회",
     "published_date": "2024-10-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Lee, T. K., Park, S., Shin, K. S., Lee, S., Choi, I., Kim, J. H., & Kim, W. C. (2024, October 25). Study on the impact of COVID-19 exogenous variables on domestic sector ETF price prediction based on Granger causality [Paper presentation]. 2024 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Lee, Tae Kyoung, et al. \"Study on the Impact of COVID-19 Exogenous Variables on Domestic Sector ETF Price Prediction Based on Granger Causality.\" 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 Oct. 2024.",
+      "chicago": "Lee, Tae Kyoung, Sungsu Park, Kyeong Soo Shin, Suin Lee, Insu Choi, Jang Ho Kim, and Woo Chang Kim. \"Study on the Impact of COVID-19 Exogenous Variables on Domestic Sector ETF Price Prediction Based on Granger Causality.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, October 25, 2024.",
+      "harvard": "Lee, TK, Park, S, Shin, KS, Lee, S, Choi, I, Kim, JH & Kim, WC 2024, 'Study on the impact of COVID-19 exogenous variables on domestic sector ETF price prediction based on Granger causality', paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 October.",
+      "vancouver": "Lee TK, Park S, Shin KS, Lee S, Choi I, Kim JH, Kim WC. Study on the impact of COVID-19 exogenous variables on domestic sector ETF price prediction based on Granger causality. Paper presented at: 2024 Fall Conference of the Korean Institute of Industrial Engineers; 2024 Oct 25.",
+      "korean": "이태경, 박성수, 신경수, 이수인, 최인수, 김장호, 김우창. (2024). 그레인저 인과성을 기반으로 한 COVID-19 외생변수가 국내 섹터 ETF 가격 예측에 미치는 영향력에 대한 연구. 2024 대한산업공학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -702,7 +780,15 @@
     "venue": "2024 Fall Conference of the Korean Institute of Industrial Engineers",
     "venue_ko": "2024 대한산업공학회 추계학술대회",
     "published_date": "2024-10-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., An, J., Yoo, M., Hong, J., & Kim, W. C. (2024, October 25). A study on the application of sentiment analysis in the financial sector [Paper presentation]. 2024 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Choi, Insu, et al. \"A Study on the Application of Sentiment Analysis in the Financial Sector.\" 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 Oct. 2024.",
+      "chicago": "Choi, Insu, Jeongin An, Min Yoo, Joonki Hong, and Woo Chang Kim. \"A Study on the Application of Sentiment Analysis in the Financial Sector.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, October 25, 2024.",
+      "harvard": "Choi, I, An, J, Yoo, M, Hong, J & Kim, WC 2024, 'A study on the application of sentiment analysis in the financial sector', paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 October.",
+      "vancouver": "Choi I, An J, Yoo M, Hong J, Kim WC. A study on the application of sentiment analysis in the financial sector. Paper presented at: 2024 Fall Conference of the Korean Institute of Industrial Engineers; 2024 Oct 25.",
+      "korean": "최인수, 안정인, 유민, 홍준기, 김우창. (2024). 금융 분야에서의 감성 분석의 활용에 대한 조사 연구. 2024 대한산업공학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -717,7 +803,15 @@
     "venue": "2024 Fall Conference of the Korean Institute of Industrial Engineers",
     "venue_ko": "2024 대한산업공학회 추계학술대회",
     "published_date": "2024-10-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Son, H., Lee, S., Choi, I., & Kim, W. C. (2024, October 25). An asset allocation model leveraging sentence-level sentiment analysis in analyst reports: Integrating sentiment analysis, factor modeling, and the Black-Litterman model-based framework [Paper presentation]. 2024 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Son, Hyungjin, et al. \"An Asset Allocation Model Leveraging Sentence-Level Sentiment Analysis in Analyst Reports: Integrating Sentiment Analysis, Factor Modeling, and the Black-Litterman Model-Based Framework.\" 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 Oct. 2024.",
+      "chicago": "Son, Hyungjin, Seonghyuk Lee, Insu Choi, and Woo Chang Kim. \"An Asset Allocation Model Leveraging Sentence-Level Sentiment Analysis in Analyst Reports: Integrating Sentiment Analysis, Factor Modeling, and the Black-Litterman Model-Based Framework.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, October 25, 2024.",
+      "harvard": "Son, H, Lee, S, Choi, I & Kim, WC 2024, 'An asset allocation model leveraging sentence-level sentiment analysis in analyst reports: Integrating sentiment analysis, factor modeling, and the Black-Litterman model-based framework', paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 October.",
+      "vancouver": "Son H, Lee S, Choi I, Kim WC. An asset allocation model leveraging sentence-level sentiment analysis in analyst reports: Integrating sentiment analysis, factor modeling, and the Black-Litterman model-based framework. Paper presented at: 2024 Fall Conference of the Korean Institute of Industrial Engineers; 2024 Oct 25.",
+      "korean": "손형진, 이성혁, 최인수, 김우창. (2024). 애널리스트 리포트의 문장 단위 감성 분석을 활용한 자산 배분 모형: 감성 분석과 팩터 모델링, Black-Litterman 모형의 결합을 중심으로. 2024 대한산업공학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -732,7 +826,15 @@
     "venue": "2024 Fall Conference of the Korean Institute of Industrial Engineers",
     "venue_ko": "2024 대한산업공학회 추계학술대회",
     "published_date": "2024-10-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Kim, J., Choi, H., Han, S., & Choi, I. (2024, October 25). The research on planning a K-content filming location information service and developing a design-focused prototype [Paper presentation]. 2024 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Kim, Jiyoon, et al. \"The Research on Planning a K-Content Filming Location Information Service and Developing a Design-Focused Prototype.\" 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 Oct. 2024.",
+      "chicago": "Kim, Jiyoon, Hyunsu Choi, Seokhwan Han, and Insu Choi. \"The Research on Planning a K-Content Filming Location Information Service and Developing a Design-Focused Prototype.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, October 25, 2024.",
+      "harvard": "Kim, J, Choi, H, Han, S & Choi, I 2024, 'The research on planning a K-content filming location information service and developing a design-focused prototype', paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, 25 October.",
+      "vancouver": "Kim J, Choi H, Han S, Choi I. The research on planning a K-content filming location information service and developing a design-focused prototype. Paper presented at: 2024 Fall Conference of the Korean Institute of Industrial Engineers; 2024 Oct 25.",
+      "korean": "김지윤, 최현수, 한석환, 최인수. (2024). K-콘텐츠 촬영지 정보 안내 서비스 기획 및 디자인 중심 프로토타입 제작에 대한 연구. 2024 대한산업공학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -747,9 +849,17 @@
     "venue": "2024 Fall Conference of the Korean Institute of Industrial Engineers",
     "venue_ko": "2024 대한산업공학회 추계학술대회",
     "published_date": "2024-10-24",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, October 24). Investigating the presence of normality in financial time series through empirical analysis – focusing on the discrepancy between theoretical and empirical values of statistical dependence measures related to the Pearson correlation coefficient [Paper presentation]. 2024 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Investigating the Presence of Normality in Financial Time Series Through Empirical Analysis – Focusing on the Discrepancy Between Theoretical and Empirical Values of Statistical Dependence Measures Related to the Pearson Correlation Coefficient.\" 2024 Fall Conference of the Korean Institute of Industrial Engineers, 24 Oct. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Investigating the Presence of Normality in Financial Time Series Through Empirical Analysis – Focusing on the Discrepancy Between Theoretical and Empirical Values of Statistical Dependence Measures Related to the Pearson Correlation Coefficient.\" Paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, October 24, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Investigating the presence of normality in financial time series through empirical analysis – focusing on the discrepancy between theoretical and empirical values of statistical dependence measures related to the Pearson correlation coefficient', paper presented at the 2024 Fall Conference of the Korean Institute of Industrial Engineers, 24 October.",
+      "vancouver": "Choi I, Kim WC. Investigating the presence of normality in financial time series through empirical analysis – focusing on the discrepancy between theoretical and empirical values of statistical dependence measures related to the Pearson correlation coefficient. Paper presented at: 2024 Fall Conference of the Korean Institute of Industrial Engineers; 2024 Oct 24.",
+      "korean": "최인수, 김우창. (2024). 금융 시계열의 정규성에 대한 경험적 검증 – Pearson 상관 계수와 유관한 통계적 의존성 지표의 이론치와 측정치 간의 괴리를 중심으로. 2024 대한산업공학회 추계학술대회 발표논문."
+    }
   },
-  {
+ {
     "year": 2024,
     "code_label": "J",
     "indexing_group": "SCIE",
@@ -794,7 +904,15 @@
     "venue": "2024 Summer Conference of the Korean Statistical Society",
     "venue_ko": "2024 한국통계학회 하계학술논문발표회",
     "published_date": "2024-07-05",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Son, H., Choi, I., Baek, W., Kim, J. H., & Kim, W. C. (2024, July 5). Spillover effects and event period responses among U.S. market sectors using the DCC-GARCH model [Paper presentation]. 2024 Summer Conference of the Korean Statistical Society.",
+      "mla": "Son, Hyungjin, et al. \"Spillover Effects and Event Period Responses Among U.S. Market Sectors Using the DCC-GARCH Model.\" 2024 Summer Conference of the Korean Statistical Society, 5 July 2024.",
+      "chicago": "Son, Hyungjin, Insu Choi, Woobin Baek, Jang Ho Kim, and Woo Chang Kim. \"Spillover Effects and Event Period Responses Among U.S. Market Sectors Using the DCC-GARCH Model.\" Paper presented at the 2024 Summer Conference of the Korean Statistical Society, July 5, 2024.",
+      "harvard": "Son, H, Choi, I, Baek, W, Kim, JH & Kim, WC 2024, 'Spillover effects and event period responses among U.S. market sectors using the DCC-GARCH model', paper presented at the 2024 Summer Conference of the Korean Statistical Society, 5 July.",
+      "vancouver": "Son H, Choi I, Baek W, Kim JH, Kim WC. Spillover effects and event period responses among U.S. market sectors using the DCC-GARCH model. Paper presented at: 2024 Summer Conference of the Korean Statistical Society; 2024 July 5.",
+      "korean": "손형진, 최인수, 백우빈, 김장호, 김우창. (2024). Spillover 효과와 DCC-GARCH모델을 사용한 미국 시장 내 섹터 간의 이벤트 기간 반응 분석. 2024 한국통계학회 하계학술논문발표회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -809,7 +927,15 @@
     "venue": "2024 Summer Conference of the Korean Statistical Society",
     "venue_ko": "2024 한국통계학회 하계학술논문발표회",
     "published_date": "2024-07-05",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, July 5). Return prediction using network indicators of temporal information transmission networks considering the federal funds rate [Paper presentation]. 2024 Summer Conference of the Korean Statistical Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Return Prediction Using Network Indicators of Temporal Information Transmission Networks Considering the Federal Funds Rate.\" 2024 Summer Conference of the Korean Statistical Society, 5 July 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Return Prediction Using Network Indicators of Temporal Information Transmission Networks Considering the Federal Funds Rate.\" Paper presented at the 2024 Summer Conference of the Korean Statistical Society, July 5, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Return prediction using network indicators of temporal information transmission networks considering the federal funds rate', paper presented at the 2024 Summer Conference of the Korean Statistical Society, 5 July.",
+      "vancouver": "Choi I, Kim WC. Return prediction using network indicators of temporal information transmission networks considering the federal funds rate. Paper presented at: 2024 Summer Conference of the Korean Statistical Society; 2024 July 5.",
+      "korean": "최인수, 김우창. (2024). 연방기금금리를 고려한 시간적 정보 전이 네트워크의 네트워크 지표를 활용한 수익률 예측. 2024 한국통계학회 하계학술논문발표회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -822,8 +948,17 @@
     "authors": [8, 9, 10, 11, 1, 3, 2],
     "author_marks": ["1", "1", "1", "1", "1", "2", "*"],
     "venue": "2024 Summer Conference of the Korean Data Analysis Society",
+    "venue_ko": "2024 한국자료분석학회 하계학술논문발표대회",
     "published_date": "2024-06-27",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Lee, T. K., Park, S., Shin, K. S., Lee, S., Choi, I., Kim, J. H., & Kim, W. C. (2024, June 27). Fluctuation prediction of domestic sector ETFs during the COVID-19 period using ARIMAX and derived variables [Paper presentation]. 2024 Summer Conference of the Korean Data Analysis Society.",
+      "mla": "Lee, Tae Kyoung, et al. \"Fluctuation Prediction of Domestic Sector ETFs During the COVID-19 Period Using ARIMAX and Derived Variables.\" 2024 Summer Conference of the Korean Data Analysis Society, 27 June 2024.",
+      "chicago": "Lee, Tae Kyoung, Sungsu Park, Kyeong Soo Shin, Suin Lee, Insu Choi, Jang Ho Kim, and Woo Chang Kim. \"Fluctuation Prediction of Domestic Sector ETFs During the COVID-19 Period Using ARIMAX and Derived Variables.\" Paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, June 27, 2024.",
+      "harvard": "Lee, TK, Park, S, Shin, KS, Lee, S, Choi, I, Kim, JH & Kim, WC 2024, 'Fluctuation prediction of domestic sector ETFs during the COVID-19 period using ARIMAX and derived variables', paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, 27 June.",
+      "vancouver": "Lee TK, Park S, Shin KS, Lee S, Choi I, Kim JH, Kim WC. Fluctuation prediction of domestic sector ETFs during the COVID-19 period using ARIMAX and derived variables. Paper presented at: 2024 Summer Conference of the Korean Data Analysis Society; 2024 June 27.",
+      "korean": "이태경, 박성수, 신경수, 이수인, 최인수, 김장호, 김우창. (2024). ARIMAX를 이용한 COVID-19 시기의 파생 변수와 국내 섹터 ETF의 가격 변동성 예측에 대한 연구. 2024 한국자료분석학회 하계학술논문발표대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -838,7 +973,15 @@
     "venue": "2024 Summer Conference of the Korean Data Analysis Society",
     "venue_ko": "2024 한국자료분석학회 하계학술논문발표대회",
     "published_date": "2024-06-27",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Baek, W., Choi, I., Son, H., Kim, J. H., & Kim, W. C. (2024, June 27). Lag prediction to U.S. presidential election impact events using language models [Paper presentation]. 2024 Summer Conference of the Korean Data Analysis Society.",
+      "mla": "Baek, Woobin, et al. \"Lag Prediction to U.S. Presidential Election Impact Events Using Language Models.\" 2024 Summer Conference of the Korean Data Analysis Society, 27 June 2024.",
+      "chicago": "Baek, Woobin, Insu Choi, Hyungjin Son, Jang Ho Kim, and Woo Chang Kim. \"Lag Prediction to U.S. Presidential Election Impact Events Using Language Models.\" Paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, June 27, 2024.",
+      "harvard": "Baek, W, Choi, I, Son, H, Kim, JH & Kim, WC 2024, 'Lag prediction to U.S. presidential election impact events using language models', paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, 27 June.",
+      "vancouver": "Baek W, Choi I, Son H, Kim JH, Kim WC. Lag prediction to U.S. presidential election impact events using language models. Paper presented at: 2024 Summer Conference of the Korean Data Analysis Society; 2024 June 27.",
+      "korean": "백우빈, 최인수, 손형진, 김장호, 김우창. (2024). 언어모델을 활용한 미국 대선 영향 사건까지의 시차 예측. 2024 한국자료분석학회 하계학술논문발표대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -853,7 +996,15 @@
     "venue": "2024 Summer Conference of the Korean Data Analysis Society",
     "venue_ko": "2024 한국자료분석학회 하계학술논문발표대회",
     "published_date": "2024-06-27",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., An, S., Shim, E., Lim, S., Choi, Y., & Kim, W. C. (2024, June 27). Comparative analysis of regional economy and real estate market indicators on birth rates using explainable machine learning and multivariate models [Paper presentation]. 2024 Summer Conference of the Korean Data Analysis Society.",
+      "mla": "Choi, Insu, et al. \"Comparative Analysis of Regional Economy and Real Estate Market Indicators on Birth Rates Using Explainable Machine Learning and Multivariate Models.\" 2024 Summer Conference of the Korean Data Analysis Society, 27 June 2024.",
+      "chicago": "Choi, Insu, Sua An, Eun Shim, Soyoung Lim, Yeona Choi, and Woo Chang Kim. \"Comparative Analysis of Regional Economy and Real Estate Market Indicators on Birth Rates Using Explainable Machine Learning and Multivariate Models.\" Paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, June 27, 2024.",
+      "harvard": "Choi, I, An, S, Shim, E, Lim, S, Choi, Y & Kim, WC 2024, 'Comparative analysis of regional economy and real estate market indicators on birth rates using explainable machine learning and multivariate models', paper presented at the 2024 Summer Conference of the Korean Data Analysis Society, 27 June.",
+      "vancouver": "Choi I, An S, Shim E, Lim S, Choi Y, Kim WC. Comparative analysis of regional economy and real estate market indicators on birth rates using explainable machine learning and multivariate models. Paper presented at: 2024 Summer Conference of the Korean Data Analysis Society; 2024 June 27.",
+      "korean": "최인수, 안수아, 심은, 임소영, 최연아, 김우창. (2024). 설명 가능한 기계 학습 모형과 다변량 모형을 활용한 지역 경제와 부동산 시장 지표가 출산율에 미치는 영향의 비교 분석. 2024 한국자료분석학회 하계학술논문발표대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -868,7 +1019,15 @@
     "venue": "2024 Spring Conference of the Management Information Association",
     "venue_ko": "2024 한국 경영정보 관련 학회 춘계통합학술대회",
     "published_date": "2024-05-31",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Shim, E., An, S., Lim, S., Choi, Y., & Kim, W. C. (2024, May 31). Regional impact analysis of apartment lease prices and birth rates using information flow indicators [Paper presentation]. 2024 Spring Conference of the Management Information Association.",
+      "mla": "Choi, Insu, et al. \"Regional Impact Analysis of Apartment Lease Prices and Birth Rates Using Information Flow Indicators.\" 2024 Spring Conference of the Management Information Association, 31 May 2024.",
+      "chicago": "Choi, Insu, Eun Shim, Sua An, Soyoung Lim, Yeona Choi, and Woo Chang Kim. \"Regional Impact Analysis of Apartment Lease Prices and Birth Rates Using Information Flow Indicators.\" Paper presented at the 2024 Spring Conference of the Management Information Association, May 31, 2024.",
+      "harvard": "Choi, I, Shim, E, An, S, Lim, S, Choi, Y & Kim, WC 2024, 'Regional impact analysis of apartment lease prices and birth rates using information flow indicators', paper presented at the 2024 Spring Conference of the Management Information Association, 31 May.",
+      "vancouver": "Choi I, Shim E, An S, Lim S, Choi Y, Kim WC. Regional impact analysis of apartment lease prices and birth rates using information flow indicators. Paper presented at: 2024 Spring Conference of the Management Information Association; 2024 May 31.",
+      "korean": "최인수, 심은, 안수아, 임소영, 최연아, 김우창. (2024). 정보 흐름 지표를 활용한 아파트의 전세 가격과 출산율 간의 지역별 영향력 분석. 2024 한국 경영정보 관련 학회 춘계통합학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -883,7 +1042,15 @@
     "venue": "2024 Spring Conference of Korean Information Processing Society (ASK 2024)",
     "venue_ko": "2024 한국정보처리학회 춘계학술발표대회",
     "published_date": "2024-05-24",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, May 24). A study on the differences in network forms based on return measurement statistics [Paper presentation]. 2024 Spring Conference of Korean Information Processing Society (ASK 2024).",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"A Study on the Differences in Network Forms Based on Return Measurement Statistics.\" 2024 Spring Conference of Korean Information Processing Society (ASK 2024), 24 May 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"A Study on the Differences in Network Forms Based on Return Measurement Statistics.\" Paper presented at the 2024 Spring Conference of Korean Information Processing Society (ASK 2024), May 24, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'A study on the differences in network forms based on return measurement statistics', paper presented at the 2024 Spring Conference of Korean Information Processing Society (ASK 2024), 24 May.",
+      "vancouver": "Choi I, Kim WC. A study on the differences in network forms based on return measurement statistics. Paper presented at: 2024 Spring Conference of Korean Information Processing Society (ASK 2024); 2024 May 24.",
+      "korean": "최인수, 김우창. (2024). 수익률 측정 통계량에 따른 네트워크 형태의 차이에 관한 연구. 2024 한국정보처리학회 춘계학술발표대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -898,7 +1065,15 @@
     "venue": "2024 Summer Conference of the Korean Institute of Information Technology",
     "venue_ko": "2024 한국정보기술학회 하계종합학술대회",
     "published_date": "2024-05-23",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, May 23). Study on the linear causal relationship of stock-related external factors on returns [Paper presentation]. 2024 Summer Conference of the Korean Institute of Information Technology.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Study on the Linear Causal Relationship of Stock-Related External Factors on Returns.\" 2024 Summer Conference of the Korean Institute of Information Technology, 23 May 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Study on the Linear Causal Relationship of Stock-Related External Factors on Returns.\" Paper presented at the 2024 Summer Conference of the Korean Institute of Information Technology, May 23, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Study on the linear causal relationship of stock-related external factors on returns', paper presented at the 2024 Summer Conference of the Korean Institute of Information Technology, 23 May.",
+      "vancouver": "Choi I, Kim WC. Study on the linear causal relationship of stock-related external factors on returns. Paper presented at: 2024 Summer Conference of the Korean Institute of Information Technology; 2024 May 23.",
+      "korean": "최인수, 김우창. (2024). 수익률 측정 통계량에 따른 네트워크 형태의 차이에 관한 연구. 2024 한국정보기술학회 하계종합학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -914,7 +1089,15 @@
     "venue_ko": "2024 한국데이터정보과학회 춘계학술논문발표회",
     "published_date": "2024-05-17",
     "awards": 1,
-    "award_details": ["2024 한국데이터정보과학회 춘계학술논문발표회 대학원생 논문발표 부문 장려상"]
+    "award_details": ["2024 한국데이터정보과학회 춘계학술논문발표회 대학원생 논문발표 부문 장려상"],
+    "citations": {
+      "apa": "Choi, I., Shim, E., Lim, S., An, S., Choi, Y., & Kim, W. C. (2024, May 17). Statistical impact analysis of apartment sales patterns and regional birth rates based on Granger causality [Paper presentation]. 2024 Spring Conference of the Korean Data and Information Science Society.",
+      "mla": "Choi, Insu, et al. \"Statistical Impact Analysis of Apartment Sales Patterns and Regional Birth Rates Based on Granger Causality.\" 2024 Spring Conference of the Korean Data and Information Science Society, 17 May 2024.",
+      "chicago": "Choi, Insu, Eun Shim, Soyoung Lim, Sua An, Yeona Choi, and Woo Chang Kim. \"Statistical Impact Analysis of Apartment Sales Patterns and Regional Birth Rates Based on Granger Causality.\" Paper presented at the 2024 Spring Conference of the Korean Data and Information Science Society, May 17, 2024.",
+      "harvard": "Choi, I, Shim, E, Lim, S, An, S, Choi, Y & Kim, WC 2024, 'Statistical impact analysis of apartment sales patterns and regional birth rates based on Granger causality', paper presented at the 2024 Spring Conference of the Korean Data and Information Science Society, 17 May.",
+      "vancouver": "Choi I, Shim E, Lim S, An S, Choi Y, Kim WC. Statistical impact analysis of apartment sales patterns and regional birth rates based on Granger causality. Paper presented at: 2024 Spring Conference of the Korean Data and Information Science Society; 2024 May 17.",
+      "korean": "최인수, 심은, 임소영, 안수아, 최연아, 김우창. (2024). Granger 인과 기반의 아파트 매매 형태 및 지역별 출산율과의 통계적 영향력에 대한 연구. 2024 한국데이터정보과학회 춘계학술논문발표회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -929,7 +1112,15 @@
     "venue": "2024 Spring Conference of the Korean Society of Industrial and Systems Engineering",
     "venue_ko": "2024 한국산업경영시스템학회 춘계학술대회",
     "published_date": "2024-05-10",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Choi, Y., Shim, E., An, S., Lim, S., & Kim, W. C. (2024, May 10). Land price prediction model using sentiment analysis based on regional disparities in the real estate market [Paper presentation]. 2024 Spring Conference of the Korean Society of Industrial and Systems Engineering.",
+      "mla": "Choi, Insu, et al. \"Land Price Prediction Model Using Sentiment Analysis Based on Regional Disparities in the Real Estate Market.\" 2024 Spring Conference of the Korean Society of Industrial and Systems Engineering, 10 May 2024.",
+      "chicago": "Choi, Insu, Yeona Choi, Eun Shim, Sua An, Soyoung Lim, and Woo Chang Kim. \"Land Price Prediction Model Using Sentiment Analysis Based on Regional Disparities in the Real Estate Market.\" Paper presented at the 2024 Spring Conference of the Korean Society of Industrial and Systems Engineering, May 10, 2024.",
+      "harvard": "Choi, I, Choi, Y, Shim, E, An, S, Lim, S & Kim, WC 2024, 'Land price prediction model using sentiment analysis based on regional disparities in the real estate market', paper presented at the 2024 Spring Conference of the Korean Society of Industrial and Systems Engineering, 10 May.",
+      "vancouver": "Choi I, Choi Y, Shim E, An S, Lim S, Kim WC. Land price prediction model using sentiment analysis based on regional disparities in the real estate market. Paper presented at: 2024 Spring Conference of the Korean Society of Industrial and Systems Engineering; 2024 May 10.",
+      "korean": "최인수, 최연아, 심은, 안수아, 임소영, 김우창. (2024). 부동산 시장의 지역별 격차에 따른 감성 분석을 이용한 지가 예측 모델 구축. 2024 한국산업경영시스템학회 춘계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -944,7 +1135,15 @@
     "venue": "2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation",
     "venue_ko": "2024 한국고객만족경영학회, 한국경영공학회, 한국공공경영학회 통합학술대회",
     "published_date": "2024-05-10",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Shim, E., & Kim, W. C. (2024, May 10). Impact of keyword-based sentiment indices and environmental factors on the prices of fine dust themed stocks [Paper presentation]. 2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation.",
+      "mla": "Choi, Insu, Eun Shim, and Woo Chang Kim. \"Impact of Keyword-Based Sentiment Indices and Environmental Factors on the Prices of Fine Dust Themed Stocks.\" 2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, 10 May 2024.",
+      "chicago": "Choi, Insu, Eun Shim, and Woo Chang Kim. \"Impact of Keyword-Based Sentiment Indices and Environmental Factors on the Prices of Fine Dust Themed Stocks.\" Paper presented at the 2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, May 10, 2024.",
+      "harvard": "Choi, I, Shim, E & Kim, WC 2024, 'Impact of keyword-based sentiment indices and environmental factors on the prices of fine dust themed stocks', paper presented at the 2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, 10 May.",
+      "vancouver": "Choi I, Shim E, Kim WC. Impact of keyword-based sentiment indices and environmental factors on the prices of fine dust themed stocks. Paper presented at: 2024 Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation; 2024 May 10.",
+      "korean": "최인수, 심은, 김우창. (2024). 키워드 중심의 감성 지수와 환경요인이 미세먼지 테마주가에 미치는 영향에 관한 연구. 2024 한국고객만족경영학회, 한국경영공학회, 한국공공경영학회 통합학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -959,7 +1158,14 @@
     "venue": "2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation",
     "venue_ko": "2024 대한산업공학회–한국경영과학회–한국시뮬레이션학회 춘계공동학술대회",
     "published_date": "2024-05-02",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Kim, S., Choi, I., & Kim, W. C. (2024, May 2). Study on strategies for responding to volatile markets: Focusing on consistent volatility avoidance strategies [Paper presentation]. 2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation.",
+      "mla": "Kim, Sangmok, Insu Choi, and Woo Chang Kim. \"Study on Strategies for Responding to Volatile Markets: Focusing on Consistent Volatility Avoidance Strategies.\" 2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, 2 May 2024.",
+      "chicago": "Kim, Sangmok, Insu Choi, and Woo Chang Kim. \"Study on Strategies for Responding to Volatile Markets: Focusing on Consistent Volatility Avoidance Strategies.\" Paper presented at the 2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, May 2, 2024.",
+      "harvard": "Kim, S, Choi, I & Kim, WC 2024, 'Study on strategies for responding to volatile markets: Focusing on consistent volatility avoidance strategies', paper presented at the 2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation, 2 May.",
+      "vancouver": "Kim S, Choi I, Kim WC. Study on strategies for responding to volatile markets: Focusing on consistent volatility avoidance strategies. Paper presented at: 2024 Spring Conference of the Korean Institute of Industrial Engineers, Korean Operations Research and Management Science Society, and Korea Society for Simulation; 2024 May 2."
+    }
   },
   {
     "year": 2024,
@@ -974,7 +1180,14 @@
     "venue": "2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society",
     "venue_ko": "2024 대한산업공학회–한국경영과학회–한국시뮬레이션학회 춘계공동학술대회",
     "published_date": "2024-05-02",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Shim, E., An, S., Lim, S., Choi, Y., & Kim, W. C. (2024, May 2). Regional analysis of housing prices and birth rate trends through linear and information-theoretic statistical dependencies [Paper presentation]. 2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society.",
+      "mla": "Choi, Insu, et al. \"Regional Analysis of Housing Prices and Birth Rate Trends Through Linear and Information-Theoretic Statistical Dependencies.\" 2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society, 2 May 2024.",
+      "chicago": "Choi, Insu, Eun Shim, Sua An, Soyoung Lim, Yeona Choi, and Woo Chang Kim. \"Regional Analysis of Housing Prices and Birth Rate Trends Through Linear and Information-Theoretic Statistical Dependencies.\" Paper presented at the 2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society, May 2, 2024.",
+      "harvard": "Choi, I, Shim, E, An, S, Lim, S, Choi, Y & Kim, WC 2024, 'Regional analysis of housing prices and birth rate trends through linear and information-theoretic statistical dependencies', paper presented at the 2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society, 2 May.",
+      "vancouver": "Choi I, Shim E, An S, Lim S, Choi Y, Kim WC. Regional analysis of housing prices and birth rate trends through linear and information-theoretic statistical dependencies. Paper presented at: 2024 Spring Joint Conference of the Korean Institute of Industrial Engineers and Korean Operations Research and Management Science Society; 2024 May 2."
+    }
   },
   {
     "year": 2024,
@@ -989,7 +1202,15 @@
     "venue": "2024 Spring Conference of Korean Association for Policy Studies",
     "venue_ko": "2024 한국정책학회 춘계학술대회",
     "published_date": "2024-04-19",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, April 19). Analysis of key factors influencing the prediction of financial risk aversion coefficients in Korean households: Focus on explainable machine learning techniques [Paper presentation]. 2024 Spring Conference of Korean Association for Policy Studies.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Analysis of Key Factors Influencing the Prediction of Financial Risk Aversion Coefficients in Korean Households: Focus on Explainable Machine Learning Techniques.\" 2024 Spring Conference of Korean Association for Policy Studies, 19 Apr. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Analysis of Key Factors Influencing the Prediction of Financial Risk Aversion Coefficients in Korean Households: Focus on Explainable Machine Learning Techniques.\" Paper presented at the 2024 Spring Conference of Korean Association for Policy Studies, April 19, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'Analysis of key factors influencing the prediction of financial risk aversion coefficients in Korean households: Focus on explainable machine learning techniques', paper presented at the 2024 Spring Conference of Korean Association for Policy Studies, 19 April.",
+      "vancouver": "Choi I, Kim WC. Analysis of key factors influencing the prediction of financial risk aversion coefficients in Korean households: Focus on explainable machine learning techniques. Paper presented at: 2024 Spring Conference of Korean Association for Policy Studies; 2024 Apr 19.",
+      "korean": "최인수, 김우창. (2024). 한국 가정의 금융 위험 회피 계수 예측의 주요 영향 요인 분석: 해석 가능한 기계 학습 기법을 중심으로. 2024 한국정책학회 춘계학술대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -1049,9 +1270,16 @@
     "author_marks": ["1", "1", "1", "2", "*"],
     "venue": "AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024",
     "published_date": "2024-02-26",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Koh, W., Choi, I., Jang, Y., Kang, G., & Kim, W. C. (2024, February 26). Curriculum learning and imitation learning for model-free control on financial time-series [Paper presentation]. AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024.",
+      "mla": "Koh, Woosung, et al. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, 26 Feb. 2024.",
+      "chicago": "Koh, Woosung, Insu Choi, Yoontae Jang, Gimin Kang, and Woo Chang Kim. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" Paper presented at the AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, February 26, 2024.",
+      "harvard": "Koh, W, Choi, I, Jang, Y, Kang, G & Kim, WC 2024, 'Curriculum learning and imitation learning for model-free control on financial time-series', paper presented at the AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, 26 February.",
+      "vancouver": "Koh W, Choi I, Jang Y, Kang G, Kim WC. Curriculum learning and imitation learning for model-free control on financial time-series. Paper presented at: AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024; 2024 Feb 26."
+    }
   },
-  {
+ {
     "year": 2024,
     "code_label": "C",
     "indexing_group": "International Conference",
@@ -1063,7 +1291,14 @@
     "venue": "11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024)",
     "published_date": "2024-02-19",
     "doi": "10.1109/BigComp60711.2024.00068",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, February 19). An iridescent insight of statistical interdependencies of financial markets [Paper presentation]. 11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024).",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"An Iridescent Insight of Statistical Interdependencies of Financial Markets.\" 11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024), 19 Feb. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"An Iridescent Insight of Statistical Interdependencies of Financial Markets.\" Paper presented at the 11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024), February 19, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'An iridescent insight of statistical interdependencies of financial markets', paper presented at the 11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024), 19 February.",
+      "vancouver": "Choi I, Kim WC. An iridescent insight of statistical interdependencies of financial markets. Paper presented at: 11th IEEE International Conference on Big Data and Smart Computing (IEEE BigComp 2024); 2024 Feb 19."
+    }
   },
   {
     "year": 2024,
@@ -1078,7 +1313,14 @@
     "venue": "2023 Winter Conference of the Korean Data Analysis Society",
     "venue_ko": "2023 한국자료분석학회 동계학술논문발표대회",
     "published_date": "2024-01-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Jeong, Y., Kim, D., Lee, J., Jung, Y., & Kim, W. C. (2024, January 25). Analyzing South Korea's household finance via panel data [Paper presentation]. 2023 Winter Conference of the Korean Data Analysis Society.",
+      "mla": "Choi, Insu, et al. \"Analyzing South Korea's Household Finance via Panel Data.\" 2023 Winter Conference of the Korean Data Analysis Society, 25 Jan. 2024.",
+      "chicago": "Choi, Insu, Yoojin Jeong, Doyoon Kim, Joonyong Lee, Yongsoo Jung, and Woo Chang Kim. \"Analyzing South Korea's Household Finance via Panel Data.\" Paper presented at the 2023 Winter Conference of the Korean Data Analysis Society, January 25, 2024.",
+      "harvard": "Choi, I, Jeong, Y, Kim, D, Lee, J, Jung, Y & Kim, WC 2024, 'Analyzing South Korea's household finance via panel data', paper presented at the 2023 Winter Conference of the Korean Data Analysis Society, 25 January.",
+      "vancouver": "Choi I, Jeong Y, Kim D, Lee J, Jung Y, Kim WC. Analyzing South Korea's household finance via panel data. Paper presented at: 2023 Winter Conference of the Korean Data Analysis Society; 2024 Jan 25."
+    }
   },
   {
     "year": 2024,
@@ -1093,7 +1335,15 @@
     "venue": "2023 Winter Conference of the Korean Data Analysis Society",
     "venue_ko": "2023 한국자료분석학회 동계학술논문발표대회",
     "published_date": "2024-01-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2024, January 25). A study on cluster-based portfolio construction based on statistical distribution-based distance [Paper presentation]. 2023 Winter Conference of the Korean Data Analysis Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"A Study on Cluster-Based Portfolio Construction Based on Statistical Distribution-Based Distance.\" 2023 Winter Conference of the Korean Data Analysis Society, 25 Jan. 2024.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"A Study on Cluster-Based Portfolio Construction Based on Statistical Distribution-Based Distance.\" Paper presented at the 2023 Winter Conference of the Korean Data Analysis Society, January 25, 2024.",
+      "harvard": "Choi, I & Kim, WC 2024, 'A study on cluster-based portfolio construction based on statistical distribution-based distance', paper presented at the 2023 Winter Conference of the Korean Data Analysis Society, 25 January.",
+      "vancouver": "Choi I, Kim WC. A study on cluster-based portfolio construction based on statistical distribution-based distance. Paper presented at: 2023 Winter Conference of the Korean Data Analysis Society; 2024 Jan 25.",
+      "korean": "최인수, 김우창. (2024). 수익률 간 거리를 바탕으로 한 군집화 기반 포트폴리오 생성에 관한 연구. 2023 한국자료분석학회 동계학술논문발표대회 발표논문."
+    }
   },
   {
     "year": 2024,
@@ -1141,7 +1391,15 @@
     "venue": "2023 Fall Conference of the Knowledge Management Society Korea",
     "venue_ko": "2023 한국지식경영학회 추계학술대회",
     "published_date": "2023-12-12",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, December 12). Analyzing interdependence variations in non-normal financial data and enhancing investment portfolios [Paper presentation]. 2023 Fall Conference of the Knowledge Management Society Korea.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Analyzing Interdependence Variations in Non-Normal Financial Data and Enhancing Investment Portfolios.\" 2023 Fall Conference of the Knowledge Management Society Korea, 12 Dec. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Analyzing Interdependence Variations in Non-Normal Financial Data and Enhancing Investment Portfolios.\" Paper presented at the 2023 Fall Conference of the Knowledge Management Society Korea, December 12, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Analyzing interdependence variations in non-normal financial data and enhancing investment portfolios', paper presented at the 2023 Fall Conference of the Knowledge Management Society Korea, 12 December.",
+      "vancouver": "Choi I, Kim WC. Analyzing interdependence variations in non-normal financial data and enhancing investment portfolios. Paper presented at: 2023 Fall Conference of the Knowledge Management Society Korea; 2023 Dec 12.",
+      "korean": "최인수, 김우창. (2023). 금융 수익률 분포의 상관 관계에 대한 분석과 검증. 2023 한국지식경영학회 추계학술대회 발표논문."
+    }
   },
   {
     "year": 2023,
@@ -1154,7 +1412,14 @@
     "author_marks": ["1", "1", "1", "*"],
     "venue": "24th International Symposium on Advanced Intelligent Systems (ISIS 2023)",
     "published_date": "2023-12-07",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., Choi, J., Choi, W., & Kim, W. C. (2023, December 7). Hard voting-based long-short portfolio generation with machine learning techniques and technical indicators [Paper presentation]. 24th International Symposium on Advanced Intelligent Systems (ISIS 2023).",
+      "mla": "Choi, Insu, et al. \"Hard Voting-Based Long-Short Portfolio Generation with Machine Learning Techniques and Technical Indicators.\" 24th International Symposium on Advanced Intelligent Systems (ISIS 2023), 7 Dec. 2023.",
+      "chicago": "Choi, Insu, Jaepil Choi, Woohyuk Choi, and Woo Chang Kim. \"Hard Voting-Based Long-Short Portfolio Generation with Machine Learning Techniques and Technical Indicators.\" Paper presented at the 24th International Symposium on Advanced Intelligent Systems (ISIS 2023), December 7, 2023.",
+      "harvard": "Choi, I, Choi, J, Choi, W & Kim, WC 2023, 'Hard voting-based long-short portfolio generation with machine learning techniques and technical indicators', paper presented at the 24th International Symposium on Advanced Intelligent Systems (ISIS 2023), 7 December.",
+      "vancouver": "Choi I, Choi J, Choi W, Kim WC. Hard voting-based long-short portfolio generation with machine learning techniques and technical indicators. Paper presented at: 24th International Symposium on Advanced Intelligent Systems (ISIS 2023); 2023 Dec 7."
+    }
   },
   {
     "year": 2023,
@@ -1169,7 +1434,15 @@
     "venue": "2023 Winter Conference of the Korean Statistical Society",
     "venue_ko": "2023 한국통계학회 동계학술논문발표회",
     "published_date": "2023-12-01",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, December 1). An investigation into the linear and nonlinear statistical dependencies of style ETF stock networks and portfolio construction [Paper presentation]. 2023 Winter Conference of the Korean Statistical Society.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"An Investigation into the Linear and Nonlinear Statistical Dependencies of Style ETF Stock Networks and Portfolio Construction.\" 2023 Winter Conference of the Korean Statistical Society, 1 Dec. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"An Investigation into the Linear and Nonlinear Statistical Dependencies of Style ETF Stock Networks and Portfolio Construction.\" Paper presented at the 2023 Winter Conference of the Korean Statistical Society, December 1, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'An investigation into the linear and nonlinear statistical dependencies of style ETF stock networks and portfolio construction', paper presented at the 2023 Winter Conference of the Korean Statistical Society, 1 December.",
+      "vancouver": "Choi I, Kim WC. An investigation into the linear and nonlinear statistical dependencies of style ETF stock networks and portfolio construction. Paper presented at: 2023 Winter Conference of the Korean Statistical Society; 2023 Dec 1.",
+      "korean": "최인수, 김우창. (2023). 스타일 ETF 주식 네트워크의 선형 및 비선형 통계적 의존성 분석과 포트폴리오 생성에 관한 연구. 2023 한국통계학회 동계학술논문발표회 발표논문."
+    }
   },
   {
     "year": 2023,
@@ -1184,7 +1457,15 @@
     "venue": "2023 Winter Conference of Korean Association for Policy Studies",
     "venue_ko": "2023 한국정책학회 동계학술대회",
     "published_date": "2023-12-01",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, December 1). Empirical analysis of the Feldstein-Horioka puzzle utilizing regularized linear regression methodology [Paper presentation]. 2023 Winter Conference of Korean Association for Policy Studies.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Empirical Analysis of the Feldstein-Horioka Puzzle Utilizing Regularized Linear Regression Methodology.\" 2023 Winter Conference of Korean Association for Policy Studies, 1 Dec. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Empirical Analysis of the Feldstein-Horioka Puzzle Utilizing Regularized Linear Regression Methodology.\" Paper presented at the 2023 Winter Conference of Korean Association for Policy Studies, December 1, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Empirical analysis of the Feldstein-Horioka puzzle utilizing regularized linear regression methodology', paper presented at the 2023 Winter Conference of Korean Association for Policy Studies, 1 December.",
+      "vancouver": "Choi I, Kim WC. Empirical analysis of the Feldstein-Horioka puzzle utilizing regularized linear regression methodology. Paper presented at: 2023 Winter Conference of Korean Association for Policy Studies; 2023 Dec 1.",
+      "korean": "최인수, 김우창. (2023). Feldstein–Horioka 퍼즐에 대한 정규화 선형회귀 방법론을 활용한 실증적 분석. 2023 한국정책학회 동계학술대회 발표논문."
+    }
   },
   {
     "year": 2023,
@@ -1216,7 +1497,14 @@
     "venue": "2023 Fall International Conference of the Korea Society of Management Information Systems",
     "venue_ko": "2023년 한국경영정보학회 추계국제학술대회",
     "published_date": "2023-11-25",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, November 25). Verifying financial time-series prediction importance based on Wasserstein distance characteristics between distributions [Paper presentation]. 2023 Fall International Conference of the Korea Society of Management Information Systems.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Verifying Financial Time-Series Prediction Importance Based on Wasserstein Distance Characteristics Between Distributions.\" 2023 Fall International Conference of the Korea Society of Management Information Systems, 25 Nov. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Verifying Financial Time-Series Prediction Importance Based on Wasserstein Distance Characteristics Between Distributions.\" Paper presented at the 2023 Fall International Conference of the Korea Society of Management Information Systems, November 25, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Verifying financial time-series prediction importance based on Wasserstein distance characteristics between distributions', paper presented at the 2023 Fall International Conference of the Korea Society of Management Information Systems, 25 November.",
+      "vancouver": "Choi I, Kim WC. Verifying financial time-series prediction importance based on Wasserstein distance characteristics between distributions. Paper presented at: 2023 Fall International Conference of the Korea Society of Management Information Systems; 2023 Nov 25."
+    }
   },
   {
     "year": 2023,
@@ -1231,7 +1519,15 @@
     "venue": "2023 Fall Conference of the Korean Institute of Information Technology",
     "venue_ko": "2023 한국정보기술학회 추계종합학술대회",
     "published_date": "2023-11-23",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, November 23). Single stock portfolio management system with statistical dependencies [Paper presentation]. 2023 Fall Conference of the Korean Institute of Information Technology.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Single Stock Portfolio Management System with Statistical Dependencies.\" 2023 Fall Conference of the Korean Institute of Information Technology, 23 Nov. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Single Stock Portfolio Management System with Statistical Dependencies.\" Paper presented at the 2023 Fall Conference of the Korean Institute of Information Technology, November 23, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Single stock portfolio management system with statistical dependencies', paper presented at the 2023 Fall Conference of the Korean Institute of Information Technology, 23 November.",
+      "vancouver": "Choi I, Kim WC. Single stock portfolio management system with statistical dependencies. Paper presented at: 2023 Fall Conference of the Korean Institute of Information Technology; 2023 Nov 23.",
+      "korean": "최인수, 김우창. (2023). 통계적 의존성과 결합한 단일 주식 매매 시스템. 2023 한국정보기술학회 추계종합학술대회 발표논문."
+    }
   },
   {
     "year": 2023,
@@ -1245,7 +1541,14 @@
     "venue": "2023 Fall Conference of the Korean Institute of Information Technology",
     "venue_ko": "2023 한국정보기술학회 추계종합학술대회",
     "published_date": "2023-11-23",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, November 23). Analyzing temporal sequence similarity for enhanced estimation accuracy [Paper presentation]. 2023 Fall Conference of the Korean Institute of Information Technology.",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Analyzing Temporal Sequence Similarity for Enhanced Estimation Accuracy.\" 2023 Fall Conference of the Korean Institute of Information Technology, 23 Nov. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Analyzing Temporal Sequence Similarity for Enhanced Estimation Accuracy.\" Paper presented at the 2023 Fall Conference of the Korean Institute of Information Technology, November 23, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Analyzing temporal sequence similarity for enhanced estimation accuracy', paper presented at the 2023 Fall Conference of the Korean Institute of Information Technology, 23 November.",
+      "vancouver": "Choi I, Kim WC. Analyzing temporal sequence similarity for enhanced estimation accuracy. Paper presented at: 2023 Fall Conference of the Korean Institute of Information Technology; 2023 Nov 23."
+    }
   },
   {
     "year": 2023,
@@ -1259,7 +1562,14 @@
     "venue": "25th IEEE International Multi Topic Conference (INMIC 2023)",
     "published_date": "2023-11-17",
     "doi": "10.1109/INMIC60434.2023.10466210",
-    "awards": 0
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2023, November 17). Comparing interconnected dynamics: An edge-based analysis of sector ETFs via non-directional dependencies [Paper presentation]. 25th IEEE International Multi Topic Conference (INMIC 2023).",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Comparing Interconnected Dynamics: An Edge-Based Analysis of Sector ETFs via Non-Directional Dependencies.\" 25th IEEE International Multi Topic Conference (INMIC 2023), 17 Nov. 2023.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Comparing Interconnected Dynamics: An Edge-Based Analysis of Sector ETFs via Non-Directional Dependencies.\" Paper presented at the 25th IEEE International Multi Topic Conference (INMIC 2023), November 17, 2023.",
+      "harvard": "Choi, I & Kim, WC 2023, 'Comparing interconnected dynamics: An edge-based analysis of sector ETFs via non-directional dependencies', paper presented at the 25th IEEE International Multi Topic Conference (INMIC 2023), 17 November.",
+      "vancouver": "Choi I, Kim WC. Comparing interconnected dynamics: An edge-based analysis of sector ETFs via non-directional dependencies. Paper presented at: 25th IEEE International Multi Topic Conference (INMIC 2023); 2023 Nov 17."
+    }
   },
   {
     "year": 2023,
