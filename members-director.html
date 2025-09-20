@@ -517,53 +517,152 @@ permalink: /members-director.html
       color: #6b7280;
     }
 
-    /* Timeline Styles */
-    .timeline {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
+   /* Timeline Styles - Enhanced */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 14px;
-      top: 1rem;
-      bottom: 1rem;
-      width: 3px;
-      background: linear-gradient(180deg, var(--gold) 0%, var(--gold-mid) 100%);
-      border-radius: 2px;
-    }
+/* 점선 배경 라인 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  border-left: 3px dashed rgba(214, 177, 77, 0.2);
+  border-radius: 2px;
+}
 
-    .timeline > li {
-      position: relative;
-      padding-left: 48px;
-      padding-bottom: 1.75rem;
-    }
+/* 흐르는 애니메이션 라인 */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 1rem;
+  bottom: 1rem;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--gold) 10%,
+    var(--gold-mid) 50%,
+    var(--gold) 90%,
+    transparent 100%
+  );
+  background-size: 100% 100px;
+  animation: flowLine 4s linear infinite;
+  opacity: 0.6;
+}
 
-    .timeline > li::before {
-      content: "";
-      position: absolute;
-      left: 14px;
-      top: 1.05rem;
-      width: 16px;
-      height: 16px;
-      background: var(--red);
-      border-radius: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 0 0 3px rgba(172,14,14,.08);
-      z-index: 1;
-    }
+@keyframes flowLine {
+  from {
+    background-position: 0 -100px;
+  }
+  to {
+    background-position: 0 100px;
+  }
+}
 
-    .timeline .logo {
-      display: block;
-      width: 45px;
-      height: 45px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 10px;
-    }
+.timeline > li {
+  position: relative;
+  padding-left: 48px;
+  padding-bottom: 1.75rem;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.timeline > li:nth-child(1) { animation-delay: 0.1s; }
+.timeline > li:nth-child(2) { animation-delay: 0.2s; }
+.timeline > li:nth-child(3) { animation-delay: 0.3s; }
+.timeline > li:nth-child(4) { animation-delay: 0.4s; }
+.timeline > li:nth-child(5) { animation-delay: 0.5s; }
+.timeline > li:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 숨쉬는 점 애니메이션 */
+.timeline > li::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 1.05rem;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 3px solid var(--red);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* 각 점마다 다른 타이밍 */
+.timeline > li:nth-child(1)::before { animation-delay: 0s; }
+.timeline > li:nth-child(2)::before { animation-delay: 0.5s; }
+.timeline > li:nth-child(3)::before { animation-delay: 1s; }
+.timeline > li:nth-child(4)::before { animation-delay: 1.5s; }
+.timeline > li:nth-child(5)::before { animation-delay: 2s; }
+.timeline > li:nth-child(6)::before { animation-delay: 2.5s; }
+
+@keyframes breathe {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 0 rgba(172, 14, 14, 0.4),
+      0 0 0 3px rgba(172, 14, 14, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 3px rgba(172, 14, 14, 0.2),
+      0 0 0 8px rgba(172, 14, 14, 0.05);
+  }
+}
+
+/* 호버 효과 강화 */
+.timeline > li:hover::before {
+  width: 20px;
+  height: 20px;
+  background: var(--gold);
+  border-color: white;
+  box-shadow: 
+    0 0 0 3px var(--gold),
+    0 0 25px rgba(214, 177, 77, 0.5);
+  animation: none;
+}
+
+/* 스크롤 시 현재 위치 강조 */
+.timeline > li.in-view::before {
+  background: var(--gold);
+  border-color: var(--gold);
+  width: 22px;
+  height: 22px;
+  box-shadow: 
+    0 0 0 4px rgba(214, 177, 77, 0.2),
+    0 0 30px rgba(214, 177, 77, 0.6);
+}
+
+/* 로고 스타일은 그대로 유지 */
+.timeline .logo {
+  display: block;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 
     /* Date Styles - Always Bold */
     .year, .date-bold {
@@ -3599,11 +3698,50 @@ function animateNumber(element, start, end, duration) {
 document.addEventListener('DOMContentLoaded', function() {
   updatePublicationStats();
   
-  // Research Interests 자동 열기 코드 제거됨
-  // 이제 기본적으로 collapsed 상태로 표시됩니다
+// 스크롤에 따른 타임라인 하이라이트
+function highlightTimelineItems() {
+  const items = document.querySelectorAll('.timeline > li');
+  if (items.length === 0) return;
+  
+  const viewportMiddle = window.innerHeight / 2;
+  
+  items.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    const itemMiddle = rect.top + rect.height / 2;
+    const distance = Math.abs(viewportMiddle - itemMiddle);
+    
+    if (distance < 150) {
+      item.classList.add('in-view');
+    } else {
+      item.classList.remove('in-view');
+    }
+  });
+}
+
+// 초기 실행
+setTimeout(highlightTimelineItems, 100);
+
+// 스크롤 이벤트에 연결 (성능 최적화)
+let scrollTimer;
+window.addEventListener('scroll', () => {
+  if (scrollTimer) clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(highlightTimelineItems, 50);
+});
+  }
+  
+  // 초기 실행
+  highlightTimelineItems();
+  
+  // 스크롤 이벤트에 연결
+  let scrollTimer;
+  window.addEventListener('scroll', () => {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(highlightTimelineItems, 50);
+  });
 });
   
 </script>
+
 
 
 
