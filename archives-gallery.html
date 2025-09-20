@@ -87,7 +87,7 @@ permalink: /archives-gallery.html
     min-height: 200px;
   }
 
-  /* Breadcrumbs - 흰색 배경, 금색 텍스트로 변경 (다른 페이지와 동일) */
+  /* Breadcrumbs */
   .banner-breadcrumbs {
     display: inline-flex;
     align-items: center;
@@ -123,7 +123,6 @@ permalink: /archives-gallery.html
     text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
   }
 
-  /* 링크 호버 시 밑줄 효과 */
   .banner-breadcrumbs a::after {
     content: '';
     position: absolute;
@@ -152,7 +151,6 @@ permalink: /archives-gallery.html
     letter-spacing: 0.3px;
   }
 
-  /* Breadcrumb 아이콘 추가 (선택사항) */
   .banner-breadcrumbs::before {
     content: '🖼️';
     font-size: 14px;
@@ -168,66 +166,6 @@ permalink: /archives-gallery.html
     text-shadow: 0 2px 4px rgba(0,0,0,0.12);
     letter-spacing: -0.02em;
     margin: 0;
-  }
-
-  /* 개별 갤러리 포스트 페이지 브레드크럼 스타일 - _layouts/post.html에서 사용 */
-  .post-breadcrumb {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(214, 177, 77, 0.2);
-    margin-bottom: 24px;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .post-breadcrumb .breadcrumb-logo {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
-  }
-
-  .post-breadcrumb a {
-    color: var(--gold-dark);
-    text-decoration: none;
-    transition: all 0.2s;
-    position: relative;
-  }
-
-  .post-breadcrumb a:hover {
-    color: var(--gold);
-    text-shadow: 0 0 8px rgba(214, 177, 77, 0.3);
-  }
-
-  .post-breadcrumb a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--gold);
-    transition: width 0.2s ease;
-  }
-
-  .post-breadcrumb a:hover::after {
-    width: 100%;
-  }
-
-  .post-breadcrumb .sep {
-    color: var(--gold-light);
-    opacity: 0.6;
-  }
-
-  .post-breadcrumb .current {
-    color: var(--gold);
-    font-weight: 800;
-    letter-spacing: 0.3px;
   }
 
   /* Search Container */
@@ -283,7 +221,7 @@ permalink: /archives-gallery.html
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 
-  /* Gallery Card (페이지 이동 방식) */
+  /* Gallery Card */
   .gallery-card {
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -305,7 +243,7 @@ permalink: /archives-gallery.html
     width: 100%;
     height: 200px;
     background-color: #f3f4f6;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
@@ -332,18 +270,13 @@ permalink: /archives-gallery.html
     flex-direction: column;
   }
 
+  /* 날짜 텍스트 (통일된 디자인) */
   .gallery-date {
-    display: inline-flex;
-    align-items: center;
-    padding: 3px 8px;
-    background: rgba(214, 177, 77, 0.08);
-    border: 1px solid rgba(214, 177, 77, 0.2);
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--gold-dark);
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
     margin-bottom: 10px;
-    align-self: flex-start;
+    letter-spacing: 0.5px;
   }
 
   .gallery-title {
@@ -389,7 +322,7 @@ permalink: /archives-gallery.html
     color: var(--gold-dark);
   }
 
-  /* Empty State (통일) */
+  /* Empty State */
   .empty-state {
     grid-column: 1/-1;
     padding: 60px 20px;
@@ -413,7 +346,7 @@ permalink: /archives-gallery.html
     color: #6b7280;
   }
 
-  /* 반응형 (통일) */
+  /* 반응형 */
   @media (max-width: 768px) {
     .banner-title { font-size: 2rem; }
     .banner-content { 
@@ -431,13 +364,9 @@ permalink: /archives-gallery.html
     .banner-breadcrumbs::before {
       font-size: 12px;
     }
-    .post-breadcrumb {
-      font-size: 12px;
-      padding: 8px 14px;
-    }
-    .post-breadcrumb .breadcrumb-logo {
-      width: 18px;
-      height: 18px;
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
     }
   }
 
@@ -446,15 +375,36 @@ permalink: /archives-gallery.html
       grid-template-columns: 1fr;
       gap: 16px;
     }
+    .search-container {
+      padding: 14px;
+    }
+    .search-box input {
+      padding: .5rem .7rem;
+      font-size: 13px;
+    }
     .search-count {
-      text-align: center;
-      width: 100%;
+      font-size: 12px;
+      padding: .35rem .7rem;
     }
     .gallery-thumb {
-      height: 160px;
+      height: 180px;
+    }
+    .gallery-content {
+      padding: 14px;
     }
     .gallery-title {
       font-size: 15px;
+    }
+    .gallery-date {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .gallery-tags {
+      padding-top: 10px;
+    }
+    .gallery-tag {
+      font-size: 10px;
+      padding: 2px 8px;
     }
     .banner-title { font-size: 1.75rem; }
     .banner-content { 
@@ -472,17 +422,18 @@ permalink: /archives-gallery.html
     .banner-breadcrumbs::before {
       display: none;
     }
-    .post-breadcrumb {
-      font-size: 11px;
-      padding: 6px 12px;
-    }
-    .post-breadcrumb .breadcrumb-logo {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   @media (max-width: 480px) {
+    .gallery-thumb {
+      height: 160px;
+    }
+    .gallery-title {
+      font-size: 14px;
+    }
+    .gallery-date {
+      font-size: 11px;
+    }
     .banner-content { 
       padding: 20px 16px;
       min-height: 120px;
@@ -498,19 +449,6 @@ permalink: /archives-gallery.html
     }
   }
 </style>
-
-<!-- 
-개별 갤러리 포스트 페이지 레이아웃 예시 (_layouts/post.html 또는 _layouts/gallery.html)
-<nav class="post-breadcrumb">
-  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
-  <a href="/">Home</a>
-  <span class="sep">›</span>
-  <a href="/archives-gallery.html">Gallery</a>
-  <span class="sep">›</span>
-  <span class="current">갤러리 제목</span>
-  <img src="/assets/img/brand/logo-finds.png" alt="" class="breadcrumb-logo">
-</nav>
--->
 
 <!-- Page Title / Banner -->
 <section class="max-w-7xl mx-auto px-4 mt-6">
@@ -647,7 +585,7 @@ permalink: /archives-gallery.html
           <div class="gallery-thumb" style="background-image:url('{{ thumb_url }}')"></div>
           <div class="gallery-content">
             {% if gallery.date %}
-              <span class="gallery-date">{{ gallery.date | date: "%b %d, %Y" }}</span>
+              <div class="gallery-date">{{ gallery.date | date: "%Y.%m.%d." }}</div>
             {% endif %}
             <h3 class="gallery-title">{{ gallery.title }}</h3>
             {% if gallery.tags and gallery.tags.size > 0 %}
@@ -663,7 +601,6 @@ permalink: /archives-gallery.html
     </div>
   {% endif %}
 </section>
-
 
 <!-- JavaScript -->
 <script>
