@@ -3928,28 +3928,8 @@ document.addEventListener('DOMContentLoaded', function() {
     scrollTimer = setTimeout(highlightTimelineItems, 50);
   });
 });
-  
-  // 초기 실행
-  highlightTimelineItems();
-  
-  // 스크롤 이벤트에 연결
-  let scrollTimer;
-  window.addEventListener('scroll', () => {
-    if (scrollTimer) clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(highlightTimelineItems, 50);
-  });
-});
-  
+
 </script>
-
-
-
-
-
-
-
-
-
 
 
 
