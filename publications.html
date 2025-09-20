@@ -1912,7 +1912,6 @@ function render() {
 }
 
 /* ===== Open Citation Modal - SIMPLIFIED VERSION ===== */
-/* ===== Open Citation Modal - DROPDOWN VERSION ===== */
 function openCite(pub) {
   // Check if citations exist in the publication data
   if (!pub.citations) {
@@ -2005,11 +2004,6 @@ function displayCitation(style) {
       <div class="cite-text" id="${citationId}">${pub.citations[style]}</div>
     </div>
   `;
-}
-  });
-  
-  citeBody.innerHTML = citationsHTML;
-  document.getElementById('citeModal').style.display = 'flex';
 }
 
 function getStyleLabel(styleId) {
