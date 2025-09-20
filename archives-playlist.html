@@ -170,72 +170,114 @@ permalink: /archives-playlist.html
     margin: 0;
   }
 
-  /* ===== Collapsible Sections ===== */
+  /* ===== Director Card Style (통일된 카드 스타일) ===== */
   .playlist-container {
     max-width: 1280px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
     padding: 0 1rem;
   }
 
-  .collapsible-section {
-    margin-top: 1.5rem;
+  .playlist-card {
     background: #fff;
     border: 1px solid #e5e7eb;
-    border-radius: 1rem;
+    border-radius: 16px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: all 0.2s;
+    margin-bottom: 1.5rem;
   }
 
-  .collapsible-header {
-    padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, rgba(214, 177, 77, 0.08), rgba(234, 197, 97, 0.12));
-    border-bottom: 1px solid rgba(214, 177, 77, 0.2);
+  .playlist-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .card-head {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-mid) 100%);
+    color: #ffffff;
+    font-weight: 900;
+    padding: 1rem 1.25rem;
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s;
+    user-select: none;
   }
 
-  .collapsible-header:hover {
-    background: linear-gradient(135deg, rgba(214, 177, 77, 0.12), rgba(234, 197, 97, 0.16));
+  .card-head::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 200px;
+    height: 100%;
+    background: rgba(255,255,255,0.15);
+    transform: skewX(-25deg);
   }
 
-  .collapsible-title {
-    font-size: 1.125rem;
+  .card-head-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .music-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    font-size: 16px;
+  }
+
+  .card-head-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+
+  .playlist-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--gold);
-    margin: 0;
-  }
-  
-  .collapsible-title .name-highlight {
-    color: var(--gold-dark);
-    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-left: 12px;
+    backdrop-filter: blur(10px);
   }
 
   .collapse-icon {
     width: 24px;
     height: 24px;
-    color: var(--gold);
+    color: #ffffff;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 1;
   }
 
-  .collapsible-section.open .collapse-icon {
+  .playlist-card.open .collapse-icon {
     transform: rotate(180deg);
   }
 
-  .collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+  .card-body {
+    padding: 1.5rem;
+    display: none;
   }
 
-  .collapsible-section.open .collapsible-content {
-    max-height: 2000px;
-  }
-
-  .content-inner {
-    padding: 24px;
+  .playlist-card.open .card-body {
+    display: block;
   }
 
   /* ===== Music Player ===== */
@@ -473,6 +515,21 @@ permalink: /archives-playlist.html
     .banner-breadcrumbs::before {
       font-size: 12px;
     }
+    .card-head {
+      padding: 0.875rem 1rem;
+    }
+    .card-head-title {
+      font-size: 16px;
+    }
+    .music-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+    }
+    .playlist-badge {
+      font-size: 10px;
+      padding: 2px 8px;
+    }
   }
 
   @media (max-width: 640px) {
@@ -492,6 +549,15 @@ permalink: /archives-playlist.html
     .banner-breadcrumbs::before {
       display: none;
     }
+    .card-body {
+      padding: 1rem;
+    }
+    .card-head-content {
+      gap: 8px;
+    }
+    .playlist-badge {
+      margin-left: 8px;
+    }
   }
 
   @media (max-width: 540px) {
@@ -500,6 +566,11 @@ permalink: /archives-playlist.html
     .nav-btn { width: 28px; height: 28px; }
     .play-btn { width: 35px; height: 35px; }
     .volume-slider { width: 100px; }
+    .music-icon {
+      width: 26px;
+      height: 26px;
+      font-size: 13px;
+    }
   }
 
   @media (max-width: 480px) {
@@ -515,6 +586,48 @@ permalink: /archives-playlist.html
       font-size: 10px;
       gap: 0.4rem;
       padding: 6px 10px;
+    }
+    .card-head {
+      padding: 0.75rem 1rem;
+    }
+    .card-head-title {
+      font-size: 15px;
+    }
+    .card-head-content {
+      gap: 6px;
+    }
+    .music-icon {
+      width: 24px;
+      height: 24px;
+      font-size: 12px;
+    }
+    .playlist-badge {
+      font-size: 9px;
+      padding: 2px 6px;
+      margin-left: 6px;
+    }
+    .collapse-icon {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* 플레이어 박스 패딩 조정 */
+    .music-player-box {
+      padding: 20px 16px;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .card-head-title {
+      font-size: 14px;
+    }
+    .playlist-badge {
+      display: none; /* 매우 작은 화면에서는 배지 숨김 */
+    }
+    .music-icon {
+      width: 22px;
+      height: 22px;
+      font-size: 11px;
     }
   }
 </style>
@@ -537,78 +650,80 @@ permalink: /archives-playlist.html
   </div>
 </section>
 
-<!-- ===== Collapsible Playlist Section ===== -->
+<!-- ===== Playlist Card Section ===== -->
 <div class="playlist-container">
-  <div class="collapsible-section" id="ischoi-section">
-    <div class="collapsible-header" id="toggleHeader">
-      <h2 class="collapsible-title"><span class="name-highlight">Insu Choi</span>'s Playlist</h2>
+  <div class="playlist-card" id="ischoi-section">
+    <div class="card-head" id="toggleHeader">
+      <div class="card-head-content">
+        <div class="music-icon">♪</div>
+        <h2 class="card-head-title">Insu Choi</h2>
+        <span class="playlist-badge">Playlist</span>
+      </div>
       <svg class="collapse-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
-    <div class="collapsible-content">
-      <div class="content-inner">
-        <!-- Music Player -->
-        <div id="musicPlayer" class="fade-in">
-          <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
+    <div class="card-body">
+      <!-- Music Player -->
+      <div id="musicPlayer" class="fade-in">
+        <div class="music-player-box" role="group" aria-label="배경 음악 플레이어">
 
-            <!-- 줄1: 제목 -->
-            <div class="player-row title-row">
-              <span id="musicTitle">Loading...</span>
-            </div>
-
-            <!-- 줄2: 아티스트 -->
-            <div class="player-row artist-row">
-              <span id="musicArtist"></span>
-            </div>
-
-            <!-- 줄3: 재생버튼 -->
-            <div class="player-row playback-row">
-              <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
-                </svg>
-              </button>
-              <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
-                <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                </svg>
-                <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                </svg>
-              </button>
-              <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
-                </svg>
-              </button>
-            </div>
-
-            <!-- 줄4: 볼륨 -->
-            <div class="player-row volume-row">
-              <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
-                <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
-                </svg>
-                <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-              </button>
-              <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
-            </div>
-
-            <!-- 줄5: 진행바/시간 -->
-            <div class="player-row progress-row">
-              <span id="currentTime" class="time-text">0:00</span>
-              <div class="progress-container">
-                <div class="progress-track"></div>
-                <div id="progressBar" class="progress-fill"></div>
-                <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
-              </div>
-              <span id="duration" class="time-text">0:00</span>
-            </div>
-
+          <!-- 줄1: 제목 -->
+          <div class="player-row title-row">
+            <span id="musicTitle">Loading...</span>
           </div>
+
+          <!-- 줄2: 아티스트 -->
+          <div class="player-row artist-row">
+            <span id="musicArtist"></span>
+          </div>
+
+          <!-- 줄3: 재생버튼 -->
+          <div class="player-row playback-row">
+            <button id="prevBtn" class="nav-btn" type="button" aria-label="이전 곡">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-6 4a1 1 0 000 1.664l6 4z"/>
+              </svg>
+            </button>
+            <button id="playPauseBtn" class="play-btn" type="button" aria-label="재생/일시정지">
+              <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+              </svg>
+              <svg id="pauseIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <button id="nextBtn" class="nav-btn" type="button" aria-label="다음 곡">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M4.555 5.168A1 1 0 003 6v8a1 1 0 001.555.832L10 11.202V14a1 1 0 001.555.832l6-4a1 1 0 000-1.664l-6-4A1 1 0 0010 6v2.798L4.555 5.168z"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- 줄4: 볼륨 -->
+          <div class="player-row volume-row">
+            <button id="muteBtn" class="mute-btn" type="button" aria-label="음소거">
+              <svg id="volumeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clip-rule="evenodd"/>
+              </svg>
+              <svg id="muteIcon" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <input type="range" id="volumeSlider" min="0" max="100" value="30" class="volume-slider" aria-label="볼륨">
+          </div>
+
+          <!-- 줄5: 진행바/시간 -->
+          <div class="player-row progress-row">
+            <span id="currentTime" class="time-text">0:00</span>
+            <div class="progress-container">
+              <div class="progress-track"></div>
+              <div id="progressBar" class="progress-fill"></div>
+              <input type="range" id="progressSlider" min="0" max="100" value="0" step="0.1" class="progress-slider" aria-label="재생 위치">
+            </div>
+            <span id="duration" class="time-text">0:00</span>
+          </div>
+
         </div>
       </div>
     </div>
@@ -1178,6 +1293,9 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleHeader.addEventListener('click', function() {
       section.classList.toggle('open');
     });
+    
+    // 기본적으로 열려있도록 설정
+    section.classList.add('open');
   }
   
   // 초기값 설정
