@@ -585,7 +585,7 @@ permalink: /archives-gallery.html
           <div class="gallery-thumb" style="background-image:url('{{ thumb_url }}')"></div>
           <div class="gallery-content">
             {% if gallery.date %}
-              <div class="gallery-date">{{ gallery.date | date: "%Y.%m.%d." }}</div>
+              <div class="gallery-date">{{ gallery.date | date: "%Y.%m.%d" }}</div>
             {% endif %}
             <h3 class="gallery-title">{{ gallery.title }}</h3>
             {% if gallery.tags and gallery.tags.size > 0 %}
