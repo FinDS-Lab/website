@@ -1,12 +1,20 @@
 {
   "journals": [
     {
-      "id": 41,
+      "id": 42,
       "name": "Data Science in Finance and Economics",
       "publisher": "American Institute of Mathematical Sciences Press",
       "type": "SCOPUS",
       "since": "2025-09-18",
       "url": "https://www.aimspress.com/journal/dsfe"
+    },
+    {
+      "id": 41,
+      "name": "Humanities and Social Sciences Communications",
+      "publisher": "Springer",
+      "type": "SSCI",
+      "since": "2025-09-16",
+      "url": "https://www.nature.com/palcomms/"
     },
     {
       "id": 40,
