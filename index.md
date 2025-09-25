@@ -155,18 +155,18 @@ title: home
   }
   @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
 
-  /* 태그 배지 - 모바일 텍스트 중앙 정렬 개선 */
+  /* 태그 배지 - 모바일 텍스트 완벽한 중앙 정렬 */
   .tag-badge{
-    display: inline-flex;  /* inline-block에서 inline-flex로 변경 */
-    align-items: center;   /* 수직 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
+    display: inline-flex;  
+    align-items: center;   
+    justify-content: center; 
     background: linear-gradient(135deg, 
       rgba(214, 177, 77, 0.35) 0%,
       rgba(214, 177, 77, 0.25) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: #fff; 
-    padding: 8px 16px;  /* 상하 패딩 증가 */
+    padding: 8px 16px;  
     border-radius: 999px; 
     font-weight: 900; 
     font-size: 14px; 
@@ -174,34 +174,39 @@ title: home
     margin-bottom: 16px;
     border: 1px solid rgba(214, 177, 77, 0.4);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    line-height: 1;  /* line-height 명시적 설정 */
-    min-height: 32px; /* 최소 높이 설정 */
+    line-height: 1;  
+    min-height: 32px; 
+    position: relative;  /* position relative 추가 */
   }
   
+  /* 모바일에서 더 작은 폰트와 균형잡힌 패딩 */
   @media (max-width: 540px) { 
     .tag-badge { 
-      font-size: 13px;  /* 12px에서 13px로 약간 증가 */
-      padding: 7px 14px;  /* 패딩 조정 */
+      font-size: 11px;  /* 13px → 11px로 감소 */
+      padding: 8px 14px;  /* 상하 패딩 증가 */
       margin-bottom: 14px; 
-      min-height: 28px;  /* 최소 높이 조정 */
-      letter-spacing: 0.3px;  /* 자간 조정 */
+      min-height: 28px;  
+      letter-spacing: 0.3px;  
+      font-weight: 800;  /* 폰트 두께 약간 감소 */
     } 
   }
   
   @media (max-width: 480px) { 
     .tag-badge { 
-      font-size: 12px;  
-      padding: 6px 12px;  /* 패딩 미세 조정 */
+      font-size: 10px;  /* 12px → 10px로 감소 */
+      padding: 7px 12px;  /* 균형잡힌 패딩 */
       margin-bottom: 12px; 
-      min-height: 26px;  /* 최소 높이 조정 */
+      min-height: 26px;  
+      letter-spacing: 0.2px;  /* 자간 감소 */
     } 
   }
   
   @media (max-width: 380px) { 
     .tag-badge { 
-      font-size: 11px;  /* 더 작은 화면에서 폰트 크기 감소 */
-      padding: 5px 10px;  
-      min-height: 24px;  
+      font-size: 9px;  /* 11px → 9px로 감소 */
+      padding: 6px 10px;  /* 상하 패딩 유지 */
+      min-height: 22px;  /* 최소 높이 감소 */
+      letter-spacing: 0.1px;  
     } 
   }
 
