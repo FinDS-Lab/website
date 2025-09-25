@@ -155,25 +155,55 @@ title: home
   }
   @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
 
-  /* 태그 배지 - 투명도 개선 */
+  /* 태그 배지 - 모바일 텍스트 중앙 정렬 개선 */
   .tag-badge{
-    display:inline-block; 
+    display: inline-flex;  /* inline-block에서 inline-flex로 변경 */
+    align-items: center;   /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
     background: linear-gradient(135deg, 
       rgba(214, 177, 77, 0.35) 0%,
       rgba(214, 177, 77, 0.25) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    color:#fff; 
-    padding:6px 16px; 
-    border-radius:999px; 
-    font-weight:900; 
-    font-size:14px; 
-    letter-spacing:.5px; 
-    margin-bottom:16px;
+    color: #fff; 
+    padding: 8px 16px;  /* 상하 패딩 증가 */
+    border-radius: 999px; 
+    font-weight: 900; 
+    font-size: 14px; 
+    letter-spacing: 0.5px; 
+    margin-bottom: 16px;
     border: 1px solid rgba(214, 177, 77, 0.4);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1;  /* line-height 명시적 설정 */
+    min-height: 32px; /* 최소 높이 설정 */
   }
-  @media (max-width:480px){ .tag-badge{ font-size:12px; padding:4px 12px; margin-bottom:12px; } }
+  
+  @media (max-width: 540px) { 
+    .tag-badge { 
+      font-size: 13px;  /* 12px에서 13px로 약간 증가 */
+      padding: 7px 14px;  /* 패딩 조정 */
+      margin-bottom: 14px; 
+      min-height: 28px;  /* 최소 높이 조정 */
+      letter-spacing: 0.3px;  /* 자간 조정 */
+    } 
+  }
+  
+  @media (max-width: 480px) { 
+    .tag-badge { 
+      font-size: 12px;  
+      padding: 6px 12px;  /* 패딩 미세 조정 */
+      margin-bottom: 12px; 
+      min-height: 26px;  /* 최소 높이 조정 */
+    } 
+  }
+  
+  @media (max-width: 380px) { 
+    .tag-badge { 
+      font-size: 11px;  /* 더 작은 화면에서 폰트 크기 감소 */
+      padding: 5px 10px;  
+      min-height: 24px;  
+    } 
+  }
 
   /* 히어로 타이틀 - 폰트 크기 감소 및 가독성 개선 */
   .hero-title{ 
