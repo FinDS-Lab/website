@@ -1,6 +1,14 @@
 {
   "journals": [
     {
+      "id": 43,
+      "name": "The Journal of Supercomputing",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-09-27",
+      "url": "https://link.springer.com/journal/11227"
+    },
+    {
       "id": 42,
       "name": "Data Science in Finance and Economics",
       "publisher": "American Institute of Mathematical Sciences Press",
