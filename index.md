@@ -44,7 +44,7 @@ title: home
     height: 480px;
     display: block;
     box-sizing: border-box;
-    overflow: clip;
+    overflow: hidden;
   }
   @media (max-width: 1024px) {
     .hero-section { 
@@ -264,7 +264,6 @@ title: home
     overflow: hidden; 
     text-overflow: ellipsis;
     position: relative;
-    overflow: hidden;
   }
   @media (max-width:540px){ .btn-hero{ font-size: clamp(11px, 3.4vw, 13px); padding: 11px 14px; letter-spacing: .1px; } }
   @media (max-width:380px){ .btn-hero{ font-size: clamp(10.5px, 3.6vw, 12px); padding: 10px 12px; min-height: 40px; } }
@@ -813,11 +812,19 @@ title: home
 </section>
 
 <script>
-  // Carousel functionality
+  // Carousel functionality with improved error handling
   (function() {
+    'use strict';
+    
     const track = document.getElementById('carouselTrack');
     const dots = document.querySelectorAll('.dot');
     const slides = document.querySelectorAll('.carousel-slide');
+    
+    if (!track || !dots.length || !slides.length) {
+      console.error('Carousel elements not found');
+      return;
+    }
+    
     let currentIndex = 0;
     let interval;
     let isTransitioning = false;
@@ -825,18 +832,24 @@ title: home
     let touchEndX = 0;
 
     function setSlideWidths() {
-      const container = track.parentElement;
-      const containerWidth = container.offsetWidth;
-      const containerHeight = container.offsetHeight;
+      try {
+        const container = track.parentElement;
+        if (!container) return;
+        
+        const containerWidth = container.offsetWidth;
+        const containerHeight = container.offsetHeight;
 
-      slides.forEach(slide => {
-        slide.style.width = containerWidth + 'px';
-        slide.style.minWidth = containerWidth + 'px';
-        slide.style.maxWidth = containerWidth + 'px';
-        slide.style.height = containerHeight + 'px';
-        slide.style.minHeight = containerHeight + 'px';
-        slide.style.maxHeight = containerHeight + 'px';
-      });
+        slides.forEach(slide => {
+          slide.style.width = containerWidth + 'px';
+          slide.style.minWidth = containerWidth + 'px';
+          slide.style.maxWidth = containerWidth + 'px';
+          slide.style.height = containerHeight + 'px';
+          slide.style.minHeight = containerHeight + 'px';
+          slide.style.maxHeight = containerHeight + 'px';
+        });
+      } catch (error) {
+        console.error('Error setting slide widths:', error);
+      }
     }
 
     function preloadImages() {
@@ -845,33 +858,77 @@ title: home
         if (img.complete) return;
         const tempImg = new Image();
         tempImg.src = img.src;
+        tempImg.onerror = function() {
+          console.warn('Failed to preload image:', img.src);
+        };
       });
     }
 
     function goToSlide(index) {
-      if (isTransitioning) return;
+      if (isTransitioning || index < 0 || index >= slides.length) return;
       isTransitioning = true;
       currentIndex = index;
-      track.style.transform = `translateX(${-(index * 100)}%)`;
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      
+      if (track) {
+        track.style.transform = `translateX(${-(index * 100)}%)`;
+      }
+      
+      dots.forEach((dot, i) => {
+        if (dot) {
+          dot.classList.toggle('active', i === index);
+        }
+      });
+      
       setTimeout(() => { isTransitioning = false; }, 600);
     }
 
-    function nextSlide() { if (!isTransitioning) goToSlide((currentIndex + 1) % slides.length); }
-    function prevSlide() { if (!isTransitioning) goToSlide((currentIndex - 1 + slides.length) % slides.length); }
+    function nextSlide() { 
+      if (!isTransitioning) {
+        goToSlide((currentIndex + 1) % slides.length);
+      }
+    }
+    
+    function prevSlide() { 
+      if (!isTransitioning) {
+        goToSlide((currentIndex - 1 + slides.length) % slides.length);
+      }
+    }
 
-    function startAutoplay() { stopAutoplay(); interval = setInterval(nextSlide, 5000); }
-    function stopAutoplay() { if (interval) { clearInterval(interval); interval = null; } }
+    function startAutoplay() { 
+      stopAutoplay(); 
+      interval = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoplay() { 
+      if (interval) { 
+        clearInterval(interval); 
+        interval = null;
+      }
+    }
 
-    function handleTouchStart(e){ touchStartX = e.changedTouches[0].screenX; }
-    function handleTouchEnd(e){ touchEndX = e.changedTouches[0].screenX; handleSwipe(); }
+    function handleTouchStart(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        touchStartX = e.changedTouches[0].screenX;
+      }
+    }
+    
+    function handleTouchEnd(e) {
+      if (e.changedTouches && e.changedTouches[0]) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }
+    }
 
     function handleSwipe() {
       const swipeThreshold = 50;
       const diff = touchStartX - touchEndX;
       if (Math.abs(diff) > swipeThreshold) {
         stopAutoplay();
-        if (diff > 0) nextSlide(); else prevSlide();
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
         startAutoplay();
       }
     }
@@ -880,7 +937,7 @@ title: home
     setSlideWidths();
     preloadImages();
 
-    // Handle resize
+    // Handle resize with debounce
     let resizeTimeout;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimeout);
@@ -892,31 +949,45 @@ title: home
 
     // Dot navigation
     dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        stopAutoplay();
-        goToSlide(index);
-        startAutoplay();
-      });
+      if (dot) {
+        dot.addEventListener('click', () => {
+          stopAutoplay();
+          goToSlide(index);
+          startAutoplay();
+        });
+      }
     });
 
-    // Touch events
-    track.addEventListener('touchstart', handleTouchStart, { passive: true });
-    track.addEventListener('touchend', handleTouchEnd, { passive: true });
+    // Touch events with error handling
+    if (track) {
+      track.addEventListener('touchstart', handleTouchStart, { passive: true });
+      track.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
 
     // Initialize on load
-    window.addEventListener('load', () => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        setSlideWidths();
+        goToSlide(0);
+        startAutoplay();
+      });
+    } else {
       setSlideWidths();
       goToSlide(0);
       startAutoplay();
-    });
+    }
 
     // Pause when tab is not visible
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stopAutoplay(); else startAutoplay();
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
     });
 
     // Pause on hover (desktop only)
-    if (window.matchMedia('(hover: hover)').matches) {
+    if (window.matchMedia('(hover: hover)').matches && track) {
       track.addEventListener('mouseenter', stopAutoplay);
       track.addEventListener('mouseleave', startAutoplay);
     }
