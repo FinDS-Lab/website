@@ -30,19 +30,19 @@
   "language": "Korean",
   "title": "Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding",
   "title_ko": "다변화된 통계적 의존성 기반 시공간 그래프 인코딩을 활용한 금융 상품 수익률 예측",
-  "authors": [1, 4, 6, 7, 2],
-  "author_marks": ["1", "2", "2", "2", "*"],
+  "authors": [1, 2],
+  "author_marks": ["1", "*"],
   "venue": "2025 Fall Conference of Korea Intelligent Information Systems Society",
   "venue_ko": "2025 한국지능정보시스템학회 추계학술대회",
   "published_date": "2025-11-28",
   "awards": 0,
   "citations": {
-    "apa": "Choi, I., Koh, W., Kang, G., Jang, Y., & Kim, W. C. (2025, November 28). Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding [Paper presentation]. 2025 Fall Conference of Korea Intelligent Information Systems Society.",
-    "mla": "Choi, Insu, et al. \"Financial Asset Return Prediction via Diversified Statistical Dependence-Based Spatiotemporal Graph Encoding.\" 2025 Fall Conference of Korea Intelligent Information Systems Society, 28 Nov. 2025.",
-    "chicago": "Choi, Insu, Woosung Koh, Gimin Kang, Yoontae Jang, and Woo Chang Kim. \"Financial Asset Return Prediction via Diversified Statistical Dependence-Based Spatiotemporal Graph Encoding.\" Paper presented at the 2025 Fall Conference of Korea Intelligent Information Systems Society, November 28, 2025.",
-    "harvard": "Choi, I, Koh, W, Kang, G, Jang, Y & Kim, WC 2025, 'Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding', paper presented at the 2025 Fall Conference of Korea Intelligent Information Systems Society, 28 November.",
-    "vancouver": "Choi I, Koh W, Kang G, Jang Y, Kim WC. Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding. Paper presented at: 2025 Fall Conference of Korea Intelligent Information Systems Society; 2025 Nov 28.",
-    "korean": "최인수, 고우성, 강기민, 장윤태, 김우창. (2025). 다변화된 통계적 의존성 기반 시공간 그래프 인코딩을 활용한 금융 상품 수익률 예측. 2025 한국지능정보시스템학회 추계학술대회 발표논문."
+    "apa": "Choi, I., & Kim, W. C. (2025, November 28). Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding [Paper presentation]. 2025 Fall Conference of Korea Intelligent Information Systems Society.",
+    "mla": "Choi, Insu, and Woo Chang Kim. \"Financial Asset Return Prediction via Diversified Statistical Dependence-Based Spatiotemporal Graph Encoding.\" 2025 Fall Conference of Korea Intelligent Information Systems Society, 28 Nov. 2025.",
+    "chicago": "Choi, Insu, and Woo Chang Kim. \"Financial Asset Return Prediction via Diversified Statistical Dependence-Based Spatiotemporal Graph Encoding.\" Paper presented at the 2025 Fall Conference of Korea Intelligent Information Systems Society, November 28, 2025.",
+    "harvard": "Choi, I & Kim, WC 2025, 'Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding', paper presented at the 2025 Fall Conference of Korea Intelligent Information Systems Society, 28 November.",
+    "vancouver": "Choi I, Kim WC. Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding. Paper presented at: 2025 Fall Conference of Korea Intelligent Information Systems Society; 2025 Nov 28.",
+    "korean": "최인수, 김우창. (2025). 다변화된 통계적 의존성 기반 시공간 그래프 인코딩을 활용한 금융 상품 수익률 예측. 2025 한국지능정보시스템학회 추계학술대회 발표논문."
   }
 },
 {
@@ -53,19 +53,19 @@
   "language": "Korean",
   "title": "Analyzing Causal Risk Spillover Mechanisms in Cryptocurrency Markets Using the PCMCI+ Algorithm",
   "title_ko": "PCMCI+ 알고리즘을 활용한 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석",
-  "authors": [63, 149, 150, 151, 1],
-  "author_marks": ["1", "1", "1", "1", "*"],
+  "authors": [63, 151, 1],
+  "author_marks": ["1", "1", "*"],
   "venue": "2025 Fall Conference of the Korean Institute of Industrial Engineers",
   "venue_ko": "2025 대한산업공학회 추계학술대회",
   "published_date": "2025-11-09",
   "awards": 0,
   "citations": {
-    "apa": "Kim, G., Kim, D., Seo, Y., Yang, D., & Choi, I. (2025, November 9). Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm [Paper presentation]. 2025 Fall Conference of the Korean Institute of Industrial Engineers.",
-    "mla": "Kim, Gyubeom, et al. \"Analyzing Causal Risk Spillover Mechanisms in Cryptocurrency Markets Using the PCMCI+ Algorithm.\" 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 Nov. 2025.",
-    "chicago": "Kim, Gyubeom, Dain Kim, Yeyoon Seo, Donghoon Yang, and Insu Choi. \"Analyzing Causal Risk Spillover Mechanisms in Cryptocurrency Markets Using the PCMCI+ Algorithm.\" Paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, November 9, 2025.",
-    "harvard": "Kim, G, Kim, D, Seo, Y, Yang, D & Choi, I 2025, 'Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm', paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 November.",
-    "vancouver": "Kim G, Kim D, Seo Y, Yang D, Choi I. Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm. Paper presented at: 2025 Fall Conference of the Korean Institute of Industrial Engineers; 2025 Nov 9.",
-    "korean": "김규범, 김다인, 서예윤, 양동훈, 최인수. (2025). PCMCI+ 알고리즘을 활용한 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석. 2025 대한산업공학회 추계학술대회 발표논문."
+    "apa": "Kim, G., Yang, D., & Choi, I. (2025, November 9). Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm [Paper presentation]. 2025 Fall Conference of the Korean Institute of Industrial Engineers.",
+    "mla": "Kim, Gyubeom, Donghoon Yang, and Insu Choi. \"Analyzing Causal Risk Spillover Mechanisms in Cryptocurrency Markets Using the PCMCI+ Algorithm.\" 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 Nov. 2025.",
+    "chicago": "Kim, Gyubeom, Donghoon Yang, and Insu Choi. \"Analyzing Causal Risk Spillover Mechanisms in Cryptocurrency Markets Using the PCMCI+ Algorithm.\" Paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, November 9, 2025.",
+    "harvard": "Kim, G, Yang, D & Choi, I 2025, 'Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm', paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 November.",
+    "vancouver": "Kim G, Yang D, Choi I. Analyzing causal risk spillover mechanisms in cryptocurrency markets using the PCMCI+ algorithm. Paper presented at: 2025 Fall Conference of the Korean Institute of Industrial Engineers; 2025 Nov 9.",
+    "korean": "김규범, 양동훈, 최인수. (2025). PCMCI+ 알고리즘을 활용한 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석. 2025 대한산업공학회 추계학술대회 발표논문."
   }
 },
 {
