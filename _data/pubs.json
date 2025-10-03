@@ -183,6 +183,30 @@
     "korean": "최인수. (2025). 동적 평면 극대 필터링 그래프 기반 최원 우선 전략을 활용한 개수 제약하에서의 자산 선택 방법론. 2025 한국경영과학회 추계학술대회 발표논문."
   }
 },
+ {
+  "year": 2025,
+  "code_label": "J",
+  "indexing_group": "SSCI",
+  "type": "journal",
+  "language": "English",
+  "title": "Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis across Regional Disparities and Temporal Shifts",
+  "authors": [1, 45],
+  "author_marks": ["1,*", "1"],
+  "venue": "Asian Journal of Social Science",
+  "published_date": "2025-10-02",
+  "volume": "TBD",
+  "issue": "TBD",
+  "pages": "TBD",
+  "doi": "TBD",
+  "awards": 0,
+  "citations": {
+    "apa": "Choi, I., & Shim, E. (2025). Housing–fertility interdependencies in South Korea: A dynamic analysis across regional disparities and temporal shifts. <em>Asian Journal of Social Science</em>. Advance online publication.",
+    "mla": "Choi, Insu, and Eun Shim. \"Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis across Regional Disparities and Temporal Shifts.\" <em>Asian Journal of Social Science</em>, 2025. Advance online publication.",
+    "chicago": "Choi, Insu, and Eun Shim. \"Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis across Regional Disparities and Temporal Shifts.\" <em>Asian Journal of Social Science</em> (2025). Advance online publication.",
+    "harvard": "Choi, I & Shim, E 2025, 'Housing–fertility interdependencies in South Korea: A dynamic analysis across regional disparities and temporal shifts', <em>Asian Journal of Social Science</em>, advance online publication.",
+    "vancouver": "Choi I, Shim E. Housing–fertility interdependencies in South Korea: A dynamic analysis across regional disparities and temporal shifts. Asian Journal of Social Science. 2025. Advance online publication.",
+  }
+},
 {
   "year": 2025,
   "code_label": "C",
