@@ -315,6 +315,19 @@ permalink: /members-alumni.html
       vertical-align:top;
     }
     
+    /* Cohort badge in name cell for undergrad */
+    .cohort-inline-badge {
+      display: inline-flex;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(172, 14, 14, 0.15);
+      color: var(--undergrad-red);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    
     /* Mobile Card Layout */
     .alumni-cards-mobile{
       display:none;
@@ -859,6 +872,11 @@ permalink: /members-alumni.html
         padding: 2px 6px;
       }
       
+      .cohort-inline-badge {
+        font-size: 8px;
+        padding: 1px 4px;
+      }
+      
       .alumni-card-header{
         padding:8px 10px;
       }
@@ -927,6 +945,11 @@ permalink: /members-alumni.html
       .cohort-badge {
         font-size: 8px;
         padding: 2px 5px;
+      }
+      
+      .cohort-inline-badge {
+        font-size: 7px;
+        padding: 1px 3px;
       }
     }
   </style>
@@ -1248,6 +1271,12 @@ function generateTable(data, bodyId, section, degreeType) {
           <a href="${alum.thesis.ms.url}" target="_blank" class="thesis-link">${alum.thesis.ms.title}</a>
         `;
       }
+    } else if (degreeType === 'ur') {
+      if (alum.thesis.ur) {
+        thesisContent = `
+          <a href="${alum.thesis.ur.url}" target="_blank" class="thesis-link">${alum.thesis.ur.title}</a>
+        `;
+      }
     } else if (degreeType === 'dual') {
       if (alum.thesis.phd) {
         thesisContent += `
@@ -1271,6 +1300,7 @@ function generateTable(data, bodyId, section, degreeType) {
           <div class="alumni-name">
             <span class="name-arrow">▶</span>
             ${alum.name} ${alum.nameKo}
+            ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge">${alum.cohort}</span>` : ''}
           </div>
         </td>
         <td>
@@ -1285,6 +1315,11 @@ function generateTable(data, bodyId, section, degreeType) {
               <div class="period-item">
                 <span class="period-degree ms">M.S</span>
                 <span class="period-range">${alum.periods.ms}</span>
+              </div>
+            ` : ''}
+            ${degreeType === 'ur' && alum.periods.ur ? `
+              <div class="period-item">
+                <span class="period-range">${alum.periods.ur}</span>
               </div>
             ` : ''}
             ${degreeType === 'dual' ? alum.degrees.map(d => `
@@ -1351,6 +1386,12 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
           </a>
         </div>
       `;
+    } else if (degreeType === 'ur' && alum.thesis.ur) {
+      thesisContent = `
+        <a href="${alum.thesis.ur.url}" target="_blank" class="alumni-card-thesis-link">
+          ${alum.thesis.ur.title}
+        </a>
+      `;
     } else if (degreeType === 'dual') {
       if (alum.thesis.phd) {
         thesisContent += `
@@ -1381,6 +1422,7 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
             <div class="alumni-card-name">
               <span class="alumni-card-name-text">
                 ${alum.name} ${alum.nameKo}
+                ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge" style="margin-left:4px;">${alum.cohort}</span>` : ''}
               </span>
             </div>
           </div>
@@ -1404,6 +1446,11 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
                 <span class="period-range" style="font-size:10px">${alum.periods.ms}</span>
               </div>
             ` : ''}
+            ${degreeType === 'ur' && alum.periods.ur ? `
+              <div class="alumni-card-value" style="font-size:10px;font-weight:600;">
+                ${alum.periods.ur}
+              </div>
+            ` : ''}
             ${degreeType === 'dual' ? alum.degrees.map(d => `
               <div class="alumni-card-period">
                 <span class="period-degree ${d}">${d.toUpperCase()}</span>
@@ -1422,7 +1469,7 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
           
           <!-- Thesis -->
           <div class="alumni-card-section">
-            <div class="alumni-card-label">${degreeType === 'phd' ? 'Dissertation' : degreeType === 'ms' ? 'Thesis' : 'Thesis/Dissertation'}</div>
+            <div class="alumni-card-label">${degreeType === 'phd' ? 'Dissertation' : degreeType === 'ms' ? 'Thesis' : degreeType === 'ur' ? 'Capstone/Project' : 'Thesis/Dissertation'}</div>
             <div class="alumni-card-value">
               ${thesisContent}
             </div>
