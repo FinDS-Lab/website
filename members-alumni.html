@@ -1269,7 +1269,7 @@ function generateTable(data, bodyId, section, degreeType) {
           <div class="alumni-name">
             <span class="name-arrow">▶</span>
             ${alum.name} ${alum.nameKo}
-            ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge">${alum.cohort} (${alum.periods.ur})</span>` : ''}
+            ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge">${alum.cohort}</span>` : ''}
           </div>
         </td>
         <td>
@@ -1391,7 +1391,7 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
             <div class="alumni-card-name">
               <span class="alumni-card-name-text">
                 ${alum.name} ${alum.nameKo}
-                ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge" style="margin-left:4px;">${alum.cohort} (${alum.periods.ur})</span>` : ''}
+                ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge" style="margin-left:4px;">${alum.cohort}</span>` : ''}
               </span>
             </div>
           </div>
