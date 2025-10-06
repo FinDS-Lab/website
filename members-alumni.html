@@ -262,17 +262,6 @@ permalink: /members-alumni.html
       text-shadow: 0 1px 3px rgba(0,0,0,0.2);
       letter-spacing: -0.3px;
     }
-    
-    .cohort-badge {
-      display: inline-flex;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 700;
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-      margin-left: 8px;
-    }
 
     /* Desktop Table Styles */
     .alumni-table-desktop{
@@ -799,11 +788,6 @@ permalink: /members-alumni.html
       .section-main-title{
         font-size:17px;
       }
-      
-      .cohort-badge {
-        font-size: 10px;
-        padding: 3px 8px;
-      }
     }
     
     @media (max-width: 480px) {
@@ -865,11 +849,6 @@ permalink: /members-alumni.html
       
       .section-main-title{
         font-size:15px;
-      }
-      
-      .cohort-badge {
-        font-size: 9px;
-        padding: 2px 6px;
       }
       
       .cohort-inline-badge {
@@ -940,11 +919,6 @@ permalink: /members-alumni.html
       
       .section-main-title{
         font-size:13px;
-      }
-      
-      .cohort-badge {
-        font-size: 8px;
-        padding: 2px 5px;
       }
       
       .cohort-inline-badge {
@@ -1086,7 +1060,7 @@ function generateDiamondNetwork() {
   <div class="section-header phd">
     <div class="section-header-content">
       <span class="section-emoji">🎓</span>
-      <div class="section-main-title">Ph.D. Alumni<span class="cohort-badge" id="phdCohort">1기</span></div>
+      <div class="section-main-title">Ph.D. Alumni</div>
     </div>
   </div>
   
@@ -1114,7 +1088,7 @@ function generateDiamondNetwork() {
   <div class="section-header ms">
     <div class="section-header-content">
       <span class="section-emoji">📖</span>
-      <div class="section-main-title">M.S. Alumni<span class="cohort-badge" id="msCohort">1기</span></div>
+      <div class="section-main-title">M.S. Alumni</div>
     </div>
   </div>
   
@@ -1142,7 +1116,7 @@ function generateDiamondNetwork() {
   <div class="section-header undergraduate">
     <div class="section-header-content">
       <span class="section-emoji">📚</span>
-      <div class="section-main-title">Undergraduate Research Alumni<span class="cohort-badge" id="undergradCohort">1기</span></div>
+      <div class="section-main-title">Undergraduate Research Alumni</div>
     </div>
   </div>
   
@@ -1188,11 +1162,6 @@ const dualDegreeAlumniData = graduateAlumniData.filter(alum =>
 
 // Update since date display
 document.getElementById('sinceDate').textContent = '2025.06.14.';
-
-// Update cohort badges
-document.getElementById('phdCohort').textContent = phdAlumniData.length + dualDegreeAlumniData.length > 0 ? '1기' : '';
-document.getElementById('msCohort').textContent = msAlumniData.length + dualDegreeAlumniData.length > 0 ? '1기' : '';
-document.getElementById('undergradCohort').textContent = undergradAlumniData.length > 0 ? '1기' : '';
 
 // Toggle function for desktop expandable rows
 function toggleAlumni(element, index, section) {
@@ -1300,7 +1269,7 @@ function generateTable(data, bodyId, section, degreeType) {
           <div class="alumni-name">
             <span class="name-arrow">▶</span>
             ${alum.name} ${alum.nameKo}
-            ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge">${alum.cohort}</span>` : ''}
+            ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge">${alum.cohort} (${alum.periods.ur})</span>` : ''}
           </div>
         </td>
         <td>
@@ -1422,7 +1391,7 @@ function generateCards(data, containerId, section, buttonColor, buttonColorDark,
             <div class="alumni-card-name">
               <span class="alumni-card-name-text">
                 ${alum.name} ${alum.nameKo}
-                ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge" style="margin-left:4px;">${alum.cohort}</span>` : ''}
+                ${degreeType === 'ur' && alum.cohort ? `<span class="cohort-inline-badge" style="margin-left:4px;">${alum.cohort} (${alum.periods.ur})</span>` : ''}
               </span>
             </div>
           </div>
