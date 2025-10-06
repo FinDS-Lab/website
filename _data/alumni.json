@@ -104,6 +104,7 @@
       "name": "장학사",
       "nameKo": "(Jang B.S.)",
       "degrees": ["ur"],
+      "cohort": "1기",
       "periods": {
         "ur": "2022.09 – 2024.08"
       },
@@ -127,6 +128,7 @@
       "name": "박학사",
       "nameKo": "(Park B.S.)",
       "degrees": ["ur"],
+      "cohort": "1기",
       "periods": {
         "ur": "2021.03 – 2023.02"
       },
