@@ -53,19 +53,19 @@
   "language": "Korean",
   "title": "Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm",
   "title_ko": "PCMCI+ 알고리즘을 활용한 주요 금속 선물과 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석",
-  "authors": [1, 63, 149, 150, 151],
-  "author_marks": ["1, *", "2", "2", "2", "2"],
+  "authors": [1, 63, 149, 150, 151, 24],
+  "author_marks": ["1, *", "2", "2", "2", "2", "2"],
   "venue": "2025 Fall Conference of the Korean Institute of Industrial Engineers",
   "venue_ko": "2025 대한산업공학회 추계학술대회",
   "published_date": "2025-11-09",
   "awards": 0,
   "citations": {
-    "apa": "Choi, I., Kim, G., Kim, D., Seo, Y. Y., & Yang, D. (2025, November 9). Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm [Paper presentation]. 2025 Fall Conference of the Korean Institute of Industrial Engineers.",
-    "mla": "Choi, Insu, Gyubeom Kim, Dain Kim, Ye Yoon Seo, and Donghoon Yang. \"Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm.\" 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 Nov. 2025.",
-    "chicago": "Choi, Insu, Gyubeom Kim, Dain Kim, Ye Yoon Seo, and Donghoon Yang. \"Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm.\" Paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, November 9, 2025.",
-    "harvard": "Choi, I, Kim, G, Kim, D, Seo, Y Y & Yang, D 2025, 'Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm', paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 November.",
-    "vancouver": "Choi I, Kim G, Kim D, Seo YY, Yang D. Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm. Paper presented at: 2025 Fall Conference of the Korean Institute of Industrial Engineers; 2025 Nov 9.",
-    "korean": "최인수, 김규범, 김다인, 서예윤, 양동훈. (2025). PCMCI+ 알고리즘을 활용한 주요 금속 선물과 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석. 2025 대한산업공학회 추계학술대회 발표논문."
+    "apa": "Choi, I., Kim, G., Kim, D., Seo, Y. Y., Yang, D., & Jeong, Y. (2025, November 9). Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm [Paper presentation]. 2025 Fall Conference of the Korean Institute of Industrial Engineers.",
+    "mla": "Choi, Insu, Gyubeom Kim, Dain Kim, Ye Yoon Seo, Donghoon Yang, and Yujin Jeong. \"Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm.\" 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 Nov. 2025.",
+    "chicago": "Choi, Insu, Gyubeom Kim, Dain Kim, Ye Yoon Seo, Donghoon Yang, and Yoojin Jeong. \"Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm.\" Paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, November 9, 2025.",
+    "harvard": "Choi, I, Kim, G, Kim, D, Seo, YY, Yang, D & Jeong, Y 2025, 'Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm', paper presented at the 2025 Fall Conference of the Korean Institute of Industrial Engineers, 9 November.",
+    "vancouver": "Choi I, Kim G, Kim D, Seo YY, Yang D, Jeong Y. Analyzing causal risk spillover mechanisms between major metal futures and cryptocurrency markets using the PCMCI+ algorithm. Paper presented at: 2025 Fall Conference of the Korean Institute of Industrial Engineers; 2025 Nov 9.",
+    "korean": "최인수, 김규범, 김다인, 서예윤, 양동훈, 정유진. (2025). PCMCI+ 알고리즘을 활용한 주요 금속 선물과 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석. 2025 대한산업공학회 추계학술대회 발표논문."
   }
 },
 {
