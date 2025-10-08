@@ -436,6 +436,17 @@
     {
       "type": "honor",
       "icon": "🎓",
+      "title": "학업우수부문 장학금",
+      "event": "2017학년도 전기 학위수여식",
+      "organization": "경희대학교",
+      "date": "Feb 13",
+      "winners": [
+        {"name": "최인수", "level": "bs"}
+      ]
+    },
+        {
+      "type": "award",
+      "icon": "🏆",
       "title": "학업우수부문 공과대학장상",
       "event": "2017학년도 전기 학위수여식",
       "organization": "경희대학교",
