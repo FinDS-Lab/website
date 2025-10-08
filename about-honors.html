@@ -299,6 +299,95 @@ function generateDiamondNetwork() {
   --gradient-gray: linear-gradient(135deg, var(--bs-gray), rgb(156, 163, 175));
 }
 
+/* Filter Section */
+.filter-toolbar {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  margin-bottom: 20px;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.filter-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.filter-toggle-btn {
+  padding: .4rem .8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: .6rem;
+  font-size: 12px;
+  font-weight: 700;
+  background: #fff;
+  cursor: pointer;
+  color: #374151;
+  transition: all .2s;
+}
+
+.filter-toggle-btn:hover {
+  background: #f3f4f6;
+}
+
+.filter-content {
+  display: none;
+  padding: 16px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+
+.filter-chip.active {
+  box-shadow: inset 0 0 0 2px #111827;
+}
+
+.filter-chip.honors.active {
+  background: var(--gradient-red);
+  color: #fff;
+  border-color: transparent;
+}
+
+.filter-chip.awards.active {
+  background: var(--gradient-gold);
+  color: #111;
+  border-color: transparent;
+}
+
 /* Year sections */
 .year-section{
   margin-bottom: 20px;
@@ -716,6 +805,11 @@ function generateDiamondNetwork() {
     font-size: 13px; 
   }
   .empty::before { font-size: 40px; }
+  
+  .filter-chip {
+    font-size: 11px;
+    padding: .4rem .8rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -907,6 +1001,20 @@ function generateDiamondNetwork() {
     </div>
   </div>
 
+  <!-- Filter Section -->
+  <div class="filter-toolbar">
+    <div class="filter-header">
+      <h3 class="filter-title">Filters</h3>
+      <button id="toggleFiltersBtn" class="filter-toggle-btn">Expand</button>
+    </div>
+    <div id="filterContentArea" class="filter-content">
+      <div class="filter-chips">
+        <button class="filter-chip honors" data-filter="honors">Honors</button>
+        <button class="filter-chip awards" data-filter="awards">Awards</button>
+      </div>
+    </div>
+  </div>
+
   <div id="yearSections"></div>
 </section>
 
@@ -916,6 +1024,9 @@ const honorsData = {{ site.data.honors | jsonify }};
 
 // 현재 연도 가져오기
 const currentYear = new Date().getFullYear();
+
+// Filter state
+let activeFilters = new Set();
 
 // 최근 3년 계산
 function getRecentYears() {
@@ -956,6 +1067,23 @@ function getDegreeLevel(dateStr, name) {
   } else {
     return 'bs'; // 학사
   }
+}
+
+// 필터링된 데이터 반환
+function getFilteredData(yearData) {
+  if (!yearData || activeFilters.size === 0) {
+    return yearData;
+  }
+  
+  return yearData.filter(item => {
+    if (activeFilters.has('honors') && !activeFilters.has('awards')) {
+      return item.type === 'honor' || item.type === 'scholarship';
+    }
+    if (activeFilters.has('awards') && !activeFilters.has('honors')) {
+      return item.type === 'award';
+    }
+    return true; // 둘 다 선택되었거나 아무것도 선택 안 된 경우
+  });
 }
 
 // 수상 카드 생성 - 날짜 위치 변경 및 학위 자동 판단
@@ -999,21 +1127,43 @@ function createAwardCard(item) {
 
 // 연도 섹션 생성
 function createYearSection(year, isExpanded) {
-  const data = honorsData[year] || []; // 데이터가 없으면 빈 배열
+  const allData = honorsData[year] || []; // 전체 데이터
+  const data = getFilteredData(allData); // 필터링된 데이터
   const isCurrentYear = year === currentYear;
   const count = data.length;
+  
+  // honors and awards 구분하여 카운트
+  const honorCount = allData.filter(item => item.type === 'honor' || item.type === 'scholarship').length;
+  const awardCount = allData.filter(item => item.type === 'award').length;
+  
+  // 표시할 텍스트 결정
+  let countText = '';
+  if (honorCount > 0 && awardCount > 0) {
+    countText = `${honorCount + awardCount} honors and awards`;
+  } else if (honorCount > 0) {
+    countText = `${honorCount} honor${honorCount !== 1 ? 's' : ''}`;
+  } else if (awardCount > 0) {
+    countText = `${awardCount} award${awardCount !== 1 ? 's' : ''}`;
+  } else {
+    countText = '0 honors and awards';
+  }
+  
+  // 필터 적용 시 다른 텍스트 표시
+  if (activeFilters.size > 0) {
+    countText = `${count} filtered result${count !== 1 ? 's' : ''}`;
+  }
   
   // awards-grid 내용 결정
   const awardsContent = data.length > 0 
     ? data.map(item => createAwardCard(item)).join('')
-    : '<div class="empty">No awards in this year</div>';
+    : '<div class="empty">No matching honors or awards in this year</div>';
   
   return `
     <div class="year-section">
       <div class="year-header ${isExpanded ? '' : 'collapsed'} ${isCurrentYear ? 'current-year' : 'past-year'}" onclick="toggleYear(this)">
         <span class="year-badge">${year}</span>
         <div class="year-toggle">
-          <span>${count} award${count !== 1 ? 's' : ''}</span>
+          <span>${countText}</span>
           <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
           </svg>
@@ -1138,6 +1288,33 @@ function toggleYear(header) {
     }, 10);
   }
 }
+
+// Filter toggle button
+document.getElementById('toggleFiltersBtn').addEventListener('click', function() {
+  const filterContent = document.getElementById('filterContentArea');
+  const isHidden = filterContent.style.display === 'none' || !filterContent.style.display;
+  
+  filterContent.style.display = isHidden ? 'block' : 'none';
+  this.textContent = isHidden ? 'Collapse' : 'Expand';
+});
+
+// Filter chip click handlers
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', function() {
+    const filterType = this.dataset.filter;
+    
+    if (activeFilters.has(filterType)) {
+      activeFilters.delete(filterType);
+      this.classList.remove('active');
+    } else {
+      activeFilters.add(filterType);
+      this.classList.add('active');
+    }
+    
+    // 페이지 재렌더링
+    initPage();
+  });
+});
 
 // 페이지 로드 시 초기화
 initPage();
