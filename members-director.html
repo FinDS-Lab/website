@@ -1132,57 +1132,7 @@ permalink: /members-director.html
       font-size: 11px;
       color: #6b7280;
     }
-/* Journal Reviewer - 금색 테마 */
-.journal-reviewer {
-  padding: 14px;
-  background: linear-gradient(135deg, rgba(214,177,77,0.05) 0%, rgba(214,177,77,0.08) 100%);
-  border-radius: 10px;
-  border: 1px solid rgba(214,177,77,0.2);
-}
 
-.journal-reviewer-title {
-  font-weight: 800;
-  font-size: 13px;
-  color: var(--gold);
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.journal-reviewer-item {
-  padding: 8px 12px;
-  background: white;
-  border-radius: 6px;
-  border-left: 3px solid var(--gold);
-  margin-top: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.journal-reviewer-item:hover {
-  transform: translateX(2px);
-  box-shadow: 0 2px 8px rgba(214,177,77,0.15);
-}
-
-.journal-name {
-  font-weight: 700;
-  font-size: 13px;
-  color: #111827;
-  margin-bottom: 2px;
-}
-
-.journal-publisher {
-  font-size: 11px;
-  color: #6b7280;
-  font-style: italic;
-  margin-bottom: 2px;
-}
-
-.journal-since {
-  font-size: 11px;
-  color: #6b7280;
-}
     /* Activities Grid */
     .activities-grid {
       display: grid;
@@ -2726,33 +2676,27 @@ permalink: /members-director.html
         </div>
       </div>
       
-<!-- Reviewer Experience -->
-<div class="director-card">
-  <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleReviewerSection()">
-    <span>Reviewer Experience</span>
-    <span id="reviewerToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
-  </div>
-  <div class="card-body" id="reviewerSection" style="display: none;">
-    <div class="journal-reviewer">
-      <div class="journal-reviewer-title">
-        <span>📚</span>
-        <span>Journal Reviewer</span>
+      <!-- Reviewer Experience -->
+      <div class="director-card">
+        <div class="card-head" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;" onclick="toggleReviewerSection()">
+          <span>Reviewer Experience</span>
+          <span id="reviewerToggle" style="font-size: 14px; transition: transform 0.3s;">▶</span>
+        </div>
+        <div class="card-body" id="reviewerSection" style="display: none;">
+          <div class="reviewer-grid" id="reviewerGrid">
+            <!-- Content populated by JavaScript -->
+          </div>
+          <div class="conference-reviewer">
+            <div class="conference-reviewer-title">
+              <span>🎯</span>
+              <span>Conference Reviewer</span>
+            </div>
+            <div class="conference-reviewer-list" id="conferenceReviewerList">
+              <!-- Content populated by JavaScript -->
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="journal-reviewer-list" id="journalReviewerList">
-        <!-- Content populated by JavaScript -->
-      </div>
-    </div>
-    <div class="conference-reviewer" style="margin-top: 16px;">
-      <div class="conference-reviewer-title">
-        <span>🎯</span>
-        <span>Conference Reviewer</span>
-      </div>
-      <div class="conference-reviewer-list" id="conferenceReviewerList">
-        <!-- Content populated by JavaScript -->
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Activities -->
 <div class="director-card">
@@ -3228,13 +3172,14 @@ function populateReviewerExperience() {
     const typeClass = journal.type.toLowerCase().replace(/[^a-z]/g, '');
     const hasUrl = journal.url && journal.url.trim() !== '';
     
-journalHTML += `
-  <div class="journal-reviewer-item" ${hasUrl ? `onclick="window.open('${journal.url}', '_blank')"` : ''}>
-    <div class="journal-name">${journal.name} <span style="font-weight:700; color:var(--gold);">[${journal.type}]</span></div>
-    <div class="journal-publisher">${journal.publisher}</div>
-    <div class="journal-since">Since <b>${journal.since}</b></div>
-  </div>
-`;
+    journalHTML += `
+      <div class="reviewer-item" ${hasUrl ? `onclick="window.open('${journal.url}', '_blank')"` : ''}>
+        <div class="reviewer-type ${typeClass}">${journal.type}</div>
+        <div class="reviewer-name">${journal.name}</div>
+        <div class="reviewer-publisher">${journal.publisher}</div>
+        <div class="reviewer-since">Since <b>${journal.since}</b></div>
+      </div>
+    `;
   });
   journalGrid.innerHTML = journalHTML || '<div style="text-align:center; padding:20px; color:#6b7280;">No reviewer experience data</div>';
   
@@ -4006,19 +3951,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
