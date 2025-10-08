@@ -1,5 +1,4 @@
 {
-
   "2025": [
     {
       "type": "award",
@@ -218,8 +217,8 @@
       ]
     },
     {
-      "type": "scholarship",
-      "icon": "💰",
+      "type": "honor",
+      "icon": "🎓",
       "title": "김영한글로벌리더장학금",
       "event": "김영한글로벌리더장학금",
       "organization": "한국과학기술원 (KAIST)",
@@ -341,8 +340,8 @@
       ]
     },
     {
-      "type": "scholarship",
-      "icon": "💰",
+      "type": "honor",
+      "icon": "🎓",
       "title": "KAIST 인성장학금 (공로 부문)",
       "event": "KAIST 인성장학금 (공로 부문)",
       "organization": "한국과학기술원 (KAIST)",
@@ -627,9 +626,9 @@
         {"name": "최인수", "level": "bs"}
       ]
     },
-            {
-      "type": "scholarship",
-      "icon": "💰",
+    {
+      "type": "honor",
+      "icon": "🎓",
       "title": "국가우수장학금(이공계) 재학중우수자",
       "event": "국가우수장학금(이공계) 재학중우수자",
       "organization": "한국장학재단",
@@ -662,41 +661,41 @@
         {"name": "최인수", "level": "bs"}
       ]
     },
-     {
-  "type": "honor",
-  "icon": "🎓",
-  "title": "성적우수장학금",
-  "event": "2014학년도 2학기 성적우수 장학금",
-  "organization": "경희대학교 공과대학",
-  "date": "Aug 31",
-  "winners": [
-    {"name": "최인수", "level": "bs"}
-  ]
-},
-        {
-  "type": "honor",
-  "icon": "🎓",
-  "title": "성적우수장학금",
-  "event": "2014학년도 1학기 성적우수 장학금",
-  "organization": "경희대학교 공과대학",
-  "date": "Feb 28",
-  "winners": [
-    {"name": "최인수", "level": "bs"}
-  ]
-}
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "성적우수장학금",
+      "event": "2014학년도 2학기 성적우수 장학금",
+      "organization": "경희대학교 공과대학",
+      "date": "Aug 31",
+      "winners": [
+        {"name": "최인수", "level": "bs"}
+      ]
+    },
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "성적우수장학금",
+      "event": "2014학년도 1학기 성적우수 장학금",
+      "organization": "경희대학교 공과대학",
+      "date": "Feb 28",
+      "winners": [
+        {"name": "최인수", "level": "bs"}
+      ]
+    }
   ],
   "2013": [
     {
-  "type": "honor",
-  "icon": "🎓",
-  "title": "성적우수장학금",
-  "event": "2013학년도 2학기 성적우수 장학금",
-  "organization": "경희대학교 공과대학",
-  "date": "Aug 31",
-  "winners": [
-    {"name": "최인수", "level": "bs"}
-  ]
-},
+      "type": "honor",
+      "icon": "🎓",
+      "title": "성적우수장학금",
+      "event": "2013학년도 2학기 성적우수 장학금",
+      "organization": "경희대학교 공과대학",
+      "date": "Aug 31",
+      "winners": [
+        {"name": "최인수", "level": "bs"}
+      ]
+    },
     {
       "type": "award",
       "icon": "🏆",
