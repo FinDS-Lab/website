@@ -21,10 +21,21 @@ title: home
     --cta-w-desktop: 520px;
     --cta-w-tablet: 460px;
     --cta-w-mobile: 320px;
+
+    /* 애니메이션 타이밍 */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.6s;
+  }
+
+  /* GPU 가속 최적화 */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* 단어 단위 줄바꿈 */
-  .keep-words{
+  .keep-words {
     word-break: keep-all;
     overflow-wrap: anywhere;
     -webkit-hyphens: auto;
@@ -45,7 +56,9 @@ title: home
     display: block;
     box-sizing: border-box;
     overflow: hidden;
+    contain: layout style;
   }
+
   @media (max-width: 1024px) {
     .hero-section { 
       padding: 0 var(--pad-tablet); 
@@ -53,6 +66,7 @@ title: home
       margin-top: 2.5rem;
     }
   }
+
   @media (max-width: 540px) {
     .hero-section { 
       padding: 0 var(--pad-mobile); 
@@ -60,12 +74,14 @@ title: home
       margin-top: 2rem;
     }
   }
+
   @media (max-width: 480px) { 
     .hero-section { 
       height: 320px; 
       margin-top: 1.5rem;
     } 
   }
+
   @media (max-width: 380px) { 
     .hero-section { 
       height: 300px; 
@@ -79,16 +95,31 @@ title: home
     background: #000;
     border-radius: 1.5rem;
     position: relative;
+    transform: translateZ(0); /* GPU 가속 */
   }
-  @media (max-width: 768px) { .carousel-container { border-radius: 1rem; } }
 
-  .carousel-wrapper { position:relative; width:100%; height:100%; overflow:hidden; }
+  @media (max-width: 768px) { 
+    .carousel-container { 
+      border-radius: 1rem; 
+    } 
+  }
+
+  .carousel-wrapper { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+    backface-visibility: hidden; /* 깜빡임 방지 */
+  }
+
   .carousel-track {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
     height: 100%;
     will-change: transform;
+    transform: translateX(0);
   }
+
   .carousel-slide {
     min-width: 100%;
     width: 100%;
@@ -98,12 +129,16 @@ title: home
     flex-shrink: 0;
     background: #000;
     overflow: hidden;
+    backface-visibility: hidden;
   }
+
   .carousel-slide img { 
     width: 100%; 
     height: 100%; 
     object-fit: cover; 
     display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
   
   /* 이미지 위에 금색 오버레이 추가 */
@@ -128,18 +163,20 @@ title: home
       rgba(0, 0, 0, 0.6) 30%,
       rgba(0, 0, 0, 0.3) 100%);
     display: flex; 
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center;
+    justify-content: center;
     padding: 40px;
     height: 100%; 
     overflow: hidden;
     z-index: 2;
   }
+
   @media (max-width: 768px) { 
     .carousel-overlay { 
       padding: 30px;
     } 
   }
+
   @media (max-width: 540px) { 
     .carousel-overlay { 
       padding: 20px;
@@ -150,13 +187,24 @@ title: home
     max-width: 600px; 
     color: white; 
     animation: fadeInUp 0.8s ease-out;
-    text-align: center; /* 텍스트 중앙 정렬 */
+    text-align: center;
     width: 100%;
+    transform: translateZ(0); /* GPU 가속 */
   }
-  @keyframes fadeInUp { from { opacity:0; transform: translateY(30px);} to { opacity:1; transform:translateY(0);} }
+
+  @keyframes fadeInUp { 
+    from { 
+      opacity: 0; 
+      transform: translateY(30px);
+    } 
+    to { 
+      opacity: 1; 
+      transform: translateY(0);
+    } 
+  }
 
   /* 태그 배지 - 모바일 텍스트 완벽한 중앙 정렬 */
-  .tag-badge{
+  .tag-badge {
     display: inline-flex;  
     align-items: center;   
     justify-content: center; 
@@ -176,43 +224,42 @@ title: home
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     line-height: 1;  
     min-height: 32px; 
-    position: relative;  /* position relative 추가 */
+    position: relative;
   }
   
-  /* 모바일에서 더 작은 폰트와 균형잡힌 패딩 */
   @media (max-width: 540px) { 
     .tag-badge { 
-      font-size: 11px;  /* 13px → 11px로 감소 */
-      padding: 8px 14px;  /* 상하 패딩 증가 */
+      font-size: 11px;
+      padding: 8px 14px;
       margin-bottom: 14px; 
       min-height: 28px;  
       letter-spacing: 0.3px;  
-      font-weight: 800;  /* 폰트 두께 약간 감소 */
+      font-weight: 800;
     } 
   }
   
   @media (max-width: 480px) { 
     .tag-badge { 
-      font-size: 10px;  /* 12px → 10px로 감소 */
-      padding: 7px 12px;  /* 균형잡힌 패딩 */
+      font-size: 10px;
+      padding: 7px 12px;
       margin-bottom: 12px; 
       min-height: 26px;  
-      letter-spacing: 0.2px;  /* 자간 감소 */
+      letter-spacing: 0.2px;
     } 
   }
   
   @media (max-width: 380px) { 
     .tag-badge { 
-      font-size: 9px;  /* 11px → 9px로 감소 */
-      padding: 6px 10px;  /* 상하 패딩 유지 */
-      min-height: 22px;  /* 최소 높이 감소 */
+      font-size: 9px;
+      padding: 6px 10px;
+      min-height: 22px;
       letter-spacing: 0.1px;  
     } 
   }
 
   /* 히어로 타이틀 - 폰트 크기 감소 및 가독성 개선 */
-  .hero-title{ 
-    font-size: clamp(20px, 4.5vw, 38px); /* 44px → 38px로 감소 */
+  .hero-title { 
+    font-size: clamp(20px, 4.5vw, 38px);
     font-weight: 900; 
     line-height: 1.25; 
     margin-bottom: 20px;
@@ -221,34 +268,52 @@ title: home
     color: #fff;
     letter-spacing: -0.02em;
   }
-  @media (max-width:540px){ 
-    .hero-title{ 
-      font-size: 22px; /* 24px → 22px로 감소 */
-      margin-bottom:18px; 
-    } 
-  }
-  @media (max-width:380px){ 
-    .hero-title{ 
-      font-size:20px; /* 22px → 20px로 감소 */
-      margin-bottom:16px; 
+
+  @media (max-width: 540px) { 
+    .hero-title { 
+      font-size: 22px;
+      margin-bottom: 18px; 
     } 
   }
 
-  .hero-buttons{
+  @media (max-width: 380px) { 
+    .hero-title { 
+      font-size: 20px;
+      margin-bottom: 16px; 
+    } 
+  }
+
+  .hero-buttons {
     display: grid; 
     grid-template-columns: 1fr 1fr; 
     gap: 12px;
     width: 100%; 
     max-width: var(--cta-w-desktop); 
-    margin: 0 auto; /* 버튼 그룹도 중앙 정렬 */
+    margin: 0 auto;
     justify-items: stretch;
   }
-  @media (max-width:1024px){ .hero-buttons{ max-width: var(--cta-w-tablet); } }
-  @media (max-width:540px){ .hero-buttons{ max-width: var(--cta-w-mobile); gap: 10px; } }
-  @media (max-width:480px){ .hero-buttons{ gap: 8px; } }
+
+  @media (max-width: 1024px) { 
+    .hero-buttons { 
+      max-width: var(--cta-w-tablet); 
+    } 
+  }
+
+  @media (max-width: 540px) { 
+    .hero-buttons { 
+      max-width: var(--cta-w-mobile); 
+      gap: 10px; 
+    } 
+  }
+
+  @media (max-width: 480px) { 
+    .hero-buttons { 
+      gap: 8px; 
+    } 
+  }
 
   /* 버튼 스타일 - 투명도 개선 */
-  .btn-hero{
+  .btn-hero {
     min-height: 44px; 
     padding: 12px 18px; 
     border-radius: 12px; 
@@ -256,7 +321,7 @@ title: home
     font-size: 14px;
     line-height: 1.1; 
     text-decoration: none; 
-    transition: all .4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
     display: inline-block; 
     width: 100%;
     text-align: center; 
@@ -264,10 +329,31 @@ title: home
     overflow: hidden; 
     text-overflow: ellipsis;
     position: relative;
+    transform: translateZ(0); /* GPU 가속 */
+    -webkit-tap-highlight-color: transparent;
   }
-  @media (max-width:540px){ .btn-hero{ font-size: clamp(11px, 3.4vw, 13px); padding: 11px 14px; letter-spacing: .1px; } }
-  @media (max-width:380px){ .btn-hero{ font-size: clamp(10.5px, 3.6vw, 12px); padding: 10px 12px; min-height: 40px; } }
-  @media (max-width:340px){ .btn-hero{ font-size: clamp(10px, 3.8vw, 11.5px); } }
+
+  @media (max-width: 540px) { 
+    .btn-hero { 
+      font-size: clamp(11px, 3.4vw, 13px); 
+      padding: 11px 14px; 
+      letter-spacing: 0.1px; 
+    } 
+  }
+
+  @media (max-width: 380px) { 
+    .btn-hero { 
+      font-size: clamp(10.5px, 3.6vw, 12px); 
+      padding: 10px 12px; 
+      min-height: 40px; 
+    } 
+  }
+
+  @media (max-width: 340px) { 
+    .btn-hero { 
+      font-size: clamp(10px, 3.8vw, 11.5px); 
+    } 
+  }
 
   /* Primary 버튼 - 투명도 감소, 더 진한 색상 */
   .btn-hero.primary {
@@ -282,7 +368,7 @@ title: home
     box-shadow: 
       inset 0 1px 0 rgba(214, 177, 77, 0.3),
       0 4px 12px rgba(214, 177, 77, 0.25),
-      0 1px 3px rgba(0,0,0,0.2);
+      0 1px 3px rgba(0, 0, 0, 0.2);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
   
@@ -303,30 +389,32 @@ title: home
   }
 
   /* 호버 효과 - 더 강한 효과 */
-  .btn-hero.primary:hover {
-    background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.5) 0%,
-      rgba(214, 177, 77, 0.3) 50%, 
-      rgba(214, 177, 77, 0.2) 100%);
-    border-color: rgba(214, 177, 77, 0.6);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      inset 0 1px 0 rgba(214, 177, 77, 0.4),
-      0 8px 20px rgba(214, 177, 77, 0.3),
-      0 2px 4px rgba(0,0,0,0.2);
-  }
+  @media (hover: hover) {
+    .btn-hero.primary:hover {
+      background: radial-gradient(ellipse at center, 
+        rgba(214, 177, 77, 0.5) 0%,
+        rgba(214, 177, 77, 0.3) 50%, 
+        rgba(214, 177, 77, 0.2) 100%);
+      border-color: rgba(214, 177, 77, 0.6);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        inset 0 1px 0 rgba(214, 177, 77, 0.4),
+        0 8px 20px rgba(214, 177, 77, 0.3),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-  .btn-hero.secondary:hover {
-    background: radial-gradient(ellipse at center, 
-      rgba(214, 177, 77, 0.35) 0%, 
-      rgba(214, 177, 77, 0.2) 50%, 
-      rgba(214, 177, 77, 0.12) 100%);
-    border-color: rgba(214, 177, 77, 0.55);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      inset 0 1px 0 rgba(214, 177, 77, 0.3),
-      0 6px 16px rgba(214, 177, 77, 0.25),
-      0 2px 4px rgba(0,0,0,0.15);
+    .btn-hero.secondary:hover {
+      background: radial-gradient(ellipse at center, 
+        rgba(214, 177, 77, 0.35) 0%, 
+        rgba(214, 177, 77, 0.2) 50%, 
+        rgba(214, 177, 77, 0.12) 100%);
+      border-color: rgba(214, 177, 77, 0.55);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        inset 0 1px 0 rgba(214, 177, 77, 0.3),
+        0 6px 16px rgba(214, 177, 77, 0.25),
+        0 2px 4px rgba(0, 0, 0, 0.15);
+    }
   }
 
   /* 클릭 효과 */
@@ -334,36 +422,58 @@ title: home
     transform: translateY(0) scale(0.98);
   }
 
-  @media (hover:none){
-    .btn-hero.primary:active, .btn-hero.secondary:active{
+  @media (hover: none) {
+    .btn-hero.primary:active, 
+    .btn-hero.secondary:active {
       background: radial-gradient(ellipse at center, 
-        rgba(255,255,255,0.3) 0%, 
-        rgba(255,255,255,0.15) 100%);
+        rgba(255, 255, 255, 0.3) 0%, 
+        rgba(255, 255, 255, 0.15) 100%);
     }
   }
 
-  .carousel-dots{
-    position:absolute; bottom:20px; left:50%; transform:translateX(-50%);
-    display:flex; gap:8px; z-index:10; padding:8px;
+  .carousel-dots {
+    position: absolute; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    display: flex; 
+    gap: 8px; 
+    z-index: 10; 
+    padding: 8px;
   }
-  @media (max-width:480px){ .carousel-dots{ bottom:14px; } }
 
-  .dot{ 
-    width:8px; 
-    height:8px; 
-    border-radius:50%; 
-    background:rgba(255,255,255,.4); 
-    border:none; 
-    cursor:pointer; 
-    transition:all .3s; 
-    padding:0; 
-    position:relative; 
+  @media (max-width: 480px) { 
+    .carousel-dots { 
+      bottom: 14px; 
+    } 
   }
-  .dot::before{ content:''; position:absolute; top:-8px; left:-8px; right:-8px; bottom:-8px; }
-  .dot.active{ 
-    width:24px; 
-    border-radius:4px; 
-    background:rgba(255,255,255,0.9); 
+
+  .dot { 
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50%; 
+    background: rgba(255, 255, 255, 0.4); 
+    border: none; 
+    cursor: pointer; 
+    transition: all var(--transition-normal); 
+    padding: 0; 
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .dot::before { 
+    content: ''; 
+    position: absolute; 
+    top: -8px; 
+    left: -8px; 
+    right: -8px; 
+    bottom: -8px; 
+  }
+
+  .dot.active { 
+    width: 24px; 
+    border-radius: 4px; 
+    background: rgba(255, 255, 255, 0.9); 
   }
 
   /* =========================
@@ -375,12 +485,14 @@ title: home
     padding: 0 var(--pad-desktop);
     box-sizing: border-box;
   }
+
   @media (max-width: 768px) {
     .intro-banner {
       padding: 0 var(--pad-tablet);
       margin: 40px auto 0;
     }
   }
+
   @media (max-width: 480px) {
     .intro-banner {
       padding: 0 var(--pad-mobile);
@@ -400,10 +512,11 @@ title: home
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     padding: 48px 40px;
+    transform: translateZ(0); /* GPU 가속 */
   }
 
   @keyframes gradientShift {
@@ -417,6 +530,7 @@ title: home
       padding: 36px 28px;
     }
   }
+
   @media (max-width: 480px) {
     .intro-card {
       padding: 28px 20px;
@@ -453,8 +567,8 @@ title: home
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px rgba(0,0,0,.1);
-    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
   }
 
   @media (max-width: 768px) {
@@ -486,7 +600,7 @@ title: home
   .intro-subtitle {
     font-size: 14px;
     font-weight: 700;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.5px;
     margin-bottom: 8px;
     text-transform: uppercase;
@@ -502,7 +616,7 @@ title: home
     font-size: 32px;
     font-weight: 900;
     color: #fff;
-    text-shadow: 0 2px 4px rgba(0,0,0,.15);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     letter-spacing: -0.02em;
     margin: 0 0 12px 0;
     line-height: 1.2;
@@ -527,7 +641,7 @@ title: home
 
   .intro-lab-full {
     font-size: 18px;
-    color: rgba(255,255,255,0.95);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 700;
     margin-top: 4px;
     display: block;
@@ -543,7 +657,7 @@ title: home
     margin-top: 16px;
     font-size: 16px;
     line-height: 1.6;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
   }
 
@@ -557,88 +671,261 @@ title: home
   /* =========================
      UPDATES Section
      ========================= */
-  .updates-section{
+  .updates-section {
     max-width: var(--container-max);
     margin: 40px auto 80px;
     padding: 0 var(--pad-desktop);
-    display:grid; grid-template-columns:repeat(2,1fr); gap:32px;
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 32px;
     box-sizing: border-box;
   }
-  @media (max-width:768px){
-    .updates-section{ grid-template-columns:1fr; gap:24px; margin: 30px auto 60px; padding:0 var(--pad-tablet); }
+
+  @media (max-width: 768px) {
+    .updates-section { 
+      grid-template-columns: 1fr; 
+      gap: 24px; 
+      margin: 30px auto 60px; 
+      padding: 0 var(--pad-tablet); 
+    }
   }
-  @media (max-width:480px){ .updates-section{ padding:0 var(--pad-mobile); gap:20px; margin: 20px auto 40px; } }
 
-  .update-card{ background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 10px 40px rgba(0,0,0,.05); transition:.3s; }
-  @media (max-width:480px){ .update-card{ border-radius:16px; } }
-  .update-card:hover{ transform:translateY(-5px); box-shadow:0 20px 60px rgba(0,0,0,.1); }
-  @media (hover:none){ .update-card:hover{ transform:none; } }
-
-  .update-header{
-    padding:24px 28px; background:linear-gradient(135deg,#f8f9fa 0%,#fff 100%);
-    border-bottom:2px solid #f3f4f6; display:flex; justify-content:space-between; align-items:center;
-  }
-  @media (max-width:480px){ .update-header{ padding:18px 20px; } }
-
-  .update-title{ font-size:20px; font-weight:900; color:#111827; display:flex; align-items:center; gap:10px; }
-  @media (max-width:480px){ .update-title{ font-size:18px; } }
-
-  .update-icon{
-    width:32px; height:32px; background:linear-gradient(135deg,var(--gold) 0%, var(--gold-light) 100%);
-    border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:18px;
-  }
-  @media (max-width:480px){ .update-icon{ width:28px; height:28px; font-size:16px; } }
-
-  /* More 버튼 색상 */
-  .update-more{
-    color:var(--gold); font-weight:700; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:4px;
-    transition:gap .2s; padding:4px 8px; margin:-4px -8px;
-  }
-  .update-more:hover{ gap:8px; }
-
-  .update-list{ padding:8px; }
-  @media (max-width:480px){ .update-list{ padding:4px; } }
-
-  .update-item{
-    padding:20px; border-radius:12px; transition:.2s; cursor:default; position:relative; overflow:hidden; -webkit-tap-highlight-color:transparent;
-  }
-  @media (max-width:480px){ .update-item{ padding:16px; border-radius:10px; } }
-  .update-item::before{
-    content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:4px; height:0; background:var(--gold); transition:height .3s;
-  }
-  .update-item:hover{ background:#fef9f3; }
-  .update-item:hover::before{ height:60%; }
-  @media (hover:none){ .update-item:active{ background:#fef9f3; } }
-
-  /* 날짜 표시 스타일 */
-  .update-date{ 
-    font-size:14px; 
-    font-weight:700; 
-    color:var(--gold); 
-    margin-bottom:8px; 
-  }
-  @media (max-width:480px){ 
-    .update-date{ 
-      font-size:13px; 
+  @media (max-width: 480px) { 
+    .updates-section { 
+      padding: 0 var(--pad-mobile); 
+      gap: 20px; 
+      margin: 20px auto 40px; 
     } 
   }
 
-  .update-item-title{
-    font-size:15px; font-weight:800; color:#1f2937; line-height:1.5; display:block; cursor:default;
-    overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
-    word-break: keep-all; overflow-wrap: anywhere; hyphens: auto;
+  .update-card { 
+    background: #fff; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); 
+    transition: var(--transition-normal);
+    transform: translateZ(0); /* GPU 가속 */
   }
-  @media (max-width:480px){ .update-item-title{ font-size:14px; line-height:1.4; } }
 
-  .update-meta{ margin-top:6px; font-size:12px; color:#9ca3af; display:flex; align-items:center; gap:12px; }
-  .meta-tag{ display:inline-flex; align-items:center; gap:4px; padding:2px 8px; background:rgba(214,177,77,.1); border-radius:999px; font-weight:600; }
-  @media (max-width:480px){ .meta-tag{ font-size:11px; padding:2px 6px; } }
+  @media (max-width: 480px) { 
+    .update-card { 
+      border-radius: 16px; 
+    } 
+  }
 
-  .empty-message{ padding:40px; text-align:center; color:#9ca3af; font-size:14px; }
-  @media (max-width:480px){ .empty-message{ padding:30px 20px; font-size:13px; } }
+  @media (hover: hover) {
+    .update-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1); 
+    }
+  }
 
-  @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .update-header {
+    padding: 24px 28px; 
+    background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+    border-bottom: 2px solid #f3f4f6; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+
+  @media (max-width: 480px) { 
+    .update-header { 
+      padding: 18px 20px; 
+    } 
+  }
+
+  .update-title { 
+    font-size: 20px; 
+    font-weight: 900; 
+    color: #111827; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+  }
+
+  @media (max-width: 480px) { 
+    .update-title { 
+      font-size: 18px; 
+    } 
+  }
+
+  .update-icon {
+    width: 32px; 
+    height: 32px; 
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    border-radius: 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) { 
+    .update-icon { 
+      width: 28px; 
+      height: 28px; 
+      font-size: 16px; 
+    } 
+  }
+
+  /* More 버튼 색상 */
+  .update-more {
+    color: var(--gold); 
+    font-weight: 700; 
+    font-size: 14px; 
+    text-decoration: none; 
+    display: flex; 
+    align-items: center; 
+    gap: 4px;
+    transition: gap var(--transition-fast); 
+    padding: 4px 8px; 
+    margin: -4px -8px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .update-more:hover { 
+    gap: 8px; 
+  }
+
+  .update-list { 
+    padding: 8px; 
+  }
+
+  @media (max-width: 480px) { 
+    .update-list { 
+      padding: 4px; 
+    } 
+  }
+
+  .update-item {
+    padding: 20px; 
+    border-radius: 12px; 
+    transition: var(--transition-fast); 
+    cursor: default; 
+    position: relative; 
+    overflow: hidden; 
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (max-width: 480px) { 
+    .update-item { 
+      padding: 16px; 
+      border-radius: 10px; 
+    } 
+  }
+
+  .update-item::before {
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 4px; 
+    height: 0; 
+    background: var(--gold); 
+    transition: height var(--transition-normal);
+  }
+
+  @media (hover: hover) {
+    .update-item:hover { 
+      background: #fef9f3; 
+    }
+
+    .update-item:hover::before { 
+      height: 60%; 
+    }
+  }
+
+  @media (hover: none) { 
+    .update-item:active { 
+      background: #fef9f3; 
+    } 
+  }
+
+  /* 날짜 표시 스타일 */
+  .update-date { 
+    font-size: 14px; 
+    font-weight: 700; 
+    color: var(--gold); 
+    margin-bottom: 8px; 
+  }
+
+  @media (max-width: 480px) { 
+    .update-date { 
+      font-size: 13px; 
+    } 
+  }
+
+  .update-item-title {
+    font-size: 15px; 
+    font-weight: 800; 
+    color: #1f2937; 
+    line-height: 1.5; 
+    display: block; 
+    cursor: default;
+    overflow: hidden; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    word-break: keep-all; 
+    overflow-wrap: anywhere; 
+    hyphens: auto;
+  }
+
+  @media (max-width: 480px) { 
+    .update-item-title { 
+      font-size: 14px; 
+      line-height: 1.4; 
+    } 
+  }
+
+  .update-meta { 
+    margin-top: 6px; 
+    font-size: 12px; 
+    color: #9ca3af; 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+  }
+
+  .meta-tag { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 4px; 
+    padding: 2px 8px; 
+    background: rgba(214, 177, 77, 0.1); 
+    border-radius: 999px; 
+    font-weight: 600; 
+  }
+
+  @media (max-width: 480px) { 
+    .meta-tag { 
+      font-size: 11px; 
+      padding: 2px 6px; 
+    } 
+  }
+
+  .empty-message { 
+    padding: 40px; 
+    text-align: center; 
+    color: #9ca3af; 
+    font-size: 14px; 
+  }
+
+  @media (max-width: 480px) { 
+    .empty-message { 
+      padding: 30px 20px; 
+      font-size: 13px; 
+    } 
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { 
+      animation-duration: 0.01ms !important; 
+      animation-iteration-count: 1 !important; 
+      transition-duration: 0.01ms !important; 
+    }
   }
 </style>
 
@@ -647,9 +934,12 @@ title: home
   <div class="carousel-container">
     <div class="carousel-wrapper">
       <div class="carousel-track" id="carouselTrack">
-        <!-- Slide 1 -->
+        <!-- Slide 1 - eager loading for first slide -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-1.jpg' | relative_url }}" alt="FINDS Lab Hero 1" loading="eager">
+          <img src="{{ '/assets/img/hero/slide-1.jpg' | relative_url }}" 
+               alt="FINDS Lab Hero 1" 
+               loading="eager"
+               fetchpriority="high">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab</span>
@@ -664,9 +954,11 @@ title: home
           </div>
         </div>
 
-        <!-- Slide 2 -->
+        <!-- Slide 2 - eager loading for carousel slides -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-2.jpg' | relative_url }}" alt="FINDS Lab Hero 2" loading="lazy">
+          <img src="{{ '/assets/img/hero/slide-2.jpg' | relative_url }}" 
+               alt="FINDS Lab Hero 2" 
+               loading="eager">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab</span>
@@ -679,9 +971,11 @@ title: home
           </div>
         </div>
 
-        <!-- Slide 3 -->
+        <!-- Slide 3 - eager loading for carousel slides -->
         <div class="carousel-slide">
-          <img src="{{ '/assets/img/hero/slide-3.jpg' | relative_url }}" alt="FINDS Lab Hero 3" loading="lazy">
+          <img src="{{ '/assets/img/hero/slide-3.jpg' | relative_url }}" 
+               alt="FINDS Lab Hero 3" 
+               loading="eager">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
               <span class="tag-badge">FINDS Lab</span>
@@ -812,7 +1106,7 @@ title: home
 </section>
 
 <script>
-  // Carousel functionality with improved error handling
+  // Optimized Carousel functionality with improved performance
   (function() {
     'use strict';
     
@@ -830,7 +1124,9 @@ title: home
     let isTransitioning = false;
     let touchStartX = 0;
     let touchEndX = 0;
+    let isInitialized = false;
 
+    // Performance optimized slide sizing
     function setSlideWidths() {
       try {
         const container = track.parentElement;
@@ -839,29 +1135,42 @@ title: home
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
 
-        slides.forEach(slide => {
-          slide.style.width = containerWidth + 'px';
-          slide.style.minWidth = containerWidth + 'px';
-          slide.style.maxWidth = containerWidth + 'px';
-          slide.style.height = containerHeight + 'px';
-          slide.style.minHeight = containerHeight + 'px';
-          slide.style.maxHeight = containerHeight + 'px';
+        // Use requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+          slides.forEach(slide => {
+            slide.style.width = containerWidth + 'px';
+            slide.style.minWidth = containerWidth + 'px';
+            slide.style.maxWidth = containerWidth + 'px';
+            slide.style.height = containerHeight + 'px';
+            slide.style.minHeight = containerHeight + 'px';
+            slide.style.maxHeight = containerHeight + 'px';
+          });
         });
       } catch (error) {
         console.error('Error setting slide widths:', error);
       }
     }
 
+    // Enhanced image preloading with promises
     function preloadImages() {
       const images = document.querySelectorAll('.carousel-slide img');
-      images.forEach((img) => {
-        if (img.complete) return;
-        const tempImg = new Image();
-        tempImg.src = img.src;
-        tempImg.onerror = function() {
-          console.warn('Failed to preload image:', img.src);
-        };
+      const imagePromises = Array.from(images).map(img => {
+        return new Promise((resolve) => {
+          if (img.complete) {
+            resolve();
+          } else {
+            const tempImg = new Image();
+            tempImg.onload = resolve;
+            tempImg.onerror = () => {
+              console.warn('Failed to preload image:', img.src);
+              resolve(); // Resolve even on error to not block initialization
+            };
+            tempImg.src = img.src;
+          }
+        });
       });
+      
+      return Promise.all(imagePromises);
     }
 
     function goToSlide(index) {
@@ -869,17 +1178,22 @@ title: home
       isTransitioning = true;
       currentIndex = index;
       
+      // Use transform3d for better GPU acceleration
       if (track) {
-        track.style.transform = `translateX(${-(index * 100)}%)`;
+        track.style.transform = `translate3d(${-(index * 100)}%, 0, 0)`;
       }
       
+      // Update dots
       dots.forEach((dot, i) => {
         if (dot) {
           dot.classList.toggle('active', i === index);
         }
       });
       
-      setTimeout(() => { isTransitioning = false; }, 600);
+      // Reset transition flag after animation completes
+      setTimeout(() => { 
+        isTransitioning = false; 
+      }, 600);
     }
 
     function nextSlide() { 
@@ -906,6 +1220,7 @@ title: home
       }
     }
 
+    // Touch event handlers
     function handleTouchStart(e) {
       if (e.changedTouches && e.changedTouches[0]) {
         touchStartX = e.changedTouches[0].screenX;
@@ -933,19 +1248,43 @@ title: home
       }
     }
 
-    // Initialize
-    setSlideWidths();
-    preloadImages();
+    // Optimized resize handler with debounce
+    const handleResize = (function() {
+      let resizeTimeout;
+      return function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          setSlideWidths();
+          goToSlide(currentIndex);
+        }, 200);
+      };
+    })();
 
-    // Handle resize with debounce
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
+    // Initialize carousel
+    async function initCarousel() {
+      if (isInitialized) return;
+      
+      try {
+        // Set initial widths
         setSlideWidths();
-        goToSlide(currentIndex);
-      }, 200);
-    });
+        
+        // Preload all images before starting
+        await preloadImages();
+        
+        // Go to first slide
+        goToSlide(0);
+        
+        // Start autoplay
+        startAutoplay();
+        
+        isInitialized = true;
+      } catch (error) {
+        console.error('Error initializing carousel:', error);
+      }
+    }
+
+    // Event listeners
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // Dot navigation
     dots.forEach((dot, index) => {
@@ -958,30 +1297,17 @@ title: home
       }
     });
 
-    // Touch events with error handling
+    // Touch events for mobile swipe
     if (track) {
       track.addEventListener('touchstart', handleTouchStart, { passive: true });
       track.addEventListener('touchend', handleTouchEnd, { passive: true });
     }
 
-    // Initialize on load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => {
-        setSlideWidths();
-        goToSlide(0);
-        startAutoplay();
-      });
-    } else {
-      setSlideWidths();
-      goToSlide(0);
-      startAutoplay();
-    }
-
-    // Pause when tab is not visible
+    // Visibility change handling for better performance
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
         stopAutoplay();
-      } else {
+      } else if (isInitialized) {
         startAutoplay();
       }
     });
@@ -990,6 +1316,27 @@ title: home
     if (window.matchMedia('(hover: hover)').matches && track) {
       track.addEventListener('mouseenter', stopAutoplay);
       track.addEventListener('mouseleave', startAutoplay);
+    }
+
+    // Initialize based on document state
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCarousel);
+    } else {
+      initCarousel();
+    }
+
+    // Intersection Observer for lazy initialization
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isInitialized) {
+            initCarousel();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(track.parentElement);
     }
   })();
 </script>
