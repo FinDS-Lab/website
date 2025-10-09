@@ -652,7 +652,7 @@ title: home
           <img src="{{ '/assets/img/hero/slide-1.jpg' | relative_url }}" alt="FINDS Lab Hero 1" loading="eager">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
-              <span class="tag-badge">FINDS Lab.</span>
+              <span class="tag-badge">FINDS Lab</span>
               <h1 class="hero-title keep-words">
                 Towards <span style="white-space: nowrap;">Data-Illuminated</span><br>Financial Innovation
               </h1>
@@ -669,7 +669,7 @@ title: home
           <img src="{{ '/assets/img/hero/slide-2.jpg' | relative_url }}" alt="FINDS Lab Hero 2" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
-              <span class="tag-badge">FINDS Lab.</span>
+              <span class="tag-badge">FINDS Lab</span>
               <h1 class="hero-title keep-words">Accomplishments</h1>
               <div class="hero-buttons">
                 <a href="{{ '/publications.html' | relative_url }}" class="btn-hero primary">Publications</a>
@@ -684,7 +684,7 @@ title: home
           <img src="{{ '/assets/img/hero/slide-3.jpg' | relative_url }}" alt="FINDS Lab Hero 3" loading="lazy">
           <div class="carousel-overlay">
             <div class="carousel-content keep-words">
-              <span class="tag-badge">FINDS Lab.</span>
+              <span class="tag-badge">FINDS Lab</span>
               <h1 class="hero-title keep-words">Updates</h1>
               <div class="hero-buttons">
                 <a href="{{ '/archives-notice.html' | relative_url }}" class="btn-hero primary">Notice</a>
@@ -717,7 +717,7 @@ title: home
       <div class="intro-text-content">
         <div class="intro-subtitle">Dongduk Women's University</div>
         <h2 class="intro-title">
-          <span class="intro-lab-name">FINDS Lab.</span>
+          <span class="intro-lab-name">FINDS Lab</span>
           <span class="intro-lab-full">
             <b>Fin</b>ancial <b>D</b>ata Intelligence & <b>S</b>olutions Laboratory
           </span>
