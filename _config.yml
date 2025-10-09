@@ -1,14 +1,12 @@
 title: "FINDS Lab"
 description: "Financial Data Intelligence & Solutions Lab."
-
 # GitHub Pages 기본 도메인
 url: "https://finds-lab.github.io"
-
 # 프로젝트 페이지라서 저장소명 필요
 baseurl: "/website"
-
 # (선택) 테마 미사용 시 주석 처리 유지
 # theme: minima
+timezone: Asia/Seoul  # 한국 시간대 (뉴스/공지 날짜 표시 위해 추가)
 
 # 컬렉션 설정
 collections:
@@ -22,8 +20,7 @@ defaults:
       path: ""
       type: news
     values:
-      layout: news_post   # 개별 뉴스 페이지 기본 레이아웃
-
+      layout: news_post # 개별 뉴스 페이지 기본 레이아웃
   - scope:
       path: "assets/docs"
     values:
@@ -36,17 +33,37 @@ include:
 # --- Open Graph / SEO (전역) ---
 # 사이트 전역에서 사용할 기본 OG 이미지 (페이지가 별도 지정 안 했을 때 사용)
 og_image: "/assets/img/thumbnail/findslab-thumbnail.png"
-
 # jekyll-seo-tag 플러그인을 쓴다면 image 키도 인식됩니다 (선택)
 image: "/assets/img/thumbnail/findslab-thumbnail.png"
-
 # (선택) Twitter 계정
 # twitter:
-#   username: finds_lab
-
+# username: finds_lab
 # 정적 자산/썸네일 캐시 버전(바꿀 때만 값 갱신)
 asset_version: "20250919"
 
-# (선택) SEO 플러그인 사용 시 주석 해제
-# plugins:
-#   - jekyll-seo-tag
+# 최적화 설정 (HTML 압축)
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  ignore:
+    envs: [development]  # 개발 환경에서는 압축 안 함
+  blanklines: false
+  profile: false
+  startings: []
+
+# CSS minify (Sass 사용 시)
+sass:
+  style: compressed  # CSS를 minified 형태로 출력
+
+# 빌드 설정 (필요 시 추가)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# (선택) SEO 플러그인 사용 시 주석 해제 (GitHub Pages 지원 플러그인만)
+plugins:
+  - jekyll-seo-tag  # SEO/Open Graph 강화
+  - jekyll-sitemap  # 사이트맵 생성으로 로딩/SEO 도움
