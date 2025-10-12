@@ -732,8 +732,17 @@ permalink: /publications.html
   color: #fff;
 }
 
+.year-head.current-year .year-title-container {
+  color: #fff;
+}
+
 .year-head.current-year .year-title {
   color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.year-head.current-year .year-count-text {
+  color: rgba(255,255,255,0.95);
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
@@ -746,11 +755,24 @@ permalink: /publications.html
 .year-head.current-year .year-toggle:hover {
   background: rgba(255,255,255,0.3);
 }
+
+.year-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
  
  .year-title {
    font-size: 18px;
    font-weight: 900;
    color: #111827;
+ }
+
+ .year-count-text {
+   font-size: 12px;
+   font-weight: 600;
+   color: #6b7280;
+   line-height: 1.3;
  }
 
  .year-toggle {
@@ -1266,6 +1288,8 @@ permalink: /publications.html
    .badge-pub { height: 22px; padding: 0 6px; font-size: 9px; }
    .award-trophy { font-size: 16px; }
    .awards-container { margin-left: 0; }
+   
+   .year-count-text { font-size: 11px; }
  }
 
  @media (max-width: 380px) {
@@ -1282,6 +1306,8 @@ permalink: /publications.html
    .authorship-ko { font-size: 10px; }
    .award-trophy { font-size: 14px; }
    .indexing-badge { font-size: 9px; padding: .2rem .4rem; }
+   
+   .year-count-text { font-size: 10px; }
  }
 </style>
 
@@ -1558,6 +1584,39 @@ function animateNumber(elementId, finalValue) {
   }
   
   requestAnimationFrame(tick);
+}
+
+/* ===== Count publications by type for a specific year ===== */
+function countPublicationsByYear(pubs, year) {
+  let journalCount = 0;
+  let conferenceCount = 0;
+  let bookCount = 0;
+  let reportCount = 0;
+
+  pubs.filter(p => p.year === year).forEach(pub => {
+    const types = arr(pub.type);
+    const indexing = arr(pub.indexing_group);
+    
+    if (types.includes('journal') || 
+        indexing.some(ig => /SCIE|SSCI|A&HCI|ESCI|Scopus|KCI|Other International|Other Domestic|Preprint/i.test(String(ig)))) {
+      journalCount++;
+    }
+    
+    if (types.includes('conference') || 
+        indexing.some(ig => /Conference/i.test(String(ig)))) {
+      conferenceCount++;
+    }
+    
+    if (types.includes('book')) {
+      bookCount++;
+    }
+    
+    if (types.includes('report')) {
+      reportCount++;
+    }
+  });
+
+  return { journalCount, conferenceCount, bookCount, reportCount };
 }
 
 /* ===== Filters ===== */
@@ -1882,10 +1941,22 @@ function render() {
       const shouldCollapse = hasActiveFilters ? false : (y !== mostRecentYear);
       const isCurrentYear = y === currentYear;
       
+      // Calculate counts for this year
+      const counts = countPublicationsByYear(filtered, y);
+      const countParts = [];
+      if (counts.journalCount > 0) countParts.push(`${counts.journalCount} Journal${counts.journalCount > 1 ? 's' : ''}`);
+      if (counts.conferenceCount > 0) countParts.push(`${counts.conferenceCount} Conference${counts.conferenceCount > 1 ? 's' : ''}`);
+      if (counts.bookCount > 0) countParts.push(`${counts.bookCount} Book${counts.bookCount > 1 ? 's' : ''}`);
+      if (counts.reportCount > 0) countParts.push(`${counts.reportCount} Report${counts.reportCount > 1 ? 's' : ''}`);
+      const countText = countParts.join(' · ');
+      
       return `
         <div class="year-section">
           <div class="year-head ${isCurrentYear ? 'current-year' : ''}">
-            <h2 class="year-title">${y}</h2>
+            <div class="year-title-container">
+              <h2 class="year-title">${y}</h2>
+              <div class="year-count-text">${countText}</div>
+            </div>
             <button class="year-toggle" data-year="${y}">${shouldCollapse ? 'Expand' : 'Collapse'}</button>
           </div>
           <div class="year-content" id="year-${y}" ${shouldCollapse ? 'style="display: none;"' : ''}>
