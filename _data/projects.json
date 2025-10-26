@@ -1,4 +1,18 @@
 [
+    {
+    "titleEn": "6th Advancement of the ARETE Competency Framework: Deriving Career Fields, Major Competencies, and Curriculum Structure for Newly Established Majors",
+    "titleKo": "ARETE 역량체계 6차 고도화 (신설전공 진로분야, 전공역량, 교육과정 체계 도출)",
+    "period": "2025-10-16 – 2025-12-31",
+    "fundingAgency": "Dongduk Women's University",
+    "fundingAgencyKo": "동덕여자대학교",
+    "amount": "₩1,000,000",
+    "type": "government",
+    "roles": {
+      "principalInvestigator": "원지성",
+      "leadResearcher": "원지성, 최인수",
+      "researchers": ["최인수"]
+    }
+  },
   {
     "titleEn": "Portfolio Risk Assessment and Investment Transparency with Explainable AI",
     "titleKo": "설명 가능한 인공지능 기법을 활용한 투자 성향 결정 요인 분석",
