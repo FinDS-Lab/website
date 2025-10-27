@@ -6,7 +6,7 @@
     "fundingAgency": "Dongduk Women's University",
     "fundingAgencyKo": "동덕여자대학교",
     "amount": "₩1,000,000",
-    "type": "government",
+    "type": "institution",
     "roles": {
       "principalInvestigator": "원지성",
       "leadResearcher": "원지성, 최인수",
