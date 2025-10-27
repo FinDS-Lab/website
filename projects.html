@@ -13,6 +13,7 @@ permalink: /projects.html
       --government-gold: rgb(214, 177, 77);
       --industry-red: rgb(172, 14, 14);
       --academic-black: #111827;
+      --institution-purple: rgb(123, 31, 162);
       --ongoing-black: #111827;
       --completed-gray: #9ca3af;
     }
@@ -335,6 +336,10 @@ function generateDiamondNetwork() {
       background: linear-gradient(135deg, #111827, #374151);
     }
     
+    .stat-card.institution-stat::before {
+      background: linear-gradient(135deg, rgb(123, 31, 162), rgb(156, 39, 176));
+    }
+    
     .stat-card.total-stat::before {
       background: linear-gradient(135deg, #e5e7eb, #9ca3af);
     }
@@ -370,6 +375,10 @@ function generateDiamondNetwork() {
     
     .stat-card.academic-stat .stat-number {
       color: #111827;
+    
+    .stat-card.institution-stat .stat-number {
+      color: rgb(123, 31, 162);
+    }
     }
     
     .stat-card.total-stat .stat-number {
@@ -397,14 +406,14 @@ function generateDiamondNetwork() {
     @media (max-width: 480px) {
       .stats-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, auto);
         gap: 10px;
       }
       
       /* Total Projects spans all 3 columns on second row */
       .stat-card.total-stat {
-        grid-column: 1 / span 3;
+        grid-column: 1 / span 4;
       }
       
       .stat-card {
@@ -432,6 +441,10 @@ function generateDiamondNetwork() {
     <div class="stat-card academic-stat">
       <div class="stat-number" id="academicCount">0</div>
       <div class="stat-label">Academic</div>
+    </div>
+    <div class="stat-card institution-stat">
+      <div class="stat-number" id="institutionCount">0</div>
+      <div class="stat-label">Institution</div>
     </div>
     <div class="stat-card total-stat">
       <div class="stat-number" id="totalCount">0</div>
@@ -468,11 +481,13 @@ function generateDiamondNetwork() {
   .card.card--government-ongoing{background:rgba(214, 177, 77, 0.18) !important}
   .card.card--industry-ongoing{background:rgba(172, 14, 14, 0.14) !important}
   .card.card--academic-ongoing{background:rgba(255, 255, 255, 0.95) !important}
+  .card.card--institution-ongoing{background:rgba(123, 31, 162, 0.14) !important}
   .card.card--completed{background:#ffffff}
 
   .card.card--government-ongoing .inner{border-color: rgba(214, 177, 77, 0.35)}
   .card.card--industry-ongoing .inner{border-color: rgba(172, 14, 14, 0.28)}
   .card.card--academic-ongoing .inner{border-color: rgba(17, 24, 39, 0.25)}
+  .card.card--institution-ongoing .inner{border-color: rgba(123, 31, 162, 0.28)}
 
   .inner{position:relative;background:#fff;border-radius:.9rem;margin:10px;overflow:hidden;border:1px solid #e5e7eb;transition:border-color .2s, box-shadow .2s}
   .card:hover .inner{box-shadow:0 6px 20px rgba(0,0,0,.06)}
@@ -586,6 +601,7 @@ function generateDiamondNetwork() {
     { value: "government", label: "Government-Funded", color: "rgb(214, 177, 77)" },
     { value: "industry", label: "Industry-Funded", color: "rgb(172, 14, 14)" },
     { value: "academic", label: "Academic", color: "#111827" }
+    { value: "institution", label: "Institution-Funded", color: "rgb(123, 31, 162)" },
   ];
 
   const STATUSES = [
@@ -631,6 +647,8 @@ function generateDiamondNetwork() {
       return 'rgb(172, 14, 14)';
     } else if (type === 'academic') {
       return '#111827';
+    } else if (type === 'institution') {
+      return 'rgb(123, 31, 162)';
     } else {
       // government as default
       return 'rgb(214, 177, 77)';
@@ -642,6 +660,8 @@ function generateDiamondNetwork() {
       return 'Industry-Funded';
     } else if (type === 'academic') {
       return 'Academic';
+    } else if (type === 'institution') {
+      return 'Institution-Funded';
     } else {
       return 'Government-Funded';
     }
@@ -756,6 +776,8 @@ function generateDiamondNetwork() {
         outerClass = 'card--industry-ongoing';
       } else if (project.type === 'academic') {
         outerClass = 'card--academic-ongoing';
+      } else if (project.type === 'institution') {
+        outerClass = 'card--institution-ongoing';
       } else {
         outerClass = 'card--government-ongoing';
       }
@@ -927,6 +949,7 @@ if (agencyEn.includes(';')) {
     let governmentCount = 0;
     let industryCount = 0;
     let academicCount = 0;
+    let institutionCount = 0;
 
     PROJECTS.forEach(project => {
       // Count by type
@@ -936,6 +959,8 @@ if (agencyEn.includes(';')) {
         industryCount++;
       } else if (project.type === 'academic') {
         academicCount++;
+      } else if (project.type === 'institution') {
+        institutionCount++;
       }
     });
 
@@ -944,6 +969,7 @@ if (agencyEn.includes(';')) {
     // Update statistics display with animation
     animateNumber('governmentCount', governmentCount);
     animateNumber('industryCount', industryCount);
+    animateNumber('institutionCount', institutionCount);
     animateNumber('academicCount', academicCount);
     animateNumber('totalCount', totalCount);
   }
