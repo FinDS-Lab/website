@@ -184,6 +184,23 @@ export type MenteesData = {
   [id: string]: Mentee
 }
 
+export type HonorItem = {
+  type: 'award' | 'honor'
+  icon: string
+  title: string
+  event: string
+  organization: string
+  date: string
+  winners: {
+    name: string
+    level: string
+  }[]
+}
+
+export type HonorsData = {
+  [year: string]: HonorItem[]
+}
+
 
 
 

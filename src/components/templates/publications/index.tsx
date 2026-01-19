@@ -252,15 +252,19 @@ export const PublicationsTemplate = () => {
       report: 'R',
     }
 
-    // 날짜순 정렬 (오래된 것부터)
-    const sorted = [...publications].sort((a, b) => {
-      const dateA = new Date(a.published_date).getTime()
-      const dateB = new Date(b.published_date).getTime()
-      return dateA - dateB
+    // 날짜순 정렬 (오래된 것부터, 같은 날짜면 원본 배열의 역순)
+    const indexed = publications.map((pub, idx) => ({ pub, originalIndex: idx }))
+    const sorted = indexed.sort((a, b) => {
+      const dateA = new Date(a.pub.published_date).getTime()
+      const dateB = new Date(b.pub.published_date).getTime()
+      if (dateA !== dateB) return dateA - dateB
+      // 같은 날짜면 원본 인덱스 역순 (나중에 추가된 것이 더 높은 번호)
+      return b.originalIndex - a.originalIndex
     })
 
     // 타입별 번호 매기기
-    sorted.forEach((pub) => {
+    sorted.forEach((item) => {
+      const pub = item.pub
       typeCounters[pub.type] = (typeCounters[pub.type] || 0) + 1
       const prefix = typePrefix[pub.type] || pub.type.charAt(0).toUpperCase()
       const key = `${pub.year}-${pub.title}-${pub.published_date}`
@@ -366,8 +370,23 @@ export const PublicationsTemplate = () => {
       if (!grouped[pub.year]) grouped[pub.year] = []
       grouped[pub.year].push(pub)
     })
+    
+    // 각 연도 내에서 날짜 역순 정렬 (최신 먼저), 같은 날짜면 번호 높은 것 먼저
+    Object.keys(grouped).forEach((year) => {
+      grouped[Number(year)].sort((a, b) => {
+        const dateA = new Date(a.published_date).getTime()
+        const dateB = new Date(b.published_date).getTime()
+        if (dateA !== dateB) return dateB - dateA // 날짜 역순 (최신 먼저)
+        // 같은 날짜면 번호 역순 (높은 번호 먼저)
+        const numA = publicationNumbers[`${a.year}-${a.title}-${a.published_date}`] || ''
+        const numB = publicationNumbers[`${b.year}-${b.title}-${b.published_date}`] || ''
+        const extractNum = (s: string) => parseInt(s.replace(/[^0-9]/g, '')) || 0
+        return extractNum(numB) - extractNum(numA)
+      })
+    })
+    
     return grouped
-  }, [filteredPublications])
+  }, [filteredPublications, publicationNumbers])
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(publicationsByYear).map(Number)

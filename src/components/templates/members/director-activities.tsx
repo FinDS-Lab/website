@@ -21,7 +21,7 @@ import {
   Check,
   X,
 } from 'lucide-react'
-import type {ReviewerData, AuthorsData, Publication, Mentee} from '@/types/data'
+import type {ReviewerData, AuthorsData, Publication, Mentee, HonorsData, HonorItem} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
 
 // Types for collaboration network
@@ -286,6 +286,112 @@ const researchInterests = [
     ],
   },
 ]
+
+// Honors & Awards Section Component
+const HonorsAwardsSection = memo(() => {
+  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/website/data/honors.json')
+      .then((res) => res.json())
+      .then((data: HonorsData) => {
+        setHonorsData(data)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.error('Failed to load honors data:', err)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="p-40 text-center">
+        <p className="text-sm text-gray-400 animate-pulse">Loading honors data...</p>
+      </div>
+    )
+  }
+
+  if (!honorsData) {
+    return (
+      <div className="p-40 text-center">
+        <p className="text-sm text-gray-400">No data available</p>
+      </div>
+    )
+  }
+
+  const years = Object.keys(honorsData).sort((a, b) => Number(b) - Number(a))
+  const totalCount = years.reduce((acc, year) => acc + honorsData[year].length, 0)
+
+  return (
+    <div className="p-20 md:p-24">
+      {/* Summary Stats */}
+      <div className="flex items-center gap-16 mb-20">
+        <div className="flex items-center gap-8">
+          <Award size={18} className="text-primary" />
+          <span className="text-sm font-bold text-gray-900">Total: {totalCount}</span>
+        </div>
+        <span className="text-xs text-gray-400">({years[years.length - 1]} - {years[0]})</span>
+      </div>
+
+      {/* Timeline */}
+      <div className="space-y-16">
+        {years.map((year) => {
+          const items = honorsData[year]
+          const awards = items.filter((item) => item.type === 'award')
+          const honors = items.filter((item) => item.type === 'honor')
+
+          return (
+            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
+              {/* Year Header */}
+              <div className="flex items-center justify-between px-16 py-12 bg-gray-50">
+                <div className="flex items-center gap-12">
+                  <span className="text-base font-bold text-gray-900">{year}</span>
+                  <div className="flex items-center gap-6">
+                    {awards.length > 0 && (
+                      <span className="px-8 py-2 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">
+                        🏆 {awards.length}
+                      </span>
+                    )}
+                    {honors.length > 0 && (
+                      <span className="px-8 py-2 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">
+                        🎓 {honors.length}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Items */}
+              <div className="divide-y divide-gray-50">
+                {items.map((item, idx) => (
+                  <div key={idx} className="px-16 py-12 hover:bg-gray-50/50 transition-colors">
+                    <div className="flex items-start gap-12">
+                      <span className="text-lg shrink-0">{item.icon}</span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between gap-8">
+                          <div className="min-w-0">
+                            <p className="text-sm font-bold text-gray-900">{item.title}</p>
+                            <p className="text-xs text-gray-600 mt-2">{item.event}</p>
+                            <p className="text-[10px] text-gray-400 mt-2">{item.organization}</p>
+                          </div>
+                          <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{item.date}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+})
+
+HonorsAwardsSection.displayName = 'HonorsAwardsSection'
 
 // Collaboration Network Component
 const CollaborationNetwork = memo(() => {
@@ -930,11 +1036,11 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [emailCopied, setEmailCopied] = useState(false)
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    awardsHonors: false,
-    academicService: false,
+    honorsAwards: true,
+    academicService: true,
     activities: false,
-    collaborationNetwork: false,
-    mentoringProgram: false,
+    collaborationNetwork: true,
+    mentoringProgram: true,
   })
   const {showModal} = useStoreModal()
 
@@ -1040,7 +1146,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   const displayedJournals = useMemo(() => {
     if (!reviewerData) return []
-    return showAllJournals ? reviewerData.journals : reviewerData.journals.slice(0, 10)
+    return showAllJournals ? reviewerData.journals : reviewerData.journals.slice(0, 20)
   }, [reviewerData, showAllJournals])
 
   return (
@@ -1232,21 +1338,19 @@ export const MembersDirectorActivitiesTemplate = () => {
 
           {/* Right Column: Activities Only */}
           <main className="flex-1 flex flex-col gap-32 md:gap-56">
-            {/* Awards & Honors */}
+            {/* Honors & Awards */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
-                onClick={() => toggleSection('awardsHonors')}
+                onClick={() => toggleSection('honorsAwards')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Awards & Honors</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.awardsHonors ? 'rotate-180' : ''}`}/>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
               </button>
 
-              {expandedSections.awardsHonors && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  <div className="py-16 text-center text-sm text-gray-400">
-                    Coming soon...
-                  </div>
+              {expandedSections.honorsAwards && (
+                <div className="border-t border-gray-100">
+                  <HonorsAwardsSection />
                 </div>
               )}
             </section>
@@ -1304,12 +1408,12 @@ export const MembersDirectorActivitiesTemplate = () => {
 
                       {/* Journal Reviewer */}
                       <div className="p-24 border-t border-gray-100">
-                        <div className="flex items-center justify-between mb-16">
+                        <div className="flex items-center justify-between mb-12">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                             <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.journals.length}</span>
                           </div>
-                          {reviewerData.journals.length > 10 && (
+                          {reviewerData.journals.length > 20 && (
                             <button
                               onClick={() => setShowAllJournals(!showAllJournals)}
                               className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
@@ -1319,45 +1423,51 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="space-y-8">
+                        <div className="flex flex-wrap gap-6">
                           {displayedJournals.map((journal) => (
-                            <div key={journal.id} className="flex items-center justify-between py-12 px-16 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                              <div className="flex-1 min-w-0 pr-16">
-                                <a href={journal.url} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 hover:text-primary truncate block font-medium">
-                                  {journal.name}
-                                </a>
-                              </div>
-                              <div className="flex items-center gap-12 shrink-0">
-                                <span className={`px-10 py-3 rounded-full text-[10px] font-bold ${
-                                  journal.type === 'SCIE' ? 'bg-primary text-white' :
-                                    journal.type === 'SSCI' ? 'bg-primary text-white' :
-                                      journal.type === 'ESCI' ? 'bg-amber-100 text-amber-700' :
-                                        journal.type === 'SCOPUS' ? 'bg-amber-100 text-amber-700' :
-                                          'bg-gray-200 text-gray-600'
-                                }`}>
-                                  {journal.type}
-                                </span>
-                                <span className="text-[10px] text-gray-400 font-medium">{journal.since}</span>
-                              </div>
-                            </div>
+                            <a
+                              key={journal.id}
+                              href={journal.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`inline-flex items-center gap-6 px-10 py-4 rounded-full text-[11px] font-medium transition-all hover:shadow-sm ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 text-primary hover:bg-primary/20' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 text-amber-700 hover:bg-amber-100' :
+                                    'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              }`}
+                              title={`${journal.name} (${journal.type}, since ${journal.since})`}
+                            >
+                              <span className="truncate max-w-200">{journal.name}</span>
+                              <span className={`px-4 py-0.5 rounded text-[9px] font-bold ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-500 text-white' :
+                                    'bg-gray-400 text-white'
+                              }`}>
+                                {journal.type}
+                              </span>
+                            </a>
                           ))}
                         </div>
                       </div>
 
                       {/* Conference Reviewer */}
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
-                        <div className="flex items-center gap-8 mb-16">
+                        <div className="flex items-center gap-8 mb-12">
                           <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
                           <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.conferences.length}</span>
                         </div>
-                        <div className="space-y-8">
+                        <div className="flex flex-wrap gap-6">
                           {reviewerData.conferences.map((conf) => (
-                            <div key={conf.id} className="flex items-center justify-between py-12 px-16 bg-white rounded-lg hover:shadow-sm transition-all">
-                              <a href={conf.url} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-700 hover:text-primary truncate flex-1 min-w-0 pr-16 font-medium">
-                                {conf.name}
-                              </a>
-                              <span className="text-[10px] text-gray-400 font-medium shrink-0">{conf.period}</span>
-                            </div>
+                            <a
+                              key={conf.id}
+                              href={conf.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-4 px-10 py-4 bg-white border border-gray-200 rounded-full text-[11px] font-medium text-gray-700 hover:border-primary hover:text-primary transition-all"
+                              title={conf.period}
+                            >
+                              <span className="truncate max-w-200">{conf.name}</span>
+                            </a>
                           ))}
                         </div>
                       </div>
