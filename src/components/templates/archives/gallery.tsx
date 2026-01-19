@@ -20,7 +20,7 @@ const GalleryDetailModal = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/findslab-test/data/gallery/${id}/index.md`)
+    fetch(`/website/data/gallery/${id}/index.md`)
       .then(res => res.text())
       .then(text => {
         const { data, content } = parseMarkdown(text)
@@ -29,7 +29,7 @@ const GalleryDetailModal = ({ id }: { id: string }) => {
           data.date = id.slice(0, 10)
         }
 
-        const processedContent = processJekyllContent(content, data, { basePath: '/findslab-test' })
+        const processedContent = processJekyllContent(content, data, { basePath: '/website' })
         setContent(processedContent)
         setLoading(false)
       })
@@ -60,7 +60,7 @@ export const ArchivesGalleryTemplate = () => {
       try {
         const results = await Promise.all(
           galleryFolders.map(async (folder) => {
-            const response = await fetch(`/findslab-test/data/gallery/${folder}/index.md`)
+            const response = await fetch(`/website/data/gallery/${folder}/index.md`)
             const text = await response.text()
             const { data } = parseMarkdown(text)
             return {
@@ -132,7 +132,7 @@ export const ArchivesGalleryTemplate = () => {
                 <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (
                     <img
-                      src={`/findslab-test/data/gallery/${item.id}/${item.thumb}`}
+                      src={`/website/data/gallery/${item.id}/${item.thumb}`}
                       alt={item.title}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />

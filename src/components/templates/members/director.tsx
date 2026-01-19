@@ -296,11 +296,11 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  
+
   // 모바일/데스크탑에 따른 기본 zoom 값
   const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.6 : 1.3
   const [zoom, setZoom] = useState(getDefaultZoom)
-  
+
   const [pan, setPan] = useState({x: 0, y: 0})
   const [isPanning, setIsPanning] = useState(false)
   const [panStart, setPanStart] = useState({x: 0, y: 0})
@@ -312,8 +312,8 @@ const CollaborationNetwork = memo(() => {
     const loadData = async () => {
       try {
         const [pubsRes, authorsRes] = await Promise.all([
-          fetch('/findslab-test/data/pubs.json'),
-          fetch('/findslab-test/data/authors.json'),
+          fetch('/website/data/pubs.json'),
+          fetch('/website/data/authors.json'),
         ])
         const pubs: Publication[] = await pubsRes.json()
         const authors: AuthorsData = await authorsRes.json()
@@ -952,7 +952,7 @@ export const MembersDirectorTemplate = () => {
 
   useEffect(() => {
     // Load reviewer data
-    fetch('/findslab-test/data/reviewer.json')
+    fetch('/website/data/reviewer.json')
       .then((res) => res.json())
       .then((data: ReviewerData) => {
         setReviewerData(data)
@@ -964,7 +964,7 @@ export const MembersDirectorTemplate = () => {
       })
 
     // Load mentees data
-    fetch('/findslab-test/data/mentees.json')
+    fetch('/website/data/mentees.json')
       .then((res) => res.json())
       .then((data: { [id: string]: Mentee }) => {
         const menteesList = Object.entries(data).map(([id, mentee]) => ({
