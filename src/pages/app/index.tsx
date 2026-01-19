@@ -8,6 +8,8 @@ import {lazy, Suspense, useEffect} from "react";
 // Public Pages
 const Home = lazy(() => import('../home').then((module) => ({ default: module.Home })));
 const Publications = lazy(() => import('../publications').then((module) => ({ default: module.Publications })));
+const Lectures = lazy(() => import('../lectures').then((module) => ({ default: module.Lectures })));
+const Projects = lazy(() => import('../projects').then((module) => ({ default: module.Projects })));
 
 // About FINDS
 const AboutIntroduction = lazy(() => import('../about/introduction').then((module) => ({ default: module.AboutIntroduction })));
@@ -56,6 +58,12 @@ export const App = () => {
 
         {/* Publications */}
         <Route path="/publications" element={<Publications />} />
+
+        {/* Lectures */}
+        <Route path="/lectures" element={<Lectures />} />
+
+        {/* Projects */}
+        <Route path="/projects" element={<Projects />} />
 
         {/* Archives */}
         <Route path="/archives" element={<Navigate to="/archives/news" replace />} />
