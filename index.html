@@ -23,7 +23,7 @@
         const redirectPath = sessionStorage.getItem('redirectPath');
         if (redirectPath) {
           sessionStorage.removeItem('redirectPath');
-          window.history.replaceState(null, '', '/findslab-test' + redirectPath);
+          window.history.replaceState(null, '', '/website' + redirectPath);
         }
       })();
     </script>
