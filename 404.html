@@ -9,16 +9,16 @@
       const path = window.location.pathname;
       const search = window.location.search;
       const hash = window.location.hash;
-      
+
       // basePath 제거 후 저장
-      const basePath = '/findslab-test';
-      const redirectPath = path.startsWith(basePath) 
+      const basePath = '/website';
+      const redirectPath = path.startsWith(basePath)
         ? path.slice(basePath.length) || '/'
         : path;
-      
+
       // sessionStorage에 원래 경로 저장
       sessionStorage.setItem('redirectPath', redirectPath + search + hash);
-      
+
       // index.html로 리다이렉트
       window.location.replace(basePath + '/');
     </script>
