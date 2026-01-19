@@ -1,0 +1,374 @@
+{
+  "journals": [
+      {
+      "id": 44,
+      "name": "Algorithms",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "ESCI",
+      "since": "2025-09-27",
+      "url": "https://www.mdpi.com/journal/algorithms"
+    },
+    {
+      "id": 43,
+      "name": "The Journal of Supercomputing",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-09-27",
+      "url": "https://link.springer.com/journal/11227"
+    },
+    {
+      "id": 42,
+      "name": "Data Science in Finance and Economics",
+      "publisher": "American Institute of Mathematical Sciences Press",
+      "type": "SCOPUS",
+      "since": "2025-09-18",
+      "url": "https://www.aimspress.com/journal/dsfe"
+    },
+    {
+      "id": 41,
+      "name": "Humanities and Social Sciences Communications",
+      "publisher": "Springer",
+      "type": "SSCI",
+      "since": "2025-09-16",
+      "url": "https://www.nature.com/palcomms/"
+    },
+    {
+      "id": 40,
+      "name": "Electronics",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-08-20",
+      "url": "https://www.mdpi.com/journal/electronics"
+    },
+    {
+      "id": 39,
+      "name": "Information",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-08-13",
+      "url": "https://www.mdpi.com/journal/information"
+    },
+    {
+      "id": 38,
+      "name": "Chaos, Solitons & Fractals",
+      "publisher": "Elsevier",
+      "type": "SCIE",
+      "since": "2025-08-05",
+      "url": "https://www.sciencedirect.com/journal/chaos-solitons-and-fractals"
+    },
+    {
+      "id": 37,
+      "name": "Computers",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-07-28",
+      "url": "https://www.mdpi.com/journal/computers"
+    },
+    {
+      "id": 36,
+      "name": "Journal of Intelligent Information Systems",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-07-28",
+      "url": "https://link.springer.com/journal/10844"
+    },
+    {
+      "id": 35,
+      "name": "Machine Learning with Applications",
+      "publisher": "Elsevier",
+      "type": "SCOPUS",
+      "since": "2025-07-28",
+      "url": "https://www.sciencedirect.com/journal/machine-learning-with-applications"
+    },
+    {
+      "id": 34,
+      "name": "Big Data and Cognitive Computing",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-07-11",
+      "url": "https://www.mdpi.com/journal/BDCC"
+    },
+    {
+      "id": 33,
+      "name": "Future Internet",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-06-27",
+      "url": "https://www.mdpi.com/journal/futureinternet"
+    },
+    {
+      "id": 32,
+      "name": "Applied Sciences",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-06-12",
+      "url": "https://www.mdpi.com/journal/applsci"
+    },
+    {
+      "id": 31,
+      "name": "Energies",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-05-28",
+      "url": "https://www.mdpi.com/journal/energies"
+    },
+    {
+      "id": 30,
+      "name": "Fractal and Fractional",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-05-14",
+      "url": "https://www.mdpi.com/journal/fractalfract"
+    },
+    {
+      "id": 29,
+      "name": "Symmetry",
+      "publisher": "Multidisciplinary Digital Publishing Institute",
+      "type": "SCIE",
+      "since": "2025-04-29",
+      "url": "https://www.mdpi.com/journal/symmetry"
+    },
+    {
+      "id": 28,
+      "name": "Carbon Balance and Management",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-03-15",
+      "url": "https://cbmjournal.biomedcentral.com/"
+    },
+    {
+      "id": 27,
+      "name": "Frontiers in Public Health",
+      "publisher": "Frontiers Media",
+      "type": "SSCI",
+      "since": "2025-02-28",
+      "url": "https://www.frontiersin.org/journals/public-health"
+    },
+    {
+      "id": 26,
+      "name": "Knowledge and Information Systems",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-02-18",
+      "url": "https://link.springer.com/journal/10115"
+    },
+    {
+      "id": 25,
+      "name": "International Journal of Machine Learning and Cybernetics",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-02-16",
+      "url": "https://link.springer.com/journal/13042"
+    },
+    {
+      "id": 24,
+      "name": "EPJ Data Science",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-02-02",
+      "url": "https://epjdatascience.springeropen.com/"
+    },
+    {
+      "id": 23,
+      "name": "Frontiers in Physics",
+      "publisher": "Frontiers Media",
+      "type": "SCIE",
+      "since": "2025-01-31",
+      "url": "https://www.frontiersin.org/journals/physics"
+    },
+    {
+      "id": 22,
+      "name": "Energy Informatics",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2025-01-28",
+      "url": "https://energyinformatics.springeropen.com/"
+    },
+    {
+      "id": 21,
+      "name": "International Journal of Computational Intelligence Systems",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-01-23",
+      "url": "https://link.springer.com/journal/44196"
+    },
+    {
+      "id": 20,
+      "name": "Scientific Reports",
+      "publisher": "Nature Portfolio",
+      "type": "SCIE",
+      "since": "2025-01-23",
+      "url": "https://www.nature.com/srep/"
+    },
+    {
+      "id": 19,
+      "name": "Cluster Computing",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2025-01-19",
+      "url": "https://link.springer.com/journal/10586"
+    },
+    {
+      "id": 18,
+      "name": "Biophysical Economics and Sustainability",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2025-01-13",
+      "url": "https://link.springer.com/journal/41247"
+    },
+    {
+      "id": 17,
+      "name": "Discover Applied Sciences",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2024-12-24",
+      "url": "https://link.springer.com/journal/42452"
+    },
+    {
+      "id": 16,
+      "name": "Discover Analytics",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2024-12-21",
+      "url": "https://link.springer.com/journal/44257"
+    },
+    {
+      "id": 15,
+      "name": "Discover Networks",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2024-12-21",
+      "url": "https://link.springer.com/journal/44256"
+    },
+    {
+      "id": 14,
+      "name": "Discover Artificial Intelligence",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2024-12-20",
+      "url": "https://link.springer.com/journal/44163"
+    },
+    {
+      "id": 13,
+      "name": "International Journal of Data Science and Analytics",
+      "publisher": "Springer",
+      "type": "SCOPUS",
+      "since": "2024-12-14",
+      "url": "https://link.springer.com/journal/41060"
+    },
+    {
+      "id": 12,
+      "name": "Optimization and Engineering",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2024-12-06",
+      "url": "https://link.springer.com/journal/11081"
+    },
+    {
+      "id": 11,
+      "name": "BMC Medical Informatics and Decision Making",
+      "publisher": "BioMed Central",
+      "type": "SCIE",
+      "since": "2024-12-04",
+      "url": "https://bmcmedinformdecismak.biomedcentral.com/"
+    },
+    {
+      "id": 10,
+      "name": "Neural Computing and Applications",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2024-11-30",
+      "url": "https://link.springer.com/journal/521"
+    },
+    {
+      "id": 9,
+      "name": "Financial Innovation",
+      "publisher": "Springer",
+      "type": "SSCI",
+      "since": "2024-11-30",
+      "url": "https://jfin-swufe.springeropen.com/"
+    },
+    {
+      "id": 8,
+      "name": "Computational Economics",
+      "publisher": "Springer",
+      "type": "SSCI",
+      "since": "2023-12-22",
+      "url": "https://link.springer.com/journal/10614"
+    },
+    {
+      "id": 7,
+      "name": "Annals of Operations Research",
+      "publisher": "Springer",
+      "type": "SCIE",
+      "since": "2023-11-15",
+      "url": "https://link.springer.com/journal/10479"
+    },
+    {
+      "id": 6,
+      "name": "Information Processing and Management",
+      "publisher": "Elsevier",
+      "type": "SCIE",
+      "since": "2023-10-30",
+      "url": "https://www.sciencedirect.com/journal/information-processing-and-management"
+    },
+    {
+      "id": 5,
+      "name": "International Review of Financial Analysis",
+      "publisher": "Elsevier",
+      "type": "SSCI",
+      "since": "2023-10-24",
+      "url": "https://www.sciencedirect.com/journal/international-review-of-financial-analysis"
+    },
+    {
+      "id": 4,
+      "name": "IEEE Transactions on Network Science and Engineering",
+      "publisher": "Institute of Electrical and Electronics Engineers",
+      "type": "SCIE",
+      "since": "2023-09-06",
+      "url": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6488902"
+    },
+    {
+      "id": 3,
+      "name": "Finance Research Letters",
+      "publisher": "Elsevier",
+      "type": "SSCI",
+      "since": "2023-06-19",
+      "url": "https://www.sciencedirect.com/journal/finance-research-letters"
+    },
+    {
+      "id": 2,
+      "name": "Industrial Engineering & Management Systems",
+      "publisher": "Korean Institute of Industrial Engineers",
+      "type": "SCOPUS",
+      "since": "2022-03-29",
+      "url": "http://www.iemsjl.org/"
+    },
+    {
+      "id": 1,
+      "name": "Expert Systems with Applications",
+      "publisher": "Elsevier",
+      "type": "SCIE",
+      "since": "2022-04-30",
+      "url": "https://www.sciencedirect.com/journal/expert-systems-with-applications"
+    }
+  ],
+  "conferences": [
+    {
+  "id": 2,
+  "name": "3rd International Conference on Artificial Intelligence and Human-Computer Interaction (ArtInHCI)",
+  "publisher": "IOS Press",
+  "type": "Conference",
+  "period": "2025-10-21 – 2025-10-23",
+  "url": "https://www.artinhci.com/"
+},
+    {
+      "id": 1,
+      "name": "30th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (KDD)",
+      "publisher": "Association for Computing Machinery",
+      "type": "Conference",
+      "period": "2024-04-04 – 2024-04-18",
+      "url": "https://kdd.org/"
+    }
+  ]
+}
