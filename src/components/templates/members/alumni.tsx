@@ -18,7 +18,8 @@ export const MembersAlumniTemplate = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/website/data/alumni.json')
+    const baseUrl = import.meta.env.BASE_URL || '/website/'
+    fetch(`${baseUrl}data/alumni.json`)
       .then((res) => res.json())
       .then((data: Alumni[]) => {
         setAlumni(data)

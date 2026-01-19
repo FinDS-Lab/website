@@ -674,7 +674,9 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     ))}
                                   </div>
-                                  <p className="text-xs md:text-sm text-gray-500 italic">{pub.venue}</p>
+                                  <p className="text-xs md:text-sm text-gray-500 italic">
+                                    {pub.language === 'Korean' && pub.venue_ko ? pub.venue_ko : pub.venue}
+                                  </p>
                                   {pub.doi && (
                                     <a
                                       href={`https://doi.org/${pub.doi}`}
