@@ -1,0 +1,42 @@
+{
+  "id": "choi-undergrad",
+  "name": {
+    "ko": "최학부",
+    "en": "Choi U.G."
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "period": {
+    "start": "2024-03",
+    "expected_graduation": "2026-08"
+  },
+  "contact": {
+    "email": "choi.ug@example.edu"
+  },
+  "research": {
+    "interests": [
+      "Machine Learning",
+      "Data Analytics",
+      "Financial Technology",
+      "Python Programming"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Business Analytics",
+      "school": "Dongduk Women's University",
+      "start": "2022-03",
+      "expected": "2026-08"
+    }
+  ],
+  "social": {
+    "github": "https://github.com/choi-ug",
+    "linkedin": "https://linkedin.com/in/choi-ug"
+  },
+  "avatar": "/findslab-test/images/members/woman_default.png"
+}
