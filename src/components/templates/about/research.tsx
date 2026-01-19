@@ -1,0 +1,183 @@
+import { memo } from 'react'
+import { Link } from 'react-router-dom'
+import { Home } from 'lucide-react'
+
+// Image Imports
+import banner1 from '@/assets/images/banner/1.webp'
+import icon10 from '@/assets/images/icons/10.png'
+import icon11 from '@/assets/images/icons/11.png'
+import icon12 from '@/assets/images/icons/12.png'
+
+// 연구 분야 데이터
+const researchAreas = [
+  {
+    id: 'fds',
+    badge: '핀테크 혁신의 핵심 동력',
+    titleEn: 'Financial Data Science',
+    titleKo: '금융 데이터 사이언스',
+    image: icon12,
+    items: [
+      {
+        en: 'AI in Quantitative Finance & Asset Management',
+        ko: '인공지능을 활용한 포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
+      },
+      {
+        en: 'Financial Time-Series Modeling & Forecasting',
+        ko: '변동성 예측, 국면 전환 모형, 선·후행 관계 분석, 수익률 예측 등 금융 시계열 모형 연구',
+      },
+      {
+        en: 'Household Finance & Behavioral Decision Modeling',
+        ko: '가계 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화',
+      },
+    ],
+  },
+  {
+    id: 'ba',
+    badge: '디지털 전환 시대의 경쟁력',
+    titleEn: 'Business Analytics',
+    titleKo: '비즈니스 애널리틱스',
+    image: icon11,
+    items: [
+      {
+        en: 'Data Analytics for Cross-Industry and Cross-Domain Convergence',
+        ko: '다양한 산업과 분야 간의 결합과 융합을 위한 데이터 분석',
+      },
+      {
+        en: 'Data Visualization & Transparency in Business Analytics',
+        ko: '복잡한 데이터를 직관적으로 표현하고 투명성을 높이는 시각화 기법',
+      },
+      {
+        en: 'Business Insights from Data Science Techniques',
+        ko: '데이터 사이언스 기법을 활용한 비즈니스 인사이트 발굴',
+      },
+    ],
+  },
+  {
+    id: 'dim',
+    badge: '불확실성을 기회로 바꾸는 방법',
+    titleEn: 'Data-Inspired Decision Making',
+    titleKo: '데이터 기반 의사결정',
+    image: icon10,
+    items: [
+      {
+        en: 'Trustworthy Decision Systems & Optimization',
+        ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화 기법',
+      },
+      {
+        en: 'Risk-Aware & User-Friendly Decision Tools',
+        ko: '금융·경영 위험을 반영하고 사용자 친화성을 갖춘 의사결정 도구',
+      },
+      {
+        en: 'Decision Analytics for Complex Business Problems',
+        ko: '복잡한 경영 및 투자 의사결정 문제 해결을 위한 분석 및 최적화 방법론',
+      },
+    ],
+  },
+]
+
+export const AboutResearchTemplate = () => {
+  return (
+    <div className="flex flex-col">
+      {/* Banner - 기존 홈페이지 스타일 */}
+      <div className="relative w-full h-200 md:h-332 overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${banner1})` }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative h-full flex items-center justify-center">
+          <h1 className="text-2xl md:text-[36px] font-semibold text-white text-center">
+            Research Areas
+          </h1>
+        </div>
+      </div>
+
+      {/* Breadcrumb */}
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-20 md:py-40">
+        <div className="flex items-center gap-8 md:gap-10 flex-wrap">
+          <Link to="/" className="text-gray-400 hover:text-primary transition-colors">
+            <Home size={16} />
+          </Link>
+          <span className="text-[#cdcdcd]">›</span>
+          <span className="text-sm md:text-base text-gray-400">About FINDS</span>
+          <span className="text-[#cdcdcd]">›</span>
+          <span className="text-sm md:text-base text-primary font-medium">Research Areas</span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120">
+        <div className="flex flex-col gap-24 md:gap-40">
+          {researchAreas.map((area, index) => (
+            <article
+              key={area.id}
+              className={`
+                bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-40 
+                shadow-sm hover:shadow-xl hover:border-primary/30 
+                transition-all duration-300 group
+                grid gap-20 md:gap-40
+                ${index % 2 === 0 ? 'md:grid-cols-[1.2fr_1fr]' : 'md:grid-cols-[1fr_1.2fr]'}
+              `}
+            >
+              {/* 텍스트 영역 */}
+              <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                {/* 헤더 */}
+                <div className="pb-16 md:pb-20 border-b-2 border-primary/10 mb-16 md:mb-20">
+                  <span className="inline-flex items-center px-12 py-6 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-lg uppercase tracking-wider border border-primary/20">
+                    {area.badge}
+                  </span>
+                  <h2 className="mt-12 md:mt-16">
+                    <span className="block text-xl md:text-2xl lg:text-[28px] font-black text-primary mb-4">
+                      {area.titleEn}
+                    </span>
+                    <span className="text-base md:text-lg lg:text-xl font-bold text-gray-700">
+                      {area.titleKo}
+                    </span>
+                  </h2>
+                </div>
+
+                {/* 항목 리스트 */}
+                <ul className="flex flex-col gap-12 md:gap-16">
+                  {area.items.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="relative pl-20 md:pl-24 pb-12 md:pb-16 border-b border-gray-100 last:border-b-0 last:pb-0 group/item hover:bg-gradient-to-r hover:from-transparent hover:via-primary/5 hover:to-transparent transition-all duration-300"
+                    >
+                      <span className="absolute left-0 top-1 text-primary font-black text-sm md:text-base group-hover/item:translate-x-4 group-hover/item:scale-110 transition-transform duration-300">
+                        ◆
+                      </span>
+                      <span className="block text-sm md:text-base font-bold text-gray-800 leading-snug group-hover/item:text-primary transition-colors">
+                        {item.en}
+                      </span>
+                      <span className="block text-xs md:text-sm text-gray-500 mt-4 leading-relaxed">
+                        {item.ko}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* 이미지 영역 */}
+              <div
+                className={`
+                  flex items-center justify-center 
+                  bg-gray-50 rounded-xl md:rounded-2xl p-20 md:p-32
+                  group-hover:bg-primary/5 transition-colors duration-300
+                  ${index % 2 === 1 ? 'md:order-1' : ''}
+                `}
+              >
+                <img
+                  src={area.image}
+                  alt={area.titleEn}
+                  className="w-120 h-120 md:w-180 md:h-180 object-contain group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default memo(AboutResearchTemplate)

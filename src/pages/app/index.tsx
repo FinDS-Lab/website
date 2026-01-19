@@ -11,6 +11,7 @@ const Publications = lazy(() => import('../publications').then((module) => ({ de
 
 // About FINDS
 const AboutIntroduction = lazy(() => import('../about/introduction').then((module) => ({ default: module.AboutIntroduction })));
+const AboutResearch = lazy(() => import('../about/research').then((module) => ({ default: module.AboutResearch })));
 const AboutHonors = lazy(() => import('../about/honors').then((module) => ({ default: module.AboutHonors })));
 const AboutLocation = lazy(() => import('../about/location').then((module) => ({ default: module.AboutLocation })));
 
@@ -41,6 +42,7 @@ export const App = () => {
         {/* About FINDS */}
         <Route path="/about" element={<Navigate to="/about/introduction" replace />} />
         <Route path="/about/introduction" element={<AboutIntroduction />} />
+        <Route path="/about/research" element={<AboutResearch />} />
         <Route path="/about/honors" element={<AboutHonors />} />
         <Route path="/about/location" element={<AboutLocation />} />
 

@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
     path: '/about/introduction',
     children: [
       { name: 'Introduction', path: '/about/introduction' },
+      { name: 'Research Areas', path: '/about/research' },
       { name: 'Honors & Awards', path: '/about/honors' },
       { name: 'Location', path: '/about/location' },
     ]
