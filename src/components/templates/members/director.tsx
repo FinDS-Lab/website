@@ -64,7 +64,7 @@ type NetworkLink = {
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
-import directorImg from '@/assets/images/members/director.webp'
+import directorImg from '@/assets/images/members/director.png'
 import logoKaist from '@/assets/images/logos/kaist.png'
 import logoKyunghee from '@/assets/images/logos/kyunghee.png'
 import logoGcu from '@/assets/images/logos/gcu.png'
