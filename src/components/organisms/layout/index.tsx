@@ -83,7 +83,7 @@ const ContactModalContent = () => {
         <div className="flex items-center justify-between gap-12">
           <a
             href={`mailto:${contactEmail}`}
-            className="text-lg font-semibold text-primary hover:underline transition-colors max-md:text-md"
+            className="text-base font-semibold text-primary hover:underline transition-colors max-md:text-sm"
           >
             {contactEmail}
           </a>

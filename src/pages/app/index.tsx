@@ -3,7 +3,7 @@ import "../../assets/css/theme.css";
 import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate} from "react-router-dom";
-import {lazy, Suspense, useEffect, useState, memo} from "react";
+import {lazy, Suspense, useEffect, memo, useRef} from "react";
 import { Music, Play, Pause, X } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
@@ -31,6 +31,35 @@ const ArchivesNotice = lazy(() => import('../archives/notice').then((module) => 
 const ArchivesGallery = lazy(() => import('../archives/gallery').then((module) => ({ default: module.ArchivesGallery })));
 const ArchivesPlaylist = lazy(() => import('../archives/playlist').then((module) => ({ default: module.ArchivesPlaylist })));
 
+// Declare YouTube types
+declare global {
+  interface Window {
+    YT: {
+      Player: new (elementId: string, config: {
+        videoId: string;
+        playerVars?: Record<string, number | string>;
+        events?: {
+          onReady?: (event: { target: YTPlayer }) => void;
+          onStateChange?: (event: { data: number; target: YTPlayer }) => void;
+        };
+      }) => YTPlayer;
+      PlayerState: {
+        ENDED: number;
+        PLAYING: number;
+        PAUSED: number;
+      };
+    };
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
+interface YTPlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  loadVideoById: (videoId: string) => void;
+  destroy: () => void;
+}
+
 // Global Music Player Component - Outside Routes for persistence
 const GlobalMusicPlayer = memo(() => {
   const { 
@@ -44,9 +73,24 @@ const GlobalMusicPlayer = memo(() => {
     nextTrack, 
     togglePlay, 
     toggleMinimize,
-    setIsMinimized
+    setIsMinimized,
+    setIsPlaying
   } = useMusicPlayerStore()
+  
+  const playerRef = useRef<YTPlayer | null>(null)
+  const playerContainerRef = useRef<HTMLDivElement>(null)
 
+  // Load YouTube IFrame API
+  useEffect(() => {
+    if (!window.YT) {
+      const tag = document.createElement('script')
+      tag.src = 'https://www.youtube.com/iframe_api'
+      const firstScriptTag = document.getElementsByTagName('script')[0]
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag)
+    }
+  }, [])
+
+  // Load playlist data
   useEffect(() => {
     if (!isLoaded) {
       fetch('/website/data/playlist/ischoi.json')
@@ -71,6 +115,52 @@ const GlobalMusicPlayer = memo(() => {
   }, [isLoaded, setPlaylist, setIsLoaded])
 
   const currentVideoId = playlist[currentIndex]
+
+  // Initialize/Update YouTube Player
+  useEffect(() => {
+    if (!isPlaying || !currentVideoId || isMinimized) return
+
+    const initPlayer = () => {
+      if (!window.YT || !window.YT.Player) {
+        setTimeout(initPlayer, 100)
+        return
+      }
+
+      // Destroy existing player
+      if (playerRef.current) {
+        playerRef.current.destroy()
+        playerRef.current = null
+      }
+
+      // Create new player
+      playerRef.current = new window.YT.Player('yt-player', {
+        videoId: currentVideoId,
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0,
+        },
+        events: {
+          onStateChange: (event) => {
+            // When video ends (state = 0), go to next track
+            if (event.data === 0) {
+              nextTrack()
+            }
+          },
+        },
+      })
+    }
+
+    initPlayer()
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy()
+        playerRef.current = null
+      }
+    }
+  }, [isPlaying, currentVideoId, isMinimized, nextTrack])
 
   if (playlist.length === 0) return null
 
@@ -101,12 +191,7 @@ const GlobalMusicPlayer = memo(() => {
 
           <div className="relative aspect-video bg-black">
             {isPlaying && currentVideoId ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&loop=0&enablejsapi=1`}
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                className="w-full h-full"
-              />
+              <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
                 <button

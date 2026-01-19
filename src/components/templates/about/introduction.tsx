@@ -151,28 +151,18 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           WELCOME SECTION - Editorial Style with Strong Typography
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-48 md:pt-80 pb-60 md:pb-100">
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-40 md:pb-60">
         <section 
           ref={heroAnimation.ref}
           className={`transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
         >
-          {/* Welcome Badge */}
-          <div className="flex justify-center mb-32 md:mb-48">
-            <div className="inline-flex items-center gap-10 px-16 md:px-20 py-8 md:py-10 bg-gradient-to-r from-amber-50 to-primary/5 border border-amber-200/50 rounded-full">
-              <Sparkles size={14} className="text-amber-500" />
-              <span className="text-xs md:text-sm font-bold text-amber-700 tracking-wide">
-                FINDS Lab.에 오신 것을 환영합니다
-              </span>
-            </div>
-          </div>
-
           {/* Main Hero Content */}
           <div className="relative">
             {/* Decorative Background */}
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-amber-100/30 via-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative text-center max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-20 md:mb-32">
                 <span className="inline-block">Towards</span>{' '}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
@@ -185,15 +175,15 @@ export const AboutIntroductionTemplate = () => {
               </h2>
 
               {/* Divider */}
-              <div className="flex items-center justify-center gap-16 mb-32 md:mb-48">
+              <div className="flex items-center justify-center gap-16 mb-20 md:mb-32">
                 <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-amber-300" />
                 <div className="w-2 h-2 rounded-full bg-primary" />
                 <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-amber-300" />
               </div>
 
               {/* Introduction Paragraphs */}
-              <div className="space-y-24 md:space-y-32">
-                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
+              <div className="space-y-16 md:space-y-20">
+                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[1.9] font-medium">
                   <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
                   <span className="relative inline-block mx-2">
                     <span className="text-amber-700 font-bold">FINDS Lab.</span>
@@ -203,13 +193,13 @@ export const AboutIntroductionTemplate = () => {
                   <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
                 </p>
 
-                <p className="text-base md:text-lg text-gray-500 leading-[2]">
+                <p className="text-base md:text-lg text-gray-500 leading-[1.9]">
                   오늘날 비즈니스와 금융 경제 환경은 <span className="text-gray-700 font-semibold">데이터</span> 중심으로 빠르게 변화하고 있습니다.
                   이제는 데이터를 얼마나 <span className="text-gray-700 font-semibold">정교하게 분석</span>하고{' '}
                   <span className="text-gray-700 font-semibold">효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
                 </p>
 
-                <p className="text-base md:text-lg text-gray-500 leading-[2]">
+                <p className="text-base md:text-lg text-gray-500 leading-[1.9]">
                   저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와{' '}
                   <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
                   복잡한 데이터 속에서 새로운{' '}

@@ -212,16 +212,6 @@ export const ProjectsTemplate = () => {
           </div>
         )}
 
-        {/* Note */}
-        <div className="mt-40 p-20 bg-gray-50 rounded-xl border border-gray-100">
-          <p className="text-sm text-gray-600">
-            <span className="font-bold text-primary">Note:</span> This page shows projects where Prof. Insu Choi served as the Principal Investigator (PI). 
-            For all projects including collaborative research, please visit the{' '}
-            <Link to="/members/director-activities" className="text-primary hover:underline">
-              Director Activities
-            </Link> page.
-          </p>
-        </div>
       </section>
     </div>
   )
