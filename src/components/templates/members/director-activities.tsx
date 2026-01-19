@@ -278,7 +278,7 @@ const researchInterests = [
     ],
   },
   {
-    category: 'Data-Inspired Decision Making',
+    category: 'Data-Informed Decision Making',
     items: [
       {en: 'Trustworthy Decision Systems & Optimization', ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화 기법'},
       {en: 'Risk-Aware & User-Friendly Decision Tools', ko: '금융·경영 위험을 반영하고 사용자 친화성을 갖춘 의사결정 도구'},
@@ -1045,30 +1045,66 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   return (
     <div className="flex flex-col bg-white">
-      {/* Banner */}
-      <div className="relative w-full h-200 md:h-332 overflow-hidden">
+      {/* Banner - 통일된 스타일 */}
+      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{backgroundImage: `url(${banner2})`}}
         />
-        <div className="absolute inset-0 bg-black/40"/>
-        <div className="relative h-full flex items-center justify-center">
-          <h1 className="text-2xl md:text-[36px] font-semibold text-white text-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
+
+        <div className="relative h-full flex flex-col items-center justify-center px-20">
+          <div className="flex items-center gap-8 mb-16 md:mb-20">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
+            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+              Members
+            </span>
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+          </div>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Director
           </h1>
         </div>
       </div>
 
       {/* Breadcrumb */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-20 md:py-40">
-        <div className="flex items-center gap-8 md:gap-10 flex-wrap">
-          <Link to="/" className="text-gray-400 hover:text-primary transition-colors">
-            <Home size={16}/>
-        </Link>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-gray-400">Members</span>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-primary font-medium">Director</span>
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="py-20 md:py-32 border-b border-gray-100">
+          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16}/>
+            </Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-gray-400 font-medium">Members</span>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Director</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Tab Navigation */}
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24">
+          <Link
+            to="/members/director"
+            className="flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
+          >
+            <Users size={16} />
+            Profile
+          </Link>
+          <Link
+            to="/members/director-activities"
+            className="flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
+          >
+            <Award size={16} />
+            Activities
+          </Link>
         </div>
       </div>
 

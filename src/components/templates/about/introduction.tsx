@@ -25,7 +25,7 @@ const focusAreas = [
   },
   {
     image: icon10,
-    title: 'Data-Inspired Decisions',
+    title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
     desc: '객관적인 데이터 인텔리전스를 활용하여 더 명확하고 합리적인 의사결정을 돕습니다.',
     gradient: 'from-yellow-600/10 via-primary/5 to-transparent',

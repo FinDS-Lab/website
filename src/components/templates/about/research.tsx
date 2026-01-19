@@ -55,7 +55,7 @@ const researchAreas = [
   {
     id: 'dim',
     badge: '불확실성을 기회로 바꾸는 방법',
-    titleEn: 'Data-Inspired Decision Making',
+    titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: icon10,
     items: [

@@ -31,8 +31,7 @@ const navItems: NavItem[] = [
     name: 'Members',
     path: '/members/director',
     children: [
-      { name: 'Director - 기본정보', path: '/members/director' },
-      { name: 'Director - Activities', path: '/members/director-activities' },
+      { name: 'Director', path: '/members/director' },
       { name: 'Current Members', path: '/members/current' },
       { name: 'Alumni', path: '/members/alumni' },
     ]
