@@ -179,8 +179,8 @@ const LayoutOrganisms = ({ children }: props) => {
                     className={clsx(
                       'relative flex items-center gap-4 text-md transition-all duration-300 pt-8 pb-4',
                       isActive(item)
-                        ? 'font-medium text-primary'
-                        : 'font-normal text-gray-900 hover:text-primary'
+                        ? 'font-semibold text-primary'
+                        : 'font-medium text-gray-900 hover:text-primary'
                     )}
                   >
                     {item.name}

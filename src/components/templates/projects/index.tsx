@@ -1,6 +1,6 @@
 import {memo, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp} from 'lucide-react'
+import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 type Project = {
@@ -57,11 +57,103 @@ const typeConfig = {
   },
 }
 
+// Filter Modal Component
+const FilterModal = ({
+  filters,
+  onChange,
+  onReset,
+  onClose,
+}: {
+  filters: { type: string[]; status: string[] }
+  onChange: (key: 'type' | 'status', value: string) => void
+  onReset: () => void
+  onClose: () => void
+}) => {
+  const typeOptions = ['government', 'industry', 'institution', 'academic']
+  const statusOptions = ['ongoing', 'completed']
+
+  return (
+    <div className="flex flex-col gap-20 p-20">
+      {/* Type Filter */}
+      <div className="flex flex-col gap-12">
+        <h4 className="text-base font-bold text-gray-900">Type</h4>
+        <div className="flex flex-wrap gap-8">
+          {typeOptions.map((type) => {
+            const config = typeConfig[type as keyof typeof typeConfig]
+            const isActive = filters.type.includes(type)
+            return (
+              <button
+                key={type}
+                onClick={() => onChange('type', type)}
+                className={`flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
+                  isActive
+                    ? `${config.color} text-white border-transparent shadow-sm`
+                    : `bg-white ${config.textColor} border-gray-200 hover:border-${type === 'government' ? 'blue' : type === 'industry' ? 'emerald' : type === 'institution' ? 'purple' : 'amber'}-300`
+                }`}
+              >
+                <config.icon size={14} />
+                {config.label}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Status Filter */}
+      <div className="flex flex-col gap-12">
+        <h4 className="text-base font-bold text-gray-900">Status</h4>
+        <div className="flex flex-wrap gap-8">
+          {statusOptions.map((status) => {
+            const isActive = filters.status.includes(status)
+            return (
+              <button
+                key={status}
+                onClick={() => onChange('status', status)}
+                className={`px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
+                  isActive
+                    ? status === 'ongoing'
+                      ? 'bg-green-500 text-white border-transparent shadow-sm'
+                      : 'bg-gray-500 text-white border-transparent shadow-sm'
+                    : status === 'ongoing'
+                      ? 'bg-white text-green-600 border-gray-200 hover:border-green-300'
+                      : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
+                }`}
+              >
+                {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Actions */}
+      <div className="flex items-center justify-between pt-16 border-t border-gray-100">
+        <button
+          onClick={onReset}
+          className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+        >
+          Reset All
+        </button>
+        <button
+          onClick={onClose}
+          className="px-16 py-8 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+  )
+}
+
 export const ProjectsTemplate = () => {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedType, setSelectedType] = useState<string>('all')
   const [expandedYear, setExpandedYear] = useState<string | null>(null)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [filters, setFilters] = useState<{ type: string[]; status: string[] }>({
+    type: [],
+    status: [],
+  })
 
   useEffect(() => {
     fetch('/website/data/projects.json')
@@ -79,7 +171,6 @@ export const ProjectsTemplate = () => {
         setProjects(piProjects)
         setLoading(false)
         
-        // Auto-expand the most recent year
         if (piProjects.length > 0) {
           const years = [...new Set(piProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
           years.sort((a, b) => parseInt(b) - parseInt(a))
@@ -92,11 +183,37 @@ export const ProjectsTemplate = () => {
       })
   }, [])
 
-  const filteredProjects = selectedType === 'all' 
-    ? projects 
-    : projects.filter(p => p.type === selectedType)
+  const handleFilterChange = (key: 'type' | 'status', value: string) => {
+    setFilters((prev) => {
+      const current = prev[key]
+      const updated = current.includes(value)
+        ? current.filter((v) => v !== value)
+        : [...current, value]
+      return { ...prev, [key]: updated }
+    })
+  }
 
-  // Group projects by year
+  const handleFilterReset = () => {
+    setFilters({ type: [], status: [] })
+  }
+
+  const getProjectStatus = (period: string): 'ongoing' | 'completed' => {
+    const periodParts = period.split('–')
+    const endDateStr = periodParts[1]?.trim() || periodParts[0].trim()
+    const endDate = new Date(endDateStr)
+    const today = new Date()
+    return endDate >= today ? 'ongoing' : 'completed'
+  }
+
+  const filteredProjects = projects.filter((p) => {
+    if (filters.type.length > 0 && !filters.type.includes(p.type)) return false
+    if (filters.status.length > 0) {
+      const status = getProjectStatus(p.period)
+      if (!filters.status.includes(status)) return false
+    }
+    return true
+  })
+
   const projectsByYear = filteredProjects.reduce((acc, project) => {
     const year = project.period.split('–')[0].trim().slice(0, 4)
     if (!acc[year]) acc[year] = []
@@ -107,22 +224,19 @@ export const ProjectsTemplate = () => {
   const years = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
   const currentYear = new Date().getFullYear().toString()
 
-  // Statistics
   const stats = {
     total: projects.length,
-    government: projects.filter(p => p.type === 'government').length,
-    industry: projects.filter(p => p.type === 'industry').length,
-    institution: projects.filter(p => p.type === 'institution').length,
-    academic: projects.filter(p => p.type === 'academic').length,
+    ongoing: projects.filter(p => getProjectStatus(p.period) === 'ongoing').length,
+    completed: projects.filter(p => getProjectStatus(p.period) === 'completed').length,
   }
 
   const statisticsItems = [
     { icon: Folder, label: 'Total', count: stats.total },
-    { icon: Landmark, label: 'Government', count: stats.government },
-    { icon: Building2, label: 'Industry', count: stats.industry },
-    { icon: GraduationCap, label: 'Institution', count: stats.institution },
-    { icon: Briefcase, label: 'Academic', count: stats.academic },
+    { icon: TrendingUp, label: 'Ongoing', count: stats.ongoing, color: 'text-green-500' },
+    { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-gray-500' },
   ]
+
+  const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0
 
   return (
     <div className="flex flex-col bg-white">
@@ -177,7 +291,7 @@ export const ProjectsTemplate = () => {
               <TrendingUp size={20} className="text-primary" />
               <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Statistics</h2>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-12 md:gap-20">
+            <div className="grid grid-cols-3 gap-12 md:gap-20">
               {statisticsItems.map((stat, index) => (
                 <div
                   key={index}
@@ -187,46 +301,88 @@ export const ProjectsTemplate = () => {
                     <stat.icon className="size-16 md:size-20 text-gray-500" />
                     <span className="text-sm md:text-md font-semibold text-gray-900">{stat.label}</span>
                   </div>
-                  <span className="text-xl md:text-[24px] font-semibold text-primary">{stat.count}</span>
+                  <span className={`text-xl md:text-[24px] font-semibold ${stat.color || 'text-primary'}`}>{stat.count}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Filter */}
-          <div className="flex flex-col gap-12 md:gap-20">
-            <div className="flex items-center gap-8">
-              <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Filter by Type</h2>
-            </div>
-            <div className="flex flex-wrap gap-8 md:gap-12">
+          {/* Filter & Search - Publications Style */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            <div className="relative">
               <button
-                onClick={() => setSelectedType('all')}
-                className={`px-16 md:px-20 py-10 md:py-12 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
-                  selectedType === 'all'
-                    ? 'bg-primary text-white shadow-md'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
+                  isFilterOpen || hasActiveFilters
+                    ? 'bg-primary/5 border-primary text-primary font-medium'
+                    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
                 }`}
               >
-                All Projects
+                Filters
+                {hasActiveFilters && (
+                  <span className="size-20 bg-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                    {filters.type.length + filters.status.length}
+                  </span>
+                )}
+                <SlidersHorizontal className="size-16 md:size-20" />
               </button>
-              {Object.entries(typeConfig).map(([key, config]) => {
-                const Icon = config.icon
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setSelectedType(key)}
-                    className={`flex items-center gap-8 px-16 md:px-20 py-10 md:py-12 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
-                      selectedType === key
-                        ? `${config.color} text-white shadow-md`
-                        : `${config.bgColor} ${config.textColor} hover:opacity-80`
+
+              {isFilterOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setIsFilterOpen(false)}
+                  />
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <FilterModal
+                      filters={filters}
+                      onChange={handleFilterChange}
+                      onReset={handleFilterReset}
+                      onClose={() => setIsFilterOpen(false)}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            {/* Active Filters Display */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap items-center gap-8">
+                {filters.type.map((type) => {
+                  const config = typeConfig[type as keyof typeof typeConfig]
+                  return (
+                    <span
+                      key={type}
+                      className={`flex items-center gap-6 px-12 py-6 ${config.bgColor} ${config.textColor} text-sm font-medium rounded-full`}
+                    >
+                      {config.label}
+                      <button onClick={() => handleFilterChange('type', type)} className="hover:opacity-70">
+                        <X size={14} />
+                      </button>
+                    </span>
+                  )
+                })}
+                {filters.status.map((status) => (
+                  <span
+                    key={status}
+                    className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
+                      status === 'ongoing' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
                     }`}
                   >
-                    <Icon size={16} />
-                    {config.label}
-                  </button>
-                )
-              })}
-            </div>
+                    {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                    <button onClick={() => handleFilterChange('status', status)} className="hover:opacity-70">
+                      <X size={14} />
+                    </button>
+                  </span>
+                ))}
+                <button
+                  onClick={handleFilterReset}
+                  className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  Clear all
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Projects List by Year */}
@@ -253,13 +409,6 @@ export const ProjectsTemplate = () => {
                   const yearProjects = projectsByYear[year]
                   const isCurrentYear = year === currentYear
                   const isExpanded = expandedYear === year
-                  
-                  const yearStats = {
-                    government: yearProjects.filter(p => p.type === 'government').length,
-                    industry: yearProjects.filter(p => p.type === 'industry').length,
-                    institution: yearProjects.filter(p => p.type === 'institution').length,
-                    academic: yearProjects.filter(p => p.type === 'academic').length,
-                  }
 
                   return (
                     <div key={year}>
@@ -285,9 +434,6 @@ export const ProjectsTemplate = () => {
                               ({yearProjects.length} projects)
                             </span>
                           </div>
-                          <span className={`text-xs md:text-sm ${isCurrentYear ? 'text-amber-700' : 'text-gray-500'}`}>
-                            Gov: {yearStats.government} · Ind: {yearStats.industry} · Inst: {yearStats.institution} · Acad: {yearStats.academic}
-                          </span>
                         </div>
                         {isExpanded ? (
                           <ChevronUp className="size-20 text-gray-500" />
@@ -301,6 +447,7 @@ export const ProjectsTemplate = () => {
                           {yearProjects.map((project, idx) => {
                             const config = typeConfig[project.type]
                             const Icon = config?.icon || Briefcase
+                            const status = getProjectStatus(project.period)
                             
                             return (
                               <div key={idx} className="p-20 md:p-32 bg-white border-t border-gray-100">
@@ -313,9 +460,13 @@ export const ProjectsTemplate = () => {
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${config?.borderColor || 'border-gray-200'} ${config?.bgColor || 'bg-gray-50'}`}>
-                                      <span className={`text-[10px] md:text-xs font-medium ${config?.textColor || 'text-gray-600'}`}>
-                                        {config?.labelKo || '기타'}
+                                    <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
+                                      status === 'ongoing' ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-gray-50'
+                                    }`}>
+                                      <span className={`text-[10px] md:text-xs font-medium ${
+                                        status === 'ongoing' ? 'text-green-600' : 'text-gray-500'
+                                      }`}>
+                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>
                                     </div>
                                   </div>

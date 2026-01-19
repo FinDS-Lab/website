@@ -86,15 +86,16 @@ export const MembersAlumniTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100">
         {loading ? (
           <div className="text-center py-40">
             <p className="text-gray-400 animate-pulse">Loading alumni...</p>
           </div>
-        ) : alumni.length === 0 ? (
-          <div className="text-center py-40">
+        ) : years.length === 0 ? (
+          <div className="text-center py-60">
             <GraduationCap size={48} className="mx-auto text-gray-300 mb-16"/>
-            <p className="text-gray-400">No alumni data available yet.</p>
+            <p className="text-lg font-semibold text-gray-600 mb-8">No Alumni Yet</p>
+            <p className="text-gray-400">Alumni information will be displayed here once available.</p>
           </div>
         ) : (
           <div className="space-y-32">
@@ -104,10 +105,10 @@ export const MembersAlumniTemplate = () => {
                   <span className="px-16 py-6 bg-primary text-white text-sm font-bold rounded-full">
                     {year}
                   </span>
-                  <span className="text-sm text-gray-500">{alumniByYear[year].length} graduates</span>
+                  <span className="text-sm text-gray-500">{alumniByYear[year]?.length || 0} graduates</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                  {alumniByYear[year].map((a, idx) => (
+                  {(alumniByYear[year] || []).map((a, idx) => (
                     <div
                       key={idx}
                       className="p-20 bg-white border border-gray-100 rounded-2xl hover:shadow-md hover:border-primary/20 transition-all"
