@@ -22,7 +22,7 @@ export const AboutHonorsTemplate = () => {
       return JSON.parse(cleaned)
     }
 
-    safeJsonFetch('/website/data/honors.json')
+    safeJsonFetch('/findslab-test/data/honors.json')
       .then((data: HonorsData) => {
         setHonorsData(data)
         // 현재 연도를 기본으로 펼침

@@ -4,7 +4,7 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/website/',
+  base: '/findslab-test/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

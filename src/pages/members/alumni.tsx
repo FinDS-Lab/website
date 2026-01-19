@@ -1,10 +1,10 @@
 import LayoutOrganisms from '@/components/organisms/layout'
-import { MembersAlumniTemplate } from '@/components/templates/members/alumni'
+import {MembersAlumniTemplate} from '@/components/templates/members/alumni'
 
 export const MembersAlumni = () => {
   return (
     <LayoutOrganisms>
-      <MembersAlumniTemplate />
+      <MembersAlumniTemplate/>
     </LayoutOrganisms>
   )
 }

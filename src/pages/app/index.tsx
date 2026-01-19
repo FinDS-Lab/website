@@ -12,13 +12,12 @@ const Projects = lazy(() => import('../projects').then((module) => ({ default: m
 
 // About FINDS
 const AboutIntroduction = lazy(() => import('../about/introduction').then((module) => ({ default: module.AboutIntroduction })));
-const AboutResearch = lazy(() => import('../about/research').then((module) => ({ default: module.AboutResearch })));
 const AboutHonors = lazy(() => import('../about/honors').then((module) => ({ default: module.AboutHonors })));
 const AboutLocation = lazy(() => import('../about/location').then((module) => ({ default: module.AboutLocation })));
 
 // Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
-const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.MembersDirectorActivities })));
+const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.default })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
 const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
 const MembersDetail = lazy(() => import('../members/detail').then((module) => ({ default: module.MembersDetail })));
@@ -45,7 +44,6 @@ export const App = () => {
         {/* About FINDS */}
         <Route path="/about" element={<Navigate to="/about/introduction" replace />} />
         <Route path="/about/introduction" element={<AboutIntroduction />} />
-        <Route path="/about/research" element={<AboutResearch />} />
         <Route path="/about/honors" element={<AboutHonors />} />
         <Route path="/about/location" element={<AboutLocation />} />
 

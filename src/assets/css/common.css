@@ -2,8 +2,7 @@
   box-sizing: inherit;
   /*margin: 0;*/
   /*padding: 0;*/
-  word-break: keep-all;
-  overflow-wrap: break-word;
+  word-break: break-all;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-touch-callout: none;
   -webkit-font-smoothing: antialiased;

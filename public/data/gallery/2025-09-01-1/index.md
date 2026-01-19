@@ -142,7 +142,7 @@ images:
     <div class="content-body">
       <div class="image-grid">
         <div class="image-item">
-          <img src="/website/data/gallery/2025-09-01-1/logo-finds.png" alt="FINDS Lab. Logo">
+          <img src="/findslab-test/data/gallery/2025-09-01-1/logo-finds.png" alt="FINDS Lab. Logo">
         </div>
       </div>
     </div>

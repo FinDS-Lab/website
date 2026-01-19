@@ -1,10 +1,12 @@
 import LayoutOrganisms from '@/components/organisms/layout'
-import { MembersDirectorActivitiesTemplate } from '@/components/templates/members/director-activities'
+import {MembersDirectorActivitiesTemplate} from '@/components/templates/members/director-activities'
 
-export const MembersDirectorActivities = () => {
+const MembersDirectorActivities = () => {
   return (
     <LayoutOrganisms>
-      <MembersDirectorActivitiesTemplate />
+      <MembersDirectorActivitiesTemplate/>
     </LayoutOrganisms>
   )
 }
+
+export default MembersDirectorActivities

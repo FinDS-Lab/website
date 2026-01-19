@@ -12,7 +12,7 @@ const queryClient = new QueryClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <BrowserRouter basename={'/website'}>
+  <BrowserRouter basename={'/findslab-test'}>
     <QueryClientProvider client={queryClient}>
       <App/>
       <Modal/>

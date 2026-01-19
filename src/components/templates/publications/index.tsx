@@ -222,8 +222,8 @@ export const PublicationsTemplate = () => {
     }
 
     Promise.all([
-      safeJsonFetch('/website/data/pubs.json'),
-      safeJsonFetch('/website/data/authors.json'),
+      safeJsonFetch('/findslab-test/data/pubs.json'),
+      safeJsonFetch('/findslab-test/data/authors.json'),
     ])
       .then(([pubsData, authorsData]) => {
         setPublications(pubsData)

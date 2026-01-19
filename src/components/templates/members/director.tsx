@@ -1,18 +1,18 @@
-import {memo, useMemo} from 'react'
+import {memo, useState} from 'react'
 import {Link} from 'react-router-dom'
 import {
   Mail,
+  Phone,
   MapPin,
+  ExternalLink,
   Briefcase,
-  Award,
   Building,
   ChevronRight,
   Home,
   Copy,
   Check,
-  ExternalLink,
 } from 'lucide-react'
-import {useState} from 'react'
+import {useStoreModal} from '@/store/modal'
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
@@ -28,98 +28,70 @@ import logoWorldquant from '@/assets/images/logos/worldquant.jpg'
 import logoEy from '@/assets/images/logos/ey.png'
 import logoJl from '@/assets/images/logos/jl.png'
 
+// Static Data
 const education = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025.02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
     field: 'Industrial and Systems Engineering',
-    location: 'Korea Advanced Institute of Science and Technology (KAIST)',
     krName: '한국과학기술원 (KAIST) 산업및시스템공학 공학박사',
     advisor: 'Woo Chang Kim',
-    leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021.09 - 2025.01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
-    ],
-    awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
+    awards: [{title: 'Best Doctoral Dissertation Award', org: 'KORMS'}],
     logo: logoKaist
   },
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2021.02',
-    degree: 'Master of Science (M.S.)',
+    degree: 'Master of Science (M.S.) in Engineering',
     field: 'Industrial and Systems Engineering',
-    location: 'Korea Advanced Institute of Science and Technology (KAIST)',
     krName: '한국과학기술원 (KAIST) 산업및시스템공학 공학석사',
     advisor: 'Woo Chang Kim',
-    awards: [{title: "Best Master's Thesis Award", org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    awards: [{title: 'Best Master\'s Thesis Award', org: 'KIIE'}],
     logo: logoKaist
   },
   {
     school: 'Kyung Hee University',
-    period: '2018.02',
-    degree: 'Bachelor of Engineering (B.E.)',
-    field: 'Industrial and Management Systems Engineering',
-    location: 'Kyung Hee University',
+    period: '2019.02',
+    degree: 'Bachelor of Science (B.S.) in Engineering',
+    field: 'Industrial and Management Engineering',
     krName: '경희대학교 산업경영공학 공학사',
-    advisor: 'Jang Ho Kim, Myoung-Ju Park',
-    leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017.01 - 2017.11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016.01 - 2016.12'},
-    ],
-    awards: [{title: 'Valedictorian', org: '1st out of 86 students'}],
+    awards: [{title: 'Valedictorian', org: '1st out of 86'}],
     logo: logoKyunghee
   },
 ]
 
 const employment = [
-  {position: 'Assistant Professor', organization: 'Gachon University', period: '2026.03 – Present', location: 'Department of Big Data Business Management, Gachon Business School', krOrg: '조교수 / 가천대학교 경영대학 금융·빅데이터학부', logo: logoGcu},
-  {position: 'Assistant Professor', organization: "Dongduk Women's University", period: '2025.09 – 2026.02', location: 'Division of Business Administration, College of Business', krOrg: '조교수 / 동덕여자대학교 경영대학 경영융합학부', logo: logoDwu},
-  {position: 'Director', organization: 'FINDS Lab.', period: '2025.06 – Present', location: 'FINDS Lab.', krOrg: '디렉터 / FINDS Lab.', logo: logoFinds},
-  {position: 'Lecturer', organization: 'Kangnam University', period: '2025.03 – 2026.02', location: 'Department of Electronic and Semiconductor Engineering', krOrg: '강사 / 강남대학교 공과대학 전자반도체공학부', logo: logoKangnam},
-  {position: 'Lecturer', organization: 'Korea University', period: '2025.03 – 2026.02', location: 'Digital Business Major, Division of Convergence Business', krOrg: '강사 / 고려대학교 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공', logo: logoKorea},
-  {position: 'Lecturer', organization: 'Kyung Hee University', period: '2024.03 – 2024.08', location: 'Department of Industrial and Management Systems Engineering', krOrg: '강사 / 경희대학교 공과대학 산업경영공학과', logo: logoKyunghee},
-  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022.06 – Present', location: 'WorldQuant Brain', krOrg: '연구 컨설턴트 / 월드퀀트 브레인', logo: logoWorldquant},
-  {position: 'Intern', organization: 'EY Consulting', period: '2020.03 – 2020.05', location: 'Performance Improvement Department', krOrg: '인턴 / EY컨설팅 성과개선팀', logo: logoEy},
-  {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014.06 – Present', location: 'JL C&C', krOrg: '대표 / JL C&C', logo: logoJl},
+  {position: 'Assistant Professor', organization: 'Gachon University', department: 'Dept. of Big Data Business Management', period: '2026.03 – Present', krOrg: '가천대학교 빅데이터경영학과', logo: logoGcu, isCurrent: true},
+  {position: 'Assistant Professor', organization: 'Dongduk Women\'s University', department: 'Dept. of Business Administration', period: '2025.09 – 2026.02', krOrg: '동덕여자대학교 경영학과', logo: logoDwu, isCurrent: false},
+  {position: 'Director', organization: 'FINDS Lab.', department: 'Financial Insights and Data Science Lab', period: '2025.09 – Present', krOrg: 'FINDS Lab. 디렉터', logo: logoFinds, isCurrent: true},
+  {position: 'Lecturer', organization: 'Kangnam University', department: 'School of Global Business', period: '2025.03 – Present', krOrg: '강남대학교 글로벌경영학부', logo: logoKangnam, isCurrent: true},
+  {position: 'Lecturer', organization: 'Korea University Sejong Campus', department: 'Division of Digital Studies', period: '2025.03 – 2025.06', krOrg: '고려대학교 세종 디지털학부', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', organization: 'Kyung Hee University', department: 'Dept. of Industrial and Management Engineering', period: '2024.03 – 2024.06', krOrg: '경희대학교 산업경영공학과', logo: logoKyunghee, isCurrent: false},
+  {position: 'Research Consultant', organization: 'WorldQuant, LLC', department: '', period: '2020.09 – Present', krOrg: '월드퀀트', logo: logoWorldquant, isCurrent: true},
+  {position: 'Senior Consultant', organization: 'Ernst & Young Advisory', department: 'Quantitative Advisory Services', period: '2019.01 – 2019.07', krOrg: 'EY 한영', logo: logoEy, isCurrent: false},
+  {position: 'Intern', organization: 'JL C&C', department: 'AI Lab. R&D', period: '2017.12 – 2018.02', krOrg: 'JL씨앤씨', logo: logoJl, isCurrent: false},
 ]
 
 const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023.09 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022.06 – Present', role: 'Lifetime Member'},
+  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회', role: 'Lifelong Member', period: '2025 – Present'},
+  {organization: 'Korean Statistical Society (KSA)', krOrg: '한국통계학회', role: 'Lifelong Member', period: '2024 – Present'},
+  {organization: 'Korea Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회', role: 'Lifelong Member', period: '2024 – Present'},
+  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회', role: 'Lifelong Member', period: '2024 – Present'},
 ]
 
+const publicationStats = [{label: 'Journal', count: 20}, {label: 'Conference', count: 10}, {label: 'Book', count: 4}, {label: 'Report', count: 1}, {label: 'Thesis', count: 2}, {label: 'SCI(E)', count: 11}, {label: 'SSCI', count: 1}, {label: 'Scopus', count: 2}, {label: 'KCI', count: 6}]
+const citationStats = [{label: 'Citations', count: 127}, {label: 'g-index', count: 10}, {label: 'h-index', count: 7}, {label: 'i10-index', count: 5}]
+
 const researchInterests = [
-  {
-    category: 'Financial Data Science',
-    items: [
-      {en: 'AI in Quantitative Finance & Asset Management'},
-      {en: 'Financial Time-Series Modeling & Forecasting'},
-      {en: 'Household Finance & Behavioral Decision Modeling'},
-    ],
-  },
-  {
-    category: 'Business Analytics',
-    items: [
-      {en: 'Data Analytics for Cross-Industry & Cross-Domain Convergences'},
-      {en: 'Data Visualization & Transparency in Business Analytics'},
-      {en: 'Business Insights from Data Science Techniques'},
-    ],
-  },
-  {
-    category: 'Data-Inspired Decision Making',
-    items: [
-      {en: 'Trustworthy Decision Systems & Optimization'},
-      {en: 'Risk-Aware & User-Friendly Decision Tools'},
-      {en: 'Decision Analytics for Complex Business Problems'},
-    ],
-  },
+  {category: 'Financial Data Science', items: [{en: 'Explainable AI in Finance'}, {en: 'Portfolio Optimization & Algorithmic Trading'}, {en: 'Financial Time-Series Analysis'}, {en: 'Credit & Market Risk Modeling'}]},
+  {category: 'Business Analytics', items: [{en: 'Advanced Time-Series Forecasting'}, {en: 'Network & Graph Analytics'}, {en: 'Optimization under Uncertainty'}, {en: 'Process Optimization & Efficiency'}]},
+  {category: 'Data-Inspired Decision Making', items: [{en: 'Risk-Aware Decision Tools'}, {en: 'Decision Analytics for Business Problems'}]},
 ]
 
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
+  const {showModal} = useStoreModal()
   const directorEmail = 'ischoi@gachon.ac.kr'
 
   const handleCopyEmail = () => {
@@ -127,25 +99,6 @@ export const MembersDirectorTemplate = () => {
     setEmailCopied(true)
     setTimeout(() => setEmailCopied(false), 2000)
   }
-
-  const publicationStats = useMemo(() => [
-    {label: 'SCIE', count: 0},
-    {label: 'SSCI', count: 0},
-    {label: 'A&HCI', count: 0},
-    {label: 'ESCI', count: 0},
-    {label: 'Scopus', count: 0},
-    {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0},
-    {label: 'KCI', count: 0},
-    {label: 'Dom. Conf', count: 0},
-  ], [])
-
-  const citationStats = [
-    {label: 'Citations', count: 127},
-    {label: 'g-index', count: 10},
-    {label: 'h-index', count: 7},
-    {label: 'i10-index', count: 5},
-  ]
 
   return (
     <div className="flex flex-col bg-white">
@@ -179,68 +132,64 @@ export const MembersDirectorTemplate = () => {
                 <div className="size-150 md:size-200 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                  Insu Choi<span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
-                </h2>
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Insu Choi<span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span></h2>
                 <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
               </div>
 
               <div className="flex flex-col gap-16 md:gap-20">
                 <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Briefcase size={16}/>
-                  </div>
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0"><Briefcase size={16}/></div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab.</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director, FINDS Lab.</p>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Building size={16}/>
-                  </div>
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0"><Building size={16}/></div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Assistant Professor</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">Dept. of Big Data Business Management</p>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <MapPin size={16}/>
-                  </div>
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0"><MapPin size={16}/></div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Room 706, Humanities Hall</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Mail size={16}/>
-                  </div>
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0"><Mail size={16}/></div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
                     <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline truncate">{directorEmail}</a>
+                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline">{directorEmail}</a>
                       <button onClick={handleCopyEmail} className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" title="Copy email">
                         {emailCopied ? <Check size={12} className="text-green-500"/> : <Copy size={12} className="text-gray-400"/>}
                       </button>
                     </div>
                   </div>
                 </div>
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0"><Phone size={16}/></div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
+                  </div>
+                </div>
               </div>
 
-              {/* Link to Activities */}
-              <div className="mt-24 pt-20 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
+                <button onClick={() => showModal({title: 'Curriculum Vitae', maxWidth: '1000px', children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>})} className="flex items-center justify-center gap-8 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all">View CV <ExternalLink size={14}/></button>
+                <a href="https://scholar.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-sm font-bold rounded-xl hover:bg-gray-800 transition-all" style={{color: 'white'}}>Google Scholar <ExternalLink size={14}/></a>
+              </div>
+
+              <div className="mt-16 pt-16 border-t border-gray-100">
                 <Link to="/members/director-activities" className="flex items-center justify-between p-16 bg-gradient-to-r from-primary/5 to-primary/10 rounded-xl hover:from-primary/10 hover:to-primary/15 transition-all group">
-                  <div>
-                    <p className="text-xs font-bold text-gray-900">More Activities</p>
-                    <p className="text-[10px] text-gray-500">Awards, Teaching, Projects, Services...</p>
-                  </div>
+                  <div><p className="text-xs font-bold text-gray-900">More Activities</p><p className="text-[10px] text-gray-500">Awards, Teaching, Projects, Services...</p></div>
                   <ChevronRight size={16} className="text-primary group-hover:translate-x-4 transition-transform"/>
                 </Link>
               </div>
@@ -253,32 +202,8 @@ export const MembersDirectorTemplate = () => {
             <section>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Introduction</h3>
               <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-20 md:p-32 border border-gray-100">
-                <p className="text-gray-600 leading-relaxed text-sm md:text-[15px] mb-20">
-                  I am an Assistant Professor at Gachon University and the Director of FINDS Lab, working across{' '}
-                  <span className="font-bold text-primary">Financial Data Science</span>,{' '}
-                  <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Driven Decision Making</span>.
-                </p>
-                <div className="space-y-12 mb-20">
-                  <div className="flex gap-12">
-                    <span className="size-24 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center justify-center shrink-0">1</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-[15px]">
-                      <span className="font-semibold text-gray-700">AI-driven solutions for quantitative finance</span> — portfolio optimization, algorithmic trading, and financial time-series forecasting.
-                    </p>
-                  </div>
-                  <div className="flex gap-12">
-                    <span className="size-24 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center justify-center shrink-0">2</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-[15px]">
-                      <span className="font-semibold text-gray-700">Advanced analytics across business domains</span> — time-series models, graph-based analytics, and actionable insights.
-                    </p>
-                  </div>
-                  <div className="flex gap-12">
-                    <span className="size-24 bg-primary/10 text-primary text-xs font-bold rounded-full flex items-center justify-center shrink-0">3</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-[15px]">
-                      <span className="font-semibold text-gray-700">Intelligent decision support systems</span> — optimization techniques with user-friendly interfaces for complex business problems.
-                    </p>
-                  </div>
-                </div>
+                <p className="text-gray-600 leading-relaxed text-sm md:text-[15px] mb-20">I am an Assistant Professor at Gachon University and the Director of FINDS Lab, working across <span className="font-bold text-primary">Financial Data Science</span>, <span className="font-bold text-primary">Business Analytics</span>, and <span className="font-bold text-primary">Data-Driven Decision Making</span>.</p>
+                <p className="text-gray-600 leading-relaxed text-sm md:text-[15px]">The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.</p>
               </div>
             </section>
 
@@ -287,42 +212,9 @@ export const MembersDirectorTemplate = () => {
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Research Interests</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
                 {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-white border border-gray-100 rounded-xl md:rounded-2xl p-16 md:p-24 hover:shadow-md hover:border-primary/20 transition-all">
-                    <h4 className="text-xs md:text-sm font-bold text-gray-900 mb-12 md:mb-16 pb-8 md:pb-12 border-b border-gray-100">{area.category}</h4>
-                    <ul className="space-y-8 md:space-y-12">
-                      {area.items.map((item, idx) => (
-                        <li key={idx} className="flex items-center gap-8">
-                          <span className="size-5 md:size-6 bg-primary rounded-full shrink-0"/>
-                          <span className="text-xs md:text-sm text-gray-600 leading-tight flex-1">{item.en}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Publication Statistics */}
-            <section>
-              <div className="flex items-center justify-between mb-16 md:mb-24">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
-                <Link to="/publications" className="text-xs text-primary font-medium flex items-center gap-4 hover:underline">
-                  View All <ExternalLink size={12}/>
-                </Link>
-              </div>
-              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                {publicationStats.map((stat, index) => (
-                  <div key={index} className="text-center p-8 md:p-12 bg-gray-50 rounded-lg md:rounded-xl hover:bg-primary/5 transition-colors">
-                    <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
-                    <div className="text-[8px] md:text-[9px] font-bold text-gray-400 uppercase mt-2 md:mt-4">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 md:pt-20 border-t border-gray-100">
-                {citationStats.map((stat, index) => (
-                  <div key={index} className="text-center p-12 md:p-20 bg-gray-900 rounded-lg md:rounded-xl hover:bg-gray-800 transition-colors">
-                    <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                    <div className="text-[9px] md:text-[10px] font-bold text-gray-500 uppercase mt-2 md:mt-4">{stat.label}</div>
+                  <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md hover:border-primary/20 transition-all">
+                    <h4 className="text-xs md:text-sm font-bold text-gray-900 mb-12 pb-8 border-b border-gray-100">{area.category}</h4>
+                    <ul className="space-y-8">{area.items.map((item, idx) => (<li key={idx} className="flex items-center gap-8"><span className="size-5 bg-primary rounded-full shrink-0"/><span className="text-xs md:text-sm text-gray-600">{item.en}</span></li>))}</ul>
                   </div>
                 ))}
               </div>
@@ -333,46 +225,16 @@ export const MembersDirectorTemplate = () => {
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Education</h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {education.map((edu, index) => (
-                  <div key={index} className="relative pb-24 md:pb-40 last:pb-0 group">
-                    <div className="absolute -left-[30px] md:-left-40 top-4 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md"/>
-                    <div className="bg-white border border-gray-100 rounded-xl md:rounded-2xl p-16 md:p-24 hover:shadow-lg transition-all">
-                      <div className="flex items-start gap-12 md:gap-20">
-                        <div className="size-40 md:size-56 bg-gray-50 rounded-lg md:rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
-                          <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-8 md:gap-12 mb-6 md:mb-8">
-                            <span className="px-8 md:px-12 py-3 md:py-4 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full">{edu.period}</span>
-                            {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-4 text-[9px] md:text-[10px] font-bold text-amber-700 bg-amber-50 px-8 md:px-10 py-3 md:py-4 rounded-full border border-amber-200">
-                                <Award size={10}/> Award
-                              </span>
-                            )}
-                          </div>
-                          <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</h4>
-                          <p className="text-xs md:text-sm text-gray-600 mb-6 md:mb-8">{edu.field}</p>
-                          <p className="text-[10px] md:text-xs text-gray-500">{edu.location}</p>
-                          <div className="mt-12 md:mt-16 pt-12 md:pt-16 border-t border-gray-100 space-y-12">
-                            <div>
-                              <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-6">Advisor</p>
-                              <p className="text-xs md:text-sm text-gray-700">{edu.advisor}</p>
-                            </div>
-                            {edu.awards && edu.awards.length > 0 && (
-                              <div>
-                                <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-6">Awards</p>
-                                {edu.awards.map((award, awardIdx) => (
-                                  <div key={awardIdx} className="flex items-start gap-8 bg-amber-50 border border-amber-100 rounded-lg px-12 py-8">
-                                    <Award size={14} className="text-amber-600 shrink-0 mt-2"/>
-                                    <span className="text-xs md:text-sm text-gray-700">
-                                      <span className="font-bold">{award.title}</span>
-                                      {award.org && <span>, {award.org}</span>}
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                  <div key={index} className="relative pb-24 last:pb-0 group">
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 border-white shadow-md"/>
+                    <div className="flex items-start gap-12 bg-white border border-gray-100 rounded-lg p-12 md:p-16 hover:shadow-md transition-all">
+                      <div className="size-40 md:size-56 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0"><img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/></div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-6 mb-6"><span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">{edu.period}</span><span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">{edu.degree}</span></div>
+                        <h4 className="text-xs md:text-sm font-bold text-gray-900 mb-4">{edu.school}</h4>
+                        <p className="text-[10px] md:text-xs text-gray-600">{edu.field}</p>
+                        {edu.advisor && <p className="text-[10px] text-gray-500 mt-4">Advisor: {edu.advisor}</p>}
+                        {edu.awards?.length > 0 && <div className="mt-8 pt-8 border-t border-gray-100">{edu.awards.map((a, i) => (<span key={i} className="inline-flex items-center gap-4 px-8 py-4 bg-amber-50 text-amber-700 text-[9px] font-bold rounded-full border border-amber-100">🏆 {a.title}</span>))}</div>}
                       </div>
                     </div>
                   </div>
@@ -383,18 +245,16 @@ export const MembersDirectorTemplate = () => {
             {/* Employment */}
             <section>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Employment</h3>
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
-                {employment.map((job, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md ${job.period.includes('Present') ? 'bg-primary' : 'bg-gray-300'}`}/>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg transition-all">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img src={job.logo} alt={job.organization} className="w-full h-full object-contain"/>
-                      </div>
+              <div className="relative pl-24 md:pl-32 border-l-2 border-gray-200">
+                {employment.map((emp, index) => (
+                  <div key={index} className="relative pb-16 last:pb-0 group">
+                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 border-white shadow-md ${emp.isCurrent ? 'bg-primary' : 'bg-gray-300'}`}/>
+                    <div className="flex items-start gap-12 bg-white border border-gray-100 rounded-lg p-12 md:p-16 hover:shadow-md transition-all">
+                      <div className="size-40 md:size-56 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0"><img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/></div>
                       <div className="flex-1 min-w-0">
-                        <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${job.period.includes('Present') ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'}`}>{job.period}</span>
-                        <h4 className="text-xs md:text-sm font-bold text-gray-900 mt-4">{job.position}</h4>
-                        <p className="text-[10px] md:text-xs text-gray-600 truncate">{job.organization}</p>
+                        <div className="flex flex-wrap items-center gap-6 mb-4"><span className={`px-8 py-2 text-[9px] font-bold rounded-full ${emp.isCurrent ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'}`}>{emp.period}</span><span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">{emp.position}</span></div>
+                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.organization}</h4>
+                        {emp.department && <p className="text-[10px] text-gray-500 mt-2">{emp.department}</p>}
                       </div>
                     </div>
                   </div>
@@ -402,26 +262,35 @@ export const MembersDirectorTemplate = () => {
               </div>
             </section>
 
-            {/* Professional Affiliations */}
+            {/* Membership */}
             <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Professional Affiliations</h3>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Membership</h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {affiliations.map((aff, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md"/>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-md transition-all">
+                  <div key={index} className="relative pb-16 last:pb-0 group">
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 border-white shadow-md"/>
+                    <div className="flex items-center gap-12 bg-white border border-gray-100 rounded-lg p-12 md:p-16 hover:shadow-md transition-all">
                       <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
-                          <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
-                          <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
-                        </div>
+                        <div className="flex flex-wrap items-center gap-6 mb-4"><span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">{aff.period}</span><span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">{aff.role}</span></div>
                         <h4 className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</h4>
-                        <p className="text-[10px] md:text-xs text-gray-500 mt-2 truncate">{aff.krOrg}</p>
+                        <p className="text-[10px] text-gray-500 mt-2">{aff.krOrg}</p>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
+            </section>
+
+            {/* Publication Statistics */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24">Publication Statistics</h3>
+              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
+                {publicationStats.map((stat, index) => (<div key={index} className="text-center p-8 md:p-12 bg-gray-50 rounded-lg hover:bg-primary/5 transition-colors"><div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div><div className="text-[8px] md:text-[9px] font-bold text-gray-400 uppercase mt-2">{stat.label}</div></div>))}
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
+                {citationStats.map((stat, index) => (<div key={index} className="text-center p-12 md:p-20 bg-gray-900 rounded-lg hover:bg-gray-800 transition-colors"><div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div><div className="text-[9px] md:text-[10px] font-bold text-gray-500 uppercase mt-2">{stat.label}</div></div>))}
+              </div>
+              <div className="mt-16 text-center"><Link to="/publications" className="text-sm text-primary font-medium hover:underline flex items-center justify-center gap-4">View All Publications <ChevronRight size={14}/></Link></div>
             </section>
           </main>
         </div>

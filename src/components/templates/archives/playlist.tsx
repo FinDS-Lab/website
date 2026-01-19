@@ -24,7 +24,7 @@ export const ArchivesPlaylistTemplate = () => {
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const response = await fetch('/website/data/playlist/ischoi.json')
+        const response = await fetch('/findslab-test/data/playlist/ischoi.json')
         const text = await response.text()
         const cleaned = text.replace(/,(\s*[}\]])/g, '$1')
         const data = JSON.parse(cleaned)
