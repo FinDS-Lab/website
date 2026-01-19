@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
     path: '/about/introduction',
     children: [
       { name: 'Introduction', path: '/about/introduction' },
+      { name: 'Research Areas', path: '/about/research' },
       { name: 'Honors & Awards', path: '/about/honors' },
       { name: 'Location', path: '/about/location' },
     ]
@@ -30,8 +31,8 @@ const navItems: NavItem[] = [
     name: 'Members',
     path: '/members/director',
     children: [
-      { name: 'Director', path: '/members/director' },
-      { name: 'Director Activities', path: '/members/director-activities' },
+      { name: 'Director - 기본정보', path: '/members/director' },
+      { name: 'Director - Activities', path: '/members/director-activities' },
       { name: 'Current Members', path: '/members/current' },
       { name: 'Alumni', path: '/members/alumni' },
     ]

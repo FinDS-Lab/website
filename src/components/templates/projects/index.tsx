@@ -58,10 +58,17 @@ export const ProjectsTemplate = () => {
     fetch('/website/data/projects.json')
       .then((res) => res.json())
       .then((data: Project[]) => {
-        // Filter projects where PI is 최인수
-        const piProjects = data.filter(
-          (p) => p.roles.principalInvestigator === '최인수'
-        )
+        const cutoffDate = new Date('2025-06-14')
+        
+        // Filter projects where PI is 최인수 AND started after 2025-06-14
+        const piProjects = data.filter((p) => {
+          if (p.roles.principalInvestigator !== '최인수') return false
+          
+          // Parse start date from period (e.g., "2025-10-16 – 2025-12-31")
+          const startDateStr = p.period.split('–')[0].trim()
+          const startDate = new Date(startDateStr)
+          return startDate >= cutoffDate
+        })
         setProjects(piProjects)
         setLoading(false)
       })

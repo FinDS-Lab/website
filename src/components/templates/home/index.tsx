@@ -72,7 +72,7 @@ export const HomeTemplate = () => {
         const newsResults = await Promise.all(
           newsFiles.map(async (file) => {
             try {
-              const response = await fetch(`/findslab-test/data/news/${file}`)
+              const response = await fetch(`/website/data/news/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch news ${file}: ${response.status}`)
                 return null
@@ -94,7 +94,7 @@ export const HomeTemplate = () => {
         const noticeResults = await Promise.all(
           noticeFiles.map(async (file) => {
             try {
-              const response = await fetch(`/findslab-test/data/notice/${file}`)
+              const response = await fetch(`/website/data/notice/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch notice ${file}: ${response.status}`)
                 return null

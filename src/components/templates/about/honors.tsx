@@ -22,9 +22,36 @@ export const AboutHonorsTemplate = () => {
       return JSON.parse(cleaned)
     }
 
-    safeJsonFetch('/findslab-test/data/honors.json')
+    safeJsonFetch('/website/data/honors.json')
       .then((data: HonorsData) => {
-        setHonorsData(data)
+        // 2025년 6월 14일 이후 데이터만 필터링
+        const cutoffDate = new Date('2025-06-14')
+        const filteredData: HonorsData = {}
+        
+        const monthMap: Record<string, number> = {
+          'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+          'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+        }
+        
+        Object.entries(data).forEach(([year, items]) => {
+          const yearNum = parseInt(year)
+          if (yearNum > 2025) {
+            filteredData[year] = items
+          } else if (yearNum === 2025) {
+            const filtered = items.filter(item => {
+              const [monthStr, dayStr] = item.date.split(' ')
+              const month = monthMap[monthStr]
+              const day = parseInt(dayStr)
+              const itemDate = new Date(2025, month, day)
+              return itemDate >= cutoffDate
+            })
+            if (filtered.length > 0) {
+              filteredData[year] = filtered
+            }
+          }
+        })
+        
+        setHonorsData(filteredData)
         // 현재 연도를 기본으로 펼침
         const currentYear = new Date().getFullYear()
         setExpandedYear(String(currentYear))

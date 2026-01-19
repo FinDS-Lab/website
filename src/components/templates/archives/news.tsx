@@ -21,7 +21,7 @@ const NewsDetailModal = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/findslab-test/data/news/${id}.md`)
+    fetch(`/website/data/news/${id}.md`)
       .then(res => res.text())
       .then(text => {
         const { data, content } = parseMarkdown(text)
@@ -31,7 +31,7 @@ const NewsDetailModal = ({ id }: { id: string }) => {
           data.date = id.slice(0, 10)
         }
 
-        const processedContent = processJekyllContent(content, data, { basePath: '/findslab-test' })
+        const processedContent = processJekyllContent(content, data, { basePath: '/website' })
         setContent(processedContent)
         setLoading(false)
       })
@@ -62,7 +62,7 @@ export const ArchivesNewsTemplate = () => {
         const results = await Promise.all(
           newsFiles.map(async (file) => {
             try {
-              const response = await fetch(`/findslab-test/data/news/${file}`)
+              const response = await fetch(`/website/data/news/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch ${file}: ${response.status}`)
                 return null
