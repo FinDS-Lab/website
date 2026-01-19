@@ -1,18 +1,4 @@
 [
-    {
-    "titleEn": "6th Advancement of the ARETE Competency Framework: Deriving Career Fields, Major Competencies, and Curriculum Structure for Newly Established Majors",
-    "titleKo": "ARETE 역량체계 6차 고도화 (신설전공 진로분야, 전공역량, 교육과정 체계 도출)",
-    "period": "2025-10-16 – 2025-12-31",
-    "fundingAgency": "Dongduk Women's University",
-    "fundingAgencyKo": "동덕여자대학교",
-    "amount": "₩1,000,000",
-    "type": "institution",
-    "roles": {
-      "principalInvestigator": "원지성",
-      "leadResearcher": "원지성, 최인수",
-      "researchers": ["최인수"]
-    }
-  },
   {
     "titleEn": "Portfolio Risk Assessment and Investment Transparency with Explainable AI",
     "titleKo": "설명 가능한 인공지능 기법을 활용한 투자 성향 결정 요인 분석",
@@ -21,11 +7,7 @@
     "fundingAgencyKo": "한국조세재정연구원",
     "amount": "₩1,000,000",
     "type": "government",
-    "roles": {
-      "principalInvestigator": "최인수",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
+    "roles": { "principalInvestigator": "최인수", "leadResearcher": "최인수", "researchers": ["최인수"] }
   },
   {
     "titleEn": "Credit Scoring Model Research Advisory",
@@ -35,53 +17,7 @@
     "fundingAgencyKo": "크래프타",
     "amount": "₩1,500,000",
     "type": "industry",
-    "roles": {
-      "principalInvestigator": "최인수",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "An Analysis of the Capacity Enhancement Effect of Domestic Asset Management Companies via the Bank of Korea's Consignment of Foreign Currency Asset Management",
-    "titleKo": "외환보유액 국내 위탁이 국내 자산운용산업에 미치는 영향 평가",
-    "period": "2023-11-01 – 2024-07-30",
-    "fundingAgency": "Bank of Korea",
-    "fundingAgencyKo": "한국은행",
-    "amount": "N/A",
-    "type": "government",
-    "roles": {
-      "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Strategy Optimization in Collecting Delayed Payments from Customers",
-    "titleKo": "고객의 지불 지연에 대한 회수 전략 최적화",
-    "period": "2023-01-01 – 2024-12-31",
-    "fundingAgency": "National Research Foundation of Korea; Scientific and Technological Research Council of Türkiye; KAIST; Özyeğin University",
-    "fundingAgencyKo": "한국연구재단; 터키과학기술연구위원회; 한국과학기술원; 외즈예인 대학교",
-    "amount": "N/A",
-    "type": "government",
-    "roles": {
-      "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Strengthening Corporate Competitiveness Through Strategic Use of Patent Data",
-    "titleKo": "특허 데이터의 전략적 활용을 통한 기업경쟁력 강화 방안",
-    "period": "2022-12-01 – 2022-12-22",
-    "fundingAgency": "Federation of Intellectual Property Societies",
-    "fundingAgencyKo": "지식재산단체총연합회",
-    "amount": "N/A",
-    "type": "industry",
-    "roles": {
-      "principalInvestigator": "박성필",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
+    "roles": { "principalInvestigator": "최인수", "leadResearcher": "최인수", "researchers": ["최인수"] }
   },
   {
     "titleEn": "SK AI College — <Step into AI: London> Series-wide Script Review & Advisory",
@@ -90,119 +26,15 @@
     "fundingAgency": "StepintoCity, Inc.",
     "amount": "₩1,500,000",
     "type": "industry",
-    "roles": {
-      "principalInvestigator": "최인수",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
+    "roles": { "principalInvestigator": "최인수", "leadResearcher": "최인수", "researchers": ["최인수"] }
   },
   {
-    "titleEn": "Technology Appraisal Model for Financial Investment",
-    "titleKo": "투자용 기술력 평가모형",
-    "period": "2021-12-16 – 2023-12-31",
-    "fundingAgency": "Korea Credit Information Services",
-    "fundingAgencyKo": "한국신용정보원",
-    "amount": "N/A",
-    "type": "government",
-    "roles": {
-      "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Financial Data-Driven Market Valuation Model",
-    "titleKo": "금융 데이터 기반 시장 가치 평가 모형 개발",
-    "period": "2021-08-02 – 2023-12-31",
-    "fundingAgency": "Shinhan Bank",
-    "fundingAgencyKo": "신한은행",
-    "amount": "N/A",
-    "type": "industry",
-    "roles": {
-      "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-"titleEn": "SK AI College — <ICML 2021> Privacy & Security Part, Educational Content Development & Source Paper Summary",
-"titleKo": "SK AI College — <ICML 2021> Privacy & Security 파트 교육 콘텐츠 제작 및 원문 논문 요약",
+    "titleEn": "SK AI College — <ICML 2021> Privacy & Security Part, Educational Content Development & Source Paper Summary",
+    "titleKo": "SK AI College — <ICML 2021> Privacy & Security 파트 교육 콘텐츠 제작 및 원문 논문 요약",
     "period": "2021-07-24 – 2021-08-31",
     "fundingAgency": "Vreeze",
     "amount": "₩1,000,000",
     "type": "industry",
-    "roles": {
-      "principalInvestigator": "최인수",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Diabetes and Dyslipidemia Prediction Models via Natural Language Processing Techniques",
-    "titleKo": "식물성 기반 식사패턴의 만성질환 예방 및 건강영향 효과 연구",
-    "period": "2021-03-01 – 2023-12-31",
-    "fundingAgency": "National Research Foundation of Korea",
-    "fundingAgencyKo": "한국연구재단",
-    "amount": "N/A",
-    "type": "government",
-    "roles": {
-      "principalInvestigator": "김지혜",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Research for National Competitiveness Enhancement in the Data Industry",
-    "titleKo": "데이터 산업에서의 국가 경쟁력 확보를 위한 연구",
-    "period": "2019-09-01 – 2019-10-31",
-    "fundingAgency": "Korea Advanced Institute of Science and Technology (KAIST)",
-    "fundingAgencyKo": "한국과학기술원",
-    "amount": "N/A",
-    "type": "industry",
-    "roles": {
-      "principalInvestigator": "박성필",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Data Revolution: Changing the World",
-    "titleKo": "데이터 혁명, 세상을 바꾸다",
-    "period": "2019-08-16 – 2019-12-31",
-    "fundingAgency": "Maeil Broadcasting Network (MBN)",
-    "fundingAgencyKo": "매일방송",
-    "amount": "N/A",
-    "type": "industry",
-    "roles": {
-      "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Portfolio Optimization to ISA Management in Korea",
-    "titleKo": "개인종합자산관리계좌 (ISA, Individual Savings Account) 관리를 위한 포트폴리오 최적화 방안",
-    "period": "2016-07-01 – 2016-08-31",
-    "fundingAgency": "Kyung Hee University",
-    "fundingAgencyKo": "경희대학교",
-    "amount": "N/A",
-    "type": "academic",
-    "roles": {
-      "leadResearcher": "김장호",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Basics of Portfolio Optimization",
-    "titleKo": "포트폴리오 최적화 기초",
-    "period": "2016-01-01 – 2016-06-30",
-    "fundingAgency": "Kyung Hee University",
-    "fundingAgencyKo": "경희대학교",
-    "amount": "N/A",
-    "type": "academic",
-    "roles": {
-      "leadResearcher": "김장호",
-      "researchers": ["최인수"]
-    }
+    "roles": { "principalInvestigator": "최인수", "leadResearcher": "최인수", "researchers": ["최인수"] }
   }
 ]

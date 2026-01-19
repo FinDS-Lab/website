@@ -8,7 +8,6 @@ import {lazy, Suspense, useEffect} from "react";
 // Public Pages
 const Home = lazy(() => import('../home').then((module) => ({ default: module.Home })));
 const Publications = lazy(() => import('../publications').then((module) => ({ default: module.Publications })));
-const Lectures = lazy(() => import('../lectures').then((module) => ({ default: module.Lectures })));
 const Projects = lazy(() => import('../projects').then((module) => ({ default: module.Projects })));
 
 // About FINDS
@@ -19,6 +18,7 @@ const AboutLocation = lazy(() => import('../about/location').then((module) => ({
 
 // Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
+const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.MembersDirectorActivities })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
 const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
 const MembersDetail = lazy(() => import('../members/detail').then((module) => ({ default: module.MembersDetail })));
@@ -52,15 +52,13 @@ export const App = () => {
         {/* Members */}
         <Route path="/members" element={<Navigate to="/members/director" replace />} />
         <Route path="/members/director" element={<MembersDirector />} />
+        <Route path="/members/director-activities" element={<MembersDirectorActivities />} />
         <Route path="/members/current" element={<MembersCurrent />} />
         <Route path="/members/alumni" element={<MembersAlumni />} />
         <Route path="/members/:id" element={<MembersDetail />} />
 
         {/* Publications */}
         <Route path="/publications" element={<Publications />} />
-
-        {/* Lectures */}
-        <Route path="/lectures" element={<Lectures />} />
 
         {/* Projects */}
         <Route path="/projects" element={<Projects />} />

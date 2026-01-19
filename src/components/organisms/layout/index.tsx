@@ -32,12 +32,12 @@ const navItems: NavItem[] = [
     path: '/members/director',
     children: [
       { name: 'Director', path: '/members/director' },
+      { name: 'Director Activities', path: '/members/director-activities' },
       { name: 'Current Members', path: '/members/current' },
       { name: 'Alumni', path: '/members/alumni' },
     ]
   },
   { name: 'Publications', path: '/publications' },
-  { name: 'Lectures', path: '/lectures' },
   { name: 'Projects', path: '/projects' },
   {
     name: 'Archives',
