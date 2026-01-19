@@ -154,8 +154,8 @@ export const HomeTemplate = () => {
           <img src={logoFinds} alt="FINDS Lab" className="w-80 md:w-112 h-auto mb-16 md:mb-24 brightness-0 invert" />
           <h2 className="text-xl md:text-2xl font-semibold text-primary mb-8">FINDS Lab</h2>
           <p className="text-base md:text-xl font-medium mb-12 md:mb-16">Financial Data Intelligence & Solutions Laboratory</p>
-          <p className="text-sm md:text-xl font-medium max-w-400">
-            가천대학교 경영대학 금융·빅데이터학부
+          <p className="text-sm md:text-xl font-medium max-w-500">
+            가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공
             <br />
             금융데이터인텔리전스 연구실 홈페이지입니다.
           </p>
