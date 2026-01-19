@@ -120,7 +120,7 @@ export const AboutIntroductionTemplate = () => {
           <div className="flex items-center gap-8 mb-16 md:mb-20">
             <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
             <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
-              About FINDS Lab
+              About FINDS
             </span>
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
@@ -128,10 +128,6 @@ export const AboutIntroductionTemplate = () => {
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Introduction
           </h1>
-          
-          <p className="mt-16 md:mt-20 text-white/60 text-sm md:text-base font-medium tracking-wide">
-            Financial Intelligence & Data Science
-          </p>
         </div>
       </div>
 
@@ -305,41 +301,41 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          VISION SECTION - Statement with Dramatic Typography
+          VISION SECTION - Statement with Elegant Design
       ═══════════════════════════════════════════════════════════════ */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-60 md:py-120">
         <section
           ref={visionAnimation.ref}
           className={`transition-all duration-1000 delay-300 ${visionAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
         >
-          <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden">
+          <div className="relative bg-gradient-to-br from-amber-50 via-white to-primary/5 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden border border-amber-100/50">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-amber-500/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-primary/10 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-400/5 rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-amber-100/50 to-transparent" />
+              <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-200/20 rounded-full blur-3xl" />
             </div>
 
             {/* Floating Quotes */}
-            <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-white/5 rotate-180" />
-            <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-white/5" />
+            <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-amber-200/30 rotate-180" />
+            <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-amber-200/30" />
 
             {/* Content */}
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               {/* Badge */}
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full mb-32 md:mb-48">
-                <Sparkles size={14} className="text-amber-400" />
-                <span className="text-amber-300 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-32 md:mb-48 shadow-sm">
+                <Sparkles size={14} className="text-amber-500" />
+                <span className="text-amber-700 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Vision
                 </span>
               </div>
 
               {/* Main Title */}
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.3] mb-32 md:mb-48">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
                 We illuminate the future of
                 <br />
                 <span className="relative inline-block mt-8 md:mt-12">
-                  <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
                     Better Data Intelligence
                   </span>
                   <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
@@ -348,19 +344,19 @@ export const AboutIntroductionTemplate = () => {
 
               {/* Divider */}
               <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-amber-400/50" />
-                <div className="w-2 h-2 rounded-full bg-amber-400/50" />
-                <div className="w-12 h-px bg-gradient-to-l from-transparent to-amber-400/50" />
+                <div className="w-12 h-px bg-gradient-to-r from-transparent to-amber-300" />
+                <div className="w-2 h-2 rounded-full bg-amber-400" />
+                <div className="w-12 h-px bg-gradient-to-l from-transparent to-amber-300" />
               </div>
 
               {/* Description */}
-              <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-[2] font-medium">
+              <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
                 We envision a future where{' '}
-                <span className="text-white font-bold border-b-2 border-amber-400/30 pb-1">data intelligence</span>{' '}
+                <span className="text-gray-900 font-bold border-b-2 border-amber-300 pb-1">data intelligence</span>{' '}
                 diminishes knowledge asymmetry, turning complex data streams into{' '}
-                <span className="text-amber-200">clear, accessible, and strategically valuable insights</span>{' '}
+                <span className="text-primary font-semibold">clear, accessible, and strategically valuable insights</span>{' '}
                 — a future built upon meaningful{' '}
-                <span className="text-amber-400 font-bold">finds</span>{' '}
+                <span className="text-amber-600 font-bold">finds</span>{' '}
                 that guide decision-makers across finance, business, and diverse societal domains.
               </p>
             </div>

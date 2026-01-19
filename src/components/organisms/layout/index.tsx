@@ -1,6 +1,6 @@
-import { memo, ReactNode, useState } from 'react'
+import { memo, ReactNode, useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ChevronDown, Menu, X, Mail, Copy, Check } from 'lucide-react'
+import { ChevronDown, Menu, X, Mail, Copy, Check, Music, Play, Pause, Volume2, VolumeX } from 'lucide-react'
 import clsx from 'clsx'
 import logoFinds from '@/assets/images/brand/logo-finds.png'
 import { useStoreModal } from '@/store/modal'
@@ -46,7 +46,6 @@ const navItems: NavItem[] = [
       { name: 'News', path: '/archives/news' },
       { name: 'Notice', path: '/archives/notice' },
       { name: 'Gallery', path: '/archives/gallery' },
-      { name: 'Playlist', path: '/archives/playlist' },
     ]
   },
 ]
@@ -327,6 +326,9 @@ const LayoutOrganisms = ({ children }: props) => {
       {/* Main Content */}
       <main>{children}</main>
 
+      {/* Music Player - Fixed at bottom */}
+      <MusicPlayer />
+
       {/* Footer */}
       <footer className="w-full bg-white border-t border-gray-100">
         <div className="max-w-1480 mx-auto flex flex-col items-center gap-12 md:gap-16 px-16 md:px-20 py-20 md:py-24">
@@ -351,6 +353,125 @@ const LayoutOrganisms = ({ children }: props) => {
           </p>
         </div>
       </footer>
+    </div>
+  )
+}
+
+// Music Player Component
+const MusicPlayer = () => {
+  const [playlist, setPlaylist] = useState<string[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isMinimized, setIsMinimized] = useState(true)
+  const playerRef = useRef<HTMLIFrameElement>(null)
+
+  useEffect(() => {
+    fetch('/website/data/playlist/ischoi.json')
+      .then(res => res.json())
+      .then(data => {
+        const videoIds = data.items.map((item: { url: string }) => {
+          const match = item.url.match(/[?&]v=([^&]+)/)
+          return match ? match[1] : null
+        }).filter(Boolean)
+        
+        if (data.shuffle) {
+          // Shuffle array
+          for (let i = videoIds.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]]
+          }
+        }
+        setPlaylist(videoIds)
+      })
+      .catch(err => console.error('Failed to load playlist:', err))
+  }, [])
+
+  const currentVideoId = playlist[currentIndex]
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying)
+    if (!isPlaying) {
+      setIsMinimized(false)
+    }
+  }
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % playlist.length)
+  }
+
+  if (playlist.length === 0) return null
+
+  return (
+    <div className="fixed bottom-20 right-20 z-50">
+      {/* Minimized Button */}
+      {isMinimized ? (
+        <button
+          onClick={() => setIsMinimized(false)}
+          className="flex items-center gap-8 px-16 py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
+        >
+          <Music size={18} />
+          <span className="text-sm font-medium hidden sm:inline">FINDS Playlist</span>
+        </button>
+      ) : (
+        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[320px]">
+          {/* Header */}
+          <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-amber-500">
+            <div className="flex items-center gap-8">
+              <Music size={16} className="text-white" />
+              <span className="text-sm font-bold text-white">FINDS Playlist</span>
+            </div>
+            <button
+              onClick={() => setIsMinimized(true)}
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              <X size={18} />
+            </button>
+          </div>
+
+          {/* Player */}
+          <div className="relative aspect-video bg-black">
+            {isPlaying && currentVideoId ? (
+              <iframe
+                ref={playerRef}
+                src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&loop=0&enablejsapi=1`}
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+                <button
+                  onClick={handlePlayPause}
+                  className="w-60 h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                >
+                  <Play size={28} className="text-white ml-4" />
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center justify-between px-16 py-12">
+            <span className="text-xs text-gray-500">
+              Track {currentIndex + 1} / {playlist.length}
+            </span>
+            <div className="flex items-center gap-12">
+              <button
+                onClick={handlePlayPause}
+                className="p-8 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+              </button>
+              <button
+                onClick={handleNext}
+                className="px-12 py-6 text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

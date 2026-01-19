@@ -97,35 +97,59 @@ export const AboutHonorsTemplate = () => {
 
   return (
     <div className="flex flex-col bg-white">
-      {/* Banner */}
-      <div className="relative w-full h-200 md:h-332 overflow-hidden">
+      {/* Banner - Introduction과 동일한 스타일 */}
+      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+        {/* Background Image with Overlay */}
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative h-full flex items-center justify-center">
-          <h1 className="text-2xl md:text-[36px] font-semibold text-white text-center">
+        
+        {/* Luxurious Gold Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        
+        {/* Floating Accent */}
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
+
+        {/* Content */}
+        <div className="relative h-full flex flex-col items-center justify-center px-20">
+          <div className="flex items-center gap-8 mb-16 md:mb-20">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
+            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+              About FINDS
+            </span>
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+          </div>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Honors & Awards
           </h1>
         </div>
       </div>
 
       {/* Breadcrumb */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-20 md:py-40">
-        <div className="flex items-center gap-8 md:gap-10 flex-wrap">
-          <Link to="/" className="text-gray-400 hover:text-primary transition-colors">
-            <Home size={16} />
-          </Link>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-gray-400">About FINDS</span>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-primary font-medium">Honors & Awards</span>
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="py-20 md:py-32 border-b border-gray-100">
+          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16} />
+            </Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-gray-400 font-medium">About FINDS</span>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Honors & Awards</span>
+          </div>
         </div>
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-[80px]">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px]">
         {/* Statistics Section */}
         <div className="flex flex-col gap-12 md:gap-[20px] mb-24 md:mb-[40px]">
           <div className="flex items-center gap-[8px]">

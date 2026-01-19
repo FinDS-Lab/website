@@ -5,11 +5,6 @@ import Slider from '@/components/atoms/slider'
 import { parseMarkdown } from '@/utils/parseMarkdown'
 
 // Image Imports
-import icon1 from '@/assets/images/icons/1.png'
-import icon2 from '@/assets/images/icons/2.png'
-import icon3 from '@/assets/images/icons/3.png'
-import icon4 from '@/assets/images/icons/4.png'
-import icon7 from '@/assets/images/icons/7.png'
 import icon8 from '@/assets/images/icons/8.png'
 import icon9 from '@/assets/images/icons/9.png'
 import hero1 from '@/assets/images/hero/1.webp'
@@ -17,14 +12,6 @@ import hero2 from '@/assets/images/hero/2.webp'
 import hero3 from '@/assets/images/hero/3.webp'
 import hero4 from '@/assets/images/hero/4.webp'
 import logoFinds from '@/assets/images/brand/logo-finds.png'
-
-// 서비스 항목 데이터
-const serviceItems = [
-  { name: 'About FINDS', path: '/about/introduction', image: icon2 },
-  { name: 'Members', path: '/members/director', image: icon3 },
-  { name: 'Publications', path: '/publications', image: icon4 },
-  { name: 'Archives', path: '/archives/news', image: icon7 },
-]
 
 // 슬라이드 데이터
 const heroSlides = [
@@ -42,10 +29,11 @@ const heroSlides = [
     id: 2,
     badge: 'FINDS Lab',
     title: 'Accomplishments',
-    subtitle: "Introducing FINDS Lab's\ncultural information",
+    subtitle: "Introducing FINDS Lab's\nresearch and project achievements",
     image: hero2,
     buttons: [
       { label: 'Publications', path: '/publications' },
+      { label: 'Projects', path: '/projects' },
     ],
   },
   {
@@ -56,6 +44,7 @@ const heroSlides = [
     image: hero3,
     buttons: [
       { label: 'News', path: '/archives/news' },
+      { label: 'Notice', path: '/archives/notice' },
     ],
   },
 ]
@@ -154,30 +143,6 @@ export const HomeTemplate = () => {
               </div>
             ))}
           </Slider>
-        </div>
-      </section>
-
-      {/* Service Introduction Section */}
-      <section className="py-40 md:py-64 px-16 md:px-20">
-        <div className="max-w-1480 mx-auto">
-          <div className="flex items-center justify-center gap-8 mb-24 md:mb-40">
-            <img src={icon1} alt="" className="size-24 md:size-28" />
-            <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Service introduction</h2>
-          </div>
-          <div className="grid grid-cols-2 md:flex md:justify-center gap-24 md:gap-40 lg:gap-60">
-            {serviceItems.map((item, index) => (
-              <Link key={index} to={item.path} className="flex flex-col items-center gap-8 md:gap-12 group">
-                <div className="w-80 h-80 md:w-100 md:h-100 bg-gray-50 rounded-2xl md:rounded-3xl flex items-center justify-center overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="size-48 md:size-68 object-contain group-hover:scale-110 transition-transform"
-                  />
-                </div>
-                <span className="text-sm md:text-base text-gray-500 text-center">{item.name}</span>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 
