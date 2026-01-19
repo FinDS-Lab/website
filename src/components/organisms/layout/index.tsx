@@ -37,6 +37,8 @@ const navItems: NavItem[] = [
     ]
   },
   { name: 'Publications', path: '/publications' },
+  { name: 'Lectures', path: '/lectures' },
+  { name: 'Projects', path: '/projects' },
   {
     name: 'Archives',
     path: '/archives/news',
