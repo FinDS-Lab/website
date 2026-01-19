@@ -18,6 +18,7 @@ const AboutLocation = lazy(() => import('../about/location').then((module) => ({
 // Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
+const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
 const MembersDetail = lazy(() => import('../members/detail').then((module) => ({ default: module.MembersDetail })));
 
 // Archives
@@ -50,6 +51,7 @@ export const App = () => {
         <Route path="/members" element={<Navigate to="/members/director" replace />} />
         <Route path="/members/director" element={<MembersDirector />} />
         <Route path="/members/current" element={<MembersCurrent />} />
+        <Route path="/members/alumni" element={<MembersAlumni />} />
         <Route path="/members/:id" element={<MembersDetail />} />
 
         {/* Publications */}
