@@ -251,7 +251,7 @@ export const AboutIntroductionTemplate = () => {
                   <div className="relative p-28 md:p-40 lg:p-48">
                     {/* Icon */}
                     <div className="relative w-80 h-80 md:w-100 md:h-100 mx-auto mb-24 md:mb-32">
-                      <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-pink-50 rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-amber-50 rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-white rounded-2xl md:rounded-3xl shadow-lg flex items-center justify-center">
                         <img
                           src={area.image}
@@ -266,7 +266,7 @@ export const AboutIntroductionTemplate = () => {
                       <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 md:mb-8 group-hover:text-primary transition-colors duration-300">
                         {area.title}
                       </h3>
-                      <p className="text-sm md:text-base text-pink-400/80 font-semibold mb-16 md:mb-20">
+                      <p className="text-sm md:text-base text-primary font-semibold mb-16 md:mb-20">
                         {area.titleKo}
                       </p>
                       <p className="text-sm text-gray-500 leading-[1.8]">
@@ -311,7 +311,7 @@ export const AboutIntroductionTemplate = () => {
               {/* Badge */}
               <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-32 md:mb-48 shadow-sm">
                 <Sparkles size={14} className="text-amber-500" />
-                <span className="text-pink-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Vision
                 </span>
               </div>
@@ -361,7 +361,7 @@ export const AboutIntroductionTemplate = () => {
           >
             {/* Section Header */}
             <div className="text-center mb-48 md:mb-80">
-              <span className="inline-block px-16 py-6 bg-gradient-to-r from-pink-100 to-pink-50 text-pink-400 text-[10px] md:text-xs font-bold rounded-full mb-16 md:mb-24 uppercase tracking-[0.2em]">
+              <span className="inline-block px-16 py-6 bg-gradient-to-r from-amber-100 to-amber-50 text-primary text-[10px] md:text-xs font-bold rounded-full mb-16 md:mb-24 uppercase tracking-[0.2em]">
                 Our Pillars
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
@@ -400,7 +400,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Label */}
-                      <span className="inline-block px-12 py-4 bg-amber-50 text-pink-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                      <span className="inline-block px-12 py-4 bg-amber-50 text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                         {pillar.label}
                       </span>
 
@@ -411,7 +411,7 @@ export const AboutIntroductionTemplate = () => {
                       
                       {/* Subtitle for Philosophy */}
                       {pillar.subtitle && (
-                        <p className="text-sm font-medium italic mb-12 md:mb-16" style={{color: '#ffb7c5'}}>
+                        <p className="text-sm font-medium italic mb-12 md:mb-16 text-amber-600">
                           {pillar.subtitle}
                         </p>
                       )}
