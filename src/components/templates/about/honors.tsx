@@ -15,6 +15,7 @@ export const AboutHonorsTemplate = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const baseUrl = import.meta.env.BASE_URL || '/'
     const safeJsonFetch = async (url: string) => {
       const response = await fetch(url)
       const text = await response.text()
@@ -22,7 +23,7 @@ export const AboutHonorsTemplate = () => {
       return JSON.parse(cleaned)
     }
 
-    safeJsonFetch('/website/data/honors.json')
+    safeJsonFetch(`${baseUrl}data/honors.json`)
       .then((data: HonorsData) => {
         // 2025년 6월 14일 이후 데이터만 필터링
         const cutoffDate = new Date('2025-06-14')

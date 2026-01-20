@@ -157,7 +157,8 @@ export const ProjectsTemplate = () => {
   })
 
   useEffect(() => {
-    fetch('/data/projects.json')
+    const baseUrl = import.meta.env.BASE_URL || '/'
+    fetch(`${baseUrl}data/projects.json`)
       .then((res) => res.json())
       .then((data: Project[]) => {
         // 2025년 6월 14일 이후 시작된 프로젝트만 표시

@@ -226,9 +226,10 @@ export const PublicationsTemplate = () => {
       return JSON.parse(cleaned)
     }
 
+    const baseUrl = import.meta.env.BASE_URL || '/'
     Promise.all([
-      safeJsonFetch('/data/pubs.json'),
-      safeJsonFetch('/data/authors.json'),
+      safeJsonFetch(`${baseUrl}data/pubs.json`),
+      safeJsonFetch(`${baseUrl}data/authors.json`),
     ])
       .then(([pubsData, authorsData]) => {
         setPublications(pubsData)

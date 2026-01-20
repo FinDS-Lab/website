@@ -23,8 +23,9 @@ export const ArchivesPlaylistTemplate = () => {
 
   useEffect(() => {
     const fetchPlaylists = async () => {
+      const baseUrl = import.meta.env.BASE_URL || '/'
       try {
-        const response = await fetch('/website/data/playlist/ischoi.json')
+        const response = await fetch(`${baseUrl}data/playlist/ischoi.json`)
         const text = await response.text()
         const cleaned = text.replace(/,(\s*[}\]])/g, '$1')
         const data = JSON.parse(cleaned)

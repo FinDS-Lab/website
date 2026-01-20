@@ -53,13 +53,14 @@ export const HomeTemplate = () => {
 
   useEffect(() => {
     const fetchLatest = async () => {
+      const baseUrl = import.meta.env.BASE_URL || '/'
       try {
         // 최근 뉴스 2개 로드
         const newsFiles = ['2026-03-01-1.md', '2025-09-01-1.md']
         const newsResults = await Promise.all(
           newsFiles.map(async (file) => {
             try {
-              const response = await fetch(`/website/data/news/${file}`)
+              const response = await fetch(`${baseUrl}data/news/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch news ${file}: ${response.status}`)
                 return null
@@ -81,7 +82,7 @@ export const HomeTemplate = () => {
         const noticeResults = await Promise.all(
           noticeFiles.map(async (file) => {
             try {
-              const response = await fetch(`/website/data/notice/${file}`)
+              const response = await fetch(`${baseUrl}data/notice/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch notice ${file}: ${response.status}`)
                 return null

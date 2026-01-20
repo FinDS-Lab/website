@@ -313,9 +313,10 @@ const CollaborationNetwork = memo(() => {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const baseUrl = import.meta.env.BASE_URL || '/'
         const [pubsRes, authorsRes] = await Promise.all([
-          fetch('/data/pubs.json'),
-          fetch('/data/authors.json'),
+          fetch(`${baseUrl}data/pubs.json`),
+          fetch(`${baseUrl}data/authors.json`),
         ])
         const pubs: Publication[] = await pubsRes.json()
         const authors: AuthorsData = await authorsRes.json()
@@ -1017,8 +1018,9 @@ export const MembersDirectorActivitiesTemplate = () => {
   }
 
   useEffect(() => {
+    const baseUrl = import.meta.env.BASE_URL || '/'
     // Load academic activities data
-    fetch('/data/academicactivities.json')
+    fetch(`${baseUrl}data/academicactivities.json`)
       .then((res) => res.json())
       .then((data: AcademicActivitiesData) => {
         setActivitiesData(data)
@@ -1030,7 +1032,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       })
 
     // Load mentees data
-    fetch('/data/mentees.json')
+    fetch(`${baseUrl}data/mentees.json`)
       .then((res) => res.json())
       .then((data: { [id: string]: Mentee }) => {
         const menteesList = Object.entries(data).map(([id, mentee]) => ({
@@ -1044,7 +1046,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       })
 
     // Load honors data
-    fetch('/data/honors.json')
+    fetch(`${baseUrl}data/honors.json`)
       .then((res) => res.json())
       .then((data: HonorsData) => {
         // Filter to show only items where director is a winner

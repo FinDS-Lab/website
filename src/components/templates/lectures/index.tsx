@@ -108,7 +108,8 @@ export const LecturesTemplate = () => {
 
   // 데이터 로드
   useEffect(() => {
-    fetch('/data/lectures.json')
+    const baseUrl = import.meta.env.BASE_URL || '/'
+    fetch(`${baseUrl}data/lectures.json`)
       .then((res) => res.json())
       .then((data) => {
         setLectures(data)

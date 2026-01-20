@@ -76,6 +76,7 @@ export const MembersCurrentTemplate = () => {
   const [members, setMembers] = useState<MemberData[]>([])
   const [loading, setLoading] = useState(true)
   const [openEmailPopup, setOpenEmailPopup] = useState<string | null>(null)
+  const baseUrl = import.meta.env.BASE_URL || '/'
 
   useEffect(() => {
     const safeJsonFetch = async (url: string) => {
@@ -90,7 +91,7 @@ export const MembersCurrentTemplate = () => {
 
     Promise.all(
       memberFiles.map((file) =>
-        safeJsonFetch(`/website/data/members/${file}`)
+        safeJsonFetch(`${baseUrl}data/members/${file}`)
           .catch(() => null)
       )
     )
@@ -237,7 +238,7 @@ export const MembersCurrentTemplate = () => {
                           <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
                             {member.avatar ? (
                               <img
-                                src={member.avatar.replace('/assets/img/', '/website/images/')}
+                                src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
                                 alt={member.name.ko}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {

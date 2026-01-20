@@ -21,7 +21,8 @@ const NewsDetailModal = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/website/data/news/${id}.md`)
+    const baseUrl = import.meta.env.BASE_URL || '/'
+    fetch(`${baseUrl}data/news/${id}.md`)
       .then(res => res.text())
       .then(text => {
         const { data, content } = parseMarkdown(text)
@@ -31,7 +32,7 @@ const NewsDetailModal = ({ id }: { id: string }) => {
           data.date = id.slice(0, 10)
         }
 
-        const processedContent = processJekyllContent(content, data, { basePath: '/website' })
+        const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
         setLoading(false)
       })
@@ -56,13 +57,14 @@ export const ArchivesNewsTemplate = () => {
 
   useEffect(() => {
     const newsFiles = ['2025-09-01-1.md', '2025-06-14-1.md']
+    const baseUrl = import.meta.env.BASE_URL || '/'
 
     const fetchAllNews = async () => {
       try {
         const results = await Promise.all(
           newsFiles.map(async (file) => {
             try {
-              const response = await fetch(`/website/data/news/${file}`)
+              const response = await fetch(`${baseUrl}data/news/${file}`)
               if (!response.ok) {
                 console.error(`Failed to fetch ${file}: ${response.status}`)
                 return null

@@ -20,7 +20,8 @@ const GalleryDetailModal = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/website/data/gallery/${id}/index.md`)
+    const baseUrl = import.meta.env.BASE_URL || '/'
+    fetch(`${baseUrl}data/gallery/${id}/index.md`)
       .then(res => res.text())
       .then(text => {
         const { data, content } = parseMarkdown(text)
@@ -29,7 +30,7 @@ const GalleryDetailModal = ({ id }: { id: string }) => {
           data.date = id.slice(0, 10)
         }
 
-        const processedContent = processJekyllContent(content, data, { basePath: '/website' })
+        const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
         setLoading(false)
       })
@@ -51,6 +52,7 @@ export const ArchivesGalleryTemplate = () => {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
   const { showModal } = useStoreModal()
+  const baseUrl = import.meta.env.BASE_URL || '/'
 
   useEffect(() => {
     // 갤러리 폴더 목록 (브라우저에서는 목록을 알 수 없어 현재 존재하는 데이터를 기반으로 합니다)
@@ -60,7 +62,7 @@ export const ArchivesGalleryTemplate = () => {
       try {
         const results = await Promise.all(
           galleryFolders.map(async (folder) => {
-            const response = await fetch(`/website/data/gallery/${folder}/index.md`)
+            const response = await fetch(`${baseUrl}data/gallery/${folder}/index.md`)
             const text = await response.text()
             const { data } = parseMarkdown(text)
             return {
@@ -156,7 +158,7 @@ export const ArchivesGalleryTemplate = () => {
                 <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (
                     <img
-                      src={`/website/data/gallery/${item.id}/${item.thumb}`}
+                      src={`${baseUrl}data/gallery/${item.id}/${item.thumb}`}
                       alt={item.title}
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />

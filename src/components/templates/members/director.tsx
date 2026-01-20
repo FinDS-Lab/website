@@ -170,8 +170,9 @@ export const MembersDirectorTemplate = () => {
 
   // Fetch Projects and Lectures data
   useEffect(() => {
+    const baseUrl = import.meta.env.BASE_URL || '/'
     // Fetch Projects - all projects where director is involved
-    fetch('/data/projects.json')
+    fetch(`${baseUrl}data/projects.json`)
       .then(res => res.json())
       .then((data: Project[]) => {
         // Show all projects (no date filter) - most recent first
@@ -188,7 +189,7 @@ export const MembersDirectorTemplate = () => {
       .catch(console.error)
 
     // Fetch Lectures - current semester
-    fetch('/data/lectures.json')
+    fetch(`${baseUrl}data/lectures.json`)
       .then(res => res.json())
       .then((data: Lecture[]) => {
         setLectures(data)
