@@ -369,19 +369,53 @@ const CollaborationNetwork = memo(() => {
 
         const nodesToShow = ['1', ...topCollaborators]
 
-        // Initialize nodes with random positions
+        // Initialize nodes with concentric circle layout
         const width = 800
         const height = 500
         const centerX = width / 2
         const centerY = height / 2
 
+        // Sort collaborators by publication count for better layout
+        const sortedCollabs = topCollaborators.sort((a, b) => {
+          const countA = authorPubCount.get(a) || 0
+          const countB = authorPubCount.get(b) || 0
+          return countB - countA
+        })
+
         const initialNodes: NetworkNode[] = nodesToShow.map((id, idx) => {
           const author = authors[id]
           const isDirector = id === '1'
-          const angle = (2 * Math.PI * idx) / nodesToShow.length
-          const radius = isDirector ? 0 : 150 + Math.random() * 100
           const collabPubsList = authorCollabPubs.get(id) || []
           const pubCount = authorPubCount.get(id) || 0
+
+          let x = centerX
+          let y = centerY
+
+          if (!isDirector) {
+            // Find position in sorted list
+            const sortedIdx = sortedCollabs.indexOf(id)
+            const total = sortedCollabs.length
+            
+            // Multi-ring layout - inner ring for top collaborators, outer for others
+            const innerRingCount = Math.min(6, Math.ceil(total / 2))
+            const isInnerRing = sortedIdx < innerRingCount
+            
+            if (isInnerRing) {
+              // Inner ring - closer to center, evenly spaced
+              const angle = (2 * Math.PI * sortedIdx) / innerRingCount - Math.PI / 2
+              const radius = 120
+              x = centerX + Math.cos(angle) * radius
+              y = centerY + Math.sin(angle) * radius
+            } else {
+              // Outer ring
+              const outerIdx = sortedIdx - innerRingCount
+              const outerCount = total - innerRingCount
+              const angle = (2 * Math.PI * outerIdx) / outerCount - Math.PI / 2 + Math.PI / outerCount
+              const radius = 200
+              x = centerX + Math.cos(angle) * radius
+              y = centerY + Math.sin(angle) * radius
+            }
+          }
 
           // 논문 유형별 분류
           const breakdown: PublicationBreakdown = {
@@ -398,8 +432,8 @@ const CollaborationNetwork = memo(() => {
             id,
             name: author?.en || `Author ${id}`,
             nameKo: author?.ko || '',
-            x: centerX + (isDirector ? 0 : Math.cos(angle) * radius),
-            y: centerY + (isDirector ? 0 : Math.sin(angle) * radius),
+            x,
+            y,
             vx: 0,
             vy: 0,
             publications: pubCount,
@@ -1505,11 +1539,12 @@ export const MembersDirectorActivitiesTemplate = () => {
                               href={conf.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md bg-gray-50 hover:bg-gray-100"
+                              className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md hover:bg-pink-50/50"
+                              style={{backgroundColor: 'rgba(255,183,197,0.1)'}}
                               title={conf.period}
                             >
                               <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-gray-700">{conf.name}</span>
-                              <span className="px-6 py-1 rounded text-[9px] font-bold bg-gray-400 text-white">
+                              <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
                                 CONF
                               </span>
                             </a>
@@ -1690,9 +1725,10 @@ export const MembersDirectorActivitiesTemplate = () => {
                       {selectedUniversity !== 'all' && (
                         <button
                           onClick={() => setSelectedUniversity('all')}
-                          className="text-[10px] text-primary font-medium hover:underline"
+                          className="flex items-center gap-4 px-8 py-4 bg-primary/10 text-primary text-[10px] font-bold rounded-full hover:bg-primary/20 transition-colors"
                         >
-                          Clear Filter
+                          {selectedUniversity}
+                          <X size={12}/>
                         </button>
                       )}
                     </div>
@@ -1701,13 +1737,15 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <button
                           key={univ}
                           onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
-                          className={`px-10 md:px-12 py-4 md:py-6 rounded-full text-[11px] md:text-xs font-medium transition-all ${
+                          className={`px-10 md:px-12 py-4 md:py-6 rounded-full text-[11px] md:text-xs font-medium transition-all flex items-center gap-4 ${
                             selectedUniversity === univ
-                              ? 'bg-primary text-white'
+                              ? 'text-white'
                               : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
                           }`}
+                          style={selectedUniversity === univ ? {backgroundColor: '#e8879b'} : {}}
                         >
-                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'text-primary font-bold'}>({count})</span>
+                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#e8879b'}}>({count})</span>
+                          {selectedUniversity === univ && <X size={12}/>}
                         </button>
                       ))}
                     </div>

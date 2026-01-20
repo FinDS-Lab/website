@@ -57,13 +57,19 @@ import banner2 from '@/assets/images/banner/2.webp'
 const degreeLabels = {
   phd: 'Ph.D. Students',
   ms: 'M.S. Students',
-  undergrad: 'Undergraduate Researchers',
+  undergrad: 'Undergraduate',
 }
 
 const degreeColors = {
-  phd: 'bg-red-100 text-red-700',
-  ms: 'bg-blue-100 text-blue-700',
-  undergrad: 'bg-green-100 text-green-700',
+  phd: 'bg-primary/10 text-primary',
+  ms: 'text-white',
+  undergrad: 'text-white',
+}
+
+const degreeBgStyles = {
+  phd: {},
+  ms: {backgroundColor: '#e8879b'},
+  undergrad: {backgroundColor: '#ffb7c5'},
 }
 
 export const MembersCurrentTemplate = () => {
@@ -214,10 +220,10 @@ export const MembersCurrentTemplate = () => {
                     {degreeMembers.map((member) => (
                       <div
                         key={member.id}
-                        className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm"
+                        className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
                       >
                         <div className="flex items-start gap-12 md:gap-[16px]">
-                          <div className="w-60 h-60 md:w-[80px] md:h-[80px] bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden">
+                          <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
                             {member.avatar ? (
                               <img
                                 src={member.avatar.replace('/assets/img/', '/website/images/')}
@@ -233,8 +239,11 @@ export const MembersCurrentTemplate = () => {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mb-4 md:mb-[4px]">
-                              <h4 className="text-base md:text-[18px] font-semibold text-gray-800">{member.name.ko}</h4>
-                              <span className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-medium ${degreeColors[member.degree]}`}>
+                              <h4 className="text-base md:text-[18px] font-semibold text-gray-800 group-hover:text-primary transition-colors">{member.name.ko}</h4>
+                              <span 
+                                className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-bold ${degreeColors[member.degree]}`}
+                                style={degreeBgStyles[member.degree]}
+                              >
                                 {member.role.ko}
                               </span>
                             </div>

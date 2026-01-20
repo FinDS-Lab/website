@@ -487,11 +487,6 @@ export const ProjectsTemplate = () => {
                                         <Building2 size={12} />
                                         {project.fundingAgency}
                                       </span>
-                                      {project.amount && project.amount !== 'N/A' && (
-                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-primary/10 rounded-full text-xs md:text-sm text-primary font-medium">
-                                          {project.amount}
-                                        </span>
-                                      )}
                                     </div>
                                   </div>
                                 </div>

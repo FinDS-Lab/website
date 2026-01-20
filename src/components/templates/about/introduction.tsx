@@ -361,9 +361,12 @@ export const AboutIntroductionTemplate = () => {
           >
             {/* Section Header */}
             <div className="text-center mb-48 md:mb-80">
-              <span className="inline-block px-16 py-6 bg-gradient-to-r from-amber-100 to-amber-50 text-primary text-[10px] md:text-xs font-bold rounded-full mb-16 md:mb-24 uppercase tracking-[0.2em]">
-                Our Pillars
-              </span>
+              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-16 md:mb-24 shadow-sm">
+                <Sparkles size={14} className="text-amber-500" />
+                <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                  Our Pillars
+                </span>
+              </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                 Research <span className="text-gray-300">·</span> Impact <span className="text-gray-300">·</span> Philosophy
               </h2>

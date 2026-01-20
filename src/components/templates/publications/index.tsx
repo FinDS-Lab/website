@@ -127,6 +127,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
     { key: 'harvard', label: 'Harvard' },
     { key: 'vancouver', label: 'Vancouver' },
     { key: 'korean', label: 'Korean' },
+    { key: 'bibtex', label: 'BibTeX' },
   ]
 
   return (
@@ -138,7 +139,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
         return (
           <div key={format.key} className="flex flex-col gap-8">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-bold text-gray-900 uppercase tracking-wider">{format.label}</span>
+              <span className={`text-sm font-bold uppercase tracking-wider ${format.key === 'bibtex' ? 'text-primary' : 'text-gray-900'}`}>{format.label}</span>
               <button
                 onClick={() => handleCopy(text, format.key)}
                 className="flex items-center gap-4 text-xs font-medium text-primary hover:underline"
@@ -151,13 +152,17 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
                 ) : (
                   <>
                     <Copy size={14} />
-                    Copy Citation
+                    Copy
                   </>
                 )}
               </button>
             </div>
-            <div className="p-16 bg-gray-50 rounded-xl border border-gray-100 text-sm text-gray-600 leading-relaxed break-words">
-              {text.replace(/<\/?em>/g, '')}
+            <div className={`p-16 rounded-xl border text-sm leading-relaxed break-words ${
+              format.key === 'bibtex' 
+                ? 'bg-gray-900 text-green-400 font-mono text-xs border-gray-700 whitespace-pre-wrap'
+                : 'bg-gray-50 text-gray-600 border-gray-100'
+            }`}>
+              {format.key === 'bibtex' ? text : text.replace(/<\/?em>/g, '')}
             </div>
           </div>
         )
@@ -655,6 +660,38 @@ export const PublicationsTemplate = () => {
                                     </div>
                                   )}
                                   {pub.type === 'conference' && !pub.presentation_type && (
+                                    <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
+                                      <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
+                                        -
+                                      </span>
+                                    </div>
+                                  )}
+                                  {/* Journal Index Badge */}
+                                  {pub.type === 'journal' && pub.indexing_group && (
+                                    <div 
+                                      className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
+                                      style={{
+                                        backgroundColor: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
+                                          ? 'rgba(172,14,14,0.08)'
+                                          : 'rgba(255,183,197,0.12)',
+                                        borderColor: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
+                                          ? 'rgba(172,14,14,0.2)'
+                                          : 'rgba(255,183,197,0.3)'
+                                      }}
+                                    >
+                                      <span 
+                                        className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
+                                        style={{
+                                          color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
+                                            ? 'rgb(172,14,14)'
+                                            : '#ffb7c5'
+                                        }}
+                                      >
+                                        {pub.indexing_group}
+                                      </span>
+                                    </div>
+                                  )}
+                                  {pub.type === 'journal' && !pub.indexing_group && (
                                     <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
                                       <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                                         -

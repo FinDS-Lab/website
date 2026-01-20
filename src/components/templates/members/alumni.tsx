@@ -36,7 +36,7 @@ const degreeLabels: Record<string, string> = {
   phd: 'Ph.D.',
   ms: 'M.S.',
   bs: 'B.S.',
-  ur: 'Undergraduate Researcher',
+  ur: 'Undergraduate',
 }
 
 const degreeOrder: Record<string, number> = {
@@ -197,7 +197,7 @@ export const MembersAlumniTemplate = () => {
             {msAlumni.length > 0 && (
               <div>
                 <div className="flex items-center gap-12 mb-24">
-                  <span className="px-16 py-8 bg-amber-500 text-white text-sm font-bold rounded-full">
+                  <span className="px-16 py-8 text-white text-sm font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>
                     M.S.
                   </span>
                   <span className="text-sm text-gray-500">{msAlumni.length} graduates</span>
@@ -214,8 +214,8 @@ export const MembersAlumniTemplate = () => {
             {sortedUndergradAlumni.length > 0 && (
               <div>
                 <div className="flex items-center gap-12 mb-24">
-                  <span className="px-16 py-8 bg-gray-600 text-white text-sm font-bold rounded-full">
-                    Undergraduate Researchers
+                  <span className="px-16 py-8 text-white text-sm font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>
+                    Undergraduate
                   </span>
                   <span className="text-sm text-gray-500">{sortedUndergradAlumni.length} graduates</span>
                 </div>
@@ -231,30 +231,30 @@ export const MembersAlumniTemplate = () => {
                     </thead>
                     <tbody>
                       {sortedUndergradAlumni.map((alumni, idx) => (
-                        <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                          <td className="py-16 px-16">
-                            <div className="flex items-center gap-12">
-                              <div className="size-40 bg-gray-100 rounded-full flex items-center justify-center text-gray-400 shrink-0">
-                                <GraduationCap size={18}/>
+                        <tr key={idx} className="border-b border-gray-100 hover:bg-pink-50/30 transition-colors group">
+                          <td className="py-12 md:py-16 px-12 md:px-16">
+                            <div className="flex items-center gap-10 md:gap-12">
+                              <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(232,135,155,0.15) 100%)'}}>
+                                <GraduationCap size={16} style={{color: '#ffb7c5'}}/>
                               </div>
                               <div>
-                                <p className="font-semibold text-gray-900">{alumni.name}</p>
-                                <p className="text-xs text-gray-500">{alumni.nameKo}</p>
+                                <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</p>
+                                <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
                               </div>
                             </div>
                           </td>
-                          <td className="py-16 px-16">
-                            <span className="px-10 py-4 bg-gray-100 text-gray-700 text-xs font-medium rounded-full">
+                          <td className="py-12 md:py-16 px-12 md:px-16">
+                            <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#e8879b'}}>
                               {alumni.cohort || '-'}
                             </span>
                           </td>
-                          <td className="py-16 px-16 text-sm text-gray-600">
+                          <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
                             {alumni.periods?.ur || '-'}
                           </td>
-                          <td className="py-16 px-16">
+                          <td className="py-12 md:py-16 px-12 md:px-16">
                             {alumni.company ? (
-                              <div className="flex items-center gap-6 text-sm text-gray-600">
-                                <Building2 size={14} className="text-gray-400"/>
+                              <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
+                                <Building2 size={14} style={{color: '#ffb7c5'}}/>
                                 <span>{alumni.company}</span>
                               </div>
                             ) : (
@@ -287,29 +287,33 @@ export const MembersAlumniTemplate = () => {
 // Alumni Card Component for Ph.D. and M.S.
 const AlumniCard = memo(({alumni}: {alumni: AlumniMember}) => {
   return (
-    <div className="p-24 bg-white border border-gray-100 rounded-2xl hover:shadow-lg hover:border-primary/20 transition-all">
-      <div className="flex flex-col md:flex-row md:items-start gap-20">
+    <div className="p-20 md:p-24 bg-white border border-gray-100 rounded-2xl hover:shadow-lg hover:border-primary/20 transition-all group">
+      <div className="flex flex-col md:flex-row md:items-start gap-16 md:gap-20">
         {/* Avatar */}
-        <div className="size-72 bg-gradient-to-br from-primary/10 to-amber-100 rounded-2xl flex items-center justify-center text-primary shrink-0">
-          <GraduationCap size={32}/>
+        <div className="size-64 md:size-72 rounded-2xl flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(255,183,197,0.3) 100%)'}}>
+          <GraduationCap size={28} style={{color: '#e8879b'}}/>
         </div>
         
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap items-start justify-between gap-12 mb-12">
+          <div className="flex flex-wrap items-start justify-between gap-8 md:gap-12 mb-12">
             <div>
-              <h3 className="text-lg font-bold text-gray-900">{alumni.name}</h3>
+              <h3 className="text-base md:text-lg font-bold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</h3>
               <p className="text-sm text-gray-500">{alumni.nameKo}</p>
             </div>
             <div className="flex flex-wrap gap-6">
               {alumni.degrees.sort((a, b) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99)).map(deg => (
                 <span
                   key={deg}
-                  className={`px-10 py-4 text-xs font-bold rounded-full ${
-                    deg === 'phd' ? 'bg-primary/10 text-primary' :
-                    deg === 'ms' ? 'bg-amber-100 text-amber-700' :
-                    'bg-gray-100 text-gray-600'
-                  }`}
+                  className="px-10 py-4 text-xs font-bold rounded-full"
+                  style={{
+                    backgroundColor: deg === 'phd' ? 'rgba(172,14,14,0.1)' : 
+                                     deg === 'ms' ? 'rgba(232,135,155,0.15)' : 
+                                     'rgba(255,183,197,0.15)',
+                    color: deg === 'phd' ? 'rgb(172,14,14)' : 
+                           deg === 'ms' ? '#e8879b' : 
+                           '#ffb7c5'
+                  }}
                 >
                   {degreeLabels[deg] || deg.toUpperCase()}
                 </span>
@@ -318,34 +322,42 @@ const AlumniCard = memo(({alumni}: {alumni: AlumniMember}) => {
           </div>
           
           {/* Education Timeline */}
-          <div className="space-y-8 mb-16">
+          <div className="space-y-6 md:space-y-8 mb-12 md:mb-16">
             {alumni.education
               .sort((a, b) => (degreeOrder[a.degree] || 99) - (degreeOrder[b.degree] || 99))
-              .map((edu, idx) => (
-                <div key={idx} className="flex items-center gap-8 text-sm">
-                  <span className="w-48 text-gray-400 font-medium shrink-0">
-                    {degreeLabels[edu.degree] || edu.degree.toUpperCase()}
-                  </span>
-                  <span className="text-gray-600">
-                    {edu.school}, {edu.dept} ({edu.year})
-                  </span>
-                </div>
-              ))}
+              .map((edu, idx) => {
+                const isFromLab = edu.school.includes('Gachon') || edu.school.includes('가천')
+                return (
+                  <div key={idx} className="flex items-center gap-6 md:gap-8 text-xs md:text-sm">
+                    <span className="w-40 md:w-48 font-medium shrink-0" style={{color: isFromLab ? 'rgb(172,14,14)' : '#e8879b'}}>
+                      {degreeLabels[edu.degree] || edu.degree.toUpperCase()}
+                    </span>
+                    <span className={`${isFromLab ? 'text-gray-900 font-medium' : 'text-gray-600'}`}>
+                      {edu.school}, {edu.dept} ({edu.year})
+                      {isFromLab && (
+                        <span className="ml-6 px-6 py-2 text-[10px] font-bold rounded text-white" style={{backgroundColor: 'rgb(172,14,14)'}}>
+                          FINDS
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                )
+              })}
           </div>
           
           {/* Thesis */}
           {alumni.thesis && Object.keys(alumni.thesis).length > 0 && (
-            <div className="space-y-8 mb-16">
+            <div className="space-y-6 md:space-y-8 mb-12 md:mb-16">
               {Object.entries(alumni.thesis)
                 .sort(([a], [b]) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
                 .map(([deg, thesis]) => (
-                  <div key={deg} className="flex items-start gap-8 p-12 bg-gray-50 rounded-lg">
-                    <FileText size={16} className="text-gray-400 shrink-0 mt-2"/>
+                  <div key={deg} className="flex items-start gap-8 p-10 md:p-12 rounded-xl" style={{backgroundColor: 'rgba(255,183,197,0.08)'}}>
+                    <FileText size={16} className="shrink-0 mt-2" style={{color: '#ffb7c5'}}/>
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-400 font-medium mb-2">
+                      <p className="text-[10px] md:text-xs font-bold mb-2" style={{color: '#e8879b'}}>
                         {degreeLabels[deg] || deg.toUpperCase()} Thesis
                       </p>
-                      <p className="text-sm text-gray-700 font-medium leading-relaxed">
+                      <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                         {thesis.title}
                       </p>
                       {thesis.url && (
@@ -353,7 +365,7 @@ const AlumniCard = memo(({alumni}: {alumni: AlumniMember}) => {
                           href={thesis.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-4 text-xs text-primary hover:underline mt-8"
+                          className="inline-flex items-center gap-4 text-xs text-primary hover:underline mt-6 md:mt-8"
                         >
                           <ExternalLink size={12}/>
                           View Thesis
@@ -367,9 +379,9 @@ const AlumniCard = memo(({alumni}: {alumni: AlumniMember}) => {
           
           {/* Current Position */}
           {alumni.company && (
-            <div className="flex items-center gap-8 pt-12 border-t border-gray-100">
-              <Building2 size={16} className="text-gray-400"/>
-              <span className="text-sm text-gray-600">
+            <div className="flex items-center gap-8 pt-10 md:pt-12 border-t border-gray-100">
+              <Building2 size={16} style={{color: '#e8879b'}}/>
+              <span className="text-xs md:text-sm text-gray-600">
                 Currently at <span className="font-semibold text-gray-900">{alumni.company}</span>
               </span>
             </div>
