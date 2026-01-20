@@ -1,6 +1,6 @@
-import {memo, useState, useEffect} from 'react'
+import React, {memo, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, GraduationCap, Building2, ChevronDown, ChevronUp} from 'lucide-react'
+import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 type Education = {
@@ -51,6 +51,19 @@ export const MembersAlumniTemplate = () => {
   const [loading, setLoading] = useState(true)
   const [gradExpanded, setGradExpanded] = useState(true)
   const [undergradExpanded, setUndergradExpanded] = useState(true)
+  const [expandedAlumni, setExpandedAlumni] = useState<Set<string>>(new Set())
+
+  const toggleAlumniExpand = (name: string) => {
+    setExpandedAlumni(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(name)) {
+        newSet.delete(name)
+      } else {
+        newSet.add(name)
+      }
+      return newSet
+    })
+  }
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -183,16 +196,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{totalCount}</span>
-                    <span className="text-xs md:text-sm font-medium text-gray-600">
-                      Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
-                    </span>
-                  </div>
-                </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{phdCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#d4a017'}}>{phdCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Ph.D. {pluralize(phdCount, 'Graduate', 'Graduates')}
                     </span>
@@ -201,7 +205,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold" style={{color: '#e8879b'}}>{msCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#e8879b'}}>{msCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       M.S. {pluralize(msCount, 'Graduate', 'Graduates')}
                     </span>
@@ -210,9 +214,18 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold" style={{color: '#ffb7c5'}}>{undergradCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#ffb7c5'}}>{undergradCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Undergrad {pluralize(undergradCount, 'Alumnus', 'Alumni')}
+                    </span>
+                  </div>
+                </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#1f2937'}}>{totalCount}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
+                      Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
                     </span>
                   </div>
                 </div>
@@ -255,68 +268,121 @@ export const MembersAlumniTemplate = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {sortedGraduateAlumni.map((alumni, idx) => (
-                          <tr key={idx} className="border-b border-gray-100 hover:bg-pink-50/30 transition-colors group">
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              <div className="flex items-center gap-10 md:gap-12">
-                                <div 
-                                  className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
-                                  style={{
-                                    background: alumni.degrees.includes('phd') 
-                                      ? 'linear-gradient(135deg, rgba(172,14,14,0.15) 0%, rgba(172,14,14,0.08) 100%)'
-                                      : 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(232,135,155,0.1) 100%)'
-                                  }}
-                                >
-                                  <GraduationCap 
-                                    size={16} 
-                                    style={{color: alumni.degrees.includes('phd') ? 'rgb(172,14,14)' : '#e8879b'}}
-                                  />
-                                </div>
-                                <div>
-                                  <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                                    {alumni.name}
-                                  </p>
-                                  <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              <div className="flex flex-wrap gap-4">
-                                {alumni.degrees
-                                  .sort((a, b) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
-                                  .map(deg => (
-                                    <span
-                                      key={deg}
-                                      className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
+                        {sortedGraduateAlumni.map((alumni, idx) => {
+                          const isExpanded = expandedAlumni.has(alumni.name)
+                          const hasThesis = alumni.thesis && Object.keys(alumni.thesis).length > 0
+                          
+                          return (
+                            <React.Fragment key={idx}>
+                              <tr 
+                                className={`border-b border-gray-100 hover:bg-pink-50/30 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
+                                onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
+                              >
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  <div className="flex items-center gap-10 md:gap-12">
+                                    <div 
+                                      className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
                                       style={{
-                                        backgroundColor: deg === 'phd' ? 'rgba(172,14,14,0.1)' : 'rgba(232,135,155,0.15)',
-                                        color: deg === 'phd' ? 'rgb(172,14,14)' : '#e8879b'
+                                        background: alumni.degrees.includes('phd') 
+                                          ? 'linear-gradient(135deg, rgba(172,14,14,0.15) 0%, rgba(172,14,14,0.08) 100%)'
+                                          : 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(232,135,155,0.1) 100%)'
                                       }}
                                     >
-                                      {degreeLabels[deg] || deg.toUpperCase()}
-                                    </span>
-                                  ))
-                                }
-                              </div>
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                              {getAffiliation(alumni)}
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                              {getPeriod(alumni)}
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              {alumni.company ? (
-                                <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                  <Building2 size={14} style={{color: '#e8879b'}}/>
-                                  <span>{alumni.company}</span>
-                                </div>
-                              ) : (
-                                <span className="text-gray-400">-</span>
+                                      <GraduationCap 
+                                        size={16} 
+                                        style={{color: alumni.degrees.includes('phd') ? 'rgb(172,14,14)' : '#e8879b'}}
+                                      />
+                                    </div>
+                                    <div className="flex items-center gap-8">
+                                      <div>
+                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                          {alumni.name}
+                                        </p>
+                                        <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
+                                      </div>
+                                      {hasThesis && (
+                                        <ChevronDown 
+                                          size={14} 
+                                          className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                                        />
+                                      )}
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  <div className="flex flex-wrap gap-4">
+                                    {alumni.degrees
+                                      .sort((a, b) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
+                                      .map(deg => (
+                                        <span
+                                          key={deg}
+                                          className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
+                                          style={{
+                                            backgroundColor: deg === 'phd' ? 'rgba(172,14,14,0.1)' : 'rgba(232,135,155,0.15)',
+                                            color: deg === 'phd' ? 'rgb(172,14,14)' : '#e8879b'
+                                          }}
+                                        >
+                                          {degreeLabels[deg] || deg.toUpperCase()}
+                                        </span>
+                                      ))
+                                    }
+                                  </div>
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  {getAffiliation(alumni)}
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  {getPeriod(alumni)}
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  {alumni.company ? (
+                                    <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
+                                      <Building2 size={14} style={{color: '#e8879b'}}/>
+                                      <span>{alumni.company}</span>
+                                    </div>
+                                  ) : (
+                                    <span className="text-gray-400">-</span>
+                                  )}
+                                </td>
+                              </tr>
+                              {isExpanded && hasThesis && (
+                                <tr className="bg-gray-50/50">
+                                  <td colSpan={5} className="py-16 px-16">
+                                    <div className="space-y-12 ml-48">
+                                      {Object.entries(alumni.thesis!)
+                                        .sort(([a], [b]) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
+                                        .map(([deg, thesis]) => (
+                                          <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
+                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#e8879b'}}/>
+                                            <div className="flex-1 min-w-0">
+                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#e8879b'}}>
+                                                {degreeLabels[deg] || deg.toUpperCase()} Thesis
+                                              </p>
+                                              <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
+                                                {thesis.title}
+                                              </p>
+                                              {thesis.url && (
+                                                <a
+                                                  href={thesis.url}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                                  className="inline-flex items-center gap-4 text-xs text-primary hover:underline mt-8"
+                                                  onClick={(e) => e.stopPropagation()}
+                                                >
+                                                  <ExternalLink size={12}/>
+                                                  View Thesis
+                                                </a>
+                                              )}
+                                            </div>
+                                          </div>
+                                        ))}
+                                    </div>
+                                  </td>
+                                </tr>
                               )}
-                            </td>
-                          </tr>
-                        ))}
+                            </React.Fragment>
+                          )
+                        })}
                       </tbody>
                     </table>
                   </div>

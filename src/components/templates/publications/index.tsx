@@ -159,9 +159,11 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
             </div>
             <div className={`p-16 rounded-xl border text-sm leading-relaxed break-words ${
               format.key === 'bibtex' 
-                ? 'bg-gray-900 text-green-400 font-mono text-xs border-gray-700 whitespace-pre-wrap'
+                ? 'bg-gray-900 font-mono text-xs border-gray-700 whitespace-pre-wrap'
                 : 'bg-gray-50 text-gray-600 border-gray-100'
-            }`}>
+            }`}
+              style={format.key === 'bibtex' ? {color: '#d4a017'} : undefined}
+            >
               {format.key === 'bibtex' ? text : text.replace(/<\/?em>/g, '')}
             </div>
           </div>
@@ -296,10 +298,10 @@ export const PublicationsTemplate = () => {
 
     return [
       { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
-      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Pink for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#9333ea' }, // Purple for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#14b8a6' }, // Teal for reports
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: 'rgb(172,14,14)' }, // Primary red for total
+      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#ffb7c5' }, // Sakura for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#e8879b' }, // Rose for reports
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
     ]
   }, [publications])
 
@@ -744,7 +746,14 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {pub.awards && pub.awards > 0 && <span className="mr-6">🏆</span>}
+                                    {pub.awards && pub.awards > 0 && (
+                                      <span 
+                                        className="mr-6 cursor-help" 
+                                        title={`Award-winning paper (${pub.awards} award${pub.awards > 1 ? 's' : ''})`}
+                                      >
+                                        🏆
+                                      </span>
+                                    )}
                                     {pub.title}
                                   </h4>
                                   {pub.title_ko && (

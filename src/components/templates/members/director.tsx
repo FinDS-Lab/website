@@ -129,7 +129,7 @@ const affiliations = [
 ]
 
 // Static Data - Citation Statistics (manually updated)
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 10}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
+const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
 
 // Static Data - Research Interests
 const researchInterests = [
@@ -201,7 +201,8 @@ export const MembersDirectorTemplate = () => {
             else if (indexing === 'Other International') stats.otherIntl++
             else if (indexing.includes('KCI')) stats.kci++
           } else if (type === 'conference') {
-            if (indexing === 'International Conference') stats.intlConf++
+            // International conferences include both "International Conference" and "Scopus" indexed ones
+            if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
             else if (indexing === 'Domestic Conference') stats.domConf++
           }
         })
@@ -284,7 +285,7 @@ export const MembersDirectorTemplate = () => {
     )
   }
 
-  // Group lectures by course name and aggregate semesters
+  // Group lectures by course name and aggregate semesters, with role information
   const groupedLectures = useMemo(() => {
     const filtered = teachingSearchTerm.trim()
       ? lectures.filter(l =>
@@ -302,17 +303,19 @@ export const MembersDirectorTemplate = () => {
       courseName: string
       courseNameKo: string
       periods: string[]
+      role: string
     }> = {}
 
     filtered.forEach(lecture => {
       lecture.courses.forEach(course => {
-        const key = `${lecture.school}-${course.en}`
+        const key = `${lecture.school}-${course.en}-${lecture.role}`
         if (!courseMap[key]) {
           courseMap[key] = {
             school: lecture.school,
             courseName: course.en,
             courseNameKo: course.ko,
-            periods: [...lecture.periods]
+            periods: [...lecture.periods],
+            role: lecture.role
           }
         } else {
           // Add new periods that are not already in the list
@@ -328,8 +331,8 @@ export const MembersDirectorTemplate = () => {
     // Sort periods in each course (most recent first)
     Object.values(courseMap).forEach(course => {
       course.periods.sort((a, b) => {
-        const [yearA, semA] = a.split('-')
-        const [yearB, semB] = b.split('-')
+        const [yearA, semA] = a.split(' ')
+        const [yearB, semB] = b.split(' ')
         if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA)
         return semB.localeCompare(semA)
       })
@@ -337,6 +340,13 @@ export const MembersDirectorTemplate = () => {
 
     return Object.values(courseMap)
   }, [lectures, teachingSearchTerm])
+
+  // Separate Lecturer and TA courses
+  const lecturerCourses = useMemo(() => 
+    groupedLectures.filter(c => c.role === 'Lecturer'), [groupedLectures])
+  
+  const taCourses = useMemo(() => 
+    groupedLectures.filter(c => c.role === 'Teaching Assistant'), [groupedLectures])
 
   return (
     <div className="flex flex-col bg-white">
@@ -885,29 +895,69 @@ export const MembersDirectorTemplate = () => {
                   />
                 </div>
 
-                {/* Course-grouped lectures */}
-                <div className="space-y-12">
-                  {groupedLectures.map((course, index) => (
-                    <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
-                      <div className="flex items-start gap-12 md:gap-16">
-                        <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 bg-gray-900 text-white">
-                          <BookOpen size={18} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-6 mb-8">
-                            {course.periods.map((period, i) => (
-                              <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
-                                {period}
-                              </span>
-                            ))}
-                          </div>
-                          <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
-                          <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
-                        </div>
-                      </div>
+                {/* Lecturer Section */}
+                {lecturerCourses.length > 0 && (
+                  <div className="mb-24">
+                    <div className="flex items-center gap-8 mb-12">
+                      <p className="text-sm font-bold text-gray-900">Lecturer</p>
+                      <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{lecturerCourses.length}</span>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-12">
+                      {lecturerCourses.map((course, index) => (
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                          <div className="flex items-start gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 bg-gray-900 text-white">
+                              <BookOpen size={18} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 mb-8">
+                                {course.periods.map((period, i) => (
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                    {period}
+                                  </span>
+                                ))}
+                              </div>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
+                              <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Teaching Assistant Section */}
+                {taCourses.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-8 mb-12">
+                      <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{taCourses.length}</span>
+                    </div>
+                    <div className="space-y-12">
+                      {taCourses.map((course, index) => (
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                          <div className="flex items-start gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(232,135,155,0.15)'}}>
+                              <BookOpen size={18} style={{color: '#e8879b'}} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 mb-8">
+                                {course.periods.map((period, i) => (
+                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#e8879b'}}>
+                                    {period}
+                                  </span>
+                                ))}
+                              </div>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
+                              <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </section>
             )}
           </main>

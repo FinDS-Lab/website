@@ -112,10 +112,10 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return [
-      { label: 'Ph.D. Students', count: phdCount, icon: GraduationCap, countColor: 'text-primary' },
-      { label: 'M.S. Students', count: msCount, icon: BookOpen, countColor: 'text-primary' },
-      { label: 'Undergrad Researchers', count: undergradCount, icon: UserCheck, countColor: 'text-primary' },
-      { label: 'Total Members', count: members.length, icon: Users, countColor: 'text-gray-900' },
+      { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#d4a017' },
+      { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#e8879b' },
+      { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#ffb7c5' },
+      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#1f2937' },
     ]
   }, [members])
 
@@ -201,9 +201,9 @@ export const MembersCurrentTemplate = () => {
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className={`text-2xl md:text-3xl font-bold mb-4 ${stat.countColor}`}>{stat.count}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
                   <div className="flex items-center gap-6">
-                    <stat.icon className="size-14 md:size-16 text-gray-400" />
+                    <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
                     <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
                   </div>
                 </div>

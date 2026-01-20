@@ -405,7 +405,7 @@ const CollaborationNetwork = memo(() => {
             const innerRingCount = Math.min(6, Math.ceil(total / 2))
             const isInnerRing = sortedIdx < innerRingCount
             
-            if (isInnerRing) {
+            if (isInnerRing && innerRingCount > 0) {
               // Inner ring - closer to center, evenly spaced
               const angle = (2 * Math.PI * sortedIdx) / innerRingCount - Math.PI / 2
               const radius = 120
@@ -415,10 +415,18 @@ const CollaborationNetwork = memo(() => {
               // Outer ring
               const outerIdx = sortedIdx - innerRingCount
               const outerCount = total - innerRingCount
-              const angle = (2 * Math.PI * outerIdx) / outerCount - Math.PI / 2 + Math.PI / outerCount
-              const radius = 200
-              x = centerX + Math.cos(angle) * radius
-              y = centerY + Math.sin(angle) * radius
+              if (outerCount > 0) {
+                const angle = (2 * Math.PI * outerIdx) / outerCount - Math.PI / 2 + Math.PI / outerCount
+                const radius = 200
+                x = centerX + Math.cos(angle) * radius
+                y = centerY + Math.sin(angle) * radius
+              } else {
+                // Fallback - place at random position in outer area
+                const angle = Math.random() * 2 * Math.PI
+                const radius = 200
+                x = centerX + Math.cos(angle) * radius
+                y = centerY + Math.sin(angle) * radius
+              }
             }
           }
 
@@ -543,6 +551,15 @@ const CollaborationNetwork = memo(() => {
           node.vy *= 0.9
           node.x += node.vx
           node.y += node.vy
+          
+          // NaN check - reset to center if invalid
+          if (isNaN(node.x) || isNaN(node.y)) {
+            node.x = centerX + (Math.random() - 0.5) * 200
+            node.y = centerY + (Math.random() - 0.5) * 200
+            node.vx = 0
+            node.vy = 0
+          }
+          
           // Boundary constraints
           node.x = Math.max(50, Math.min(750, node.x))
           node.y = Math.max(50, Math.min(450, node.y))
@@ -1371,13 +1388,13 @@ export const MembersDirectorActivitiesTemplate = () => {
 
           {/* Right Column: Activities Only */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Awards & Honors */}
+            {/* Honors & Awards */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('awardsHonors')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Awards & Honors</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.awardsHonors ? 'rotate-180' : ''}`}/>
               </button>
 
@@ -1392,9 +1409,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                       {/* Summary Stats */}
                       <div className="flex items-center gap-16 mb-20">
                         <div className="flex items-center gap-8">
-                          <Award size={18} className="text-primary" />
+                          <span className="w-8 h-8 rounded-full bg-primary" />
                           <span className="text-sm font-bold text-gray-900">
-                            Total: {Object.values(honorsData).reduce((acc, items) => acc + items.length, 0)}
+                            Total: <span className="text-primary">{Object.values(honorsData).reduce((acc, items) => acc + items.length, 0)}</span>
                           </span>
                         </div>
                       </div>
@@ -1507,10 +1524,10 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
-                      {/* Program Committee */}
+                      {/* Program & Event Committee */}
                       <div className="p-24 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
-                          <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                          <p className="text-sm font-bold text-gray-900">Program & Event Committee</p>
                           <span className="px-8 py-2 bg-amber-500 text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                         </div>
                         {committees.length > 0 ? (
@@ -1524,10 +1541,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md bg-amber-50 hover:bg-amber-100"
                                 title={comm.period || comm.since}
                               >
-                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-amber-700">{comm.name}</span>
-                                <span className="px-6 py-1 rounded text-[9px] font-bold bg-amber-500 text-white">
-                                  COMM
-                                </span>
+                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 text-amber-700">{comm.name}</span>
                               </a>
                             ))}
                           </div>
@@ -1556,10 +1570,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 style={{backgroundColor: 'rgba(232,135,155,0.1)'}}
                                 title={chair.period || chair.since}
                               >
-                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6" style={{color: '#e8879b'}}>{chair.name}</span>
-                                <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#e8879b'}}>
-                                  CHAIR
-                                </span>
+                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2" style={{color: '#e8879b'}}>{chair.name}</span>
                               </a>
                             ))}
                           </div>
@@ -1867,8 +1878,8 @@ export const MembersDirectorActivitiesTemplate = () => {
                           className="px-20 md:px-32 py-12 md:py-16 flex items-center justify-between hover:bg-gray-50/50 transition-colors"
                         >
                           <div className="flex items-center gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-full flex items-center justify-center text-xs md:text-sm font-bold shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)', color: 'rgb(172,14,14)'}}>
-                              {mentee.name.slice(-2)}
+                            <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)'}}>
+                              <Users size={16} style={{color: 'rgb(172,14,14)'}}/>
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-bold text-gray-900">{mentee.name}</p>

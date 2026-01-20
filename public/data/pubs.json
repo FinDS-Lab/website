@@ -18,11 +18,11 @@
     "awards": 0,
     "citations": {
       "apa": "Choi, I. (2026). 대학생을 위한 포트폴리오 가이드. Bookk Publishing.",
-      "mla": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2020.",
-      "chicago": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2020.",
-      "harvard": "Choi, I 2020, <em>How to make your own student portfolio: From concept to competition</em>, Wikidocs.",
-      "vancouver": "Choi I. How to make your own student portfolio: From concept to competition. Wikidocs; 2020.",
-      "korean": "최인수. (2020). 나만의 학생 포트폴리오 만들기: 컨셉부터 대회까지. 위키독스.",
+      "mla": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2026.",
+      "chicago": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2026.",
+      "harvard": "Choi, I 2026, <em>How to make your own student portfolio: From concept to competition</em>, Wikidocs.",
+      "vancouver": "Choi I. How to make your own student portfolio: From concept to competition. Wikidocs; 2026.",
+      "korean": "최인수. (2026). 나만의 학생 포트폴리오 만들기: 컨셉부터 대회까지. 위키독스.",
       "bibtex": "@book{choi2026대학생을,\n  title = {{대학생을 위한 포트폴리오 가이드}},\n  author = {Choi, I.},\n  publisher = {Wikidocs},\n  year = {2026},\n}",
       "apa_ko": "최인수 (2026). 대학생을 위한 포트폴리오 가이드. 부크크."
     }
