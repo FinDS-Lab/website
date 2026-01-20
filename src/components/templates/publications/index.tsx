@@ -636,11 +636,19 @@ export const PublicationsTemplate = () => {
                                     </span>
                                   </div>
                                   {pub.type === 'conference' && pub.presentation_type && (
-                                    <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 ${
-                                      pub.presentation_type === 'oral' ? 'bg-pink-50' : 'bg-orange-50'
-                                    }`}>
-                                      <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide"
-                                        style={{color: pub.presentation_type === 'oral' ? '#ffb7c5' : '#ffcba4'}}
+                                    <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b ${
+                                      pub.presentation_type === 'oral' 
+                                        ? 'border-pink-200' 
+                                        : 'border-pink-100'
+                                    }`}
+                                      style={{
+                                        backgroundColor: pub.presentation_type === 'oral' 
+                                          ? 'rgba(232,135,155,0.15)' 
+                                          : 'rgba(255,183,197,0.15)'
+                                      }}
+                                    >
+                                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wide"
+                                        style={{color: pub.presentation_type === 'oral' ? '#e8879b' : '#ffb7c5'}}
                                       >
                                         {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                       </span>

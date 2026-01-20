@@ -681,8 +681,8 @@ const CollaborationNetwork = memo(() => {
         >
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#f5d485"/>
-              <stop offset="100%" stopColor="#d6b14d"/>
+              <stop offset="0%" stopColor="#ffffff"/>
+              <stop offset="100%" stopColor="#f8f8f8"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#ffd6dd"/>
@@ -760,7 +760,7 @@ const CollaborationNetwork = memo(() => {
                     <text
                       textAnchor="middle"
                       dy="0.35em"
-                      fill="white"
+                      fill="#d6b14d"
                       fontSize="9"
                       fontWeight="bold"
                     >
@@ -838,11 +838,11 @@ const CollaborationNetwork = memo(() => {
                           {node.publications}
                         </p>
                       </div>
-                      <div className="bg-green-50 rounded-lg p-12 text-center border border-green-100">
+                      <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#ffb7c5', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
                           <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
-                        <p className="text-2xl font-bold text-green-600">
+                        <p className="text-2xl font-bold" style={{color: '#e8879b'}}>
                           {node.coworkRate}%
                         </p>
                       </div>
@@ -895,7 +895,7 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full" style={{background: 'linear-gradient(135deg, #f5d485 0%, #d6b14d 100%)', border: '2px solid rgb(172,14,14)'}}/>
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#d6b14d'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
@@ -929,6 +929,7 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [loading, setLoading] = useState(true)
   const [mentees, setMentees] = useState<MenteeWithId[]>([])
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
+  const [selectedUniversity, setSelectedUniversity] = useState<string>('all')
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025']))
@@ -1032,14 +1033,31 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   // 필터링된 멘티
   const filteredMentees = useMemo(() => {
+    let result: MenteeWithId[] = []
     if (selectedMentoringYear === 'all') {
       // 중복 제거하여 전체 멘티 반환
       const uniqueMentees = new Map<string, MenteeWithId>()
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
-      return Array.from(uniqueMentees.values())
+      result = Array.from(uniqueMentees.values())
+    } else {
+      result = menteesByYear[selectedMentoringYear] || []
     }
-    return menteesByYear[selectedMentoringYear] || []
-  }, [selectedMentoringYear, mentees, menteesByYear])
+    
+    // 대학 필터 적용
+    if (selectedUniversity !== 'all') {
+      result = result.filter(m => m.university === selectedUniversity)
+    }
+    
+    // 정렬: 참여연차 많은 순 → 이름 가나다순
+    result.sort((a, b) => {
+      const aYears = a.participationYears.length
+      const bYears = b.participationYears.length
+      if (aYears !== bYears) return bYears - aYears
+      return a.name.localeCompare(b.name, 'ko')
+    })
+    
+    return result
+  }, [selectedMentoringYear, selectedUniversity, mentees, menteesByYear])
 
   // 대학별 통계
   const universityStats = useMemo(() => {
@@ -1612,36 +1630,36 @@ export const MembersDirectorActivitiesTemplate = () => {
               {expandedSections.mentoringProgram && (
                 <div className="border-t border-gray-100">
                 {/* Header with Stats */}
-                <div className="bg-gray-50/50 px-32 py-24 border-b border-gray-100">
+                <div className="bg-gray-50/50 px-20 md:px-32 py-24 border-b border-gray-100">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-primary">{mentees.length}</p>
-                      <p className="text-xs font-bold text-gray-400 uppercase mt-4">Total Mentees</p>
+                      <p className="text-2xl md:text-3xl font-bold text-primary">{mentees.length}</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Total Mentees</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-gray-700">{mentoringYears.length}</p>
-                      <p className="text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
+                      <p className="text-2xl md:text-3xl font-bold text-gray-700">{mentoringYears.length}</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-green-600">
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#ffb7c5'}}>
                         {menteesByYear['2025']?.length || 0}
                       </p>
-                      <p className="text-xs font-bold text-gray-400 uppercase mt-4">Current (2025)</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2025)</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-purple-600">
+                      <p className="text-2xl md:text-3xl font-bold text-primary">
                         {new Set(mentees.map(m => m.university)).size}
                       </p>
-                      <p className="text-xs font-bold text-gray-400 uppercase mt-4">Universities</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Universities</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Year Filter */}
-                <div className="px-32 py-16 border-b border-gray-100 flex items-center gap-12 overflow-x-auto">
+                <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
                   <button
                     onClick={() => setSelectedMentoringYear('all')}
-                    className={`px-16 py-8 rounded-full text-xs font-bold transition-all shrink-0 ${
+                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
                       selectedMentoringYear === 'all'
                         ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -1653,7 +1671,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <button
                       key={year}
                       onClick={() => setSelectedMentoringYear(year)}
-                      className={`px-16 py-8 rounded-full text-xs font-bold transition-all shrink-0 ${
+                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
                         selectedMentoringYear === year
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -1664,18 +1682,33 @@ export const MembersDirectorActivitiesTemplate = () => {
                   ))}
                 </div>
 
-                {/* University Distribution */}
+                {/* University Distribution - Clickable Filter */}
                 {universityStats.length > 0 && (
-                  <div className="px-32 py-16 border-b border-gray-100 bg-gray-50/30">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase mb-12">University Distribution</p>
-                    <div className="flex flex-wrap gap-8">
-                      {universityStats.map(([univ, count]) => (
-                      <span
-                          key={univ}
-                          className="px-12 py-6 bg-white border border-gray-200 rounded-full text-xs font-medium text-gray-700"
+                  <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
+                    <div className="flex items-center justify-between mb-12">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase">University Distribution</p>
+                      {selectedUniversity !== 'all' && (
+                        <button
+                          onClick={() => setSelectedUniversity('all')}
+                          className="text-[10px] text-primary font-medium hover:underline"
                         >
-                          {univ} <span className="text-primary font-bold">({count})</span>
-                        </span>
+                          Clear Filter
+                        </button>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-6 md:gap-8">
+                      {universityStats.map(([univ, count]) => (
+                        <button
+                          key={univ}
+                          onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
+                          className={`px-10 md:px-12 py-4 md:py-6 rounded-full text-[11px] md:text-xs font-medium transition-all ${
+                            selectedUniversity === univ
+                              ? 'bg-primary text-white'
+                              : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
+                          }`}
+                        >
+                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'text-primary font-bold'}>({count})</span>
+                        </button>
                       ))}
                     </div>
                   </div>
@@ -1688,41 +1721,42 @@ export const MembersDirectorActivitiesTemplate = () => {
                       {filteredMentees.map((mentee) => (
                         <div
                           key={mentee.id}
-                          className="px-32 py-16 flex items-center justify-between hover:bg-gray-50/50 transition-colors"
+                          className="px-20 md:px-32 py-12 md:py-16 flex items-center justify-between hover:bg-gray-50/50 transition-colors"
                         >
-                          <div className="flex items-center gap-16">
-                            <div className="size-40 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm font-bold">
+                          <div className="flex items-center gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-full flex items-center justify-center text-xs md:text-sm font-bold shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)', color: 'rgb(172,14,14)'}}>
                               {mentee.name.charAt(0)}
                             </div>
-                            <div>
+                            <div className="min-w-0">
                               <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
-                              <p className="text-xs text-gray-500">
+                              <p className="text-[11px] md:text-xs text-gray-500 truncate">
                                 {mentee.university} · {mentee.department}
                               </p>
                             </div>
                           </div>
-                          <div className="flex max-md:flex-col max-md:items-end items-center gap-12">
+                          <div className="flex max-md:flex-col max-md:items-end items-center gap-8 md:gap-12 shrink-0">
                             <span className="text-[10px] font-bold text-gray-400">
                               {mentee.entryYear}학번
                             </span>
-                            <div className="flex gap-4 max-md:grid max-md:grid-cols-1">
+                            <div className="flex gap-4 flex-wrap justify-end">
                               {mentee.participationYears.map((year) => (
                                 <span
                                   key={year}
-                                  className={`px-8 py-2 rounded text-[10px] font-bold ${
+                                  className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold ${
                                     year === '2025'
-                            ? 'bg-green-100 text-green-700'
+                                      ? ''
                                       : 'bg-gray-100 text-gray-500'
-                        }`}
-                      >
+                                  }`}
+                                  style={year === '2025' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                >
                                   {year}
-                      </span>
+                                </span>
                               ))}
                             </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                ))}
-              </div>
                   ) : (
                     <div className="p-40 text-center text-gray-400">
                       <Users size={40} className="mx-auto mb-12 opacity-30"/>
@@ -1732,66 +1766,12 @@ export const MembersDirectorActivitiesTemplate = () => {
                 </div>
 
                 {/* Footer */}
-                <div className="px-32 py-16 bg-gray-50/50 border-t border-gray-100 flex items-center justify-between">
-                  <p className="text-xs text-gray-500">
+                <div className="px-20 md:px-32 py-12 md:py-16 bg-gray-50/50 border-t border-gray-100">
+                  <p className="text-[11px] md:text-xs text-gray-500">
                     Showing <span className="font-bold text-gray-700">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
-                    {selectedMentoringYear !== 'all' && ` in ${selectedMentoringYear}`}
+                    {selectedMentoringYear !== 'all' && <span className="text-primary"> in {selectedMentoringYear}</span>}
+                    {selectedUniversity !== 'all' && <span className="text-primary"> from {selectedUniversity}</span>}
                   </p>
-                  <button
-                    onClick={() => showModal({
-                      title: 'Mentoring Program',
-                      maxWidth: '900px',
-                      children: (
-                        <div className="p-32">
-                          <p className="text-gray-600 mb-24 leading-relaxed">
-                            FINDS Lab offers a mentorship program for students interested in Financial Data Science and Business Analytics.
-                            The program provides guidance on research, career development, and academic growth.
-                          </p>
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-16 mb-32">
-                            <div className="bg-primary/5 rounded-xl p-20 text-center">
-                              <p className="text-2xl font-bold text-primary">{mentees.length}</p>
-                              <p className="text-xs text-gray-500 mt-4">Total Mentees</p>
-                            </div>
-                            <div className="bg-gray-50 rounded-xl p-20 text-center">
-                              <p className="text-2xl font-bold text-gray-700">{mentoringYears[mentoringYears.length - 1]} - {mentoringYears[0]}</p>
-                              <p className="text-xs text-gray-500 mt-4">Period</p>
-                            </div>
-                            <div className="bg-green-50 rounded-xl p-20 text-center">
-                              <p className="text-2xl font-bold text-green-600">{menteesByYear['2025']?.length || 0}</p>
-                              <p className="text-xs text-gray-500 mt-4">Current Mentees</p>
-                            </div>
-                            <div className="bg-purple-50 rounded-xl p-20 text-center">
-                              <p className="text-2xl font-bold text-purple-600">{new Set(mentees.map(m => m.university)).size}</p>
-                              <p className="text-xs text-gray-500 mt-4">Universities</p>
-                            </div>
-                          </div>
-                          <div className="max-h-400 overflow-y-auto border border-gray-100 rounded-xl">
-                            {mentoringYears.map((year) => (
-                              <div key={year} className="border-b border-gray-100 last:border-0">
-                                <div className="px-20 py-12 bg-gray-50 font-bold text-sm text-gray-700 sticky top-0">
-                                  {year}년 ({menteesByYear[year]?.length || 0}명)
-                                </div>
-                                <div className="divide-y divide-gray-50">
-                                  {menteesByYear[year]?.map((mentee) => (
-                                    <div key={`${year}-${mentee.id}`} className="px-20 py-12 flex items-center justify-between">
-                                      <div>
-                                        <p className="text-sm font-medium text-gray-800">{mentee.name}</p>
-                                        <p className="text-xs text-gray-500">{mentee.university} {mentee.department}</p>
-                                      </div>
-                                      <span className="text-xs text-gray-400">{mentee.entryYear}학번</span>
-                                    </div>
-                                  ))}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )
-                    })}
-                    className="text-xs font-bold text-primary hover:underline flex items-center gap-4"
-                  >
-                    View Full List <ChevronRight size={14}/>
-                  </button>
                 </div>
                 </div>
               )}

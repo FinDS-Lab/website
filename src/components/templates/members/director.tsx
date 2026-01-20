@@ -372,15 +372,29 @@ export const MembersDirectorTemplate = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md hover:border-primary/20 transition-all">
-                    <h4 className="text-sm md:text-base font-bold text-primary mb-16 pb-12 border-b border-gray-100">{area.category}</h4>
-                    <ul className="space-y-12">
-                      {area.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-10">
-                          <span className="size-6 bg-primary/20 rounded-full shrink-0 mt-6"/>
-                          <span className="text-xs md:text-sm text-gray-600 leading-relaxed">{item}</span>
-                        </li>
-                      ))}
+                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
+                    <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
+                      <div className={`size-8 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-amber-500' : 'bg-pink-400'}`}/>
+                      <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
+                    </div>
+                    <ul className="space-y-10">
+                      {area.items.map((item, idx) => {
+                        // Extract key terms for highlighting
+                        const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
+                        let highlightedItem = item
+                        highlightTerms.slice(0, 2).forEach(term => {
+                          highlightedItem = highlightedItem.replace(term, `<mark>${term}</mark>`)
+                        })
+                        return (
+                          <li key={idx} className="flex items-start gap-10">
+                            <span className={`size-5 rounded-full shrink-0 mt-7 ${index === 0 ? 'bg-primary/30' : index === 1 ? 'bg-amber-500/30' : 'bg-pink-400/30'}`}/>
+                            <span 
+                              className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
+                              dangerouslySetInnerHTML={{__html: highlightedItem}}
+                            />
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
                 ))}
