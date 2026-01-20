@@ -700,7 +700,7 @@ export const PublicationsTemplate = () => {
                                       {getPublicationNumber(pub)}
                                     </span>
                                   </div>
-                                  {pub.presentation_type && (
+                                  {pub.type === 'conference' && pub.presentation_type && (
                                     <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 ${
                                       pub.presentation_type === 'oral' ? 'bg-blue-50' : 'bg-orange-50'
                                     }`}>
@@ -711,7 +711,7 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     </div>
                                   )}
-                                  {!pub.presentation_type && (
+                                  {pub.type === 'conference' && !pub.presentation_type && (
                                     <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
                                       <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                                         -

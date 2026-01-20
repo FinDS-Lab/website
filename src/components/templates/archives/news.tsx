@@ -55,7 +55,7 @@ export const ArchivesNewsTemplate = () => {
   const { showModal } = useStoreModal()
 
   useEffect(() => {
-    const newsFiles = ['2025-09-01-1.md', '2025-06-14-1.md']
+    const newsFiles = ['2026-03-01-1.md', '2025-09-01-1.md', '2025-06-14-1.md']
 
     const fetchAllNews = async () => {
       try {

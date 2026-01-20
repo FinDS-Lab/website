@@ -86,13 +86,13 @@ const ContactModalContent = () => {
         {contacts.map((contact, index) => (
           <div key={index} className="bg-gray-50 rounded-xl p-16 max-md:p-12">
             <div className="flex items-center justify-between mb-8">
-              <span className="text-sm font-bold text-gray-900">{contact.role}</span>
-              <span className="text-[10px] text-gray-400">{contact.description}</span>
+              <span className="text-base font-bold text-primary">{contact.role}</span>
+              <span className="text-xs text-gray-400">{contact.description}</span>
             </div>
             <div className="flex items-center justify-between gap-12">
               <a
                 href={`mailto:${contact.email}`}
-                className="text-sm font-semibold text-primary hover:underline transition-colors"
+                className="text-base font-semibold text-gray-700 hover:text-primary hover:underline transition-colors"
               >
                 {contact.email}
               </a>

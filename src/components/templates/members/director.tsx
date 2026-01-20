@@ -312,7 +312,8 @@ export const MembersDirectorTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: '#d6b14d'}}
                 >
                   Scholar <ExternalLink size={14}/>
                 </a>

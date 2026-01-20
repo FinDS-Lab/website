@@ -296,7 +296,17 @@ const HonorsAwardsSection = memo(() => {
     fetch('/website/data/honors.json')
       .then((res) => res.json())
       .then((data: HonorsData) => {
-        setHonorsData(data)
+        // 최인수가 포함된 항목만 필터링
+        const filteredData: HonorsData = {}
+        Object.keys(data).forEach((year) => {
+          const items = data[year].filter((item) => 
+            item.winners?.some((w: {name: string}) => w.name.includes('최인수') || w.name.toLowerCase().includes('insu'))
+          )
+          if (items.length > 0) {
+            filteredData[year] = items
+          }
+        })
+        setHonorsData(filteredData)
         setLoading(false)
       })
       .catch((err) => {
@@ -313,7 +323,7 @@ const HonorsAwardsSection = memo(() => {
     )
   }
 
-  if (!honorsData) {
+  if (!honorsData || Object.keys(honorsData).length === 0) {
     return (
       <div className="p-40 text-center">
         <p className="text-sm text-gray-400">No data available</p>
@@ -787,17 +797,26 @@ const CollaborationNetwork = memo(() => {
         >
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#60a5fa"/>
-              <stop offset="100%" stopColor="#3b82f6"/>
+              <stop offset="0%" stopColor="#f5d485"/>
+              <stop offset="100%" stopColor="#d6b14d"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#94a3b8"/>
               <stop offset="100%" stopColor="#64748b"/>
             </radialGradient>
             <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="directorGlow" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+              <feFlood floodColor="#d6b14d" floodOpacity="0.6"/>
+              <feComposite in2="coloredBlur" operator="in"/>
+              <feMerge>
+                <feMergeNode/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
@@ -821,7 +840,7 @@ const CollaborationNetwork = memo(() => {
                   y2={target.y}
                   stroke={
                     source.isDirector || target.isDirector
-                      ? '#3b82f6'
+                      ? 'rgb(172,14,14)'
                       : '#94a3b8'
                   }
                   strokeWidth={Math.max(0.5, Math.min(2.5, link.weight * 0.6))}
@@ -855,9 +874,9 @@ const CollaborationNetwork = memo(() => {
                   <circle
                     r={size}
                     fill={node.isDirector ? 'url(#directorGradient)' : 'url(#nodeGradient)'}
-                    stroke={isHighlighted ? '#3b82f6' : 'white'}
-                    strokeWidth={isHighlighted ? 3 : 2}
-                    filter={isHighlighted ? 'url(#glow)' : 'url(#shadow)'}
+                    stroke={node.isDirector ? '#d6b14d' : (isHighlighted ? 'rgb(172,14,14)' : 'white')}
+                    strokeWidth={node.isDirector ? 3 : (isHighlighted ? 3 : 2)}
+                    filter={node.isDirector ? 'url(#directorGlow)' : (isHighlighted ? 'url(#glow)' : 'url(#shadow)')}
                     className="transition-all duration-200"
                   />
 
@@ -878,7 +897,7 @@ const CollaborationNetwork = memo(() => {
                   <text
                     y={size + 12}
                     textAnchor="middle"
-                    fill={node.isDirector ? '#1e40af' : '#374151'}
+                    fill={node.isDirector ? '#b8860b' : '#374151'}
                     fontSize={node.isDirector ? 9 : 7}
                     fontWeight={node.isDirector ? 700 : 600}
                     className="pointer-events-none select-none"
@@ -944,11 +963,11 @@ const CollaborationNetwork = memo(() => {
                           {node.publications}
                         </p>
                       </div>
-                      <div className="bg-green-50 rounded-lg p-12 text-center border border-green-100">
+                      <div className="rounded-lg p-12 text-center border" style={{backgroundColor: 'rgba(172,14,14,0.05)', borderColor: 'rgba(172,14,14,0.1)'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
                           <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
-                        <p className="text-2xl font-bold text-green-600">
+                        <p className="text-2xl font-bold" style={{color: 'rgb(172,14,14)'}}>
                           {node.coworkRate}%
                         </p>
                       </div>
@@ -961,12 +980,12 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-blue-500"/>
+                          <span className="size-4 rounded-full" style={{backgroundColor: 'rgb(172,14,14)'}}/>
                           <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
                         </div>
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-purple-500"/>
+                          <span className="size-4 rounded-full" style={{backgroundColor: '#ffb7c5'}}/>
                           <span className="text-xs text-gray-600 flex-1">conference proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
                         </div>
@@ -1036,11 +1055,11 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [emailCopied, setEmailCopied] = useState(false)
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    honorsAwards: true,
-    academicService: true,
+    honorsAwards: false,
+    academicService: false,
     activities: false,
-    collaborationNetwork: true,
-    mentoringProgram: true,
+    collaborationNetwork: false,
+    mentoringProgram: false,
   })
   const {showModal} = useStoreModal()
 
@@ -1103,13 +1122,21 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   // 필터링된 멘티
   const filteredMentees = useMemo(() => {
+    let result: MenteeWithId[]
     if (selectedMentoringYear === 'all') {
       // 중복 제거하여 전체 멘티 반환
       const uniqueMentees = new Map<string, MenteeWithId>()
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
-      return Array.from(uniqueMentees.values())
+      result = Array.from(uniqueMentees.values())
+    } else {
+      result = menteesByYear[selectedMentoringYear] || []
     }
-    return menteesByYear[selectedMentoringYear] || []
+    // 참여 횟수 내림차순, 같으면 가나다순 정렬
+    return result.sort((a, b) => {
+      const countDiff = b.participationYears.length - a.participationYears.length
+      if (countDiff !== 0) return countDiff
+      return a.name.localeCompare(b.name, 'ko')
+    })
   }, [selectedMentoringYear, mentees, menteesByYear])
 
   // 대학별 통계
@@ -1326,7 +1353,8 @@ export const MembersDirectorActivitiesTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: '#d6b14d'}}
                 >
                   Scholar
                   <ExternalLink size={14}/>
@@ -1407,7 +1435,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
                       {/* Journal Reviewer */}
                       <div className="p-24 border-t border-gray-100">
-                        <div className="flex items-center justify-between mb-12">
+                        <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                             <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.journals.length}</span>
@@ -1422,22 +1450,26 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="flex flex-wrap gap-6">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
                           {displayedJournals.map((journal) => (
                             <a
                               key={journal.id}
                               href={journal.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`inline-flex items-center gap-6 px-10 py-4 rounded-full text-[11px] font-medium transition-all hover:shadow-sm ${
-                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 text-primary hover:bg-primary/20' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 text-amber-700 hover:bg-amber-100' :
-                                    'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                              className={`flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 hover:bg-primary/20' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 hover:bg-amber-100' :
+                                    'bg-gray-100 hover:bg-gray-200'
                               }`}
                               title={`${journal.name} (${journal.type}, since ${journal.since})`}
                             >
-                              <span className="truncate max-w-200">{journal.name}</span>
-                              <span className={`px-4 py-0.5 rounded text-[9px] font-bold ${
+                              <span className={`text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'text-primary' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'text-amber-700' :
+                                    'text-gray-600'
+                              }`}>{journal.name}</span>
+                              <span className={`px-6 py-1 rounded text-[9px] font-bold ${
                                 journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
                                   journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-500 text-white' :
                                     'bg-gray-400 text-white'
@@ -1595,13 +1627,13 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-green-600">
+                      <p className="text-3xl font-bold" style={{color: 'rgb(172,14,14)'}}>
                         {menteesByYear['2025']?.length || 0}
                       </p>
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Current (2025)</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold text-purple-600">
+                      <p className="text-3xl font-bold" style={{color: '#ffb7c5'}}>
                         {new Set(mentees.map(m => m.university)).size}
                       </p>
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Universities</p>
@@ -1683,9 +1715,10 @@ export const MembersDirectorActivitiesTemplate = () => {
                                   key={year}
                                   className={`px-8 py-2 rounded text-[10px] font-bold ${
                                     year === '2025'
-                            ? 'bg-green-100 text-green-700'
+                            ? 'text-white'
                                       : 'bg-gray-100 text-gray-500'
                         }`}
+                                  style={year === '2025' ? {backgroundColor: 'rgb(172,14,14)'} : {}}
                       >
                                   {year}
                       </span>

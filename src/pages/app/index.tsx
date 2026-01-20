@@ -238,7 +238,14 @@ export const App = () => {
 
   return (
     <>
-      <Suspense>
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="flex flex-col items-center gap-16">
+            <div className="size-40 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+            <p className="text-sm text-gray-400 font-medium">Loading...</p>
+          </div>
+        </div>
+      }>
         <Routes>
           {/* Public Routes - Main Website */}
           <Route path="/" element={<Home />} />

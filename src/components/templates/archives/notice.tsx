@@ -153,7 +153,7 @@ export const ArchivesNoticeTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100">
         {loading ? (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
             Loading notices from markdown files...
