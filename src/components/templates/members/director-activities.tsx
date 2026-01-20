@@ -185,6 +185,7 @@ const activities = [
     name: 'CAPTIMA',
     logo: logoCaptima,
     fullName: 'Computer Applications for Optima',
+    fullNameKo: '',
     generation: '',
     membership: [
       {role: 'Member', period: '2013.03. - 2018.02.'},
@@ -200,6 +201,7 @@ const activities = [
     name: 'KFAC',
     logo: logoKfac,
     fullName: 'KAIST Financial Analysis Club',
+    fullNameKo: 'KAIST 금융 동아리',
     generation: '25th Generation',
     membership: [
       {role: 'Member', period: '2018.03. - 2019.02.'},
@@ -212,9 +214,10 @@ const activities = [
     url: '#'
   },
   {
-    name: 'MENSA Korea',
+    name: 'Mensa Korea',
     logo: logoMensa,
-    fullName: 'MENSA Korea',
+    fullName: '',
+    fullNameKo: '멘사코리아',
     generation: '',
     membership: [
       {role: 'Member', period: '2019.01. - Present'},
@@ -225,7 +228,8 @@ const activities = [
   {
     name: 'FIELD',
     logo: logoField,
-    fullName: '전국대학생산업공학도모임 (Future Industrial Engineering Leaders and Dreamers)',
+    fullName: 'Future Industrial Engineering Leaders and Dreamers',
+    fullNameKo: '전국대학생산업공학도 모임',
     generation: '11th - 16th Generation',
     membership: [
       {role: 'Member', period: '2019.03. - 2024.12.'},
@@ -238,6 +242,7 @@ const activities = [
     name: 'FBA Quant',
     logo: logoFba,
     fullName: 'FBA Quant',
+    fullNameKo: '',
     generation: '12th Generation',
     membership: [
       {role: 'Member', period: '2022.01. - 2022.12.'},
@@ -249,7 +254,8 @@ const activities = [
   {
     name: 'DadingCoding',
     logo: logoDading,
-    fullName: '대딩코딩',
+    fullName: '',
+    fullNameKo: '대딩코딩',
     generation: '6th Generation',
     membership: [
       {role: 'Member', period: '2024.02. - 2024.07.'},
@@ -1532,63 +1538,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
-                      {/* Program & Event Committee */}
-                      <div className="p-24 border-t border-gray-100">
-                        <div className="flex items-center gap-8 mb-16">
-                          <p className="text-sm font-bold text-gray-900">Program & Event Committee</p>
-                          <span className="px-8 py-2 bg-amber-500 text-white text-[10px] font-bold rounded-full">{committees.length}</span>
-                        </div>
-                        {committees.length > 0 ? (
-                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                            {committees.map((comm) => (
-                              <a
-                                key={comm.id}
-                                href={comm.url || '#'}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md bg-amber-50 hover:bg-amber-100"
-                                title={comm.period || comm.since}
-                              >
-                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 text-amber-700">{comm.name}</span>
-                              </a>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="py-16 text-center text-sm text-gray-400">
-                            Coming soon...
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Session Chair */}
-                      <div className="p-24 border-t border-gray-100">
-                        <div className="flex items-center gap-8 mb-16">
-                          <p className="text-sm font-bold text-gray-900">Session Chair</p>
-                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{sessionChairs.length}</span>
-                        </div>
-                        {sessionChairs.length > 0 ? (
-                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                            {sessionChairs.map((chair) => (
-                              <a
-                                key={chair.id}
-                                href={chair.url || '#'}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md"
-                                style={{backgroundColor: 'rgba(232,135,155,0.1)'}}
-                                title={chair.period || chair.since}
-                              >
-                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2" style={{color: '#e8879b'}}>{chair.name}</span>
-                              </a>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="py-16 text-center text-sm text-gray-400">
-                            Coming soon...
-                          </div>
-                        )}
-                      </div>
-
                       {/* Advisory Board & External Committee Memberships */}
                       <div className="p-24 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
@@ -1600,8 +1549,65 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
-                      {/* Journal Reviewer */}
+                      {/* Program & Event Committee - Single row */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                          <span className="px-8 py-2 bg-amber-500 text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                        </div>
+                        {committees.length > 0 ? (
+                          <div className="flex flex-wrap gap-8">
+                            {committees.map((comm) => (
+                              <a
+                                key={comm.id}
+                                href={comm.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-amber-50 hover:bg-amber-100 text-amber-700"
+                                title={comm.period || comm.since}
+                              >
+                                {comm.name}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Session Chair - Single row */}
                       <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{sessionChairs.length}</span>
+                        </div>
+                        {sessionChairs.length > 0 ? (
+                          <div className="flex flex-wrap gap-8">
+                            {sessionChairs.map((chair) => (
+                              <a
+                                key={chair.id}
+                                href={chair.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
+                                style={{backgroundColor: 'rgba(232,135,155,0.1)', color: '#e8879b'}}
+                                title={chair.period || chair.since}
+                              >
+                                {chair.name}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Journal Reviewer - Single row */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
@@ -1617,26 +1623,22 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                        <div className="flex flex-wrap gap-8">
                           {displayedJournals.map((journal) => (
                             <a
                               key={journal.id}
                               href={journal.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md ${
-                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 hover:bg-primary/20' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 hover:bg-amber-100' :
-                                    'bg-gray-100 hover:bg-gray-200'
+                              className={`inline-flex items-center gap-6 px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 hover:bg-primary/20 text-primary' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 hover:bg-amber-100 text-amber-700' :
+                                    'bg-gray-100 hover:bg-gray-200 text-gray-600'
                               }`}
                               title={`${journal.name} (${journal.type}, since ${journal.since})`}
                             >
-                              <span className={`text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 ${
-                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'text-primary' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'text-amber-700' :
-                                    'text-gray-600'
-                              }`}>{journal.name}</span>
-                              <span className={`px-6 py-1 rounded text-[9px] font-bold ${
+                              {journal.name}
+                              <span className={`px-4 py-0.5 rounded text-[9px] font-bold ${
                                 journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
                                   journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-500 text-white' :
                                     'bg-gray-400 text-white'
@@ -1648,7 +1650,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
-                      {/* Conference Reviewer */}
+                      {/* Conference Reviewer - Single row */}
                       <div className="p-24 border-t border-gray-100">
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
@@ -1665,19 +1667,19 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                        <div className="flex flex-wrap gap-8">
                           {conferenceReviewers.map((conf) => (
                             <a
                               key={conf.id}
                               href={conf.url || '#'}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md hover:bg-pink-50/50"
-                              style={{backgroundColor: 'rgba(255,183,197,0.1)'}}
+                              className="inline-flex items-center gap-6 px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
+                              style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#e8879b'}}
                               title={conf.period || conf.since}
                             >
-                              <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-gray-700">{conf.name}</span>
-                              <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
+                              {conf.name}
+                              <span className="px-4 py-0.5 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
                                 CONF
                               </span>
                             </a>
@@ -1716,7 +1718,12 @@ export const MembersDirectorActivitiesTemplate = () => {
 
                           {/* Name */}
                           <h3 className="text-2xl font-bold text-gray-900 mb-8">{act.name}</h3>
-                          <p className="text-sm text-gray-500 mb-8">{act.fullName}</p>
+                          {act.fullName && (
+                            <p className="text-sm text-gray-500 mb-4">{act.fullName}</p>
+                          )}
+                          {act.fullNameKo && (
+                            <p className="text-sm text-gray-500 mb-8">{act.fullNameKo}</p>
+                          )}
 
                           {/* Generation */}
                           {act.generation && (
@@ -1759,7 +1766,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{act.name}</h4>
-                      <p className="text-xs text-gray-400 mt-2 truncate">{act.fullName}</p>
+                      <p className="text-xs text-gray-400 mt-2 truncate">{act.fullNameKo || act.fullName}</p>
                     </div>
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
                   </button>

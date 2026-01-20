@@ -163,8 +163,9 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
                 : 'bg-gray-50 text-gray-600 border-gray-100'
             }`}
               style={format.key === 'bibtex' ? {color: '#d4a017'} : undefined}
+              dangerouslySetInnerHTML={format.key !== 'bibtex' ? {__html: text} : undefined}
             >
-              {format.key === 'bibtex' ? text : text.replace(/<\/?em>/g, '')}
+              {format.key === 'bibtex' ? text : null}
             </div>
           </div>
         )
@@ -299,8 +300,8 @@ export const PublicationsTemplate = () => {
     return [
       { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#ffb7c5' }, // Sakura for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#e8879b' }, // Rose for reports
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#1f2937' }, // Black like total
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#1f2937' }, // Black like total
       { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
     ]
   }, [publications])
@@ -651,9 +652,9 @@ export const PublicationsTemplate = () => {
                             : pub.type === 'conference'
                             ? 'bg-red-500'
                             : pub.type === 'book'
-                            ? 'bg-purple-500'
+                            ? 'bg-[#ffb7c5]'
                             : pub.type === 'report'
-                            ? 'bg-teal-500'
+                            ? 'bg-[#e8879b]'
                             : 'bg-gray-500'
 
                           return (
@@ -746,10 +747,10 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {pub.awards && pub.awards > 0 && (
+                                    {pub.awards !== undefined && pub.awards !== null && pub.awards !== '' && pub.awards !== 0 && pub.awards !== '0' && Number(pub.awards) > 0 && (
                                       <span 
                                         className="mr-6 cursor-help" 
-                                        title={`Award-winning paper (${pub.awards} award${pub.awards > 1 ? 's' : ''})`}
+                                        title={`Award-winning paper (${pub.awards} award${Number(pub.awards) > 1 ? 's' : ''})`}
                                       >
                                         🏆
                                       </span>

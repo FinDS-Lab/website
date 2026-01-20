@@ -328,26 +328,6 @@ export const ProjectsTemplate = () => {
 
           {/* Filter & Search - Publications Style */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
-            {/* Search Input */}
-            <div className="relative flex-1 max-w-[400px]">
-              <Search className="absolute left-16 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search projects..."
-                className="w-full pl-44 pr-16 py-12 md:py-14 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-12 top-1/2 -translate-y-1/2 size-20 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  <X size={14} />
-                </button>
-              )}
-            </div>
-
             <div className="relative">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -384,45 +364,72 @@ export const ProjectsTemplate = () => {
               )}
             </div>
 
-            {/* Active Filters Display */}
-            {hasActiveFilters && (
-              <div className="flex flex-wrap items-center gap-8">
-                {filters.type.map((type) => {
-                  const config = typeConfig[type as keyof typeof typeConfig]
-                  return (
-                    <span
-                      key={type}
-                      className={`flex items-center gap-6 px-12 py-6 ${config.bgColor} ${config.textColor} text-sm font-medium rounded-full`}
-                    >
-                      {config.label}
-                      <button onClick={() => handleFilterChange('type', type)} className="hover:opacity-70">
-                        <X size={14} />
-                      </button>
-                    </span>
-                  )
-                })}
-                {filters.status.map((status) => (
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-[400px]">
+              <Search className="absolute left-16 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search projects..."
+                className="w-full pl-44 pr-16 py-12 md:py-14 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-12 top-1/2 -translate-y-1/2 size-20 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+
+            {/* Results count */}
+            <div className="text-sm text-gray-500">
+              <span className="font-semibold text-gray-700">{filteredProjects.length}</span>
+              <span> of </span>
+              <span className="font-semibold text-gray-700">{projects.length}</span>
+            </div>
+          </div>
+
+          {/* Active Filters Display */}
+          {hasActiveFilters && (
+            <div className="flex flex-wrap items-center gap-8 -mt-8">
+              {filters.type.map((type) => {
+                const config = typeConfig[type as keyof typeof typeConfig]
+                return (
                   <span
-                    key={status}
-                    className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
-                      status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
-                    }`}
+                    key={type}
+                    className={`flex items-center gap-6 px-12 py-6 ${config.bgColor} ${config.textColor} text-sm font-medium rounded-full`}
                   >
-                    {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                    <button onClick={() => handleFilterChange('status', status)} className="hover:opacity-70">
+                    {config.label}
+                    <button onClick={() => handleFilterChange('type', type)} className="hover:opacity-70">
                       <X size={14} />
                     </button>
                   </span>
-                ))}
-                <button
-                  onClick={handleFilterReset}
-                  className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+                )
+              })}
+              {filters.status.map((status) => (
+                <span
+                  key={status}
+                  className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
+                    status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
+                  }`}
                 >
-                  Clear all
-                </button>
-              </div>
-            )}
-          </div>
+                  {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                  <button onClick={() => handleFilterChange('status', status)} className="hover:opacity-70">
+                    <X size={14} />
+                  </button>
+                </span>
+              ))}
+              <button
+                onClick={handleFilterReset}
+                className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                Clear all
+              </button>
+            </div>
+          )}
 
           {/* Projects List by Year */}
           <div className="flex flex-col gap-12 md:gap-20">
