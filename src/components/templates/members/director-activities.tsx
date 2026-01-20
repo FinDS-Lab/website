@@ -366,9 +366,9 @@ const CollaborationNetwork = memo(() => {
 
         // Get collaborators filtered by co-work rate threshold
         const directorCollabs = collaborationMap.get('1') || new Map()
-        const minPubCount = Math.ceil(totalPubs * coworkRateThreshold / 100)
+        const minPubCount = Math.max(1, Math.ceil(totalPubs * coworkRateThreshold / 100))
         const topCollaborators = Array.from(directorCollabs.entries())
-          .filter(([, count]) => count >= 1) // Show all collaborators with at least 1 work
+          .filter(([, count]) => count >= minPubCount) // cowork rate 기준 필터링
           .sort((a, b) => b[1] - a[1])
           .map(([id]) => id)
 
