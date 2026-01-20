@@ -120,9 +120,6 @@ export const HomeTemplate = () => {
                   <h1 className="text-xl md:text-2xl lg:text-[36px] font-bold text-gray-900 whitespace-pre-line">
                     {slide.title}
                   </h1>
-                  {slide.subtitle && (
-                    <p className="text-sm md:text-lg text-gray-600 whitespace-pre-line">{slide.subtitle}</p>
-                  )}
                   <div className="flex flex-wrap gap-8 md:gap-10">
                     {slide.buttons.map((button, btnIndex) => (
                       <Link
