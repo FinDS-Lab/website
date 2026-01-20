@@ -489,6 +489,9 @@ const CollaborationNetwork = memo(() => {
   useEffect(() => {
     if (nodes.length === 0) return
 
+    let iterationCount = 0
+    const maxIterations = 150 // 최대 약 2.5초 (60fps 기준)
+    
     const simulate = () => {
       const newNodes = [...nodesRef.current]
       const centerX = 400
@@ -502,8 +505,8 @@ const CollaborationNetwork = memo(() => {
           node.vy += (centerY - node.y) * 0.1
         } else {
           // Weak center gravity
-          node.vx += (centerX - node.x) * 0.001
-          node.vy += (centerY - node.y) * 0.001
+          node.vx += (centerX - node.x) * 0.002
+          node.vy += (centerY - node.y) * 0.002
         }
 
         // Repulsion from other nodes
@@ -514,7 +517,7 @@ const CollaborationNetwork = memo(() => {
             const dist = Math.sqrt(dx * dx + dy * dy) || 1
             const minDist = 70 // 풀네임 표시를 위해 거리 확보
             if (dist < minDist) {
-              const force = ((minDist - dist) / dist) * 0.5
+              const force = ((minDist - dist) / dist) * 0.3
               node.vx += dx * force
               node.vy += dy * force
             }
@@ -531,7 +534,7 @@ const CollaborationNetwork = memo(() => {
           const dy = target.y - source.y
           const dist = Math.sqrt(dx * dx + dy * dy) || 1
           const idealDist = 80 - link.weight * 3
-          const force = (dist - idealDist) * 0.01
+          const force = (dist - idealDist) * 0.005
 
           if (!source.isDirector) {
             source.vx += (dx / dist) * force
@@ -544,13 +547,18 @@ const CollaborationNetwork = memo(() => {
         }
       })
 
-      // Update positions with velocity and damping
+      // Update positions with velocity and stronger damping
+      let totalVelocity = 0
       newNodes.forEach((node) => {
         if (!node.isDirector) {
-          node.vx *= 0.9
-          node.vy *= 0.9
+          // 강화된 damping (0.9 -> 0.7)으로 더 빠르게 안정화
+          node.vx *= 0.7
+          node.vy *= 0.7
           node.x += node.vx
           node.y += node.vy
+          
+          // 총 속도 계산 (안정화 체크용)
+          totalVelocity += Math.abs(node.vx) + Math.abs(node.vy)
           
           // NaN check - reset to center if invalid
           if (isNaN(node.x) || isNaN(node.y)) {
@@ -573,23 +581,23 @@ const CollaborationNetwork = memo(() => {
 
       nodesRef.current = newNodes
       setNodes([...newNodes])
-      animationRef.current = requestAnimationFrame(simulate)
+      
+      iterationCount++
+      
+      // 안정화 조건: 총 속도가 임계값 이하이거나 최대 반복 횟수 도달
+      const isStabilized = totalVelocity < 0.5 || iterationCount >= maxIterations
+      
+      if (!isStabilized) {
+        animationRef.current = requestAnimationFrame(simulate)
+      }
     }
 
     animationRef.current = requestAnimationFrame(simulate)
-
-    // Stop after 3 seconds
-    const timeout = setTimeout(() => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current)
-      }
-    }, 3000)
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
-      clearTimeout(timeout)
     }
   }, [links, nodes.length])
 
