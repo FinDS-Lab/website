@@ -74,15 +74,15 @@ const education = [
 
 // Static Data - Employment
 const employment = [
-  {position: 'Assistant Professor', organization: 'Gachon University', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Assistant Professor', organization: 'Dongduk Women\'s University', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
-  {position: 'Director', organization: 'FINDS Lab.', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Lecturer', organization: 'Kangnam University', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
-  {position: 'Lecturer', organization: 'Korea University', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
-  {position: 'Lecturer', organization: 'Kyung Hee University', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
-  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
-  {position: 'Intern', organization: 'EY Consulting', period: '2020.03 – 2020.05', logo: logoEy, isCurrent: false},
-  {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
+  {position: 'Assistant Professor', department: 'Department of Business Administration', organization: 'Gachon University', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
+  {position: 'Assistant Professor', department: 'Department of International Business', organization: 'Dongduk Women\'s University', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
+  {position: 'Director', department: '', organization: 'FINDS Lab.', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
+  {position: 'Lecturer', department: 'Department of Global Business', organization: 'Kangnam University', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
+  {position: 'Lecturer', department: 'Department of Business Administration', organization: 'Korea University', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', department: 'Department of Big Data Application', organization: 'Kyung Hee University', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
+  {position: 'Research Consultant', department: '', organization: 'WorldQuant Brain', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
+  {position: 'Intern', department: 'Data & Analytics Team', organization: 'EY Consulting', period: '2020.03 – 2020.05', logo: logoEy, isCurrent: false},
+  {position: 'Founder', department: '', organization: 'JL Creatives & Contents (JL C&C)', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
 ]
 
 // Static Data - Professional Affiliations
@@ -168,9 +168,16 @@ export const MembersDirectorTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Director
           </h1>
+          
+          {/* Divider - < . > style */}
+          <div className="flex items-center justify-center gap-8 md:gap-12">
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -191,10 +198,10 @@ export const MembersDirectorTemplate = () => {
 
       {/* Tab Navigation */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24">
+        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24 lg:w-340 xl:w-380">
           <Link
             to="/members/director"
-            className={`flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+            className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
               isProfilePage
                 ? 'bg-primary text-white shadow-lg shadow-primary/30'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -205,7 +212,7 @@ export const MembersDirectorTemplate = () => {
           </Link>
           <Link
             to="/members/director-activities"
-            className={`flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+            className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
               !isProfilePage
                 ? 'bg-primary text-white shadow-lg shadow-primary/30'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -476,22 +483,30 @@ export const MembersDirectorTemplate = () => {
                 <span className="w-1 h-20 bg-primary rounded-full" />
                 Employment
               </h3>
-              <div className="relative pl-24 md:pl-32 border-l-2 border-gray-200">
+              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {employment.map((emp, index) => (
-                  <div key={index} className="relative pb-20 last:pb-0 group">
-                    <div className={`absolute -left-[25px] md:-left-[33px] top-0 size-12 md:size-14 rounded-full border-3 border-white shadow-md ${emp.isCurrent ? 'bg-primary' : 'bg-gray-300'}`}/>
-                    <div className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md transition-all">
-                      <div className="size-48 md:size-56 bg-gray-50 rounded-lg p-8 flex items-center justify-center shrink-0">
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
+                    {/* Timeline dot - positioned on the line */}
+                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
+                      emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
+                    }`}/>
+                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
                         <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-8 mb-6">
-                          <span className={`px-10 py-3 text-[10px] font-bold rounded-full ${emp.isCurrent ? 'bg-primary text-white' : 'bg-gray-200 text-gray-600'}`}>
-                            {emp.period}
-                          </span>
+                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
+                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
+                            emp.isCurrent
+                              ? 'bg-primary text-white'
+                              : 'bg-gray-200 text-gray-700'
+                          }`}>{emp.period}</span>
                         </div>
-                        <p className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</p>
-                        <p className="text-xs text-gray-500">{emp.organization}</p>
+                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
+                        {emp.department && (
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{emp.department}</p>
+                        )}
+                        <p className="text-[10px] md:text-xs text-gray-500 truncate">{emp.organization}</p>
                       </div>
                     </div>
                   </div>
@@ -507,15 +522,16 @@ export const MembersDirectorTemplate = () => {
               </h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {affiliations.map((aff, index) => (
-                  <div key={index} className="relative pb-20 last:pb-0 group">
-                    <div className="absolute -left-[25px] md:-left-[33px] top-0 size-12 md:size-14 bg-primary rounded-full border-3 border-white shadow-md"/>
-                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md transition-all">
-                      <div className="flex flex-wrap items-center gap-8 mb-8">
-                        <span className="px-10 py-3 text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
-                        <span className="px-8 py-3 bg-gray-800 text-white text-[10px] font-bold rounded">{aff.role}</span>
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
+                    {/* Timeline dot - positioned on the line */}
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    <div className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                      <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-6">
+                        <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
+                        <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
                       </div>
-                      <p className="text-sm md:text-base font-bold text-gray-900">{aff.organization}</p>
-                      <p className="text-xs text-gray-500 mt-4">{aff.krOrg}</p>
+                      <p className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</p>
+                      <p className="text-[10px] md:text-xs text-gray-500 mt-2">{aff.krOrg}</p>
                     </div>
                   </div>
                 ))}

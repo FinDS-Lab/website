@@ -438,9 +438,16 @@ export const PublicationsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Publications
           </h1>
+          
+          {/* Divider - < . > style */}
+          <div className="flex items-center justify-center gap-8 md:gap-12">
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+          </div>
         </div>
       </div>
 

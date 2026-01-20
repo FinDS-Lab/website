@@ -1158,9 +1158,16 @@ export const MembersDirectorActivitiesTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Director
           </h1>
+          
+          {/* Divider - < . > style */}
+          <div className="flex items-center justify-center gap-8 md:gap-12">
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -1181,17 +1188,17 @@ export const MembersDirectorActivitiesTemplate = () => {
 
       {/* Tab Navigation */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24">
+        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24 lg:w-340 xl:w-380">
           <Link
             to="/members/director"
-            className="flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
           >
             <Users size={16} />
             Profile
           </Link>
           <Link
             to="/members/director-activities"
-            className="flex items-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
+            className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
           >
             <Award size={16} />
             Activities
@@ -1722,15 +1729,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                   <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
                     <div className="flex items-center justify-between mb-12">
                       <p className="text-[10px] font-bold text-gray-400 uppercase">University Distribution</p>
-                      {selectedUniversity !== 'all' && (
-                        <button
-                          onClick={() => setSelectedUniversity('all')}
-                          className="flex items-center gap-4 px-8 py-4 bg-primary/10 text-primary text-[10px] font-bold rounded-full hover:bg-primary/20 transition-colors"
-                        >
-                          {selectedUniversity}
-                          <X size={12}/>
-                        </button>
-                      )}
                     </div>
                     <div className="flex flex-wrap gap-6 md:gap-8">
                       {universityStats.map(([univ, count]) => (
