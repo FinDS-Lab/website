@@ -1,0 +1,55 @@
+* {
+  box-sizing: inherit;
+  /*margin: 0;*/
+  /*padding: 0;*/
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-touch-callout: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Pretendard Variable", sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  touch-action: pan-x pan-y;
+}
+
+button, label, input, textarea {
+  -webkit-appearance: none; /* ios border radius issue */
+  /*-webkit-border-radius: 0; !* ios border radius issue *!*/
+/*  font-family: inherit;*/
+/*  cursor: inherit;*/
+  outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/*button {*/
+/*  color: #000; !* ios color blue issue *!*/
+/*  font-size: inherit;*/
+/*  border: 0;*/
+/*  cursor: pointer;*/
+/*  background-color: transparent;*/
+/*}*/
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+svg {
+  cursor: pointer;
+}
+
+

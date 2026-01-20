@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FINDS Lab</title>
+    <script>
+      // GitHub Pages SPA 라우팅 처리
+      // 현재 경로를 쿼리 파라미터로 변환하여 index.html로 리다이렉트
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+      
+      // basePath 제거 후 저장
+      const basePath = '/website';
+      const redirectPath = path.startsWith(basePath) 
+        ? path.slice(basePath.length) || '/'
+        : path;
+      
+      // sessionStorage에 원래 경로 저장
+      sessionStorage.setItem('redirectPath', redirectPath + search + hash);
+      
+      // index.html로 리다이렉트
+      window.location.replace(basePath + '/');
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
