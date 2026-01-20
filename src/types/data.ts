@@ -148,7 +148,7 @@ export type Project = {
   }
 }
 
-// Reviewer data types
+// Reviewer data types (legacy - kept for compatibility)
 export type ReviewerJournal = {
   id: number
   name: string
@@ -170,6 +170,23 @@ export type ReviewerConference = {
 export type ReviewerData = {
   journals: ReviewerJournal[]
   conferences: ReviewerConference[]
+}
+
+// Academic Activities data types (new unified format)
+export type AcademicActivity = {
+  id: number
+  category: 'journal' | 'conference' | 'chair' | 'committee'
+  name: string
+  name_ko?: string
+  publisher: string
+  type: string
+  since?: string
+  period?: string
+  url: string
+}
+
+export type AcademicActivitiesData = {
+  activities: AcademicActivity[]
 }
 
 // Mentees data types

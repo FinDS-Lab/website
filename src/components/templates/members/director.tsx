@@ -1,4 +1,4 @@
-import {memo, useState} from 'react'
+import {memo, useState, useEffect} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
@@ -15,8 +15,34 @@ import {
   User,
   Activity,
   Award,
+  Landmark,
+  GraduationCap,
+  Calendar,
+  BookOpen,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
+
+// Types
+type Project = {
+  titleEn: string
+  titleKo: string
+  period: string
+  fundingAgency: string
+  fundingAgencyKo: string
+  type: 'government' | 'industry' | 'institution' | 'academic'
+  roles: {
+    principalInvestigator?: string
+    leadResearcher?: string
+    researchers?: string[]
+  }
+}
+
+type Lecture = {
+  role: string
+  periods: string[]
+  school: string
+  courses: { en: string; ko: string }[]
+}
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
@@ -131,10 +157,39 @@ const researchInterests = [
 
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
-  const [awardsExpanded, setAwardsExpanded] = useState(false)
+  const [projects, setProjects] = useState<Project[]>([])
+  const [lectures, setLectures] = useState<Lecture[]>([])
   const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
+
+  // Fetch Projects and Lectures data
+  useEffect(() => {
+    // Fetch Projects - all projects where director is involved
+    fetch('/website/data/projects.json')
+      .then(res => res.json())
+      .then((data: Project[]) => {
+        // Show all projects (no date filter) - most recent first
+        const sortedProjects = [...data].sort((a, b) => {
+          const dateA = new Date(a.period.split('–')[0].trim())
+          const dateB = new Date(b.period.split('–')[0].trim())
+          return dateB.getTime() - dateA.getTime()
+        }).slice(0, 5)
+        setProjects(sortedProjects)
+      })
+      .catch(console.error)
+
+    // Fetch Lectures - current semester
+    fetch('/website/data/lectures.json')
+      .then(res => res.json())
+      .then((data: Lecture[]) => {
+        const currentLectures = data.filter(l => 
+          l.periods.some(p => p.includes('2025') || p.includes('2026'))
+        ).slice(0, 5)
+        setLectures(currentLectures)
+      })
+      .catch(console.error)
+  }, [])
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(directorEmail)
@@ -196,31 +251,33 @@ export const MembersDirectorTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24 lg:w-340 xl:w-380">
-          <Link
-            to="/members/director"
-            className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-              isProfilePage
-                ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            <User size={16} />
-            Profile
-          </Link>
-          <Link
-            to="/members/director-activities"
-            className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-              !isProfilePage
-                ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            <Activity size={16} />
-            Activities
-          </Link>
+      {/* Tab Navigation - Sticky */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
+            <Link
+              to="/members/director"
+              className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+                isProfilePage
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <User size={16} />
+              Profile
+            </Link>
+            <Link
+              to="/members/director-activities"
+              className={`flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+                !isProfilePage
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <Activity size={16} />
+              Activities
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -539,27 +596,6 @@ export const MembersDirectorTemplate = () => {
               </div>
             </section>
 
-            {/* Awards & Honors - Expandable */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => setAwardsExpanded(!awardsExpanded)}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Awards & Honors</h3>
-                <ChevronDown 
-                  size={20} 
-                  className={`text-gray-400 transition-transform duration-300 ${awardsExpanded ? 'rotate-180' : ''}`}
-                />
-              </button>
-              {awardsExpanded && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  <div className="py-16 text-center text-sm text-gray-400">
-                    Coming soon...
-                  </div>
-                </div>
-              )}
-            </section>
-
             {/* Publication Statistics */}
             <section>
               <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
@@ -588,6 +624,98 @@ export const MembersDirectorTemplate = () => {
                 </Link>
               </div>
             </section>
+
+            {/* Projects Section */}
+            {projects.length > 0 && (
+              <section>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                  <span className="w-1 h-20 bg-primary rounded-full" />
+                  Recent Projects
+                </h3>
+                <div className="space-y-12">
+                  {projects.map((project, index) => {
+                    const typeIcons = {
+                      government: Landmark,
+                      industry: Building,
+                      institution: GraduationCap,
+                      academic: Briefcase,
+                    }
+                    const typeColors = {
+                      government: 'bg-primary text-white',
+                      industry: 'bg-amber-500 text-white',
+                      institution: 'bg-[#ffb7c5] text-white',
+                      academic: 'bg-gray-700 text-white',
+                    }
+                    const Icon = typeIcons[project.type]
+                    return (
+                      <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                        <div className="flex items-start gap-12 md:gap-16">
+                          <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
+                            <Icon size={18} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-6 mb-8">
+                              <span className="px-8 py-2 bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-4">
+                                <Calendar size={10} />
+                                {project.period}
+                              </span>
+                            </div>
+                            <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleEn}</p>
+                            <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <div className="mt-20 text-center">
+                  <Link to="/projects" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                    View All Projects <ChevronRight size={14}/>
+                  </Link>
+                </div>
+              </section>
+            )}
+
+            {/* Lectures Section */}
+            {lectures.length > 0 && (
+              <section>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                  <span className="w-1 h-20 bg-primary rounded-full" />
+                  Teaching
+                </h3>
+                <div className="space-y-12">
+                  {lectures.map((lecture, index) => (
+                    <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                      <div className="flex items-start gap-12 md:gap-16">
+                        <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 bg-gray-900 text-white">
+                          <BookOpen size={18} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-6 mb-8">
+                            {lecture.periods.slice(0, 2).map((period, i) => (
+                              <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                {period}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="text-xs md:text-sm font-bold text-gray-900">{lecture.school}</p>
+                          <div className="mt-8 space-y-4">
+                            {lecture.courses.map((course, i) => (
+                              <p key={i} className="text-[10px] md:text-xs text-gray-600">• {course.en}</p>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-20 text-center">
+                  <Link to="/lectures" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                    View All Lectures <ChevronRight size={14}/>
+                  </Link>
+                </div>
+              </section>
+            )}
           </main>
         </div>
       </section>

@@ -21,7 +21,7 @@ import {
   Check,
   X,
 } from 'lucide-react'
-import type {ReviewerData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
+import type {AcademicActivitiesData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
 
 // Types for collaboration network
@@ -296,7 +296,8 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [nodeThreshold, setNodeThreshold] = useState(25)
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(5) // 1-100%, default 5%
+  const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
   const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.6 : 1.3
@@ -326,7 +327,8 @@ const CollaborationNetwork = memo(() => {
         const authorCollabPubs = new Map<string, CollabPublication[]>()
 
         // 전체 논문 수 (co-work rate 계산용)
-        const totalPubsCount = pubs.length
+        const totalPubs = pubs.filter(pub => pub.authors.includes(1)).length
+        setTotalPubsCount(totalPubs)
 
         pubs.forEach((pub) => {
           if (pub.authors.includes(1)) {
@@ -361,11 +363,12 @@ const CollaborationNetwork = memo(() => {
           }
         })
 
-        // Get top collaborators (by number of co-authored papers with director)
+        // Get collaborators filtered by co-work rate threshold
         const directorCollabs = collaborationMap.get('1') || new Map()
+        const minPubCount = Math.ceil(totalPubs * coworkRateThreshold / 100)
         const topCollaborators = Array.from(directorCollabs.entries())
+          .filter(([, count]) => count >= Math.max(1, minPubCount))
           .sort((a, b) => b[1] - a[1])
-          .slice(0, nodeThreshold)
           .map(([id]) => id)
 
         const nodesToShow = ['1', ...topCollaborators]
@@ -471,7 +474,7 @@ const CollaborationNetwork = memo(() => {
       }
     }
     loadData()
-  }, [nodeThreshold])
+  }, [coworkRateThreshold])
 
   // Force simulation
   useEffect(() => {
@@ -666,18 +669,18 @@ const CollaborationNetwork = memo(() => {
     <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
       {/* Header */}
       <div className="bg-gray-50/50 px-16 md:px-32 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 gap-12 md:gap-0">
-        {/* Threshold Slider */}
+        {/* Co-work Rate Threshold Slider */}
         <div className="flex items-center gap-8 md:gap-12 w-full md:w-auto">
-          <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">Nodes:</span>
+          <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">Co-work Rate ≥</span>
           <input
             type="range"
-            min="10"
-            max="50"
-            value={nodeThreshold}
-            onChange={(e) => setNodeThreshold(Number(e.target.value))}
+            min="1"
+            max="100"
+            value={coworkRateThreshold}
+            onChange={(e) => setCoworkRateThreshold(Number(e.target.value))}
             className="w-80 md:w-100 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
           />
-          <span className="text-[10px] md:text-xs font-bold text-primary w-20">{nodeThreshold}</span>
+          <span className="text-[10px] md:text-xs font-bold text-primary w-28">{coworkRateThreshold}%</span>
         </div>
         <div className="flex items-center gap-8">
           <span className="text-[10px] md:text-xs text-gray-400 font-medium mr-8 md:mr-12">
@@ -970,7 +973,7 @@ type MenteesByYear = {
 }
 
 export const MembersDirectorActivitiesTemplate = () => {
-  const [reviewerData, setReviewerData] = useState<ReviewerData | null>(null)
+  const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
   const [showAllJournals, setShowAllJournals] = useState(false)
   const [showAllConferences, setShowAllConferences] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -1014,15 +1017,15 @@ export const MembersDirectorActivitiesTemplate = () => {
   }
 
   useEffect(() => {
-    // Load reviewer data
-    fetch('/website/data/reviewer.json')
+    // Load academic activities data
+    fetch('/website/data/academicactivities.json')
       .then((res) => res.json())
-      .then((data: ReviewerData) => {
-        setReviewerData(data)
+      .then((data: AcademicActivitiesData) => {
+        setActivitiesData(data)
         setLoading(false)
       })
       .catch((err) => {
-        console.error('Failed to load reviewer data:', err)
+        console.error('Failed to load academic activities data:', err)
         setLoading(false)
       })
 
@@ -1137,15 +1140,23 @@ export const MembersDirectorActivitiesTemplate = () => {
     {label: 'i10-index', count: 5},
   ]
 
+  const journals = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'journal')
+  }, [activitiesData])
+
+  const conferences = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'conference' || a.category === 'chair' || a.category === 'committee')
+  }, [activitiesData])
+
   const displayedJournals = useMemo(() => {
-    if (!reviewerData) return []
-    return showAllJournals ? reviewerData.journals : reviewerData.journals.slice(0, 20)
-  }, [reviewerData, showAllJournals])
+    return showAllJournals ? journals : journals.slice(0, 20)
+  }, [journals, showAllJournals])
 
   const displayedConferences = useMemo(() => {
-    if (!reviewerData) return []
-    return showAllConferences ? reviewerData.conferences : reviewerData.conferences.slice(0, 20)
-  }, [reviewerData, showAllConferences])
+    return showAllConferences ? conferences : conferences.slice(0, 20)
+  }, [conferences, showAllConferences])
 
   return (
     <div className="flex flex-col bg-white">
@@ -1199,23 +1210,25 @@ export const MembersDirectorActivitiesTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="flex items-center gap-4 md:gap-8 py-16 md:py-24 lg:w-340 xl:w-380">
-          <Link
-            to="/members/director"
-            className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-          >
-            <Users size={16} />
-            Profile
-          </Link>
-          <Link
-            to="/members/director-activities"
-            className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-12 md:py-14 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-          >
-            <Award size={16} />
-            Activities
-          </Link>
+      {/* Tab Navigation - Sticky */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
+            <Link
+              to="/members/director"
+              className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
+            >
+              <Users size={16} />
+              Profile
+            </Link>
+            <Link
+              to="/members/director-activities"
+              className="flex-1 flex items-center justify-center gap-8 px-16 md:px-24 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
+            >
+              <Award size={16} />
+              Activities
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -1451,9 +1464,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <>
                   {loading ? (
                     <div className="p-40 text-center border-t border-gray-100">
-                      <p className="text-sm text-gray-400 animate-pulse">Loading reviewer data...</p>
+                      <p className="text-sm text-gray-400 animate-pulse">Loading academic activities data...</p>
                     </div>
-                  ) : reviewerData ? (
+                  ) : activitiesData ? (
                     <div className="border-t border-gray-100">
                       {/* Editorial Board Memberships */}
                       <div className="p-24">
@@ -1493,9 +1506,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
-                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.journals.length}</span>
+                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
                           </div>
-                          {reviewerData.journals.length > 20 && (
+                          {journals.length > 20 && (
                             <button
                               onClick={() => setShowAllJournals(!showAllJournals)}
                               className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
@@ -1541,9 +1554,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{reviewerData.conferences.length}</span>
+                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{conferences.length}</span>
                           </div>
-                          {reviewerData.conferences.length > 20 && (
+                          {conferences.length > 20 && (
                             <button
                               onClick={() => setShowAllConferences(!showAllConferences)}
                               className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
@@ -1557,16 +1570,16 @@ export const MembersDirectorActivitiesTemplate = () => {
                           {displayedConferences.map((conf) => (
                             <a
                               key={conf.id}
-                              href={conf.url}
+                              href={conf.url || '#'}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md hover:bg-pink-50/50"
                               style={{backgroundColor: 'rgba(255,183,197,0.1)'}}
-                              title={conf.period}
+                              title={conf.period || conf.since}
                             >
                               <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-gray-700">{conf.name}</span>
                               <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
-                                CONF
+                                {conf.category === 'chair' ? 'CHAIR' : conf.category === 'committee' ? 'COMM' : 'CONF'}
                               </span>
                             </a>
                           ))}

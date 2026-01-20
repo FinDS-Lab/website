@@ -111,10 +111,10 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return [
-      { label: 'Ph.D. Students', count: phdCount, icon: GraduationCap, countColor: 'text-red-500' },
-      { label: 'M.S. Students', count: msCount, icon: BookOpen, countColor: 'text-blue-500' },
-      { label: 'Undergrad Researchers', count: undergradCount, icon: UserCheck, countColor: 'text-green-500' },
-      { label: 'Total Members', count: members.length, icon: Users, countColor: 'text-primary' },
+      { label: 'Ph.D. Students', count: phdCount, icon: GraduationCap, countColor: 'text-primary' },
+      { label: 'M.S. Students', count: msCount, icon: BookOpen, countColor: 'text-primary' },
+      { label: 'Undergrad Researchers', count: undergradCount, icon: UserCheck, countColor: 'text-primary' },
+      { label: 'Total Members', count: members.length, icon: Users, countColor: 'text-gray-900' },
     ]
   }, [members])
 
@@ -185,7 +185,7 @@ export const MembersCurrentTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-[80px]">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80">
         {/* Statistics Section - Red Dot Style */}
         <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">
           <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">

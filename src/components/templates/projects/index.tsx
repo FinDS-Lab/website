@@ -160,20 +160,20 @@ export const ProjectsTemplate = () => {
     fetch('/website/data/projects.json')
       .then((res) => res.json())
       .then((data: Project[]) => {
+        // 2025년 6월 14일 이후 시작된 프로젝트만 표시
         const cutoffDate = new Date('2025-06-14')
         
-        const piProjects = data.filter((p) => {
-          if (p.roles.principalInvestigator !== '최인수') return false
+        const filteredProjects = data.filter((p) => {
           const periodParts = p.period.split('–')
-          const endDateStr = periodParts[1]?.trim() || periodParts[0].trim()
-          const endDate = new Date(endDateStr)
-          return endDate >= cutoffDate
+          const startDateStr = periodParts[0].trim()
+          const startDate = new Date(startDateStr)
+          return startDate >= cutoffDate
         })
-        setProjects(piProjects)
+        setProjects(filteredProjects)
         setLoading(false)
         
-        if (piProjects.length > 0) {
-          const years = [...new Set(piProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
+        if (filteredProjects.length > 0) {
+          const years = [...new Set(filteredProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
           years.sort((a, b) => parseInt(b) - parseInt(a))
           setExpandedYear(years[0])
         }
@@ -239,9 +239,9 @@ export const ProjectsTemplate = () => {
   }
 
   const statisticsItems = [
-    { icon: Folder, label: 'Total', count: stats.total },
+    { icon: Folder, label: 'Total', count: stats.total, color: 'text-gray-900' },
     { icon: TrendingUp, label: 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-gray-500' },
+    { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-primary' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''

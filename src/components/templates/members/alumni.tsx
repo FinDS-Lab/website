@@ -163,28 +163,28 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{totalCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{totalCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">Total Alumni</span>
                   </div>
                 </div>
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{phdAlumni.length}</span>
+                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{phdAlumni.length}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">Ph.D.</span>
                   </div>
                 </div>
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{msAlumni.length}</span>
+                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{msAlumni.length}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">M.S.</span>
                   </div>
                 </div>
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{sortedUndergradAlumni.length}</span>
+                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{sortedUndergradAlumni.length}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">Undergraduate</span>
                   </div>
                 </div>
