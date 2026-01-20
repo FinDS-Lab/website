@@ -29,7 +29,6 @@ const heroSlides = [
     id: 2,
     badge: 'FINDS Lab',
     title: 'Accomplishments',
-    subtitle: "Introducing FINDS Lab's\nresearch and project achievements",
     image: hero2,
     buttons: [
       { label: 'Publications', path: '/publications' },
@@ -40,7 +39,6 @@ const heroSlides = [
     id: 3,
     badge: 'FINDS Lab',
     title: 'Updates',
-    subtitle: 'Check out important announcements and\nnews from FINDS Lab',
     image: hero3,
     buttons: [
       { label: 'News', path: '/archives/news' },
@@ -57,7 +55,7 @@ export const HomeTemplate = () => {
     const fetchLatest = async () => {
       try {
         // 최근 뉴스 2개 로드
-        const newsFiles = ['2025-09-01-1.md', '2025-06-14-1.md']
+        const newsFiles = ['2026-03-01-1.md', '2025-09-01-1.md']
         const newsResults = await Promise.all(
           newsFiles.map(async (file) => {
             try {

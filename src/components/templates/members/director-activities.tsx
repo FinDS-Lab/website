@@ -1218,11 +1218,11 @@ export const MembersDirectorActivitiesTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
-          <aside className="lg:w-380 flex flex-col gap-24 md:gap-40">
+          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
         {/* Profile Card */}
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm lg:sticky lg:top-40">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="size-150 md:size-200 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="size-140 md:size-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img
                     src={directorImg}
                 alt="Prof. Insu Choi"
@@ -1233,55 +1233,55 @@ export const MembersDirectorActivitiesTemplate = () => {
                 }}
               />
             </div>
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
                   Insu Choi<span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
                 </h2>
                 <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
               </div>
 
               <div className="flex flex-col gap-16 md:gap-20">
-                <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Briefcase size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Director</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
                     <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Building size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Assistant Professor</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Department of Big Data Business Management</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <MapPin size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Room 706, Humanities Hall</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
                     <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Mail size={16}/>
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
                     <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline truncate">
+                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
                       <button
@@ -1299,13 +1299,13 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-10 md:gap-12 group">
-                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Phone size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">02-940-4424</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
                   </div>
                 </div>
               </div>
@@ -1317,19 +1317,18 @@ export const MembersDirectorActivitiesTemplate = () => {
                     maxWidth: '1000px',
                     children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>
                   })}
-                  className="flex items-center justify-center gap-8 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
+                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
                   View CV
                   <ExternalLink size={14}/>
                 </button>
                 <a
-                  href="https://scholar.google.com"
+                  href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
-                  style={{color: 'white'}}
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
                 >
-                  Google Scholar
+                  Scholar
                   <ExternalLink size={14}/>
                 </a>
               </div>
@@ -1337,7 +1336,7 @@ export const MembersDirectorActivitiesTemplate = () => {
           </aside>
 
           {/* Right Column: Activities Only */}
-          <main className="flex-1 flex flex-col gap-32 md:gap-56">
+          <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Honors & Awards */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button

@@ -51,20 +51,25 @@ const navItems: NavItem[] = [
 
 const footerLinks = [
   { name: '한국연구재단', url: 'https://www.nrf.re.kr' },
-  { name: 'Google Scholar', url: 'https://scholar.google.com' },
+  { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en' },
   { name: 'Web of Science', url: 'https://www.webofscience.com' },
   { name: 'Scopus', url: 'https://www.scopus.com' },
 ]
 
 // Contact Us Modal Content
 const ContactModalContent = () => {
-  const [emailCopied, setEmailCopied] = useState(false)
-  const contactEmail = 'ischoi@gachon.ac.kr'
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(contactEmail)
-    setEmailCopied(true)
-    setTimeout(() => setEmailCopied(false), 2000)
+  const contacts = [
+    { role: 'Director', email: 'ischoi@gachon.ac.kr', description: 'Research inquiries & collaborations' },
+    { role: 'Webmaster', email: 'ischoi@gachon.ac.kr', description: 'Website issues & suggestions' },
+    { role: 'Lab Administrator', email: 'ischoi@gachon.ac.kr', description: 'General inquiries & lab operations' },
+  ]
+
+  const handleCopyEmail = (email: string) => {
+    navigator.clipboard.writeText(email)
+    setCopiedEmail(email)
+    setTimeout(() => setCopiedEmail(null), 2000)
   }
 
   return (
@@ -77,32 +82,39 @@ const ContactModalContent = () => {
         <p className="text-base text-gray-500 max-md:text-sm">Feel free to reach out to us!</p>
       </div>
 
-      <div className="bg-gray-50 rounded-xl p-24 max-md:p-12">
-        <p className="text-sm text-gray-500 mb-8">Email Address</p>
-        <div className="flex items-center justify-between gap-12">
-          <a
-            href={`mailto:${contactEmail}`}
-            className="text-base font-semibold text-primary hover:underline transition-colors max-md:text-sm"
-          >
-            {contactEmail}
-          </a>
-          <button
-            onClick={handleCopyEmail}
-            className="flex items-center gap-6 px-12 py-8 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
-          >
-            {emailCopied ? (
-              <>
-                <Check size={14} className="text-green-500" />
-                Copied!
-              </>
-            ) : (
-              <>
-                <Copy size={14} />
-                Copy
-              </>
-            )}
-          </button>
-        </div>
+      <div className="flex flex-col gap-12">
+        {contacts.map((contact, index) => (
+          <div key={index} className="bg-gray-50 rounded-xl p-16 max-md:p-12">
+            <div className="flex items-center justify-between mb-8">
+              <span className="text-sm font-bold text-gray-900">{contact.role}</span>
+              <span className="text-[10px] text-gray-400">{contact.description}</span>
+            </div>
+            <div className="flex items-center justify-between gap-12">
+              <a
+                href={`mailto:${contact.email}`}
+                className="text-sm font-semibold text-primary hover:underline transition-colors"
+              >
+                {contact.email}
+              </a>
+              <button
+                onClick={() => handleCopyEmail(contact.email)}
+                className="flex items-center gap-4 px-10 py-6 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+              >
+                {copiedEmail === contact.email ? (
+                  <>
+                    <Check size={12} className="text-green-500" />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy size={12} />
+                    Copy
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

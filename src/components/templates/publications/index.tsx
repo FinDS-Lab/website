@@ -17,6 +17,52 @@ import {
 import { useStoreModal } from '@/store/modal'
 import type { Publication, AuthorsData } from '@/types/data'
 
+// Title Case 변환 함수 (전치사, 관사, 접속사는 소문자)
+const toTitleCase = (str: string): string => {
+  const minorWords = new Set([
+    'a', 'an', 'the', // articles
+    'and', 'but', 'or', 'nor', 'for', 'yet', 'so', // coordinating conjunctions
+    'in', 'on', 'at', 'by', 'to', 'of', 'up', 'as', 'off', 'per', 'via', // prepositions
+    'with', 'from', 'into', 'onto', 'upon', 'over', 'under', 'between', 'among', 'through', 'during', 'before', 'after', 'above', 'below', 'around', 'about', 'against', 'along', 'across', 'behind', 'beyond', 'within', 'without',
+    'vs', 'vs.', 'etc', 'etc.'
+  ])
+  
+  return str.split(' ').map((word, index) => {
+    // 이미 약어나 특수 형식인 경우 유지 (예: AI, CNN, LSTM, COVID-19)
+    if (/^[A-Z]{2,}$/.test(word) || /^[A-Z][A-Z0-9-]+$/.test(word)) {
+      return word
+    }
+    // 하이픈이 있는 복합어 처리
+    if (word.includes('-')) {
+      return word.split('-').map((part, partIndex) => {
+        const lowerPart = part.toLowerCase()
+        if (partIndex === 0 && index === 0) {
+          return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+        }
+        if (minorWords.has(lowerPart)) {
+          return lowerPart
+        }
+        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+      }).join('-')
+    }
+    
+    const lowerWord = word.toLowerCase()
+    
+    // 첫 단어는 항상 대문자
+    if (index === 0) {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    }
+    
+    // 소문자로 유지할 단어
+    if (minorWords.has(lowerWord)) {
+      return lowerWord
+    }
+    
+    // 일반 단어는 첫 글자 대문자
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+  }).join(' ')
+}
+
 // Image Imports
 import banner3 from '@/assets/images/banner/3.webp'
 import pubIcon1 from '@/assets/images/icons/publications/1.png'
@@ -677,7 +723,7 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {pub.title}
+                                    {toTitleCase(pub.title)}
                                   </h4>
                                   {pub.title_ko && (
                                     <p className="text-xs md:text-base text-gray-600 mb-6 md:mb-8">{pub.title_ko}</p>
