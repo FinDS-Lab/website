@@ -296,7 +296,7 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [coworkRateThreshold, setCoworkRateThreshold] = useState(5) // 1-100%, default 5%
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(3) // 1-100%, default 3%
   const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
@@ -314,8 +314,8 @@ const CollaborationNetwork = memo(() => {
     const loadData = async () => {
       try {
         const [pubsRes, authorsRes] = await Promise.all([
-          fetch('/website/data/pubs.json'),
-          fetch('/website/data/authors.json'),
+          fetch('/data/pubs.json'),
+          fetch('/data/authors.json'),
         ])
         const pubs: Publication[] = await pubsRes.json()
         const authors: AuthorsData = await authorsRes.json()
@@ -367,7 +367,7 @@ const CollaborationNetwork = memo(() => {
         const directorCollabs = collaborationMap.get('1') || new Map()
         const minPubCount = Math.ceil(totalPubs * coworkRateThreshold / 100)
         const topCollaborators = Array.from(directorCollabs.entries())
-          .filter(([, count]) => count >= Math.max(1, minPubCount))
+          .filter(([, count]) => count >= 1) // Show all collaborators with at least 1 work
           .sort((a, b) => b[1] - a[1])
           .map(([id]) => id)
 
@@ -1018,7 +1018,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   useEffect(() => {
     // Load academic activities data
-    fetch('/website/data/academicactivities.json')
+    fetch('/data/academicactivities.json')
       .then((res) => res.json())
       .then((data: AcademicActivitiesData) => {
         setActivitiesData(data)
@@ -1030,7 +1030,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       })
 
     // Load mentees data
-    fetch('/website/data/mentees.json')
+    fetch('/data/mentees.json')
       .then((res) => res.json())
       .then((data: { [id: string]: Mentee }) => {
         const menteesList = Object.entries(data).map(([id, mentee]) => ({
@@ -1044,7 +1044,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       })
 
     // Load honors data
-    fetch('/website/data/honors.json')
+    fetch('/data/honors.json')
       .then((res) => res.json())
       .then((data: HonorsData) => {
         // Filter to show only items where director is a winner
@@ -1145,6 +1145,21 @@ export const MembersDirectorActivitiesTemplate = () => {
     return activitiesData.activities.filter(a => a.category === 'journal')
   }, [activitiesData])
 
+  const sessionChairs = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'chair')
+  }, [activitiesData])
+
+  const committees = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'committee')
+  }, [activitiesData])
+
+  const conferenceReviewers = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'conference')
+  }, [activitiesData])
+
   const conferences = useMemo(() => {
     if (!activitiesData) return []
     return activitiesData.activities.filter(a => a.category === 'conference' || a.category === 'chair' || a.category === 'committee')
@@ -1233,7 +1248,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
@@ -1490,6 +1505,69 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
+                      {/* Program Committee */}
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                          <span className="px-8 py-2 bg-amber-500 text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                        </div>
+                        {committees.length > 0 ? (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                            {committees.map((comm) => (
+                              <a
+                                key={comm.id}
+                                href={comm.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md bg-amber-50 hover:bg-amber-100"
+                                title={comm.period || comm.since}
+                              >
+                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-amber-700">{comm.name}</span>
+                                <span className="px-6 py-1 rounded text-[9px] font-bold bg-amber-500 text-white">
+                                  COMM
+                                </span>
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-16 text-center text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Session Chair */}
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{sessionChairs.length}</span>
+                        </div>
+                        {sessionChairs.length > 0 ? (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                            {sessionChairs.map((chair) => (
+                              <a
+                                key={chair.id}
+                                href={chair.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md"
+                                style={{backgroundColor: 'rgba(232,135,155,0.1)'}}
+                                title={chair.period || chair.since}
+                              >
+                                <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6" style={{color: '#e8879b'}}>{chair.name}</span>
+                                <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#e8879b'}}>
+                                  CHAIR
+                                </span>
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-16 text-center text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
                       {/* Advisory Board & External Committee Memberships */}
                       <div className="p-24 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
@@ -1554,9 +1632,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{conferences.length}</span>
+                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{conferenceReviewers.length}</span>
                           </div>
-                          {conferences.length > 20 && (
+                          {conferenceReviewers.length > 20 && (
                             <button
                               onClick={() => setShowAllConferences(!showAllConferences)}
                               className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
@@ -1567,7 +1645,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                           )}
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-                          {displayedConferences.map((conf) => (
+                          {conferenceReviewers.map((conf) => (
                             <a
                               key={conf.id}
                               href={conf.url || '#'}
@@ -1579,7 +1657,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                             >
                               <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-gray-700">{conf.name}</span>
                               <span className="px-6 py-1 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
-                                {conf.category === 'chair' ? 'CHAIR' : conf.category === 'committee' ? 'COMM' : 'CONF'}
+                                CONF
                               </span>
                             </a>
                           ))}
@@ -1788,19 +1866,16 @@ export const MembersDirectorActivitiesTemplate = () => {
                         >
                           <div className="flex items-center gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-full flex items-center justify-center text-xs md:text-sm font-bold shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)', color: 'rgb(172,14,14)'}}>
-                              {mentee.name.charAt(0)}
+                              {mentee.name.slice(-2)}
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
                               <p className="text-[11px] md:text-xs text-gray-500 truncate">
-                                {mentee.university} · {mentee.department}
+                                {mentee.university} · {mentee.department} · {mentee.entryYear}학번
                               </p>
                             </div>
                           </div>
                           <div className="flex max-md:flex-col max-md:items-end items-center gap-8 md:gap-12 shrink-0">
-                            <span className="text-[10px] font-bold text-gray-400">
-                              {mentee.entryYear}학번
-                            </span>
                             <div className="flex gap-4 flex-wrap justify-end">
                               {mentee.participationYears.map((year) => (
                                 <span

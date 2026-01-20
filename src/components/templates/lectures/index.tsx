@@ -108,7 +108,7 @@ export const LecturesTemplate = () => {
 
   // 데이터 로드
   useEffect(() => {
-    fetch('/website/data/lectures.json')
+    fetch('/data/lectures.json')
       .then((res) => res.json())
       .then((data) => {
         setLectures(data)

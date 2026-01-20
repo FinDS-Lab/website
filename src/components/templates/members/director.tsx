@@ -1,4 +1,4 @@
-import {memo, useState, useEffect} from 'react'
+import {memo, useState, useEffect, useMemo} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
@@ -9,6 +9,7 @@ import {
   Building,
   ChevronRight,
   ChevronDown,
+  ChevronUp,
   Home,
   Copy,
   Check,
@@ -19,6 +20,7 @@ import {
   GraduationCap,
   Calendar,
   BookOpen,
+  Search,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 
@@ -159,6 +161,9 @@ export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
   const [projects, setProjects] = useState<Project[]>([])
   const [lectures, setLectures] = useState<Lecture[]>([])
+  const [projectSearchTerm, setProjectSearchTerm] = useState('')
+  const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
+  const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
@@ -166,7 +171,7 @@ export const MembersDirectorTemplate = () => {
   // Fetch Projects and Lectures data
   useEffect(() => {
     // Fetch Projects - all projects where director is involved
-    fetch('/website/data/projects.json')
+    fetch('/data/projects.json')
       .then(res => res.json())
       .then((data: Project[]) => {
         // Show all projects (no date filter) - most recent first
@@ -174,19 +179,19 @@ export const MembersDirectorTemplate = () => {
           const dateA = new Date(a.period.split('–')[0].trim())
           const dateB = new Date(b.period.split('–')[0].trim())
           return dateB.getTime() - dateA.getTime()
-        }).slice(0, 5)
+        })
         setProjects(sortedProjects)
+        // Expand all years by default
+        const years = [...new Set(sortedProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
+        setExpandedProjectYears(years)
       })
       .catch(console.error)
 
     // Fetch Lectures - current semester
-    fetch('/website/data/lectures.json')
+    fetch('/data/lectures.json')
       .then(res => res.json())
       .then((data: Lecture[]) => {
-        const currentLectures = data.filter(l => 
-          l.periods.some(p => p.includes('2025') || p.includes('2026'))
-        ).slice(0, 5)
-        setLectures(currentLectures)
+        setLectures(data)
       })
       .catch(console.error)
   }, [])
@@ -198,6 +203,90 @@ export const MembersDirectorTemplate = () => {
   }
 
   const isProfilePage = location.pathname === '/members/director'
+
+  // Group projects by year
+  const projectsByYear = useMemo(() => {
+    const filtered = projectSearchTerm.trim()
+      ? projects.filter(p => 
+          p.titleEn.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.titleKo.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.fundingAgency.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.fundingAgencyKo.toLowerCase().includes(projectSearchTerm.toLowerCase())
+        )
+      : projects
+
+    const grouped: Record<string, Project[]> = {}
+    filtered.forEach(p => {
+      const year = p.period.split('–')[0].trim().slice(0, 4)
+      if (!grouped[year]) grouped[year] = []
+      grouped[year].push(p)
+    })
+    return grouped
+  }, [projects, projectSearchTerm])
+
+  const projectYears = useMemo(() => {
+    return Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+  }, [projectsByYear])
+
+  const toggleProjectYear = (year: string) => {
+    setExpandedProjectYears(prev => 
+      prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
+    )
+  }
+
+  // Group lectures by course name and aggregate semesters
+  const groupedLectures = useMemo(() => {
+    const filtered = teachingSearchTerm.trim()
+      ? lectures.filter(l =>
+          l.courses.some(c => 
+            c.en.toLowerCase().includes(teachingSearchTerm.toLowerCase()) ||
+            c.ko.toLowerCase().includes(teachingSearchTerm.toLowerCase())
+          ) ||
+          l.school.toLowerCase().includes(teachingSearchTerm.toLowerCase())
+        )
+      : lectures
+
+    // Group by course name (en) to aggregate semesters
+    const courseMap: Record<string, {
+      school: string
+      courseName: string
+      courseNameKo: string
+      periods: string[]
+    }> = {}
+
+    filtered.forEach(lecture => {
+      lecture.courses.forEach(course => {
+        const key = `${lecture.school}-${course.en}`
+        if (!courseMap[key]) {
+          courseMap[key] = {
+            school: lecture.school,
+            courseName: course.en,
+            courseNameKo: course.ko,
+            periods: [...lecture.periods]
+          }
+        } else {
+          // Add new periods that are not already in the list
+          lecture.periods.forEach(p => {
+            if (!courseMap[key].periods.includes(p)) {
+              courseMap[key].periods.push(p)
+            }
+          })
+        }
+      })
+    })
+
+    // Sort periods in each course (most recent first)
+    Object.values(courseMap).forEach(course => {
+      course.periods.sort((a, b) => {
+        const [yearA, semA] = a.split('-')
+        const [yearB, semB] = b.split('-')
+        if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA)
+        return semB.localeCompare(semA)
+      })
+    })
+
+    return Object.values(courseMap)
+  }, [lectures, teachingSearchTerm])
 
   return (
     <div className="flex flex-col bg-white">
@@ -282,7 +371,7 @@ export const MembersDirectorTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
@@ -439,7 +528,7 @@ export const MembersDirectorTemplate = () => {
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
                     <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
-                      <div className={`size-8 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-[#e8879b]' : 'bg-[#ffb7c5]'}`}/>
+                      <div className="size-8 rounded-full bg-primary/40"/>
                       <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
@@ -452,7 +541,7 @@ export const MembersDirectorTemplate = () => {
                         })
                         return (
                           <li key={idx} className="flex items-start gap-10">
-                            <span className={`size-5 rounded-full shrink-0 mt-7 ${index === 0 ? 'bg-primary/30' : index === 1 ? 'bg-[#e8879b]/30' : 'bg-[#ffb7c5]/30'}`}/>
+                            <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
                             <span 
                               className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
                               dangerouslySetInnerHTML={{__html: highlightedItem}}
@@ -630,61 +719,106 @@ export const MembersDirectorTemplate = () => {
               <section>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
                   <span className="w-1 h-20 bg-primary rounded-full" />
-                  Recent Projects
+                  Projects
+                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{projects.length}</span>
                 </h3>
-                <div className="space-y-12">
-                  {projects.map((project, index) => {
-                    const typeIcons = {
-                      government: Landmark,
-                      industry: Building,
-                      institution: GraduationCap,
-                      academic: Briefcase,
-                    }
-                    const typeColors = {
-                      government: 'bg-primary text-white',
-                      industry: 'bg-amber-500 text-white',
-                      institution: 'bg-[#ffb7c5] text-white',
-                      academic: 'bg-gray-700 text-white',
-                    }
-                    const Icon = typeIcons[project.type]
-                    return (
-                      <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
-                        <div className="flex items-start gap-12 md:gap-16">
-                          <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
-                            <Icon size={18} />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-6 mb-8">
-                              <span className="px-8 py-2 bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-4">
-                                <Calendar size={10} />
-                                {project.period}
-                              </span>
-                            </div>
-                            <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleEn}</p>
-                            <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  })}
+
+                {/* Search */}
+                <div className="relative mb-16">
+                  <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={projectSearchTerm}
+                    onChange={(e) => setProjectSearchTerm(e.target.value)}
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                  />
                 </div>
-                <div className="mt-20 text-center">
-                  <Link to="/projects" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                    View All Projects <ChevronRight size={14}/>
-                  </Link>
+
+                {/* Year-grouped projects */}
+                <div className="space-y-12">
+                  {projectYears.map(year => (
+                    <div key={year} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
+                      <button
+                        onClick={() => toggleProjectYear(year)}
+                        className="w-full flex items-center justify-between p-16 hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="flex items-center gap-8">
+                          <span className="text-sm md:text-base font-bold text-gray-900">{year}</span>
+                          <span className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+                            {projectsByYear[year].length} {projectsByYear[year].length === 1 ? 'Project' : 'Projects'}
+                          </span>
+                        </div>
+                        {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
+                      </button>
+                      {expandedProjectYears.includes(year) && (
+                        <div className="border-t border-gray-100 divide-y divide-gray-50">
+                          {projectsByYear[year].map((project, index) => {
+                            const typeIcons = {
+                              government: Landmark,
+                              industry: Building,
+                              institution: GraduationCap,
+                              academic: Briefcase,
+                            }
+                            const typeColors = {
+                              government: 'bg-primary text-white',
+                              industry: 'bg-amber-500 text-white',
+                              institution: 'bg-[#ffb7c5] text-white',
+                              academic: 'bg-gray-700 text-white',
+                            }
+                            const Icon = typeIcons[project.type]
+                            return (
+                              <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
+                                <div className="flex items-start gap-12 md:gap-16">
+                                  <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
+                                    <Icon size={18} />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-6 mb-8">
+                                      <span className="px-8 py-2 bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-4">
+                                        <Calendar size={10} />
+                                        {project.period}
+                                      </span>
+                                    </div>
+                                    <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </section>
             )}
 
-            {/* Lectures Section */}
+            {/* Teaching Section */}
             {lectures.length > 0 && (
               <section>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
                   <span className="w-1 h-20 bg-primary rounded-full" />
                   Teaching
+                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{groupedLectures.length}</span>
                 </h3>
+
+                {/* Search */}
+                <div className="relative mb-16">
+                  <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search courses..."
+                    value={teachingSearchTerm}
+                    onChange={(e) => setTeachingSearchTerm(e.target.value)}
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                  />
+                </div>
+
+                {/* Course-grouped lectures */}
                 <div className="space-y-12">
-                  {lectures.map((lecture, index) => (
+                  {groupedLectures.map((course, index) => (
                     <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                       <div className="flex items-start gap-12 md:gap-16">
                         <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 bg-gray-900 text-white">
@@ -692,27 +826,18 @@ export const MembersDirectorTemplate = () => {
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-6 mb-8">
-                            {lecture.periods.slice(0, 2).map((period, i) => (
+                            {course.periods.map((period, i) => (
                               <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
                                 {period}
                               </span>
                             ))}
                           </div>
-                          <p className="text-xs md:text-sm font-bold text-gray-900">{lecture.school}</p>
-                          <div className="mt-8 space-y-4">
-                            {lecture.courses.map((course, i) => (
-                              <p key={i} className="text-[10px] md:text-xs text-gray-600">• {course.en}</p>
-                            ))}
-                          </div>
+                          <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
+                          <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
                         </div>
                       </div>
                     </div>
                   ))}
-                </div>
-                <div className="mt-20 text-center">
-                  <Link to="/lectures" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                    View All Lectures <ChevronRight size={14}/>
-                  </Link>
                 </div>
               </section>
             )}

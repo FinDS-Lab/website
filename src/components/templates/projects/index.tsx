@@ -157,7 +157,7 @@ export const ProjectsTemplate = () => {
   })
 
   useEffect(() => {
-    fetch('/website/data/projects.json')
+    fetch('/data/projects.json')
       .then((res) => res.json())
       .then((data: Project[]) => {
         // 2025년 6월 14일 이후 시작된 프로젝트만 표시
@@ -239,9 +239,9 @@ export const ProjectsTemplate = () => {
   }
 
   const statisticsItems = [
-    { icon: Folder, label: 'Total', count: stats.total, color: 'text-gray-900' },
-    { icon: TrendingUp, label: 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-primary' },
+    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-gray-900' },
+    { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
+    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-primary' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''

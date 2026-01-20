@@ -227,8 +227,8 @@ export const PublicationsTemplate = () => {
     }
 
     Promise.all([
-      safeJsonFetch('/website/data/pubs.json'),
-      safeJsonFetch('/website/data/authors.json'),
+      safeJsonFetch('/data/pubs.json'),
+      safeJsonFetch('/data/authors.json'),
     ])
       .then(([pubsData, authorsData]) => {
         setPublications(pubsData)
@@ -294,11 +294,11 @@ export const PublicationsTemplate = () => {
     })
 
     return [
-      { label: 'Journal Papers', count: journals, icon: FileText },
-      { label: 'Conferences', count: conferences, icon: MessageSquare },
-      { label: 'Books', count: books, icon: BookOpen },
-      { label: 'Reports', count: reports, icon: FileCheck },
-      { label: 'Total Outputs', count: publications.length, icon: BarChart3 },
+      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText },
+      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare },
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen },
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck },
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3 },
     ]
   }, [publications])
 
@@ -371,6 +371,16 @@ export const PublicationsTemplate = () => {
       if (!grouped[pub.year]) grouped[pub.year] = []
       grouped[pub.year].push(pub)
     })
+    
+    // Sort each year's publications by date (newest first, so bigger numbers appear first)
+    Object.keys(grouped).forEach((year) => {
+      grouped[Number(year)].sort((a, b) => {
+        const dateA = new Date(a.published_date).getTime()
+        const dateB = new Date(b.published_date).getTime()
+        return dateB - dateA // Newest first
+      })
+    })
+    
     return grouped
   }, [filteredPublications])
 
@@ -682,20 +692,32 @@ export const PublicationsTemplate = () => {
                                     <div 
                                       className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
                                       style={{
-                                        backgroundColor: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
-                                          ? 'rgba(172,14,14,0.08)'
-                                          : 'rgba(255,183,197,0.12)',
-                                        borderColor: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
-                                          ? 'rgba(172,14,14,0.2)'
-                                          : 'rgba(255,183,197,0.3)'
+                                        backgroundColor: 
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(172,14,14,0.12)' :
+                                          pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.08)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.15)' :
+                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.10)' :
+                                          ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.10)' :
+                                          'rgba(148,163,184,0.10)',
+                                        borderColor: 
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(172,14,14,0.25)' :
+                                          pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.18)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.25)' :
+                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.18)' :
+                                          ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.20)' :
+                                          'rgba(148,163,184,0.20)'
                                       }}
                                     >
                                       <span 
                                         className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
                                         style={{
-                                          color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group)
-                                            ? 'rgb(172,14,14)'
-                                            : '#ffb7c5'
+                                          color: 
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgb(172,14,14)' :
+                                            pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.75)' :
+                                            pub.indexing_group === 'Scopus' ? 'rgb(180,140,50)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(180,140,50,0.8)' :
+                                            ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgb(100,116,139)' :
+                                            'rgb(148,163,184)'
                                         }}
                                       >
                                         {pub.indexing_group}
