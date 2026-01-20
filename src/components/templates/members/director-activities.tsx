@@ -445,7 +445,7 @@ const CollaborationNetwork = memo(() => {
           }
 
           // Co-work rate 계산 (Director 전체 논문 대비 공동 작업 비율)
-          const coworkRate = totalPubsCount > 0 ? Math.round((pubCount / totalPubsCount) * 100) : 0
+          const coworkRate = totalPubs > 0 ? Math.round((pubCount / totalPubs) * 100) : 0
 
           return {
             id,

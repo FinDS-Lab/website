@@ -747,7 +747,7 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {pub.awards !== undefined && pub.awards !== null && pub.awards !== '' && pub.awards !== 0 && pub.awards !== '0' && Number(pub.awards) > 0 && (
+                                    {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
                                       <span 
                                         className="mr-6 cursor-help" 
                                         title={`Award-winning paper (${pub.awards} award${Number(pub.awards) > 1 ? 's' : ''})`}
