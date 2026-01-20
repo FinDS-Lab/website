@@ -295,11 +295,11 @@ export const PublicationsTemplate = () => {
     })
 
     return [
-      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText },
-      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare },
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen },
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck },
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3 },
+      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
+      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Pink for conferences
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#9333ea' }, // Purple for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#14b8a6' }, // Teal for reports
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: 'rgb(172,14,14)' }, // Primary red for total
     ]
   }, [publications])
 
@@ -373,17 +373,24 @@ export const PublicationsTemplate = () => {
       grouped[pub.year].push(pub)
     })
     
-    // Sort each year's publications by date (newest first, so bigger numbers appear first)
+    // Sort each year's publications by date (newest first), then by number descending for same date
     Object.keys(grouped).forEach((year) => {
       grouped[Number(year)].sort((a, b) => {
         const dateA = new Date(a.published_date).getTime()
         const dateB = new Date(b.published_date).getTime()
-        return dateB - dateA // Newest first
+        if (dateB !== dateA) return dateB - dateA // Newest first
+        // For same date, sort by publication number descending (higher number first)
+        const keyA = `${a.year}-${a.title}-${a.published_date}`
+        const keyB = `${b.year}-${b.title}-${b.published_date}`
+        const numA = publicationNumbers[keyA] || ''
+        const numB = publicationNumbers[keyB] || ''
+        const extractNum = (s: string) => parseInt(s.replace(/[^\d]/g, '')) || 0
+        return extractNum(numB) - extractNum(numA) // Higher number first
       })
     })
     
     return grouped
-  }, [filteredPublications])
+  }, [filteredPublications, publicationNumbers])
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(publicationsByYear).map(Number)
@@ -492,9 +499,9 @@ export const PublicationsTemplate = () => {
                 >
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{stat.count}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
                     <div className="flex items-center gap-6">
-                      <stat.icon className="size-14 md:size-16 text-gray-400" />
+                      <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
                       <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
                     </div>
                   </div>
@@ -694,15 +701,15 @@ export const PublicationsTemplate = () => {
                                       className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
                                       style={{
                                         backgroundColor: 
-                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(172,14,14,0.12)' :
-                                          pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.08)' :
-                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.15)' :
-                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.10)' :
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
+                                          pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.12)' :
+                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.08)' :
                                           ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.10)' :
                                           'rgba(148,163,184,0.10)',
                                         borderColor: 
-                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(172,14,14,0.25)' :
-                                          pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.18)' :
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
+                                          pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
                                           pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.25)' :
                                           pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.18)' :
                                           ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.20)' :
@@ -713,10 +720,10 @@ export const PublicationsTemplate = () => {
                                         className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
                                         style={{
                                           color: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgb(172,14,14)' :
-                                            pub.indexing_group === 'ESCI' ? 'rgba(172,14,14,0.75)' :
-                                            pub.indexing_group === 'Scopus' ? 'rgb(180,140,50)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(180,140,50,0.8)' :
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgb(180,130,20)' :
+                                            pub.indexing_group === 'ESCI' ? 'rgba(180,130,20,0.8)' :
+                                            pub.indexing_group === 'Scopus' ? 'rgb(160,120,40)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(160,120,40,0.75)' :
                                             ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgb(100,116,139)' :
                                             'rgb(148,163,184)'
                                         }}
@@ -737,6 +744,7 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
+                                    {pub.awards && pub.awards > 0 && <span className="mr-6">🏆</span>}
                                     {pub.title}
                                   </h4>
                                   {pub.title_ko && (

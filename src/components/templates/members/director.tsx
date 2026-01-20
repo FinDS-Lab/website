@@ -67,7 +67,9 @@ const education = [
     period: '2025.02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
     field: 'Industrial and Systems Engineering',
-    advisor: 'Woo Chang Kim',
+    advisors: [
+      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
+    ],
     leadership: [
       {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021.09 - 2025.01'},
       {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
@@ -80,7 +82,9 @@ const education = [
     period: '2021.02',
     degree: 'Master of Science (M.S.)',
     field: 'Industrial and Systems Engineering',
-    advisor: 'Woo Chang Kim',
+    advisors: [
+      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
+    ],
     leadership: [],
     awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     logo: logoKaist
@@ -90,7 +94,10 @@ const education = [
     period: '2018.02',
     degree: 'Bachelor of Engineering (B.E.)',
     field: 'Industrial and Management Systems Engineering',
-    advisor: 'Jang Ho Kim, Myoung-Ju Park',
+    advisors: [
+      {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
+      {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
+    ],
     leadership: [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017.01 - 2017.11'},
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016.01 - 2016.12'},
@@ -102,15 +109,15 @@ const education = [
 
 // Static Data - Employment
 const employment = [
-  {position: 'Assistant Professor', department: 'Department of Business Administration', organization: 'Gachon University', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Assistant Professor', department: 'Department of International Business', organization: 'Dongduk Women\'s University', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
-  {position: 'Director', department: '', organization: 'FINDS Lab.', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Lecturer', department: 'Department of Global Business', organization: 'Kangnam University', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
-  {position: 'Lecturer', department: 'Department of Business Administration', organization: 'Korea University', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
-  {position: 'Lecturer', department: 'Department of Big Data Application', organization: 'Kyung Hee University', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
-  {position: 'Research Consultant', department: '', organization: 'WorldQuant Brain', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
-  {position: 'Intern', department: 'Data & Analytics Team', organization: 'EY Consulting', period: '2020.03 – 2020.05', logo: logoEy, isCurrent: false},
-  {position: 'Founder', department: '', organization: 'JL Creatives & Contents (JL C&C)', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
+  {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
+  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
+  {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab.', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering (formerly Dept. of AI Convergence Engineering)', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
+  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
+  {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
+  {position: 'Intern', positionKo: '인턴', department: 'Data & Analytics Team', departmentKo: '데이터 애널리틱스 팀', organization: 'EY Consulting', organizationKo: 'EY컨설팅', period: '2020.03 – 2020.05', logo: logoEy, isCurrent: false},
+  {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
 ]
 
 // Static Data - Professional Affiliations
@@ -121,13 +128,8 @@ const affiliations = [
   {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022.06 – Present'},
 ]
 
-// Static Data - Publication Statistics
-const publicationStats = [
-  {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
-  {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-  {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
-]
-const citationStats = [{label: 'Citations', count: 127}, {label: 'g-index', count: 10}, {label: 'h-index', count: 7}, {label: 'i10-index', count: 5}]
+// Static Data - Citation Statistics (manually updated)
+const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 10}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
 
 // Static Data - Research Interests
 const researchInterests = [
@@ -164,13 +166,60 @@ export const MembersDirectorTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
+  const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
+    {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
+    {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
+    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
+  ])
   const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
 
-  // Fetch Projects and Lectures data
+  // Fetch Projects, Lectures, and Publications data
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
+    
+    // Fetch Publications and calculate stats
+    fetch(`${baseUrl}data/pubs.json`)
+      .then(res => res.json())
+      .then((pubs: any[]) => {
+        const stats = {
+          scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0,
+          intlConf: 0, kci: 0, domConf: 0
+        }
+        
+        pubs.forEach(pub => {
+          const indexing = pub.indexing_group || ''
+          const type = pub.type || ''
+          
+          if (type === 'journal') {
+            if (indexing === 'SCIE') stats.scie++
+            else if (indexing === 'SSCI') stats.ssci++
+            else if (indexing === 'A&HCI') stats.ahci++
+            else if (indexing === 'ESCI') stats.esci++
+            else if (indexing === 'Scopus') stats.scopus++
+            else if (indexing === 'Other International') stats.otherIntl++
+            else if (indexing.includes('KCI')) stats.kci++
+          } else if (type === 'conference') {
+            if (indexing === 'International Conference') stats.intlConf++
+            else if (indexing === 'Domestic Conference') stats.domConf++
+          }
+        })
+        
+        setPubStats([
+          {label: 'SCIE', count: stats.scie},
+          {label: 'SSCI', count: stats.ssci},
+          {label: 'A&HCI', count: stats.ahci},
+          {label: 'ESCI', count: stats.esci},
+          {label: 'Scopus', count: stats.scopus},
+          {label: 'Other Int\'l', count: stats.otherIntl},
+          {label: 'Int\'l Conf', count: stats.intlConf},
+          {label: 'KCI', count: stats.kci},
+          {label: 'Dom. Conf', count: stats.domConf}
+        ])
+      })
+      .catch(console.error)
+    
     // Fetch Projects - all projects where director is involved
     fetch(`${baseUrl}data/projects.json`)
       .then(res => res.json())
@@ -588,7 +637,26 @@ export const MembersDirectorTemplate = () => {
                       
                       <div className="pl-0 md:pl-80">
                         <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4">{edu.school}</p>
-                        {edu.advisor && <p className="text-xs text-gray-500 mb-12">Advisor: {edu.advisor}</p>}
+                        {edu.advisors && edu.advisors.length > 0 && (
+                          <div className="flex items-center gap-6 mb-12">
+                            <span className="text-xs text-gray-500">Advisor:</span>
+                            <div className="flex flex-wrap items-center gap-6">
+                              {edu.advisors.map((adv, i) => (
+                                <a 
+                                  key={i}
+                                  href={adv.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-full text-xs font-medium text-blue-700 hover:from-blue-100 hover:to-indigo-100 transition-all"
+                                >
+                                  <GraduationCap className="size-12 text-blue-500" />
+                                  {adv.name}
+                                  <ExternalLink className="size-10 text-blue-400" />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                         
                         {edu.leadership && edu.leadership.length > 0 && (
                           <div className="mb-12">
@@ -693,7 +761,7 @@ export const MembersDirectorTemplate = () => {
                 Publication Statistics
               </h3>
               <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                {publicationStats.map((stat, index) => (
+                {pubStats.map((stat, index) => (
                   <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
                     <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
                     <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
