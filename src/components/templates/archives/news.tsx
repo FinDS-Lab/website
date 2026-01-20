@@ -55,7 +55,7 @@ export const ArchivesNewsTemplate = () => {
   const { showModal } = useStoreModal()
 
   useEffect(() => {
-    const newsFiles = ['2026-03-01-1.md', '2025-09-01-1.md', '2025-06-14-1.md']
+    const newsFiles = ['2025-09-01-1.md', '2025-06-14-1.md']
 
     const fetchAllNews = async () => {
       try {
@@ -127,16 +127,9 @@ export const ArchivesNewsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             News
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 

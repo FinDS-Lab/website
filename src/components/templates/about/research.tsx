@@ -100,19 +100,15 @@ export const AboutResearchTemplate = () => {
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
-              About FINDS
-            </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
-          </div>
+          <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
+            About FINDS
+          </span>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Research Areas
           </h1>
           
-          {/* Divider */}
+          {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-12 md:gap-16">
             <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
             <div className="w-2 h-2 rounded-full bg-primary" />
@@ -140,14 +136,16 @@ export const AboutResearchTemplate = () => {
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] mb-16 md:mb-24">
-            <span className="inline-block">Driving</span>{' '}
+            <span className="inline-block">Driving</span>
+            <span className="inline-block mx-4"> </span>
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
                 Innovation
               </span>
               <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-amber-200/60 to-primary/20 -skew-x-6 rounded" />
             </span>
-            <span className="inline-block"> Through Data</span>
+            <span className="inline-block mx-4"> </span>
+            <span className="inline-block">Through Data</span>
           </h2>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">

@@ -168,16 +168,9 @@ export const MembersDirectorTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Director
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 
@@ -316,11 +309,10 @@ export const MembersDirectorTemplate = () => {
                   View CV <ExternalLink size={14}/>
                 </button>
                 <a 
-                  href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
+                  href="https://scholar.google.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
-                  style={{color: '#d6b14d'}}
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
                 >
                   Scholar <ExternalLink size={14}/>
                 </a>
@@ -380,17 +372,12 @@ export const MembersDirectorTemplate = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-gradient-to-br from-white to-gray-50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 hover:-translate-y-1 transition-all duration-300 group">
-                    <div className="flex items-center gap-12 mb-16 pb-12 border-b border-gray-100">
-                      <div className="size-40 bg-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                        <span className="text-lg">{index === 0 ? '📊' : index === 1 ? '📈' : '🎯'}</span>
-                      </div>
-                      <h4 className="text-sm md:text-base font-bold text-gray-900">{area.category}</h4>
-                    </div>
+                  <div key={index} className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md hover:border-primary/20 transition-all">
+                    <h4 className="text-sm md:text-base font-bold text-primary mb-16 pb-12 border-b border-gray-100">{area.category}</h4>
                     <ul className="space-y-12">
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
-                          <span className="size-6 bg-primary rounded-full shrink-0 mt-6 group-hover:scale-110 transition-transform"/>
+                          <span className="size-6 bg-primary/20 rounded-full shrink-0 mt-6"/>
                           <span className="text-xs md:text-sm text-gray-600 leading-relaxed">{item}</span>
                         </li>
                       ))}
@@ -455,9 +442,9 @@ export const MembersDirectorTemplate = () => {
                           <div className="pt-12 border-t border-gray-100">
                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
                             {edu.awards.map((a, i) => (
-                              <div key={i} className="flex items-center gap-8">
-                                <span className="text-amber-500 text-sm leading-none">🏆</span>
-                                <p className="text-xs text-gray-600 leading-relaxed">{a.title}, {a.org}</p>
+                              <div key={i} className="flex items-start gap-6">
+                                <span className="text-amber-500">🏆</span>
+                                <p className="text-xs text-gray-600">{a.title}, {a.org}</p>
                               </div>
                             ))}
                           </div>
@@ -478,7 +465,7 @@ export const MembersDirectorTemplate = () => {
               <div className="relative pl-24 md:pl-32 border-l-2 border-gray-200">
                 {employment.map((emp, index) => (
                   <div key={index} className="relative pb-20 last:pb-0 group">
-                    <div className={`absolute -left-[25px] md:-left-[33px] top-1/2 -translate-y-1/2 size-12 md:size-14 rounded-full border-3 border-white shadow-md ${emp.isCurrent ? 'bg-primary' : 'bg-gray-300'}`}/>
+                    <div className={`absolute -left-[25px] md:-left-[33px] top-0 size-12 md:size-14 rounded-full border-3 border-white shadow-md ${emp.isCurrent ? 'bg-primary' : 'bg-gray-300'}`}/>
                     <div className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md transition-all">
                       <div className="size-48 md:size-56 bg-gray-50 rounded-lg p-8 flex items-center justify-center shrink-0">
                         <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
@@ -507,7 +494,7 @@ export const MembersDirectorTemplate = () => {
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {affiliations.map((aff, index) => (
                   <div key={index} className="relative pb-20 last:pb-0 group">
-                    <div className="absolute -left-[25px] md:-left-[33px] top-1/2 -translate-y-1/2 size-12 md:size-14 bg-primary rounded-full border-3 border-white shadow-md"/>
+                    <div className="absolute -left-[25px] md:-left-[33px] top-0 size-12 md:size-14 bg-primary rounded-full border-3 border-white shadow-md"/>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md transition-all">
                       <div className="flex flex-wrap items-center gap-8 mb-8">
                         <span className="px-10 py-3 text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>

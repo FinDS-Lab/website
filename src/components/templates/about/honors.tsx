@@ -52,8 +52,9 @@ export const AboutHonorsTemplate = () => {
         })
         
         setHonorsData(filteredData)
-        // 기본적으로 모두 접힘 상태
-        setExpandedYear(null)
+        // 현재 연도를 기본으로 펼침
+        const currentYear = new Date().getFullYear()
+        setExpandedYear(String(currentYear))
         setLoading(false)
       })
       .catch((err) => {
@@ -126,16 +127,9 @@ export const AboutHonorsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Honors & Awards
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 

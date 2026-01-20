@@ -23,28 +23,28 @@ const typeConfig = {
     icon: Landmark,
     label: 'Government',
     labelKo: '정부',
-    color: 'bg-blue-500',
-    bgColor: 'bg-blue-50',
-    borderColor: 'border-blue-200',
-    textColor: 'text-blue-700',
+    color: 'bg-[rgb(172,14,14)]',
+    bgColor: 'bg-red-50',
+    borderColor: 'border-red-200',
+    textColor: 'text-[rgb(172,14,14)]',
   },
   industry: {
     icon: Building2,
     label: 'Industry',
     labelKo: '산업체',
-    color: 'bg-emerald-500',
-    bgColor: 'bg-emerald-50',
-    borderColor: 'border-emerald-200',
-    textColor: 'text-emerald-700',
+    color: 'bg-[rgb(214,177,77)]',
+    bgColor: 'bg-amber-50',
+    borderColor: 'border-amber-200',
+    textColor: 'text-[rgb(214,177,77)]',
   },
   institution: {
     icon: GraduationCap,
     label: 'Institution',
     labelKo: '기관',
-    color: 'bg-purple-500',
-    bgColor: 'bg-purple-50',
-    borderColor: 'border-purple-200',
-    textColor: 'text-purple-700',
+    color: 'bg-[#ffb7c5]',
+    bgColor: 'bg-pink-50',
+    borderColor: 'border-pink-200',
+    textColor: 'text-pink-500',
   },
   academic: {
     icon: Briefcase,
@@ -112,10 +112,10 @@ const FilterModal = ({
                 className={`px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
                   isActive
                     ? status === 'ongoing'
-                      ? 'bg-green-500 text-white border-transparent shadow-sm'
+                      ? 'bg-primary text-white border-transparent shadow-sm'
                       : 'bg-gray-500 text-white border-transparent shadow-sm'
                     : status === 'ongoing'
-                      ? 'bg-white text-green-600 border-gray-200 hover:border-green-300'
+                      ? 'bg-white text-primary border-gray-200 hover:border-primary/50'
                       : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
                 }`}
               >
@@ -232,7 +232,7 @@ export const ProjectsTemplate = () => {
 
   const statisticsItems = [
     { icon: Folder, label: 'Total', count: stats.total },
-    { icon: TrendingUp, label: 'Ongoing', count: stats.ongoing, color: 'text-green-500' },
+    { icon: TrendingUp, label: 'Ongoing', count: stats.ongoing, color: 'text-primary' },
     { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-gray-500' },
   ]
 
@@ -262,16 +262,9 @@ export const ProjectsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Projects
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 
@@ -373,7 +366,7 @@ export const ProjectsTemplate = () => {
                   <span
                     key={status}
                     className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
-                      status === 'ongoing' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                      status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
                     }`}
                   >
                     {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -468,10 +461,10 @@ export const ProjectsTemplate = () => {
                                       </span>
                                     </div>
                                     <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
-                                      status === 'ongoing' ? 'border-green-200 bg-green-50' : 'border-gray-200 bg-gray-50'
+                                      status === 'ongoing' ? 'border-amber-200 bg-amber-50' : 'border-gray-200 bg-gray-50'
                                     }`}>
                                       <span className={`text-[10px] md:text-xs font-medium ${
-                                        status === 'ongoing' ? 'text-green-600' : 'text-gray-500'
+                                        status === 'ongoing' ? 'text-amber-600' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>

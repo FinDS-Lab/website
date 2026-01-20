@@ -131,16 +131,9 @@ export const ArchivesNoticeTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Notice
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 
@@ -160,7 +153,7 @@ export const ArchivesNoticeTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100">
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
         {loading ? (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
             Loading notices from markdown files...

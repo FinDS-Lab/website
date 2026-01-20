@@ -17,52 +17,6 @@ import {
 import { useStoreModal } from '@/store/modal'
 import type { Publication, AuthorsData } from '@/types/data'
 
-// Title Case 변환 함수 (전치사, 관사, 접속사는 소문자)
-const toTitleCase = (str: string): string => {
-  const minorWords = new Set([
-    'a', 'an', 'the', // articles
-    'and', 'but', 'or', 'nor', 'for', 'yet', 'so', // coordinating conjunctions
-    'in', 'on', 'at', 'by', 'to', 'of', 'up', 'as', 'off', 'per', 'via', // prepositions
-    'with', 'from', 'into', 'onto', 'upon', 'over', 'under', 'between', 'among', 'through', 'during', 'before', 'after', 'above', 'below', 'around', 'about', 'against', 'along', 'across', 'behind', 'beyond', 'within', 'without',
-    'vs', 'vs.', 'etc', 'etc.'
-  ])
-  
-  return str.split(' ').map((word, index) => {
-    // 이미 약어나 특수 형식인 경우 유지 (예: AI, CNN, LSTM, COVID-19)
-    if (/^[A-Z]{2,}$/.test(word) || /^[A-Z][A-Z0-9-]+$/.test(word)) {
-      return word
-    }
-    // 하이픈이 있는 복합어 처리
-    if (word.includes('-')) {
-      return word.split('-').map((part, partIndex) => {
-        const lowerPart = part.toLowerCase()
-        if (partIndex === 0 && index === 0) {
-          return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
-        }
-        if (minorWords.has(lowerPart)) {
-          return lowerPart
-        }
-        return part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
-      }).join('-')
-    }
-    
-    const lowerWord = word.toLowerCase()
-    
-    // 첫 단어는 항상 대문자
-    if (index === 0) {
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-    }
-    
-    // 소문자로 유지할 단어
-    if (minorWords.has(lowerWord)) {
-      return lowerWord
-    }
-    
-    // 일반 단어는 첫 글자 대문자
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-  }).join(' ')
-}
-
 // Image Imports
 import banner3 from '@/assets/images/banner/3.webp'
 import pubIcon1 from '@/assets/images/icons/publications/1.png'
@@ -298,19 +252,15 @@ export const PublicationsTemplate = () => {
       report: 'R',
     }
 
-    // 날짜순 정렬 (오래된 것부터, 같은 날짜면 원본 배열의 역순)
-    const indexed = publications.map((pub, idx) => ({ pub, originalIndex: idx }))
-    const sorted = indexed.sort((a, b) => {
-      const dateA = new Date(a.pub.published_date).getTime()
-      const dateB = new Date(b.pub.published_date).getTime()
-      if (dateA !== dateB) return dateA - dateB
-      // 같은 날짜면 원본 인덱스 역순 (나중에 추가된 것이 더 높은 번호)
-      return b.originalIndex - a.originalIndex
+    // 날짜순 정렬 (오래된 것부터)
+    const sorted = [...publications].sort((a, b) => {
+      const dateA = new Date(a.published_date).getTime()
+      const dateB = new Date(b.published_date).getTime()
+      return dateA - dateB
     })
 
     // 타입별 번호 매기기
-    sorted.forEach((item) => {
-      const pub = item.pub
+    sorted.forEach((pub) => {
       typeCounters[pub.type] = (typeCounters[pub.type] || 0) + 1
       const prefix = typePrefix[pub.type] || pub.type.charAt(0).toUpperCase()
       const key = `${pub.year}-${pub.title}-${pub.published_date}`
@@ -416,23 +366,8 @@ export const PublicationsTemplate = () => {
       if (!grouped[pub.year]) grouped[pub.year] = []
       grouped[pub.year].push(pub)
     })
-    
-    // 각 연도 내에서 날짜 역순 정렬 (최신 먼저), 같은 날짜면 번호 높은 것 먼저
-    Object.keys(grouped).forEach((year) => {
-      grouped[Number(year)].sort((a, b) => {
-        const dateA = new Date(a.published_date).getTime()
-        const dateB = new Date(b.published_date).getTime()
-        if (dateA !== dateB) return dateB - dateA // 날짜 역순 (최신 먼저)
-        // 같은 날짜면 번호 역순 (높은 번호 먼저)
-        const numA = publicationNumbers[`${a.year}-${a.title}-${a.published_date}`] || ''
-        const numB = publicationNumbers[`${b.year}-${b.title}-${b.published_date}`] || ''
-        const extractNum = (s: string) => parseInt(s.replace(/[^0-9]/g, '')) || 0
-        return extractNum(numB) - extractNum(numA)
-      })
-    })
-    
     return grouped
-  }, [filteredPublications, publicationNumbers])
+  }, [filteredPublications])
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(publicationsByYear).map(Number)
@@ -498,16 +433,9 @@ export const PublicationsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Publications
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 
@@ -711,9 +639,7 @@ export const PublicationsTemplate = () => {
                                     <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 ${
                                       pub.presentation_type === 'oral' ? 'bg-pink-50' : 'bg-orange-50'
                                     }`}>
-                                      <span className={`text-[9px] md:text-[10px] font-semibold uppercase tracking-wide ${
-                                        pub.presentation_type === 'oral' ? 'text-pink-400' : 'text-orange-400'
-                                      }`}
+                                      <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide"
                                         style={{color: pub.presentation_type === 'oral' ? '#ffb7c5' : '#ffcba4'}}
                                       >
                                         {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
@@ -732,7 +658,7 @@ export const PublicationsTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {toTitleCase(pub.title)}
+                                    {pub.title}
                                   </h4>
                                   {pub.title_ko && (
                                     <p className="text-xs md:text-base text-gray-600 mb-6 md:mb-8">{pub.title_ko}</p>
@@ -748,9 +674,7 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     ))}
                                   </div>
-                                  <p className="text-xs md:text-sm text-gray-500 italic">
-                                    {pub.language === 'Korean' && pub.venue_ko ? pub.venue_ko : pub.venue}
-                                  </p>
+                                  <p className="text-xs md:text-sm text-gray-500 italic">{pub.venue}</p>
                                   {pub.doi && (
                                     <a
                                       href={`https://doi.org/${pub.doi}`}

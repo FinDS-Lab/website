@@ -61,9 +61,9 @@ const degreeLabels = {
 }
 
 const degreeColors = {
-  phd: 'bg-[rgb(172,14,14)]/10 text-[rgb(172,14,14)]',
-  ms: 'bg-[rgb(214,177,77)]/10 text-[rgb(214,177,77)]',
-  undergrad: 'bg-primary/10 text-primary',
+  phd: 'bg-red-100 text-red-700',
+  ms: 'bg-blue-100 text-blue-700',
+  undergrad: 'bg-green-100 text-green-700',
 }
 
 export const MembersCurrentTemplate = () => {
@@ -105,9 +105,9 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return [
-      { label: 'Ph.D. Students', count: phdCount, icon: GraduationCap, countColor: 'text-[rgb(172,14,14)]' },
-      { label: 'M.S. Students', count: msCount, icon: BookOpen, countColor: 'text-[rgb(214,177,77)]' },
-      { label: 'Undergrad Researchers', count: undergradCount, icon: UserCheck, countColor: 'text-primary' },
+      { label: 'Ph.D. Students', count: phdCount, icon: GraduationCap, countColor: 'text-red-500' },
+      { label: 'M.S. Students', count: msCount, icon: BookOpen, countColor: 'text-blue-500' },
+      { label: 'Undergrad Researchers', count: undergradCount, icon: UserCheck, countColor: 'text-green-500' },
       { label: 'Total Members', count: members.length, icon: Users, countColor: 'text-primary' },
     ]
   }, [members])
@@ -150,16 +150,9 @@ export const MembersCurrentTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Current Members
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 

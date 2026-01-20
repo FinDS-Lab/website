@@ -117,19 +117,15 @@ export const AboutIntroductionTemplate = () => {
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
-              About FINDS
-            </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
-          </div>
+          <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
+            About FINDS
+          </span>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Introduction
           </h1>
           
-          {/* Divider */}
+          {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-12 md:gap-16">
             <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
             <div className="w-2 h-2 rounded-full bg-primary" />
@@ -186,7 +182,7 @@ export const AboutIntroductionTemplate = () => {
                 <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[1.9] font-medium">
                   <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
                   <span className="relative inline-block mx-2">
-                    <span className="text-pink-400 font-bold">FINDS Lab.</span>
+                    <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab.</span>
                     <span className="absolute -bottom-1 left-0 right-0 h-2 bg-amber-200/40 -z-10" />
                   </span>
                   은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
@@ -204,7 +200,7 @@ export const AboutIntroductionTemplate = () => {
                   <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
                   복잡한 데이터 속에서 새로운{' '}
                   <span className="relative inline-block">
-                    <span className="font-bold" style={{color: '#ffb7c5'}}>발견(finds)</span>
+                    <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>
                     <Sparkles size={12} className="absolute -top-2 -right-4" style={{color: '#ffb7c5'}} />
                   </span>
                   을 이끌어내고 데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
@@ -346,7 +342,7 @@ export const AboutIntroductionTemplate = () => {
                 diminishes knowledge asymmetry, turning complex data streams into{' '}
                 <span className="text-primary font-semibold">clear, accessible, and strategically valuable insights</span>{' '}
                 — a future built upon meaningful{' '}
-                <span className="font-bold" style={{color: '#ffb7c5'}}>finds</span>{' '}
+                <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>finds</span>{' '}
                 that guide decision-makers across finance, business, and diverse societal domains.
               </p>
             </div>

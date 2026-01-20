@@ -21,7 +21,7 @@ import {
   Check,
   X,
 } from 'lucide-react'
-import type {ReviewerData, AuthorsData, Publication, Mentee, HonorsData, HonorItem} from '@/types/data'
+import type {ReviewerData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
 
 // Types for collaboration network
@@ -225,7 +225,7 @@ const activities = [
   {
     name: 'FIELD',
     logo: logoField,
-    fullName: 'Future Industrial Engineering Leaders and Dreamers',
+    fullName: '전국대학생산업공학도모임 (Future Industrial Engineering Leaders and Dreamers)',
     generation: '11th - 16th Generation',
     membership: [
       {role: 'Member', period: '2019.03. - 2024.12.'},
@@ -249,7 +249,7 @@ const activities = [
   {
     name: 'DadingCoding',
     logo: logoDading,
-    fullName: '다딩코딩',
+    fullName: '대딩코딩',
     generation: '6th Generation',
     membership: [
       {role: 'Member', period: '2024.02. - 2024.07.'},
@@ -286,122 +286,6 @@ const researchInterests = [
     ],
   },
 ]
-
-// Honors & Awards Section Component
-const HonorsAwardsSection = memo(() => {
-  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetch('/website/data/honors.json')
-      .then((res) => res.json())
-      .then((data: HonorsData) => {
-        // 최인수가 포함된 항목만 필터링
-        const filteredData: HonorsData = {}
-        Object.keys(data).forEach((year) => {
-          const items = data[year].filter((item) => 
-            item.winners?.some((w: {name: string}) => w.name.includes('최인수') || w.name.toLowerCase().includes('insu'))
-          )
-          if (items.length > 0) {
-            filteredData[year] = items
-          }
-        })
-        setHonorsData(filteredData)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.error('Failed to load honors data:', err)
-        setLoading(false)
-      })
-  }, [])
-
-  if (loading) {
-    return (
-      <div className="p-40 text-center">
-        <p className="text-sm text-gray-400 animate-pulse">Loading honors data...</p>
-      </div>
-    )
-  }
-
-  if (!honorsData || Object.keys(honorsData).length === 0) {
-    return (
-      <div className="p-40 text-center">
-        <p className="text-sm text-gray-400">No data available</p>
-      </div>
-    )
-  }
-
-  const years = Object.keys(honorsData).sort((a, b) => Number(b) - Number(a))
-  const totalCount = years.reduce((acc, year) => acc + honorsData[year].length, 0)
-
-  return (
-    <div className="p-20 md:p-24">
-      {/* Summary Stats */}
-      <div className="flex items-center gap-16 mb-20">
-        <div className="flex items-center gap-8">
-          <Award size={18} className="text-primary" />
-          <span className="text-sm font-bold text-gray-900">Total: {totalCount}</span>
-        </div>
-        <span className="text-xs text-gray-400">({years[years.length - 1]} - {years[0]})</span>
-      </div>
-
-      {/* Timeline */}
-      <div className="space-y-16">
-        {years.map((year) => {
-          const items = honorsData[year]
-          const awards = items.filter((item) => item.type === 'award')
-          const honors = items.filter((item) => item.type === 'honor')
-
-          return (
-            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
-              {/* Year Header */}
-              <div className="flex items-center justify-between px-16 py-12 bg-gray-50">
-                <div className="flex items-center gap-12">
-                  <span className="text-base font-bold text-gray-900">{year}</span>
-                  <div className="flex items-center gap-6">
-                    {awards.length > 0 && (
-                      <span className="px-8 py-2 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">
-                        🏆 {awards.length}
-                      </span>
-                    )}
-                    {honors.length > 0 && (
-                      <span className="px-8 py-2 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full">
-                        🎓 {honors.length}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Items */}
-              <div className="divide-y divide-gray-50">
-                {items.map((item, idx) => (
-                  <div key={idx} className="px-16 py-12 hover:bg-gray-50/50 transition-colors">
-                    <div className="flex items-start gap-12">
-                      <span className="text-lg shrink-0">{item.icon}</span>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-8">
-                          <div className="min-w-0">
-                            <p className="text-sm font-bold text-gray-900">{item.title}</p>
-                            <p className="text-xs text-gray-600 mt-2">{item.event}</p>
-                            <p className="text-[10px] text-gray-400 mt-2">{item.organization}</p>
-                          </div>
-                          <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{item.date}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-})
-
-HonorsAwardsSection.displayName = 'HonorsAwardsSection'
 
 // Collaboration Network Component
 const CollaborationNetwork = memo(() => {
@@ -494,38 +378,8 @@ const CollaborationNetwork = memo(() => {
         const initialNodes: NetworkNode[] = nodesToShow.map((id, idx) => {
           const author = authors[id]
           const isDirector = id === '1'
-          
-          // J-L 형태의 배치: Director가 중앙, 나머지는 양쪽으로 퍼짐
-          const collaboratorCount = nodesToShow.length - 1
-          const collaboratorIdx = isDirector ? -1 : (nodesToShow.indexOf(id) > nodesToShow.indexOf('1') ? nodesToShow.indexOf(id) - 1 : nodesToShow.indexOf(id))
-          
-          let nodeX = centerX
-          let nodeY = centerY
-          
-          if (!isDirector && collaboratorCount > 0) {
-            const halfCount = Math.ceil(collaboratorCount / 2)
-            const isLeftSide = collaboratorIdx < halfCount
-            const sideIdx = isLeftSide ? collaboratorIdx : collaboratorIdx - halfCount
-            const sideCount = isLeftSide ? halfCount : collaboratorCount - halfCount
-            
-            // J-L 형태: 좌측은 J, 우측은 L
-            const baseRadius = 180
-            const verticalSpread = 280
-            const horizontalOffset = isLeftSide ? -160 : 160
-            
-            if (isLeftSide) {
-              // J 형태 (좌측)
-              const progress = sideCount > 1 ? sideIdx / (sideCount - 1) : 0.5
-              nodeX = centerX + horizontalOffset - 40 + (progress * 80)
-              nodeY = centerY - verticalSpread/2 + (progress * verticalSpread)
-            } else {
-              // L 형태 (우측)
-              const progress = sideCount > 1 ? sideIdx / (sideCount - 1) : 0.5
-              nodeX = centerX + horizontalOffset + 40 - (progress * 80)
-              nodeY = centerY - verticalSpread/2 + (progress * verticalSpread)
-            }
-          }
-          
+          const angle = (2 * Math.PI * idx) / nodesToShow.length
+          const radius = isDirector ? 0 : 150 + Math.random() * 100
           const collabPubsList = authorCollabPubs.get(id) || []
           const pubCount = authorPubCount.get(id) || 0
 
@@ -544,8 +398,8 @@ const CollaborationNetwork = memo(() => {
             id,
             name: author?.en || `Author ${id}`,
             nameKo: author?.ko || '',
-            x: nodeX,
-            y: nodeY,
+            x: centerX + (isDirector ? 0 : Math.cos(angle) * radius),
+            y: centerY + (isDirector ? 0 : Math.sin(angle) * radius),
             vx: 0,
             vy: 0,
             publications: pubCount,
@@ -831,22 +685,13 @@ const CollaborationNetwork = memo(() => {
               <stop offset="100%" stopColor="#d6b14d"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#94a3b8"/>
-              <stop offset="100%" stopColor="#64748b"/>
+              <stop offset="0%" stopColor="#ffd6dd"/>
+              <stop offset="100%" stopColor="#ffb7c5"/>
             </radialGradient>
             <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
               <feMerge>
                 <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-            <filter id="directorGlow" x="-100%" y="-100%" width="300%" height="300%">
-              <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-              <feFlood floodColor="#d6b14d" floodOpacity="0.6"/>
-              <feComposite in2="coloredBlur" operator="in"/>
-              <feMerge>
-                <feMergeNode/>
                 <feMergeNode in="SourceGraphic"/>
               </feMerge>
             </filter>
@@ -871,7 +716,7 @@ const CollaborationNetwork = memo(() => {
                   stroke={
                     source.isDirector || target.isDirector
                       ? 'rgb(172,14,14)'
-                      : '#94a3b8'
+                      : '#ffb7c5'
                   }
                   strokeWidth={Math.max(0.5, Math.min(2.5, link.weight * 0.6))}
                   opacity={getLinkOpacity(link)}
@@ -904,9 +749,9 @@ const CollaborationNetwork = memo(() => {
                   <circle
                     r={size}
                     fill={node.isDirector ? 'url(#directorGradient)' : 'url(#nodeGradient)'}
-                    stroke={node.isDirector ? '#d6b14d' : (isHighlighted ? 'rgb(172,14,14)' : 'white')}
+                    stroke={node.isDirector ? 'rgb(172,14,14)' : (isHighlighted ? 'rgb(172,14,14)' : 'white')}
                     strokeWidth={node.isDirector ? 3 : (isHighlighted ? 3 : 2)}
-                    filter={node.isDirector ? 'url(#directorGlow)' : (isHighlighted ? 'url(#glow)' : 'url(#shadow)')}
+                    filter={isHighlighted ? 'url(#glow)' : 'url(#shadow)'}
                     className="transition-all duration-200"
                   />
 
@@ -927,7 +772,7 @@ const CollaborationNetwork = memo(() => {
                   <text
                     y={size + 12}
                     textAnchor="middle"
-                    fill={node.isDirector ? '#b8860b' : '#374151'}
+                    fill={node.isDirector ? '#1e40af' : '#374151'}
                     fontSize={node.isDirector ? 9 : 7}
                     fontWeight={node.isDirector ? 700 : 600}
                     className="pointer-events-none select-none"
@@ -993,11 +838,11 @@ const CollaborationNetwork = memo(() => {
                           {node.publications}
                         </p>
                       </div>
-                      <div className="rounded-lg p-12 text-center border" style={{backgroundColor: 'rgba(172,14,14,0.05)', borderColor: 'rgba(172,14,14,0.1)'}}>
+                      <div className="bg-green-50 rounded-lg p-12 text-center border border-green-100">
                         <div className="flex items-center justify-center gap-6 mb-4">
                           <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
-                        <p className="text-2xl font-bold" style={{color: 'rgb(172,14,14)'}}>
+                        <p className="text-2xl font-bold text-green-600">
                           {node.coworkRate}%
                         </p>
                       </div>
@@ -1010,12 +855,12 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full" style={{backgroundColor: 'rgb(172,14,14)'}}/>
+                          <span className="size-4 rounded-full bg-blue-500"/>
                           <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
                         </div>
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full" style={{backgroundColor: '#ffb7c5'}}/>
+                          <span className="size-4 rounded-full bg-purple-500"/>
                           <span className="text-xs text-gray-600 flex-1">conference proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
                         </div>
@@ -1050,11 +895,11 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full" style={{background: 'linear-gradient(135deg, #f5d485 0%, #d6b14d 100%)'}}/>
+            <div className="size-10 rounded-full" style={{background: 'linear-gradient(135deg, #f5d485 0%, #d6b14d 100%)', border: '2px solid rgb(172,14,14)'}}/>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-8 rounded-full bg-gradient-to-br from-slate-400 to-slate-600"/>
+            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #ffb7c5 100%)'}}/>
             <span className="text-gray-600 font-medium">Collaborator</span>
           </div>
           <div className="flex items-center gap-6">
@@ -1080,12 +925,15 @@ type MenteesByYear = {
 export const MembersDirectorActivitiesTemplate = () => {
   const [reviewerData, setReviewerData] = useState<ReviewerData | null>(null)
   const [showAllJournals, setShowAllJournals] = useState(false)
+  const [showAllConferences, setShowAllConferences] = useState(false)
   const [loading, setLoading] = useState(true)
   const [mentees, setMentees] = useState<MenteeWithId[]>([])
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [emailCopied, setEmailCopied] = useState(false)
+  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025']))
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    honorsAwards: false,
+    awardsHonors: false,
     academicService: false,
     activities: false,
     collaborationNetwork: false,
@@ -1095,6 +943,18 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({...prev, [section]: !prev[section]}))
+  }
+
+  const toggleYear = (year: string) => {
+    setExpandedYears(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(year)) {
+        newSet.delete(year)
+      } else {
+        newSet.add(year)
+      }
+      return newSet
+    })
   }
 
   const directorEmail = 'ischoi@gachon.ac.kr'
@@ -1131,6 +991,26 @@ export const MembersDirectorActivitiesTemplate = () => {
       .catch((err) => {
         console.error('Failed to load mentees data:', err)
       })
+
+    // Load honors data
+    fetch('/website/data/honors.json')
+      .then((res) => res.json())
+      .then((data: HonorsData) => {
+        // Filter to show only items where director is a winner
+        const filteredData: HonorsData = {}
+        Object.keys(data).forEach((year) => {
+          const items = data[year].filter((item) => 
+            item.winners?.some((w: {name: string}) => w.name.includes('최인수') || w.name.toLowerCase().includes('insu'))
+          )
+          if (items.length > 0) {
+            filteredData[year] = items
+          }
+        })
+        setHonorsData(filteredData)
+      })
+      .catch((err) => {
+        console.error('Failed to load honors data:', err)
+      })
   }, [])
 
   // 연도별 멘티 그룹화
@@ -1152,21 +1032,13 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   // 필터링된 멘티
   const filteredMentees = useMemo(() => {
-    let result: MenteeWithId[]
     if (selectedMentoringYear === 'all') {
       // 중복 제거하여 전체 멘티 반환
       const uniqueMentees = new Map<string, MenteeWithId>()
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
-      result = Array.from(uniqueMentees.values())
-    } else {
-      result = menteesByYear[selectedMentoringYear] || []
+      return Array.from(uniqueMentees.values())
     }
-    // 참여 횟수 내림차순, 같으면 가나다순 정렬
-    return result.sort((a, b) => {
-      const countDiff = b.participationYears.length - a.participationYears.length
-      if (countDiff !== 0) return countDiff
-      return a.name.localeCompare(b.name, 'ko')
-    })
+    return menteesByYear[selectedMentoringYear] || []
   }, [selectedMentoringYear, mentees, menteesByYear])
 
   // 대학별 통계
@@ -1177,7 +1049,6 @@ export const MembersDirectorActivitiesTemplate = () => {
     })
     return Array.from(stats.entries())
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 5)
   }, [filteredMentees])
 
   const publicationStats = useMemo(() => {
@@ -1206,6 +1077,11 @@ export const MembersDirectorActivitiesTemplate = () => {
     return showAllJournals ? reviewerData.journals : reviewerData.journals.slice(0, 20)
   }, [reviewerData, showAllJournals])
 
+  const displayedConferences = useMemo(() => {
+    if (!reviewerData) return []
+    return showAllConferences ? reviewerData.conferences : reviewerData.conferences.slice(0, 20)
+  }, [reviewerData, showAllConferences])
+
   return (
     <div className="flex flex-col bg-white">
       {/* Banner - 통일된 스타일 */}
@@ -1230,16 +1106,9 @@ export const MembersDirectorActivitiesTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
             Director
           </h1>
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-12 md:gap-16">
-            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
         </div>
       </div>
 
@@ -1282,11 +1151,11 @@ export const MembersDirectorActivitiesTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
-          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
+          <aside className="lg:w-380 flex flex-col gap-24 md:gap-40">
         {/* Profile Card */}
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="size-140 md:size-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="size-150 md:size-200 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img
                     src={directorImg}
                 alt="Prof. Insu Choi"
@@ -1297,55 +1166,55 @@ export const MembersDirectorActivitiesTemplate = () => {
                 }}
               />
             </div>
-                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
                   Insu Choi<span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
                 </h2>
                 <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
               </div>
 
               <div className="flex flex-col gap-16 md:gap-20">
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Briefcase size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Director</p>
                     <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Building size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Assistant Professor</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Department of Big Data Business Management</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <MapPin size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">Room 706, Humanities Hall</p>
                     <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Mail size={16}/>
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
                     <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline break-all">
+                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline truncate">
                         {directorEmail}
                       </a>
                       <button
@@ -1363,13 +1232,13 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                <div className="flex items-start gap-10 md:gap-12 group">
+                  <div className="size-32 md:size-36 bg-gray-50 rounded-lg md:rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Phone size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800 leading-tight">02-940-4424</p>
                   </div>
                 </div>
               </div>
@@ -1381,19 +1250,19 @@ export const MembersDirectorActivitiesTemplate = () => {
                     maxWidth: '1000px',
                     children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>
                   })}
-                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
+                  className="flex items-center justify-center gap-8 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
                   View CV
                   <ExternalLink size={14}/>
                 </button>
                 <a
-                  href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en"
+                  href="https://scholar.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
-                  style={{color: '#d6b14d'}}
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: 'white'}}
                 >
-                  Scholar
+                  Google Scholar
                   <ExternalLink size={14}/>
                 </a>
               </div>
@@ -1401,20 +1270,99 @@ export const MembersDirectorActivitiesTemplate = () => {
           </aside>
 
           {/* Right Column: Activities Only */}
-          <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Honors & Awards */}
+          <main className="flex-1 flex flex-col gap-32 md:gap-56">
+            {/* Awards & Honors */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
-                onClick={() => toggleSection('honorsAwards')}
+                onClick={() => toggleSection('awardsHonors')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Awards & Honors</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.awardsHonors ? 'rotate-180' : ''}`}/>
               </button>
 
-              {expandedSections.honorsAwards && (
-                <div className="border-t border-gray-100">
-                  <HonorsAwardsSection />
+              {expandedSections.awardsHonors && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  {!honorsData || Object.keys(honorsData).length === 0 ? (
+                    <div className="py-16 text-center text-sm text-gray-400">
+                      No awards data available
+                    </div>
+                  ) : (
+                    <>
+                      {/* Summary Stats */}
+                      <div className="flex items-center gap-16 mb-20">
+                        <div className="flex items-center gap-8">
+                          <Award size={18} className="text-primary" />
+                          <span className="text-sm font-bold text-gray-900">
+                            Total: {Object.values(honorsData).reduce((acc, items) => acc + items.length, 0)}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Timeline by Year */}
+                      <div className="space-y-12">
+                        {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
+                          const items = honorsData[year]
+                          const awards = items.filter((item) => item.type === 'award')
+                          const honors = items.filter((item) => item.type === 'honor')
+                          const isExpanded = expandedYears.has(year)
+
+                          return (
+                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
+                              {/* Year Header - Clickable */}
+                              <button
+                                onClick={() => toggleYear(year)}
+                                className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <div className="flex items-center gap-12">
+                                  <span className="text-base font-bold text-gray-900">{year}</span>
+                                  <div className="flex items-center gap-6">
+                                    {awards.length > 0 && (
+                                      <span className="px-8 py-2 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">
+                                        🏆 {awards.length}
+                                      </span>
+                                    )}
+                                    {honors.length > 0 && (
+                                      <span className="px-8 py-2 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172,14,14,0.1)', color: 'rgb(172,14,14)'}}>
+                                        🎓 {honors.length}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                                <ChevronDown 
+                                  size={18} 
+                                  className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                                />
+                              </button>
+
+                              {/* Items - Collapsible */}
+                              {isExpanded && (
+                                <div className="divide-y divide-gray-50">
+                                  {items.map((item, idx) => (
+                                    <div key={idx} className="px-16 py-12 hover:bg-gray-50/50 transition-colors">
+                                      <div className="flex items-start gap-12">
+                                        <span className="text-lg shrink-0">{item.icon}</span>
+                                        <div className="flex-1 min-w-0">
+                                          <div className="flex items-start justify-between gap-8">
+                                            <div className="min-w-0">
+                                              <p className="text-sm font-bold text-gray-900">{item.title}</p>
+                                              <p className="text-xs text-gray-600 mt-2">{item.event}</p>
+                                              <p className="text-[10px] text-gray-400 mt-2">{item.organization}</p>
+                                            </div>
+                                            <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{item.date}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </section>
@@ -1519,22 +1467,36 @@ export const MembersDirectorActivitiesTemplate = () => {
                       </div>
 
                       {/* Conference Reviewer */}
-                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
-                        <div className="flex items-center gap-8 mb-12">
-                          <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                          <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.conferences.length}</span>
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center justify-between mb-16">
+                          <div className="flex items-center gap-8">
+                            <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
+                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.conferences.length}</span>
+                          </div>
+                          {reviewerData.conferences.length > 20 && (
+                            <button
+                              onClick={() => setShowAllConferences(!showAllConferences)}
+                              className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
+                            >
+                              {showAllConferences ? 'Show Less' : 'Show All'}
+                              {showAllConferences ? <ChevronUp size={12}/> : <ChevronDown size={12}/>}
+                            </button>
+                          )}
                         </div>
-                        <div className="flex flex-wrap gap-6">
-                          {reviewerData.conferences.map((conf) => (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                          {displayedConferences.map((conf) => (
                             <a
                               key={conf.id}
                               href={conf.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-4 px-10 py-4 bg-white border border-gray-200 rounded-full text-[11px] font-medium text-gray-700 hover:border-primary hover:text-primary transition-all"
+                              className="flex flex-col items-center justify-center px-8 py-10 rounded-xl text-center transition-all hover:shadow-md bg-gray-50 hover:bg-gray-100"
                               title={conf.period}
                             >
-                              <span className="truncate max-w-200">{conf.name}</span>
+                              <span className="text-[10px] md:text-[11px] font-medium leading-tight line-clamp-2 mb-6 text-gray-700">{conf.name}</span>
+                              <span className="px-6 py-1 rounded text-[9px] font-bold bg-gray-400 text-white">
+                                CONF
+                              </span>
                             </a>
                           ))}
                         </div>
@@ -1664,13 +1626,13 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold" style={{color: 'rgb(172,14,14)'}}>
+                      <p className="text-3xl font-bold text-green-600">
                         {menteesByYear['2025']?.length || 0}
                       </p>
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Current (2025)</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold" style={{color: '#ffb7c5'}}>
+                      <p className="text-3xl font-bold text-purple-600">
                         {new Set(mentees.map(m => m.university)).size}
                       </p>
                       <p className="text-xs font-bold text-gray-400 uppercase mt-4">Universities</p>
@@ -1752,10 +1714,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                                   key={year}
                                   className={`px-8 py-2 rounded text-[10px] font-bold ${
                                     year === '2025'
-                            ? 'text-white'
+                            ? 'bg-green-100 text-green-700'
                                       : 'bg-gray-100 text-gray-500'
                         }`}
-                                  style={year === '2025' ? {backgroundColor: 'rgb(172,14,14)'} : {}}
                       >
                                   {year}
                       </span>
