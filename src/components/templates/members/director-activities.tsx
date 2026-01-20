@@ -494,8 +494,38 @@ const CollaborationNetwork = memo(() => {
         const initialNodes: NetworkNode[] = nodesToShow.map((id, idx) => {
           const author = authors[id]
           const isDirector = id === '1'
-          const angle = (2 * Math.PI * idx) / nodesToShow.length
-          const radius = isDirector ? 0 : 150 + Math.random() * 100
+          
+          // J-L 형태의 배치: Director가 중앙, 나머지는 양쪽으로 퍼짐
+          const collaboratorCount = nodesToShow.length - 1
+          const collaboratorIdx = isDirector ? -1 : (nodesToShow.indexOf(id) > nodesToShow.indexOf('1') ? nodesToShow.indexOf(id) - 1 : nodesToShow.indexOf(id))
+          
+          let nodeX = centerX
+          let nodeY = centerY
+          
+          if (!isDirector && collaboratorCount > 0) {
+            const halfCount = Math.ceil(collaboratorCount / 2)
+            const isLeftSide = collaboratorIdx < halfCount
+            const sideIdx = isLeftSide ? collaboratorIdx : collaboratorIdx - halfCount
+            const sideCount = isLeftSide ? halfCount : collaboratorCount - halfCount
+            
+            // J-L 형태: 좌측은 J, 우측은 L
+            const baseRadius = 180
+            const verticalSpread = 280
+            const horizontalOffset = isLeftSide ? -160 : 160
+            
+            if (isLeftSide) {
+              // J 형태 (좌측)
+              const progress = sideCount > 1 ? sideIdx / (sideCount - 1) : 0.5
+              nodeX = centerX + horizontalOffset - 40 + (progress * 80)
+              nodeY = centerY - verticalSpread/2 + (progress * verticalSpread)
+            } else {
+              // L 형태 (우측)
+              const progress = sideCount > 1 ? sideIdx / (sideCount - 1) : 0.5
+              nodeX = centerX + horizontalOffset + 40 - (progress * 80)
+              nodeY = centerY - verticalSpread/2 + (progress * verticalSpread)
+            }
+          }
+          
           const collabPubsList = authorCollabPubs.get(id) || []
           const pubCount = authorPubCount.get(id) || 0
 
@@ -514,8 +544,8 @@ const CollaborationNetwork = memo(() => {
             id,
             name: author?.en || `Author ${id}`,
             nameKo: author?.ko || '',
-            x: centerX + (isDirector ? 0 : Math.cos(angle) * radius),
-            y: centerY + (isDirector ? 0 : Math.sin(angle) * radius),
+            x: nodeX,
+            y: nodeY,
             vx: 0,
             vy: 0,
             publications: pubCount,
@@ -1020,7 +1050,7 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600"/>
+            <div className="size-10 rounded-full" style={{background: 'linear-gradient(135deg, #f5d485 0%, #d6b14d 100%)'}}/>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
@@ -1028,7 +1058,7 @@ const CollaborationNetwork = memo(() => {
             <span className="text-gray-600 font-medium">Collaborator</span>
           </div>
           <div className="flex items-center gap-6">
-            <div className="w-12 h-1 bg-blue-400 rounded"/>
+            <div className="w-12 h-1 rounded" style={{backgroundColor: 'rgb(172,14,14)'}}/>
             <span className="text-gray-600 font-medium">Connection</span>
           </div>
         </div>
@@ -1200,9 +1230,16 @@ export const MembersDirectorActivitiesTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Director
           </h1>
+          
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-12 md:gap-16">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
+          </div>
         </div>
       </div>
 

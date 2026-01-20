@@ -125,9 +125,16 @@ export const AboutIntroductionTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Introduction
           </h1>
+          
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-12 md:gap-16">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -174,19 +181,12 @@ export const AboutIntroductionTemplate = () => {
                 <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
               </h2>
 
-              {/* Divider */}
-              <div className="flex items-center justify-center gap-16 mb-20 md:mb-32">
-                <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-amber-300" />
-                <div className="w-2 h-2 rounded-full bg-primary" />
-                <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-amber-300" />
-              </div>
-
               {/* Introduction Paragraphs */}
               <div className="space-y-16 md:space-y-20">
                 <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[1.9] font-medium">
                   <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
                   <span className="relative inline-block mx-2">
-                    <span className="text-amber-700 font-bold">FINDS Lab.</span>
+                    <span className="text-pink-400 font-bold">FINDS Lab.</span>
                     <span className="absolute -bottom-1 left-0 right-0 h-2 bg-amber-200/40 -z-10" />
                   </span>
                   은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
@@ -204,8 +204,8 @@ export const AboutIntroductionTemplate = () => {
                   <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
                   복잡한 데이터 속에서 새로운{' '}
                   <span className="relative inline-block">
-                    <span className="text-amber-600 font-bold">발견(finds)</span>
-                    <Sparkles size={12} className="absolute -top-2 -right-4 text-amber-400" />
+                    <span className="font-bold" style={{color: '#ffb7c5'}}>발견(finds)</span>
+                    <Sparkles size={12} className="absolute -top-2 -right-4" style={{color: '#ffb7c5'}} />
                   </span>
                   을 이끌어내고 데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
                 </p>
@@ -255,7 +255,7 @@ export const AboutIntroductionTemplate = () => {
                   <div className="relative p-28 md:p-40 lg:p-48">
                     {/* Icon */}
                     <div className="relative w-80 h-80 md:w-100 md:h-100 mx-auto mb-24 md:mb-32">
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-primary/10 rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-pink-50 rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-white rounded-2xl md:rounded-3xl shadow-lg flex items-center justify-center">
                         <img
                           src={area.image}
@@ -270,7 +270,7 @@ export const AboutIntroductionTemplate = () => {
                       <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-6 md:mb-8 group-hover:text-primary transition-colors duration-300">
                         {area.title}
                       </h3>
-                      <p className="text-sm md:text-base text-amber-700/80 font-semibold mb-16 md:mb-20">
+                      <p className="text-sm md:text-base text-pink-400/80 font-semibold mb-16 md:mb-20">
                         {area.titleKo}
                       </p>
                       <p className="text-sm text-gray-500 leading-[1.8]">
@@ -315,7 +315,7 @@ export const AboutIntroductionTemplate = () => {
               {/* Badge */}
               <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-32 md:mb-48 shadow-sm">
                 <Sparkles size={14} className="text-amber-500" />
-                <span className="text-amber-700 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                <span className="text-pink-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Vision
                 </span>
               </div>
@@ -346,7 +346,7 @@ export const AboutIntroductionTemplate = () => {
                 diminishes knowledge asymmetry, turning complex data streams into{' '}
                 <span className="text-primary font-semibold">clear, accessible, and strategically valuable insights</span>{' '}
                 — a future built upon meaningful{' '}
-                <span className="text-amber-600 font-bold">finds</span>{' '}
+                <span className="font-bold" style={{color: '#ffb7c5'}}>finds</span>{' '}
                 that guide decision-makers across finance, business, and diverse societal domains.
               </p>
             </div>
@@ -365,7 +365,7 @@ export const AboutIntroductionTemplate = () => {
           >
             {/* Section Header */}
             <div className="text-center mb-48 md:mb-80">
-              <span className="inline-block px-16 py-6 bg-gradient-to-r from-amber-100 to-primary/10 text-amber-700 text-[10px] md:text-xs font-bold rounded-full mb-16 md:mb-24 uppercase tracking-[0.2em]">
+              <span className="inline-block px-16 py-6 bg-gradient-to-r from-pink-100 to-pink-50 text-pink-400 text-[10px] md:text-xs font-bold rounded-full mb-16 md:mb-24 uppercase tracking-[0.2em]">
                 Our Pillars
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
@@ -404,7 +404,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Label */}
-                      <span className="inline-block px-12 py-4 bg-amber-50 text-amber-700 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                      <span className="inline-block px-12 py-4 bg-amber-50 text-pink-400 text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                         {pillar.label}
                       </span>
 
@@ -415,7 +415,7 @@ export const AboutIntroductionTemplate = () => {
                       
                       {/* Subtitle for Philosophy */}
                       {pillar.subtitle && (
-                        <p className="text-sm text-amber-600 font-medium italic mb-12 md:mb-16">
+                        <p className="text-sm font-medium italic mb-12 md:mb-16" style={{color: '#ffb7c5'}}>
                           {pillar.subtitle}
                         </p>
                       )}

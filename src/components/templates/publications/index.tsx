@@ -498,9 +498,16 @@ export const PublicationsTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Publications
           </h1>
+          
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-12 md:gap-16">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -702,11 +709,13 @@ export const PublicationsTemplate = () => {
                                   </div>
                                   {pub.type === 'conference' && pub.presentation_type && (
                                     <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 ${
-                                      pub.presentation_type === 'oral' ? 'bg-blue-50' : 'bg-orange-50'
+                                      pub.presentation_type === 'oral' ? 'bg-pink-50' : 'bg-orange-50'
                                     }`}>
                                       <span className={`text-[9px] md:text-[10px] font-semibold uppercase tracking-wide ${
-                                        pub.presentation_type === 'oral' ? 'text-blue-600' : 'text-orange-600'
-                                      }`}>
+                                        pub.presentation_type === 'oral' ? 'text-pink-400' : 'text-orange-400'
+                                      }`}
+                                        style={{color: pub.presentation_type === 'oral' ? '#ffb7c5' : '#ffcba4'}}
+                                      >
                                         {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                       </span>
                                     </div>

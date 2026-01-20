@@ -265,9 +265,16 @@ export const MembersAlumniTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Alumni
           </h1>
+          
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-12 md:gap-16">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -350,7 +357,7 @@ export const MembersAlumniTemplate = () => {
                     Ph.D. Alumni
                     <span className="text-sm font-normal text-gray-400">({categorizedAlumni.phd.length})</span>
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                  <div className="flex flex-col gap-12">
                     {categorizedAlumni.phd.map((alum, idx) => renderAlumniCard(alum, idx, 'phd'))}
                   </div>
                 </div>
@@ -364,13 +371,13 @@ export const MembersAlumniTemplate = () => {
                     M.S. Alumni
                     <span className="text-sm font-normal text-gray-400">({categorizedAlumni.ms.length})</span>
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
+                  <div className="flex flex-col gap-12">
                     {categorizedAlumni.ms.map((alum, idx) => renderAlumniCard(alum, idx, 'ms'))}
                   </div>
                 </div>
               )}
 
-              {/* Undergraduate Alumni */}
+              {/* Undergraduate Alumni - Table Format */}
               {categorizedAlumni.undergrad.length > 0 && (
                 <div>
                   <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px] flex items-center gap-12">
@@ -378,8 +385,75 @@ export const MembersAlumniTemplate = () => {
                     Undergraduate Researchers
                     <span className="text-sm font-normal text-gray-400">({categorizedAlumni.undergrad.length})</span>
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-                    {categorizedAlumni.undergrad.map((alum, idx) => renderAlumniCard(alum, idx, 'undergrad'))}
+                  <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="bg-gray-50 border-b border-gray-200">
+                            <th className="px-16 py-12 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Name</th>
+                            <th className="px-16 py-12 text-left text-xs font-bold text-gray-500 uppercase tracking-wider hidden md:table-cell">Education</th>
+                            <th className="px-16 py-12 text-left text-xs font-bold text-gray-500 uppercase tracking-wider hidden lg:table-cell">Projects</th>
+                            <th className="px-16 py-12 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Post-Program Affiliation</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100">
+                          {categorizedAlumni.undergrad.map((alum, idx) => (
+                            <tr key={idx} className="hover:bg-gray-50 transition-colors">
+                              <td className="px-16 py-12">
+                                <div className="flex items-center gap-8">
+                                  <div className="size-32 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <span className="text-xs font-bold text-primary">{alum.name.charAt(0)}</span>
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-gray-900">{alum.name}</p>
+                                    <p className="text-xs text-gray-500">{alum.nameKo}</p>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-16 py-12 hidden md:table-cell">
+                                {alum.education && alum.education.length > 0 ? (
+                                  <div className="space-y-2">
+                                    {alum.education.map((edu, i) => (
+                                      <p key={i} className="text-xs text-gray-600">
+                                        {edu.degree.toUpperCase()} · {edu.school}
+                                      </p>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <span className="text-xs text-gray-400">-</span>
+                                )}
+                              </td>
+                              <td className="px-16 py-12 hidden lg:table-cell">
+                                {alum.projects && alum.projects.length > 0 ? (
+                                  <div className="flex flex-wrap gap-4">
+                                    {alum.projects.slice(0, 2).map((proj, i) => (
+                                      <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-medium rounded-full">
+                                        {proj.length > 20 ? proj.substring(0, 20) + '...' : proj}
+                                      </span>
+                                    ))}
+                                    {alum.projects.length > 2 && (
+                                      <span className="text-[10px] text-gray-400">+{alum.projects.length - 2}</span>
+                                    )}
+                                  </div>
+                                ) : (
+                                  <span className="text-xs text-gray-400">-</span>
+                                )}
+                              </td>
+                              <td className="px-16 py-12">
+                                {alum.company ? (
+                                  <div className="flex items-center gap-6">
+                                    <Building2 size={12} className="text-gray-400" />
+                                    <span className="text-xs font-medium text-gray-700">{alum.company}</span>
+                                  </div>
+                                ) : (
+                                  <span className="text-xs text-gray-400">-</span>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               )}

@@ -108,9 +108,16 @@ export const AboutResearchTemplate = () => {
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
           </div>
           
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Research Areas
           </h1>
+          
+          {/* Divider */}
+          <div className="flex items-center justify-center gap-12 md:gap-16">
+            <div className="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-300" />
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-300" />
+          </div>
         </div>
       </div>
 
@@ -142,12 +149,6 @@ export const AboutResearchTemplate = () => {
             </span>
             <span className="inline-block"> Through Data</span>
           </h2>
-          
-          <div className="flex items-center justify-center gap-16 mb-16 md:mb-24">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent to-amber-300" />
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent to-amber-300" />
-          </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
             FINDS Lab은 금융데이터사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정의 세 가지 핵심 연구 분야를 통해 
