@@ -1,0 +1,153 @@
+{
+  "graduateAlumni": [
+    {
+      "name": "정박사",
+      "nameKo": "(Jung Ph.D.)",
+      "degrees": ["phd"],
+      "periods": {
+        "phd": "2019.09 – 2025.02"
+      },
+      "education": [
+        {
+          "degree": "phd",
+          "school": "Dongduk Women's University",
+          "dept": "Business Analytics",
+          "year": "2025"
+        },
+        {
+          "degree": "bs",
+          "school": "Dongduk Women's University",
+          "dept": "Mathematics",
+          "year": "2018"
+        }
+      ],
+      "thesis": {
+        "phd": {
+          "title": "Deep Reinforcement Learning for Dynamic Portfolio Optimization",
+          "url": "https://example.com/thesis/jung-phd-2025.pdf"
+        }
+      },
+      "company": "Lorem Institute of Quantitative Finance"
+    },
+    {
+      "name": "강박사",
+      "nameKo": "(Kang Ph.D.)",
+      "degrees": ["ms", "phd"],
+      "periods": {
+        "ms": "2018.03 – 2020.02",
+        "phd": "2020.03 – 2024.08"
+      },
+      "education": [
+        {
+          "degree": "phd",
+          "school": "Dongduk Women's University",
+          "dept": "Business Analytics",
+          "year": "2024"
+        },
+        {
+          "degree": "ms",
+          "school": "Dongduk Women's University",
+          "dept": "Business Analytics",
+          "year": "2020"
+        },
+        {
+          "degree": "bs",
+          "school": "KAIST",
+          "dept": "Industrial Engineering",
+          "year": "2017"
+        }
+      ],
+      "thesis": {
+        "phd": {
+          "title": "Graph Neural Networks for Financial Market Prediction",
+          "url": "https://example.com/thesis/kang-phd-2024.pdf"
+        },
+        "ms": {
+          "title": "Time Series Analysis for High-Frequency Trading",
+          "url": "https://example.com/thesis/kang-ms-2020.pdf"
+        }
+      },
+      "company": "Ipsum Asset Management"
+    },
+    {
+      "name": "윤석사",
+      "nameKo": "(Yoon M.S.)",
+      "degrees": ["ms"],
+      "periods": {
+        "ms": "2023.03 – 2025.02"
+      },
+      "education": [
+        {
+          "degree": "ms",
+          "school": "Dongduk Women's University",
+          "dept": "Financial Data Science",
+          "year": "2025"
+        },
+        {
+          "degree": "bs",
+          "school": "Korea University",
+          "dept": "Computer Science",
+          "year": "2023"
+        }
+      ],
+      "thesis": {
+        "ms": {
+          "title": "NLP-based Sentiment Analysis for Korean Financial News",
+          "url": "https://example.com/thesis/yoon-ms-2025.pdf"
+        }
+      },
+      "company": "Dolor Capital Partners"
+    }
+  ],
+  "undergradAlumni": [
+    {
+      "name": "장학사",
+      "nameKo": "(Jang B.S.)",
+      "degrees": ["ur"],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2022.09 – 2024.08"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Dongduk Women's University",
+          "dept": "Business Analytics",
+          "year": "2024"
+        }
+      ],
+      "thesis": {
+        "ur": {
+          "title": "Machine Learning Approaches for Credit Risk Assessment",
+          "url": "https://example.com/thesis/jang-bs-2024.pdf"
+        }
+      },
+      "company": "KB Securities"
+    },
+    {
+      "name": "박학사",
+      "nameKo": "(Park B.S.)",
+      "degrees": ["ur"],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2021.03 – 2023.02"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Dongduk Women's University",
+          "dept": "Business Analytics",
+          "year": "2023"
+        }
+      ],
+      "thesis": {
+        "ur": {
+          "title": "Deep Learning for Customer Churn Prediction",
+          "url": "https://example.com/thesis/park-bs-2023.pdf"
+        }
+      },
+      "company": "Samsung SDS"
+    }
+  ],
+  "sinceDate": "2025.06.14"
+}
