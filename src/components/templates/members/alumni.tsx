@@ -153,26 +153,41 @@ export const MembersAlumniTemplate = () => {
           </div>
         ) : (
           <div className="space-y-48">
-            {/* Stats Summary */}
-            <div className="flex flex-wrap items-center justify-center gap-24 py-24 bg-gray-50 rounded-2xl">
-              <div className="text-center px-24">
-                <p className="text-3xl font-bold text-primary">{totalCount}</p>
-                <p className="text-sm text-gray-500 mt-4">Total Alumni</p>
-              </div>
-              <div className="w-px h-40 bg-gray-200 hidden md:block" />
-              <div className="text-center px-24">
-                <p className="text-3xl font-bold text-gray-900">{phdAlumni.length}</p>
-                <p className="text-sm text-gray-500 mt-4">Ph.D.</p>
-              </div>
-              <div className="w-px h-40 bg-gray-200 hidden md:block" />
-              <div className="text-center px-24">
-                <p className="text-3xl font-bold text-gray-900">{msAlumni.length}</p>
-                <p className="text-sm text-gray-500 mt-4">M.S.</p>
-              </div>
-              <div className="w-px h-40 bg-gray-200 hidden md:block" />
-              <div className="text-center px-24">
-                <p className="text-3xl font-bold text-gray-900">{sortedUndergradAlumni.length}</p>
-                <p className="text-sm text-gray-500 mt-4">Undergraduate</p>
+            {/* Stats Summary - Red Dot Style */}
+            <div className="flex flex-col gap-16 md:gap-24">
+              <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                <span className="w-8 h-8 rounded-full bg-primary" />
+                Statistics
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{totalCount}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Total Alumni</span>
+                  </div>
+                </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{phdAlumni.length}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Ph.D.</span>
+                  </div>
+                </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{msAlumni.length}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">M.S.</span>
+                  </div>
+                </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{sortedUndergradAlumni.length}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Undergraduate</span>
+                  </div>
+                </div>
               </div>
             </div>
 

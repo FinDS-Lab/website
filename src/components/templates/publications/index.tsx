@@ -467,22 +467,26 @@ export const PublicationsTemplate = () => {
       {/* Content Section */}
       <section className="py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
-          {/* Statistics Section */}
-          <div className="flex flex-col gap-12 md:gap-20">
-            <div className="flex items-center gap-8">
-              <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Statistics</h2>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-12 md:gap-20">
+          {/* Statistics Section - Red Dot Style */}
+          <div className="flex flex-col gap-16 md:gap-24">
+            <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+              <span className="w-8 h-8 rounded-full bg-primary" />
+              Statistics
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
               {statistics.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-12 md:px-20 py-16 md:py-24 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm gap-8"
+                  className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                 >
-                  <div className="flex items-center gap-8 md:gap-12">
-                    <stat.icon className="size-16 md:size-20 text-gray-500" />
-                    <span className="text-sm md:text-md font-semibold text-gray-900">{stat.label}</span>
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold text-primary mb-4">{stat.count}</span>
+                    <div className="flex items-center gap-6">
+                      <stat.icon className="size-14 md:size-16 text-gray-400" />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                    </div>
                   </div>
-                  <span className="text-xl md:text-[24px] font-semibold text-primary">{stat.count}</span>
                 </div>
               ))}
             </div>

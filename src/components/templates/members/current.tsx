@@ -186,22 +186,26 @@ export const MembersCurrentTemplate = () => {
 
       {/* Content */}
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-[80px]">
-        {/* Statistics Section */}
-        <div className="flex flex-col gap-16 md:gap-[20px] mb-40 md:mb-[60px]">
-          <div className="flex items-center gap-[8px]">
-            <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Statistics</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-[20px]">
+        {/* Statistics Section - Red Dot Style */}
+        <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <span className="w-8 h-8 rounded-full bg-primary" />
+            Statistics
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-16 md:px-20 py-16 md:py-[24px] bg-white border border-gray-100 rounded-xl md:rounded-[20px] shadow-sm gap-8"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
-                <div className="flex items-center gap-8 md:gap-[12px]">
-                  <stat.icon className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
-                  <span className="text-sm md:text-md font-semibold text-gray-900">{stat.label}</span>
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className={`text-2xl md:text-3xl font-bold mb-4 ${stat.countColor}`}>{stat.count}</span>
+                  <div className="flex items-center gap-6">
+                    <stat.icon className="size-14 md:size-16 text-gray-400" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                  </div>
                 </div>
-                <span className={`text-md md:text-[24px] font-semibold ${stat.countColor}`}>{stat.count}</span>
               </div>
             ))}
           </div>

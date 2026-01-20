@@ -1,6 +1,6 @@
 import {memo, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X} from 'lucide-react'
+import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 type Project = {
@@ -150,6 +150,7 @@ export const ProjectsTemplate = () => {
   const [loading, setLoading] = useState(true)
   const [expandedYear, setExpandedYear] = useState<string | null>(null)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
   const [filters, setFilters] = useState<{ type: string[]; status: string[] }>({
     type: [],
     status: [],
@@ -211,6 +212,13 @@ export const ProjectsTemplate = () => {
       const status = getProjectStatus(p.period)
       if (!filters.status.includes(status)) return false
     }
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase()
+      const matchesTitle = p.titleEn.toLowerCase().includes(query) || p.titleKo.toLowerCase().includes(query)
+      const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || p.fundingAgencyKo.toLowerCase().includes(query)
+      const matchesPeriod = p.period.includes(query)
+      if (!matchesTitle && !matchesFunding && !matchesPeriod) return false
+    }
     return true
   })
 
@@ -236,7 +244,7 @@ export const ProjectsTemplate = () => {
     { icon: Briefcase, label: 'Completed', count: stats.completed, color: 'text-gray-500' },
   ]
 
-  const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0
+  const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
 
   return (
     <div className="flex flex-col bg-white">
@@ -292,23 +300,26 @@ export const ProjectsTemplate = () => {
       <section className="py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           
-          {/* Statistics Section */}
-          <div className="flex flex-col gap-12 md:gap-20">
-            <div className="flex items-center gap-8">
-              <TrendingUp size={20} className="text-primary" />
-              <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Statistics</h2>
-            </div>
-            <div className="grid grid-cols-3 gap-12 md:gap-20">
+          {/* Statistics Section - Red Dot Style */}
+          <div className="flex flex-col gap-16 md:gap-24">
+            <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+              <span className="w-8 h-8 rounded-full bg-primary" />
+              Statistics
+            </h2>
+            <div className="grid grid-cols-3 gap-8 md:gap-12">
               {statisticsItems.map((stat, index) => (
                 <div
                   key={index}
-                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-12 md:px-20 py-16 md:py-24 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm gap-8 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+                  className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                 >
-                  <div className="flex items-center gap-8 md:gap-12">
-                    <stat.icon className="size-16 md:size-20 text-gray-500" />
-                    <span className="text-sm md:text-md font-semibold text-gray-900">{stat.label}</span>
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className={`text-2xl md:text-3xl font-bold mb-4 ${stat.color || 'text-primary'}`}>{stat.count}</span>
+                    <div className="flex items-center gap-6">
+                      <stat.icon className="size-14 md:size-16 text-gray-400" />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                    </div>
                   </div>
-                  <span className={`text-xl md:text-[24px] font-semibold ${stat.color || 'text-primary'}`}>{stat.count}</span>
                 </div>
               ))}
             </div>
@@ -316,6 +327,26 @@ export const ProjectsTemplate = () => {
 
           {/* Filter & Search - Publications Style */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-[400px]">
+              <Search className="absolute left-16 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search projects..."
+                className="w-full pl-44 pr-16 py-12 md:py-14 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-12 top-1/2 -translate-y-1/2 size-20 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
+
             <div className="relative">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}

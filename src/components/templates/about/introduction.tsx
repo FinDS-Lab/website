@@ -367,8 +367,25 @@ export const AboutIntroductionTemplate = () => {
                   Our Pillars
                 </span>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
-                Research <span className="text-gray-300">·</span> Impact <span className="text-gray-300">·</span> Philosophy
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 flex items-center justify-center gap-12 md:gap-20">
+                <span className="relative">
+                  Research
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
+                </span>
+                <span className="flex items-center gap-4">
+                  <span className="size-2 rounded-full bg-primary" />
+                </span>
+                <span className="relative">
+                  Impact
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-amber-500/30 to-amber-500 rounded-full" />
+                </span>
+                <span className="flex items-center gap-4">
+                  <span className="size-2 rounded-full bg-amber-500" />
+                </span>
+                <span className="relative">
+                  Philosophy
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#ffb7c5] to-[#ffb7c5]/30 rounded-full" />
+                </span>
               </h2>
             </div>
 

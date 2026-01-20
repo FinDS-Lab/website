@@ -319,9 +319,10 @@ export const MembersDirectorTemplate = () => {
                   href="https://scholar.google.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: '#ffffff'}}
                 >
-                  Scholar <ExternalLink size={14}/>
+                  Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
               </div>
             </div>
@@ -381,7 +382,7 @@ export const MembersDirectorTemplate = () => {
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
                     <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
-                      <div className={`size-8 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-amber-500' : 'bg-pink-400'}`}/>
+                      <div className={`size-8 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-[#e8879b]' : 'bg-[#ffb7c5]'}`}/>
                       <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
@@ -394,7 +395,7 @@ export const MembersDirectorTemplate = () => {
                         })
                         return (
                           <li key={idx} className="flex items-start gap-10">
-                            <span className={`size-5 rounded-full shrink-0 mt-7 ${index === 0 ? 'bg-primary/30' : index === 1 ? 'bg-amber-500/30' : 'bg-pink-400/30'}`}/>
+                            <span className={`size-5 rounded-full shrink-0 mt-7 ${index === 0 ? 'bg-primary/30' : index === 1 ? 'bg-[#e8879b]/30' : 'bg-[#ffb7c5]/30'}`}/>
                             <span 
                               className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
                               dangerouslySetInnerHTML={{__html: highlightedItem}}

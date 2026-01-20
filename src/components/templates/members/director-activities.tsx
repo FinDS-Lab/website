@@ -296,6 +296,7 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
+  const [nodeThreshold, setNodeThreshold] = useState(25)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
   const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.6 : 1.3
@@ -364,7 +365,7 @@ const CollaborationNetwork = memo(() => {
         const directorCollabs = collaborationMap.get('1') || new Map()
         const topCollaborators = Array.from(directorCollabs.entries())
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 25)
+          .slice(0, nodeThreshold)
           .map(([id]) => id)
 
         const nodesToShow = ['1', ...topCollaborators]
@@ -470,7 +471,7 @@ const CollaborationNetwork = memo(() => {
       }
     }
     loadData()
-  }, [])
+  }, [nodeThreshold])
 
   // Force simulation
   useEffect(() => {
@@ -664,32 +665,44 @@ const CollaborationNetwork = memo(() => {
   return (
     <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
       {/* Header */}
-      <div className="bg-gray-50/50 px-32 py-20 flex items-center justify-between border-b border-gray-100">
-        <div></div>
+      <div className="bg-gray-50/50 px-16 md:px-32 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 gap-12 md:gap-0">
+        {/* Threshold Slider */}
+        <div className="flex items-center gap-8 md:gap-12 w-full md:w-auto">
+          <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">Nodes:</span>
+          <input
+            type="range"
+            min="10"
+            max="50"
+            value={nodeThreshold}
+            onChange={(e) => setNodeThreshold(Number(e.target.value))}
+            className="w-80 md:w-100 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+          <span className="text-[10px] md:text-xs font-bold text-primary w-20">{nodeThreshold}</span>
+        </div>
         <div className="flex items-center gap-8">
-          <span className="text-xs text-gray-400 font-medium mr-12">
+          <span className="text-[10px] md:text-xs text-gray-400 font-medium mr-8 md:mr-12">
             {nodes.length} Collaborators · {links.length} Connections
           </span>
           <button
             onClick={handleZoomIn}
-            className="size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom In"
           >
-            <ZoomIn size={16}/>
+            <ZoomIn size={14}/>
           </button>
           <button
             onClick={handleZoomOut}
-            className="size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom Out"
           >
-            <ZoomOut size={16}/>
+            <ZoomOut size={14}/>
           </button>
           <button
             onClick={handleReset}
-            className="size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Reset View"
           >
-            <Maximize2 size={16}/>
+            <Maximize2 size={14}/>
           </button>
         </div>
       </div>
@@ -1317,9 +1330,10 @@ export const MembersDirectorActivitiesTemplate = () => {
                   href="https://scholar.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-white text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: '#ffffff'}}
                 >
-                  Scholar <ExternalLink size={14}/>
+                  Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
               </div>
             </div>
@@ -1527,7 +1541,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{reviewerData.conferences.length}</span>
+                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{reviewerData.conferences.length}</span>
                           </div>
                           {reviewerData.conferences.length > 20 && (
                             <button
