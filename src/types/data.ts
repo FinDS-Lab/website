@@ -112,6 +112,7 @@ export type AlumniMember = {
   }
   company?: string
   cohort?: string
+  projects?: string[]
 }
 
 export type AlumniData = {

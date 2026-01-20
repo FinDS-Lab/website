@@ -426,7 +426,7 @@ export const MembersAlumniTemplate = () => {
                               <td className="px-16 py-12 hidden lg:table-cell">
                                 {alum.projects && alum.projects.length > 0 ? (
                                   <div className="flex flex-wrap gap-4">
-                                    {alum.projects.slice(0, 2).map((proj, i) => (
+                                    {alum.projects.slice(0, 2).map((proj: string, i: number) => (
                                       <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-medium rounded-full">
                                         {proj.length > 20 ? proj.substring(0, 20) + '...' : proj}
                                       </span>
