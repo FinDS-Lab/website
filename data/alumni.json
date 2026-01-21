@@ -3,465 +3,223 @@
   "undergradAlumni": [
     {
       "name": "강병오",
-      "nameKo": "(Kang, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Computer Science and Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Computer Science and Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Financial Time Series Anomaly Detection Using Deep Learning"}
     },
     {
       "name": "고현우",
-      "nameKo": "(Ko, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Predictive Modeling for Supply Chain Optimization"}
     },
     {
       "name": "김강현",
-      "nameKo": "(Kim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Soongsil University",
-          "dept": "Industrial and Information Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Soongsil University", "dept": "Industrial and Information Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Soongsil University"
+      "currentPosition": "Graduate School, Soongsil University",
+      "project": {"title": "Machine Learning Applications in Manufacturing Quality Control"}
     },
     {
       "name": "김다인",
-      "nameKo": "(Kim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Hongik University",
-          "dept": "Industrial & Data Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Hongik University", "dept": "Industrial & Data Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Hongik University"
+      "currentPosition": "Graduate School, Hongik University",
+      "project": {"title": "Customer Segmentation Analysis Using Clustering Algorithms"}
     },
     {
       "name": "김연후",
-      "nameKo": "(Kim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Hanyang University (ERICA Campus)",
-          "dept": "Industrial and Management Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Hanyang University (ERICA)", "dept": "Industrial and Management Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Hanyang University (ERICA Campus)"
+      "currentPosition": "Graduate School, Hanyang University",
+      "project": {"title": "Natural Language Processing for Financial News Sentiment Analysis"}
     },
     {
       "name": "김재엽",
-      "nameKo": "(Kim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Hanyang University",
-          "dept": "Industrial Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Hanyang University", "dept": "Industrial Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Hanyang University"
+      "currentPosition": "Graduate School, Hanyang University",
+      "project": {"title": "Reinforcement Learning for Portfolio Optimization"}
     },
     {
       "name": "박성수",
-      "nameKo": "(Park, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Korea University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Korea University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Korea University (Graduate Student)"
+      "currentPosition": "Graduate School, Korea University",
+      "project": {"title": "Deep Learning-Based Credit Risk Assessment Model"}
     },
     {
       "name": "신경수",
-      "nameKo": "(Shin, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Time Series Forecasting for Energy Consumption Prediction"}
     },
     {
       "name": "신정윤",
-      "nameKo": "(Shin, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Explainable AI for Financial Decision Support Systems"}
     },
     {
       "name": "심은",
-      "nameKo": "(Shim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Sogang University",
-          "dept": "Computer Science and Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Sogang University", "dept": "Computer Science and Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Sogang University"
+      "currentPosition": "Graduate School, Sogang University",
+      "project": {"title": "Graph Neural Networks for Financial Fraud Detection"}
     },
     {
       "name": "양동훈",
-      "nameKo": "(Yang, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Inha University",
-          "dept": "Industrial Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Inha University", "dept": "Industrial Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Inha University"
+      "currentPosition": "Graduate School, Inha University",
+      "project": {"title": "Multi-Objective Optimization in Financial Portfolio Management"}
     },
     {
       "name": "이성준",
-      "nameKo": "(Lee, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Automated Trading System Development Using Machine Learning"}
     },
     {
       "name": "이수인",
-      "nameKo": "(Lee, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Seoul National University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Seoul National University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Seoul National University (Graduate Student)"
+      "currentPosition": "Graduate School, Seoul National University",
+      "project": {"title": "Large Language Models for Financial Document Analysis"}
     },
     {
       "name": "이유섭",
-      "nameKo": "(Lee, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "KAIST",
-          "dept": "Industrial & Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "KAIST", "dept": "Industrial & Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "KAIST"
+      "currentPosition": "Graduate School, KAIST",
+      "project": {"title": "Bayesian Deep Learning for Uncertainty Quantification in Finance"}
     },
     {
       "name": "이채은",
-      "nameKo": "(Lee, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Gachon University",
-          "dept": "Industrial Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Gachon University", "dept": "Industrial Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Gachon University"
+      "currentPosition": "Graduate School, Gachon University",
+      "project": {"title": "Business Intelligence Dashboard for Real-Time Analytics"}
     },
     {
       "name": "이태경",
-      "nameKo": "(Lee, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Korea University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Korea University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Korea University (Graduate Student)"
+      "currentPosition": "Graduate School, Korea University",
+      "project": {"title": "Transformer Models for Stock Price Movement Prediction"}
     },
     {
       "name": "임소영",
-      "nameKo": "(Lim, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Data-Driven Approach to ESG Investment Strategy"}
     },
     {
       "name": "정유진",
-      "nameKo": "(Jung, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Predictive Analytics for Customer Churn Prevention"}
     },
     {
       "name": "조윤수",
-      "nameKo": "(Jo, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Network Analysis of Financial Market Correlations"}
     },
     {
       "name": "최문혁",
-      "nameKo": "(Choi, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Sentiment Analysis of Social Media for Market Prediction"}
     },
     {
       "name": "최진우",
-      "nameKo": "(Choi, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Kyung Hee University",
-          "dept": "Industrial and Management Systems Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Kyung Hee University"
+      "currentPosition": "Graduate School, Kyung Hee University",
+      "project": {"title": "Computer Vision Applications in Financial Document Processing"}
     },
     {
       "name": "하승민",
-      "nameKo": "(Ha, B.S.)",
-      "degrees": [
-        "ur"
-      ],
+      "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {
-        "ur": "2025.12.24 – 2026.03.01"
-      },
-      "education": [
-        {
-          "degree": "bs",
-          "school": "Jeonbuk National University",
-          "dept": "Industrial and Information System Engineering",
-          "year": "2026"
-        }
-      ],
+      "periods": {"ur": "2025.12.24 – 2026.03.01"},
+      "education": [{"degree": "bs", "school": "Jeonbuk National University", "dept": "Industrial and Information System Engineering", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Jeonbuk National University"
+      "currentPosition": "Graduate School, Jeonbuk National University",
+      "project": {"title": "Anomaly Detection in Financial Transactions Using Autoencoders"}
     }
   ],
   "sinceDate": "2025.06.14"
