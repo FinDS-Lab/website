@@ -1,6 +1,6 @@
 import { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Calendar, Home, User } from 'lucide-react'
+import { Calendar, Home } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -16,7 +16,7 @@ interface NoticeItem {
   author?: string;
 }
 
-// Red-dot Design Style 상세 모달
+// 상세 모달
 const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; date?: string }) => {
   const [content, setContent] = useState<string>('')
   const [loading, setLoading] = useState(true)
@@ -53,21 +53,24 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
   return (
     <div className="relative">
       {/* Header */}
-      <div className="border-b border-gray-100 px-24 md:px-32 py-20 md:py-24">
-        <div className="flex items-center gap-16 mb-12 text-sm text-gray-500">
-          <div className="flex items-center gap-6">
-            <Calendar className="size-14 text-gray-400" />
-            <span className="font-medium">{metadata.date}</span>
-          </div>
-          <span className="text-gray-200">|</span>
-          <div className="flex items-center gap-6">
-            <User className="size-14 text-gray-400" />
-            <span className="font-medium">{metadata.author}</span>
-          </div>
-        </div>
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+      <div className="bg-gray-50 border-b border-gray-200 px-24 md:px-32 py-24 md:py-32">
+        {/* Title */}
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-16 md:mb-20">
           {metadata.title}
         </h1>
+        {/* Meta Info - 격식있는 형태 */}
+        <div className="flex flex-col gap-8 text-sm text-gray-600">
+          <div className="flex items-center gap-8">
+            <span className="font-semibold text-gray-500 w-56">작성일</span>
+            <span className="text-gray-400">:</span>
+            <span>{metadata.date}</span>
+          </div>
+          <div className="flex items-center gap-8">
+            <span className="font-semibold text-gray-500 w-56">작성자</span>
+            <span className="text-gray-400">:</span>
+            <span>{metadata.author}</span>
+          </div>
+        </div>
       </div>
       
       {/* Content */}

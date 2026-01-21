@@ -1,6 +1,6 @@
 import { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Image as ImageIcon, Calendar, Home, User } from 'lucide-react'
+import { Image as ImageIcon, Calendar, Home } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -12,11 +12,10 @@ interface GalleryItem {
   title: string;
   date: string;
   thumb: string;
-  tags: string[];
   author?: string;
 }
 
-// Red-dot Design Style 상세 모달
+// 상세 모달
 const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; date?: string }) => {
   const [content, setContent] = useState<string>('')
   const [loading, setLoading] = useState(true)
@@ -53,23 +52,24 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
   return (
     <div className="relative">
       {/* Header */}
-      <div className="border-b border-gray-100 px-24 md:px-32 py-20 md:py-24">
-        {/* Meta Info */}
-        <div className="flex items-center gap-16 mb-12 text-sm text-gray-500">
-          <div className="flex items-center gap-6">
-            <Calendar className="size-14 text-gray-400" />
-            <span className="font-medium">{metadata.date}</span>
-          </div>
-          <span className="text-gray-200">|</span>
-          <div className="flex items-center gap-6">
-            <User className="size-14 text-gray-400" />
-            <span className="font-medium">{metadata.author}</span>
-          </div>
-        </div>
+      <div className="bg-gray-50 border-b border-gray-200 px-24 md:px-32 py-24 md:py-32">
         {/* Title */}
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-16 md:mb-20">
           {metadata.title}
         </h1>
+        {/* Meta Info - 격식있는 형태 */}
+        <div className="flex flex-col gap-8 text-sm text-gray-600">
+          <div className="flex items-center gap-8">
+            <span className="font-semibold text-gray-500 w-56">작성일</span>
+            <span className="text-gray-400">:</span>
+            <span>{metadata.date}</span>
+          </div>
+          <div className="flex items-center gap-8">
+            <span className="font-semibold text-gray-500 w-56">작성자</span>
+            <span className="text-gray-400">:</span>
+            <span>{metadata.author}</span>
+          </div>
+        </div>
       </div>
       
       {/* Content */}
@@ -106,7 +106,6 @@ export const ArchivesGalleryTemplate = () => {
   useEffect(() => {
     const fetchAllGalleries = async () => {
       try {
-        // index.json에서 폴더 목록을 동적으로 가져옴
         const indexResponse = await fetch(`${baseUrl}data/gallery/index.json`)
         const indexData = await indexResponse.json()
         const galleryFolders: string[] = indexData.folders || []
@@ -121,7 +120,6 @@ export const ArchivesGalleryTemplate = () => {
               title: (data.title as string) || 'No Title',
               date: (data.date as string) || '',
               thumb: (data.thumb as string) || '',
-              tags: (Array.isArray(data.tags) ? data.tags : []) as string[],
               author: (data.author as string) || 'FINDS Lab.'
             }
           })
@@ -141,27 +139,17 @@ export const ArchivesGalleryTemplate = () => {
     <div className="flex flex-col bg-white">
       {/* Banner */}
       <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
-          style={{ backgroundImage: `url(${banner4})` }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${banner4})` }} />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
             <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
-            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
-              Archives
-            </span>
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">Archives</span>
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">
-            Gallery
-          </h1>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">Gallery</h1>
         </div>
       </div>
 
@@ -169,9 +157,7 @@ export const ArchivesGalleryTemplate = () => {
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
         <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
-              <Home size={16} />
-            </Link>
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
             <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Archives</span>
             <span className="text-gray-200">—</span>
@@ -209,11 +195,9 @@ export const ArchivesGalleryTemplate = () => {
                   )}
                 </div>
                 <div className="p-16 md:p-20">
-                  <div className="flex items-center gap-16 mb-8 text-xs text-gray-500">
-                    <div className="flex items-center gap-6">
-                      <Calendar className="size-12 text-gray-400" />
-                      <span className="font-medium">{item.date}</span>
-                    </div>
+                  <div className="flex items-center gap-6 mb-8 text-xs text-gray-500">
+                    <Calendar className="size-12 text-gray-400" />
+                    <span className="font-medium">{item.date}</span>
                   </div>
                   <h3 className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
                     {item.title}
