@@ -1,5 +1,5 @@
 {
-  "_comment": "=== FINDS Lab. 동문(Alumni) 템플릿 ===",
+  "_comment": "=== FINDS Lab 동문(Alumni) 템플릿 ===",
   "_usage": "이 내용을 /public/data/alumni.json 파일의 해당 배열에 추가",
   "_arrays": {
     "graduateAlumni": "대학원 졸업생 (박사, 석사)",
@@ -21,7 +21,7 @@
     
     "education": [
       {
-        "_comment": "FINDS Lab.에서 취득한 학위 (필수)",
+        "_comment": "FINDS Lab에서 취득한 학위 (필수)",
         "degree": "phd",
         "school": "Gachon University",
         "dept": "Business Administration",

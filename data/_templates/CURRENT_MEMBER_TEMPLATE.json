@@ -1,5 +1,5 @@
 {
-  "_comment": "=== FINDS Lab. 현재 멤버 템플릿 ===",
+  "_comment": "=== FINDS Lab 현재 멤버 템플릿 ===",
   "_usage": "이 파일을 복사하여 /public/data/members/ 폴더에 새 파일로 저장",
   "_filename_rule": "{이니셜}{번호}-{degree}.json (예: kim1-phd.json, park2-ms.json, lee3-undergrad.json)",
   
