@@ -147,7 +147,7 @@ const employment = [
     krOrg: '조교수 / 동덕여자대학교 경영대학 경영융합학부',
     logo: logoDwu
   },
-  {position: 'Director', organization: 'FINDS Lab.', period: '2025.06 – Present', location: 'FINDS Lab.', krOrg: '디렉터 / FINDS Lab.', logo: logoFinds},
+  {position: 'Director', organization: 'FINDS Lab', period: '2025.06 – Present', location: 'FINDS Lab', krOrg: '디렉터 / FINDS Lab', logo: logoFinds},
   {
     position: 'Lecturer',
     organization: 'Kangnam University',
@@ -1364,7 +1364,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab.</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
 

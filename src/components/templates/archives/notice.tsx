@@ -36,7 +36,7 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
         setMetadata({ 
           title: data.title as string || title, 
           date: data.date as string || date,
-          author: data.author as string || 'FINDS Lab.'
+          author: data.author as string || 'FINDS Lab'
         })
         const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
@@ -119,7 +119,7 @@ export const ArchivesNoticeTemplate = () => {
                 date: data.date || '',
                 description: data.excerpt || '',
                 isPinned: data.isPinned === 'true',
-                author: data.author || 'FINDS Lab.'
+                author: data.author || 'FINDS Lab'
               }
             } catch (err) {
               return null

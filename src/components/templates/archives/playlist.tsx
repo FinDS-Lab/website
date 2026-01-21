@@ -101,10 +101,10 @@ export const ArchivesPlaylistTemplate = () => {
             <Link 
               to="/" 
               className="flex items-center gap-6 px-10 py-6 bg-gray-100 hover:bg-primary hover:text-white text-gray-600 rounded-lg transition-all text-[11px] font-semibold"
-              title="FINDS Lab. 홈으로"
+              title="FINDS Lab 홈으로"
             >
               <Home size={14} />
-              <span className="hidden sm:inline">FINDS Lab.</span>
+              <span className="hidden sm:inline">FINDS Lab</span>
             </Link>
             
             {/* Title - 컴팩트 */}

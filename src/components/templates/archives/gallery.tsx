@@ -35,7 +35,7 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
         setMetadata({ 
           title: data.title as string || title, 
           date: data.date as string || date,
-          author: data.author as string || 'FINDS Lab.'
+          author: data.author as string || 'FINDS Lab'
         })
         // Gallery 이미지 경로를 위해 basePath를 gallery 폴더까지 확장
         const galleryBasePath = `${baseUrl.replace(/\/$/, '')}/data/gallery/${id}`
@@ -121,7 +121,7 @@ export const ArchivesGalleryTemplate = () => {
               title: (data.title as string) || 'No Title',
               date: dateStr,
               thumb: (data.thumb as string) || '',
-              author: (data.author as string) || 'FINDS Lab.'
+              author: (data.author as string) || 'FINDS Lab'
             }
           })
         )

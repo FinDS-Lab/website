@@ -211,7 +211,7 @@ export const AboutIntroductionTemplate = () => {
                   <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
                     <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
                     <span className="relative inline-block mx-2">
-                      <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab.</span>
+                      <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab</span>
                     </span>
                     은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
                     <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
@@ -257,7 +257,7 @@ export const AboutIntroductionTemplate = () => {
                 Research <span className="text-primary">&</span> Expertise
               </h2>
               <p className="text-sm md:text-base text-gray-400 max-w-xl mx-auto">
-                FINDS Lab.이 집중적으로 탐구하고 있는 주요 연구 분야입니다
+                FINDS Lab이 집중적으로 탐구하고 있는 주요 연구 분야입니다
               </p>
             </div>
 

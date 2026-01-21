@@ -101,7 +101,7 @@ export const LocationTemplate = () => {
                         금융인텔리전스연구실
                       </h3>
                       <p className="text-xs md:text-sm text-gray-300">
-                        FINDS Lab.
+                        FINDS Lab
                       </p>
                     </div>
                     <div className="flex items-center gap-6 px-10 py-4 bg-white/20 backdrop-blur-sm rounded-full">
@@ -120,7 +120,7 @@ export const LocationTemplate = () => {
                 </div>
                 <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
                   <p className="text-sm text-gray-600">
-                    금융인텔리전스연구실 (FINDS Lab.)
+                    금융인텔리전스연구실 (FINDS Lab)
                   </p>
                 </div>
               </div>
