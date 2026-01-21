@@ -76,13 +76,19 @@ export const markdownToHtml = (markdown: string, options?: { basePath?: string }
   // 3. 이미지 처리 - ![alt](url) or ![alt](url "title")
   html = html.replace(/!\[([^\]]*)\]\(([^)"]+)(?:\s+"([^"]*)")?\)/g, (_match, alt, url, title) => {
     let imgUrl = url
-    if (url.startsWith('/') && basePath) {
-      imgUrl = basePath + url
-    } else if (url.startsWith('../') || url.startsWith('./')) {
-      imgUrl = basePath + '/' + url.replace(/^\.\//, '')
+    // 절대 URL이 아닌 경우 basePath 추가
+    if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+      if (url.startsWith('/') && basePath) {
+        imgUrl = basePath + url
+      } else if (url.startsWith('../') || url.startsWith('./')) {
+        imgUrl = basePath + '/' + url.replace(/^\.\//, '')
+      } else {
+        // 단순 파일명인 경우 (logo-finds.png 등)
+        imgUrl = basePath + '/' + url
+      }
     }
     const titleAttr = title ? ` title="${title}"` : ''
-    return `<img src="${imgUrl}" alt="${alt}"${titleAttr} class="rounded-xl shadow-sm my-16 max-w-full" />`
+    return `<img src="${imgUrl}" alt="${alt}"${titleAttr} />`
   })
 
   // 4. 링크 처리 [text](url)

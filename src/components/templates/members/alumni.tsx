@@ -17,7 +17,7 @@ type Thesis = {
 
 type AlumniMember = {
   name: string
-  nameKo: string
+  nameKo?: string
   degrees: string[]
   cohort?: string
   cohortName?: string
@@ -25,6 +25,7 @@ type AlumniMember = {
   periods: Record<string, string>
   education: Education[]
   thesis?: Record<string, Thesis>
+  project?: { title: string }
   company?: string
 }
 
@@ -570,53 +571,85 @@ export const MembersAlumniTemplate = () => {
                         <tr className="bg-gray-50/80">
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Name</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Cohort</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (at time of internship)</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (at time)</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Affiliation (post)</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {sortedUndergradAlumni.map((alumni, idx) => (
-                          <tr key={idx} className="border-b border-gray-100 hover:bg-pink-50/30 transition-colors group">
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              <div className="flex items-center gap-10 md:gap-12">
-                                <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(232,135,155,0.15) 100%)'}}>
-                                  <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
-                                </div>
-                                <div>
-                                  <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</p>
-                                  <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              <div className="flex flex-col gap-4">
-                                <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
-                                  {alumni.cohort || '-'}
-                                </span>
-                                {alumni.cohortName && (
-                                  <span className="text-[10px] text-gray-500">{alumni.cohortName}</span>
-                                )}
-                              </div>
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                              {getAffiliation(alumni)}
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                              {alumni.periods?.ur || '-'}
-                            </td>
-                            <td className="py-12 md:py-16 px-12 md:px-16">
-                              {(alumni.currentPosition || alumni.company) ? (
-                                <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                  <Building2 size={14} style={{color: '#FFBAC4'}}/>
-                                  <span>{alumni.currentPosition || alumni.company}</span>
-                                </div>
-                              ) : (
-                                <span className="text-gray-400">-</span>
+                        {sortedUndergradAlumni.map((alumni, idx) => {
+                          const isExpanded = expandedAlumni.has(alumni.name)
+                          const hasProject = alumni.project && alumni.project.title
+                          
+                          return (
+                            <React.Fragment key={idx}>
+                              <tr 
+                                className={`border-b border-gray-100 hover:bg-pink-50/30 transition-colors group ${hasProject ? 'cursor-pointer' : ''}`}
+                                onClick={() => hasProject && toggleAlumniExpand(alumni.name)}
+                              >
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  <div className="flex items-center gap-10 md:gap-12">
+                                    <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(232,135,155,0.15) 100%)'}}>
+                                      <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
+                                    </div>
+                                    <div className="flex items-center gap-8">
+                                      <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</p>
+                                      {hasProject && (
+                                        <ChevronDown 
+                                          size={14} 
+                                          className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                                        />
+                                      )}
+                                    </div>
+                                  </div>
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  <div className="flex flex-col gap-4">
+                                    <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                      {alumni.cohort || '-'}
+                                    </span>
+                                    {alumni.cohortName && (
+                                      <span className="text-[10px] text-gray-500">{alumni.cohortName}</span>
+                                    )}
+                                  </div>
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  {getAffiliation(alumni)}
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  {alumni.periods?.ur || '-'}
+                                </td>
+                                <td className="py-12 md:py-16 px-12 md:px-16">
+                                  {(alumni.currentPosition || alumni.company) ? (
+                                    <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
+                                      <Building2 size={14} style={{color: '#FFBAC4'}}/>
+                                      <span>{alumni.currentPosition || alumni.company}</span>
+                                    </div>
+                                  ) : (
+                                    <span className="text-gray-400">-</span>
+                                  )}
+                                </td>
+                              </tr>
+                              {isExpanded && hasProject && (
+                                <tr className="bg-gray-50/50">
+                                  <td colSpan={5} className="py-16 px-16">
+                                    <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
+                                      <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#E8889C'}}>
+                                          Research Project
+                                        </p>
+                                        <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
+                                          {alumni.project!.title}
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
                               )}
-                            </td>
-                          </tr>
-                        ))}
+                            </React.Fragment>
+                          )
+                        })}
                       </tbody>
                     </table>
                   </div>

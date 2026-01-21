@@ -51,46 +51,43 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
   )
 
   return (
-    <div className="relative">
-      {/* Header */}
-      <div className="bg-gray-50 border-b border-gray-200 px-24 md:px-32 py-24 md:py-32">
-        {/* Title */}
-        <h1 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight mb-16 md:mb-20">
+    <div className="relative bg-white">
+      {/* Header - Minimal Red-dot style */}
+      <div className="px-28 md:px-40 pt-32 md:pt-40 pb-20 md:pb-24">
+        <h1 className="text-lg md:text-xl font-medium text-gray-900 leading-snug tracking-[-0.02em] mb-16 md:mb-20">
           {metadata.title}
         </h1>
-        {/* Meta Info - 격식있는 형태 */}
-        <div className="flex flex-col gap-8 text-sm text-gray-600">
-          <div className="flex items-center gap-8">
-            <span className="font-semibold text-gray-500 w-56">작성일</span>
-            <span className="text-gray-400">:</span>
-            <span>{metadata.date}</span>
-          </div>
-          <div className="flex items-center gap-8">
-            <span className="font-semibold text-gray-500 w-56">작성자</span>
-            <span className="text-gray-400">:</span>
-            <span>{metadata.author}</span>
-          </div>
+        <div className="flex items-center gap-12 text-[11px] text-gray-400 tracking-wide">
+          <span>{metadata.date}</span>
+          <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
+          <span>{metadata.author}</span>
         </div>
       </div>
       
-      {/* Content */}
-      <div className="px-24 md:px-32 py-24 md:py-32">
+      {/* Divider */}
+      <div className="mx-28 md:mx-40 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent" />
+      
+      {/* Content - Red-dot inspired typography */}
+      <div className="px-28 md:px-40 py-28 md:py-36">
         <article 
-          className="prose prose-gray max-w-none
-            prose-headings:font-bold prose-headings:text-gray-900
-            prose-h1:text-xl prose-h1:border-b prose-h1:border-gray-100 prose-h1:pb-12 prose-h1:mb-20
-            prose-h2:text-lg prose-h2:mt-32 prose-h2:mb-16
-            prose-h3:text-base prose-h3:mt-24 prose-h3:mb-12
-            prose-p:text-gray-600 prose-p:leading-relaxed prose-p:text-[15px] prose-p:mb-16
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-gray-900 prose-strong:font-semibold
-            prose-ul:my-16 prose-ul:pl-20
-            prose-ol:my-16 prose-ol:pl-20
-            prose-li:text-gray-600 prose-li:text-[15px] prose-li:mb-8
-            prose-blockquote:border-l-4 prose-blockquote:border-primary/30 prose-blockquote:bg-gray-50 prose-blockquote:py-12 prose-blockquote:px-20 prose-blockquote:rounded-r-lg prose-blockquote:italic prose-blockquote:text-gray-500
-            prose-img:rounded-xl prose-img:shadow-sm prose-img:my-24
-            prose-code:bg-gray-100 prose-code:px-6 prose-code:py-2 prose-code:rounded prose-code:text-sm prose-code:font-mono
-            prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:p-20"
+          className="
+            [&>p]:text-[14px] [&>p]:leading-[1.9] [&>p]:text-gray-600 [&>p]:mb-24 [&>p]:tracking-[-0.01em]
+            [&>h2]:text-[13px] [&>h2]:font-semibold [&>h2]:text-gray-800 [&>h2]:uppercase [&>h2]:tracking-[0.05em] [&>h2]:mt-40 [&>h2]:mb-20
+            [&>h3]:text-[13px] [&>h3]:font-medium [&>h3]:text-gray-700 [&>h3]:mt-32 [&>h3]:mb-16
+            [&>ul]:my-24 [&>ul]:space-y-12
+            [&>ul>li]:relative [&>ul>li]:pl-20 [&>ul>li]:text-[14px] [&>ul>li]:leading-[1.8] [&>ul>li]:text-gray-600
+            [&>ul>li]:before:content-[''] [&>ul>li]:before:absolute [&>ul>li]:before:left-0 [&>ul>li]:before:top-[10px] [&>ul>li]:before:w-[5px] [&>ul>li]:before:h-[5px] [&>ul>li]:before:rounded-full [&>ul>li]:before:bg-primary
+            [&>ol]:my-24 [&>ol]:space-y-12 [&>ol]:list-none [&>ol]:counter-reset-[item]
+            [&>ol>li]:relative [&>ol>li]:pl-24 [&>ol>li]:text-[14px] [&>ol>li]:leading-[1.8] [&>ol>li]:text-gray-600 [&>ol>li]:counter-increment-[item]
+            [&>ol>li]:before:content-[counter(item)] [&>ol>li]:before:absolute [&>ol>li]:before:left-0 [&>ol>li]:before:text-[12px] [&>ol>li]:before:font-medium [&>ol>li]:before:text-primary
+            [&>blockquote]:my-28 [&>blockquote]:pl-24 [&>blockquote]:border-l-2 [&>blockquote]:border-primary/30 [&>blockquote]:text-[13px] [&>blockquote]:text-gray-500 [&>blockquote]:italic [&>blockquote]:leading-[1.8]
+            [&>hr]:my-36 [&>hr]:border-0 [&>hr]:h-px [&>hr]:bg-gradient-to-r [&>hr]:from-gray-200 [&>hr]:via-gray-100 [&>hr]:to-transparent
+            [&_strong]:font-semibold [&_strong]:text-gray-800
+            [&_a]:text-primary [&_a]:no-underline [&_a]:border-b [&_a]:border-primary/30 hover:[&_a]:border-primary
+            [&_img]:my-28 [&_img]:rounded-lg [&_img]:max-w-full
+            [&>code]:text-[12px] [&>code]:bg-gray-50 [&>code]:px-6 [&>code]:py-2 [&>code]:rounded [&>code]:font-mono [&>code]:text-gray-600
+            [&>pre]:my-28 [&>pre]:bg-gray-900 [&>pre]:text-gray-100 [&>pre]:rounded-lg [&>pre]:p-20 [&>pre]:overflow-x-auto [&>pre]:text-[12px]
+          "
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </div>

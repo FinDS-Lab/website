@@ -2,9 +2,9 @@ import "../../assets/css/common.css";
 import "../../assets/css/theme.css";
 import "../../assets/css/font.css";
 
-import {Route, Routes, useLocation, Navigate} from "react-router-dom";
-import {lazy, Suspense, useEffect, memo, useRef} from "react";
-import { Music, Play, Pause, X } from 'lucide-react'
+import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
+import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
+import { Music, Play, Pause, X, Home } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -80,6 +80,8 @@ const GlobalMusicPlayer = memo(() => {
   
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
+  const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
+  const location = useLocation()
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -102,6 +104,13 @@ const GlobalMusicPlayer = memo(() => {
             return match ? match[1] : null
           }).filter(Boolean)
           
+          // Store track info
+          const info = data.items.map((item: { artist?: string; title?: string }) => ({
+            artist: item.artist || 'Unknown Artist',
+            title: item.title || 'Unknown Title'
+          }))
+          setTrackInfo(info)
+          
           if (data.shuffle) {
             for (let i = videoIds.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
@@ -116,6 +125,7 @@ const GlobalMusicPlayer = memo(() => {
   }, [isLoaded, setPlaylist, setIsLoaded])
 
   const currentVideoId = playlist[currentIndex]
+  const currentTrack = trackInfo[currentIndex]
 
   // Initialize/Update YouTube Player
   useEffect(() => {
@@ -163,68 +173,95 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [isPlaying, currentVideoId, isMinimized, nextTrack])
 
-  if (playlist.length === 0) return null
+  // Hide on playlist page
+  const isPlaylistPage = location.pathname === '/archives/playlist'
 
   return (
-    <div className="fixed bottom-20 right-20 z-[9999]">
-      {isMinimized ? (
-        <button
-          onClick={() => setIsMinimized(false)}
-          className="flex items-center gap-8 px-16 py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
+    <div className="fixed bottom-20 right-20 z-[9999] flex flex-col items-end gap-12">
+      {/* Home Button - Always visible except on home page */}
+      {location.pathname !== '/' && (
+        <Link
+          to="/"
+          className="flex items-center justify-center size-44 md:size-48 bg-white border border-gray-200 text-gray-600 rounded-full shadow-lg hover:bg-primary hover:text-white hover:border-primary transition-all"
+          title="홈으로"
         >
-          <Music size={18} />
-          <span className="text-sm font-medium hidden sm:inline">FINDS Playlist</span>
-        </button>
-      ) : (
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[320px]">
-          <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-[#D6C360]">
-            <div className="flex items-center gap-8">
-              <Music size={16} className="text-white" />
-              <span className="text-sm font-bold text-white">FINDS Playlist</span>
+          <Home size={20} />
+        </Link>
+      )}
+      
+      {/* Playlist Button/Player - Only show when playlist is loaded */}
+      {playlist.length > 0 && !isPlaylistPage && (
+        isMinimized ? (
+          <button
+            onClick={() => setIsMinimized(false)}
+            className="flex items-center gap-8 px-16 py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
+          >
+            <Music size={18} />
+            <span className="text-sm font-medium hidden sm:inline">FINDS Playlist</span>
+          </button>
+        ) : (
+          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[300px] md:w-[320px]">
+            <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-[#D6C360]">
+              <div className="flex items-center gap-8">
+                <Music size={16} className="text-white" />
+                <span className="text-sm font-bold text-white">FINDS Playlist</span>
+              </div>
+              <button
+                onClick={toggleMinimize}
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <X size={18} />
+              </button>
             </div>
-            <button
-              onClick={toggleMinimize}
-              className="text-white/80 hover:text-white transition-colors"
-            >
-              <X size={18} />
-            </button>
-          </div>
 
-          <div className="relative aspect-video bg-black">
-            {isPlaying && currentVideoId ? (
-              <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-                <button
-                  onClick={togglePlay}
-                  className="w-60 h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
-                >
-                  <Play size={28} className="text-white ml-4" />
-                </button>
+            {/* Current Track Info */}
+            {currentTrack && (
+              <div className="px-16 py-10 bg-gray-50 border-b border-gray-100">
+                <p className="text-xs font-bold truncate" style={{ color: '#D6B14D' }}>
+                  {currentTrack.artist}
+                </p>
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {currentTrack.title}
+                </p>
               </div>
             )}
-          </div>
 
-          <div className="flex items-center justify-between px-16 py-12">
-            <span className="text-xs text-gray-500">
-              Track {currentIndex + 1} / {playlist.length}
-            </span>
-            <div className="flex items-center gap-12">
-              <button
-                onClick={togglePlay}
-                className="p-8 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-              </button>
-              <button
-                onClick={nextTrack}
-                className="px-12 py-6 text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
-              >
-                Next
-              </button>
+            <div className="relative aspect-video bg-black">
+              {isPlaying && currentVideoId ? (
+                <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+                  <button
+                    onClick={togglePlay}
+                    className="w-60 h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                  >
+                    <Play size={28} className="text-white ml-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between px-16 py-12">
+              <span className="text-xs text-gray-500">
+                Track {currentIndex + 1} / {playlist.length}
+              </span>
+              <div className="flex items-center gap-12">
+                <button
+                  onClick={togglePlay}
+                  className="p-8 rounded-full hover:bg-gray-100 transition-colors"
+                >
+                  {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+                </button>
+                <button
+                  onClick={nextTrack}
+                  className="px-12 py-6 text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )
       )}
     </div>
   )
