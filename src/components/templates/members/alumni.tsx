@@ -301,7 +301,7 @@ export const MembersAlumniTemplate = () => {
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Post-Graduation</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -325,12 +325,9 @@ export const MembersAlumniTemplate = () => {
                                       <span className="text-xs md:text-sm font-bold" style={{color: '#D6B14D'}}>{alumniNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-8">
-                                      <div>
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                                          {alumni.name}
-                                        </p>
-                                        <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
-                                      </div>
+                                      <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                        {alumni.nameKo || alumni.name}
+                                      </p>
                                       {hasThesis && (
                                         <ChevronDown 
                                           size={14} 
@@ -437,7 +434,7 @@ export const MembersAlumniTemplate = () => {
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Post-Graduation</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -461,12 +458,9 @@ export const MembersAlumniTemplate = () => {
                                       <span className="text-xs md:text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-8">
-                                      <div>
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
-                                          {alumni.name}
-                                        </p>
-                                        <p className="text-[11px] md:text-xs text-gray-500">{alumni.nameKo}</p>
-                                      </div>
+                                      <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                        {alumni.nameKo || alumni.name}
+                                      </p>
                                       {hasThesis && (
                                         <ChevronDown 
                                           size={14} 
@@ -573,7 +567,7 @@ export const MembersAlumniTemplate = () => {
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Cohort</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (at time)</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Affiliation (post)</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Post-Internship</th>
                         </tr>
                       </thead>
                       <tbody>

@@ -4,7 +4,7 @@ import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
 import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
-import { Music, Play, Pause, X, Home } from 'lucide-react'
+import { Music, Play, Pause, X, Home as HomeIcon } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -61,6 +61,26 @@ interface YTPlayer {
   destroy: () => void;
 }
 
+// Home Button Component - Always visible except on home page
+const HomeButton = memo(() => {
+  const location = useLocation()
+  
+  // Don't show on home page
+  if (location.pathname === '/' || location.pathname === '/website/' || location.pathname === '/website') {
+    return null
+  }
+  
+  return (
+    <Link
+      to="/"
+      className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[10000] flex items-center justify-center size-44 md:size-52 bg-white border-2 border-gray-200 text-gray-600 rounded-full shadow-xl hover:bg-primary hover:text-white hover:border-primary transition-all"
+      title="홈으로"
+    >
+      <HomeIcon size={22} className="md:w-6 md:h-6" />
+    </Link>
+  )
+})
+
 // Global Music Player Component - Outside Routes for persistence
 const GlobalMusicPlayer = memo(() => {
   const { 
@@ -96,27 +116,36 @@ const GlobalMusicPlayer = memo(() => {
   // Load playlist data
   useEffect(() => {
     if (!isLoaded) {
-      fetch('/website/data/playlist/ischoi.json')
+      const baseUrl = import.meta.env.BASE_URL || '/'
+      fetch(`${baseUrl}data/playlist/ischoi.json`)
         .then(res => res.json())
         .then(data => {
-          const videoIds = data.items.map((item: { url: string }) => {
+          // Build combined array to shuffle together
+          const items = data.items.map((item: { url: string; artist?: string; title?: string }) => {
             const match = item.url.match(/[?&]v=([^&]+)/)
-            return match ? match[1] : null
-          }).filter(Boolean)
+            return {
+              videoId: match ? match[1] : null,
+              artist: item.artist || 'Unknown Artist',
+              title: item.title || 'Unknown Title'
+            }
+          }).filter((item: { videoId: string | null }) => item.videoId)
           
-          // Store track info
-          const info = data.items.map((item: { artist?: string; title?: string }) => ({
-            artist: item.artist || 'Unknown Artist',
-            title: item.title || 'Unknown Title'
-          }))
-          setTrackInfo(info)
-          
+          // Shuffle if needed (shuffle both videoId and track info together)
           if (data.shuffle) {
-            for (let i = videoIds.length - 1; i > 0; i--) {
+            for (let i = items.length - 1; i > 0; i--) {
               const j = Math.floor(Math.random() * (i + 1));
-              [videoIds[i], videoIds[j]] = [videoIds[j], videoIds[i]]
+              [items[i], items[j]] = [items[j], items[i]]
             }
           }
+          
+          // Extract videoIds and trackInfo from shuffled array
+          const videoIds = items.map((item: { videoId: string }) => item.videoId)
+          const info = items.map((item: { artist: string; title: string }) => ({
+            artist: item.artist,
+            title: item.title
+          }))
+          
+          setTrackInfo(info)
           setPlaylist(videoIds)
           setIsLoaded(true)
         })
@@ -175,93 +204,87 @@ const GlobalMusicPlayer = memo(() => {
 
   // Hide on playlist page
   const isPlaylistPage = location.pathname === '/archives/playlist'
+  
+  // Don't render if no playlist
+  if (playlist.length === 0 || isPlaylistPage) {
+    return null
+  }
 
   return (
-    <div className="fixed bottom-20 right-20 z-[9999] flex flex-col items-end gap-12">
-      {/* Home Button - Always visible except on home page */}
-      {location.pathname !== '/' && (
-        <Link
-          to="/"
-          className="flex items-center justify-center size-44 md:size-48 bg-white border border-gray-200 text-gray-600 rounded-full shadow-lg hover:bg-primary hover:text-white hover:border-primary transition-all"
-          title="홈으로"
+    <div className="fixed bottom-[80px] md:bottom-[90px] right-16 md:right-20 z-[9998]">
+      {isMinimized ? (
+        <button
+          onClick={() => setIsMinimized(false)}
+          className="flex items-center gap-6 md:gap-8 px-12 md:px-16 py-10 md:py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
         >
-          <Home size={20} />
-        </Link>
-      )}
-      
-      {/* Playlist Button/Player - Only show when playlist is loaded */}
-      {playlist.length > 0 && !isPlaylistPage && (
-        isMinimized ? (
-          <button
-            onClick={() => setIsMinimized(false)}
-            className="flex items-center gap-8 px-16 py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
-          >
-            <Music size={18} />
-            <span className="text-sm font-medium hidden sm:inline">FINDS Playlist</span>
-          </button>
-        ) : (
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[300px] md:w-[320px]">
-            <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-[#D6C360]">
-              <div className="flex items-center gap-8">
-                <Music size={16} className="text-white" />
-                <span className="text-sm font-bold text-white">FINDS Playlist</span>
-              </div>
-              <button
-                onClick={toggleMinimize}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                <X size={18} />
-              </button>
+          <Music size={16} className="md:w-[18px] md:h-[18px]" />
+          <span className="text-xs md:text-sm font-medium">Playlist</span>
+        </button>
+      ) : (
+        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[280px] md:w-[320px]">
+          {/* Header */}
+          <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-primary to-[#D6C360]">
+            <div className="flex items-center gap-6 md:gap-8">
+              <Music size={14} className="text-white md:w-4 md:h-4" />
+              <span className="text-xs md:text-sm font-bold text-white">FINDS Playlist</span>
             </div>
+            <button
+              onClick={toggleMinimize}
+              className="text-white/80 hover:text-white transition-colors"
+            >
+                <X size={16} className="md:w-[18px] md:h-[18px]" />
+            </button>
+          </div>
 
-            {/* Current Track Info */}
-            {currentTrack && (
-              <div className="px-16 py-10 bg-gray-50 border-b border-gray-100">
-                <p className="text-xs font-bold truncate" style={{ color: '#D6B14D' }}>
-                  {currentTrack.artist}
-                </p>
-                <p className="text-sm font-medium text-gray-900 truncate">
-                  {currentTrack.title}
-                </p>
-              </div>
-            )}
-
-            <div className="relative aspect-video bg-black">
-              {isPlaying && currentVideoId ? (
-                <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-                  <button
-                    onClick={togglePlay}
-                    className="w-60 h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
-                  >
-                    <Play size={28} className="text-white ml-4" />
-                  </button>
-                </div>
-              )}
+          {/* Current Track Info - Always visible when track exists */}
+          {currentTrack && (
+            <div className="px-12 md:px-16 py-8 md:py-10 bg-gray-50 border-b border-gray-100">
+              <p className="text-[10px] md:text-xs font-bold truncate" style={{ color: '#D6B14D' }}>
+                {currentTrack.artist}
+              </p>
+              <p className="text-xs md:text-sm font-medium text-gray-900 truncate">
+                {currentTrack.title}
+              </p>
             </div>
+          )}
 
-            <div className="flex items-center justify-between px-16 py-12">
-              <span className="text-xs text-gray-500">
-                Track {currentIndex + 1} / {playlist.length}
-              </span>
-              <div className="flex items-center gap-12">
+          {/* Video Player */}
+          <div className="relative aspect-video bg-black">
+            {isPlaying && currentVideoId ? (
+              <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
                 <button
                   onClick={togglePlay}
-                  className="p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-48 h-48 md:w-60 md:h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
                 >
-                  {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-                </button>
-                <button
-                  onClick={nextTrack}
-                  className="px-12 py-6 text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                >
-                  Next
+                  <Play size={24} className="text-white ml-3 md:ml-4 md:w-7 md:h-7" />
                 </button>
               </div>
+            )}
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12">
+            <span className="text-[10px] md:text-xs text-gray-500">
+              Track {currentIndex + 1} / {playlist.length}
+            </span>
+            <div className="flex items-center gap-8 md:gap-12">
+              <button
+                onClick={togglePlay}
+                className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                {isPlaying ? <Pause size={16} className="md:w-[18px] md:h-[18px]" /> : <Play size={16} className="md:w-[18px] md:h-[18px]" />}
+              </button>
+              <button
+                onClick={nextTrack}
+                className="px-10 md:px-12 py-5 md:py-6 text-[10px] md:text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
+              >
+                Next
+              </button>
             </div>
           </div>
-        )
+        </div>
       )}
     </div>
   )
@@ -319,6 +342,9 @@ export const App = () => {
 
         </Routes>
       </Suspense>
+      
+      {/* Home Button - Always visible except on home page */}
+      <HomeButton />
       
       {/* Global Music Player - persists across page navigation */}
       <GlobalMusicPlayer />

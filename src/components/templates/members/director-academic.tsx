@@ -218,7 +218,7 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [coworkRateThreshold, setCoworkRateThreshold] = useState(0) // 0-100%, default 0%
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(2) // 0-100%, default 2%
   const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
