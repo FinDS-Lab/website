@@ -1031,7 +1031,7 @@ export const MembersDirectorAcademicTemplate = () => {
       .catch(console.error)
     
     // Fetch Academic Activities
-    fetch(`${baseUrl}data/academic-activities.json`)
+    fetch(`${baseUrl}data/academicactivities.json`)
       .then(res => res.json())
       .then((data: AcademicActivitiesData) => setActivitiesData(data))
       .catch(console.error)
@@ -1648,31 +1648,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               'Researcher': 'bg-gray-400 text-white'
                             }
                             const directorRole = getDirectorRole()
-                            const journals = useMemo(() => {
-    if (!activitiesData) return []
-    return activitiesData.activities.filter(a => a.category === 'journal')
-  }, [activitiesData])
-
-  const committees = useMemo(() => {
-    if (!activitiesData) return []
-    return activitiesData.activities.filter(a => a.category === 'committee')
-  }, [activitiesData])
-
-  const sessionChairs = useMemo(() => {
-    if (!activitiesData) return []
-    return activitiesData.activities.filter(a => a.category === 'chair')
-  }, [activitiesData])
-
-  const conferenceReviewers = useMemo(() => {
-    if (!activitiesData) return []
-    return activitiesData.activities.filter(a => a.category === 'conference')
-  }, [activitiesData])
-
-  const displayedJournals = useMemo(() => {
-    return showAllJournals ? journals : journals.slice(0, 15)
-  }, [journals, showAllJournals])
-
-  return (
+                            return (
                               <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
                                   <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
