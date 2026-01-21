@@ -13,10 +13,10 @@
   <text x="400" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#111827" text-anchor="middle">FINDS Lab. Official Color Palette</text>
   
   <!-- Primary Colors with badges -->
-  <rect x="50" y="70" width="130" height="110" rx="12" fill="rgb(214, 176, 76)" stroke="rgb(196, 154, 56)" stroke-width="3"/>
+  <rect x="50" y="70" width="130" height="110" rx="12" fill="rgb(214, 177, 77)" stroke="rgb(196, 154, 56)" stroke-width="3"/>
   <text x="115" y="125" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">PRIMARY</text>
   <text x="115" y="145" font-family="Arial" font-size="9" fill="white" text-anchor="middle" opacity="0.9">Gold</text>
-  <text x="115" y="195" font-family="monospace" font-size="8" fill="#6b7280" text-anchor="middle">#D6B04C</text>
+  <text x="115" y="195" font-family="monospace" font-size="8" fill="#6b7280" text-anchor="middle">#D6B14D</text>
   
   <rect x="190" y="70" width="130" height="110" rx="12" fill="rgb(172, 14, 14)" stroke="rgb(140, 10, 10)" stroke-width="3"/>
   <text x="255" y="125" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">PRIMARY</text>
@@ -49,7 +49,7 @@
   <defs>
     <linearGradient id="fullGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:rgb(172, 14, 14)" />
-      <stop offset="17%" style="stop-color:rgb(214, 176, 76)" />
+      <stop offset="17%" style="stop-color:rgb(214, 177, 77)" />
       <stop offset="34%" style="stop-color:rgb(214, 195, 96)" />
       <stop offset="51%" style="stop-color:rgb(232, 214, 136)" />
       <stop offset="68%" style="stop-color:rgb(214, 160, 118)" />
