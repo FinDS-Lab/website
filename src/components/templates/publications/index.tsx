@@ -1,5 +1,5 @@
 import { memo, useState, useEffect, useMemo, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import {
   ChevronDown,
   ChevronUp,
@@ -187,10 +187,11 @@ const authorshipRemarks = [
 ]
 
 export const PublicationsTemplate = () => {
+  const [searchParams] = useSearchParams()
   const [publications, setPublications] = useState<Publication[]>([])
   const [authors, setAuthors] = useState<AuthorsData>({})
   const [expandedYear, setExpandedYear] = useState<number | null>(null)
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState(() => searchParams.get('author') || '')
   const [filters, setFilters] = useState<{
     type: string[];
     indexing: string[];
@@ -300,7 +301,7 @@ export const PublicationsTemplate = () => {
     return [
       { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#ffb7c5' }, // Light pink for books
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#e6b84a' }, // Gold for books
       { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#ffb7c5' }, // Light pink for reports
       { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
     ]
@@ -652,7 +653,7 @@ export const PublicationsTemplate = () => {
                             : pub.type === 'conference'
                             ? 'bg-red-500'
                             : pub.type === 'book'
-                            ? 'bg-pink-300'
+                            ? 'bg-amber-300'
                             : pub.type === 'report'
                             ? 'bg-pink-300'
                             : 'bg-gray-500'
