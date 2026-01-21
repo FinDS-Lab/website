@@ -1317,7 +1317,7 @@ export const MembersDirectorActivitiesTemplate = () => {
               className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
             >
               <BookOpen size={16} />
-              Scholarly
+              Research
             </Link>
             <Link
               to="/members/director/activities"
@@ -1532,23 +1532,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
                   </button>
                 ))}
-                </div>
-              )}
-            </section>
-
-            {/* Collaboration Network */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('collaborationNetwork')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
-              </button>
-
-              {expandedSections.collaborationNetwork && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  <CollaborationNetwork/>
                 </div>
               )}
             </section>

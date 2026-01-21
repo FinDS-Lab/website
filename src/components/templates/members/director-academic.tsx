@@ -1238,7 +1238,7 @@ export const MembersDirectorAcademicTemplate = () => {
               className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
             >
               <BookOpen size={16} />
-              Scholarly
+              Research
             </Link>
             <Link
               to="/members/director/activities"
@@ -1423,7 +1423,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   {/* Editorial Board Memberships */}
                   <div className="p-24">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
+                      <p className="text-xs font-bold text-gray-900">Editorial Board Memberships</p>
                       <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
                     </div>
                     <div className="py-16 text-center text-sm text-gray-400">Coming soon...</div>
@@ -1432,7 +1432,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   {/* Academic Memberships */}
                   <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
+                      <p className="text-xs font-bold text-gray-900">Academic Memberships</p>
                       <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                     </div>
                     <div className="space-y-8">
@@ -1482,7 +1482,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   {/* Program Committee */}
                   <div className="p-24 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                      <p className="text-xs font-bold text-gray-900">Program Committee</p>
                       <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                     </div>
                     {committees.length > 0 ? (
@@ -1503,7 +1503,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   {/* Session Chair */}
                   <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                      <p className="text-xs font-bold text-gray-900">Session Chair</p>
                       <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{sessionChairs.length}</span>
                     </div>
                     {sessionChairs.length > 0 ? (
@@ -1525,7 +1525,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="p-24 border-t border-gray-100">
                     <div className="flex items-center justify-between mb-16">
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
+                        <p className="text-xs font-bold text-gray-900">Journal Reviewer</p>
                         <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
                       </div>
                       {journals.length > 15 && (
@@ -1555,7 +1555,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center justify-between mb-16">
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
+                        <p className="text-xs font-bold text-gray-900">Conference Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                       </div>
                       {conferenceReviewers.length > 20 && (
