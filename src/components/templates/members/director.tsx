@@ -172,7 +172,7 @@ export const MembersDirectorTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
-  const [honorsData, setHonorsData] = useState<Record<string, HonorsData[]> | null>(null)
+  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [expandedSections, setExpandedSections] = useState({
     honorsAwards: true
@@ -276,7 +276,7 @@ export const MembersDirectorTemplate = () => {
     // Fetch Honors data
     fetch(`${baseUrl}data/honors.json`)
       .then(res => res.json())
-      .then((data: Record<string, HonorsData[]>) => {
+      .then((data: HonorsData) => {
         setHonorsData(data)
         // Auto-expand most recent year
         const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
