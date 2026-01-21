@@ -221,7 +221,7 @@ export const MembersAlumniTemplate = () => {
                   <div className="flex flex-col">
                     <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
-                      Undergrad {pluralize(undergradCount, 'Alumnus', 'Alumni')}
+                      Undergraduate Research {pluralize(undergradCount, 'Alumnus', 'Alumni')}
                     </span>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export const MembersAlumniTemplate = () => {
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B04C'}} />
-                    Ph.D.
+                    Ph.D. Graduates
                     <span className="text-sm font-medium text-gray-400">
                       ({phdAlumni.length} {pluralize(phdAlumni.length, 'person', 'people')})
                     </span>
@@ -262,14 +262,14 @@ export const MembersAlumniTemplate = () => {
                 
                 {phdExpanded && (
                   <div className="overflow-x-auto rounded-2xl border border-gray-100">
-                    <table className="w-full min-w-[700px]">
+                    <table className="w-full min-w-[700px] table-fixed">
                       <thead>
                         <tr className="bg-gray-50/80">
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Name</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Degree</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Affiliation</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -384,7 +384,7 @@ export const MembersAlumniTemplate = () => {
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
-                    M.S.
+                    M.S. Graduates
                     <span className="text-sm font-medium text-gray-400">
                       ({msAlumni.length} {pluralize(msAlumni.length, 'person', 'people')})
                     </span>
@@ -400,14 +400,14 @@ export const MembersAlumniTemplate = () => {
                 
                 {msExpanded && (
                   <div className="overflow-x-auto rounded-2xl border border-gray-100">
-                    <table className="w-full min-w-[700px]">
+                    <table className="w-full min-w-[700px] table-fixed">
                       <thead>
                         <tr className="bg-gray-50/80">
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Name</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Degree</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Affiliation</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -522,7 +522,7 @@ export const MembersAlumniTemplate = () => {
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#FFBAC4'}} />
-                    Undergraduate Students
+                    Former Undergraduate Researchers
                     <span className="text-sm font-medium text-gray-400">
                       ({sortedUndergradAlumni.length} {pluralize(sortedUndergradAlumni.length, 'person', 'people')})
                     </span>
@@ -538,14 +538,14 @@ export const MembersAlumniTemplate = () => {
 
                 {undergradExpanded && (
                   <div className="overflow-x-auto rounded-2xl border border-gray-100">
-                    <table className="w-full min-w-[700px]">
+                    <table className="w-full min-w-[700px] table-fixed">
                       <thead>
                         <tr className="bg-gray-50/80">
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Name</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Cohort</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Affiliation (at time of internship)</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Cohort</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation (at time of internship)</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
                         </tr>
                       </thead>
                       <tbody>

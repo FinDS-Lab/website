@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-12",
-    "end": "2026-02"
+    "start": "2025.12.24.",
+    "end": "2026.03.01."
   },
   "contact": {
     "email": "yujin010917@khu.ac.kr"
@@ -34,5 +34,5 @@
     }
   ]
 ,
-  "avatar": "/website/images/members/JYJ-1.png"
+  "avatar": "/website/images/members/JYJ-1.webp"
 }

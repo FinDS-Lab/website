@@ -155,6 +155,10 @@ export const MembersCurrentTemplate = () => {
         grouped[m.degree].push(m)
       }
     })
+    // Sort each group by Korean name (가나다순)
+    Object.keys(grouped).forEach((key) => {
+      grouped[key].sort((a, b) => a.name.ko.localeCompare(b.name.ko, 'ko'))
+    })
     return grouped
   }, [members])
 
@@ -284,9 +288,8 @@ export const MembersCurrentTemplate = () => {
                                 {member.role.ko}
                               </span>
                             </div>
-                            <p className="text-xs md:text-[14px] text-gray-500 mb-4 md:mb-[8px] truncate">{member.education?.[0]?.school || ''}</p>
                             <p className="text-[11px] md:text-[13px] text-gray-500">
-                              {member.period.start} – {member.period.end || member.period.expected_graduation || 'Present'}
+                              {member.period.start} - {member.period.end || member.period.expected_graduation || 'Present'}
                             </p>
                           </div>
                         </div>

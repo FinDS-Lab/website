@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-12",
-    "end": "2026-02"
+    "start": "2025.12.24.",
+    "end": "2026.03.01."
   },
   "contact": {
     "email": "kyh050412@hanyang.ac.kr",
@@ -29,11 +29,11 @@
     {
       "degree": "B.S.",
       "field": "Industrial and Management Engineering",
-      "school": "Hanyang University ERICA",
+      "school": "Hanyang University (ERICA Campus)",
       "start": "2024-03",
       "expected": "Present"
     }
   ]
 ,
-  "avatar": "/website/images/members/KYH-1.png"
+  "avatar": "/website/images/members/KYH-1.webp"
 }
