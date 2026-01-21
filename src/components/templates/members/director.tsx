@@ -517,9 +517,6 @@ export const MembersDirectorTemplate = () => {
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500 font-normal">Big Data Business Management Major</p>
-                    <p className="text-[10px] md:text-xs text-gray-600 font-medium">Department of Finance and Big Data</p>
-                    <p className="text-[10px] md:text-xs text-gray-700 font-semibold">College of Business</p>
                     <p className="text-[10px] md:text-xs text-gray-800 font-bold">Gachon University</p>
                   </div>
                 </div>
