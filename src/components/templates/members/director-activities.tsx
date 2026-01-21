@@ -185,7 +185,7 @@ const activities = [
     name: 'CAPTIMA',
     logo: logoCaptima,
     fullName: 'Computer Applications for Optima',
-    fullNameKo: '',
+    fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리',
     generation: '',
     membership: [
       {role: 'Member', period: '2013.03. - 2018.02.'},
@@ -1766,7 +1766,8 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{act.name}</h4>
-                      <p className="text-xs text-gray-400 mt-2 truncate">{act.fullNameKo || act.fullName}</p>
+                      {act.fullName && <p className="text-xs text-gray-500 mt-2 truncate">{act.fullName}</p>}
+                      {act.fullNameKo && <p className="text-xs text-gray-400 truncate">{act.fullNameKo}</p>}
                     </div>
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
                   </button>

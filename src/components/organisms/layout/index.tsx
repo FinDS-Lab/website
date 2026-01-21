@@ -61,9 +61,9 @@ const ContactModalContent = () => {
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
   const contacts = [
-    { role: 'Director', email: 'ischoi@gachon.ac.kr', description: 'Research inquiries & collaborations' },
-    { role: 'Webmaster', email: 'ischoi@gachon.ac.kr', description: 'Website issues & suggestions' },
-    { role: 'Lab Administrator', email: 'ischoi@gachon.ac.kr', description: 'General inquiries & lab operations' },
+    { role: 'Director', email: 'ischoi@gachon.ac.kr', description: 'Research Inquiries & Collaborations' },
+    { role: 'Webmaster', email: 'ischoi@gachon.ac.kr', description: 'Website Issues & Suggestions' },
+    { role: 'Lab Administrator', email: 'ischoi@gachon.ac.kr', description: 'General Inquiries & Lab Operations' },
   ]
 
   const handleCopyEmail = (email: string) => {
