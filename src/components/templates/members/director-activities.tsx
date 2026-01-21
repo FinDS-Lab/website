@@ -1904,31 +1904,34 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                 </div>
 
-                {/* Year Filter */}
-                <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
-                  <button
-                    onClick={() => setSelectedMentoringYear('all')}
-                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
-                      selectedMentoringYear === 'all'
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                    }`}
-                  >
-                    All ({mentees.length})
-                  </button>
-                  {mentoringYears.map((year) => (
+                {/* Year Filter - Cumulative */}
+                <div className="px-20 md:px-32 py-16 border-b border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-12">Filter by Year (Cumulative)</p>
+                  <div className="flex items-center gap-8 md:gap-12 overflow-x-auto">
                     <button
-                      key={year}
-                      onClick={() => setSelectedMentoringYear(year)}
+                      onClick={() => setSelectedMentoringYear('all')}
                       className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
-                        selectedMentoringYear === year
+                        selectedMentoringYear === 'all'
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      {year} ({getMenteeCountByYear(year)})
+                      All ({mentees.length})
                     </button>
-                  ))}
+                    {mentoringYears.slice(0, 5).map((year) => (
+                      <button
+                        key={year}
+                        onClick={() => setSelectedMentoringYear(year)}
+                        className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
+                          selectedMentoringYear === year
+                            ? 'bg-primary text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
+                      >
+                        ~{year} ({getMenteeCountByYear(year)})
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 {/* University Distribution - Clickable Filter */}
@@ -2027,7 +2030,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <div className="px-20 md:px-32 py-12 md:py-16 bg-gray-50/50 border-t border-gray-100">
                   <p className="text-[11px] md:text-xs text-gray-500">
                     Showing <span className="font-bold text-gray-700">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
-                    {selectedMentoringYear !== 'all' && <span className="text-primary"> in {selectedMentoringYear}</span>}
+                    {selectedMentoringYear !== 'all' && <span className="text-primary"> up to {selectedMentoringYear}</span>}
                     {selectedUniversity !== 'all' && <span className="text-primary"> from {selectedUniversity}</span>}
                   </p>
                 </div>

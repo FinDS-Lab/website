@@ -417,7 +417,7 @@ images:
         
         <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">Gold Spectrum (Primary → Honey → Cream)</p>
         <div class="gradient-bar">
-          <div class="gradient-segment" style="background: rgb(214, 176, 76);">Primary</div>
+          <div class="gradient-segment" style="background: rgb(214, 176, 76);">Gold</div>
           <div class="gradient-segment" style="background: rgb(214, 195, 96);">Honey</div>
           <div class="gradient-segment" style="background: rgb(232, 214, 136); color: #333;">Cream</div>
         </div>
