@@ -54,7 +54,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수논문상 (1위)",
+      "prize_ko": "우수논문상",
       "category": "Management Research Track",
       "category_ko": "경영 연구 부문",
       "organization": "Korean Career · Entrepreneurship & Business Association",
@@ -398,7 +398,7 @@
     "awards": 1,
     "award_details": {
       "prize": "2nd Prize",
-      "prize_ko": "우수상 (2위)",
+      "prize_ko": "우수상",
       "category": "Competition Section",
       "category_ko": "경쟁 부문",
       "organization": "Korean Operations Research and Management Science Society",
@@ -961,7 +961,7 @@
     "awards": 1,
     "award_details": {
       "prize": "2nd Prize",
-      "prize_ko": "우수상 (2위)",
+      "prize_ko": "우수상",
       "category": "Competition Section",
       "category_ko": "경쟁 부문",
       "organization": "Korean Operations Research and Management Science Society",
@@ -1000,7 +1000,7 @@
     "awards": 1,
     "award_details": {
       "prize": "2nd Prize",
-      "prize_ko": "우수상 (2위)",
+      "prize_ko": "우수상",
       "category": "11th Ph.D. Dissertation Award in Management Science",
       "category_ko": "제11회 경영과학 박사학위논문상",
       "organization": "Korean Operations Research and Management Science Society",
@@ -2658,7 +2658,7 @@
     "awards": 1,
     "award_details": {
       "prize": "2nd Prize",
-      "prize_ko": "우수상 (2위)",
+      "prize_ko": "우수상",
       "category": "Graduate Student Paper Competition",
       "category_ko": "경쟁 부문",
       "organization": "Korean Operations Research and Management Science Society",
@@ -2773,7 +2773,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수연구상 (1위)",
+      "prize_ko": "우수연구상",
       "category": "Poster Session",
       "category_ko": "포스터 발표 부문",
       "organization": "Korean Society of Industrial and Systems Engineering",
@@ -4031,7 +4031,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수논문상 (1위)",
+      "prize_ko": "우수논문상",
       "category": "General Division",
       "category_ko": "일반 부문",
       "organization": "Korean Institute of Information Technology",
@@ -4246,7 +4246,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수연구상 (1위)",
+      "prize_ko": "우수연구상",
       "category": "Oral Presentation Session",
       "category_ko": "구두 발표 부문",
       "organization": "Korean Society of Industrial and Systems Engineering",
@@ -4732,7 +4732,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수논문상 (1위)",
+      "prize_ko": "우수논문상",
       "category": "General Division",
       "category_ko": "일반 부문",
       "organization": "Korean Institute of Information Technology",
@@ -5809,7 +5809,7 @@
     "awards": 1,
     "award_details": {
       "prize": "1st Prize",
-      "prize_ko": "우수논문상 (1위)",
+      "prize_ko": "우수논문상",
       "category": "Best Paper Award of Korea Disease Control and Prevention Agency Data Application Division",
       "category_ko": "질병관리청 자료 활용 부문",
       "organization": "Korean Society of Community Nutrition",
@@ -6167,7 +6167,7 @@
     "awards": 1,
     "award_details": {
       "prize": "2nd Prize",
-      "prize_ko": "우수상 (2위)",
+      "prize_ko": "우수상",
       "category": "8th Industrial Convergence Promotion Plan Papers Contest",
       "category_ko": "제8회 산업융합 활성화 방안 및 사례연구 논문공모전",
       "organization": "Korea National Industrial Convergence Center; Korean Institute of Industrial Engineers",
