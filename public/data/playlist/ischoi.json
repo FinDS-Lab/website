@@ -1,4 +1,5 @@
 {
+  "shuffle": true,
   "items": [
     {
       "url": "https://www.youtube.com/watch?v=6ZUIwj3FgUY",
@@ -94,6 +95,11 @@
       "url": "https://www.youtube.com/watch?v=UM9XNpgrqVk",
       "artist": "Vaundy",
       "title": "怪獣の花唄"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=a2GujJZfXpg",
+      "artist": "RADWIMPS",
+      "title": "Sparkle (スパークル)"
     }
   ]
 }

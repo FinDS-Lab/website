@@ -73,10 +73,10 @@ const HomeButton = memo(() => {
   return (
     <Link
       to="/"
-      className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[10000] flex items-center justify-center size-44 md:size-52 bg-white border-2 border-gray-200 text-gray-600 rounded-full shadow-xl hover:bg-primary hover:text-white hover:border-primary transition-all"
+      className="fixed bottom-[80px] md:bottom-[90px] right-16 md:right-20 z-[10000] flex items-center justify-center size-44 md:size-52 bg-white border-2 border-gray-300 rounded-full shadow-xl hover:bg-primary hover:border-primary transition-all group"
       title="홈으로"
     >
-      <HomeIcon size={22} className="md:w-6 md:h-6" />
+      <HomeIcon size={24} className="text-gray-700 group-hover:text-white" />
     </Link>
   )
 })
@@ -211,7 +211,7 @@ const GlobalMusicPlayer = memo(() => {
   }
 
   return (
-    <div className="fixed bottom-[80px] md:bottom-[90px] right-16 md:right-20 z-[9998]">
+    <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9998]">
       {isMinimized ? (
         <button
           onClick={() => setIsMinimized(false)}

@@ -120,17 +120,6 @@ export const MembersAlumniTemplate = () => {
 
   // Get primary affiliation (the school where they got their degree from lab)
   const getAffiliation = (alumni: AlumniMember) => {
-    const labDegree = alumni.education.find(e => 
-      e.school.includes('Dongduk') || e.school.includes('Gachon') || e.school.includes('동덕') || e.school.includes('가천')
-    )
-    if (labDegree) {
-      return (
-        <div className="flex flex-col">
-          <span className="font-semibold text-gray-900">{labDegree.dept}</span>
-          <span className="text-gray-500 text-[11px] md:text-xs">{labDegree.school}</span>
-        </div>
-      )
-    }
     return alumni.education[0]?.school || '-'
   }
 
@@ -565,9 +554,9 @@ export const MembersAlumniTemplate = () => {
                         <tr className="bg-gray-50/80">
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Name</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Cohort</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (at time)</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (Pre-Internship)</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Post-Internship</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Affiliation (Post-Internship)</th>
                         </tr>
                       </thead>
                       <tbody>
