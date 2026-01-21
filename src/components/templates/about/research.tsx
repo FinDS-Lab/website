@@ -87,7 +87,7 @@ export const AboutResearchTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}

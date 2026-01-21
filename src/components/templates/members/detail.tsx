@@ -145,7 +145,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
 
   const degreeColors: Record<string, string> = {
     phd: 'bg-red-100 text-red-700',
-    ms: 'bg-blue-100 text-blue-700',
+    ms: 'bg-[#FFF3CC] text-[#D6B04C]',
     undergrad: 'bg-green-100 text-green-700',
   }
 

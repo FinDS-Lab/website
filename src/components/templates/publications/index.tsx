@@ -439,7 +439,7 @@ export const PublicationsTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
@@ -522,8 +522,8 @@ export const PublicationsTemplate = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
                 // FINDS Lab color palette for icons
-                const colors = ['#D6B04C', '#D6B04C', '#D6C360', '#D6B04C', '#D6B04C', '#E8D688', '#726A69', '#AC0E0E']
-                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(172,14,14,0.15)']
+                const colors = ['#D6B04C', '#D6B04C', '#D6C360', '#D6B04C', '#D6B04C', '#E8D688', '#D6A076', '#AC0E0E']
+                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(214, 160, 118,0.15)', 'rgba(172,14,14,0.15)']
                 return (
                   <div
                     key={index}

@@ -141,7 +141,7 @@ export const MembersCurrentTemplate = () => {
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner2})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

@@ -107,7 +107,7 @@ export const AboutHonorsTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
@@ -257,13 +257,13 @@ export const AboutHonorsTemplate = () => {
                         >
                           <div
                             className={`w-36 h-36 md:w-[44px] md:h-[44px] rounded-lg md:rounded-[12px] flex items-center justify-center flex-shrink-0 ${
-                              item.type === 'honor' ? 'bg-blue-100' : 'bg-[#FFF3CC]'
+                              item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#AC0E0E]/10'
                             }`}
                           >
                             {item.type === 'honor' ? (
-                              <Medal className="w-18 h-18 md:w-[22px] md:h-[22px] text-blue-600" />
+                              <Medal className="w-18 h-18 md:w-[22px] md:h-[22px] text-[#D6B04C]" />
                             ) : (
-                              <Trophy className="w-18 h-18 md:w-[22px] md:h-[22px] text-[#D6B04C]" />
+                              <Trophy className="w-18 h-18 md:w-[22px] md:h-[22px] text-[#AC0E0E]" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
