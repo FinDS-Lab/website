@@ -8,7 +8,7 @@ import locationImg from '@/assets/images/location/1.png'
 
 export const LocationTemplate = () => {
   const handleCopyAddress = () => {
-    const address = '(13120) 경기도 성남시 수정구 성남대로 1342 가천대학교 가천관'
+    const address = '(13120) 경기도 성남시 수정구 성남대로 1342 가천대학교 가천관 614호'
     navigator.clipboard.writeText(address)
   }
 
@@ -115,7 +115,7 @@ export const LocationTemplate = () => {
                 <div className="flex items-center gap-8 mb-12">
                   <div className="w-3 h-16 md:h-18 bg-[#AC0E0E] rounded-full" />
                   <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    가천대학교 가천관 705호
+                    가천대학교 글로벌캠퍼스 가천관 614호
                   </h4>
                 </div>
                 <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
@@ -139,10 +139,10 @@ export const LocationTemplate = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm md:text-md font-semibold text-white">
-                        최인수 연구실
+                        최인수 교수
                       </h3>
                       <p className="text-xs md:text-sm text-gray-300">
-                        Prof. Insu Choi's Office
+                        Prof. Insu Choi's Profile
                       </p>
                     </div>
                     <div className="flex items-center gap-6 px-10 py-4 bg-white/20 backdrop-blur-sm rounded-full">
@@ -156,18 +156,21 @@ export const LocationTemplate = () => {
                 <div className="flex items-center gap-8 mb-12">
                   <div className="w-3 h-16 md:h-18 bg-primary rounded-full" />
                   <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    가천관 614호
+                    가천대학교 글로벌캠퍼스 가천관 614호
                   </h4>
                 </div>
                 <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
                   <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-6 md:gap-8">
                       <p className="text-sm md:text-base font-medium text-gray-900">
-                        (13120) 경기도 성남시 수정구 성남대로 1342
+                        (13120) 경기도 성남시 수정구 성남대로 1342 가천대학교 가천관 614호
+                      </p>
+                      <p className="text-sm md:text-base font-medium text-gray-700">
+                        Tel. 031-750-0614
                       </p>
                       <p className="text-xs md:text-sm text-gray-500">
-                        Gachon Hall, Gachon University<br />
-                        1342 Seongnam-daero, Sujeong-gu, Seongnam-si
+                        Room 614, Gachon Hall, Gachon University<br />
+                        1342 Seongnam-daero, Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
                       </p>
                     </div>
                     <button

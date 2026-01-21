@@ -524,8 +524,8 @@ export const MembersDirectorTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 614호</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
@@ -554,7 +554,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
                   </div>
                 </div>
               </div>

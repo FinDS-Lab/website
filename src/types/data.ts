@@ -198,12 +198,17 @@ export type AcademicActivitiesData = {
 }
 
 // Mentees data types
+export type ParticipationYear = {
+  year: string
+  program: string
+}
+
 export type Mentee = {
   name: string
   university: string
   department: string
   entryYear: string
-  participationYears: string[]
+  participationYears: ParticipationYear[]
 }
 
 export type MenteesData = {

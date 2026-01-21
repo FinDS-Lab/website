@@ -145,7 +145,7 @@ export const AboutResearchTemplate = () => {
               <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
             </span>
             <span className="inline-block mx-4"> </span>
-            <span className="inline-block">via Data</span>
+            <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
           </h2>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">

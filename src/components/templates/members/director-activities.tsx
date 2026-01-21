@@ -1120,7 +1120,8 @@ export const MembersDirectorActivitiesTemplate = () => {
   const menteesByYear = useMemo(() => {
     const grouped: MenteesByYear = {}
     mentees.forEach((mentee) => {
-      mentee.participationYears.forEach((year) => {
+      mentee.participationYears.forEach((py) => {
+        const year = typeof py === 'string' ? py : py.year
         if (!grouped[year]) grouped[year] = []
         grouped[year].push(mentee)
       })
@@ -1650,37 +1651,47 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </div>
                             <div className="hidden md:flex items-center gap-8 md:gap-12 shrink-0">
                               <div className="flex gap-4 flex-wrap justify-end">
-                                {mentee.participationYears.map((year) => (
-                                  <span
-                                    key={year}
-                                    className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold ${
-                                      year === '2026'
-                                        ? ''
-                                        : 'bg-gray-100 text-gray-500'
-                                    }`}
-                                    style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
-                                  >
-                                    {year}
-                                  </span>
-                                ))}
+                                {mentee.participationYears.map((py) => {
+                                  const year = typeof py === 'string' ? py : py.year
+                                  const program = typeof py === 'string' ? '' : py.program
+                                  return (
+                                    <span
+                                      key={year}
+                                      title={program}
+                                      className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold cursor-help ${
+                                        year === '2026'
+                                          ? ''
+                                          : 'bg-gray-100 text-gray-500'
+                                      }`}
+                                      style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                    >
+                                      {year}
+                                    </span>
+                                  )
+                                })}
                               </div>
                             </div>
                           </div>
                           {/* Mobile year badges - below info */}
                           <div className="flex md:hidden gap-4 flex-wrap mt-8 ml-48">
-                            {mentee.participationYears.map((year) => (
-                              <span
-                                key={year}
-                                className={`px-6 py-2 rounded text-[10px] font-bold ${
-                                  year === '2026'
-                                    ? ''
-                                    : 'bg-gray-100 text-gray-500'
-                                }`}
-                                style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
-                              >
-                                {year}
-                              </span>
-                            ))}
+                            {mentee.participationYears.map((py) => {
+                              const year = typeof py === 'string' ? py : py.year
+                              const program = typeof py === 'string' ? '' : py.program
+                              return (
+                                <span
+                                  key={year}
+                                  title={program}
+                                  className={`px-6 py-2 rounded text-[10px] font-bold cursor-help ${
+                                    year === '2026'
+                                      ? ''
+                                      : 'bg-gray-100 text-gray-500'
+                                  }`}
+                                  style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                >
+                                  {year}
+                                </span>
+                              )
+                            })}
                           </div>
                         </div>
                       ))}
