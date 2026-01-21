@@ -1,4 +1,4 @@
-import {memo, useState, useEffect, useMemo, useRef} from 'react'
+import {memo, useState, useEffect, useMemo, useRef, useCallback} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
@@ -352,7 +352,8 @@ const CollaborationNetwork = memo(() => {
             journal: collabPubsList.filter(p => p.type === 'journal').length,
             conference: collabPubsList.filter(p => p.type === 'conference').length,
             book: collabPubsList.filter(p => p.type === 'book').length,
-            report: collabPubsList.filter(p => p.type === 'report' || p.type === 'other').length,
+            report: collabPubsList.filter(p => p.type === 'report').length,
+            others: collabPubsList.filter(p => p.type === 'other' || (p.type !== 'journal' && p.type !== 'conference' && p.type !== 'book' && p.type !== 'report')).length,
           }
 
           // Co-work rate 계산 (Director 전체 논문 대비 공동 작업 비율)
