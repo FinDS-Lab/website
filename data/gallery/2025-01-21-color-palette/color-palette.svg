@@ -1,25 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700">
   <!-- Background -->
-  <rect width="800" height="500" fill="#ffffff"/>
+  <rect width="900" height="700" fill="#ffffff"/>
   
+  <!-- Row 1: Primary Colors (larger) -->
   <!-- FINDS Gold -->
-  <rect x="50" y="50" width="320" height="320" rx="20" fill="#D6B14D"/>
-  <text x="210" y="260" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">FINDS Gold</text>
-  <text x="210" y="310" font-family="Courier New, monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">#D6B14D</text>
-  <text x="210" y="350" font-family="Courier New, monospace" font-size="24" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 177, 77</text>
+  <rect x="50" y="40" width="380" height="200" rx="16" fill="#D6B14D"/>
+  <text x="240" y="100" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">FINDS Gold</text>
+  <text x="240" y="150" font-family="Courier New, monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">#D6B14D</text>
+  <text x="240" y="190" font-family="Courier New, monospace" font-size="20" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 177, 77</text>
   
   <!-- FINDS Red -->
-  <rect x="430" y="50" width="320" height="320" rx="20" fill="#AC0E0E"/>
-  <text x="590" y="260" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">FINDS Red</text>
-  <text x="590" y="310" font-family="Courier New, monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">#AC0E0E</text>
-  <text x="590" y="350" font-family="Courier New, monospace" font-size="24" fill="white" text-anchor="middle" opacity="0.9">RGB 172, 14, 14</text>
+  <rect x="470" y="40" width="380" height="200" rx="16" fill="#AC0E0E"/>
+  <text x="660" y="100" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">FINDS Red</text>
+  <text x="660" y="150" font-family="Courier New, monospace" font-size="32" font-weight="bold" fill="white" text-anchor="middle">#AC0E0E</text>
+  <text x="660" y="190" font-family="Courier New, monospace" font-size="20" fill="white" text-anchor="middle" opacity="0.9">RGB 172, 14, 14</text>
+  
+  <!-- Row 2: Secondary Colors -->
+  <!-- Honey -->
+  <rect x="50" y="270" width="155" height="180" rx="12" fill="#D6C360"/>
+  <text x="127" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Honey</text>
+  <text x="127" y="360" font-family="Courier New, monospace" font-size="18" font-weight="bold" fill="white" text-anchor="middle">#D6C360</text>
+  <text x="127" y="390" font-family="Courier New, monospace" font-size="12" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 195, 96</text>
+  
+  <!-- Cream -->
+  <rect x="225" y="270" width="155" height="180" rx="12" fill="#E8D688"/>
+  <text x="302" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#333" text-anchor="middle">Cream</text>
+  <text x="302" y="360" font-family="Courier New, monospace" font-size="18" font-weight="bold" fill="#333" text-anchor="middle">#E8D688</text>
+  <text x="302" y="390" font-family="Courier New, monospace" font-size="12" fill="#333" text-anchor="middle" opacity="0.9">RGB 232, 214, 136</text>
+  
+  <!-- Coral -->
+  <rect x="400" y="270" width="155" height="180" rx="12" fill="#D6A076"/>
+  <text x="477" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Coral</text>
+  <text x="477" y="360" font-family="Courier New, monospace" font-size="18" font-weight="bold" fill="white" text-anchor="middle">#D6A076</text>
+  <text x="477" y="390" font-family="Courier New, monospace" font-size="12" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 160, 118</text>
+  
+  <!-- Rose -->
+  <rect x="575" y="270" width="155" height="180" rx="12" fill="#E8889C"/>
+  <text x="652" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Rose</text>
+  <text x="652" y="360" font-family="Courier New, monospace" font-size="18" font-weight="bold" fill="white" text-anchor="middle">#E8889C</text>
+  <text x="652" y="390" font-family="Courier New, monospace" font-size="12" fill="white" text-anchor="middle" opacity="0.9">RGB 232, 136, 156</text>
+  
+  <!-- Blossom -->
+  <rect x="750" y="270" width="100" height="180" rx="12" fill="#FFBAC4"/>
+  <text x="800" y="320" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">Blossom</text>
+  <text x="800" y="355" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">#FFBAC4</text>
+  <text x="800" y="380" font-family="Courier New, monospace" font-size="10" fill="#333" text-anchor="middle" opacity="0.9">RGB 255,</text>
+  <text x="800" y="395" font-family="Courier New, monospace" font-size="10" fill="#333" text-anchor="middle" opacity="0.9">186, 196</text>
   
   <!-- Gradient Bar -->
   <defs>
-    <linearGradient id="gradBar" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#D6B14D" />
-      <stop offset="100%" style="stop-color:#AC0E0E" />
+    <linearGradient id="fullGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#AC0E0E" />
+      <stop offset="17%" style="stop-color:#D6B14D" />
+      <stop offset="34%" style="stop-color:#D6C360" />
+      <stop offset="51%" style="stop-color:#E8D688" />
+      <stop offset="68%" style="stop-color:#D6A076" />
+      <stop offset="85%" style="stop-color:#E8889C" />
+      <stop offset="100%" style="stop-color:#FFBAC4" />
     </linearGradient>
   </defs>
-  <rect x="50" y="400" width="700" height="60" rx="30" fill="url(#gradBar)"/>
+  
+  <text x="450" y="510" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#374151" text-anchor="middle">Full Palette Gradient</text>
+  <rect x="50" y="530" width="800" height="60" rx="30" fill="url(#fullGrad)"/>
+  
+  <!-- Footer -->
+  <text x="450" y="650" font-family="Arial, sans-serif" font-size="16" fill="#9ca3af" text-anchor="middle">FINDS Lab Official Color Palette</text>
 </svg>
