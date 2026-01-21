@@ -51,6 +51,139 @@ const formatDate = (dateStr: string, format: string): string => {
     .replace('%b', date.toLocaleString('en', { month: 'short' }))
 }
 
+// 마크다운을 HTML로 변환하는 함수
+export const markdownToHtml = (markdown: string, options?: { basePath?: string }): string => {
+  const basePath = options?.basePath || ''
+  let html = markdown
+
+  // 1. 코드 블록 먼저 보호 (다른 변환에 영향받지 않도록)
+  const codeBlocks: string[] = []
+  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (_match, lang, code) => {
+    const langClass = lang ? ` class="language-${lang}"` : ''
+    const placeholder = `___CODEBLOCK_${codeBlocks.length}___`
+    codeBlocks.push(`<pre><code${langClass}>${code.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim()}</code></pre>`)
+    return placeholder
+  })
+
+  // 2. 인라인 코드 보호
+  const inlineCodes: string[] = []
+  html = html.replace(/`([^`]+)`/g, (_match, code) => {
+    const placeholder = `___INLINECODE_${inlineCodes.length}___`
+    inlineCodes.push(`<code>${code}</code>`)
+    return placeholder
+  })
+
+  // 3. 이미지 처리 - ![alt](url) or ![alt](url "title")
+  html = html.replace(/!\[([^\]]*)\]\(([^)"]+)(?:\s+"([^"]*)")?\)/g, (_match, alt, url, title) => {
+    let imgUrl = url
+    if (url.startsWith('/') && basePath) {
+      imgUrl = basePath + url
+    } else if (url.startsWith('../') || url.startsWith('./')) {
+      imgUrl = basePath + '/' + url.replace(/^\.\//, '')
+    }
+    const titleAttr = title ? ` title="${title}"` : ''
+    return `<img src="${imgUrl}" alt="${alt}"${titleAttr} class="rounded-xl shadow-sm my-16 max-w-full" />`
+  })
+
+  // 4. 링크 처리 [text](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+
+  // 5. 헤더 처리 (줄 단위로)
+  html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>')
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>')
+  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>')
+
+  // 6. 수평선 --- or *** (단독 줄에만)
+  html = html.replace(/^[-*]{3,}\s*$/gm, '<hr />')
+
+  // 7. 굵은 글씨 **text** (기울임보다 먼저, 더 견고한 패턴)
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>')
+
+  // 8. 기울임 *text* (굵은 글씨 처리 후이므로 남은 단일 *만 처리)
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
+  html = html.replace(/\b_(.+?)_\b/g, '<em>$1</em>')
+
+  // 9. 인용문 > text
+  html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+  html = html.replace(/<\/blockquote>\n<blockquote>/g, '<br />')
+
+  // 10. 줄 단위로 목록 처리
+  const lines = html.split('\n')
+  const result: string[] = []
+  let inUl = false
+  let inOl = false
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i]
+    
+    // 순서 없는 목록 (- item 형태, 단 HTML 태그 안이 아닌 경우만)
+    const ulMatch = line.match(/^- (.+)$/)
+    if (ulMatch && !line.includes('<')) {
+      if (!inUl) {
+        result.push('<ul>')
+        inUl = true
+      }
+      result.push(`<li>${ulMatch[1]}</li>`)
+      continue
+    } else if (inUl && !line.match(/^- /)) {
+      result.push('</ul>')
+      inUl = false
+    }
+
+    // 순서 있는 목록
+    const olMatch = line.match(/^\d+\. (.+)$/)
+    if (olMatch && !line.includes('<')) {
+      if (!inOl) {
+        result.push('<ol>')
+        inOl = true
+      }
+      result.push(`<li>${olMatch[1]}</li>`)
+      continue
+    } else if (inOl && !line.match(/^\d+\. /)) {
+      result.push('</ol>')
+      inOl = false
+    }
+
+    result.push(line)
+  }
+
+  // 목록 닫기
+  if (inUl) result.push('</ul>')
+  if (inOl) result.push('</ol>')
+
+  html = result.join('\n')
+
+  // 11. 단락 처리 (빈 줄로 구분)
+  const paragraphs = html.split(/\n\n+/)
+  html = paragraphs.map(p => {
+    p = p.trim()
+    if (!p) return ''
+    // 이미 블록 요소로 감싸진 경우 건너뛰기
+    if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<ol') || 
+        p.startsWith('<blockquote') || p.startsWith('<pre') || p.startsWith('<hr') ||
+        p.startsWith('<img') || p.startsWith('<p') || p.startsWith('___CODEBLOCK') ||
+        p.startsWith('<li')) {
+      return p
+    }
+    // 단일 줄바꿈은 <br>로
+    return `<p>${p.replace(/\n/g, '<br />')}</p>`
+  }).join('\n')
+
+  // 12. 코드 블록 복원
+  codeBlocks.forEach((block, i) => {
+    html = html.replace(`___CODEBLOCK_${i}___`, block)
+  })
+
+  // 13. 인라인 코드 복원
+  inlineCodes.forEach((code, i) => {
+    html = html.replace(`___INLINECODE_${i}___`, code)
+  })
+
+  return html
+}
+
 // Jekyll 필터 처리하여 콘텐츠 변환
 export const processJekyllContent = (
   content: string, 
@@ -110,6 +243,9 @@ export const processJekyllContent = (
 
   // {{ site.* }} 패턴 제거
   processed = processed.replace(/\{\{\s*site\.[^}]*\}\}/g, '')
+
+  // 마크다운을 HTML로 변환
+  processed = markdownToHtml(processed, { basePath })
 
   return processed
 }
