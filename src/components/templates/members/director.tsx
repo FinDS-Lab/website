@@ -169,16 +169,6 @@ export const MembersDirectorTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
-  const [expandedSections, setExpandedSections] = useState({
-    introduction: true,
-    researchInterests: true,
-    education: true,
-    employment: true
-  })
-  
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
-  }
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
@@ -557,16 +547,11 @@ export const MembersDirectorTemplate = () => {
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Introduction */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('introduction')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Introduction</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.introduction ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.introduction && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Introduction
+              </h3>
               <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-20 md:p-32 border border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
                   I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
@@ -601,21 +586,14 @@ export const MembersDirectorTemplate = () => {
                   The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.
                 </p>
               </div>
-            </div>
-              )}
             </section>
 
             {/* Research Interests */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('researchInterests')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Interests</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researchInterests ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.researchInterests && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Research Interests
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
@@ -645,21 +623,14 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 ))}
               </div>
-            </div>
-              )}
             </section>
 
             {/* Education */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('education')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.education ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.education && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Education
+              </h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group">
@@ -748,21 +719,14 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 ))}
               </div>
-            </div>
-              )}
             </section>
 
             {/* Employment */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('employment')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Employment</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.employment ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.employment && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Employment
+              </h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {employment.map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
@@ -794,6 +758,249 @@ export const MembersDirectorTemplate = () => {
               </div>
             </section>
 
+            {/* Professional Affiliations */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Professional Affiliations
+              </h3>
+              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+                {affiliations.map((aff, index) => (
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
+                    {/* Timeline dot - positioned on the line */}
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    <div className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                      <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-6">
+                        <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
+                        <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
+                      </div>
+                      <p className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</p>
+                      <p className="text-[10px] md:text-xs text-gray-500 mt-2">{aff.krOrg}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Publication Statistics */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Publication Statistics
+              </h3>
+              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
+                {pubStats.map((stat, index) => (
+                  <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
+                    <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
+                    <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
+                {citationStats.map((stat, index) => (
+                  <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                    <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
+                    <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-20 text-center">
+                <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                  View All Publications <ChevronRight size={14}/>
+                </Link>
+              </div>
+            </section>
+
+            {/* Projects Section */}
+            {projects.length > 0 && (
+              <section>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                  <span className="w-1 h-20 bg-primary rounded-full" />
+                  Projects
+                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{projects.length}</span>
+                </h3>
+
+                {/* Search */}
+                <div className="relative mb-16">
+                  <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search projects..."
+                    value={projectSearchTerm}
+                    onChange={(e) => setProjectSearchTerm(e.target.value)}
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                  />
+                </div>
+
+                {/* Year-grouped projects */}
+                <div className="space-y-12">
+                  {projectYears.map(year => (
+                    <div key={year} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
+                      <button
+                        onClick={() => toggleProjectYear(year)}
+                        className="w-full flex items-center justify-between p-16 hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="flex items-center gap-8">
+                          <span className="text-sm md:text-base font-bold text-gray-900">{year}</span>
+                          <span className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
+                            {projectsByYear[year].length} {projectsByYear[year].length === 1 ? 'Project' : 'Projects'}
+                          </span>
+                        </div>
+                        {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
+                      </button>
+                      {expandedProjectYears.includes(year) && (
+                        <div className="border-t border-gray-100 divide-y divide-gray-50">
+                          {projectsByYear[year].map((project, index) => {
+                            const typeIcons = {
+                              government: Landmark,
+                              industry: Building,
+                              institution: GraduationCap,
+                              academic: Briefcase,
+                            }
+                            const typeColors = {
+                              government: 'bg-primary text-white',
+                              industry: 'bg-[#D6B04C] text-white',
+                              institution: 'bg-[#FFBAC4] text-white',
+                              academic: 'bg-gray-700 text-white',
+                            }
+                            const Icon = typeIcons[project.type]
+                            // Determine director's role
+                            const getDirectorRole = () => {
+                              // Check if 최인수 is the principalInvestigator
+                              if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
+                              if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
+                              if (project.roles.researchers?.includes('최인수')) return 'Researcher'
+                              return 'Researcher'
+                            }
+                            const roleColor: Record<string, string> = {
+                              'Principal Investigator': 'bg-gray-900 text-white',
+                              'Lead Researcher': 'bg-gray-600 text-white',
+                              'Researcher': 'bg-gray-400 text-white'
+                            }
+                            const directorRole = getDirectorRole()
+                            return (
+                              <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
+                                <div className="flex items-start gap-12 md:gap-16">
+                                  <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
+                                    <Icon size={18} />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-6 mb-8">
+                                      <span className="px-8 py-2 bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-4">
+                                        <Calendar size={10} />
+                                        {project.period}
+                                      </span>
+                                      <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                        {directorRole}
+                                      </span>
+                                    </div>
+                                    <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Teaching Section */}
+            {lectures.length > 0 && (
+              <section>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                  <span className="w-1 h-20 bg-primary rounded-full" />
+                  Teaching
+                </h3>
+
+                {/* Search */}
+                <div className="relative mb-16">
+                  <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search courses..."
+                    value={teachingSearchTerm}
+                    onChange={(e) => setTeachingSearchTerm(e.target.value)}
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                  />
+                </div>
+
+                {/* Lecturer Section */}
+                {lecturerCourses.length > 0 && (
+                  <div className="mb-24">
+                    <div className="flex items-center gap-8 mb-12">
+                      <p className="text-sm font-bold text-gray-900">Lecturer</p>
+                      <span className="px-8 py-2 bg-[#D6B04C] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
+                    </div>
+                    <div className="space-y-12">
+                      {lecturerCourses.map((course, index) => (
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                          <div className="flex items-start gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214, 176, 76,0.15)'}}>
+                              <BookOpen size={18} style={{color: '#D6B04C'}} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 mb-8">
+                                {course.periods.map((period, i) => (
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                    {period}
+                                  </span>
+                                ))}
+                              </div>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                              )}
+                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Teaching Assistant Section */}
+                {taCourses.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-8 mb-12">
+                      <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{taSemesters}</span>
+                    </div>
+                    <div className="space-y-12">
+                      {taCourses.map((course, index) => (
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                          <div className="flex items-start gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(232,135,155,0.15)'}}>
+                              <BookOpen size={18} style={{color: '#E8889C'}} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 mb-8">
+                                {course.periods.map((period, i) => (
+                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                    {period}
+                                  </span>
+                                ))}
+                              </div>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                              )}
+                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
+            )}
           </main>
         </div>
       </section>

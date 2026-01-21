@@ -1452,6 +1452,330 @@ export const MembersDirectorActivitiesTemplate = () => {
 
           {/* Right Column: Activities Only */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
+            {/* Honors & Awards */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('awardsHonors')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.awardsHonors ? 'rotate-180' : ''}`}/>
+              </button>
+
+              {expandedSections.awardsHonors && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  {!honorsData || Object.keys(honorsData).length === 0 ? (
+                    <div className="py-16 text-center text-sm text-gray-400">
+                      No awards data available
+                    </div>
+                  ) : (
+                    <>
+                      {/* Statistics Section - Matching About FINDS Honors & Awards format */}
+                      {(() => {
+                        const allItems = Object.values(honorsData).flat()
+                        const totalAwards = allItems.filter(item => item.type === 'award').length
+                        const totalHonors = allItems.filter(item => item.type === 'honor').length
+                        const totalItems = totalAwards + totalHonors
+                        return (
+                          <div className="flex flex-col gap-16 md:gap-24 mb-20">
+                            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                              <span className="w-8 h-8 rounded-full bg-primary" />
+                              Statistics
+                            </h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalHonors}</span>
+                                  <div className="flex items-center gap-6">
+                                    <Medal className="size-14 md:size-16" style={{color: '#D6B04C', opacity: 0.7}} />
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
+                                  <div className="flex items-center gap-6">
+                                    <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalItems}</span>
+                                  <div className="flex items-center gap-6">
+                                    <Award className="size-14 md:size-16" style={{color: '#4A4A4A', opacity: 0.7}} />
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })()}
+
+                      {/* Timeline by Year */}
+                      <div className="space-y-12">
+                        {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
+                          const items = honorsData[year]
+                          const awards = items.filter((item) => item.type === 'award')
+                          const honors = items.filter((item) => item.type === 'honor')
+                          const isExpanded = expandedYears.has(year)
+
+                          return (
+                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
+                              {/* Year Header - Clickable */}
+                              <button
+                                onClick={() => toggleYear(year)}
+                                className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <div className="flex items-center gap-12">
+                                  <span className="text-base font-bold text-gray-900">{year}</span>
+                                  <div className="flex items-center gap-6">
+                                    {awards.length > 0 && (
+                                      <span className="px-8 py-2 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
+                                        🏆 {awards.length}
+                                      </span>
+                                    )}
+                                    {honors.length > 0 && (
+                                      <span className="px-8 py-2 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172,14,14,0.1)', color: 'rgb(172,14,14)'}}>
+                                        🎓 {honors.length}
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                                <ChevronDown 
+                                  size={18} 
+                                  className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                                />
+                              </button>
+
+                              {/* Items - Collapsible */}
+                              {isExpanded && (
+                                <div className="divide-y divide-gray-50">
+                                  {items.map((item, idx) => (
+                                    <div key={idx} className="px-16 py-12 hover:bg-gray-50/50 transition-colors">
+                                      <div className="flex items-start gap-12">
+                                        <span className="text-lg shrink-0">{item.icon}</span>
+                                        <div className="flex-1 min-w-0">
+                                          <div className="flex items-start justify-between gap-8">
+                                            <div className="min-w-0">
+                                              <p className="text-sm font-bold text-gray-900">{item.title}</p>
+                                              <p className="text-xs text-gray-600 mt-2">{item.event}</p>
+                                              <p className="text-[10px] text-gray-400 mt-2">{item.organization}</p>
+                                            </div>
+                                            <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{item.date}</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </section>
+
+            {/* Academic Service */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('academicService')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Academic Service</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicService ? 'rotate-180' : ''}`}/>
+              </button>
+
+              {expandedSections.academicService && (
+                <>
+                  {loading ? (
+                    <div className="p-40 text-center border-t border-gray-100">
+                      <p className="text-sm text-gray-400 animate-pulse">Loading academic activities data...</p>
+                    </div>
+                  ) : activitiesData ? (
+                    <div className="border-t border-gray-100">
+                      {/* Editorial Board Memberships */}
+                      <div className="p-24">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
+                          <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
+                        </div>
+                        <div className="py-16 text-center text-sm text-gray-400">
+                          Coming soon...
+                        </div>
+                      </div>
+
+                      {/* Conference & Workshop Organizing Committee */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Conference & Workshop Organizing Committee</p>
+                          <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
+                        </div>
+                        <div className="py-16 text-center text-sm text-gray-400">
+                          Coming soon...
+                        </div>
+                      </div>
+
+                      {/* Advisory Board & External Committee Memberships */}
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Advisory Board & External Committee Memberships</p>
+                          <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
+                        </div>
+                        <div className="py-16 text-center text-sm text-gray-400">
+                          Coming soon...
+                        </div>
+                      </div>
+
+                      {/* Program & Event Committee - Single row */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                          <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                        </div>
+                        {committees.length > 0 ? (
+                          <div className="flex flex-wrap gap-8">
+                            {committees.map((comm) => (
+                              <a
+                                key={comm.id}
+                                href={comm.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-[#FFF9E6] hover:bg-[#FFF3CC] text-[#B8962D]"
+                                title={comm.period || comm.since}
+                              >
+                                {comm.name}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Session Chair - Single row */}
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{sessionChairs.length}</span>
+                        </div>
+                        {sessionChairs.length > 0 ? (
+                          <div className="flex flex-wrap gap-8">
+                            {sessionChairs.map((chair) => (
+                              <a
+                                key={chair.id}
+                                href={chair.url || '#'}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
+                                style={{backgroundColor: 'rgba(232,135,155,0.1)', color: '#E8889C'}}
+                                title={chair.period || chair.since}
+                              >
+                                {chair.name}
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-sm text-gray-400">
+                            Coming soon...
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Journal Reviewer - Single column with SCI badge */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center justify-between mb-16">
+                          <div className="flex items-center gap-8">
+                            <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
+                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
+                          </div>
+                          {journals.length > 15 && (
+                            <button
+                              onClick={() => setShowAllJournals(!showAllJournals)}
+                              className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
+                            >
+                              {showAllJournals ? 'Show Less' : 'Show All'}
+                              {showAllJournals ? <ChevronUp size={12}/> : <ChevronDown size={12}/>}
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex flex-col gap-6">
+                          {displayedJournals.map((journal) => (
+                            <a
+                              key={journal.id}
+                              href={journal.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center justify-between px-16 py-10 rounded-lg text-sm font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-primary/30"
+                              title={`${journal.name} (${journal.type}, since ${journal.since})`}
+                            >
+                              <span className="text-gray-700">{journal.name}</span>
+                              <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
+                                journal.type === 'SCIE' ? 'bg-[#D6B04C] text-white' :
+                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
+                                journal.type === 'A&HCI' ? 'bg-[#726A69] text-white' :
+                                journal.type === 'ESCI' ? 'bg-[#D6C360] text-white' :
+                                journal.type === 'SCOPUS' ? 'bg-[#E8D688] text-gray-700' :
+                                'bg-[#FFBAC4] text-gray-700'
+                              }`}>
+                                {journal.type} {(journal.type === 'SCIE' || journal.type === 'SSCI' || journal.type === 'A&HCI' || journal.type === 'ESCI') ? '' : ''}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Conference Reviewer - Single row */}
+                      <div className="p-24 border-t border-gray-100">
+                        <div className="flex items-center justify-between mb-16">
+                          <div className="flex items-center gap-8">
+                            <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
+                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
+                          </div>
+                          {conferenceReviewers.length > 20 && (
+                            <button
+                              onClick={() => setShowAllConferences(!showAllConferences)}
+                              className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
+                            >
+                              {showAllConferences ? 'Show Less' : 'Show All'}
+                              {showAllConferences ? <ChevronUp size={12}/> : <ChevronDown size={12}/>}
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-8">
+                          {conferenceReviewers.map((conf) => (
+                            <a
+                              key={conf.id}
+                              href={conf.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-6 px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
+                              style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}
+                              title={conf.period || conf.since}
+                            >
+                              {conf.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
+                </>
+              )}
+            </section>
+
             {/* Activities */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1532,6 +1856,23 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
                   </button>
                 ))}
+                </div>
+              )}
+            </section>
+
+            {/* Collaboration Network */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('collaborationNetwork')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
+              </button>
+
+              {expandedSections.collaborationNetwork && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <CollaborationNetwork/>
                 </div>
               )}
             </section>
