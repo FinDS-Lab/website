@@ -169,6 +169,15 @@ export const MembersDirectorAcademicTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
+  const [expandedSections, setExpandedSections] = useState({
+    publicationStats: true,
+    projects: true,
+    teaching: true
+  })
+  
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
+  }
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
@@ -546,256 +555,54 @@ export const MembersDirectorAcademicTemplate = () => {
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Introduction */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Introduction
-              </h3>
-              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-20 md:p-32 border border-gray-100">
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
-                  <span className="font-bold text-primary">Financial Data Science</span>,{' '}
-                  <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
-                  In particular, I focus on three directions:
-                </p>
-                <div className="space-y-16 mb-24">
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">AI-driven solutions for quantitative finance</span> — portfolio optimization, algorithmic trading, and financial time-series forecasting.
-                    </p>
+            {/* Publication Statistics */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('publicationStats')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.publicationStats && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
+                    {pubStats.map((stat, index) => (
+                      <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
+                        <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
+                        <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Advanced analytics across business domains</span>, employing a comprehensive suite of analytical approaches—from time-series models to graph-based analytics and beyond—to surface actionable insights.
-                    </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
+                    {citationStats.map((stat, index) => (
+                      <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                        <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
+                        <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Intelligent decision support systems</span> that pair optimization techniques with user-friendly interfaces for complex business problems.
-                    </p>
+                  <div className="mt-20 text-center">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                      View All Publications <ChevronRight size={14}/>
+                    </Link>
                   </div>
                 </div>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.
-                </p>
-              </div>
+              )}
             </section>
 
-            {/* Research Interests */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Research Interests
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
-                    <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
-                      <div className="size-8 rounded-full bg-primary/40"/>
-                      <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
-                    </div>
-                    <ul className="space-y-10">
-                      {area.items.map((item, idx) => {
-                        // Extract key terms for highlighting
-                        const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
-                        let highlightedItem = item
-                        highlightTerms.slice(0, 2).forEach(term => {
-                          highlightedItem = highlightedItem.replace(term, `<mark>${term}</mark>`)
-                        })
-                        return (
-                          <li key={idx} className="flex items-start gap-10">
-                            <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                            <span 
-                              className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
-                              dangerouslySetInnerHTML={{__html: highlightedItem}}
-                            />
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Education */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Education
-              </h3>
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
-                {education.map((edu, index) => (
-                  <div key={index} className="relative pb-32 last:pb-0 group">
-                    {/* Timeline dot - positioned on the line (same as Employment) */}
-                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
-                    <div className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md transition-all">
-                      <div className="flex items-start gap-16 mb-16">
-                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
-                          <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-8 mb-8">
-                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
-                            {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-4 px-8 py-4 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
-                                <Award size={10} />
-                                Award
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
-                          <p className="text-xs md:text-sm text-gray-600">{edu.field}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="pl-0 md:pl-80">
-                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4">{edu.school}</p>
-                        {edu.advisors && edu.advisors.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
-                            <div className="space-y-6">
-                              {edu.advisors.map((adv, i) => (
-                                <a 
-                                  key={i}
-                                  href={adv.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
-                                >
-                                  <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B04C]" />
-                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                  </div>
-                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {edu.leadership && edu.leadership.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Leadership Roles</p>
-                            <div className="space-y-6">
-                              {edu.leadership.map((l, i) => (
-                                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-8">
-                                  <div>
-                                    <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                    <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
-                                  </div>
-                                  <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {edu.awards && edu.awards.length > 0 && (
-                          <div className="pt-12 border-t border-gray-100">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
-                            <div className="space-y-6">
-                              {edu.awards.map((a, i) => (
-                                <div key={i} className="flex items-start gap-8 bg-gray-50 rounded-lg px-12 py-8">
-                                  <span className="text-[#D6B04C] shrink-0">🏆</span>
-                                  <div className="flex-1">
-                                    <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                    <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Employment */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Employment
-              </h3>
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
-                {employment.map((emp, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    {/* Timeline dot - positioned on the line */}
-                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
-                      emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
-                    }`}/>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
-                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
-                            emp.isCurrent
-                              ? 'bg-primary text-white'
-                              : 'bg-gray-200 text-gray-700'
-                          }`}>{emp.period}</span>
-                        </div>
-                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
-                        {emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{emp.department}</p>
-                        )}
-                        <p className="text-[10px] md:text-xs text-gray-500 truncate">{emp.organization}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* Publication Statistics */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Publication Statistics
-              </h3>
-              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                {pubStats.map((stat, index) => (
-                  <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
-                    <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
-                    <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
-                {citationStats.map((stat, index) => (
-                  <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
-                    <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                    <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-20 text-center">
-                <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                  View All Publications <ChevronRight size={14}/>
-                </Link>
-              </div>
-            </section>
-
-            {/* Projects Section */}
+            {/* Projects */}
             {projects.length > 0 && (
-              <section>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                  <span className="w-1 h-20 bg-primary rounded-full" />
-                  Projects
-                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{projects.length}</span>
-                </h3>
-
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('projects')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Projects</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.projects ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.projects && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
                 {/* Search */}
                 <div className="relative mb-16">
                   <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -883,16 +690,23 @@ export const MembersDirectorAcademicTemplate = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+                )}
               </section>
             )}
 
-            {/* Teaching Section */}
+            {/* Teaching */}
             {lectures.length > 0 && (
-              <section>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                  <span className="w-1 h-20 bg-primary rounded-full" />
-                  Teaching
-                </h3>
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('teaching')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.teaching && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
 
                 {/* Search */}
                 <div className="relative mb-16">
@@ -974,6 +788,8 @@ export const MembersDirectorAcademicTemplate = () => {
                       ))}
                     </div>
                   </div>
+                )}
+              </div>
                 )}
               </section>
             )}
