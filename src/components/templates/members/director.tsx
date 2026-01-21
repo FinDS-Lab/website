@@ -659,20 +659,22 @@ export const MembersDirectorTemplate = () => {
                       <div className="pl-0 md:pl-80">
                         <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4">{edu.school}</p>
                         {edu.advisors && edu.advisors.length > 0 && (
-                          <div className="flex items-center gap-6 mb-12">
-                            <span className="text-xs text-gray-500">Advisor:</span>
-                            <div className="flex flex-wrap items-center gap-6">
+                          <div className="mb-12">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
+                            <div className="space-y-6">
                               {edu.advisors.map((adv, i) => (
                                 <a 
                                   key={i}
                                   href={adv.url} 
                                   target="_blank" 
                                   rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-full text-xs font-medium text-blue-700 hover:from-blue-100 hover:to-indigo-100 transition-all"
+                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
                                 >
-                                  <GraduationCap className="size-12 text-blue-500" />
-                                  {adv.name}
-                                  <ExternalLink className="size-10 text-blue-400" />
+                                  <div className="flex items-center gap-8">
+                                    <GraduationCap className="size-14 text-blue-500" />
+                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                  </div>
+                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
                                 </a>
                               ))}
                             </div>
