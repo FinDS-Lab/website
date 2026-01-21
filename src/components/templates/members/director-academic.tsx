@@ -23,6 +23,8 @@ import {
   Search,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
+import {CollaborationNetwork} from '@/components/organisms/collaboration-network'
+import type {AcademicActivitiesData} from '@/types/data'
 
 // Types
 type Project = {
@@ -169,6 +171,20 @@ export const MembersDirectorAcademicTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
+  const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
+  const [showAllJournals, setShowAllJournals] = useState(false)
+  const [showAllConferences, setShowAllConferences] = useState(false)
+  const [expandedSections, setExpandedSections] = useState({
+    publicationStats: true,
+    collaborationNetwork: true,
+    affiliationsAndService: true,
+    projects: true,
+    teaching: true
+  })
+  
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
+  }
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
@@ -247,6 +263,12 @@ export const MembersDirectorAcademicTemplate = () => {
       .then((data: Lecture[]) => {
         setLectures(data)
       })
+      .catch(console.error)
+    
+    // Fetch Academic Activities
+    fetch(`${baseUrl}data/academic-activities.json`)
+      .then(res => res.json())
+      .then((data: AcademicActivitiesData) => setActivitiesData(data))
       .catch(console.error)
   }, [])
 
@@ -359,6 +381,34 @@ export const MembersDirectorAcademicTemplate = () => {
   const taSemesters = useMemo(() => 
     taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
 
+  const journals = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'journal')
+  }, [activitiesData])
+
+  const conferences = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'conference')
+  }, [activitiesData])
+
+  const committees = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'committee')
+  }, [activitiesData])
+
+  const sessionChairs = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'chair')
+  }, [activitiesData])
+
+  const displayedJournals = useMemo(() => {
+    return showAllJournals ? journals : journals.slice(0, 20)
+  }, [journals, showAllJournals])
+
+  const displayedConferences = useMemo(() => {
+    return showAllConferences ? conferences : conferences.slice(0, 20)
+  }, [conferences, showAllConferences])
+
   return (
     <div className="flex flex-col bg-white">
       {/* Banner */}
@@ -417,44 +467,21 @@ export const MembersDirectorAcademicTemplate = () => {
           <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
             <Link
               to="/members/director"
-              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-                location.pathname === '/members/director'
-                  ? 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
             >
               <User size={16} />
               Profile
             </Link>
             <Link
               to="/members/director/academic"
-              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-                true
-                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              <User size={16} />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/academic"
-              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-                location.pathname === '/members/director/academic'
-                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
             >
               <BookOpen size={16} />
               Scholarly
             </Link>
             <Link
               to="/members/director/activities"
-              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
-                location.pathname === '/members/director/activities'
-                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
+              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
             >
               <Activity size={16} />
               Activities
@@ -569,36 +596,17 @@ export const MembersDirectorAcademicTemplate = () => {
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Professional Affiliations */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Professional Affiliations
-              </h3>
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
-                {affiliations.map((aff, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    {/* Timeline dot - positioned on the line */}
-                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
-                    <div className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
-                      <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-6">
-                        <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
-                        <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
-                      </div>
-                      <p className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</p>
-                      <p className="text-[10px] md:text-xs text-gray-500 mt-2">{aff.krOrg}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
             {/* Publication Statistics */}
-            <section>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                <span className="w-1 h-20 bg-primary rounded-full" />
-                Publication Statistics
-              </h3>
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('publicationStats')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.publicationStats && (
+              <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
                 {pubStats.map((stat, index) => (
                   <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
@@ -620,9 +628,172 @@ export const MembersDirectorAcademicTemplate = () => {
                   View All Publications <ChevronRight size={14}/>
                 </Link>
               </div>
+              </div>
+              )}
             </section>
 
-            {/* Projects Section */}
+            {/* Collaboration Network */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('collaborationNetwork')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.collaborationNetwork && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <CollaborationNetwork />
+                </div>
+              )}
+            </section>
+
+{/* Professional Affiliations & Academic Service */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('affiliationsAndService')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Professional Affiliations & Academic Service</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.affiliationsAndService ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.affiliationsAndService && (
+                <div className="border-t border-gray-100">
+                  {/* Professional Affiliations */}
+                  <div className="p-20 md:p-24">
+                    <h4 className="text-base font-bold text-gray-900 mb-16">Professional Affiliations</h4>
+                    <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+                      {affiliations.map((aff, index) => (
+                        <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
+                          <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                          <div className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                            <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-6">
+                              <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
+                              <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
+                            </div>
+                            <p className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</p>
+                            <p className="text-[10px] md:text-xs text-gray-500 mt-2">{aff.krOrg}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Academic Service */}
+                  {activitiesData && (
+                    <div className="border-t border-gray-100">
+                      {/* Journal Reviewer */}
+                      <div className="p-20 md:p-24">
+                        <div className="flex items-center justify-between mb-16">
+                          <div className="flex items-center gap-8">
+                            <h4 className="text-base font-bold text-gray-900">Journal Reviewer</h4>
+                            <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
+                          </div>
+                          {journals.length > 20 && (
+                            <button
+                              onClick={() => setShowAllJournals(!showAllJournals)}
+                              className="text-xs text-primary font-medium hover:underline"
+                            >
+                              {showAllJournals ? 'Show Less' : 'Show All'}
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-8">
+                          {displayedJournals.map((journal) => (
+                            <a
+                              key={journal.id}
+                              href={journal.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-primary/10 hover:bg-primary/20 text-primary"
+                            >
+                              {journal.name}
+                              {journal.indexing && <span className="ml-4 text-[9px] opacity-70">({journal.indexing})</span>}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Program Committee */}
+                      <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <h4 className="text-base font-bold text-gray-900">Program Committee</h4>
+                          <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-8">
+                          {committees.map((comm) => (
+                            <a
+                              key={comm.id}
+                              href={comm.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-[#FFF9E6] hover:bg-[#FFF3CC] text-[#B8962D]"
+                            >
+                              {comm.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Session Chair */}
+                      <div className="p-20 md:p-24 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <h4 className="text-base font-bold text-gray-900">Session Chair</h4>
+                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{sessionChairs.length}</span>
+                        </div>
+                        <div className="flex flex-wrap gap-8">
+                          {sessionChairs.map((chair) => (
+                            <a
+                              key={chair.id}
+                              href={chair.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
+                              style={{backgroundColor: 'rgba(232,135,155,0.1)', color: '#E8889C'}}
+                            >
+                              {chair.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Conference Reviewer */}
+                      <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center justify-between mb-16">
+                          <div className="flex items-center gap-8">
+                            <h4 className="text-base font-bold text-gray-900">Conference Reviewer</h4>
+                            <span className="px-8 py-2 bg-gray-600 text-white text-[10px] font-bold rounded-full">{conferences.length}</span>
+                          </div>
+                          {conferences.length > 20 && (
+                            <button
+                              onClick={() => setShowAllConferences(!showAllConferences)}
+                              className="text-xs text-primary font-medium hover:underline"
+                            >
+                              {showAllConferences ? 'Show Less' : 'Show All'}
+                            </button>
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-8">
+                          {displayedConferences.map((conf) => (
+                            <a
+                              key={conf.id}
+                              href={conf.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-gray-100 hover:bg-gray-200 text-gray-700"
+                            >
+                              {conf.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </section>
+
+{/* Projects */}
             {projects.length > 0 && (
               <section>
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
@@ -689,7 +860,35 @@ export const MembersDirectorAcademicTemplate = () => {
                               'Researcher': 'bg-gray-400 text-white'
                             }
                             const directorRole = getDirectorRole()
-                            return (
+                            const journals = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'journal')
+  }, [activitiesData])
+
+  const conferences = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'conference')
+  }, [activitiesData])
+
+  const committees = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'committee')
+  }, [activitiesData])
+
+  const sessionChairs = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'chair')
+  }, [activitiesData])
+
+  const displayedJournals = useMemo(() => {
+    return showAllJournals ? journals : journals.slice(0, 20)
+  }, [journals, showAllJournals])
+
+  const displayedConferences = useMemo(() => {
+    return showAllConferences ? conferences : conferences.slice(0, 20)
+  }, [conferences, showAllConferences])
+
+  return (
                               <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
                                   <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
@@ -718,16 +917,23 @@ export const MembersDirectorAcademicTemplate = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+                )}
               </section>
             )}
 
-            {/* Teaching Section */}
+            {/* Teaching */}
             {lectures.length > 0 && (
-              <section>
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
-                  <span className="w-1 h-20 bg-primary rounded-full" />
-                  Teaching
-                </h3>
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('teaching')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.teaching && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
 
                 {/* Search */}
                 <div className="relative mb-16">
@@ -809,6 +1015,8 @@ export const MembersDirectorAcademicTemplate = () => {
                       ))}
                     </div>
                   </div>
+                )}
+              </div>
                 )}
               </section>
             )}

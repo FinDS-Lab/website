@@ -1037,9 +1037,9 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     awardsHonors: false,
     academicService: false,
-    activities: false,
+    activities: true,
     collaborationNetwork: false,
-    mentoringProgram: false,
+    mentoringProgram: true,
   })
   const {showModal} = useStoreModal()
 
@@ -1687,7 +1687,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                   ) : (
                     <div className="p-40 text-center text-gray-400">
-                      <User size={40} className="mx-auto mb-12 opacity-30"/>
+                      <Users size={40} className="mx-auto mb-12 opacity-30"/>
                       <p className="text-sm">No mentees found</p>
                     </div>
                   )}
