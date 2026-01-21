@@ -14,14 +14,14 @@ const focusAreas = [
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     desc: '금융 시장의 복잡한 데이터를 수집하고 분석하여 가치 있는 패턴과 인사이트를 발견합니다.',
-    gradient: 'from-amber-500/10 via-yellow-500/5 to-transparent',
+    gradient: 'from-[#D6B04C]/10 via-yellow-500/5 to-transparent',
   },
   {
     image: icon11,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     desc: '데이터 기반의 통계적 방법론을 통해 최적의 비즈니스 전략과 솔루션을 제안합니다.',
-    gradient: 'from-primary/10 via-amber-500/5 to-transparent',
+    gradient: 'from-primary/10 via-[#D6C360]/5 to-transparent',
   },
   {
     image: icon10,
@@ -39,7 +39,7 @@ const pillars = [
     number: '01',
     title: 'We pursue research with an iridescent perspective.',
     description: 'By applying systematic and diverse methodologies in financial data science and business analytics, we expand knowledge while building transparent frameworks that ensure both practical relevance and data-driven decision-making.',
-    accent: 'group-hover:from-amber-500 group-hover:to-yellow-600',
+    accent: 'group-hover:from-[#D6B04C] group-hover:to-yellow-600',
   },
   {
     icon: Zap,
@@ -47,7 +47,7 @@ const pillars = [
     number: '02',
     title: 'We transform theory into intuitive solutions.',
     description: 'Our work helps practitioners navigate uncertainty and bridge the gap between sophisticated analytics and real-world practice, across both financial markets and broader business operations.',
-    accent: 'group-hover:from-primary group-hover:to-amber-500',
+    accent: 'group-hover:from-primary group-hover:to-[#D6C360]',
   },
   {
     icon: Lightbulb,
@@ -108,16 +108,16 @@ export const AboutIntroductionTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
+          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
             About FINDS
           </span>
           
@@ -127,9 +127,9 @@ export const AboutIntroductionTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -162,22 +162,22 @@ export const AboutIntroductionTemplate = () => {
           {/* Main Hero Content */}
           <div className="relative">
             {/* Decorative Background */}
-            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-amber-100/30 via-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-[#FFF3CC]/30 via-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative text-center max-w-4xl mx-auto">
               {/* Title with Background */}
-              <div className="relative bg-gradient-to-br from-amber-50 via-white to-primary/5 rounded-2xl md:rounded-3xl p-24 md:p-40 mb-20 md:mb-32 overflow-hidden border border-amber-100/50">
+              <div className="relative bg-gradient-to-br from-[#FFF9E6] via-white to-primary/5 rounded-2xl md:rounded-3xl p-24 md:p-40 mb-20 md:mb-32 overflow-hidden border border-[#FFF3CC]/50">
                 {/* Background Decorations */}
-                <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-amber-100/30 to-transparent" />
+                <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-[#FFF3CC]/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-primary/5 to-transparent" />
                 
                 <h2 className="relative z-10 text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3]">
                   <span className="inline-block">Towards</span>{' '}
                   <span className="relative inline-block">
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
                       Data-Illuminated
                     </span>
-                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-amber-200/60 to-primary/20 -skew-x-6 rounded" />
+                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
                   </span>
                   <br className="hidden md:block" />
                   <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
@@ -190,25 +190,25 @@ export const AboutIntroductionTemplate = () => {
                   <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
                   <span className="relative inline-block mx-2">
                     <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab.</span>
-                    <span className="absolute -bottom-1 left-0 right-0 h-2 bg-amber-200/40 -z-10" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#FFEB99]/40 -z-10" />
                   </span>
                   은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
                   <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
                 </p>
 
                 <p className="text-base md:text-lg text-gray-500 leading-[1.9]">
-                  오늘날 비즈니스와 금융 경제 환경은 <span className="text-gray-700 font-semibold">데이터</span> 중심으로 빠르게 변화하고 있습니다.
-                  이제는 데이터를 얼마나 <span className="text-gray-700 font-semibold">정교하게 분석</span>하고{' '}
-                  <span className="text-gray-700 font-semibold">효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
+                  오늘날 비즈니스와 금융 경제 환경은 <span className="text-gray-800 font-bold">데이터</span> 중심으로 빠르게 변화하고 있습니다.
+                  이제는 데이터를 얼마나 <span className="text-gray-800 font-bold">정교하게 분석</span>하고{' '}
+                  <span className="text-gray-800 font-bold">효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
                 </p>
 
                 <p className="text-base md:text-lg text-gray-500 leading-[1.9]">
-                  저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와{' '}
-                  <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
+                  저희는 <span className="text-primary font-bold">금융데이터사이언스</span>와{' '}
+                  <span className="text-primary font-bold">비즈니스 애널리틱스</span>를 융합하여,
                   복잡한 데이터 속에서 새로운{' '}
                   <span className="relative inline-block">
                     <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>
-                    <Sparkles size={12} className="absolute -top-2 -right-4" style={{color: '#ffb7c5'}} />
+                    <Sparkles size={12} className="absolute -top-2 -right-4" style={{color: '#FFBAC4'}} />
                   </span>
                   을 이끌어내고 데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
                 </p>
@@ -245,20 +245,20 @@ export const AboutIntroductionTemplate = () => {
               {focusAreas.map((area, index) => (
                 <div
                   key={index}
-                  className="group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-amber-200/50 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-100/50 hover:-translate-y-4"
+                  className="group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-[#FFEB99]/50 transition-all duration-500 hover:shadow-2xl hover:shadow-[#FFF3CC]/50 hover:-translate-y-4"
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   {/* Card Gradient Background */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${area.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
                   {/* Top Accent Line */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B04C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Content */}
                   <div className="relative p-28 md:p-40 lg:p-48">
                     {/* Icon */}
                     <div className="relative w-80 h-80 md:w-100 md:h-100 mx-auto mb-24 md:mb-32">
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-100 to-amber-50 rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#FFF3CC] to-[#FFF9E6] rounded-2xl md:rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-white rounded-2xl md:rounded-3xl shadow-lg flex items-center justify-center">
                         <img
                           src={area.image}
@@ -301,23 +301,23 @@ export const AboutIntroductionTemplate = () => {
           ref={visionAnimation.ref}
           className={`transition-all duration-1000 delay-300 ${visionAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
         >
-          <div className="relative bg-gradient-to-br from-amber-50 via-white to-primary/5 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden border border-amber-100/50">
+          <div className="relative bg-gradient-to-br from-[#FFF9E6] via-white to-primary/5 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden border border-[#FFF3CC]/50">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-amber-100/50 to-transparent" />
+              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#FFF3CC]/50 to-transparent" />
               <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-200/20 rounded-full blur-3xl" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FFEB99]/20 rounded-full blur-3xl" />
             </div>
 
             {/* Floating Quotes */}
-            <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-amber-200/30 rotate-180" />
-            <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-amber-200/30" />
+            <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-[#FFEB99]/30 rotate-180" />
+            <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-[#FFEB99]/30" />
 
             {/* Content */}
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               {/* Badge */}
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-32 md:mb-48 shadow-sm">
-                <Sparkles size={14} className="text-amber-500" />
+              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
+                <Sparkles size={14} className="text-[#D6B04C]" />
                 <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Vision
                 </span>
@@ -328,29 +328,29 @@ export const AboutIntroductionTemplate = () => {
                 We illuminate the future of
                 <br />
                 <span className="relative inline-block mt-8 md:mt-12">
-                  <span className="bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
                     Better Data Intelligence
                   </span>
-                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
                 </span>
               </h2>
 
               {/* Divider */}
               <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-amber-300" />
-                <div className="w-2 h-2 rounded-full bg-amber-400" />
-                <div className="w-12 h-px bg-gradient-to-l from-transparent to-amber-300" />
+                <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                <div className="w-2 h-2 rounded-full bg-[#D6B04C]" />
+                <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
               </div>
 
               {/* Description */}
               <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
                 We envision a future where{' '}
-                <span className="text-gray-900 font-bold border-b-2 border-amber-300 pb-1">data intelligence</span>{' '}
+                <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">data intelligence</span>{' '}
                 diminishes knowledge asymmetry, turning complex data streams into{' '}
-                <span className="text-primary font-semibold">clear, accessible, and strategically valuable insights</span>{' '}
+                <span className="text-primary font-bold">clear, accessible, and strategically valuable insights</span>{' '}
                 — a future built upon meaningful{' '}
                 <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>finds</span>{' '}
-                that guide decision-makers across finance, business, and diverse societal domains.
+                that guide decision-makers across <span className="font-bold text-gray-800">finance</span>, <span className="font-bold text-gray-800">business</span>, and diverse societal domains.
               </p>
             </div>
           </div>
@@ -360,7 +360,7 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           PILLARS SECTION - Three Column Cards with Hover Effects
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="bg-gradient-to-b from-white via-amber-50/20 to-white">
+      <div className="bg-gradient-to-b from-white via-[#FFF9E6]/20 to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-60 md:py-120">
           <section
             ref={pillarsAnimation.ref}
@@ -368,8 +368,8 @@ export const AboutIntroductionTemplate = () => {
           >
             {/* Section Header */}
             <div className="text-center mb-48 md:mb-80">
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-amber-200/50 rounded-full mb-16 md:mb-24 shadow-sm">
-                <Sparkles size={14} className="text-amber-500" />
+              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-16 md:mb-24 shadow-sm">
+                <Sparkles size={14} className="text-[#D6B04C]" />
                 <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Pillars
                 </span>
@@ -384,14 +384,14 @@ export const AboutIntroductionTemplate = () => {
                 </span>
                 <span className="relative">
                   Impact
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-amber-500/30 to-amber-500 rounded-full" />
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#D6B04C]/30 to-[#D6C360] rounded-full" />
                 </span>
                 <span className="flex items-center gap-4">
-                  <span className="size-2 rounded-full bg-amber-500" />
+                  <span className="size-2 rounded-full bg-[#D6B04C]" />
                 </span>
                 <span className="relative">
                   Philosophy
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#ffb7c5] to-[#ffb7c5]/30 rounded-full" />
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#FFBAC4] to-[#FFBAC4]/30 rounded-full" />
                 </span>
               </h2>
             </div>
@@ -403,7 +403,7 @@ export const AboutIntroductionTemplate = () => {
                 return (
                   <div
                     key={index}
-                    className={`group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:shadow-amber-100/30`}
+                    className={`group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:shadow-[#FFF3CC]/30`}
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     {/* Gradient Border Effect */}
@@ -416,18 +416,18 @@ export const AboutIntroductionTemplate = () => {
                       {/* Header */}
                       <div className="flex items-center justify-between mb-24 md:mb-32">
                         <div className="relative">
-                          <div className={`absolute inset-0 bg-gradient-to-br from-amber-200 to-primary/20 rounded-xl md:rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                          <div className="relative size-48 md:size-56 bg-gray-50 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-amber-500 transition-all duration-500">
+                          <div className={`absolute inset-0 bg-gradient-to-br from-[#FFEB99] to-primary/20 rounded-xl md:rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                          <div className="relative size-48 md:size-56 bg-gray-50 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-500">
                             <Icon size={22} strokeWidth={1.5} className="text-gray-400 group-hover:text-white transition-colors duration-500" />
                           </div>
                         </div>
-                        <span className="text-4xl md:text-5xl font-black text-gray-100 group-hover:text-amber-100 transition-colors duration-500 tabular-nums">
+                        <span className="text-4xl md:text-5xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors duration-500 tabular-nums">
                           {pillar.number}
                         </span>
                       </div>
 
                       {/* Label */}
-                      <span className="inline-block px-12 py-4 bg-amber-50 text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                      <span className="inline-block px-12 py-4 bg-[#FFF9E6] text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
                         {pillar.label}
                       </span>
 
@@ -438,7 +438,7 @@ export const AboutIntroductionTemplate = () => {
                       
                       {/* Subtitle for Philosophy */}
                       {pillar.subtitle && (
-                        <p className="text-sm font-medium italic mb-12 md:mb-16 text-amber-600">
+                        <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B04C]">
                           {pillar.subtitle}
                         </p>
                       )}

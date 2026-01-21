@@ -111,21 +111,21 @@ export const AboutHonorsTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               About FINDS
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -134,9 +134,9 @@ export const AboutHonorsTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -223,21 +223,21 @@ export const AboutHonorsTemplate = () => {
               if (yearCount === 0) return null
 
               return (
-                <div key={year} className={`border rounded-xl md:rounded-[20px] overflow-hidden shadow-sm ${isCurrentYear ? 'border-amber-300' : 'border-gray-100'}`}>
+                <div key={year} className={`border rounded-xl md:rounded-[20px] overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                   <button
                     onClick={() => setExpandedYear(expandedYear === year ? null : year)}
                     className={`w-full flex items-center justify-between px-16 md:px-[24px] py-16 md:py-[20px] transition-colors ${
                       isCurrentYear 
-                        ? 'bg-amber-100 hover:bg-amber-200' 
+                        ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
                         : 'bg-gray-50 hover:bg-gray-100'
                     }`}
                   >
                     <div className="flex items-center gap-12 md:gap-[16px]">
-                      <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-amber-800' : 'text-gray-800'}`}>{year}</span>
+                      <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
                       {isCurrentYear && (
-                        <span className="px-8 py-2 bg-amber-500 text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                        <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
-                      <span className={`text-xs md:text-[14px] ${isCurrentYear ? 'text-amber-700' : 'text-gray-500'}`}>{yearCount}건</span>
+                      <span className={`text-xs md:text-[14px] ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>{yearCount}건</span>
                     </div>
                     {expandedYear === year ? (
                       <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
@@ -258,13 +258,13 @@ export const AboutHonorsTemplate = () => {
                         >
                           <div
                             className={`w-36 h-36 md:w-[44px] md:h-[44px] rounded-lg md:rounded-[12px] flex items-center justify-center flex-shrink-0 ${
-                              item.type === 'honor' ? 'bg-blue-100' : 'bg-amber-100'
+                              item.type === 'honor' ? 'bg-blue-100' : 'bg-[#FFF3CC]'
                             }`}
                           >
                             {item.type === 'honor' ? (
                               <Medal className="w-18 h-18 md:w-[22px] md:h-[22px] text-blue-600" />
                             ) : (
-                              <Trophy className="w-18 h-18 md:w-[22px] md:h-[22px] text-amber-600" />
+                              <Trophy className="w-18 h-18 md:w-[22px] md:h-[22px] text-[#D6B04C]" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">

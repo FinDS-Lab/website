@@ -139,13 +139,13 @@ export const MembersAlumniTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
+          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
             Members
           </span>
           
@@ -155,9 +155,9 @@ export const MembersAlumniTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -201,7 +201,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{phdCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Ph.D. {pluralize(phdCount, 'Graduate', 'Graduates')}
                     </span>
@@ -210,7 +210,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#e8879b'}}>{msCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{msCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       M.S. {pluralize(msCount, 'Graduate', 'Graduates')}
                     </span>
@@ -219,7 +219,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#ffb7c5'}}>{undergradCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Undergrad {pluralize(undergradCount, 'Alumnus', 'Alumni')}
                     </span>
@@ -228,7 +228,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
                     </span>
@@ -245,7 +245,7 @@ export const MembersAlumniTemplate = () => {
                   className="flex items-center justify-between w-full group"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B14D'}} />
+                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B04C'}} />
                     Ph.D.
                     <span className="text-sm font-medium text-gray-400">
                       ({phdAlumni.length} {pluralize(phdAlumni.length, 'person', 'people')})
@@ -280,16 +280,16 @@ export const MembersAlumniTemplate = () => {
                           return (
                             <React.Fragment key={idx}>
                               <tr 
-                                className={`border-b border-gray-100 hover:bg-amber-50/30 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
+                                className={`border-b border-gray-100 hover:bg-[#FFF9E6]/30 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
                                 onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                               >
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   <div className="flex items-center gap-10 md:gap-12">
                                     <div 
                                       className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
-                                      style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(214,177,77,0.08) 100%)'}}
+                                      style={{background: 'linear-gradient(135deg, rgba(214, 176, 76,0.15) 0%, rgba(214, 176, 76,0.08) 100%)'}}
                                     >
-                                      <GraduationCap size={16} style={{color: '#D6B14D'}}/>
+                                      <GraduationCap size={16} style={{color: '#D6B04C'}}/>
                                     </div>
                                     <div className="flex items-center gap-8">
                                       <div>
@@ -309,7 +309,7 @@ export const MembersAlumniTemplate = () => {
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
-                                    style={{backgroundColor: 'rgba(214,177,77,0.1)', color: '#D6B14D'}}>
+                                    style={{backgroundColor: 'rgba(214, 176, 76,0.1)', color: '#D6B04C'}}>
                                     Ph.D.
                                   </span>
                                 </td>
@@ -322,7 +322,7 @@ export const MembersAlumniTemplate = () => {
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {alumni.company ? (
                                     <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                      <Building2 size={14} style={{color: '#D6B14D'}}/>
+                                      <Building2 size={14} style={{color: '#D6B04C'}}/>
                                       <span>{alumni.company}</span>
                                     </div>
                                   ) : (
@@ -338,9 +338,9 @@ export const MembersAlumniTemplate = () => {
                                         .filter(([deg]) => deg === 'phd')
                                         .map(([deg, thesis]) => (
                                           <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
-                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#D6B14D'}}/>
+                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#D6B04C'}}/>
                                             <div className="flex-1 min-w-0">
-                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#D6B14D'}}>
+                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#D6B04C'}}>
                                                 Ph.D. Dissertation
                                               </p>
                                               <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
@@ -383,7 +383,7 @@ export const MembersAlumniTemplate = () => {
                   className="flex items-center justify-between w-full group"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#e8879b'}} />
+                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
                     M.S.
                     <span className="text-sm font-medium text-gray-400">
                       ({msAlumni.length} {pluralize(msAlumni.length, 'person', 'people')})
@@ -427,7 +427,7 @@ export const MembersAlumniTemplate = () => {
                                       className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
                                       style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(232,135,155,0.1) 100%)'}}
                                     >
-                                      <GraduationCap size={16} style={{color: '#e8879b'}}/>
+                                      <GraduationCap size={16} style={{color: '#E8889C'}}/>
                                     </div>
                                     <div className="flex items-center gap-8">
                                       <div>
@@ -447,7 +447,7 @@ export const MembersAlumniTemplate = () => {
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
-                                    style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#e8879b'}}>
+                                    style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     M.S.
                                   </span>
                                 </td>
@@ -460,7 +460,7 @@ export const MembersAlumniTemplate = () => {
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {alumni.company ? (
                                     <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                      <Building2 size={14} style={{color: '#e8879b'}}/>
+                                      <Building2 size={14} style={{color: '#E8889C'}}/>
                                       <span>{alumni.company}</span>
                                     </div>
                                   ) : (
@@ -476,9 +476,9 @@ export const MembersAlumniTemplate = () => {
                                         .filter(([deg]) => deg === 'ms')
                                         .map(([deg, thesis]) => (
                                           <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
-                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#e8879b'}}/>
+                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#E8889C'}}/>
                                             <div className="flex-1 min-w-0">
-                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#e8879b'}}>
+                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#E8889C'}}>
                                                 M.S. Thesis
                                               </p>
                                               <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
@@ -521,7 +521,7 @@ export const MembersAlumniTemplate = () => {
                   className="flex items-center justify-between w-full group"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#ffb7c5'}} />
+                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#FFBAC4'}} />
                     Undergraduate Students
                     <span className="text-sm font-medium text-gray-400">
                       ({sortedUndergradAlumni.length} {pluralize(sortedUndergradAlumni.length, 'person', 'people')})
@@ -554,7 +554,7 @@ export const MembersAlumniTemplate = () => {
                             <td className="py-12 md:py-16 px-12 md:px-16">
                               <div className="flex items-center gap-10 md:gap-12">
                                 <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(232,135,155,0.15) 100%)'}}>
-                                  <GraduationCap size={16} style={{color: '#ffb7c5'}}/>
+                                  <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
                                 </div>
                                 <div>
                                   <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</p>
@@ -563,7 +563,7 @@ export const MembersAlumniTemplate = () => {
                               </div>
                             </td>
                             <td className="py-12 md:py-16 px-12 md:px-16">
-                              <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#e8879b'}}>
+                              <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
                                 {alumni.cohort || '-'}
                               </span>
                             </td>
@@ -576,7 +576,7 @@ export const MembersAlumniTemplate = () => {
                             <td className="py-12 md:py-16 px-12 md:px-16">
                               {alumni.company ? (
                                 <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                  <Building2 size={14} style={{color: '#ffb7c5'}}/>
+                                  <Building2 size={14} style={{color: '#FFBAC4'}}/>
                                   <span>{alumni.company}</span>
                                 </div>
                               ) : (

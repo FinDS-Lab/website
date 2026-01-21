@@ -176,7 +176,7 @@ const GlobalMusicPlayer = memo(() => {
         </button>
       ) : (
         <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[320px]">
-          <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-amber-500">
+          <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-primary to-[#D6C360]">
             <div className="flex items-center gap-8">
               <Music size={16} className="text-white" />
               <span className="text-sm font-bold text-white">FINDS Playlist</span>

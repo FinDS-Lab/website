@@ -162,7 +162,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
                 ? 'bg-gray-900 font-mono text-xs border-gray-700 whitespace-pre-wrap'
                 : 'bg-gray-50 text-gray-600 border-gray-100'
             }`}
-              style={format.key === 'bibtex' ? {color: '#D6B14D'} : undefined}
+              style={format.key === 'bibtex' ? {color: '#D6B04C'} : undefined}
               dangerouslySetInnerHTML={format.key !== 'bibtex' ? {__html: text} : undefined}
             >
               {format.key === 'bibtex' ? text : null}
@@ -299,11 +299,11 @@ export const PublicationsTemplate = () => {
     })
 
     return [
-      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' }, // Gold for journals
+      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B04C' }, // Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' }, // Red for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D48A' }, // Light yellow for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#ffb7c5' }, // Sakura for reports
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#D6B14D' }, // Gold for total
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' }, // Light yellow for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' }, // Sakura for reports
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#D6B04C' }, // Gold for total
     ]
   }, [publications])
 
@@ -443,21 +443,21 @@ export const PublicationsTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Research Output
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -466,9 +466,9 @@ export const PublicationsTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -609,27 +609,27 @@ export const PublicationsTemplate = () => {
                 const isCurrentYear = year === currentYear
 
                 return (
-                  <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-amber-300' : 'border-gray-100'}`}>
+                  <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                     <button
                       onClick={() => setExpandedYear(expandedYear === year ? null : year)}
                       className={`w-full flex items-center justify-between px-24 py-20 transition-colors ${
                         isCurrentYear 
-                          ? 'bg-amber-100 hover:bg-amber-200' 
+                          ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
                           : 'bg-gray-50 hover:bg-gray-100'
                       }`}
                     >
                       <div className="flex flex-col items-start gap-4">
                         <div className="flex items-center gap-12">
-                          <span className={`text-lg font-semibold ${isCurrentYear ? 'text-amber-800' : 'text-gray-900'}`}>{year}</span>
+                          <span className={`text-lg font-semibold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
                           {isCurrentYear && (
-                            <span className="px-8 py-2 bg-amber-500 text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                            <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
                         </div>
-                        <span className={`text-base max-md:hidden ${isCurrentYear ? 'text-amber-700' : 'text-gray-500'}`}>
+                        <span className={`text-base max-md:hidden ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
                           {stats.journals} Journals · {stats.conferences} Conferences · {stats.books} Books · {stats.reports} Reports
                         </span>
 
-                        <span className={`hidden text-base max-md:block text-start ${isCurrentYear ? 'text-amber-700' : 'text-gray-500'}`}>
+                        <span className={`hidden text-base max-md:block text-start ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
                           {stats.journals} Journals · {stats.conferences} Conferences <br/> {stats.books} Books · {stats.reports} Reports
                         </span>
                       </div>
@@ -649,13 +649,13 @@ export const PublicationsTemplate = () => {
                           const authorList = getAuthorNames(pub.authors, pub.author_marks)
                           const typeLabel = pub.type === 'journal' ? 'Journal' : pub.type === 'conference' ? 'Conference' : pub.type === 'book' ? 'Book' : pub.type === 'report' ? 'Report' : pub.type.charAt(0).toUpperCase() + pub.type.slice(1)
                           const typeColor = pub.type === 'journal'
-                            ? 'bg-[#D6B14D]'
+                            ? 'bg-[#D6B04C]'
                             : pub.type === 'conference'
                             ? 'bg-[#AC0E0E]'
                             : pub.type === 'book'
-                            ? 'bg-[#E8D48A]'
+                            ? 'bg-[#E8D688]'
                             : pub.type === 'report'
-                            ? 'bg-[#ffb7c5]'
+                            ? 'bg-[#FFBAC4]'
                             : 'bg-gray-500'
 
                           return (
@@ -686,7 +686,7 @@ export const PublicationsTemplate = () => {
                                       }}
                                     >
                                       <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wide"
-                                        style={{color: pub.presentation_type === 'oral' ? '#e8879b' : '#ffb7c5'}}
+                                        style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
                                       >
                                         {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                       </span>
@@ -707,15 +707,15 @@ export const PublicationsTemplate = () => {
                                         backgroundColor: 
                                           ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
                                           pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
-                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.12)' :
-                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.08)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
+                                          pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.08)' :
                                           ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.10)' :
                                           'rgba(148,163,184,0.10)',
                                         borderColor: 
                                           ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
                                           pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
-                                          pub.indexing_group === 'Scopus' ? 'rgba(214,177,77,0.25)' :
-                                          pub.indexing_group === 'Other International' ? 'rgba(214,177,77,0.18)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
+                                          pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.18)' :
                                           ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.20)' :
                                           'rgba(148,163,184,0.20)'
                                       }}

@@ -32,16 +32,16 @@ const typeConfig = {
     icon: Building2,
     label: 'Industry',
     labelKo: '산업체',
-    color: 'bg-[rgb(214,177,77)]',
-    bgColor: 'bg-amber-50',
-    borderColor: 'border-amber-200',
-    textColor: 'text-[rgb(214,177,77)]',
+    color: 'bg-[rgb(214, 176, 76)]',
+    bgColor: 'bg-[#FFF9E6]',
+    borderColor: 'border-[#FFEB99]',
+    textColor: 'text-[rgb(214, 176, 76)]',
   },
   institution: {
     icon: GraduationCap,
     label: 'Institution',
     labelKo: '기관',
-    color: 'bg-[#ffb7c5]',
+    color: 'bg-[#FFBAC4]',
     bgColor: 'bg-pink-50',
     borderColor: 'border-pink-200',
     textColor: 'text-pink-500',
@@ -50,10 +50,10 @@ const typeConfig = {
     icon: Briefcase,
     label: 'Academic',
     labelKo: '학술',
-    color: 'bg-amber-500',
-    bgColor: 'bg-amber-50',
-    borderColor: 'border-amber-200',
-    textColor: 'text-amber-700',
+    color: 'bg-[#D6B04C]',
+    bgColor: 'bg-[#FFF9E6]',
+    borderColor: 'border-[#FFEB99]',
+    textColor: 'text-[#B8962D]',
   },
 }
 
@@ -113,10 +113,10 @@ const FilterModal = ({
                   isActive
                     ? status === 'ongoing'
                       ? 'bg-primary text-white border-transparent shadow-sm'
-                      : 'bg-[#e8879b] text-white border-transparent shadow-sm'
+                      : 'bg-[#E8889C] text-white border-transparent shadow-sm'
                     : status === 'ongoing'
                       ? 'bg-white text-primary border-gray-200 hover:border-primary/50'
-                      : 'bg-white text-[#e8879b] border-gray-200 hover:border-pink-300'
+                      : 'bg-white text-[#E8889C] border-gray-200 hover:border-pink-300'
                 }`}
               >
                 {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -241,8 +241,8 @@ export const ProjectsTemplate = () => {
 
   const statisticsItems = [
     { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#e8879b]' },
-    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#D6B14D]' },
+    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#E8889C]' },
+    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#D6B04C]' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
@@ -257,18 +257,18 @@ export const ProjectsTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Research Projects
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -277,9 +277,9 @@ export const ProjectsTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -400,7 +400,7 @@ export const ProjectsTemplate = () => {
                 <span
                   key={status}
                   className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
-                    status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-pink-100 text-[#e8879b]'
+                    status === 'ongoing' ? 'bg-[#FFF3CC] text-[#B8962D]' : 'bg-pink-100 text-[#E8889C]'
                   }`}
                 >
                   {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -441,21 +441,21 @@ export const ProjectsTemplate = () => {
                         onClick={() => setExpandedYear(isExpanded ? null : year)}
                         className={`w-full flex items-center justify-between px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 transition-colors ${
                           isCurrentYear
-                            ? 'bg-gradient-to-r from-amber-50 to-amber-100/50 hover:from-amber-100 hover:to-amber-100/70'
+                            ? 'bg-gradient-to-r from-[#FFF9E6] to-[#FFF3CC]/50 hover:from-[#FFF3CC] hover:to-[#FFF3CC]/70'
                             : 'bg-gray-50 hover:bg-gray-100'
                         }`}
                       >
                         <div className="flex flex-col items-start gap-4">
                           <div className="flex items-center gap-12">
-                            <span className={`text-lg md:text-xl font-bold ${isCurrentYear ? 'text-amber-800' : 'text-gray-900'}`}>
+                            <span className={`text-lg md:text-xl font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>
                               {year}
                             </span>
                             {isCurrentYear && (
-                              <span className="px-8 py-2 bg-amber-500 text-white text-[10px] md:text-xs font-semibold rounded-full">
+                              <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] md:text-xs font-semibold rounded-full">
                                 NEW
                               </span>
                             )}
-                            <span className={`text-sm font-medium ${isCurrentYear ? 'text-amber-600' : 'text-gray-500'}`}>
+                            <span className={`text-sm font-medium ${isCurrentYear ? 'text-[#D6B04C]' : 'text-gray-500'}`}>
                               ({yearProjects.length} projects)
                             </span>
                           </div>
@@ -486,10 +486,10 @@ export const ProjectsTemplate = () => {
                                       </span>
                                     </div>
                                     <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
-                                      status === 'ongoing' ? 'border-amber-200 bg-amber-50' : 'border-gray-200 bg-gray-50'
+                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
                                       <span className={`text-[10px] md:text-xs font-medium ${
-                                        status === 'ongoing' ? 'text-amber-600' : 'text-gray-500'
+                                        status === 'ongoing' ? 'text-[#D6B04C]' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>

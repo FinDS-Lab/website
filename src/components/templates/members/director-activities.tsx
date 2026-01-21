@@ -302,7 +302,7 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [coworkRateThreshold, setCoworkRateThreshold] = useState(3) // 1-100%, default 3%
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(2) // 1-100%, default 2%
   const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
@@ -768,7 +768,7 @@ const CollaborationNetwork = memo(() => {
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#ffd6dd"/>
-              <stop offset="100%" stopColor="#ffb7c5"/>
+              <stop offset="100%" stopColor="#FFBAC4"/>
             </radialGradient>
             <filter id="glow">
               <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -798,7 +798,7 @@ const CollaborationNetwork = memo(() => {
                   stroke={
                     source.isDirector || target.isDirector
                       ? 'rgb(172,14,14)'
-                      : '#ffb7c5'
+                      : '#FFBAC4'
                   }
                   strokeWidth={Math.max(0.5, Math.min(2.5, link.weight * 0.6))}
                   opacity={getLinkOpacity(link)}
@@ -818,7 +818,7 @@ const CollaborationNetwork = memo(() => {
               const getNodeFillColor = () => {
                 if (node.isDirector) return 'url(#directorGradient)'
                 // coworkRate is 0-100%, map to color intensity
-                // Light: #ffd6dd (low rate) to Dark: #e8879b (high rate)
+                // Light: #ffd6dd (low rate) to Dark: #E8889C (high rate)
                 const rate = Math.min(100, node.coworkRate)
                 // Interpolate between light pink and dark pink
                 const r = Math.round(255 - (rate / 100) * (255 - 232))
@@ -854,7 +854,7 @@ const CollaborationNetwork = memo(() => {
                     <text
                       textAnchor="middle"
                       dy="0.35em"
-                      fill="#d6b14d"
+                      fill="#D6B04C"
                       fontSize="9"
                       fontWeight="bold"
                     >
@@ -932,11 +932,11 @@ const CollaborationNetwork = memo(() => {
                           {node.publications}
                         </p>
                       </div>
-                      <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#ffb7c5', borderWidth: '1px'}}>
+                      <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
                           <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
-                        <p className="text-2xl font-bold" style={{color: '#e8879b'}}>
+                        <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
                           {node.coworkRate}%
                         </p>
                       </div>
@@ -989,11 +989,11 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#d6b14d'}}>IC</div>
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B04C'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #ffb7c5 100%)'}}/>
+            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #FFBAC4 100%)'}}/>
             <span className="text-gray-600 font-medium">Collaborator</span>
           </div>
           <div className="flex items-center gap-6">
@@ -1132,11 +1132,15 @@ export const MembersDirectorActivitiesTemplate = () => {
     return Array.from(yearsSet).sort((a, b) => Number(b) - Number(a))
   }, [menteesByYear])
 
-  // 연도별 멘티 수 계산 (학기 포함)
+  // 연도별 멘티 수 계산 (해당 연도까지의 누적 멘티 수)
   const getMenteeCountByYear = useCallback((year: string) => {
     const uniqueMentees = new Set<string>()
+    const selectedYearNum = Number(year)
     Object.keys(menteesByYear).forEach((key) => {
-      if (key === year || key.startsWith(year + '-')) {
+      // 연도 추출 (2024-1 → 2024)
+      const keyYear = Number(key.split('-')[0])
+      // 선택한 연도 이하의 모든 멘티 포함
+      if (keyYear <= selectedYearNum) {
         menteesByYear[key].forEach((m) => uniqueMentees.add(m.id))
       }
     })
@@ -1152,10 +1156,12 @@ export const MembersDirectorActivitiesTemplate = () => {
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
       result = Array.from(uniqueMentees.values())
     } else {
-      // 선택한 연도와 해당 연도의 학기들 모두 포함
+      // 선택한 연도 이하의 모든 멘티 포함 (해당 연도까지의 누적)
       const uniqueMentees = new Map<string, MenteeWithId>()
+      const selectedYearNum = Number(selectedMentoringYear)
       Object.keys(menteesByYear).forEach((key) => {
-        if (key === selectedMentoringYear || key.startsWith(selectedMentoringYear + '-')) {
+        const keyYear = Number(key.split('-')[0])
+        if (keyYear <= selectedYearNum) {
           menteesByYear[key].forEach((m) => uniqueMentees.set(m.id, m))
         }
       })
@@ -1252,18 +1258,18 @@ export const MembersDirectorActivitiesTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Members
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -1272,9 +1278,9 @@ export const MembersDirectorActivitiesTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -1472,7 +1478,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalAwards}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
                                     <span className="text-sm md:text-base">🏆</span>
                                     <span className="text-xs md:text-sm font-medium text-gray-600">{totalAwards === 1 ? 'Award' : 'Awards'}</span>
@@ -1492,7 +1498,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalItems}</span>
                                   <div className="flex items-center gap-6">
                                     <span className="text-sm md:text-base">📊</span>
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -1523,7 +1529,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                   <span className="text-base font-bold text-gray-900">{year}</span>
                                   <div className="flex items-center gap-6">
                                     {awards.length > 0 && (
-                                      <span className="px-8 py-2 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">
+                                      <span className="px-8 py-2 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
                                         🏆 {awards.length}
                                       </span>
                                     )}
@@ -1627,7 +1633,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
                           <p className="text-sm font-bold text-gray-900">Program Committee</p>
-                          <span className="px-8 py-2 bg-amber-500 text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                          <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                         </div>
                         {committees.length > 0 ? (
                           <div className="flex flex-wrap gap-8">
@@ -1637,7 +1643,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 href={comm.url || '#'}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-amber-50 hover:bg-amber-100 text-amber-700"
+                                className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-[#FFF9E6] hover:bg-[#FFF3CC] text-[#B8962D]"
                                 title={comm.period || comm.since}
                               >
                                 {comm.name}
@@ -1655,7 +1661,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <div className="p-24 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
                           <p className="text-sm font-bold text-gray-900">Session Chair</p>
-                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{sessionChairs.length}</span>
+                          <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{sessionChairs.length}</span>
                         </div>
                         {sessionChairs.length > 0 ? (
                           <div className="flex flex-wrap gap-8">
@@ -1666,7 +1672,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
-                                style={{backgroundColor: 'rgba(232,135,155,0.1)', color: '#e8879b'}}
+                                style={{backgroundColor: 'rgba(232,135,155,0.1)', color: '#E8889C'}}
                                 title={chair.period || chair.since}
                               >
                                 {chair.name}
@@ -1710,7 +1716,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               <span className="text-gray-700 truncate mr-8">{journal.name}</span>
                               <span className={`px-6 py-1 rounded text-[10px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-500 text-white' :
+                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-[#D6B04C] text-white' :
                                     'bg-gray-400 text-white'
                               }`}>
                                 {journal.type}
@@ -1725,7 +1731,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#ffb7c5'}}>{conferenceReviewers.length}</span>
+                            <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                           </div>
                           {conferenceReviewers.length > 20 && (
                             <button
@@ -1745,7 +1751,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-6 px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md"
-                              style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#e8879b'}}
+                              style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}
                               title={conf.period || conf.since}
                             >
                               {conf.name}
@@ -1884,7 +1890,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#ffb7c5'}}>
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#FFBAC4'}}>
                         {menteesByYear['2026']?.length || 0}
                       </p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2026)</p>
@@ -1941,9 +1947,9 @@ export const MembersDirectorActivitiesTemplate = () => {
                               ? 'text-white'
                               : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
                           }`}
-                          style={selectedUniversity === univ ? {backgroundColor: '#e8879b'} : {}}
+                          style={selectedUniversity === univ ? {backgroundColor: '#E8889C'} : {}}
                         >
-                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#e8879b'}}>({count})</span>
+                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>({count})</span>
                           {selectedUniversity === univ && <X size={12}/>}
                         </button>
                       ))}

@@ -55,11 +55,13 @@ export const ArchivesGalleryTemplate = () => {
   const baseUrl = import.meta.env.BASE_URL || '/'
 
   useEffect(() => {
-    // 갤러리 폴더 목록 (브라우저에서는 목록을 알 수 없어 현재 존재하는 데이터를 기반으로 합니다)
-    const galleryFolders = ['2025-09-01-1']
-
     const fetchAllGalleries = async () => {
       try {
+        // index.json에서 폴더 목록을 동적으로 가져옴
+        const indexResponse = await fetch(`${baseUrl}data/gallery/index.json`)
+        const indexData = await indexResponse.json()
+        const galleryFolders: string[] = indexData.folders || []
+
         const results = await Promise.all(
           galleryFolders.map(async (folder) => {
             const response = await fetch(`${baseUrl}data/gallery/${folder}/index.md`)
@@ -100,21 +102,21 @@ export const ArchivesGalleryTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Archives
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">

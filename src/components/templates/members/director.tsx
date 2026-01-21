@@ -371,18 +371,18 @@ export const MembersDirectorTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-amber-900/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-amber-400/80" />
-            <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Members
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-amber-400/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -391,9 +391,9 @@ export const MembersDirectorTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -648,7 +648,7 @@ export const MembersDirectorTemplate = () => {
                           <div className="flex flex-wrap items-center gap-8 mb-8">
                             <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
                             {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-4 px-8 py-4 bg-amber-100 text-amber-700 text-[10px] font-bold rounded-full">
+                              <span className="flex items-center gap-4 px-8 py-4 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
                                 <Award size={10} />
                                 Award
                               </span>
@@ -707,7 +707,7 @@ export const MembersDirectorTemplate = () => {
                             <div className="space-y-6">
                               {edu.awards.map((a, i) => (
                                 <div key={i} className="flex items-start gap-8 bg-gray-50 rounded-lg px-12 py-8">
-                                  <span className="text-amber-500 shrink-0">🏆</span>
+                                  <span className="text-[#D6B04C] shrink-0">🏆</span>
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-gray-800">{a.title}</span>
                                     <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
@@ -862,8 +862,8 @@ export const MembersDirectorTemplate = () => {
                             }
                             const typeColors = {
                               government: 'bg-primary text-white',
-                              industry: 'bg-amber-500 text-white',
-                              institution: 'bg-[#ffb7c5] text-white',
+                              industry: 'bg-[#D6B04C] text-white',
+                              institution: 'bg-[#FFBAC4] text-white',
                               academic: 'bg-gray-700 text-white',
                             }
                             const Icon = typeIcons[project.type]
@@ -939,14 +939,14 @@ export const MembersDirectorTemplate = () => {
                   <div className="mb-24">
                     <div className="flex items-center gap-8 mb-12">
                       <p className="text-sm font-bold text-gray-900">Lecturer</p>
-                      <span className="px-8 py-2 bg-amber-400 text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
+                      <span className="px-8 py-2 bg-[#D6B04C] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
                     </div>
                     <div className="space-y-12">
                       {lecturerCourses.map((course, index) => (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
-                              <BookOpen size={18} style={{color: '#D6B14D'}} />
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214, 176, 76,0.15)'}}>
+                              <BookOpen size={18} style={{color: '#D6B04C'}} />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
@@ -974,19 +974,19 @@ export const MembersDirectorTemplate = () => {
                   <div>
                     <div className="flex items-center gap-8 mb-12">
                       <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{taSemesters}</span>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{taSemesters}</span>
                     </div>
                     <div className="space-y-12">
                       {taCourses.map((course, index) => (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(232,135,155,0.15)'}}>
-                              <BookOpen size={18} style={{color: '#e8879b'}} />
+                              <BookOpen size={18} style={{color: '#E8889C'}} />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#e8879b'}}>
+                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     {period}
                                   </span>
                                 ))}

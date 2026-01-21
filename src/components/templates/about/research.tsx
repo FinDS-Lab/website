@@ -91,16 +91,16 @@ export const AboutResearchTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-400/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-amber-400/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-amber-300/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
+          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
             About FINDS
           </span>
           
@@ -110,9 +110,9 @@ export const AboutResearchTemplate = () => {
           
           {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-amber-300/50 to-amber-300" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
           </div>
         </div>
       </div>
@@ -139,10 +139,10 @@ export const AboutResearchTemplate = () => {
             <span className="inline-block">Driving</span>
             <span className="inline-block mx-4"> </span>
             <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+              <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
                 Innovation
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-amber-200/60 to-primary/20 -skew-x-6 rounded" />
+              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
             </span>
             <span className="inline-block mx-4"> </span>
             <span className="inline-block">via Data</span>
@@ -162,14 +162,14 @@ export const AboutResearchTemplate = () => {
             <article
               key={area.id}
               className={`
-                relative bg-gradient-to-br from-white via-white to-amber-50/30
-                border border-amber-100/50 rounded-2xl md:rounded-3xl p-24 md:p-48 
+                relative bg-gradient-to-br from-white via-white to-[#FFF9E6]/30
+                border border-[#FFF3CC]/50 rounded-2xl md:rounded-3xl p-24 md:p-48 
                 shadow-sm hover:shadow-xl hover:border-primary/30 
                 transition-all duration-500 group overflow-hidden
               `}
             >
               {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-amber-400/10 to-transparent rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#D6B04C]/10 to-transparent rounded-full blur-2xl" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-xl" />
               
               <div className={`
@@ -180,14 +180,14 @@ export const AboutResearchTemplate = () => {
                 <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>
                   {/* 헤더 */}
                   <div className="mb-20 md:mb-24">
-                    <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-amber-50 to-primary/5 border border-amber-200/50 rounded-full mb-12 md:mb-16">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                      <span className="text-[10px] md:text-xs font-bold text-amber-700 tracking-wide">
+                    <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-[#FFF9E6] to-primary/5 border border-[#FFEB99]/50 rounded-full mb-12 md:mb-16">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D6B04C]" />
+                      <span className="text-[10px] md:text-xs font-bold text-[#B8962D] tracking-wide">
                         {area.badge}
                       </span>
                     </div>
                     <h2>
-                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent mb-6">
+                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent mb-6">
                         {area.titleEn}
                       </span>
                       <span className="text-base md:text-lg font-semibold text-gray-600">
@@ -203,7 +203,7 @@ export const AboutResearchTemplate = () => {
                         key={idx}
                         className="relative pl-20 md:pl-24 group/item"
                       >
-                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-amber-400/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-[#D6B04C]/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
                           <span className="w-2 h-2 rounded-full bg-primary" />
                         </span>
                         <span className="block text-sm md:text-base font-semibold text-gray-800 leading-snug group-hover/item:text-primary transition-colors">
@@ -221,9 +221,9 @@ export const AboutResearchTemplate = () => {
                 <div
                   className={`
                     flex items-center justify-center 
-                    bg-gradient-to-br from-amber-50/50 via-white to-primary/5
+                    bg-gradient-to-br from-[#FFF9E6]/50 via-white to-primary/5
                     rounded-xl md:rounded-2xl p-24 md:p-40
-                    border border-amber-100/30
+                    border border-[#FFF3CC]/30
                     group-hover:border-primary/20 transition-all duration-500
                     ${index % 2 === 1 ? 'md:order-1' : ''}
                   `}
