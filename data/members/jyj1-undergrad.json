@@ -1,7 +1,7 @@
 {
-  "id": "lce1-undergrad",
+  "id": "jyj1-undergrad",
   "name": {
-    "ko": "이채은"
+    "ko": "정유진"
   },
   "degree": "undergrad",
   "role": {
@@ -15,24 +15,24 @@
     "end": "2026-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": "yujin010917@khu.ac.kr"
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Data-Driven Process Mining",
+      "Multimodal Large Language Models",
+      "Manufacturing Analytics"
     ]
   },
   "education": [
     {
       "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Gachon University",
-      "start": "2022-03",
+      "field": "Industrial and Management Systems Engineering",
+      "school": "Kyung Hee University",
+      "start": "2021-03",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/LCE-1.png"
+  ]
+,
+  "avatar": "/website/images/members/JYJ-1.png"
 }

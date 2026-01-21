@@ -1,0 +1,40 @@
+{
+  "id": "cmh1-undergrad",
+  "name": {
+    "ko": "최문혁"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "ericchoi001@khu.ac.kr",
+    "phone": "010-5102-6590"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Information Flow in Financial Markets",
+      "Empirical Time-Series Analysis",
+      "Business Analytics",
+      "Causal Inference"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial and Management Systems Engineering",
+      "school": "Kyung Hee University",
+      "start": "2021-03",
+      "expected": "Present"
+    }
+  ],
+  "avatar": "/website/images/members/CMH-1.png"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "hjs1-undergrad",
+  "name": {
+    "ko": "하승민"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "jason5839@jbnu.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Business Analytics",
+      "Data-Inspired Decision Making",
+      "Optimization Design",
+      "SCM"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial and Information System Engineering",
+      "school": "Jeonbuk National University",
+      "start": "2021-03",
+      "expected": "Present",
+      "note": "Double major in Defense Industry"
+    }
+  ]
+,
+  "avatar": "/website/images/members/HJS-1.png"
+}

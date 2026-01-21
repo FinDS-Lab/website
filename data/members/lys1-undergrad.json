@@ -1,0 +1,40 @@
+{
+  "id": "lys1-undergrad",
+  "name": {
+    "ko": "이유섭"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "cats2969@kaist.ac.kr",
+    "phone": "010-9149-2969"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Algorithm Trading",
+      "Data-Inspired Decision Making"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial & Systems Engineering",
+      "school": "KAIST",
+      "start": "2023-03",
+      "expected": "Present",
+      "note": "Double major in Computer Science"
+    }
+  ]
+,
+  "avatar": "/website/images/members/LYS-1.png"
+}
