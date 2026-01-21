@@ -3,7 +3,7 @@ import {Link, useLocation} from 'react-router-dom'
 import {
   Mail, Phone, MapPin, ExternalLink, ChevronRight, ChevronDown, ChevronUp, Home, Copy, Check,
   User, BookOpen, Users, FolderKanban, GraduationCap, Handshake, Network, ZoomIn, ZoomOut, Maximize2, X,
-  Landmark, Building, BarChart3, Award
+  Landmark, Building
 } from 'lucide-react'
 import type {AcademicActivitiesData, AuthorsData, Publication} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
@@ -19,17 +19,6 @@ type CollabPublication = { title: string; titleKo: string; year: number; venue: 
 type PublicationBreakdown = { journal: number; conference: number; book: number; report: number }
 type NetworkNode = { id: string; name: string; nameKo: string; x: number; y: number; vx: number; vy: number; publications: number; isDirector: boolean; collabPubs: CollabPublication[]; breakdown: PublicationBreakdown; coworkRate: number }
 type NetworkLink = { source: string; target: string; weight: number }
-
-// Static Data - Professional Affiliations
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025.06 – Present'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023.09 – Present'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023.06 – Present'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022.06 – Present'},
-]
-
-// Static Data - Citation Statistics
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
 
 // Expandable Section
 const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true, count}: {title: string; icon: React.ElementType; children: React.ReactNode; defaultExpanded?: boolean; count?: number}) => {
@@ -286,11 +275,6 @@ export const MembersDirectorAcademicTemplate = () => {
   const [lectures, setLectures] = useState<Lecture[]>([])
   const [academicActivities, setAcademicActivities] = useState<AcademicActivitiesData | null>(null)
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
-  const [pubStats, setPubStats] = useState<{label: string; count: number}[]>([
-    {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0},
-    {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
-  ])
   const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
@@ -304,25 +288,6 @@ export const MembersDirectorAcademicTemplate = () => {
     }).catch(console.error)
     fetch(`${baseUrl}data/lectures.json`).then(res => res.json()).then((data: Lecture[]) => setLectures(data)).catch(console.error)
     fetch(`${baseUrl}data/academicactivities.json`).then(res => res.json()).then((data: AcademicActivitiesData) => setAcademicActivities(data)).catch(console.error)
-    fetch(`${baseUrl}data/pubs.json`).then(res => res.json()).then((pubs: any[]) => {
-      const stats = {scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0, intlConf: 0, kci: 0, domConf: 0}
-      pubs.forEach(pub => {
-        const indexing = pub.indexing_group || '', type = pub.type || ''
-        if (type === 'journal') {
-          if (indexing === 'SCIE') stats.scie++
-          else if (indexing === 'SSCI') stats.ssci++
-          else if (indexing === 'A&HCI') stats.ahci++
-          else if (indexing === 'ESCI') stats.esci++
-          else if (indexing === 'Scopus') stats.scopus++
-          else if (indexing === 'Other International') stats.otherIntl++
-          else if (indexing.includes('KCI')) stats.kci++
-        } else if (type === 'conference') {
-          if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
-          else if (indexing === 'Domestic Conference') stats.domConf++
-        }
-      })
-      setPubStats([{label: 'SCIE', count: stats.scie}, {label: 'SSCI', count: stats.ssci}, {label: 'A&HCI', count: stats.ahci}, {label: 'ESCI', count: stats.esci}, {label: 'Scopus', count: stats.scopus}, {label: 'Other Int\'l', count: stats.otherIntl}, {label: 'Int\'l Conf', count: stats.intlConf}, {label: 'KCI', count: stats.kci}, {label: 'Dom. Conf', count: stats.domConf}])
-    }).catch(console.error)
   }, [])
 
   const handleCopyEmail = () => { navigator.clipboard.writeText(directorEmail); setEmailCopied(true); setTimeout(() => setEmailCopied(false), 2000) }
@@ -407,7 +372,7 @@ export const MembersDirectorAcademicTemplate = () => {
                 <div className="flex flex-col items-center">
                   <div className="w-140 h-180 rounded-xl overflow-hidden mb-20 ring-4 ring-gray-100"><img src={directorImg} alt="Director" className="w-full h-full object-cover" /></div>
                   <h2 className="text-xl font-bold text-gray-900 mb-4">In Seok Choi</h2>
-                  <p className="text-sm text-gray-500 mb-4">최인석</p>
+                  <p className="text-sm text-gray-500 mb-4">최인수</p>
                   <p className="text-sm text-primary font-medium mb-16">Assistant Professor</p>
                   <div className="w-full space-y-12">
                     <div className="flex items-center gap-12"><Mail size={16} className="text-gray-400 shrink-0" /><button onClick={handleCopyEmail} className="text-sm text-gray-600 hover:text-primary flex items-center gap-8 group">{directorEmail}{emailCopied ? <Check size={14} className="text-green-500" /> : <Copy size={14} className="text-gray-300 group-hover:text-primary" />}</button></div>
@@ -438,55 +403,6 @@ export const MembersDirectorAcademicTemplate = () => {
 
           {/* Main Content */}
           <main className="flex-1 space-y-24">
-            {/* Publication Statistics */}
-            <ExpandableSection title="Publication Statistics" icon={BarChart3} defaultExpanded={true}>
-              <div className="p-20 md:p-32">
-                <div className="bg-gray-50 rounded-xl p-20 mb-24">
-                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-12">
-                    {pubStats.filter(s => s.count > 0).map((stat) => (
-                      <div key={stat.label} className="text-center">
-                        <p className="text-xl md:text-2xl font-bold text-primary">{stat.count}</p>
-                        <p className="text-[10px] md:text-xs text-gray-500 font-medium">{stat.label}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-12">
-                  {citationStats.map((stat) => (
-                    <div key={stat.label} className="text-center p-12 bg-gray-900 rounded-xl">
-                      <p className="text-xl md:text-2xl font-bold text-white">{stat.count}</p>
-                      <p className="text-[10px] md:text-xs text-gray-400 font-medium">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-20 text-center">
-                  <Link to="/publications" className="inline-flex items-center gap-8 px-20 py-10 bg-primary/10 text-primary text-sm font-semibold rounded-xl hover:bg-primary/20 transition-colors">
-                    View All Publications <ChevronRight size={16} />
-                  </Link>
-                </div>
-              </div>
-            </ExpandableSection>
-
-            {/* Professional Affiliations */}
-            <ExpandableSection title="Professional Affiliations" icon={Award} defaultExpanded={true} count={affiliations.length}>
-              <div className="divide-y divide-gray-100">
-                {affiliations.map((aff, idx) => (
-                  <div key={idx} className="p-20 md:p-24 hover:bg-gray-50/50 transition-colors">
-                    <div className="flex items-start justify-between gap-16">
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{aff.organization}</h4>
-                        <p className="text-xs text-gray-500">{aff.krOrg}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <span className="px-10 py-4 bg-primary/10 text-primary text-xs font-bold rounded-lg">{aff.role}</span>
-                        <p className="text-xs text-gray-400 mt-8">{aff.period}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ExpandableSection>
-
             {/* Projects */}
             <ExpandableSection title="Projects" icon={FolderKanban} defaultExpanded={true} count={projects.length}>
               <div className="divide-y divide-gray-100">
