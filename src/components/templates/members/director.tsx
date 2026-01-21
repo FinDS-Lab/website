@@ -352,22 +352,29 @@ export const MembersDirectorTemplate = () => {
 
             <ExpandableSection title="Honors & Awards" icon={Award} defaultExpanded={true}>
               <div className="p-20 md:p-32">
-                {honorsData && honorsData.awards && honorsData.awards.length > 0 ? (
-                  <div className="space-y-16">
-                    {honorsData.awards.map((award, idx) => {
-                      const IconComponent = getAwardIcon(award.type)
-                      const colors = getAwardColor(award.type)
-                      return (
-                        <div key={idx} className={`flex gap-16 p-16 md:p-20 ${colors.bg} rounded-xl border ${colors.border}`}>
-                          <div className={`w-40 h-40 md:w-48 md:h-48 rounded-xl flex items-center justify-center shrink-0 bg-white ${colors.text}`}><IconComponent size={20} /></div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-start justify-between gap-12 mb-4"><h4 className="text-sm md:text-base font-bold text-gray-900">{award.name}</h4><span className="text-xs md:text-sm text-gray-500 shrink-0">{award.year}</span></div>
-                            <p className="text-xs md:text-sm text-gray-600">{award.organization}</p>
-                            {award.work && <p className="text-xs text-gray-400 mt-4">{award.work}</p>}
-                          </div>
+                {honorsData && Object.keys(honorsData).length > 0 ? (
+                  <div className="space-y-24">
+                    {Object.keys(honorsData).sort((a, b) => parseInt(b) - parseInt(a)).slice(0, 5).map((year) => (
+                      <div key={year}>
+                        <h4 className="text-sm font-bold text-gray-700 mb-12">{year}</h4>
+                        <div className="space-y-12">
+                          {honorsData[year].map((item, idx) => {
+                            const IconComponent = getAwardIcon(item.type)
+                            const colors = getAwardColor(item.type)
+                            return (
+                              <div key={idx} className={`flex gap-16 p-16 md:p-20 ${colors.bg} rounded-xl border ${colors.border}`}>
+                                <div className={`w-40 h-40 md:w-48 md:h-48 rounded-xl flex items-center justify-center shrink-0 bg-white ${colors.text}`}><IconComponent size={20} /></div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-start justify-between gap-12 mb-4"><h4 className="text-sm md:text-base font-bold text-gray-900">{item.title}</h4><span className="text-xs md:text-sm text-gray-500 shrink-0">{item.date}</span></div>
+                                  <p className="text-xs md:text-sm text-gray-600">{item.event}</p>
+                                  <p className="text-xs text-gray-400 mt-4">{item.organization}</p>
+                                </div>
+                              </div>
+                            )
+                          })}
                         </div>
-                      )
-                    })}
+                      </div>
+                    ))}
                   </div>
                 ) : (<div className="text-center py-40 text-gray-400">No awards data available</div>)}
               </div>

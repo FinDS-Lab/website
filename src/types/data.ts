@@ -199,6 +199,7 @@ export type AcademicActivitiesData = {
 
 // Mentees data types
 export type Mentee = {
+  id?: string
   name: string
   university: string
   department: string

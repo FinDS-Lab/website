@@ -59,7 +59,10 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
-    fetch(`${baseUrl}data/mentees.json`).then(res => res.json()).then((data: Mentee[]) => setMentees(data)).catch(console.error)
+    fetch(`${baseUrl}data/mentees.json`).then(res => res.json()).then((data: Record<string, Omit<Mentee, 'id'>>) => {
+      const menteesArray: Mentee[] = Object.entries(data).map(([id, mentee]) => ({ id, ...mentee }))
+      setMentees(menteesArray)
+    }).catch(console.error)
   }, [])
 
   const handleCopyEmail = () => { navigator.clipboard.writeText(directorEmail); setEmailCopied(true); setTimeout(() => setEmailCopied(false), 2000) }
