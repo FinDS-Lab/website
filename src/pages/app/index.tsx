@@ -192,10 +192,10 @@ const GlobalMusicPlayer = memo(() => {
       {location.pathname !== '/' && (
         <Link
           to="/"
-          className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-white border-2 border-gray-300 text-gray-600 rounded-full shadow-xl hover:bg-primary hover:text-white hover:border-primary transition-all"
+          className="flex items-center justify-center w-14 h-14 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-primary text-white rounded-full shadow-xl hover:bg-primary/90 hover:scale-105 transition-all duration-200"
           title="홈으로"
         >
-          <HomeIcon className="w-7 h-7 md:w-8 md:h-8" />
+          <HomeIcon className="w-7 h-7 md:w-10 md:h-10 lg:w-12 lg:h-12" />
         </Link>
       )}
       
