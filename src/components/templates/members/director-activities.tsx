@@ -1121,9 +1121,19 @@ export const MembersDirectorActivitiesTemplate = () => {
     return grouped
   }, [mentees])
 
-  // 연도 목록 (최신순)
+  // 연도 목록 (최신순 - 학기 포함)
   const mentoringYears = useMemo(() => {
-    return Object.keys(menteesByYear).sort((a, b) => Number(b) - Number(a))
+    return Object.keys(menteesByYear).sort((a, b) => {
+      // Parse year and semester (e.g., "2016-2" -> year: 2016, semester: 2)
+      const parseYearSemester = (s: string) => {
+        const parts = s.split('-')
+        return { year: Number(parts[0]), semester: parts[1] ? Number(parts[1]) : 0 }
+      }
+      const aP = parseYearSemester(a)
+      const bP = parseYearSemester(b)
+      if (aP.year !== bP.year) return bP.year - aP.year
+      return bP.semester - aP.semester
+    })
   }, [menteesByYear])
 
   // 필터링된 멘티
@@ -1826,7 +1836,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 onClick={() => toggleSection('mentoringProgram')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Mentoring Program</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Mentoring & Tutoring Program</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.mentoringProgram ? 'rotate-180' : ''}`}/>
               </button>
 
