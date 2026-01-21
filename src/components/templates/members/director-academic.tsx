@@ -20,6 +20,17 @@ type PublicationBreakdown = { journal: number; conference: number; book: number;
 type NetworkNode = { id: string; name: string; nameKo: string; x: number; y: number; vx: number; vy: number; publications: number; isDirector: boolean; collabPubs: CollabPublication[]; breakdown: PublicationBreakdown; coworkRate: number }
 type NetworkLink = { source: string; target: string; weight: number }
 
+// Static Data - Professional Affiliations
+const affiliations = [
+  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025.06 – Present'},
+  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023.09 – Present'},
+  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023.06 – Present'},
+  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022.06 – Present'},
+]
+
+// Static Data - Citation Statistics
+const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
+
 // Expandable Section
 const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true, count}: {title: string; icon: React.ElementType; children: React.ReactNode; defaultExpanded?: boolean; count?: number}) => {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
@@ -33,17 +44,6 @@ const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true,
     </section>
   )
 }
-
-// Static Data - Professional Affiliations
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023.09 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022.06 – Present', role: 'Lifetime Member'},
-]
-
-// Static Data - Citation Statistics
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
 
 // Collaboration Network Component
 const CollaborationNetwork = memo(() => {
@@ -304,7 +304,6 @@ export const MembersDirectorAcademicTemplate = () => {
     }).catch(console.error)
     fetch(`${baseUrl}data/lectures.json`).then(res => res.json()).then((data: Lecture[]) => setLectures(data)).catch(console.error)
     fetch(`${baseUrl}data/academicactivities.json`).then(res => res.json()).then((data: AcademicActivitiesData) => setAcademicActivities(data)).catch(console.error)
-    // Fetch Publications and calculate stats
     fetch(`${baseUrl}data/pubs.json`).then(res => res.json()).then((pubs: any[]) => {
       const stats = {scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0, intlConf: 0, kci: 0, domConf: 0}
       pubs.forEach(pub => {
@@ -442,25 +441,27 @@ export const MembersDirectorAcademicTemplate = () => {
             {/* Publication Statistics */}
             <ExpandableSection title="Publication Statistics" icon={BarChart3} defaultExpanded={true}>
               <div className="p-20 md:p-32">
-                <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                  {pubStats.map((stat, index) => (
-                    <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
-                      <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
-                      <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
-                    </div>
-                  ))}
+                <div className="bg-gray-50 rounded-xl p-20 mb-24">
+                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-12">
+                    {pubStats.filter(s => s.count > 0).map((stat) => (
+                      <div key={stat.label} className="text-center">
+                        <p className="text-xl md:text-2xl font-bold text-primary">{stat.count}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 font-medium">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
-                  {citationStats.map((stat, index) => (
-                    <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
-                      <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                      <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                <div className="grid grid-cols-4 gap-12">
+                  {citationStats.map((stat) => (
+                    <div key={stat.label} className="text-center p-12 bg-gray-900 rounded-xl">
+                      <p className="text-xl md:text-2xl font-bold text-white">{stat.count}</p>
+                      <p className="text-[10px] md:text-xs text-gray-400 font-medium">{stat.label}</p>
                     </div>
                   ))}
                 </div>
                 <div className="mt-20 text-center">
-                  <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                    View All Publications <ChevronRight size={14}/>
+                  <Link to="/publications" className="inline-flex items-center gap-8 px-20 py-10 bg-primary/10 text-primary text-sm font-semibold rounded-xl hover:bg-primary/20 transition-colors">
+                    View All Publications <ChevronRight size={16} />
                   </Link>
                 </div>
               </div>
@@ -468,22 +469,21 @@ export const MembersDirectorAcademicTemplate = () => {
 
             {/* Professional Affiliations */}
             <ExpandableSection title="Professional Affiliations" icon={Award} defaultExpanded={true} count={affiliations.length}>
-              <div className="p-20 md:p-32">
-                <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
-                  {affiliations.map((aff, index) => (
-                    <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                      <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
-                      <div className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
-                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-6">
-                          <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
-                          <span className="px-6 md:px-8 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded">{aff.role}</span>
-                        </div>
-                        <p className="text-xs md:text-sm font-bold text-gray-900">{aff.organization}</p>
-                        <p className="text-[10px] md:text-xs text-gray-500 mt-2">{aff.krOrg}</p>
+              <div className="divide-y divide-gray-100">
+                {affiliations.map((aff, idx) => (
+                  <div key={idx} className="p-20 md:p-24 hover:bg-gray-50/50 transition-colors">
+                    <div className="flex items-start justify-between gap-16">
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{aff.organization}</h4>
+                        <p className="text-xs text-gray-500">{aff.krOrg}</p>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <span className="px-10 py-4 bg-primary/10 text-primary text-xs font-bold rounded-lg">{aff.role}</span>
+                        <p className="text-xs text-gray-400 mt-8">{aff.period}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </ExpandableSection>
 

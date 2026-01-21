@@ -124,8 +124,6 @@ const researchInterests = [
   },
 ]
 
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
-
 // Expandable Section Component
 const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true, count}: {
   title: string; icon: React.ElementType; children: React.ReactNode; defaultExpanded?: boolean; count?: number
@@ -149,35 +147,11 @@ const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true,
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [pubStats, setPubStats] = useState<{label: string; count: number}[]>([
-    {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0},
-    {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
-  ])
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
-    fetch(`${baseUrl}data/pubs.json`).then(res => res.json()).then((pubs: any[]) => {
-      const stats = {scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0, intlConf: 0, kci: 0, domConf: 0}
-      pubs.forEach(pub => {
-        const indexing = pub.indexing_group || '', type = pub.type || ''
-        if (type === 'journal') {
-          if (indexing === 'SCIE') stats.scie++
-          else if (indexing === 'SSCI') stats.ssci++
-          else if (indexing === 'A&HCI') stats.ahci++
-          else if (indexing === 'ESCI') stats.esci++
-          else if (indexing === 'Scopus') stats.scopus++
-          else if (indexing === 'Other International') stats.otherIntl++
-          else if (indexing.includes('KCI')) stats.kci++
-        } else if (type === 'conference') {
-          if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
-          else if (indexing === 'Domestic Conference') stats.domConf++
-        }
-      })
-      setPubStats([{label: 'SCIE', count: stats.scie}, {label: 'SSCI', count: stats.ssci}, {label: 'A&HCI', count: stats.ahci}, {label: 'ESCI', count: stats.esci}, {label: 'Scopus', count: stats.scopus}, {label: 'Other Int\'l', count: stats.otherIntl}, {label: 'Int\'l Conf', count: stats.intlConf}, {label: 'KCI', count: stats.kci}, {label: 'Dom. Conf', count: stats.domConf}])
-    }).catch(console.error)
     fetch(`${baseUrl}data/honors.json`).then(res => res.json()).then((data: HonorsData) => setHonorsData(data)).catch(console.error)
   }, [])
 

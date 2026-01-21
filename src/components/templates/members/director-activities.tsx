@@ -17,7 +17,6 @@ import logoField from '@/assets/images/logos/field.png'
 import logoFba from '@/assets/images/logos/fba.png'
 import logoDading from '@/assets/images/logos/dading.png'
 
-// Static Data
 const activities = [
   {name: 'CAPTIMA', logo: logoCaptima, fullName: 'Computer Applications for Optima', fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리', generation: '', membership: [{role: 'Member', period: '2013.03. - 2018.02.'}, {role: 'Alumni', period: '2018.03. - Present'}], leadership: [{role: 'President', period: '2015.06. - 2015.12.'}, {role: 'Vice President', period: '2013.12. - 2014.08.'}]},
   {name: 'KFAC', logo: logoKfac, fullName: 'KAIST Financial Analysis Club', fullNameKo: 'KAIST 금융 분석 동아리', generation: '25th Generation', membership: [{role: 'Member', period: '2018.03. - 2019.02.'}, {role: 'Alumni', period: '2019.03. - Present'}], leadership: [{role: 'Acting President', period: '2021.03. - 2021.08.'}, {role: 'Session Leader', period: '2018.09. - 2019.02.'}]},
