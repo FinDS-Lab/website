@@ -201,7 +201,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#d4a017'}}>{phdCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Ph.D. {pluralize(phdCount, 'Graduate', 'Graduates')}
                     </span>
@@ -228,7 +228,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#1f2937'}}>{totalCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
                     </span>
@@ -245,7 +245,7 @@ export const MembersAlumniTemplate = () => {
                   className="flex items-center justify-between w-full group"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#d4a017'}} />
+                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B14D'}} />
                     Ph.D.
                     <span className="text-sm font-medium text-gray-400">
                       ({phdAlumni.length} {pluralize(phdAlumni.length, 'person', 'people')})
@@ -275,7 +275,7 @@ export const MembersAlumniTemplate = () => {
                       <tbody>
                         {phdAlumni.map((alumni, idx) => {
                           const isExpanded = expandedAlumni.has(alumni.name)
-                          const hasThesis = alumni.thesis && Object.keys(alumni.thesis).length > 0
+                          const hasThesis = alumni.thesis && alumni.thesis.phd
                           
                           return (
                             <React.Fragment key={idx}>
@@ -287,9 +287,9 @@ export const MembersAlumniTemplate = () => {
                                   <div className="flex items-center gap-10 md:gap-12">
                                     <div 
                                       className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
-                                      style={{background: 'linear-gradient(135deg, rgba(212,160,23,0.15) 0%, rgba(212,160,23,0.08) 100%)'}}
+                                      style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(214,177,77,0.08) 100%)'}}
                                     >
-                                      <GraduationCap size={16} style={{color: '#d4a017'}}/>
+                                      <GraduationCap size={16} style={{color: '#D6B14D'}}/>
                                     </div>
                                     <div className="flex items-center gap-8">
                                       <div>
@@ -309,7 +309,7 @@ export const MembersAlumniTemplate = () => {
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
-                                    style={{backgroundColor: 'rgba(212,160,23,0.1)', color: '#d4a017'}}>
+                                    style={{backgroundColor: 'rgba(214,177,77,0.1)', color: '#D6B14D'}}>
                                     Ph.D.
                                   </span>
                                 </td>
@@ -322,7 +322,7 @@ export const MembersAlumniTemplate = () => {
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {alumni.company ? (
                                     <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                      <Building2 size={14} style={{color: '#d4a017'}}/>
+                                      <Building2 size={14} style={{color: '#D6B14D'}}/>
                                       <span>{alumni.company}</span>
                                     </div>
                                   ) : (
@@ -335,13 +335,13 @@ export const MembersAlumniTemplate = () => {
                                   <td colSpan={5} className="py-16 px-16">
                                     <div className="space-y-12 ml-48">
                                       {Object.entries(alumni.thesis!)
-                                        .sort(([a], [b]) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
+                                        .filter(([deg]) => deg === 'phd')
                                         .map(([deg, thesis]) => (
                                           <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
-                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#d4a017'}}/>
+                                            <FileText size={16} className="shrink-0 mt-2" style={{color: '#D6B14D'}}/>
                                             <div className="flex-1 min-w-0">
-                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#d4a017'}}>
-                                                {degreeLabels[deg] || deg.toUpperCase()} Thesis
+                                              <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#D6B14D'}}>
+                                                Ph.D. Dissertation
                                               </p>
                                               <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                                                 {thesis.title}
@@ -355,7 +355,7 @@ export const MembersAlumniTemplate = () => {
                                                   onClick={(e) => e.stopPropagation()}
                                                 >
                                                   <ExternalLink size={12}/>
-                                                  View Thesis
+                                                  View Dissertation
                                                 </a>
                                               )}
                                             </div>
@@ -413,7 +413,7 @@ export const MembersAlumniTemplate = () => {
                       <tbody>
                         {msAlumni.map((alumni, idx) => {
                           const isExpanded = expandedAlumni.has(alumni.name)
-                          const hasThesis = alumni.thesis && Object.keys(alumni.thesis).length > 0
+                          const hasThesis = alumni.thesis && alumni.thesis.ms
                           
                           return (
                             <React.Fragment key={idx}>
@@ -473,13 +473,13 @@ export const MembersAlumniTemplate = () => {
                                   <td colSpan={5} className="py-16 px-16">
                                     <div className="space-y-12 ml-48">
                                       {Object.entries(alumni.thesis!)
-                                        .sort(([a], [b]) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))
+                                        .filter(([deg]) => deg === 'ms')
                                         .map(([deg, thesis]) => (
                                           <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
                                             <FileText size={16} className="shrink-0 mt-2" style={{color: '#e8879b'}}/>
                                             <div className="flex-1 min-w-0">
                                               <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#e8879b'}}>
-                                                {degreeLabels[deg] || deg.toUpperCase()} Thesis
+                                                M.S. Thesis
                                               </p>
                                               <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                                                 {thesis.title}

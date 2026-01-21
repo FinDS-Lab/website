@@ -162,7 +162,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
                 ? 'bg-gray-900 font-mono text-xs border-gray-700 whitespace-pre-wrap'
                 : 'bg-gray-50 text-gray-600 border-gray-100'
             }`}
-              style={format.key === 'bibtex' ? {color: '#d4a017'} : undefined}
+              style={format.key === 'bibtex' ? {color: '#D6B14D'} : undefined}
               dangerouslySetInnerHTML={format.key !== 'bibtex' ? {__html: text} : undefined}
             >
               {format.key === 'bibtex' ? text : null}
@@ -299,11 +299,11 @@ export const PublicationsTemplate = () => {
     })
 
     return [
-      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
+      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' }, // Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#e6b84a' }, // Gold for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#ffb7c5' }, // Light pink for reports
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#fbbf24' }, // Yellow for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#ffb7c5' }, // Sakura for reports
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#AC0E0E' }, // Primary for total
     ]
   }, [publications])
 
@@ -649,13 +649,13 @@ export const PublicationsTemplate = () => {
                           const authorList = getAuthorNames(pub.authors, pub.author_marks)
                           const typeLabel = pub.type === 'journal' ? 'Journal' : pub.type === 'conference' ? 'Conference' : pub.type === 'book' ? 'Book' : pub.type === 'report' ? 'Report' : pub.type.charAt(0).toUpperCase() + pub.type.slice(1)
                           const typeColor = pub.type === 'journal'
-                            ? 'bg-amber-500'
+                            ? 'bg-[#D6B14D]'
                             : pub.type === 'conference'
-                            ? 'bg-red-500'
+                            ? 'bg-[#e8879b]'
                             : pub.type === 'book'
-                            ? 'bg-amber-300'
+                            ? 'bg-[#fbbf24]'
                             : pub.type === 'report'
-                            ? 'bg-pink-300'
+                            ? 'bg-[#ffb7c5]'
                             : 'bg-gray-500'
 
                           return (

@@ -61,13 +61,13 @@ const degreeLabels = {
 }
 
 const degreeColors = {
-  phd: 'bg-primary/10 text-primary',
+  phd: 'text-white',
   ms: 'text-white',
   undergrad: 'text-white',
 }
 
 const degreeBgStyles = {
-  phd: {},
+  phd: {backgroundColor: '#D6B14D'},
   ms: {backgroundColor: '#e8879b'},
   undergrad: {backgroundColor: '#ffb7c5'},
 }
@@ -112,10 +112,10 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return [
-      { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#d4a017' },
+      { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#e8879b' },
       { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#ffb7c5' },
-      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#1f2937' },
+      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#AC0E0E' },
     ]
   }, [members])
 

@@ -1121,19 +1121,26 @@ export const MembersDirectorActivitiesTemplate = () => {
     return grouped
   }, [mentees])
 
-  // 연도 목록 (최신순 - 학기 포함)
+  // 연도 목록 (최신순 - 연도만, 학기 제외)
   const mentoringYears = useMemo(() => {
-    return Object.keys(menteesByYear).sort((a, b) => {
-      // Parse year and semester (e.g., "2016-2" -> year: 2016, semester: 2)
-      const parseYearSemester = (s: string) => {
-        const parts = s.split('-')
-        return { year: Number(parts[0]), semester: parts[1] ? Number(parts[1]) : 0 }
-      }
-      const aP = parseYearSemester(a)
-      const bP = parseYearSemester(b)
-      if (aP.year !== bP.year) return bP.year - aP.year
-      return bP.semester - aP.semester
+    const yearsSet = new Set<string>()
+    Object.keys(menteesByYear).forEach((key) => {
+      // Extract year only (e.g., "2015-1" -> "2015", "2015" -> "2015")
+      const yearOnly = key.split('-')[0]
+      yearsSet.add(yearOnly)
     })
+    return Array.from(yearsSet).sort((a, b) => Number(b) - Number(a))
+  }, [menteesByYear])
+
+  // 연도별 멘티 수 계산 (학기 포함)
+  const getMenteeCountByYear = useCallback((year: string) => {
+    const uniqueMentees = new Set<string>()
+    Object.keys(menteesByYear).forEach((key) => {
+      if (key === year || key.startsWith(year + '-')) {
+        menteesByYear[key].forEach((m) => uniqueMentees.add(m.id))
+      }
+    })
+    return uniqueMentees.size
   }, [menteesByYear])
 
   // 필터링된 멘티
@@ -1145,7 +1152,14 @@ export const MembersDirectorActivitiesTemplate = () => {
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
       result = Array.from(uniqueMentees.values())
     } else {
-      result = menteesByYear[selectedMentoringYear] || []
+      // 선택한 연도와 해당 연도의 학기들 모두 포함
+      const uniqueMentees = new Map<string, MenteeWithId>()
+      Object.keys(menteesByYear).forEach((key) => {
+        if (key === selectedMentoringYear || key.startsWith(selectedMentoringYear + '-')) {
+          menteesByYear[key].forEach((m) => uniqueMentees.set(m.id, m))
+        }
+      })
+      result = Array.from(uniqueMentees.values())
     }
     
     // 대학 필터 적용
@@ -1643,7 +1657,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         )}
                       </div>
 
-                      {/* Journal Reviewer - Single row */}
+                      {/* Journal Reviewer - Table format */}
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
@@ -1660,22 +1674,18 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="flex flex-wrap gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {displayedJournals.map((journal) => (
                             <a
                               key={journal.id}
                               href={journal.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`inline-flex items-center gap-6 px-12 py-6 rounded-lg text-xs font-medium transition-all hover:shadow-md ${
-                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary/10 hover:bg-primary/20 text-primary' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-50 hover:bg-amber-100 text-amber-700' :
-                                    'bg-gray-100 hover:bg-gray-200 text-gray-600'
-                              }`}
+                              className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-primary/30"
                               title={`${journal.name} (${journal.type}, since ${journal.since})`}
                             >
-                              {journal.name}
-                              <span className={`px-4 py-0.5 rounded text-[9px] font-bold ${
+                              <span className="text-gray-700 truncate mr-8">{journal.name}</span>
+                              <span className={`px-6 py-1 rounded text-[10px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
                                   journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-amber-500 text-white' :
                                     'bg-gray-400 text-white'
@@ -1716,9 +1726,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                               title={conf.period || conf.since}
                             >
                               {conf.name}
-                              <span className="px-4 py-0.5 rounded text-[9px] font-bold text-white" style={{backgroundColor: '#ffb7c5'}}>
-                                CONF
-                              </span>
                             </a>
                           ))}
                         </div>
@@ -1890,7 +1897,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      {year} ({menteesByYear[year]?.length || 0})
+                      {year} ({getMenteeCountByYear(year)})
                     </button>
                   ))}
                 </div>
@@ -1928,35 +1935,53 @@ export const MembersDirectorActivitiesTemplate = () => {
                       {filteredMentees.map((mentee) => (
                         <div
                           key={mentee.id}
-                          className="px-20 md:px-32 py-12 md:py-16 flex items-center justify-between hover:bg-gray-50/50 transition-colors"
+                          className="px-20 md:px-32 py-12 md:py-16 hover:bg-gray-50/50 transition-colors"
                         >
-                          <div className="flex items-center gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)'}}>
-                              <span className="text-sm md:text-base font-bold" style={{color: 'rgb(172,14,14)'}}>{mentee.participationYears.length}</span>
+                          <div className="flex items-center justify-between md:flex-row">
+                            <div className="flex items-center gap-12 md:gap-16">
+                              <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)'}}>
+                                <span className="text-sm md:text-base font-bold" style={{color: 'rgb(172,14,14)'}}>{mentee.participationYears.length}</span>
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
+                                <p className="text-[11px] md:text-xs text-gray-500 truncate">
+                                  {mentee.university} · {mentee.department} · {mentee.entryYear}학번
+                                </p>
+                              </div>
                             </div>
-                            <div className="min-w-0">
-                              <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
-                              <p className="text-[11px] md:text-xs text-gray-500 truncate">
-                                {mentee.university} · {mentee.department} · {mentee.entryYear}학번
-                              </p>
+                            <div className="hidden md:flex items-center gap-8 md:gap-12 shrink-0">
+                              <div className="flex gap-4 flex-wrap justify-end">
+                                {mentee.participationYears.map((year) => (
+                                  <span
+                                    key={year}
+                                    className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold ${
+                                      year === '2026'
+                                        ? ''
+                                        : 'bg-gray-100 text-gray-500'
+                                    }`}
+                                    style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                  >
+                                    {year}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
                           </div>
-                          <div className="flex max-md:flex-col max-md:items-end items-center gap-8 md:gap-12 shrink-0">
-                            <div className="flex gap-4 flex-wrap justify-end">
-                              {mentee.participationYears.map((year) => (
-                                <span
-                                  key={year}
-                                  className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold ${
-                                    year === '2026'
-                                      ? ''
-                                      : 'bg-gray-100 text-gray-500'
-                                  }`}
-                                  style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
-                                >
-                                  {year}
-                                </span>
-                              ))}
-                            </div>
+                          {/* Mobile year badges - below info */}
+                          <div className="flex md:hidden gap-4 flex-wrap mt-8 ml-48">
+                            {mentee.participationYears.map((year) => (
+                              <span
+                                key={year}
+                                className={`px-6 py-2 rounded text-[10px] font-bold ${
+                                  year === '2026'
+                                    ? ''
+                                    : 'bg-gray-100 text-gray-500'
+                                }`}
+                                style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                              >
+                                {year}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       ))}

@@ -112,7 +112,7 @@ const employment = [
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
   {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab.', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
@@ -866,14 +866,16 @@ export const MembersDirectorTemplate = () => {
                             const Icon = typeIcons[project.type]
                             // Determine director's role
                             const getDirectorRole = () => {
-                              if (project.roles.principalInvestigator) return 'PI'
-                              if (project.roles.leadResearcher) return 'Lead'
+                              // Check if 최인수 is the principalInvestigator
+                              if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
+                              if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
+                              if (project.roles.researchers?.includes('최인수')) return 'Researcher'
                               return 'Researcher'
                             }
-                            const roleColor = {
-                              PI: 'bg-primary text-white',
-                              Lead: 'bg-amber-500 text-white',
-                              Researcher: 'bg-gray-500 text-white'
+                            const roleColor: Record<string, string> = {
+                              'Principal Investigator': 'bg-primary text-white',
+                              'Lead Researcher': 'bg-amber-500 text-white',
+                              'Researcher': 'bg-gray-500 text-white'
                             }
                             const directorRole = getDirectorRole()
                             return (
@@ -888,7 +890,7 @@ export const MembersDirectorTemplate = () => {
                                         <Calendar size={10} />
                                         {project.period}
                                       </span>
-                                      <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole as keyof typeof roleColor]}`}>
+                                      <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
                                         {directorRole}
                                       </span>
                                     </div>
@@ -940,8 +942,8 @@ export const MembersDirectorTemplate = () => {
                       {lecturerCourses.map((course, index) => (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 bg-gray-900 text-white">
-                              <BookOpen size={18} />
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
+                              <BookOpen size={18} style={{color: '#D6B14D'}} />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
