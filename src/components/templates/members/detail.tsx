@@ -144,9 +144,9 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
   }
 
   const degreeColors: Record<string, string> = {
-    phd: 'bg-red-100 text-red-700',
-    ms: 'bg-blue-100 text-blue-700',
-    undergrad: 'bg-green-100 text-green-700',
+    phd: 'bg-[#D6A076]/20 text-[#B8845A]',
+    ms: 'bg-[#E8889C]/20 text-[#C5667A]',
+    undergrad: 'bg-[#FFBAC4]/20 text-[#D98A98]',
   }
 
   return (
@@ -188,7 +188,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
             <div className="bg-white border border-gray-100 rounded-2xl p-24 md:p-32 sticky top-100">
               {/* Avatar */}
               <div className="flex flex-col items-center text-center mb-24">
-                <div className="w-120 h-120 md:w-160 md:h-160 bg-gray-100 rounded-full flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg">
+                <div className="w-[140px] h-[180px] md:w-[154px] md:h-[198px] bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg">
                   {member.avatar ? (
                     <img
                       src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
@@ -209,7 +209,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
               {/* Period */}
               <div className="flex items-center gap-8 text-sm text-gray-600 mb-20 justify-center">
                 <Calendar size={14} className="text-gray-400"/>
-                <span>{member.period.start} ~ {member.period.expected_graduation || 'Present'}</span>
+                <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
               </div>
 
               {/* Divider */}
@@ -322,12 +322,12 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div key={idx} className="flex items-start justify-between gap-16 p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
                       <h4 className="text-base font-bold text-gray-900">
-                        {edu.degree} in {edu.field}
+                        {edu.degree === 'B.S.' ? `Department of ${edu.field}` : `${edu.degree} in ${edu.field}`}
                       </h4>
                       <p className="text-sm text-gray-600">{edu.school}</p>
                     </div>
                     <span className="text-xs md:text-sm font-semibold text-primary whitespace-nowrap">
-                      {edu.start} ~ {edu.end || edu.expected || 'Present'}
+                      {edu.start} - {edu.end || edu.expected || 'Present'}
                     </span>
                   </div>
                 ))}

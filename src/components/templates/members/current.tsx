@@ -57,7 +57,7 @@ import banner2 from '@/assets/images/banner/2.webp'
 const degreeLabels = {
   phd: 'Ph.D. Students',
   ms: 'M.S. Students',
-  undergrad: 'Undergraduate',
+  undergrad: 'Undergraduate Researcher',
 }
 
 const degreeColors = {

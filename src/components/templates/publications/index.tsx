@@ -758,11 +758,22 @@ export const PublicationsTemplate = () => {
                                 <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
                                     {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
-                                      <span 
-                                        className="mr-6 cursor-help" 
-                                        title={`Award-winning paper (${pub.awards} award${Number(pub.awards) > 1 ? 's' : ''})`}
-                                      >
-                                        🏆
+                                      <span className="relative inline-block mr-6 group">
+                                        <span className="cursor-help">🏆</span>
+                                        <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
+                                          {pub.award_details ? (
+                                            <>
+                                              <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
+                                              {pub.award_details.category_ko || pub.award_details.category ? (
+                                                <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
+                                              ) : null}
+                                              <span className="block text-gray-400 mt-1 text-[10px]">{pub.award_details.organization_ko || pub.award_details.organization}</span>
+                                            </>
+                                          ) : (
+                                            <span>Award-winning paper</span>
+                                          )}
+                                          <span className="absolute left-4 top-full border-4 border-transparent border-t-gray-900"></span>
+                                        </span>
                                       </span>
                                     )}
                                     {pub.title}

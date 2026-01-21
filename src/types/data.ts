@@ -28,6 +28,14 @@ export type Publication = {
   venue_ko: string
   published_date: string
   awards: number
+  award_details?: {
+    prize?: string
+    prize_ko?: string
+    category?: string
+    category_ko?: string
+    organization?: string
+    organization_ko?: string
+  }
   citations: {
     apa: string
     mla: string
