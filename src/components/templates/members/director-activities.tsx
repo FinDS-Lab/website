@@ -7,6 +7,8 @@ import {
   ExternalLink,
   Briefcase,
   Award,
+  Medal,
+  Trophy,
   Building,
   ChevronRight,
   Home,
@@ -763,8 +765,8 @@ const CollaborationNetwork = memo(() => {
         >
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffffff"/>
-              <stop offset="100%" stopColor="#f8f8f8"/>
+              <stop offset="0%" stopColor="#E8C86A"/>
+              <stop offset="100%" stopColor="#D6B04C"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#ffd6dd"/>
@@ -854,8 +856,8 @@ const CollaborationNetwork = memo(() => {
                     <text
                       textAnchor="middle"
                       dy="0.35em"
-                      fill="#D6B04C"
-                      fontSize="9"
+                      fill="#FFFFFF"
+                      fontSize="12"
                       fontWeight="bold"
                     >
                       IC
@@ -864,10 +866,13 @@ const CollaborationNetwork = memo(() => {
 
                   {/* Label - Full Name */}
                   <text
-                    y={size + 12}
+                    y={size + 14}
                     textAnchor="middle"
-                    fill={node.isDirector ? '#1e40af' : '#374151'}
-                    fontSize={node.isDirector ? 9 : 7}
+                    fill={node.isDirector ? '#D6B04C' : '#374151'}
+                    stroke={node.isDirector ? '#000000' : 'none'}
+                    strokeWidth={node.isDirector ? 0.5 : 0}
+                    paintOrder="stroke"
+                    fontSize={node.isDirector ? 12 : 7}
                     fontWeight={node.isDirector ? 700 : 600}
                     className="pointer-events-none select-none"
                   >
@@ -1456,7 +1461,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                   ) : (
                     <>
-                      {/* Statistics Section - Matching Current Members / Alumni / Publications / Projects format */}
+                      {/* Statistics Section - Matching About FINDS Honors & Awards format */}
                       {(() => {
                         const allItems = Object.values(honorsData).flat()
                         const totalAwards = allItems.filter(item => item.type === 'award').length
@@ -1464,28 +1469,28 @@ export const MembersDirectorActivitiesTemplate = () => {
                         const totalItems = totalAwards + totalHonors
                         return (
                           <div className="flex flex-col gap-16 md:gap-24 mb-20">
-                            <h3 className="text-base md:text-lg font-bold text-gray-900 flex items-center gap-12">
+                            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                               <span className="w-8 h-8 rounded-full bg-primary" />
                               Statistics
                             </h3>
-                            <div className="grid grid-cols-3 gap-8 md:gap-12">
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalAwards}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
-                                    <span className="text-sm md:text-base">🏆</span>
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">{totalAwards === 1 ? 'Award' : 'Awards'}</span>
+                                    <Medal className="size-14 md:size-16" style={{color: '#D6B04C', opacity: 0.7}} />
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
                                   </div>
                                 </div>
                               </div>
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalHonors}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
-                                    <span className="text-sm md:text-base">🎓</span>
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">{totalHonors === 1 ? 'Honor' : 'Honors'}</span>
+                                    <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
                                   </div>
                                 </div>
                               </div>
@@ -1494,7 +1499,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalItems}</span>
                                   <div className="flex items-center gap-6">
-                                    <span className="text-sm md:text-base">📊</span>
+                                    <Award className="size-14 md:size-16" style={{color: '#4A4A4A', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                                   </div>
                                 </div>

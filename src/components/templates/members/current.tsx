@@ -87,7 +87,7 @@ export const MembersCurrentTemplate = () => {
     }
 
     // members 폴더의 모든 파일 로드
-    const memberFiles = ['kim-phd.json', 'park-ms.json', 'choi-undergrad.json']
+    const memberFiles = ['kim-phd.json', 'park-ms.json', 'choi-undergrad.json', 'lce1-undergrad.json']
 
     Promise.all(
       memberFiles.map((file) =>
