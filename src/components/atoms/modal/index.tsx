@@ -43,35 +43,31 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
           return (
             <div
               key={index}
-              className="fixed inset-0 flex items-start justify-center bg-black/40 backdrop-blur-sm px-16 md:px-40 py-40 md:py-60 overflow-y-auto animate-fadeIn"
+              className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-20 animate-fadeIn"
               style={{zIndex}}
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
               ref={isTopModal ? modalRef : undefined}
             >
               <div
-                className="w-full bg-white rounded-2xl md:rounded-3xl shadow-2xl p-24 md:p-40 flex flex-col relative my-auto"
+                className="w-full max-h-[80vh] bg-white rounded shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[10vh_auto_auto_auto] animate-slideYMargin"
                 style={{maxWidth: modal.maxWidth || '900px'}}
               >
-                {/* Close Button - Premium Style */}
-                <button 
-                  onClick={closeModal} 
-                  className="absolute -top-12 -right-12 md:top-16 md:right-16 w-36 h-36 md:w-40 md:h-40 bg-white md:bg-gray-50 rounded-full flex items-center justify-center shadow-lg md:shadow-none hover:bg-gray-100 transition-colors group"
-                >
-                  <X size={18} className="text-gray-400 group-hover:text-gray-600 transition-colors"/>
-                </button>
+                <div className="flex absolute right-0 top-[-30px]">
+                  <X onClick={closeModal} className={'text-white'}/>
+                </div>
 
                 {
                   (title || modal.title) &&
-                  <div className="flex justify-center mb-24 md:mb-32">
-                    <h2 className="text-lg md:text-xl font-bold text-gray-900">
+                  <div className="flex justify-center">
+                    <h2 className="text-md font-semibold">
                       {modal.title}
                       {title}
                     </h2>
                   </div>
                 }
 
-                <div className="w-full">
+                <div className="w-full overflow-auto">
                   {modal.children && modal.children}
                   {index === modals.length - 1 && children && children}
                 </div>

@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Home, SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react'
+import { Home, Search, SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import clsx from 'clsx'
 
@@ -265,8 +265,18 @@ export const LecturesTemplate = () => {
 
       {/* Content */}
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120">
-        {/* Filter Only */}
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-24 md:mb-32 justify-end">
+        {/* Search & Filter */}
+        <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-24 md:mb-32">
+          <div className="relative flex-1">
+            <Search className="absolute left-14 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by course, university, role..."
+              className="w-full pl-44 pr-16 py-14 border border-gray-200 rounded-xl text-sm md:text-base focus:outline-none focus:border-primary transition-colors"
+            />
+          </div>
           <button
             onClick={() =>
               showModal({

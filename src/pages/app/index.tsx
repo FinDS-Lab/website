@@ -20,8 +20,8 @@ const AboutLocation = lazy(() => import('../about/location').then((module) => ({
 
 // Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
-const MembersDirectorAcademic = lazy(() => import('../members/director-academic').then((module) => ({ default: module.MembersDirectorAcademic })));
 const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.default })));
+const MembersDirectorAcademic = lazy(() => import('../members/director-academic').then((module) => ({ default: module.MembersDirectorAcademic })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
 const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
 const MembersDetail = lazy(() => import('../members/detail').then((module) => ({ default: module.MembersDetail })));

@@ -1,10 +1,7 @@
-import LayoutOrganisms from '@/components/organisms/layout'
-import { MembersDirectorAcademicTemplate } from '@/components/templates/members/director-academic'
+import {MembersDirectorAcademicTemplate} from '@/components/templates/members/director-academic'
 
 export const MembersDirectorAcademic = () => {
-  return (
-    <LayoutOrganisms>
-      <MembersDirectorAcademicTemplate />
-    </LayoutOrganisms>
-  )
+  return <MembersDirectorAcademicTemplate />
 }
+
+export default MembersDirectorAcademic

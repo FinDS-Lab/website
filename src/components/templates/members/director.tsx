@@ -1,27 +1,50 @@
-import {memo, useState, useEffect} from 'react'
+import {memo, useState, useEffect, useMemo} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
   Phone,
   MapPin,
   ExternalLink,
+  Briefcase,
+  Building,
   ChevronRight,
   ChevronDown,
+  ChevronUp,
   Home,
   Copy,
   Check,
   User,
-  GraduationCap,
-  Briefcase,
-  Lightbulb,
+  Activity,
   Award,
-  Trophy,
-  Medal,
-  Star,
+  Landmark,
+  GraduationCap,
+  Calendar,
   BookOpen,
-  Users,
+  Search,
 } from 'lucide-react'
-import type {HonorsData} from '@/types/data'
+import {useStoreModal} from '@/store/modal'
+
+// Types
+type Project = {
+  titleEn: string
+  titleKo: string
+  period: string
+  fundingAgency: string
+  fundingAgencyKo: string
+  type: 'government' | 'industry' | 'institution' | 'academic'
+  roles: {
+    principalInvestigator?: string
+    leadResearcher?: string
+    researchers?: string[]
+  }
+}
+
+type Lecture = {
+  role: string
+  periods: string[]
+  school: string
+  courses: { en: string; ko: string }[]
+}
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
@@ -44,7 +67,9 @@ const education = [
     period: '2025.02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
     field: 'Industrial and Systems Engineering',
-    advisors: [{name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}],
+    advisors: [
+      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
+    ],
     leadership: [
       {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021.09 - 2025.01'},
       {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
@@ -57,7 +82,9 @@ const education = [
     period: '2021.02',
     degree: 'Master of Science (M.S.)',
     field: 'Industrial and Systems Engineering',
-    advisors: [{name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}],
+    advisors: [
+      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
+    ],
     leadership: [],
     awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     logo: logoKaist
@@ -80,7 +107,7 @@ const education = [
   },
 ]
 
-// Static Data - Employment
+// Static Data - Employment (sorted by start date, newest first)
 const employment = [
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
@@ -96,94 +123,271 @@ const employment = [
   {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
 ]
 
+// Static Data - Professional Affiliations
+const affiliations = [
+  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025.06 – Present'},
+  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023.09 – Present'},
+  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023.06 – Present'},
+  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022.06 – Present'},
+]
+
+// Static Data - Citation Statistics (manually updated)
+const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
+
 // Static Data - Research Interests
 const researchInterests = [
   {
     category: 'Financial Data Science',
     items: [
-      {en: 'AI in Quantitative Finance & Asset Management', ko: '인공지능을 활용한 포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩'},
-      {en: 'Financial Time-Series Modeling & Forecasting', ko: '변동성 예측, 국면 전환 모형, 선·후행 관계 분석, 수익률 예측 등 금융 시계열 모형 연구'},
-      {en: 'Household Finance & Behavioral Decision Modeling', ko: '가계 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화'},
-    ],
+      'AI in Quantitative Finance & Asset Management',
+      'Financial Time-Series Modeling & Forecasting',
+      'Household Finance & Behavioral Decision Modeling'
+    ]
   },
   {
     category: 'Business Analytics',
     items: [
-      {en: 'Data Analytics for Cross-Industry & Cross-Domain Convergences', ko: '다양한 산업과 분야 간의 결합과 융합을 위한 데이터 분석'},
-      {en: 'Data Visualization & Transparency in Business Analytics', ko: '복잡한 데이터를 직관적으로 표현하고 투명성을 높이는 시각화 기법'},
-      {en: 'Business Insights from Data Science Techniques', ko: '시계열 모형, 그래프 기반 모형, 자연어 처리(NLP) 등 데이터 사이언스 기법을 활용한 비즈니스 인사이트 발굴'},
-    ],
+      'Data Analytics for Cross-Industry & Cross-Domain Convergences',
+      'Data Visualization & Transparency in Business Analytics',
+      'Business Insights from Data Science Techniques'
+    ]
   },
   {
     category: 'Data-Informed Decision Making',
     items: [
-      {en: 'Trustworthy Decision Systems & Optimization', ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화 기법'},
-      {en: 'Risk-Aware & User-Friendly Decision Tools', ko: '금융·경영 위험을 반영하고 사용자 친화성을 갖춘 의사결정 도구'},
-      {en: 'Decision Analytics for Complex Business Problems', ko: '복잡한 경영 및 투자 의사결정 문제 해결을 위한 분석 및 최적화 방법론'},
-    ],
+      'Trustworthy Decision Systems & Optimization',
+      'Risk-Aware & User-Friendly Decision Tools',
+      'Decision Analytics for Complex Business Problems'
+    ]
   },
 ]
 
-// Expandable Section Component
-const ExpandableSection = ({title, icon: Icon, children, defaultExpanded = true, count}: {
-  title: string; icon: React.ElementType; children: React.ReactNode; defaultExpanded?: boolean; count?: number
-}) => {
-  const [isExpanded, setIsExpanded] = useState(defaultExpanded)
-  return (
-    <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-      <button onClick={() => setIsExpanded(!isExpanded)} className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors">
-        <div className="flex items-center gap-12">
-          <Icon size={20} className="text-primary" />
-          <h3 className="text-lg md:text-xl font-bold text-gray-900">{title}</h3>
-          {count !== undefined && <span className="px-8 py-2 bg-primary/10 text-primary text-xs font-bold rounded-full">{count}</span>}
-        </div>
-        <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
-      </button>
-      <div className={`border-t border-gray-100 ${isExpanded ? 'block' : 'hidden'}`}>{children}</div>
-    </section>
-  )
-}
-
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
-  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
+  const [projects, setProjects] = useState<Project[]>([])
+  const [lectures, setLectures] = useState<Lecture[]>([])
+  const [projectSearchTerm, setProjectSearchTerm] = useState('')
+  const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
+  const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
+  const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
+    {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
+    {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
+    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
+  ])
+  const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
 
+  // Fetch Projects, Lectures, and Publications data
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
-    fetch(`${baseUrl}data/honors.json`).then(res => res.json()).then((data: HonorsData) => setHonorsData(data)).catch(console.error)
+    
+    // Fetch Publications and calculate stats
+    fetch(`${baseUrl}data/pubs.json`)
+      .then(res => res.json())
+      .then((pubs: any[]) => {
+        const stats = {
+          scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0,
+          intlConf: 0, kci: 0, domConf: 0
+        }
+        
+        pubs.forEach(pub => {
+          const indexing = pub.indexing_group || ''
+          const type = pub.type || ''
+          
+          if (type === 'journal') {
+            if (indexing === 'SCIE') stats.scie++
+            else if (indexing === 'SSCI') stats.ssci++
+            else if (indexing === 'A&HCI') stats.ahci++
+            else if (indexing === 'ESCI') stats.esci++
+            else if (indexing === 'Scopus') stats.scopus++
+            else if (indexing === 'Other International') stats.otherIntl++
+            else if (indexing.includes('KCI')) stats.kci++
+          } else if (type === 'conference') {
+            // International conferences include both "International Conference" and "Scopus" indexed ones
+            if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
+            else if (indexing === 'Domestic Conference') stats.domConf++
+          }
+        })
+        
+        setPubStats([
+          {label: 'SCIE', count: stats.scie},
+          {label: 'SSCI', count: stats.ssci},
+          {label: 'A&HCI', count: stats.ahci},
+          {label: 'ESCI', count: stats.esci},
+          {label: 'Scopus', count: stats.scopus},
+          {label: 'Other Int\'l', count: stats.otherIntl},
+          {label: 'Int\'l Conf', count: stats.intlConf},
+          {label: 'KCI', count: stats.kci},
+          {label: 'Dom. Conf', count: stats.domConf}
+        ])
+      })
+      .catch(console.error)
+    
+    // Fetch Projects - all projects where director is involved
+    fetch(`${baseUrl}data/projects.json`)
+      .then(res => res.json())
+      .then((data: Project[]) => {
+        // Show all projects (no date filter) - most recent first
+        const sortedProjects = [...data].sort((a, b) => {
+          const dateA = new Date(a.period.split('–')[0].trim())
+          const dateB = new Date(b.period.split('–')[0].trim())
+          return dateB.getTime() - dateA.getTime()
+        })
+        setProjects(sortedProjects)
+        // Expand all years by default
+        const years = [...new Set(sortedProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
+        setExpandedProjectYears(years)
+      })
+      .catch(console.error)
+
+    // Fetch Lectures - current semester
+    fetch(`${baseUrl}data/lectures.json`)
+      .then(res => res.json())
+      .then((data: Lecture[]) => {
+        setLectures(data)
+      })
+      .catch(console.error)
   }, [])
 
-  const handleCopyEmail = () => { navigator.clipboard.writeText(directorEmail); setEmailCopied(true); setTimeout(() => setEmailCopied(false), 2000) }
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(directorEmail)
+    setEmailCopied(true)
+    setTimeout(() => setEmailCopied(false), 2000)
+  }
 
-  const navItems = [
-    {label: 'Profile', path: '/members/director', icon: User},
-    {label: 'Scholarly', path: '/members/director/academic', icon: BookOpen},
-    {label: 'Activities', path: '/members/director/activities', icon: Users},
-  ]
+  // Group projects by year
+  const projectsByYear = useMemo(() => {
+    const filtered = projectSearchTerm.trim()
+      ? projects.filter(p => 
+          p.titleEn.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.titleKo.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.fundingAgency.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
+          p.fundingAgencyKo.toLowerCase().includes(projectSearchTerm.toLowerCase())
+        )
+      : projects
 
-  const getAwardIcon = (type: string) => type === 'grand' || type === 'best' ? Trophy : type === 'excellence' ? Medal : Star
-  const getAwardColor = (type: string) => type === 'grand' || type === 'best' ? {bg: 'bg-[#FFF9E6]', text: 'text-[#D6B04C]', border: 'border-[#D6B04C]/20'} : type === 'excellence' ? {bg: 'bg-gray-50', text: 'text-gray-500', border: 'border-gray-200'} : {bg: 'bg-[#FFF5F7]', text: 'text-[#E8889C]', border: 'border-[#E8889C]/20'}
+    const grouped: Record<string, Project[]> = {}
+    filtered.forEach(p => {
+      const year = p.period.split('–')[0].trim().slice(0, 4)
+      if (!grouped[year]) grouped[year] = []
+      grouped[year].push(p)
+    })
+    return grouped
+  }, [projects, projectSearchTerm])
+
+  const projectYears = useMemo(() => {
+    return Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
+  }, [projectsByYear])
+
+  const toggleProjectYear = (year: string) => {
+    setExpandedProjectYears(prev => 
+      prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
+    )
+  }
+
+  // Group lectures by course name and aggregate semesters, with role information
+  const groupedLectures = useMemo(() => {
+    const filtered = teachingSearchTerm.trim()
+      ? lectures.filter(l =>
+          l.courses.some(c => 
+            c.en.toLowerCase().includes(teachingSearchTerm.toLowerCase()) ||
+            c.ko.toLowerCase().includes(teachingSearchTerm.toLowerCase())
+          ) ||
+          l.school.toLowerCase().includes(teachingSearchTerm.toLowerCase())
+        )
+      : lectures
+
+    // Group by course name (en) to aggregate semesters
+    const courseMap: Record<string, {
+      school: string
+      courseName: string
+      courseNameKo: string
+      periods: string[]
+      role: string
+    }> = {}
+
+    filtered.forEach(lecture => {
+      lecture.courses.forEach(course => {
+        const key = `${lecture.school}-${course.en}-${lecture.role}`
+        if (!courseMap[key]) {
+          courseMap[key] = {
+            school: lecture.school,
+            courseName: course.en,
+            courseNameKo: course.ko,
+            periods: [...lecture.periods],
+            role: lecture.role
+          }
+        } else {
+          // Add new periods that are not already in the list
+          lecture.periods.forEach(p => {
+            if (!courseMap[key].periods.includes(p)) {
+              courseMap[key].periods.push(p)
+            }
+          })
+        }
+      })
+    })
+
+    // Sort periods in each course (most recent first)
+    Object.values(courseMap).forEach(course => {
+      course.periods.sort((a, b) => {
+        const [yearA, semA] = a.split(' ')
+        const [yearB, semB] = b.split(' ')
+        if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA)
+        return semB.localeCompare(semA)
+      })
+    })
+
+    return Object.values(courseMap)
+  }, [lectures, teachingSearchTerm])
+
+  // Separate Lecturer and TA courses
+  const lecturerCourses = useMemo(() => 
+    groupedLectures.filter(c => c.role === 'Lecturer'), [groupedLectures])
+  
+  const taCourses = useMemo(() => 
+    groupedLectures.filter(c => c.role === 'Teaching Assistant'), [groupedLectures])
+
+  // Count total semesters (sum of all periods across all courses)
+  const totalSemesters = useMemo(() => 
+    groupedLectures.reduce((sum, course) => sum + course.periods.length, 0), [groupedLectures])
+  
+  const lecturerSemesters = useMemo(() => 
+    lecturerCourses.reduce((sum, course) => sum + course.periods.length, 0), [lecturerCourses])
+  
+  const taSemesters = useMemo(() => 
+    taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-white">
       {/* Banner */}
       <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{backgroundImage: `url(${banner2})`}} />
+        <div
+          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          style={{backgroundImage: `url(${banner2})`}}
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
+
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
             <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
-            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">Director</span>
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+              Members
+            </span>
             <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
           </div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">Profile</h1>
+          
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
+            Director
+          </h1>
+          
+          {/* Divider - < . > style */}
           <div className="flex items-center justify-center gap-8 md:gap-12">
             <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
             <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
@@ -196,154 +400,376 @@ export const MembersDirectorTemplate = () => {
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
         <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16}/>
+            </Link>
             <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
             <span className="text-gray-200">—</span>
-            <span className="text-sm text-gray-400 font-medium">Director</span>
-            <span className="text-gray-200">—</span>
-            <span className="text-sm text-primary font-semibold">Profile</span>
+            <span className="text-sm text-primary font-semibold">Director</span>
           </div>
         </div>
       </div>
 
+      {/* Tab Navigation - Sticky */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-500 xl:w-560">
+            <Link
+              to="/members/director"
+              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+                location.pathname === '/members/director'
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <User size={16} />
+              Profile
+            </Link>
+            <Link
+              to="/members/director/academic"
+              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+                location.pathname === '/members/director/academic'
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <BookOpen size={16} />
+              Scholarly
+            </Link>
+            <Link
+              to="/members/director/activities"
+              className={`flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 ${
+                location.pathname === '/members/director/activities'
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
+            >
+              <Activity size={16} />
+              Activities
+            </Link>
+          </div>
+        </div>
+      </div>
+
+
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-48">
-          {/* Sidebar */}
-          <aside className="lg:w-[320px] shrink-0">
-            <div className="sticky top-100 space-y-24">
-              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden p-24">
-                <div className="flex flex-col items-center">
-                  <div className="w-140 h-180 rounded-xl overflow-hidden mb-20 ring-4 ring-gray-100">
-                    <img src={directorImg} alt="Director" className="w-full h-full object-cover" />
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
+        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
+          {/* Left Column: Profile Card */}
+          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
+              <div className="flex flex-col items-center text-center mb-24 md:mb-32">
+                <div className="size-140 md:size-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                  <img src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                </div>
+                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
+                  Insu Choi
+                  <span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
+                </h2>
+                <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
+              </div>
+
+              <div className="flex flex-col gap-16 md:gap-20">
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Briefcase size={16}/>
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">In Seok Choi</h2>
-                  <p className="text-sm text-gray-500 mb-4">최인수</p>
-                  <p className="text-sm text-primary font-medium mb-16">Assistant Professor</p>
-                  <div className="w-full space-y-12">
-                    <div className="flex items-center gap-12">
-                      <Mail size={16} className="text-gray-400 shrink-0" />
-                      <button onClick={handleCopyEmail} className="text-sm text-gray-600 hover:text-primary flex items-center gap-8 group">
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Building size={16}/>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">Department of Big Data Business Management</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <MapPin size={16}/>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Mail size={16}/>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
+                    <div className="flex items-center gap-8">
+                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
-                        {emailCopied ? <Check size={14} className="text-green-500" /> : <Copy size={14} className="text-gray-300 group-hover:text-primary" />}
+                      </a>
+                      <button 
+                        onClick={handleCopyEmail} 
+                        className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
+                        title="Copy email"
+                      >
+                        {emailCopied ? <Check size={12} className="text-green-500"/> : <Copy size={12} className="text-gray-400"/>}
                       </button>
                     </div>
-                    <div className="flex items-center gap-12"><Phone size={16} className="text-gray-400 shrink-0" /><span className="text-sm text-gray-600">+82-31-750-xxxx</span></div>
-                    <div className="flex items-start gap-12">
-                      <MapPin size={16} className="text-gray-400 shrink-0 mt-2" />
-                      <div><p className="text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p><p className="text-xs text-gray-500">가천관 614호</p></div>
-                    </div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-12 group">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Phone size={16}/>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-                <div className="p-16 border-b border-gray-100"><h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider">Navigation</h3></div>
-                <div className="p-8">
-                  {navItems.map((item) => {
-                    const isActive = location.pathname === item.path
-                    const Icon = item.icon
-                    return (<Link key={item.path} to={item.path} className={`flex items-center gap-12 px-16 py-14 rounded-xl transition-all ${isActive ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-50 hover:text-primary'}`}><Icon size={18} /><span className="font-medium">{item.label}</span><ChevronRight size={16} className="ml-auto opacity-50" /></Link>)
-                  })}
-                </div>
-              </div>
-              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden p-20">
-                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-16">External Links</h3>
-                <div className="space-y-8">
-                  <a href="https://scholar.google.com/citations?user=_9R3M4IAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="flex items-center gap-12 text-sm text-gray-600 hover:text-primary transition-colors"><ExternalLink size={14} />Google Scholar</a>
-                  <a href="https://orcid.org/0000-0002-9556-2687" target="_blank" rel="noopener noreferrer" className="flex items-center gap-12 text-sm text-gray-600 hover:text-primary transition-colors"><ExternalLink size={14} />ORCID</a>
-                </div>
+
+              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
+                <button 
+                  onClick={() => showModal({
+                    title: 'Curriculum Vitae', 
+                    maxWidth: '1000px', 
+                    children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>
+                  })} 
+                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
+                >
+                  View CV <ExternalLink size={14}/>
+                </button>
+                <a 
+                  href="https://scholar.google.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
+                  style={{color: '#ffffff'}}
+                >
+                  Scholar <ExternalLink size={14} color="#ffffff"/>
+                </a>
               </div>
             </div>
           </aside>
 
-          {/* Main Content */}
-          <main className="flex-1 space-y-24">
-            <ExpandableSection title="Introduction" icon={User} defaultExpanded={true}>
-              <div className="p-20 md:p-32">
-                <p className="text-gray-600 leading-relaxed">I am an Assistant Professor in the Department of Finance and Big Data at Gachon University and Director of FINDS Lab. My research focuses on financial data science, business analytics, and data-informed decision making. I received my Ph.D. in Industrial and Systems Engineering from KAIST, where I was advised by Prof. Woo Chang Kim.</p>
-              </div>
-            </ExpandableSection>
-
-            <ExpandableSection title="Education" icon={GraduationCap} defaultExpanded={true} count={education.length}>
-              <div className="divide-y divide-gray-100">
-                {education.map((edu, index) => (
-                  <div key={index} className="p-20 md:p-32 hover:bg-gray-50/50 transition-colors">
-                    <div className="flex gap-16 md:gap-24">
-                      <div className="w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl border border-gray-100 p-8 flex items-center justify-center shrink-0"><img src={edu.logo} alt={edu.school} className="w-full h-full object-contain" /></div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-12 mb-8"><h4 className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.school}</h4><span className="text-xs md:text-sm text-primary font-semibold shrink-0">{edu.period}</span></div>
-                        <p className="text-sm md:text-base text-gray-700 font-medium mb-4">{edu.degree}</p>
-                        <p className="text-xs md:text-sm text-gray-500 mb-12">{edu.field}</p>
-                        {edu.advisors && edu.advisors.length > 0 && (<div className="flex items-center gap-8 mb-12"><span className="text-xs text-gray-400">Advisor:</span><div className="flex flex-wrap gap-6">{edu.advisors.map((advisor, aIdx) => (<a key={aIdx} href={advisor.url} target="_blank" rel="noopener noreferrer" className="text-xs text-[#D6B04C] font-medium hover:underline flex items-center gap-4">{advisor.name}<ExternalLink size={10} /></a>))}</div></div>)}
-                        {edu.awards && edu.awards.length > 0 && (<div className="flex flex-wrap gap-8">{edu.awards.map((award, aIdx) => (<div key={aIdx} className="flex items-center gap-6 px-10 py-4 bg-[#FFF9E6] rounded-lg"><Trophy size={12} className="text-[#D6B04C]" /><span className="text-xs font-medium text-[#B8962D]">{award.title}</span></div>))}</div>)}
-                      </div>
-                    </div>
+          {/* Right Column */}
+          <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
+            {/* Introduction */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Introduction
+              </h3>
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-20 md:p-32 border border-gray-100">
+                <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
+                  I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
+                  <span className="font-bold text-primary">Financial Data Science</span>,{' '}
+                  <span className="font-bold text-primary">Business Analytics</span>, and{' '}
+                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
+                  In particular, I focus on three directions:
+                </p>
+                <div className="space-y-16 mb-24">
+                  <div className="flex gap-16">
+                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                      <span className="font-semibold text-gray-800">AI-driven solutions for quantitative finance</span> — portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                    </p>
                   </div>
-                ))}
-              </div>
-            </ExpandableSection>
-
-            <ExpandableSection title="Employment" icon={Briefcase} defaultExpanded={true} count={employment.length}>
-              <div className="divide-y divide-gray-100">
-                {employment.map((emp, index) => (
-                  <div key={index} className="p-20 md:p-24 hover:bg-gray-50/50 transition-colors">
-                    <div className="flex gap-16">
-                      <div className="w-40 h-40 md:w-48 md:h-48 bg-white rounded-xl border border-gray-100 p-6 flex items-center justify-center shrink-0"><img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain" /></div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-8">
-                          <div><h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4><p className="text-xs md:text-sm text-gray-600 font-medium">{emp.organization}</p>{emp.department && <p className="text-xs text-gray-400 mt-2">{emp.department}</p>}</div>
-                          <div className="text-right shrink-0"><span className="text-xs md:text-sm text-gray-500">{emp.period}</span>{emp.isCurrent && <span className="block mt-4 px-8 py-2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">Current</span>}</div>
-                        </div>
-                      </div>
-                    </div>
+                  <div className="flex gap-16">
+                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                      <span className="font-semibold text-gray-800">Advanced analytics across business domains</span>, employing a comprehensive suite of analytical approaches—from time-series models to graph-based analytics and beyond—to surface actionable insights.
+                    </p>
                   </div>
-                ))}
-              </div>
-            </ExpandableSection>
-
-            <ExpandableSection title="Research Interests" icon={Lightbulb} defaultExpanded={true}>
-              <div className="p-20 md:p-32">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
-                  {researchInterests.map((category, idx) => (
-                    <div key={idx} className="bg-gray-50 rounded-xl p-20">
-                      <h4 className="text-sm font-bold text-primary mb-16">{category.category}</h4>
-                      <ul className="space-y-12">{category.items.map((item, iIdx) => (<li key={iIdx}><p className="text-sm text-gray-800 font-medium leading-relaxed">{item.en}</p><p className="text-xs text-gray-500 mt-4">{item.ko}</p></li>))}</ul>
-                    </div>
-                  ))}
+                  <div className="flex gap-16">
+                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                      <span className="font-semibold text-gray-800">Intelligent decision support systems</span> that pair optimization techniques with user-friendly interfaces for complex business problems.
+                    </p>
+                  </div>
                 </div>
+                <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
+                  The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.
+                </p>
               </div>
-            </ExpandableSection>
+            </section>
 
-            <ExpandableSection title="Honors & Awards" icon={Award} defaultExpanded={true}>
-              <div className="p-20 md:p-32">
-                {honorsData && Object.keys(honorsData).length > 0 ? (
-                  <div className="space-y-24">
-                    {Object.keys(honorsData).sort((a, b) => parseInt(b) - parseInt(a)).slice(0, 5).map((year) => (
-                      <div key={year}>
-                        <h4 className="text-sm font-bold text-gray-700 mb-12">{year}</h4>
-                        <div className="space-y-12">
-                          {honorsData[year].map((item, idx) => {
-                            const IconComponent = getAwardIcon(item.type)
-                            const colors = getAwardColor(item.type)
-                            return (
-                              <div key={idx} className={`flex gap-16 p-16 md:p-20 ${colors.bg} rounded-xl border ${colors.border}`}>
-                                <div className={`w-40 h-40 md:w-48 md:h-48 rounded-xl flex items-center justify-center shrink-0 bg-white ${colors.text}`}><IconComponent size={20} /></div>
-                                <div className="flex-1 min-w-0">
-                                  <div className="flex items-start justify-between gap-12 mb-4"><h4 className="text-sm md:text-base font-bold text-gray-900">{item.title}</h4><span className="text-xs md:text-sm text-gray-500 shrink-0">{item.date}</span></div>
-                                  <p className="text-xs md:text-sm text-gray-600">{item.event}</p>
-                                  <p className="text-xs text-gray-400 mt-4">{item.organization}</p>
-                                </div>
-                              </div>
-                            )
-                          })}
+            {/* Research Interests */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Research Interests
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                {researchInterests.map((area, index) => (
+                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
+                    <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
+                      <div className="size-8 rounded-full bg-primary/40"/>
+                      <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
+                    </div>
+                    <ul className="space-y-10">
+                      {area.items.map((item, idx) => {
+                        // Extract key terms for highlighting
+                        const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
+                        let highlightedItem = item
+                        highlightTerms.slice(0, 2).forEach(term => {
+                          highlightedItem = highlightedItem.replace(term, `<mark>${term}</mark>`)
+                        })
+                        return (
+                          <li key={idx} className="flex items-start gap-10">
+                            <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                            <span 
+                              className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
+                              dangerouslySetInnerHTML={{__html: highlightedItem}}
+                            />
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Education */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Education
+              </h3>
+              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+                {education.map((edu, index) => (
+                  <div key={index} className="relative pb-32 last:pb-0 group">
+                    {/* Timeline dot - positioned on the line (same as Employment) */}
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    <div className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md transition-all">
+                      <div className="flex items-start gap-16 mb-16">
+                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
+                          <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-8 mb-8">
+                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
+                            {edu.awards && edu.awards.length > 0 && (
+                              <span className="flex items-center gap-4 px-8 py-4 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
+                                <Award size={10} />
+                                Award
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
+                          <p className="text-xs md:text-sm text-gray-600">{edu.field}</p>
                         </div>
                       </div>
-                    ))}
+                      
+                      <div className="pl-0 md:pl-80">
+                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4">{edu.school}</p>
+                        {edu.advisors && edu.advisors.length > 0 && (
+                          <div className="mb-12">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
+                            <div className="space-y-6">
+                              {edu.advisors.map((adv, i) => (
+                                <a 
+                                  key={i}
+                                  href={adv.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
+                                >
+                                  <div className="flex items-center gap-8">
+                                    <GraduationCap className="size-14 text-[#D6B04C]" />
+                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                  </div>
+                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {edu.leadership && edu.leadership.length > 0 && (
+                          <div className="mb-12">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Leadership Roles</p>
+                            <div className="space-y-6">
+                              {edu.leadership.map((l, i) => (
+                                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-8">
+                                  <div>
+                                    <span className="text-xs font-semibold text-gray-800">{l.role}</span>
+                                    <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
+                                  </div>
+                                  <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {edu.awards && edu.awards.length > 0 && (
+                          <div className="pt-12 border-t border-gray-100">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
+                            <div className="space-y-6">
+                              {edu.awards.map((a, i) => (
+                                <div key={i} className="flex items-start gap-8 bg-gray-50 rounded-lg px-12 py-8">
+                                  <span className="text-[#D6B04C] shrink-0">🏆</span>
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                    <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                ) : (<div className="text-center py-40 text-gray-400">No awards data available</div>)}
+                ))}
               </div>
-            </ExpandableSection>
+            </section>
+
+            {/* Employment */}
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Employment
+              </h3>
+              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+                {employment.map((emp, index) => (
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
+                    {/* Timeline dot - positioned on the line */}
+                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
+                      emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
+                    }`}/>
+                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
+                        <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
+                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
+                            emp.isCurrent
+                              ? 'bg-primary text-white'
+                              : 'bg-gray-200 text-gray-700'
+                          }`}>{emp.period}</span>
+                        </div>
+                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
+                        {emp.department && (
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{emp.department}</p>
+                        )}
+                        <p className="text-[10px] md:text-xs text-gray-500 truncate">{emp.organization}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
           </main>
         </div>
       </section>
