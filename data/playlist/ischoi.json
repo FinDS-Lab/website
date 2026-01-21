@@ -1,35 +1,99 @@
 {
-  "shuffle": true,
   "items": [
-    { 
-      "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N",
-      "artist": "IU (아이유)",
-      "title": "Blueming",
-      "date": "2025.01"
+    {
+      "url": "https://www.youtube.com/watch?v=6ZUIwj3FgUY",
+      "artist": "IVE",
+      "title": "I AM"
     },
-    { 
-      "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3",
-      "artist": "AKMU (악동뮤지션)",
-      "title": "How can I love the heartbreak, you`re the one I love",
-      "date": "2025.01"
+    {
+      "url": "https://www.youtube.com/watch?v=SX_ViT4Ra7k",
+      "artist": "米津玄師",
+      "title": "Lemon"
     },
-    { 
-      "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r",
-      "artist": "10cm",
-      "title": "Lean On Me",
-      "date": "2025.01"
+    {
+      "url": "https://www.youtube.com/watch?v=Wy9CrMPn90s",
+      "artist": "BUMP OF CHICKEN",
+      "title": "Acacia"
     },
-    { 
-      "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE",
-      "artist": "Crush",
-      "title": "Beautiful",
-      "date": "2025.01"
+    {
+      "url": "https://www.youtube.com/watch?v=pfGI91CFtRg",
+      "artist": "Aimyon",
+      "title": "ハルノヒ"
     },
-    { 
-      "url": "https://music.youtube.com/watch?v=ZjIPFe0hE4Y&si=OeJ5ZQemZs-FMYUY",
-      "artist": "Zion.T",
-      "title": "Yanghwa BRDG",
-      "date": "2025.01"
+    {
+      "url": "https://www.youtube.com/watch?v=POe9SOEKotk",
+      "artist": "BLACKPINK",
+      "title": "Shut Down"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dmSUBdk4SY4",
+      "artist": "Maktub",
+      "title": "오늘도 빛나는 너에게"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=D1PvIWdJ8xo",
+      "artist": "IU",
+      "title": "Blueming"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Dx_fKPBPYUI",
+      "artist": "米津玄師",
+      "title": "LOSER"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=Uw5qnh0bDWg",
+      "artist": "Mrs. GREEN APPLE",
+      "title": "インフェルノ"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=EdixwpC7wIg",
+      "artist": "Aimer",
+      "title": "LAST STARDUST"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=7sJES_4FiAs",
+      "artist": "IVE",
+      "title": "ATTITUDE"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=PaZ9d-4O3Ns",
+      "artist": "Mrs. GREEN APPLE",
+      "title": "僕のこと"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=lIaGs-bWxEk",
+      "artist": "Sia",
+      "title": "Unstoppable"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=k1WbiVmq3-U",
+      "artist": "NMIXX",
+      "title": "Blue Valentine"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=bnVUHWCynig",
+      "artist": "Beyoncé",
+      "title": "Halo"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=uJSla1jyI_Y",
+      "artist": "IVE",
+      "title": "ELEVEN"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=pG6iaOMV46I",
+      "artist": "IVE",
+      "title": "Kitsch"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=alVxuz0Tqx4",
+      "artist": "HUNTR/X",
+      "title": "Golden"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=UM9XNpgrqVk",
+      "artist": "Vaundy",
+      "title": "怪獣の花唄"
     }
   ]
 }
