@@ -21,6 +21,11 @@ import {
   Calendar,
   BookOpen,
   Search,
+  Network,
+  ZoomIn,
+  ZoomOut,
+  Maximize2,
+  X,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {AcademicActivitiesData, Publication} from '@/types/data'
