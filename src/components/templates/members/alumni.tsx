@@ -247,9 +247,6 @@ export const MembersAlumniTemplate = () => {
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B04C'}} />
                     Ph.D. Graduates
-                    <span className="text-sm font-medium text-gray-400">
-                      ({phdAlumni.length} {pluralize(phdAlumni.length, 'person', 'people')})
-                    </span>
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {phdExpanded ? (
@@ -276,6 +273,7 @@ export const MembersAlumniTemplate = () => {
                         {phdAlumni.map((alumni, idx) => {
                           const isExpanded = expandedAlumni.has(alumni.name)
                           const hasThesis = alumni.thesis && alumni.thesis.phd
+                          const alumniNumber = phdAlumni.length - idx // Count from bottom
                           
                           return (
                             <React.Fragment key={idx}>
@@ -289,7 +287,7 @@ export const MembersAlumniTemplate = () => {
                                       className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
                                       style={{background: 'linear-gradient(135deg, rgba(214, 176, 76,0.15) 0%, rgba(214, 176, 76,0.08) 100%)'}}
                                     >
-                                      <GraduationCap size={16} style={{color: '#D6B04C'}}/>
+                                      <span className="text-xs md:text-sm font-bold" style={{color: '#D6B04C'}}>{alumniNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-8">
                                       <div>
@@ -385,9 +383,6 @@ export const MembersAlumniTemplate = () => {
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
                     M.S. Graduates
-                    <span className="text-sm font-medium text-gray-400">
-                      ({msAlumni.length} {pluralize(msAlumni.length, 'person', 'people')})
-                    </span>
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {msExpanded ? (
@@ -414,6 +409,7 @@ export const MembersAlumniTemplate = () => {
                         {msAlumni.map((alumni, idx) => {
                           const isExpanded = expandedAlumni.has(alumni.name)
                           const hasThesis = alumni.thesis && alumni.thesis.ms
+                          const alumniNumber = msAlumni.length - idx // Count from bottom
                           
                           return (
                             <React.Fragment key={idx}>
@@ -427,7 +423,7 @@ export const MembersAlumniTemplate = () => {
                                       className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
                                       style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(232,135,155,0.1) 100%)'}}
                                     >
-                                      <GraduationCap size={16} style={{color: '#E8889C'}}/>
+                                      <span className="text-xs md:text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
                                     </div>
                                     <div className="flex items-center gap-8">
                                       <div>
@@ -523,9 +519,6 @@ export const MembersAlumniTemplate = () => {
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                     <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#FFBAC4'}} />
                     Former Undergraduate Researchers
-                    <span className="text-sm font-medium text-gray-400">
-                      ({sortedUndergradAlumni.length} {pluralize(sortedUndergradAlumni.length, 'person', 'people')})
-                    </span>
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {undergradExpanded ? (

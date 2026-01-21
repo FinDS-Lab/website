@@ -8,6 +8,21 @@ import banner1 from '@/assets/images/banner/1.webp'
 
 type FilterType = 'all' | 'honor' | 'award'
 
+// Format date from "Dec 5" to "12.05"
+const formatDate = (dateStr: string): string => {
+  const monthMap: Record<string, string> = {
+    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+  }
+  const parts = dateStr.split(' ')
+  if (parts.length === 2) {
+    const month = monthMap[parts[0]] || '00'
+    const day = parts[1].padStart(2, '0')
+    return `${month}.${day}`
+  }
+  return dateStr
+}
+
 export const AboutHonorsTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData>({})
   const [filter, setFilter] = useState<FilterType>('all')
@@ -257,7 +272,7 @@ export const AboutHonorsTemplate = () => {
                         >
                           <div
                             className={`w-36 h-36 md:w-[44px] md:h-[44px] rounded-lg md:rounded-[12px] flex items-center justify-center flex-shrink-0 ${
-                              item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFF3CC]'
+                              item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
                             }`}
                           >
                             {item.type === 'honor' ? (
@@ -286,7 +301,7 @@ export const AboutHonorsTemplate = () => {
                             )}
                           </div>
                           <div className="text-xs md:text-[14px] text-gray-500 font-medium whitespace-nowrap">
-                            {item.date}
+                            {formatDate(item.date)}
                           </div>
                         </div>
                       ))}

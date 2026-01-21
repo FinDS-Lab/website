@@ -308,12 +308,13 @@ export const PublicationsTemplate = () => {
   }, [publications])
 
   const getAuthorNames = useCallback(
-    (authorIds: number[], authorMarks: string[]) => {
+    (authorIds: number[], authorMarks: string[], language?: string) => {
+      const useEnglish = language?.toLowerCase() === 'english'
       return authorIds.map((id, idx) => {
         const author = authors[String(id)]
         const mark = authorMarks[idx] || ''
         if (author) {
-          return { name: author.ko, mark }
+          return { name: useEnglish ? author.en : author.ko, mark }
         }
         return { name: `Unknown (${id})`, mark }
       })
@@ -655,7 +656,7 @@ export const PublicationsTemplate = () => {
                             <p className="text-sm md:text-base text-gray-500">아직 등록된 논문이 없습니다.</p>
                           </div>
                         ) : pubs.map((pub, idx) => {
-                          const authorList = getAuthorNames(pub.authors, pub.author_marks)
+                          const authorList = getAuthorNames(pub.authors, pub.author_marks, pub.language)
                           const typeLabel = pub.type === 'journal' ? 'Journal' : pub.type === 'conference' ? 'Conference' : pub.type === 'book' ? 'Book' : pub.type === 'report' ? 'Report' : pub.type.charAt(0).toUpperCase() + pub.type.slice(1)
                           const typeColor = pub.type === 'journal'
                             ? 'bg-[#D6B04C]'

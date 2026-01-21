@@ -38,7 +38,7 @@ const pillars = [
     label: 'Research',
     number: '01',
     title: 'We pursue research with an iridescent perspective.',
-    description: 'By applying systematic and diverse methodologies in financial data science and business analytics, we expand knowledge while building transparent frameworks that ensure both practical relevance and data-driven decision-making.',
+    description: 'By applying <b>systematic and diverse methodologies</b> in <b>financial data science</b> and <b>business analytics</b>, we expand knowledge while building <b>transparent frameworks</b> that ensure both <b>practical relevance</b> and <b>data-driven decision-making</b>.',
     accent: 'group-hover:from-[#D6B04C] group-hover:to-[#D6C360]',
   },
   {
@@ -46,7 +46,7 @@ const pillars = [
     label: 'Impact',
     number: '02',
     title: 'We transform theory into intuitive solutions.',
-    description: 'Our work helps practitioners navigate uncertainty and bridge the gap between sophisticated analytics and real-world practice, across both financial markets and broader business operations.',
+    description: 'Our work helps practitioners <b>navigate uncertainty</b> and <b>bridge the gap</b> between <b>sophisticated analytics</b> and <b>real-world practice</b>, across both <b>financial markets</b> and broader <b>business operations</b>.',
     accent: 'group-hover:from-primary group-hover:to-[#D6C360]',
   },
   {
@@ -55,7 +55,7 @@ const pillars = [
     number: '03',
     title: 'We strive toward "des avenirs lucides".',
     subtitle: '— lucid futures',
-    description: 'Through data science, we illuminate complexity and foster clarity, discernment, and transparency, contributing to a more equitable, innovative, and socially impactful future in finance and diverse areas of business.',
+    description: 'Through <b>data science</b>, we illuminate complexity and foster <b>clarity</b>, <b>discernment</b>, and <b>transparency</b>, contributing to a more <b>equitable</b>, <b>innovative</b>, and <b>socially impactful</b> future in finance and diverse areas of business.',
     accent: 'group-hover:from-[#D6C360] group-hover:to-primary',
   },
 ]
@@ -422,52 +422,56 @@ export const AboutIntroductionTemplate = () => {
               {pillars.map((pillar, index) => {
                 const Icon = pillar.icon
                 return (
-                  <div
-                    key={index}
-                    className={`group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:shadow-[#FFF3CC]/30`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
-                  >
-                    {/* Gradient Border Effect */}
-                    <div className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-100 ${pillar.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl md:rounded-3xl p-[2px]`}>
-                      <div className="w-full h-full bg-white rounded-2xl md:rounded-[22px]" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative p-28 md:p-36 lg:p-48">
-                      {/* Header */}
-                      <div className="flex items-center justify-between mb-24 md:mb-32">
-                        <div className="relative">
-                          <div className={`absolute inset-0 bg-gradient-to-br from-[#FFEB99] to-primary/20 rounded-xl md:rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                          <div className="relative size-48 md:size-56 bg-gray-50 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-500">
-                            <Icon size={22} strokeWidth={1.5} className="text-gray-400 group-hover:text-white transition-colors duration-500" />
-                          </div>
-                        </div>
-                        <span className="text-4xl md:text-5xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors duration-500 tabular-nums">
-                          {pillar.number}
-                        </span>
-                      </div>
-
-                      {/* Label */}
-                      <span className="inline-block px-12 py-4 bg-[#FFF9E6] text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] rounded-full mb-12 md:mb-16 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  <div key={index} className="flex flex-col">
+                    {/* Title above card */}
+                    <div className="text-center mb-16 md:mb-20">
+                      <span className="inline-block px-16 py-6 bg-[#FFF9E6] text-primary text-sm md:text-base font-bold uppercase tracking-[0.1em] rounded-full">
                         {pillar.label}
                       </span>
+                    </div>
+                    
+                    <div
+                      className={`group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden border border-gray-100 hover:border-transparent transition-all duration-500 hover:shadow-2xl hover:shadow-[#FFF3CC]/30 flex-1`}
+                      style={{ transitionDelay: `${index * 100}ms` }}
+                    >
+                      {/* Gradient Border Effect */}
+                      <div className={`absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-100 ${pillar.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl md:rounded-3xl p-[2px]`}>
+                        <div className="w-full h-full bg-white rounded-2xl md:rounded-[22px]" />
+                      </div>
 
-                      {/* Title */}
-                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-8 md:mb-12 leading-[1.4] group-hover:text-gray-900 transition-colors">
-                        {pillar.title}
-                      </h3>
-                      
-                      {/* Subtitle for Philosophy */}
-                      {pillar.subtitle && (
-                        <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B04C]">
-                          {pillar.subtitle}
-                        </p>
-                      )}
+                      {/* Content */}
+                      <div className="relative p-28 md:p-36 lg:p-48">
+                        {/* Header */}
+                        <div className="flex items-center justify-between mb-24 md:mb-32">
+                          <div className="relative">
+                            <div className={`absolute inset-0 bg-gradient-to-br from-[#FFEB99] to-primary/20 rounded-xl md:rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                            <div className="relative size-48 md:size-56 bg-gray-50 rounded-xl md:rounded-2xl flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-500">
+                              <Icon size={22} strokeWidth={1.5} className="text-gray-400 group-hover:text-white transition-colors duration-500" />
+                            </div>
+                          </div>
+                          <span className="text-4xl md:text-5xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors duration-500 tabular-nums">
+                            {pillar.number}
+                          </span>
+                        </div>
 
-                      {/* Description */}
-                      <p className="text-sm md:text-base text-gray-500 leading-[1.9] group-hover:text-gray-600 transition-colors">
-                        {pillar.description}
-                      </p>
+                        {/* Title */}
+                        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-8 md:mb-12 leading-[1.4] group-hover:text-gray-900 transition-colors">
+                          {pillar.title}
+                        </h3>
+                        
+                        {/* Subtitle for Philosophy */}
+                        {pillar.subtitle && (
+                          <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B04C]">
+                            {pillar.subtitle}
+                          </p>
+                        )}
+
+                        {/* Description */}
+                        <p 
+                          className="text-sm md:text-base text-gray-500 leading-[1.9] group-hover:text-gray-600 transition-colors [&>b]:text-gray-700 [&>b]:font-semibold"
+                          dangerouslySetInnerHTML={{ __html: pillar.description }}
+                        />
+                      </div>
                     </div>
                   </div>
                 )

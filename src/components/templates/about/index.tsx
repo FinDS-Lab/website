@@ -98,30 +98,29 @@ export const LocationTemplate = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm md:text-md font-semibold text-white">
-                        금융데이터인텔리전스 연구실
+                        금융인텔리전스연구실
                       </h3>
                       <p className="text-xs md:text-sm text-gray-300">
                         FINDS Lab.
                       </p>
                     </div>
-                    <div className="flex items-center gap-6 px-10 py-4 bg-primary/20 backdrop-blur-sm rounded-full">
-                      <Clock size={12} className="text-primary" />
-                      <span className="text-xs font-medium text-primary">준비 중</span>
+                    <div className="flex items-center gap-6 px-10 py-4 bg-white/20 backdrop-blur-sm rounded-full">
+                      <MapPin size={12} className="text-white" />
+                      <span className="text-xs font-medium text-white">운영 중</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="p-16 md:p-20">
                 <div className="flex items-center gap-8 mb-12">
-                  <div className="w-3 h-16 md:h-18 bg-gray-300 rounded-full" />
-                  <h4 className="text-base md:text-lg font-semibold text-gray-400">
-                    위치 미정
+                  <div className="w-3 h-16 md:h-18 bg-[#AC0E0E] rounded-full" />
+                  <h4 className="text-base md:text-lg font-semibold text-gray-900">
+                    가천대학교 가천관 705호
                   </h4>
                 </div>
                 <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
-                  <p className="text-sm text-gray-500">
-                    연구실은 현재 개설 준비 중입니다.<br />
-                    오픈 시 정확한 위치가 업데이트됩니다.
+                  <p className="text-sm text-gray-600">
+                    금융인텔리전스연구실 (FINDS Lab.)
                   </p>
                 </div>
               </div>
@@ -140,7 +139,7 @@ export const LocationTemplate = () => {
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="text-sm md:text-md font-semibold text-white">
-                        최인수 교수 연구실
+                        최인수 연구실
                       </h3>
                       <p className="text-xs md:text-sm text-gray-300">
                         Prof. Insu Choi's Office
@@ -157,7 +156,7 @@ export const LocationTemplate = () => {
                 <div className="flex items-center gap-8 mb-12">
                   <div className="w-3 h-16 md:h-18 bg-primary rounded-full" />
                   <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    가천대학교 가천관
+                    가천관 614호
                   </h4>
                 </div>
                 <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
