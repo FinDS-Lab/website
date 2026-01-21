@@ -165,17 +165,24 @@ export const AboutIntroductionTemplate = () => {
             <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-amber-100/30 via-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
             
             <div className="relative text-center max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-20 md:mb-32">
-                <span className="inline-block">Towards</span>{' '}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
-                    Data-Illuminated
+              {/* Title with Background */}
+              <div className="relative bg-gradient-to-br from-amber-50 via-white to-primary/5 rounded-2xl md:rounded-3xl p-24 md:p-40 mb-20 md:mb-32 overflow-hidden border border-amber-100/50">
+                {/* Background Decorations */}
+                <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-bl from-amber-100/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-primary/5 to-transparent" />
+                
+                <h2 className="relative z-10 text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3]">
+                  <span className="inline-block">Towards</span>{' '}
+                  <span className="relative inline-block">
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-amber-600 to-primary bg-clip-text text-transparent">
+                      Data-Illuminated
+                    </span>
+                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-amber-200/60 to-primary/20 -skew-x-6 rounded" />
                   </span>
-                  <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-amber-200/60 to-primary/20 -skew-x-6 rounded" />
-                </span>
-                <br className="hidden md:block" />
-                <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
-              </h2>
+                  <br className="hidden md:block" />
+                  <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
+                </h2>
+              </div>
 
               {/* Introduction Paragraphs */}
               <div className="space-y-16 md:space-y-20">

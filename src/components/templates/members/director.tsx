@@ -699,12 +699,17 @@ export const MembersDirectorTemplate = () => {
                         {edu.awards && edu.awards.length > 0 && (
                           <div className="pt-12 border-t border-gray-100">
                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
-                            {edu.awards.map((a, i) => (
-                              <div key={i} className="flex items-start gap-6">
-                                <span className="text-amber-500">🏆</span>
-                                <p className="text-xs text-gray-600">{a.title}, {a.org}</p>
-                              </div>
-                            ))}
+                            <div className="space-y-6">
+                              {edu.awards.map((a, i) => (
+                                <div key={i} className="flex items-start gap-8 bg-gray-50 rounded-lg px-12 py-8">
+                                  <span className="text-amber-500 shrink-0">🏆</span>
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                    <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>
@@ -944,8 +949,11 @@ export const MembersDirectorTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
-                              <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                              )}
+                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>
@@ -976,8 +984,11 @@ export const MembersDirectorTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseName}</p>
-                              <p className="text-[10px] md:text-xs text-gray-500 mt-4">{course.school}</p>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                              )}
+                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>

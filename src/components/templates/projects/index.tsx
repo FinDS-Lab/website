@@ -113,10 +113,10 @@ const FilterModal = ({
                   isActive
                     ? status === 'ongoing'
                       ? 'bg-primary text-white border-transparent shadow-sm'
-                      : 'bg-gray-500 text-white border-transparent shadow-sm'
+                      : 'bg-[#e8879b] text-white border-transparent shadow-sm'
                     : status === 'ongoing'
                       ? 'bg-white text-primary border-gray-200 hover:border-primary/50'
-                      : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'
+                      : 'bg-white text-[#e8879b] border-gray-200 hover:border-pink-300'
                 }`}
               >
                 {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -241,7 +241,7 @@ export const ProjectsTemplate = () => {
 
   const statisticsItems = [
     { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-gray-600' },
+    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#e8879b]' },
     { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-gray-900' },
   ]
 
@@ -400,7 +400,7 @@ export const ProjectsTemplate = () => {
                 <span
                   key={status}
                   className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
-                    status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-700'
+                    status === 'ongoing' ? 'bg-amber-100 text-amber-700' : 'bg-pink-100 text-[#e8879b]'
                   }`}
                 >
                   {status === 'ongoing' ? 'Ongoing' : 'Completed'}

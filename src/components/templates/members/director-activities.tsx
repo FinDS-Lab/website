@@ -201,7 +201,7 @@ const activities = [
     name: 'KFAC',
     logo: logoKfac,
     fullName: 'KAIST Financial Analysis Club',
-    fullNameKo: 'KAIST 금융 동아리',
+    fullNameKo: 'KAIST 금융 분석 동아리',
     generation: '25th Generation',
     membership: [
       {role: 'Member', period: '2018.03. - 2019.02.'},
@@ -814,6 +814,18 @@ const CollaborationNetwork = memo(() => {
               const size = getNodeSize(node)
               const isHighlighted =
                 node.id === hoveredNode || node.id === selectedNode
+              // Calculate fill color based on coworkRate (higher = darker)
+              const getNodeFillColor = () => {
+                if (node.isDirector) return 'url(#directorGradient)'
+                // coworkRate is 0-100%, map to color intensity
+                // Light: #ffd6dd (low rate) to Dark: #e8879b (high rate)
+                const rate = Math.min(100, node.coworkRate)
+                // Interpolate between light pink and dark pink
+                const r = Math.round(255 - (rate / 100) * (255 - 232))
+                const g = Math.round(214 - (rate / 100) * (214 - 135))
+                const b = Math.round(221 - (rate / 100) * (221 - 155))
+                return `rgb(${r}, ${g}, ${b})`
+              }
               return (
                 <g
                   key={node.id}
@@ -830,7 +842,7 @@ const CollaborationNetwork = memo(() => {
                   {/* Node circle */}
                   <circle
                     r={size}
-                    fill={node.isDirector ? 'url(#directorGradient)' : 'url(#nodeGradient)'}
+                    fill={getNodeFillColor()}
                     stroke={node.isDirector ? 'rgb(172,14,14)' : (isHighlighted ? 'rgb(172,14,14)' : 'white')}
                     strokeWidth={node.isDirector ? 3 : (isHighlighted ? 3 : 2)}
                     filter={isHighlighted ? 'url(#glow)' : 'url(#shadow)'}
@@ -1421,14 +1433,29 @@ export const MembersDirectorActivitiesTemplate = () => {
                   ) : (
                     <>
                       {/* Summary Stats */}
-                      <div className="flex items-center gap-16 mb-20">
-                        <div className="flex items-center gap-8">
-                          <span className="w-8 h-8 rounded-full bg-primary" />
-                          <span className="text-sm font-bold text-gray-900">
-                            Total: <span className="text-primary">{Object.values(honorsData).reduce((acc, items) => acc + items.length, 0)}</span>
-                          </span>
-                        </div>
-                      </div>
+                      {(() => {
+                        const allItems = Object.values(honorsData).flat()
+                        const totalAwards = allItems.filter(item => item.type === 'award').length
+                        const totalHonors = allItems.filter(item => item.type === 'honor').length
+                        return (
+                          <div className="grid grid-cols-2 gap-12 mb-20">
+                            <div className="bg-amber-50 rounded-xl p-16 border border-amber-200/50">
+                              <div className="flex items-center gap-8 mb-8">
+                                <span className="text-xl">🏆</span>
+                                <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Awards</span>
+                              </div>
+                              <p className="text-3xl font-bold text-amber-600">{totalAwards}</p>
+                            </div>
+                            <div className="rounded-xl p-16 border" style={{backgroundColor: 'rgba(172,14,14,0.05)', borderColor: 'rgba(172,14,14,0.2)'}}>
+                              <div className="flex items-center gap-8 mb-8">
+                                <span className="text-xl">🎓</span>
+                                <span className="text-xs font-bold uppercase tracking-wider" style={{color: 'rgb(172,14,14)'}}>Honors</span>
+                              </div>
+                              <p className="text-3xl font-bold" style={{color: 'rgb(172,14,14)'}}>{totalHonors}</p>
+                            </div>
+                          </div>
+                        )
+                      })()}
 
                       {/* Timeline by Year */}
                       <div className="space-y-12">

@@ -300,8 +300,8 @@ export const PublicationsTemplate = () => {
     return [
       { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#64748b' }, // Slate for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#64748b' }, // Slate for reports
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#ffb7c5' }, // Light pink for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#ffb7c5' }, // Light pink for reports
       { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
     ]
   }, [publications])
@@ -652,9 +652,9 @@ export const PublicationsTemplate = () => {
                             : pub.type === 'conference'
                             ? 'bg-red-500'
                             : pub.type === 'book'
-                            ? 'bg-slate-500'
+                            ? 'bg-pink-300'
                             : pub.type === 'report'
-                            ? 'bg-slate-500'
+                            ? 'bg-pink-300'
                             : 'bg-gray-500'
 
                           return (
