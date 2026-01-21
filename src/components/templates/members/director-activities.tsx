@@ -2028,7 +2028,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                   ) : (
                     <div className="p-40 text-center text-gray-400">
-                      <Users size={40} className="mx-auto mb-12 opacity-30"/>
+                      <User size={40} className="mx-auto mb-12 opacity-30"/>
                       <p className="text-sm">No mentees found</p>
                     </div>
                   )}
