@@ -19,8 +19,8 @@
   },
   "research": {
     "interests": [
-      "Graph-Based RAG",
-      "LLM",
+      "Graph-Based Retrieval-Augmented Generation (RAG)",
+      "Large Language Model (LLM)",
       "LLM Evaluation"
     ]
   },
