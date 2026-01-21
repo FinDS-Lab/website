@@ -8,9 +8,9 @@
     "amount": "₩1,000,000",
     "type": "institution",
     "roles": {
-      "principalInvestigator": "원지성",
+      "principalInvestigator": "원지성, 최인수",
       "leadResearcher": "원지성, 최인수",
-      "researchers": ["최인수"]
+      "researchers": []
     }
   },
   {

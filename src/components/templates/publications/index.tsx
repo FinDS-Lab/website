@@ -114,8 +114,28 @@ const FilterModal = ({
 const CitationModal = ({ citation }: { citation: Publication['citations'] }) => {
   const [copiedKey, setCopiedKey] = useState<string | null>(null)
 
-  const handleCopy = (text: string, key: string) => {
-    navigator.clipboard.writeText(text)
+  const handleCopy = async (text: string, key: string) => {
+    // For BibTeX, just copy plain text
+    if (key === 'bibtex') {
+      await navigator.clipboard.writeText(text)
+    } else {
+      // For other formats, copy as rich text (HTML) to preserve italics
+      try {
+        // Create plain text version (strip HTML tags)
+        const plainText = text.replace(/<[^>]*>/g, '')
+        
+        // Create ClipboardItem with both HTML and plain text
+        const clipboardItem = new ClipboardItem({
+          'text/html': new Blob([text], { type: 'text/html' }),
+          'text/plain': new Blob([plainText], { type: 'text/plain' })
+        })
+        await navigator.clipboard.write([clipboardItem])
+      } catch {
+        // Fallback to plain text if rich text copy fails
+        const plainText = text.replace(/<[^>]*>/g, '')
+        await navigator.clipboard.writeText(plainText)
+      }
+    }
     setCopiedKey(key)
     setTimeout(() => setCopiedKey(null), 2000)
   }

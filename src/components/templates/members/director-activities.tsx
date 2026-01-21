@@ -1602,6 +1602,43 @@ export const MembersDirectorActivitiesTemplate = () => {
                   ))}
                 </div>
 
+                {/* Active Filters - Always visible when filters are applied */}
+                {(selectedMentoringYear !== 'all' || selectedUniversity !== 'all') && (
+                  <div className="px-20 md:px-32 py-12 border-b border-gray-100 bg-primary/5">
+                    <div className="flex items-center gap-8 flex-wrap">
+                      <span className="text-[10px] font-bold text-gray-500 uppercase">Active Filters:</span>
+                      {selectedMentoringYear !== 'all' && (
+                        <button
+                          onClick={() => setSelectedMentoringYear('all')}
+                          className="flex items-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium bg-primary text-white hover:bg-primary/90 transition-all"
+                        >
+                          Year: {selectedMentoringYear}
+                          <X size={12} />
+                        </button>
+                      )}
+                      {selectedUniversity !== 'all' && (
+                        <button
+                          onClick={() => setSelectedUniversity('all')}
+                          className="flex items-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium text-white hover:opacity-90 transition-all"
+                          style={{backgroundColor: '#E8889C'}}
+                        >
+                          {selectedUniversity}
+                          <X size={12} />
+                        </button>
+                      )}
+                      <button
+                        onClick={() => {
+                          setSelectedMentoringYear('all')
+                          setSelectedUniversity('all')
+                        }}
+                        className="text-[11px] font-medium text-gray-500 hover:text-gray-700 underline ml-auto"
+                      >
+                        Reset All
+                      </button>
+                    </div>
+                  </div>
+                )}
+
                 {/* University Distribution - Clickable Filter */}
                 {universityStats.length > 0 && (
                   <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
@@ -1709,7 +1746,18 @@ export const MembersDirectorActivitiesTemplate = () => {
                   ) : (
                     <div className="p-40 text-center text-gray-400">
                       <User size={40} className="mx-auto mb-12 opacity-30"/>
-                      <p className="text-sm">No mentees found</p>
+                      <p className="text-sm mb-12">No mentees found for this filter combination</p>
+                      {(selectedMentoringYear !== 'all' || selectedUniversity !== 'all') && (
+                        <button
+                          onClick={() => {
+                            setSelectedMentoringYear('all')
+                            setSelectedUniversity('all')
+                          }}
+                          className="px-16 py-8 rounded-full text-xs font-medium bg-primary text-white hover:bg-primary/90 transition-all"
+                        >
+                          Reset Filters
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>
