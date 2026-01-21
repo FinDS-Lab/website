@@ -161,7 +161,6 @@
     "type": "industry",
     "roles": {
       "principalInvestigator": "박성필",
-      "leadResearcher": "최인수",
       "researchers": ["최인수"]
     }
   },
@@ -175,33 +174,6 @@
     "type": "industry",
     "roles": {
       "principalInvestigator": "김우창",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Portfolio Optimization to ISA Management in Korea",
-    "titleKo": "개인종합자산관리계좌 (ISA, Individual Savings Account) 관리를 위한 포트폴리오 최적화 방안",
-    "period": "2016-07-01 – 2016-08-31",
-    "fundingAgency": "Kyung Hee University",
-    "fundingAgencyKo": "경희대학교",
-    "amount": "N/A",
-    "type": "academic",
-    "roles": {
-      "leadResearcher": "김장호",
-      "researchers": ["최인수"]
-    }
-  },
-  {
-    "titleEn": "Basics of Portfolio Optimization",
-    "titleKo": "포트폴리오 최적화 기초",
-    "period": "2016-01-01 – 2016-06-30",
-    "fundingAgency": "Kyung Hee University",
-    "fundingAgencyKo": "경희대학교",
-    "amount": "N/A",
-    "type": "academic",
-    "roles": {
-      "leadResearcher": "김장호",
       "researchers": ["최인수"]
     }
   }
