@@ -20,6 +20,7 @@ const AboutLocation = lazy(() => import('../about/location').then((module) => ({
 
 // Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
+const MembersDirectorAcademic = lazy(() => import('../members/director-academic').then((module) => ({ default: module.MembersDirectorAcademic })));
 const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.default })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
 const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
@@ -260,7 +261,8 @@ export const App = () => {
           {/* Members */}
           <Route path="/members" element={<Navigate to="/members/director" replace />} />
           <Route path="/members/director" element={<MembersDirector />} />
-          <Route path="/members/director-activities" element={<MembersDirectorActivities />} />
+          <Route path="/members/director/academic" element={<MembersDirectorAcademic />} />
+          <Route path="/members/director/activities" element={<MembersDirectorActivities />} />
           <Route path="/members/current" element={<MembersCurrent />} />
           <Route path="/members/alumni" element={<MembersAlumni />} />
           <Route path="/members/:id" element={<MembersDetail />} />
