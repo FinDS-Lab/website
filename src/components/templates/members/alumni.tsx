@@ -120,10 +120,30 @@ export const MembersAlumniTemplate = () => {
     const labDegree = alumni.education.find(e => 
       e.school.includes('Dongduk') || e.school.includes('Gachon') || e.school.includes('동덕') || e.school.includes('가천')
     )
-    return labDegree ? `${labDegree.school}, ${labDegree.dept}` : alumni.education[0]?.school || '-'
+    if (labDegree) {
+      return (
+        <div className="flex flex-col">
+          <span className="font-semibold text-gray-900">{labDegree.dept}</span>
+          <span className="text-gray-500 text-[11px] md:text-xs">{labDegree.school}</span>
+        </div>
+      )
+    }
+    return alumni.education[0]?.school || '-'
   }
 
-  // Get graduation period
+  // Get graduation date only (for Ph.D./M.S.)
+  const getGraduationDate = (alumni: AlumniMember, degreeType: string) => {
+    const period = alumni.periods[degreeType]
+    if (!period) return '-'
+    // "2019.09 – 2025.02" -> "2025.02"
+    const parts = period.split('–').map(s => s.trim())
+    if (parts.length >= 2) {
+      return parts[1] // 졸업 시점만
+    }
+    return period
+  }
+
+  // Get graduation period (for undergrad - full period)
   const getPeriod = (alumni: AlumniMember) => {
     const highestDegree = alumni.degrees.sort((a, b) => (degreeOrder[a] || 99) - (degreeOrder[b] || 99))[0]
     return alumni.periods[highestDegree] || Object.values(alumni.periods)[0] || '-'
@@ -225,10 +245,10 @@ export const MembersAlumniTemplate = () => {
                     </span>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative bg-[#FFF9E6] border border-[#D6B04C]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B04C]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
                     </span>
@@ -265,7 +285,7 @@ export const MembersAlumniTemplate = () => {
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
                         </tr>
                       </thead>
@@ -315,7 +335,7 @@ export const MembersAlumniTemplate = () => {
                                   {getAffiliation(alumni)}
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                                  {getPeriod(alumni)}
+                                  {getGraduationDate(alumni, 'phd')}
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {alumni.company ? (
@@ -401,7 +421,7 @@ export const MembersAlumniTemplate = () => {
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
                         </tr>
                       </thead>
@@ -451,7 +471,7 @@ export const MembersAlumniTemplate = () => {
                                   {getAffiliation(alumni)}
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                                  {getPeriod(alumni)}
+                                  {getGraduationDate(alumni, 'ms')}
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {alumni.company ? (

@@ -874,12 +874,12 @@ export const MembersDirectorTemplate = () => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="group relative bg-[#FFF9E6] border border-[#D6B04C]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B04C]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalItems}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalItems}</span>
                                   <div className="flex items-center gap-6">
-                                    <Award className="size-14 md:size-16" style={{color: '#4A4A4A', opacity: 0.7}} />
+                                    <Award className="size-14 md:size-16" style={{color: '#D6B04C', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                                   </div>
                                 </div>
