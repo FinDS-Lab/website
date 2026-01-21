@@ -287,16 +287,7 @@ export const MembersDirectorTemplate = () => {
           <main className="flex-1 space-y-24">
             <ExpandableSection title="Introduction" icon={User} defaultExpanded={true}>
               <div className="p-20 md:p-32">
-                <p className="text-gray-600 leading-relaxed mb-24">I am an Assistant Professor in the Department of Finance and Big Data at Gachon University and Director of FINDS Lab. My research focuses on financial data science, business analytics, and data-informed decision making. I received my Ph.D. in Industrial and Systems Engineering from KAIST, where I was advised by Prof. Woo Chang Kim.</p>
-                <div className="bg-gray-50 rounded-xl p-20 mb-24">
-                  <h4 className="text-sm font-bold text-gray-700 mb-16">Publication Statistics</h4>
-                  <div className="grid grid-cols-3 md:grid-cols-5 gap-12">
-                    {pubStats.filter(s => s.count > 0).map((stat) => (<div key={stat.label} className="text-center"><p className="text-xl md:text-2xl font-bold text-primary">{stat.count}</p><p className="text-[10px] md:text-xs text-gray-500 font-medium">{stat.label}</p></div>))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-4 gap-12">
-                  {citationStats.map((stat) => (<div key={stat.label} className="text-center p-12 bg-[#FFF9E6] rounded-xl"><p className="text-xl md:text-2xl font-bold text-[#D6B04C]">{stat.count}</p><p className="text-[10px] md:text-xs text-gray-500 font-medium">{stat.label}</p></div>))}
-                </div>
+                <p className="text-gray-600 leading-relaxed">I am an Assistant Professor in the Department of Finance and Big Data at Gachon University and Director of FINDS Lab. My research focuses on financial data science, business analytics, and data-informed decision making. I received my Ph.D. in Industrial and Systems Engineering from KAIST, where I was advised by Prof. Woo Chang Kim.</p>
               </div>
             </ExpandableSection>
 

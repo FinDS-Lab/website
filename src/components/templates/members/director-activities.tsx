@@ -2,7 +2,7 @@ import {memo, useState, useEffect, useMemo} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail, Phone, MapPin, ExternalLink, ChevronRight, ChevronDown, Home, Copy, Check,
-  User, BookOpen, Users, Building2, Activity, UserCheck, X
+  User, BookOpen, Users, Activity, UserCheck, X
 } from 'lucide-react'
 import type {Mentee} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
@@ -18,13 +18,6 @@ import logoFba from '@/assets/images/logos/fba.png'
 import logoDading from '@/assets/images/logos/dading.png'
 
 // Static Data
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023.09 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022.06 – Present', role: 'Lifetime Member'},
-]
-
 const activities = [
   {name: 'CAPTIMA', logo: logoCaptima, fullName: 'Computer Applications for Optima', fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리', generation: '', membership: [{role: 'Member', period: '2013.03. - 2018.02.'}, {role: 'Alumni', period: '2018.03. - Present'}], leadership: [{role: 'President', period: '2015.06. - 2015.12.'}, {role: 'Vice President', period: '2013.12. - 2014.08.'}]},
   {name: 'KFAC', logo: logoKfac, fullName: 'KAIST Financial Analysis Club', fullNameKo: 'KAIST 금융 분석 동아리', generation: '25th Generation', membership: [{role: 'Member', period: '2018.03. - 2019.02.'}, {role: 'Alumni', period: '2019.03. - Present'}], leadership: [{role: 'Acting President', period: '2021.03. - 2021.08.'}, {role: 'Session Leader', period: '2018.09. - 2019.02.'}]},
@@ -170,26 +163,6 @@ export const MembersDirectorActivitiesTemplate = () => {
 
           {/* Main Content */}
           <main className="flex-1 space-y-24">
-            {/* Professional Memberships */}
-            <ExpandableSection title="Professional Memberships" icon={Building2} defaultExpanded={true} count={affiliations.length}>
-              <div className="divide-y divide-gray-100">
-                {affiliations.map((aff, idx) => (
-                  <div key={idx} className="p-20 md:p-24 hover:bg-gray-50/50 transition-colors">
-                    <div className="flex items-start justify-between gap-16">
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-sm md:text-base font-bold text-gray-900 mb-4">{aff.organization}</h4>
-                        <p className="text-xs text-gray-500">{aff.krOrg}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <span className="px-10 py-4 bg-primary/10 text-primary text-xs font-bold rounded-lg">{aff.role}</span>
-                        <p className="text-xs text-gray-400 mt-8">{aff.period}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </ExpandableSection>
-
             {/* External Activities */}
             <ExpandableSection title="External Activities" icon={Activity} defaultExpanded={true} count={activities.length}>
               <div className="p-20 md:p-24">
