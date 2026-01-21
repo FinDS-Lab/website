@@ -1309,7 +1309,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
                     <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="text-xs md:text-sm font-semibold text-primary hover:underline break-all">
+                      <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
                       <button 

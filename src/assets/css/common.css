@@ -11,10 +11,32 @@
   font-family: "Pretendard Variable", sans-serif;
 }
 
+/* 복사 방지 - 전체 페이지 */
 body {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   touch-action: pan-x pan-y;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 복사 허용 영역 - .select-text 클래스가 있는 요소 */
+.select-text,
+.select-text * {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* input, textarea는 항상 선택 가능 */
+input, textarea {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
 }
 
 button, label, input, textarea {

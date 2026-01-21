@@ -22,7 +22,7 @@ const heroSlides = [
     image: hero1,
     buttons: [
       { label: 'Introduction', path: '/about/introduction' },
-      { label: 'Honors & Awards', path: '/about/honors' },
+      { label: 'Research Areas', path: '/about/research' },
     ],
   },
   {
