@@ -543,7 +543,7 @@ export const MembersAlumniTemplate = () => {
                         <tr className="bg-gray-50/80">
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Name</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Cohort</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Affiliation</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Affiliation (at time of internship)</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Period</th>
                           <th className="py-12 px-16 text-left text-sm font-bold text-gray-900">Current Position</th>
                         </tr>

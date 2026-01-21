@@ -1812,14 +1812,14 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Total Mentees</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold text-gray-700">{mentoringYears.length}</p>
+                      <p className="text-2xl md:text-3xl font-bold text-gray-700">13</p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold" style={{color: '#ffb7c5'}}>
-                        {menteesByYear['2025']?.length || 0}
+                        {menteesByYear['2026']?.length || 0}
                       </p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2025)</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2026)</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold text-primary">
@@ -1894,7 +1894,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         >
                           <div className="flex items-center gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(255,183,197,0.2)'}}>
-                              <Users size={16} style={{color: 'rgb(172,14,14)'}}/>
+                              <span className="text-sm md:text-base font-bold" style={{color: 'rgb(172,14,14)'}}>{mentee.participationYears.length}</span>
                             </div>
                             <div className="min-w-0">
                               <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
@@ -1909,11 +1909,11 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 <span
                                   key={year}
                                   className={`px-6 md:px-8 py-2 rounded text-[10px] font-bold ${
-                                    year === '2025'
+                                    year === '2026'
                                       ? ''
                                       : 'bg-gray-100 text-gray-500'
                                   }`}
-                                  style={year === '2025' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                  style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
                                 >
                                   {year}
                                 </span>

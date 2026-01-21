@@ -300,8 +300,8 @@ export const PublicationsTemplate = () => {
     return [
       { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#d4a017' }, // Yellow/Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#e8879b' }, // Rose for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#1f2937' }, // Black like total
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#1f2937' }, // Black like total
+      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#64748b' }, // Slate for books
+      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#64748b' }, // Slate for reports
       { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#1f2937' }, // Black for total
     ]
   }, [publications])
@@ -652,9 +652,9 @@ export const PublicationsTemplate = () => {
                             : pub.type === 'conference'
                             ? 'bg-red-500'
                             : pub.type === 'book'
-                            ? 'bg-[#ffb7c5]'
+                            ? 'bg-slate-500'
                             : pub.type === 'report'
-                            ? 'bg-[#e8879b]'
+                            ? 'bg-slate-500'
                             : 'bg-gray-500'
 
                           return (
@@ -771,7 +771,11 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     ))}
                                   </div>
-                                  <p className="text-xs md:text-sm text-gray-500 italic">{pub.venue}</p>
+                                  <p className="text-xs md:text-sm text-gray-500 italic">
+                                    {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean') && pub.venue_ko 
+                                      ? pub.venue_ko 
+                                      : pub.venue}
+                                  </p>
                                   {pub.doi && (
                                     <a
                                       href={`https://doi.org/${pub.doi}`}

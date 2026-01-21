@@ -112,7 +112,7 @@ const employment = [
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
   {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab.', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering (formerly Dept. of AI Convergence Engineering)', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: true},
   {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
@@ -347,6 +347,16 @@ export const MembersDirectorTemplate = () => {
   
   const taCourses = useMemo(() => 
     groupedLectures.filter(c => c.role === 'Teaching Assistant'), [groupedLectures])
+
+  // Count total semesters (sum of all periods across all courses)
+  const totalSemesters = useMemo(() => 
+    groupedLectures.reduce((sum, course) => sum + course.periods.length, 0), [groupedLectures])
+  
+  const lecturerSemesters = useMemo(() => 
+    lecturerCourses.reduce((sum, course) => sum + course.periods.length, 0), [lecturerCourses])
+  
+  const taSemesters = useMemo(() => 
+    taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
 
   return (
     <div className="flex flex-col bg-white">
@@ -624,7 +634,8 @@ export const MembersDirectorTemplate = () => {
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group">
-                    <div className="absolute -left-[25px] md:-left-[33px] top-0 size-12 md:size-14 bg-primary rounded-full border-3 border-white shadow-md"/>
+                    {/* Timeline dot - positioned on the line (same as Employment) */}
+                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     <div className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md transition-all">
                       <div className="flex items-start gap-16 mb-16">
                         <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
@@ -846,6 +857,18 @@ export const MembersDirectorTemplate = () => {
                               academic: 'bg-gray-700 text-white',
                             }
                             const Icon = typeIcons[project.type]
+                            // Determine director's role
+                            const getDirectorRole = () => {
+                              if (project.roles.principalInvestigator) return 'PI'
+                              if (project.roles.leadResearcher) return 'Lead'
+                              return 'Researcher'
+                            }
+                            const roleColor = {
+                              PI: 'bg-primary text-white',
+                              Lead: 'bg-amber-500 text-white',
+                              Researcher: 'bg-gray-500 text-white'
+                            }
+                            const directorRole = getDirectorRole()
                             return (
                               <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
@@ -858,8 +881,12 @@ export const MembersDirectorTemplate = () => {
                                         <Calendar size={10} />
                                         {project.period}
                                       </span>
+                                      <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole as keyof typeof roleColor]}`}>
+                                        {directorRole}
+                                      </span>
                                     </div>
-                                    <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
                                     <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
                                   </div>
                                 </div>
@@ -880,7 +907,7 @@ export const MembersDirectorTemplate = () => {
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
                   <span className="w-1 h-20 bg-primary rounded-full" />
                   Teaching
-                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{groupedLectures.length}</span>
+                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{totalSemesters} semesters</span>
                 </h3>
 
                 {/* Search */}
@@ -900,7 +927,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="mb-24">
                     <div className="flex items-center gap-8 mb-12">
                       <p className="text-sm font-bold text-gray-900">Lecturer</p>
-                      <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{lecturerCourses.length}</span>
+                      <span className="px-8 py-2 bg-amber-400 text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
                     </div>
                     <div className="space-y-12">
                       {lecturerCourses.map((course, index) => (
@@ -932,7 +959,7 @@ export const MembersDirectorTemplate = () => {
                   <div>
                     <div className="flex items-center gap-8 mb-12">
                       <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{taCourses.length}</span>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#e8879b'}}>{taSemesters}</span>
                     </div>
                     <div className="space-y-12">
                       {taCourses.map((course, index) => (

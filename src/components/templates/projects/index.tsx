@@ -240,9 +240,9 @@ export const ProjectsTemplate = () => {
   }
 
   const statisticsItems = [
-    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-gray-900' },
     { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-primary' },
+    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-gray-600' },
+    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-gray-900' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
@@ -326,23 +326,18 @@ export const ProjectsTemplate = () => {
             </div>
           </div>
 
-          {/* Filter & Search - Publications Style */}
+          {/* Filter & Search - Matching Publications Style Exactly */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
             <div className="relative">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
-                  isFilterOpen || hasActiveFilters
+                  isFilterOpen || filters.type.length > 0 || filters.status.length > 0
                     ? 'bg-primary/5 border-primary text-primary font-medium'
                     : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
                 }`}
               >
                 Filters
-                {hasActiveFilters && (
-                  <span className="size-20 bg-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
-                    {filters.type.length + filters.status.length}
-                  </span>
-                )}
                 <SlidersHorizontal className="size-16 md:size-20" />
               </button>
 
@@ -364,31 +359,23 @@ export const ProjectsTemplate = () => {
               )}
             </div>
 
-            {/* Search Input */}
-            <div className="relative flex-1 max-w-[400px]">
-              <Search className="absolute left-16 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
               <input
                 type="text"
+                placeholder="Search by title, funding agency..."
+                className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search projects..."
-                className="w-full pl-44 pr-16 py-12 md:py-14 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 transition-all"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                  }
+                }}
               />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-12 top-1/2 -translate-y-1/2 size-20 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  <X size={14} />
-                </button>
-              )}
+              <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
             </div>
-
-            {/* Results count */}
-            <div className="text-sm text-gray-500">
-              <span className="font-semibold text-gray-700">{filteredProjects.length}</span>
-              <span> of </span>
-              <span className="font-semibold text-gray-700">{projects.length}</span>
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+              {filteredProjects.length} of {projects.length}
             </div>
           </div>
 
