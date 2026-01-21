@@ -88,8 +88,6 @@ export const MembersCurrentTemplate = () => {
 
     // members 폴더의 모든 파일 로드
     const memberFiles = [
-      'kim-phd.json',
-      'park-ms.json',
       'lce1-undergrad.json',
       'jyj1-undergrad.json',
       'khw1-undergrad.json',

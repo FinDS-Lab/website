@@ -4,7 +4,7 @@ import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
 import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
-import { Music, Play, Pause, X, Home as HomeIcon, List, SkipForward, SkipBack } from 'lucide-react'
+import { Music, Play, Pause, X, Home as HomeIcon } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -75,14 +75,12 @@ const HomeButton = memo(() => {
   const isPlaylistPage = location.pathname === '/archives/playlist'
   
   // Calculate bottom position based on music player state
-  // If music player is minimized or not present, position at bottom
-  // If music player is expanded, move up
   const hasPlaylist = playlist.length > 0 && !isPlaylistPage
   const playerExpanded = hasPlaylist && !isMinimized
   
-  // When player is expanded, move home button above it (player is ~450px tall)
+  // When player is expanded (~350px), move home button above it
   const bottomClass = playerExpanded 
-    ? "bottom-[520px] md:bottom-[540px]" 
+    ? "bottom-[380px] md:bottom-[400px]" 
     : hasPlaylist 
       ? "bottom-[80px] md:bottom-[90px]"
       : "bottom-16 md:bottom-20"
@@ -109,18 +107,15 @@ const GlobalMusicPlayer = memo(() => {
     setPlaylist, 
     setIsLoaded,
     nextTrack,
-    prevTrack,
     togglePlay, 
     toggleMinimize,
     setIsMinimized,
-    setIsPlaying,
-    setCurrentIndex
+    setIsPlaying
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
-  const [showPlaylist, setShowPlaylist] = useState(false)
   const location = useLocation()
 
   // Load YouTube IFrame API
@@ -230,15 +225,6 @@ const GlobalMusicPlayer = memo(() => {
     return null
   }
 
-  // Handle track selection from playlist
-  const handleTrackSelect = (index: number) => {
-    setCurrentIndex(index)
-    if (!isPlaying) {
-      togglePlay()
-    }
-    setShowPlaylist(false)
-  }
-
   return (
     <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9998]">
       {isMinimized ? (
@@ -255,31 +241,27 @@ const GlobalMusicPlayer = memo(() => {
           <span className="text-sm font-medium tracking-wide">Playlist</span>
         </button>
       ) : (
-        <div className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden w-[300px] md:w-[340px] border border-gray-800">
+        <div className="bg-gray-900 rounded-2xl shadow-2xl overflow-hidden w-[280px] md:w-[320px] border border-gray-800">
           {/* Header */}
-          <div className="relative px-16 py-14 bg-gradient-to-br from-gray-800 via-gray-850 to-gray-900">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-10">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center">
-                  <Music size={18} className="text-white" />
-                </div>
-                <div>
-                  <span className="text-xs font-semibold text-white/90 tracking-wider uppercase">Now Playing</span>
-                </div>
+          <div className="flex items-center justify-between px-14 py-12 bg-gradient-to-r from-gray-800 to-gray-900">
+            <div className="flex items-center gap-8">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center">
+                <Music size={14} className="text-white" />
               </div>
-              <button
-                onClick={toggleMinimize}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              >
-                <X size={14} className="text-white/70" />
-              </button>
+              <span className="text-xs font-bold text-white tracking-wide">FINDS Playlist</span>
             </div>
+            <button
+              onClick={toggleMinimize}
+              className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <X size={12} className="text-white/70" />
+            </button>
           </div>
 
           {/* Current Track Info */}
           {currentTrack && (
-            <div className="px-16 py-12 bg-gray-850 border-b border-gray-800">
-              <p className="text-primary text-xs font-bold tracking-wide mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+            <div className="px-14 py-10 bg-gray-850 border-b border-gray-800">
+              <p className="text-primary text-[11px] font-bold tracking-wide mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 {currentTrack.artist}
               </p>
               <p className="text-white text-sm font-medium truncate" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -288,101 +270,44 @@ const GlobalMusicPlayer = memo(() => {
             </div>
           )}
 
-          {/* Video Player or Playlist View */}
-          {showPlaylist ? (
-            <div className="bg-gray-850 max-h-[240px] overflow-y-auto scrollbar-thin">
-              {trackInfo.map((track, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleTrackSelect(index)}
-                  className={`w-full px-16 py-10 flex items-center gap-12 hover:bg-gray-800 transition-colors border-b border-gray-800/50 ${
-                    index === currentIndex ? 'bg-gray-800' : ''
-                  }`}
-                >
-                  <span className={`w-6 text-xs font-mono ${index === currentIndex ? 'text-primary' : 'text-gray-500'}`}>
-                    {index + 1}
-                  </span>
-                  <div className="flex-1 min-w-0 text-left">
-                    <p className={`text-xs truncate ${index === currentIndex ? 'text-primary font-semibold' : 'text-gray-400'}`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      {track.artist}
-                    </p>
-                    <p className={`text-sm truncate ${index === currentIndex ? 'text-white font-medium' : 'text-gray-300'}`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-                      {track.title}
-                    </p>
-                  </div>
-                  {index === currentIndex && isPlaying && (
-                    <div className="flex gap-1">
-                      <span className="w-1 h-3 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
-                      <span className="w-1 h-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                      <span className="w-1 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                    </div>
-                  )}
-                </button>
-              ))}
-            </div>
-          ) : (
-            <div className="relative aspect-video bg-black">
-              {isPlaying && currentVideoId ? (
-                <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
-                  <div className="text-center">
-                    <div className="w-16 h-16 rounded-full bg-gray-800/50 flex items-center justify-center mb-8 mx-auto">
-                      <Music size={24} className="text-gray-600" />
-                    </div>
-                    <p className="text-gray-500 text-xs">Press play to start</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Controls */}
-          <div className="px-16 py-14 bg-gray-900 border-t border-gray-800">
-            <div className="flex items-center justify-between">
-              {/* Track Counter / List Toggle */}
-              <button
-                onClick={() => setShowPlaylist(!showPlaylist)}
-                className={`flex items-center gap-6 px-10 py-6 rounded-lg transition-all ${
-                  showPlaylist 
-                    ? 'bg-primary/20 text-primary' 
-                    : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700'
-                }`}
-              >
-                <List size={14} />
-                <span className="text-xs font-medium">{currentIndex + 1}/{playlist.length}</span>
-              </button>
-
-              {/* Main Controls */}
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={prevTrack}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all"
-                >
-                  <SkipBack size={16} />
-                </button>
-                
+          {/* Video Player */}
+          <div className="relative aspect-video bg-black">
+            {isPlaying && currentVideoId ? (
+              <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
                 <button
                   onClick={togglePlay}
-                  className="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/30"
+                  className="w-14 h-14 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/30"
                 >
-                  {isPlaying ? (
-                    <Pause size={18} className="text-white" />
-                  ) : (
-                    <Play size={18} className="text-white ml-0.5" />
-                  )}
-                </button>
-                
-                <button
-                  onClick={nextTrack}
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all"
-                >
-                  <SkipForward size={16} />
+                  <Play size={22} className="text-white ml-1" />
                 </button>
               </div>
+            )}
+          </div>
 
-              {/* Spacer for balance */}
-              <div className="w-[72px]" />
+          {/* Controls */}
+          <div className="flex items-center justify-between px-14 py-12 bg-gray-900 border-t border-gray-800">
+            <span className="text-[11px] text-gray-500">
+              {currentIndex + 1} / {playlist.length}
+            </span>
+            <div className="flex items-center gap-8">
+              <button
+                onClick={togglePlay}
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-gray-700 transition-colors"
+              >
+                {isPlaying ? (
+                  <Pause size={14} className="text-white" />
+                ) : (
+                  <Play size={14} className="text-white ml-0.5" />
+                )}
+              </button>
+              <button
+                onClick={nextTrack}
+                className="px-10 py-5 text-[11px] font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
+              >
+                Next
+              </button>
             </div>
           </div>
         </div>

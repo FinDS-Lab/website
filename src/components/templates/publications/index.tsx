@@ -680,7 +680,10 @@ export const PublicationsTemplate = () => {
                                       {typeLabel}
                                     </span>
                                   </div>
-                                  <div className="w-full py-8 md:py-10 bg-gray-100 text-center border-x border-gray-200">
+                                  {/* Number row - rounded bottom for Book/Report, flat for others */}
+                                  <div className={`w-full py-8 md:py-10 bg-gray-100 text-center border-x border-gray-200 ${
+                                    (pub.type === 'book' || pub.type === 'report') ? 'rounded-b-lg border-b' : ''
+                                  }`}>
                                     <span className="text-sm md:text-base font-bold text-gray-700">
                                       {getPublicationNumber(pub)}
                                     </span>
@@ -752,23 +755,6 @@ export const PublicationsTemplate = () => {
                                     <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
                                       <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
                                         -
-                                      </span>
-                                    </div>
-                                  )}
-                                  {/* Book and Report types get a simple rounded bottom */}
-                                  {(pub.type === 'book' || pub.type === 'report') && (
-                                    <div 
-                                      className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
-                                      style={{
-                                        backgroundColor: pub.type === 'book' ? 'rgba(232,214,136,0.15)' : 'rgba(255,186,196,0.15)',
-                                        borderColor: pub.type === 'book' ? 'rgba(232,214,136,0.35)' : 'rgba(255,186,196,0.35)'
-                                      }}
-                                    >
-                                      <span 
-                                        className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
-                                        style={{ color: pub.type === 'book' ? 'rgb(180,150,60)' : 'rgb(200,120,140)' }}
-                                      >
-                                        {pub.type === 'book' ? 'Book' : 'Report'}
                                       </span>
                                     </div>
                                   )}
