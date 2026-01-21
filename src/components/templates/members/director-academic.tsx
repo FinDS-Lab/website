@@ -471,37 +471,57 @@ export const MembersDirectorAcademicTemplate = () => {
             {/* Academic Service */}
             <ExpandableSection title="Academic Service" icon={Handshake} defaultExpanded={true}>
               <div className="p-20 md:p-32">
-                {academicActivities ? (
+                {academicActivities && academicActivities.activities && academicActivities.activities.length > 0 ? (
                   <div className="space-y-24">
-                    {academicActivities.editorialBoard && academicActivities.editorialBoard.length > 0 && (
+                    {/* Journal Reviewer */}
+                    {academicActivities.activities.filter(a => a.category === 'journal').length > 0 && (
                       <div>
-                        <h4 className="text-sm font-bold text-gray-700 mb-16">Editorial Board</h4>
-                        <div className="space-y-12">
-                          {academicActivities.editorialBoard.map((item, idx) => (
-                            <div key={idx} className="flex items-start gap-12 p-16 bg-gray-50 rounded-xl">
-                              <div className="flex-1"><p className="text-sm font-medium text-gray-900">{item.journal}</p><p className="text-xs text-gray-500 mt-4">{item.role} · {item.period}</p></div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {academicActivities.conferenceOrganizer && academicActivities.conferenceOrganizer.length > 0 && (
-                      <div>
-                        <h4 className="text-sm font-bold text-gray-700 mb-16">Conference Organization</h4>
-                        <div className="space-y-12">
-                          {academicActivities.conferenceOrganizer.map((item, idx) => (
-                            <div key={idx} className="flex items-start gap-12 p-16 bg-[#FFF9E6] rounded-xl border border-[#D6B04C]/20">
-                              <div className="flex-1"><p className="text-sm font-medium text-gray-900">{item.conference}</p><p className="text-xs text-gray-500 mt-4">{item.role} · {item.year}</p></div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    {academicActivities.reviewer && academicActivities.reviewer.length > 0 && (
-                      <div>
-                        <h4 className="text-sm font-bold text-gray-700 mb-16">Reviewer</h4>
+                        <h4 className="text-sm font-bold text-gray-700 mb-16">Journal Reviewer ({academicActivities.activities.filter(a => a.category === 'journal').length})</h4>
                         <div className="flex flex-wrap gap-8">
-                          {academicActivities.reviewer.map((item, idx) => (<span key={idx} className="px-12 py-6 bg-gray-100 text-gray-600 text-xs font-medium rounded-lg">{item}</span>))}
+                          {academicActivities.activities.filter(a => a.category === 'journal').map((item) => (
+                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="px-12 py-6 bg-gray-100 text-gray-600 text-xs font-medium rounded-lg hover:bg-primary/10 hover:text-primary transition-colors">
+                              {item.name}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {/* Conference Reviewer */}
+                    {academicActivities.activities.filter(a => a.category === 'conference').length > 0 && (
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-700 mb-16">Conference Reviewer ({academicActivities.activities.filter(a => a.category === 'conference').length})</h4>
+                        <div className="space-y-12">
+                          {academicActivities.activities.filter(a => a.category === 'conference').map((item) => (
+                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start gap-12 p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
+                              <div className="flex-1"><p className="text-sm font-medium text-gray-900">{item.name}</p><p className="text-xs text-gray-500 mt-4">{item.publisher} · {item.period}</p></div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {/* Session Chair */}
+                    {academicActivities.activities.filter(a => a.category === 'chair').length > 0 && (
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-700 mb-16">Session Chair ({academicActivities.activities.filter(a => a.category === 'chair').length})</h4>
+                        <div className="space-y-12">
+                          {academicActivities.activities.filter(a => a.category === 'chair').map((item) => (
+                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start gap-12 p-16 bg-[#FFF9E6] rounded-xl border border-[#D6B04C]/20 hover:bg-[#FFF5DC] transition-colors">
+                              <div className="flex-1"><p className="text-sm font-medium text-gray-900">{item.name}</p>{item.name_ko && <p className="text-xs text-gray-500 mt-2">{item.name_ko}</p>}<p className="text-xs text-gray-500 mt-4">{item.type} · {item.period}</p></div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {/* Committee */}
+                    {academicActivities.activities.filter(a => a.category === 'committee').length > 0 && (
+                      <div>
+                        <h4 className="text-sm font-bold text-gray-700 mb-16">Committee ({academicActivities.activities.filter(a => a.category === 'committee').length})</h4>
+                        <div className="space-y-12">
+                          {academicActivities.activities.filter(a => a.category === 'committee').map((item) => (
+                            <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start gap-12 p-16 bg-[#FFF5F7] rounded-xl border border-[#FFBAC4]/30 hover:bg-[#FFECF0] transition-colors">
+                              <div className="flex-1"><p className="text-sm font-medium text-gray-900">{item.name}</p>{item.name_ko && <p className="text-xs text-gray-500 mt-2">{item.name_ko}</p>}<p className="text-xs text-gray-500 mt-4">{item.type} · {item.period}</p></div>
+                            </a>
+                          ))}
                         </div>
                       </div>
                     )}
