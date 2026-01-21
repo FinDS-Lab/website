@@ -944,7 +944,9 @@ export const MembersDirectorAcademicTemplate = () => {
     publicationStats: true,
     academicService: true,
     projects: true,
-    teaching: true
+    teaching: true,
+    lecturer: true,
+    teachingAssistant: false
   })
   
   const toggleSection = (section: string) => {
@@ -1258,7 +1260,7 @@ export const MembersDirectorAcademicTemplate = () => {
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="size-140 md:size-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
@@ -1709,12 +1711,19 @@ export const MembersDirectorAcademicTemplate = () => {
 
                 {/* Lecturer Section */}
                 {lecturerCourses.length > 0 && (
-                  <div className="mb-24">
-                    <div className="flex items-center gap-8 mb-12">
-                      <p className="text-sm font-bold text-gray-900">Lecturer</p>
-                      <span className="px-8 py-2 bg-[#D6B04C] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
-                    </div>
-                    <div className="space-y-12">
+                  <div className="mb-24 border border-gray-100 rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => toggleSection('lecturer')}
+                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Lecturer</p>
+                        <span className="px-8 py-2 bg-[#D6B04C] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
+                      </div>
+                      <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${expandedSections.lecturer ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.lecturer && (
+                    <div className="space-y-12 p-16">
                       {lecturerCourses.map((course, index) => (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
@@ -1739,17 +1748,25 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                       ))}
                     </div>
+                    )}
                   </div>
                 )}
 
                 {/* Teaching Assistant Section */}
                 {taCourses.length > 0 && (
-                  <div>
-                    <div className="flex items-center gap-8 mb-12">
-                      <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{taSemesters}</span>
-                    </div>
-                    <div className="space-y-12">
+                  <div className="border border-gray-100 rounded-xl overflow-hidden">
+                    <button
+                      onClick={() => toggleSection('teachingAssistant')}
+                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{taSemesters}</span>
+                      </div>
+                      <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${expandedSections.teachingAssistant ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.teachingAssistant && (
+                    <div className="space-y-12 p-16">
                       {taCourses.map((course, index) => (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">

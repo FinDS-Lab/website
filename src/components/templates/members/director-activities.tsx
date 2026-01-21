@@ -1338,7 +1338,7 @@ export const MembersDirectorActivitiesTemplate = () => {
         {/* Profile Card */}
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="size-140 md:size-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img
                     src={directorImg}
                 alt="Prof. Insu Choi"
