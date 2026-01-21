@@ -949,7 +949,7 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-[#D6B04C]"/>
+                          <span className="size-4 rounded-full bg-blue-500"/>
                           <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
                         </div>
@@ -1250,7 +1250,7 @@ export const MembersDirectorActivitiesTemplate = () => {
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{backgroundImage: `url(${banner2})`}}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -1711,7 +1711,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#D6B04C] text-white' :
                                 journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'A&HCI' ? 'bg-[#D6A076] text-white' :
+                                journal.type === 'A&HCI' ? 'bg-[#726A69] text-white' :
                                 journal.type === 'ESCI' ? 'bg-[#D6C360] text-white' :
                                 journal.type === 'SCOPUS' ? 'bg-[#E8D688] text-gray-700' :
                                 'bg-[#FFBAC4] text-gray-700'

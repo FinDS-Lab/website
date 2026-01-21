@@ -87,8 +87,8 @@ const FilterModal = ({
                 onClick={() => onChange('type', type)}
                 className={`flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
                   isActive
-                    ? `${config.color} text-white border-transparent shadow-sm`
-                    : `bg-white ${config.textColor} border-gray-200 hover:border-${type === 'government' ? 'blue' : type === 'industry' ? 'emerald' : type === 'institution' ? 'purple' : 'amber'}-300`
+                    ? 'bg-primary text-white border-primary shadow-sm'
+                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
                 }`}
               >
                 <config.icon size={14} />
@@ -111,12 +111,8 @@ const FilterModal = ({
                 onClick={() => onChange('status', status)}
                 className={`px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
                   isActive
-                    ? status === 'ongoing'
-                      ? 'bg-primary text-white border-transparent shadow-sm'
-                      : 'bg-[#E8889C] text-white border-transparent shadow-sm'
-                    : status === 'ongoing'
-                      ? 'bg-white text-primary border-gray-200 hover:border-primary/50'
-                      : 'bg-white text-[#E8889C] border-gray-200 hover:border-pink-300'
+                    ? 'bg-primary text-white border-primary shadow-sm'
+                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
                 }`}
               >
                 {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -255,7 +251,7 @@ export const ProjectsTemplate = () => {
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{backgroundImage: `url(${banner2})`}}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

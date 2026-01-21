@@ -18,8 +18,8 @@ interface NoticeItem {
 // 상세 모달 컴포넌트
 const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; date?: string }) => {
   const [content, setContent] = useState<string>('')
-  const [metadata, setMetadata] = useState<{title?: string; date?: string}>({title, date})
   const [loading, setLoading] = useState(true)
+  const [metadata, setMetadata] = useState<{ title?: string; date?: string }>({})
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -33,47 +33,27 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
           data.date = id.slice(0, 10)
         }
 
-        setMetadata({
-          title: data.title || title,
-          date: data.date || date
-        })
-
+        setMetadata({ title: data.title as string || title, date: data.date as string || date })
         const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
         setLoading(false)
       })
-  }, [id, title, date])
+  }, [id])
 
-  if (loading) return (
-    <div className="p-60 text-center">
-      <div className="inline-block w-32 h-32 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-    </div>
-  )
+  if (loading) return <div className="p-60 text-center text-gray-500">Loading...</div>
 
   return (
-    <div className="max-h-[80vh] overflow-y-auto">
-      {/* Header */}
-      <div className="sticky top-0 bg-white border-b border-gray-100 px-24 md:px-32 py-20 md:py-24 -mx-24 md:-mx-32 -mt-24 md:-mt-32 mb-24 z-10">
-        <div className="flex items-center gap-8 text-xs text-gray-400 mb-8">
-          <Calendar size={14} />
-          <span>{metadata.date}</span>
+    <div className="archive-detail-content max-h-[80vh]">
+      {/* Styled Header */}
+      <div className="sticky top-0 bg-gradient-to-r from-[#FFF9E6] to-white border-b border-[#FFF3CC] px-24 py-16 -mx-24 -mt-24 mb-24 rounded-t-lg">
+        <div className="flex items-center gap-8 mb-8">
+          <Calendar className="size-14 text-[#D6B04C]" />
+          <span className="text-sm font-medium text-gray-500">{metadata.date}</span>
         </div>
-        <h2 className="text-lg md:text-xl font-bold text-gray-900 leading-tight">{metadata.title}</h2>
+        <h2 className="text-xl font-bold text-gray-900">{metadata.title}</h2>
       </div>
-
-      {/* Content */}
       <div
-        className="prose prose-sm md:prose-base max-w-none
-          prose-headings:text-gray-900 prose-headings:font-bold
-          prose-h2:text-lg prose-h2:mt-32 prose-h2:mb-16 prose-h2:pb-8 prose-h2:border-b prose-h2:border-gray-100
-          prose-h3:text-base prose-h3:mt-24 prose-h3:mb-12
-          prose-p:text-gray-600 prose-p:leading-relaxed
-          prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-gray-800 prose-strong:font-semibold
-          prose-ul:my-16 prose-li:text-gray-600
-          prose-img:rounded-xl prose-img:shadow-sm prose-img:my-24
-          prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-gray-50 prose-blockquote:py-8 prose-blockquote:px-16 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
-          prose-code:text-primary prose-code:bg-primary/5 prose-code:px-4 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none"
+        className="prose prose-sm max-w-none"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>
@@ -142,7 +122,7 @@ export const ArchivesNoticeTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
@@ -196,27 +176,28 @@ export const ArchivesNoticeTemplate = () => {
               <div
                 key={item.id}
                 onClick={() => showModal({
-                  maxWidth: '800px',
+                  maxWidth: '900px',
                   children: <NoticeDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className={`bg-white border rounded-2xl p-20 md:p-28 hover:shadow-lg transition-all cursor-pointer group ${
-                  item.isPinned ? 'border-primary/30 bg-primary/5 hover:border-primary/50' : 'border-gray-100 hover:border-primary/20'
+                className={`bg-white border rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group ${
+                  item.isPinned ? 'border-primary bg-primary/5' : 'border-[#f0f0f0]'
                 }`}
               >
                 <div className="flex items-start gap-12 md:gap-20">
                   <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-10 md:mb-12">
-                      <span className={`px-10 py-4 text-[10px] md:text-xs font-bold rounded-full ${
-                        item.isPinned ? 'bg-primary text-white' : 'bg-[#AC0E0E]/10 text-[#AC0E0E]'
-                      }`}>
-                        {item.isPinned ? 'PINNED' : 'NOTICE'}
-                      </span>
-                      <span className="text-xs md:text-sm text-gray-400">{item.date}</span>
+                    <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-8 md:mb-12">
+                      <Calendar className="size-12 md:size-14 text-gray-400" />
+                      <span className="text-xs md:text-sm font-medium text-gray-500">{item.date}</span>
+                      {item.isPinned && (
+                        <span className="px-6 md:px-8 py-2 bg-primary text-white text-[10px] md:text-[11px] font-semibold rounded-md">
+                          PINNED
+                        </span>
+                      )}
                     </div>
-                    <h3 className="text-base md:text-lg font-bold text-gray-900 mb-8 md:mb-10 group-hover:text-primary transition-colors">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8 group-hover:text-primary transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
+                    <p className="text-xs md:text-sm text-gray-500 leading-relaxed line-clamp-2">
                       {item.description}
                     </p>
                   </div>

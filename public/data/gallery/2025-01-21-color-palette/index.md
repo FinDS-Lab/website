@@ -371,7 +371,7 @@ images:
           </div>
           <div class="color-info">
             <div class="color-name">FINDS Coral</div>
-            <div class="color-reference">Based on Pantone Warm Gray 9 C</div>
+            <div class="color-reference">Based on Pantone 7514 C</div>
             <div class="color-values">
               <span class="color-value">RGB(214, 160, 118)</span>
               <span class="color-value">#D6A076</span>
@@ -461,7 +461,7 @@ images:
           </tr>
           <tr>
             <td><span class="usage-dot" style="background: rgb(214, 160, 118);"></span>Coral</td>
-            <td>Text, borders, neutral elements, subtle backgrounds</td>
+            <td>Warm transitions, banner overlays, bridging elements between gold and red</td>
           </tr>
           <tr>
             <td><span class="usage-dot" style="background: rgb(232, 136, 156);"></span>Rose</td>
@@ -475,7 +475,7 @@ images:
       </table>
       
       <div class="note-box">
-        <p><strong>Design Note:</strong> This color palette features dual primary colors — FINDS Primary Gold and FINDS Primary Red — as the main brand identity. All RGB values incorporate the numbers 14, 6, and 5 where possible, creating a cohesive and intentional design system. The Honey sits between Primary Gold and Cream, providing a smooth gradient transition for highlighting current or featured elements.</p>
+        <p><strong>Design Note:</strong> This color palette features dual primary colors — FINDS Primary Gold and FINDS Primary Red — as the main brand identity. All RGB values incorporate the numbers 14, 6, and 5 where possible, creating a cohesive and intentional design system. The Coral color sits as a warm transition between the Gold and Red spectrums, providing visual harmony across the palette. Honey sits between Primary Gold and Cream, providing a smooth gradient transition for highlighting current or featured elements.</p>
       </div>
     </div>
   </article>

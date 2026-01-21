@@ -369,7 +369,7 @@ export const MembersDirectorTemplate = () => {
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{backgroundImage: `url(${banner2})`}}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -674,10 +674,10 @@ export const MembersDirectorTemplate = () => {
                                   className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
                                 >
                                   <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B04C]" />
+                                    <GraduationCap className="size-14 text-blue-500" />
                                     <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
                                   </div>
-                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-[#D6B04C] transition-colors" />
+                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
                                 </a>
                               ))}
                             </div>

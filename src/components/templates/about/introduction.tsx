@@ -28,7 +28,7 @@ const focusAreas = [
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
     desc: '객관적인 데이터 인텔리전스를 활용하여 더 명확하고 합리적인 의사결정을 돕습니다.',
-    gradient: 'from-[#D6B04C]/10 via-primary/5 to-transparent',
+    gradient: 'from-[#D6A076]/10 via-primary/5 to-transparent',
   },
 ]
 
@@ -39,7 +39,7 @@ const pillars = [
     number: '01',
     title: 'We pursue research with an iridescent perspective.',
     description: 'By applying systematic and diverse methodologies in financial data science and business analytics, we expand knowledge while building transparent frameworks that ensure both practical relevance and data-driven decision-making.',
-    accent: 'group-hover:from-[#D6B04C] group-hover:to-yellow-600',
+    accent: 'group-hover:from-[#D6B04C] group-hover:to-[#D6C360]',
   },
   {
     icon: Zap,
@@ -56,7 +56,7 @@ const pillars = [
     title: 'We strive toward "des avenirs lucides".',
     subtitle: '— lucid futures',
     description: 'Through data science, we illuminate complexity and foster clarity, discernment, and transparency, contributing to a more equitable, innovative, and socially impactful future in finance and diverse areas of business.',
-    accent: 'group-hover:from-yellow-500 group-hover:to-primary',
+    accent: 'group-hover:from-[#D6C360] group-hover:to-primary',
   },
 ]
 
@@ -104,7 +104,7 @@ export const AboutIntroductionTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
@@ -154,76 +154,85 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           WELCOME SECTION - Editorial Style with Strong Typography
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-40 md:pt-60 pb-40 md:pb-60">
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-40 md:pb-60">
         <section 
           ref={heroAnimation.ref}
           className={`transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
         >
-          {/* Main Hero Content - Same design as Vision Section */}
-          <div className="relative bg-gradient-to-br from-[#FFF9E6] via-white to-primary/5 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden border border-[#FFF3CC]/50">
-            {/* Background Decorations */}
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#FFF3CC]/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FFEB99]/20 rounded-full blur-3xl" />
-            </div>
-
-            {/* Floating Quotes */}
-            <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-[#FFEB99]/30 rotate-180" />
-            <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-[#FFEB99]/30" />
-
-            {/* Content */}
-            <div className="relative z-10 text-center max-w-4xl mx-auto">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
-                <Sparkles size={14} className="text-[#D6B04C]" />
-                <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                  About FINDS Lab
-                </span>
+          {/* Main Hero Content */}
+          <div className="relative">
+            {/* Decorative Background */}
+            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-[#FFF3CC]/30 via-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+            
+            {/* Unified Introduction Box - Same design as Vision section */}
+            <div className="relative bg-gradient-to-br from-[#FFF9E6] via-white to-primary/5 rounded-3xl md:rounded-[40px] p-40 md:p-80 lg:p-100 overflow-hidden border border-[#FFF3CC]/50">
+              {/* Background Decorations */}
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#FFF3CC]/50 to-transparent" />
+                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-primary/5 to-transparent" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FFEB99]/20 rounded-full blur-3xl" />
               </div>
 
-              {/* Main Title */}
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
-                <span className="inline-block">Towards</span>{' '}
-                <span className="relative inline-block">
-                  <span className="bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
-                    Data-Illuminated
+              {/* Floating Quotes */}
+              <Quote size={60} className="absolute top-16 left-16 md:top-40 md:left-40 text-[#FFEB99]/30 rotate-180" />
+              <Quote size={60} className="absolute bottom-16 right-16 md:bottom-40 md:right-40 text-[#FFEB99]/30" />
+
+              {/* Content */}
+              <div className="relative z-10 text-center max-w-4xl mx-auto">
+                {/* Badge */}
+                <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
+                  <Sparkles size={14} className="text-[#D6B04C]" />
+                  <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                    Our Mission
                   </span>
-                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
-                </span>
-                <br className="hidden md:block" />
-                <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
-              </h2>
+                </div>
 
-              {/* Divider */}
-              <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                <div className="w-2 h-2 rounded-full bg-[#D6B04C]" />
-                <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
-              </div>
+                {/* Main Title */}
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
+                  <span className="inline-block">Towards</span>{' '}
+                  <span className="relative inline-block">
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
+                      Data-Illuminated
+                    </span>
+                  </span>
+                  <br className="hidden md:block" />
+                  <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
+                </h2>
 
-              {/* Introduction Paragraphs */}
-              <div className="space-y-20 md:space-y-24 text-left md:text-center">
-                <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
-                  <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
-                  <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab.</span>
-                  은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
-                  <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
-                </p>
+                {/* Divider */}
+                <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                  <div className="w-2 h-2 rounded-full bg-[#D6B04C]" />
+                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                </div>
 
-                <p className="text-base md:text-lg text-gray-600 leading-[2]">
-                  오늘날 비즈니스와 금융 경제 환경은 <span className="text-gray-800 font-bold">데이터</span> 중심으로 빠르게 변화하고 있습니다.
-                  이제는 데이터를 얼마나 <span className="text-gray-800 font-bold">정교하게 분석</span>하고{' '}
-                  <span className="text-gray-800 font-bold">효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
-                </p>
+                {/* Introduction Paragraphs */}
+                <div className="space-y-16 md:space-y-20 text-left">
+                  <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
+                    <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
+                    <span className="relative inline-block mx-2">
+                      <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab.</span>
+                    </span>
+                    은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
+                    <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
+                  </p>
 
-                <p className="text-base md:text-lg text-gray-600 leading-[2]">
-                  저희는 <span className="text-primary font-bold">금융데이터사이언스</span>와{' '}
-                  <span className="text-primary font-bold">비즈니스 애널리틱스</span>를 융합하여,
-                  복잡한 데이터 속에서 새로운{' '}
-                  <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>
-                  을 이끌어내고 데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
-                </p>
+                  <p className="text-base md:text-lg text-gray-500 leading-[2]">
+                    오늘날 비즈니스와 금융 경제 환경은 <span className="text-gray-800 font-bold">데이터</span> 중심으로 빠르게 변화하고 있습니다.
+                    이제는 데이터를 얼마나 <span className="text-gray-800 font-bold">정교하게 분석</span>하고{' '}
+                    <span className="text-gray-800 font-bold">효과적으로 활용</span>하느냐가 경쟁력을 결정짓는 핵심 요소가 되고 있습니다.
+                  </p>
+
+                  <p className="text-base md:text-lg text-gray-500 leading-[2]">
+                    저희는 <span className="text-primary font-bold">금융데이터사이언스</span>와{' '}
+                    <span className="text-primary font-bold">비즈니스 애널리틱스</span>를 융합하여,
+                    복잡한 데이터 속에서 새로운{' '}
+                    <span className="relative inline-block">
+                      <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>
+                    </span>
+                    을 이끌어내고 데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

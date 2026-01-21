@@ -17,8 +17,8 @@ interface GalleryItem {
 
 const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; date?: string }) => {
   const [content, setContent] = useState<string>('')
-  const [metadata, setMetadata] = useState<{title?: string; date?: string}>({title, date})
   const [loading, setLoading] = useState(true)
+  const [metadata, setMetadata] = useState<{ title?: string; date?: string }>({})
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -31,47 +31,27 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
           data.date = id.slice(0, 10)
         }
 
-        setMetadata({
-          title: data.title || title,
-          date: data.date || date
-        })
-
+        setMetadata({ title: data.title as string || title, date: data.date as string || date })
         const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
         setLoading(false)
       })
-  }, [id, title, date])
+  }, [id])
 
-  if (loading) return (
-    <div className="p-60 text-center">
-      <div className="inline-block w-32 h-32 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-    </div>
-  )
+  if (loading) return <div className="p-60 text-center text-gray-500">Loading...</div>
 
   return (
-    <div className="max-h-[80vh] overflow-y-auto">
-      {/* Header */}
-      <div className="sticky top-0 bg-white border-b border-gray-100 px-24 md:px-32 py-20 md:py-24 -mx-24 md:-mx-32 -mt-24 md:-mt-32 mb-24 z-10">
-        <div className="flex items-center gap-8 text-xs text-gray-400 mb-8">
-          <Calendar size={14} />
-          <span>{metadata.date}</span>
+    <div className="archive-detail-content max-h-[80vh]">
+      {/* Styled Header */}
+      <div className="sticky top-0 bg-gradient-to-r from-[#FFF9E6] to-white border-b border-[#FFF3CC] px-24 py-16 -mx-24 -mt-24 mb-24 rounded-t-lg">
+        <div className="flex items-center gap-8 mb-8">
+          <Calendar className="size-14 text-[#D6B04C]" />
+          <span className="text-sm font-medium text-gray-500">{metadata.date}</span>
         </div>
-        <h2 className="text-lg md:text-xl font-bold text-gray-900 leading-tight">{metadata.title}</h2>
+        <h2 className="text-xl font-bold text-gray-900">{metadata.title}</h2>
       </div>
-
-      {/* Content */}
       <div
-        className="prose prose-sm md:prose-base max-w-none
-          prose-headings:text-gray-900 prose-headings:font-bold
-          prose-h2:text-lg prose-h2:mt-32 prose-h2:mb-16 prose-h2:pb-8 prose-h2:border-b prose-h2:border-gray-100
-          prose-h3:text-base prose-h3:mt-24 prose-h3:mb-12
-          prose-p:text-gray-600 prose-p:leading-relaxed
-          prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-gray-800 prose-strong:font-semibold
-          prose-ul:my-16 prose-li:text-gray-600
-          prose-img:rounded-xl prose-img:shadow-sm prose-img:my-24
-          prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-gray-50 prose-blockquote:py-8 prose-blockquote:px-16 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
-          prose-code:text-primary prose-code:bg-primary/5 prose-code:px-4 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none"
+        className="prose prose-sm max-w-none"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>
@@ -128,7 +108,7 @@ export const ArchivesGalleryTemplate = () => {
         />
         
         {/* Luxurious Gold Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6B04C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
@@ -177,7 +157,7 @@ export const ArchivesGalleryTemplate = () => {
             Loading galleries from markdown files...
           </div>
         ) : galleryItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20 md:gap-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
             {galleryItems.map((item) => (
               <div
                 key={item.id}
@@ -185,28 +165,28 @@ export const ArchivesGalleryTemplate = () => {
                   maxWidth: '900px',
                   children: <GalleryDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary/20 transition-all cursor-pointer group"
+                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
               >
-                <div className="aspect-[16/10] bg-gray-50 flex items-center justify-center overflow-hidden">
+                <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (
                     <img
                       src={`${baseUrl}data/gallery/${item.id}/${item.thumb}`}
                       alt={item.title}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   ) : (
-                    <ImageIcon className="size-32 md:size-40 text-gray-300" />
+                    <ImageIcon className="size-32 md:size-40 text-[#cdcdcd]" />
                   )}
                 </div>
-                <div className="p-20 md:p-24">
-                  <div className="flex items-center gap-8 mb-10">
-                    <span className="px-10 py-4 bg-[#D6C360]/15 text-[#D6B04C] text-[10px] md:text-xs font-bold rounded-full">GALLERY</span>
-                    <span className="text-xs text-gray-400">{item.date}</span>
+                <div className="p-16 md:p-20">
+                  <div className="flex items-center gap-6 md:gap-8 mb-6 md:mb-8">
+                    <Calendar className="size-12 md:size-14 text-gray-500" />
+                    <span className="text-xs md:text-sm font-medium text-gray-500">{item.date}</span>
                   </div>
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-12 group-hover:text-primary transition-colors">{item.title}</h3>
-                  <div className="flex flex-wrap gap-6">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-8 md:mb-12">{item.title}</h3>
+                  <div className="flex flex-wrap gap-4 md:gap-6">
                     {item.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="px-10 py-4 bg-gray-50 text-gray-500 text-[10px] md:text-xs rounded-full border border-gray-100">
+                      <span key={tIdx} className="px-8 md:px-10 py-3 md:py-4 bg-gray-50 text-gray-500 text-[10px] md:text-xs rounded-full border border-gray-100">
                         #{tag}
                       </span>
                     ))}

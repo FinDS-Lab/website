@@ -1,0 +1,39 @@
+{
+  "id": "lee-undergrad",
+  "name": {
+    "ko": "이채은",
+    "en": "Lee C.E."
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "expected_graduation": "2026-02"
+  },
+  "contact": {
+    "email": "jadebank8@gachon.ac.kr",
+    "phone": "010-3786-3576"
+  },
+  "research": {
+    "interests": [
+      "Business Analytics",
+      "Consumer & Market Analytics",
+      "Data-Driven Behavioral Insights"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial Engineering",
+      "school": "Gachon University",
+      "start": "2022-03",
+      "expected": "Present"
+    }
+  ],
+  "avatar": "/website/images/members/LCE-1.png"
+}
