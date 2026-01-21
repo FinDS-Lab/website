@@ -1150,7 +1150,7 @@ export const MembersDirectorAcademicTemplate = () => {
 
   const journals = useMemo(() => {
     if (!activitiesData) return []
-    return activitiesData.activities.filter(a => a.category === 'journal')
+    return activitiesData.activities.filter(a => a.category === 'journal').sort((a, b) => a.name.localeCompare(b.name))
   }, [activitiesData])
 
   const committees = useMemo(() => {
@@ -1438,7 +1438,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                     </div>
                     <div className="space-y-8">
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
@@ -1448,7 +1448,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
@@ -1458,7 +1458,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.09 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
@@ -1468,7 +1468,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
@@ -1506,15 +1506,15 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
                       <p className="text-xs font-bold text-gray-900">Session Chair</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{sessionChairs.length}</span>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B04C'}}>{sessionChairs.length}</span>
                     </div>
                     {sessionChairs.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30">
+                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B04C]/30">
                             <span className="text-gray-700">{chair.name}</span>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#E8889C', color: 'white'}}>{chair.period || chair.since}</span>
+                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B04C', color: 'white'}}>{chair.period || chair.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1528,7 +1528,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex items-center justify-between mb-16">
                       <div className="flex items-center gap-8">
                         <p className="text-xs font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
                       </div>
                       {journals.length > 15 && (
                         <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-xs text-primary font-medium hover:underline">
@@ -1539,14 +1539,14 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {displayedJournals.map((journal) => (
                         <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-primary/30">
+                          className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30">
                           <span className="text-gray-700">{journal.name}</span>
                           <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
-                            journal.type === 'SCIE' ? 'bg-[#D6B04C] text-white' :
-                            journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
-                            journal.type === 'ESCI' ? 'bg-[#D6C360] text-white' :
-                            journal.type === 'SCOPUS' ? 'bg-[#E8D688] text-gray-700' :
-                            'bg-[#FFBAC4] text-gray-700'
+                            journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
+                            journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
+                            journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
+                            journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
+                            'bg-[#FFD6DD] text-gray-700'
                           }`}>{journal.type}</span>
                         </a>
                       ))}
@@ -1679,7 +1679,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+                </div>
                 )}
               </section>
             )}
@@ -1791,9 +1791,10 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                       ))}
                     </div>
+                    )}
                   </div>
                 )}
-              </div>
+                </div>
                 )}
               </section>
             )}
