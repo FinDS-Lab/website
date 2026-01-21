@@ -1,0 +1,45 @@
+{
+  "id": "ltk1-undergrad",
+  "name": {
+    "ko": "이태경"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "leetk1224@khu.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Portfolio Optimization",
+      "Asset Allocation",
+      "Quantitative Modeling",
+      "AI & ML in Finance"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial and Management Systems Engineering",
+      "school": "Kyung Hee University",
+      "start": "2022-03",
+      "expected": "Present",
+      "note": "Double Major in Software Convergence"
+    }
+  ],
+  "publications": [
+    "Graph Neural Approaches for Data-Efficient Return Prediction in International Financial Market Indices. Symmetry, 2025.",
+    "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality Approach. Systems, 2025.",
+    "Evaluating Diffusion-Based Covariance Matrix Denoising for Robust Downside Risk Control. Under review."
+  ]
+,
+  "avatar": "/website/images/members/LTK-1.png"
+}

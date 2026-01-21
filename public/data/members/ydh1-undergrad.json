@@ -1,7 +1,7 @@
 {
-  "id": "lce1-undergrad",
+  "id": "ydh1-undergrad",
   "name": {
-    "ko": "이채은"
+    "ko": "양동훈"
   },
   "degree": "undergrad",
   "role": {
@@ -15,24 +15,25 @@
     "end": "2026-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": "ehdgns7337@inha.edu",
+    "phone": "010-7337-2670"
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Smart Manufacturing",
+      "Process Optimization",
+      "Operational Excellence"
     ]
   },
   "education": [
     {
       "degree": "B.S.",
       "field": "Industrial Engineering",
-      "school": "Gachon University",
-      "start": "2022-03",
-      "expected": "Present"
+      "school": "Inha University",
+      "start": "2021-03",
+      "expected": "Present",
+      "note": "Double major in Statistics"
     }
   ],
-  "avatar": "/website/images/members/LCE-1.png"
+  "avatar": "/website/images/members/YDH-1.png"
 }

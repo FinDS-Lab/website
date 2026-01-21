@@ -1,7 +1,7 @@
 {
-  "id": "lce1-undergrad",
+  "id": "kyh1-undergrad",
   "name": {
-    "ko": "이채은"
+    "ko": "김연후"
   },
   "degree": "undergrad",
   "role": {
@@ -15,24 +15,25 @@
     "end": "2026-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": "kyh050412@hanyang.ac.kr",
+    "phone": "010-6608-0285"
   },
   "research": {
     "interests": [
       "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Financial Data Analysis",
+      "Risk Analysis"
     ]
   },
   "education": [
     {
       "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Gachon University",
-      "start": "2022-03",
+      "field": "Industrial and Management Engineering",
+      "school": "Hanyang University ERICA",
+      "start": "2024-03",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/LCE-1.png"
+  ]
+,
+  "avatar": "/website/images/members/KYH-1.png"
 }

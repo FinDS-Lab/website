@@ -1,7 +1,7 @@
 {
-  "id": "lce1-undergrad",
+  "id": "khw1-undergrad",
   "name": {
-    "ko": "이채은"
+    "ko": "고현우"
   },
   "degree": "undergrad",
   "role": {
@@ -15,24 +15,24 @@
     "end": "2026-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": "theodore@khu.ac.kr",
+    "phone": "010-8774-9083"
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
       "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Gachon University",
+      "field": "Industrial and Management Systems Engineering",
+      "school": "Kyung Hee University",
       "start": "2022-03",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/LCE-1.png"
+  ]
+,
+  "avatar": "/website/images/members/KHW-1.png"
 }

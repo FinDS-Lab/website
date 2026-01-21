@@ -1,0 +1,39 @@
+{
+  "id": "kkh1-undergrad",
+  "name": {
+    "ko": "김강현"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "kkkkhh0507@naver.com",
+    "phone": "010-8940-3808"
+  },
+  "research": {
+    "interests": [
+      "Portfolio Optimization",
+      "Financial Risk Engineering"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial and Information Systems Engineering",
+      "school": "Soongsil University",
+      "start": "2020-03",
+      "expected": "Present",
+      "note": "Double major in Finance"
+    }
+  ]
+,
+  "avatar": "/website/images/members/KKH-1.png"
+}

@@ -87,7 +87,32 @@ export const MembersCurrentTemplate = () => {
     }
 
     // members 폴더의 모든 파일 로드
-    const memberFiles = ['kim-phd.json', 'park-ms.json', 'choi-undergrad.json', 'lce1-undergrad.json']
+    const memberFiles = [
+      'kim-phd.json',
+      'park-ms.json',
+      'lce1-undergrad.json',
+      'jyj1-undergrad.json',
+      'khw1-undergrad.json',
+      'kdi1-undergrad.json',
+      'lys1-undergrad.json',
+      'hjs1-undergrad.json',
+      'kjy1-undergrad.json',
+      'se1-undergrad.json',
+      'kkh1-undergrad.json',
+      'kyh1-undergrad.json',
+      'sjy1-undergrad.json',
+      'cmh1-undergrad.json',
+      'cjw1-undergrad.json',
+      'jys1-undergrad.json',
+      'lsj1-undergrad.json',
+      'ltk1-undergrad.json',
+      'pss1-undergrad.json',
+      'sks1-undergrad.json',
+      'lsi1-undergrad.json',
+      'ydh1-undergrad.json',
+      'kbo1-undergrad.json',
+      'lsy1-undergrad.json'
+    ]
 
     Promise.all(
       memberFiles.map((file) =>
@@ -259,9 +284,9 @@ export const MembersCurrentTemplate = () => {
                                 {member.role.ko}
                               </span>
                             </div>
-                            <p className="text-xs md:text-[14px] text-gray-500 mb-4 md:mb-[8px] truncate">{member.name.en}</p>
+                            <p className="text-xs md:text-[14px] text-gray-500 mb-4 md:mb-[8px] truncate">{member.education?.[0]?.school || ''}</p>
                             <p className="text-[11px] md:text-[13px] text-gray-500">
-                              {member.period.start} ~ {member.period.expected_graduation || 'Present'}
+                              {member.period.start} – {member.period.end || member.period.expected_graduation || 'Present'}
                             </p>
                           </div>
                         </div>

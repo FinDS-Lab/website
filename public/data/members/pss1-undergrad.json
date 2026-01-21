@@ -1,0 +1,42 @@
+{
+  "id": "pss1-undergrad",
+  "name": {
+    "ko": "박성수"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "qocn0123@khu.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Deep Learning Algorithms",
+      "Multivariate Time Series Modeling",
+      "Anomaly Detection"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial and Management Systems Engineering",
+      "school": "Kyung Hee University",
+      "start": "2020-03",
+      "expected": "Present",
+      "note": "Double Major in Software Convergence"
+    }
+  ],
+  "publications": [
+    "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
+  ]
+,
+  "avatar": "/website/images/members/PSS-1.png"
+}

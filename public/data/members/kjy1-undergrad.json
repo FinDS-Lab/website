@@ -1,0 +1,41 @@
+{
+  "id": "kjy1-undergrad",
+  "name": {
+    "ko": "김재엽"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "학부연구생",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12",
+    "end": "2026-02"
+  },
+  "contact": {
+    "email": "kimjy0010@hanyang.ac.kr",
+    "phone": "010-4173-4289"
+  },
+  "research": {
+    "interests": [
+      "Metrology and Inspection Data Analytics",
+      "Data-Driven Process Optimization",
+      "Multimodal Machine Learning",
+      "Reliability Engineering"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.S.",
+      "field": "Industrial Engineering",
+      "school": "Hanyang University",
+      "start": "2020-03",
+      "expected": "Present",
+      "note": "Specialized coursework in Semiconductor Process and Metrology"
+    }
+  ]
+,
+  "avatar": "/website/images/members/KJY-1.png"
+}

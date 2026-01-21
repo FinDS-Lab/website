@@ -1,7 +1,7 @@
 {
-  "id": "lce1-undergrad",
+  "id": "se1-undergrad",
   "name": {
-    "ko": "이채은"
+    "ko": "심은"
   },
   "degree": "undergrad",
   "role": {
@@ -15,24 +15,24 @@
     "end": "2026-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": "tladms545@sogang.ac.kr",
+    "phone": "010-5031-3965"
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Financial Data Analysis",
+      "Financial Machine Learning",
+      "Financial Engineering"
     ]
   },
   "education": [
     {
       "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Gachon University",
+      "field": "Computer Science and Engineering",
+      "school": "Sogang University",
       "start": "2022-03",
       "expected": "Present"
     }
   ],
-  "avatar": "/website/images/members/LCE-1.png"
+  "avatar": "/website/images/members/SE-1.png"
 }
