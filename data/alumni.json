@@ -1,5 +1,424 @@
 {
   "graduateAlumni": [],
-  "undergradAlumni": [],
+  "undergradAlumni": [
+    {
+      "name": "강병오",
+      "nameKo": "(Kang, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Computer Science and Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "고현우",
+      "nameKo": "(Ko, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "김강현",
+      "nameKo": "(Kim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Soongsil University",
+          "dept": "Industrial and Information Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "김다인",
+      "nameKo": "(Kim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Hongik University",
+          "dept": "Industrial & Data Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "김연후",
+      "nameKo": "(Kim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Hanyang University (ERICA Campus)",
+          "dept": "Industrial and Management Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "김재엽",
+      "nameKo": "(Kim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Hanyang University",
+          "dept": "Industrial Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "박성수",
+      "nameKo": "(Park, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Korea University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "신경수",
+      "nameKo": "(Shin, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "신정윤",
+      "nameKo": "(Shin, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "심은",
+      "nameKo": "(Shim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Sogang University",
+          "dept": "Computer Science and Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "양동훈",
+      "nameKo": "(Yang, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Inha University",
+          "dept": "Industrial Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "이성준",
+      "nameKo": "(Lee, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "이수인",
+      "nameKo": "(Lee, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Seoul National University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "이유섭",
+      "nameKo": "(Lee, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "KAIST",
+          "dept": "Industrial & Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "이채은",
+      "nameKo": "(Lee, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Gachon University",
+          "dept": "Industrial Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "이태경",
+      "nameKo": "(Lee, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Korea University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "임소영",
+      "nameKo": "(Lim, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "정유진",
+      "nameKo": "(Jung, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "조윤수",
+      "nameKo": "(Jo, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "최문혁",
+      "nameKo": "(Choi, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "최진우",
+      "nameKo": "(Choi, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Kyung Hee University",
+          "dept": "Industrial and Management Systems Engineering",
+          "year": "2026"
+        }
+      ]
+    },
+    {
+      "name": "하승민",
+      "nameKo": "(Ha, B.S.)",
+      "degrees": [
+        "ur"
+      ],
+      "cohort": "1기",
+      "periods": {
+        "ur": "2025.12.24 – 2026.03.01"
+      },
+      "education": [
+        {
+          "degree": "bs",
+          "school": "Jeonbuk National University",
+          "dept": "Industrial and Information System Engineering",
+          "year": "2026"
+        }
+      ]
+    }
+  ],
   "sinceDate": "2025.06.14"
 }
