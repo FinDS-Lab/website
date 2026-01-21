@@ -242,7 +242,7 @@ export const ProjectsTemplate = () => {
   const statisticsItems = [
     { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
     { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#e8879b]' },
-    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-gray-900' },
+    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#D6B14D]' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
@@ -418,16 +418,8 @@ export const ProjectsTemplate = () => {
             </div>
           )}
 
-          {/* Projects List by Year */}
+          {/* Projects by Year */}
           <div className="flex flex-col gap-12 md:gap-20">
-            <div className="flex items-center gap-8">
-              <Folder size={20} className="text-primary" />
-              <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">
-                Projects List
-                <span className="ml-8 text-base text-gray-400 font-normal">({filteredProjects.length})</span>
-              </h2>
-            </div>
-
             {loading ? (
               <div className="text-center py-40">
                 <p className="text-gray-400 animate-pulse">Loading projects...</p>

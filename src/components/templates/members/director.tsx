@@ -560,7 +560,7 @@ export const MembersDirectorTemplate = () => {
                   I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Driven Decision Making</span>. My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
+                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
                   In particular, I focus on three directions:

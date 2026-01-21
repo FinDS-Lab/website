@@ -1456,26 +1456,49 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                   ) : (
                     <>
-                      {/* Summary Stats */}
+                      {/* Statistics Section - Matching Current Members / Alumni / Publications / Projects format */}
                       {(() => {
                         const allItems = Object.values(honorsData).flat()
                         const totalAwards = allItems.filter(item => item.type === 'award').length
                         const totalHonors = allItems.filter(item => item.type === 'honor').length
+                        const totalItems = totalAwards + totalHonors
                         return (
-                          <div className="grid grid-cols-2 gap-12 mb-20">
-                            <div className="bg-amber-50 rounded-xl p-16 border border-amber-200/50">
-                              <div className="flex items-center gap-8 mb-8">
-                                <span className="text-xl">🏆</span>
-                                <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">Awards</span>
+                          <div className="flex flex-col gap-16 md:gap-24 mb-20">
+                            <h3 className="text-base md:text-lg font-bold text-gray-900 flex items-center gap-12">
+                              <span className="w-8 h-8 rounded-full bg-primary" />
+                              Statistics
+                            </h3>
+                            <div className="grid grid-cols-3 gap-8 md:gap-12">
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalAwards}</span>
+                                  <div className="flex items-center gap-6">
+                                    <span className="text-sm md:text-base">🏆</span>
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">{totalAwards === 1 ? 'Award' : 'Awards'}</span>
+                                  </div>
+                                </div>
                               </div>
-                              <p className="text-3xl font-bold text-amber-600">{totalAwards}</p>
-                            </div>
-                            <div className="rounded-xl p-16 border" style={{backgroundColor: 'rgba(172,14,14,0.05)', borderColor: 'rgba(172,14,14,0.2)'}}>
-                              <div className="flex items-center gap-8 mb-8">
-                                <span className="text-xl">🎓</span>
-                                <span className="text-xs font-bold uppercase tracking-wider" style={{color: 'rgb(172,14,14)'}}>Honors</span>
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalHonors}</span>
+                                  <div className="flex items-center gap-6">
+                                    <span className="text-sm md:text-base">🎓</span>
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">{totalHonors === 1 ? 'Honor' : 'Honors'}</span>
+                                  </div>
+                                </div>
                               </div>
-                              <p className="text-3xl font-bold" style={{color: 'rgb(172,14,14)'}}>{totalHonors}</p>
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
+                                  <div className="flex items-center gap-6">
+                                    <span className="text-sm md:text-base">📊</span>
+                                    <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         )

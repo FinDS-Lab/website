@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbeb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef3c7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <text x="400" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#111827" text-anchor="middle">FINDS Lab. Official Color Palette</text>
+  
+  <!-- Primary Colors with badges -->
+  <rect x="50" y="70" width="130" height="110" rx="12" fill="rgb(214, 176, 76)" stroke="rgb(196, 154, 56)" stroke-width="3"/>
+  <text x="115" y="125" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">PRIMARY</text>
+  <text x="115" y="145" font-family="Arial" font-size="9" fill="white" text-anchor="middle" opacity="0.9">Gold</text>
+  <text x="115" y="195" font-family="monospace" font-size="8" fill="#6b7280" text-anchor="middle">#D6B04C</text>
+  
+  <rect x="190" y="70" width="130" height="110" rx="12" fill="rgb(172, 14, 14)" stroke="rgb(140, 10, 10)" stroke-width="3"/>
+  <text x="255" y="125" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">PRIMARY</text>
+  <text x="255" y="145" font-family="Arial" font-size="9" fill="white" text-anchor="middle" opacity="0.9">Red</text>
+  <text x="255" y="195" font-family="monospace" font-size="8" fill="#6b7280" text-anchor="middle">#AC0E0E</text>
+  
+  <!-- Secondary Colors -->
+  <rect x="330" y="70" width="90" height="110" rx="12" fill="rgb(214, 195, 96)"/>
+  <text x="375" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Aa</text>
+  <text x="375" y="195" font-family="Arial" font-size="8" fill="#374151" text-anchor="middle">Honey</text>
+  
+  <rect x="430" y="70" width="90" height="110" rx="12" fill="rgb(232, 214, 136)"/>
+  <text x="475" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">Aa</text>
+  <text x="475" y="195" font-family="Arial" font-size="8" fill="#374151" text-anchor="middle">Cream</text>
+  
+  <rect x="530" y="70" width="80" height="110" rx="12" fill="rgb(114, 106, 105)"/>
+  <text x="570" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Aa</text>
+  <text x="570" y="195" font-family="Arial" font-size="8" fill="#374151" text-anchor="middle">Silver</text>
+  
+  <!-- Accent Colors -->
+  <rect x="620" y="70" width="80" height="110" rx="12" fill="rgb(232, 136, 156)"/>
+  <text x="660" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Aa</text>
+  <text x="660" y="195" font-family="Arial" font-size="8" fill="#374151" text-anchor="middle">Rose</text>
+  
+  <rect x="710" y="70" width="70" height="110" rx="12" fill="rgb(255, 186, 196)"/>
+  <text x="745" y="130" font-family="Arial" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">Aa</text>
+  <text x="745" y="195" font-family="Arial" font-size="8" fill="#374151" text-anchor="middle">Blossom</text>
+  
+  <!-- Gradient Bar -->
+  <defs>
+    <linearGradient id="fullGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:rgb(172, 14, 14)" />
+      <stop offset="17%" style="stop-color:rgb(214, 176, 76)" />
+      <stop offset="34%" style="stop-color:rgb(214, 195, 96)" />
+      <stop offset="51%" style="stop-color:rgb(232, 214, 136)" />
+      <stop offset="68%" style="stop-color:rgb(114, 106, 105)" />
+      <stop offset="85%" style="stop-color:rgb(232, 136, 156)" />
+      <stop offset="100%" style="stop-color:rgb(255, 186, 196)" />
+    </linearGradient>
+  </defs>
+  
+  <text x="400" y="250" font-family="Arial" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">Full Palette Gradient</text>
+  <rect x="50" y="270" width="700" height="50" rx="25" fill="url(#fullGrad)"/>
+  
+  <!-- Footer -->
+  <text x="400" y="360" font-family="Arial" font-size="12" fill="#9ca3af" text-anchor="middle">Financial Data Science &amp; Business Analytics</text>
+</svg>
