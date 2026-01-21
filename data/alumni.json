@@ -6,220 +6,220 @@
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Computer Science and Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Financial Time Series Anomaly Detection Using Deep Learning"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "고현우",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Predictive Modeling for Supply Chain Optimization"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "김강현",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Soongsil University", "dept": "Industrial and Information Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Soongsil University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Soongsil University",
-      "project": {"title": "Machine Learning Applications in Manufacturing Quality Control"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "김다인",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Hongik University", "dept": "Industrial & Data Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Hongik University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Hongik University",
-      "project": {"title": "Customer Segmentation Analysis Using Clustering Algorithms"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "김연후",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Hanyang University (ERICA)", "dept": "Industrial and Management Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Hanyang University (ERICA)", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Hanyang University",
-      "project": {"title": "Natural Language Processing for Financial News Sentiment Analysis"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "김재엽",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Hanyang University", "dept": "Industrial Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Hanyang University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Hanyang University",
-      "project": {"title": "Reinforcement Learning for Portfolio Optimization"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "박성수",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Korea University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Korea University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "Graduate School, Korea University",
-      "project": {"title": "Deep Learning-Based Credit Risk Assessment Model"}
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "신경수",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Time Series Forecasting for Energy Consumption Prediction"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "신정윤",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Explainable AI for Financial Decision Support Systems"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "심은",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Sogang University", "dept": "Computer Science and Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Sogang University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Sogang University",
-      "project": {"title": "Graph Neural Networks for Financial Fraud Detection"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "양동훈",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Inha University", "dept": "Industrial Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Inha University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Inha University",
-      "project": {"title": "Multi-Objective Optimization in Financial Portfolio Management"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "이성준",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Automated Trading System Development Using Machine Learning"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "이수인",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Seoul National University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Seoul National University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "Graduate School, Seoul National University",
-      "project": {"title": "Large Language Models for Financial Document Analysis"}
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "이유섭",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "KAIST", "dept": "Industrial & Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "KAIST", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, KAIST",
-      "project": {"title": "Bayesian Deep Learning for Uncertainty Quantification in Finance"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "이채은",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Gachon University", "dept": "Industrial Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Gachon University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Gachon University",
-      "project": {"title": "Business Intelligence Dashboard for Real-Time Analytics"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "이태경",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Korea University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Korea University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "Graduate School, Korea University",
-      "project": {"title": "Transformer Models for Stock Price Movement Prediction"}
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "임소영",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Data-Driven Approach to ESG Investment Strategy"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "정유진",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Predictive Analytics for Customer Churn Prevention"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "조윤수",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Network Analysis of Financial Market Correlations"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "최문혁",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Sentiment Analysis of Social Media for Market Prediction"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "최진우",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Kyung Hee University", "dept": "Industrial and Management Systems Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Kyung Hee University",
-      "project": {"title": "Computer Vision Applications in Financial Document Processing"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
       "name": "하승민",
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.24 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Jeonbuk National University", "dept": "Industrial and Information System Engineering", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Jeonbuk National University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Jeonbuk National University",
-      "project": {"title": "Anomaly Detection in Financial Transactions Using Autoencoders"}
+      "currentPosition": "재학생",
+      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     }
   ],
   "sinceDate": "2025.06.14"
