@@ -13,7 +13,7 @@ images:
   :root {
     --finds-primary-gold: rgb(214, 176, 76);
     --finds-primary-red: rgb(172, 14, 14);
-    --finds-silver: rgb(114, 106, 105);
+    --finds-coral: rgb(214, 160, 118);
     --finds-honey: rgb(214, 195, 96);
     --finds-cream: rgb(232, 214, 136);
     --finds-rose: rgb(232, 136, 156);
@@ -366,15 +366,15 @@ images:
         </div>
         
         <div class="color-card">
-          <div class="color-swatch" style="background: rgb(114, 106, 105);">
+          <div class="color-swatch" style="background: rgb(214, 160, 118);">
             <span style="color: white; font-weight: 800; font-size: 24px;">Aa</span>
           </div>
           <div class="color-info">
-            <div class="color-name">FINDS Silver</div>
-            <div class="color-reference">Based on Pantone Warm Gray 9 C</div>
+            <div class="color-name">FINDS Coral</div>
+            <div class="color-reference">Based on Pantone 7514 C</div>
             <div class="color-values">
-              <span class="color-value">RGB(114, 106, 105)</span>
-              <span class="color-value">#726A69</span>
+              <span class="color-value">RGB(214, 160, 118)</span>
+              <span class="color-value">#D6A076</span>
             </div>
           </div>
         </div>
@@ -430,7 +430,7 @@ images:
         </div>
         
         <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">Full Palette Gradient</p>
-        <div class="gradient-bar-full" style="background: linear-gradient(90deg, rgb(172, 14, 14), rgb(214, 176, 76), rgb(214, 195, 96), rgb(232, 214, 136), rgb(114, 106, 105), rgb(232, 136, 156), rgb(255, 186, 196));"></div>
+        <div class="gradient-bar-full" style="background: linear-gradient(90deg, rgb(172, 14, 14), rgb(214, 176, 76), rgb(214, 195, 96), rgb(232, 214, 136), rgb(214, 160, 118), rgb(232, 136, 156), rgb(255, 186, 196));"></div>
       </div>
       
       <h2 class="section-title" style="margin-top: 32px;">Usage Guidelines</h2>
@@ -460,8 +460,8 @@ images:
             <td>Book publications, light backgrounds, subtle highlights</td>
           </tr>
           <tr>
-            <td><span class="usage-dot" style="background: rgb(114, 106, 105);"></span>Silver</td>
-            <td>Text, borders, neutral elements, subtle backgrounds</td>
+            <td><span class="usage-dot" style="background: rgb(214, 160, 118);"></span>Coral</td>
+            <td>Warm transitions, banner overlays, bridging elements between gold and red</td>
           </tr>
           <tr>
             <td><span class="usage-dot" style="background: rgb(232, 136, 156);"></span>Rose</td>
@@ -475,7 +475,7 @@ images:
       </table>
       
       <div class="note-box">
-        <p><strong>Design Note:</strong> This color palette features dual primary colors — FINDS Primary Gold and FINDS Primary Red — as the main brand identity. All RGB values incorporate the numbers 14, 6, and 5 where possible, creating a cohesive and intentional design system. The Honey sits between Primary Gold and Cream, providing a smooth gradient transition for highlighting current or featured elements.</p>
+        <p><strong>Design Note:</strong> This color palette features dual primary colors — FINDS Primary Gold and FINDS Primary Red — as the main brand identity. All RGB values incorporate the numbers 14, 6, and 5 where possible, creating a cohesive and intentional design system. The Coral color sits as a warm transition between the Gold and Red spectrums, providing visual harmony across the palette. Honey sits between Primary Gold and Cream, providing a smooth gradient transition for highlighting current or featured elements.</p>
       </div>
     </div>
   </article>
