@@ -1,0 +1,287 @@
+{
+  "_comment": "=== FINDS Lab. 임시 예시 데이터 ===",
+  "_warning": "이 파일은 테스트/데모용 임시 데이터입니다. 실제 사용 시 수정 필요!",
+  "_last_updated": "2025-01-21",
+  
+  "current_members_examples": {
+    "_location": "/public/data/members/",
+    
+    "phd_example": {
+      "_filename": "kim-phd.json",
+      "id": "kim-phd",
+      "name": {
+        "ko": "김박사",
+        "en": "Kim Ph.D."
+      },
+      "degree": "phd",
+      "role": {
+        "ko": "박사과정",
+        "en": "Ph.D. Candidate"
+      },
+      "status": "active",
+      "period": {
+        "start": "2019-09",
+        "expected_graduation": "2025-08"
+      },
+      "contact": {
+        "email": "kim.phd@example.edu"
+      },
+      "research": {
+        "interests": [
+          "Reinforcement Learning",
+          "Game AI",
+          "Multi-Agent Systems",
+          "Deep Learning"
+        ]
+      },
+      "education": [
+        {
+          "degree": "Ph.D.",
+          "field": "Business Analytics",
+          "school": "Dongduk Women's University",
+          "start": "2019-09",
+          "expected": "2025-08"
+        },
+        {
+          "degree": "B.S.",
+          "field": "Mathematics",
+          "school": "Dongduk Women's University",
+          "start": "2014-03",
+          "end": "2018-08"
+        }
+      ],
+      "social": {
+        "github": "https://github.com/kim-phd",
+        "linkedin": "https://linkedin.com/in/kim-phd",
+        "google_scholar": "https://scholar.google.com/citations?user=kim-phd",
+        "orcid": "0000-0000-0000-0001",
+        "personal_website": "https://kim-phd.github.io"
+      },
+      "avatar": "/website/images/members/woman_default.png"
+    },
+    
+    "ms_example": {
+      "_filename": "park-ms.json",
+      "id": "park-ms",
+      "name": {
+        "ko": "박석사",
+        "en": "Park M.S."
+      },
+      "degree": "ms",
+      "role": {
+        "ko": "석사과정",
+        "en": "Master Student"
+      },
+      "status": "active",
+      "period": {
+        "start": "2024-03",
+        "expected_graduation": "2026-02"
+      },
+      "contact": {
+        "email": "park.ms@example.edu"
+      },
+      "research": {
+        "interests": [
+          "Natural Language Processing",
+          "Financial Text Mining",
+          "Sentiment Analysis",
+          "Deep Learning"
+        ]
+      },
+      "education": [
+        {
+          "degree": "M.S.",
+          "field": "Business Analytics",
+          "school": "Dongduk Women's University",
+          "start": "2024-03",
+          "expected": "2026-02"
+        },
+        {
+          "degree": "B.S.",
+          "field": "Computer Science",
+          "school": "Ewha Womans University",
+          "start": "2019-03",
+          "end": "2024-02"
+        }
+      ],
+      "social": {
+        "github": "https://github.com/park-ms",
+        "linkedin": "https://linkedin.com/in/park-ms",
+        "personal_website": "https://park-ms.github.io"
+      },
+      "avatar": "/website/images/members/man_default.png"
+    }
+  },
+  
+  "alumni_examples": {
+    "_location": "/public/data/alumni.json",
+    
+    "graduate_alumni": [
+      {
+        "_comment": "박사 졸업생 예시",
+        "name": "정박사",
+        "nameKo": "(Jung Ph.D.)",
+        "degrees": ["phd"],
+        "periods": {
+          "phd": "2019.09 – 2025.02"
+        },
+        "education": [
+          {
+            "degree": "phd",
+            "school": "Dongduk Women's University",
+            "dept": "Business Analytics",
+            "year": "2025"
+          },
+          {
+            "degree": "bs",
+            "school": "Dongduk Women's University",
+            "dept": "Mathematics",
+            "year": "2018"
+          }
+        ],
+        "thesis": {
+          "phd": {
+            "title": "Deep Reinforcement Learning for Dynamic Portfolio Optimization",
+            "url": "https://example.com/thesis/jung-phd-2025.pdf"
+          }
+        },
+        "company": "Lorem Institute of Quantitative Finance"
+      },
+      {
+        "_comment": "석사+박사 졸업생 예시 (동일 연구실)",
+        "name": "강박사",
+        "nameKo": "(Kang Ph.D.)",
+        "degrees": ["ms", "phd"],
+        "periods": {
+          "ms": "2018.03 – 2020.02",
+          "phd": "2020.03 – 2024.08"
+        },
+        "education": [
+          {
+            "degree": "phd",
+            "school": "Dongduk Women's University",
+            "dept": "Business Analytics",
+            "year": "2024"
+          },
+          {
+            "degree": "ms",
+            "school": "Dongduk Women's University",
+            "dept": "Business Analytics",
+            "year": "2020"
+          },
+          {
+            "degree": "bs",
+            "school": "KAIST",
+            "dept": "Industrial Engineering",
+            "year": "2017"
+          }
+        ],
+        "thesis": {
+          "phd": {
+            "title": "Graph Neural Networks for Financial Market Prediction",
+            "url": "https://example.com/thesis/kang-phd-2024.pdf"
+          },
+          "ms": {
+            "title": "Time Series Analysis for High-Frequency Trading",
+            "url": "https://example.com/thesis/kang-ms-2020.pdf"
+          }
+        },
+        "company": "Ipsum Asset Management"
+      },
+      {
+        "_comment": "석사 졸업생 예시",
+        "name": "윤석사",
+        "nameKo": "(Yoon M.S.)",
+        "degrees": ["ms"],
+        "periods": {
+          "ms": "2023.03 – 2025.02"
+        },
+        "education": [
+          {
+            "degree": "ms",
+            "school": "Dongduk Women's University",
+            "dept": "Financial Data Science",
+            "year": "2025"
+          },
+          {
+            "degree": "bs",
+            "school": "Korea University",
+            "dept": "Computer Science",
+            "year": "2023"
+          }
+        ],
+        "thesis": {
+          "ms": {
+            "title": "NLP-based Sentiment Analysis for Korean Financial News",
+            "url": "https://example.com/thesis/yoon-ms-2025.pdf"
+          }
+        },
+        "company": "Dolor Capital Partners"
+      }
+    ],
+    
+    "undergrad_alumni": [
+      {
+        "_comment": "학부연구생 졸업 예시",
+        "name": "장학사",
+        "nameKo": "(Jang B.S.)",
+        "degrees": ["ur"],
+        "cohort": "1기",
+        "periods": {
+          "ur": "2022.09 – 2024.08"
+        },
+        "education": [
+          {
+            "degree": "bs",
+            "school": "Dongduk Women's University",
+            "dept": "Business Analytics",
+            "year": "2024"
+          }
+        ],
+        "thesis": {
+          "ur": {
+            "title": "Machine Learning Approaches for Credit Risk Assessment",
+            "url": "https://example.com/thesis/jang-bs-2024.pdf"
+          }
+        },
+        "company": "KB Securities"
+      },
+      {
+        "_comment": "학부연구생 졸업 예시 2",
+        "name": "박학사",
+        "nameKo": "(Park B.S.)",
+        "degrees": ["ur"],
+        "cohort": "1기",
+        "periods": {
+          "ur": "2021.03 – 2023.02"
+        },
+        "education": [
+          {
+            "degree": "bs",
+            "school": "Dongduk Women's University",
+            "dept": "Business Analytics",
+            "year": "2023"
+          }
+        ],
+        "thesis": {
+          "ur": {
+            "title": "Deep Learning for Customer Churn Prediction",
+            "url": "https://example.com/thesis/park-bs-2023.pdf"
+          }
+        },
+        "company": "Samsung SDS"
+      }
+    ]
+  },
+  
+  "_field_descriptions": {
+    "name": "이름 (영문 성)",
+    "nameKo": "이름 표기 (괄호 안에 영문이름, 학위)",
+    "degrees": "취득 학위 배열 ['phd', 'ms', 'ur']",
+    "cohort": "기수 (학부연구생만)",
+    "periods": "재학 기간 {학위: 'YYYY.MM – YYYY.MM'}",
+    "education": "학력 배열 [{degree, school, dept, year}]",
+    "thesis": "논문 정보 {학위: {title, url}}",
+    "company": "현재 소속"
+  }
+}

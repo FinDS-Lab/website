@@ -1,0 +1,91 @@
+{
+  "_comment": "=== FINDS Lab. 동문(Alumni) 템플릿 ===",
+  "_usage": "이 내용을 /public/data/alumni.json 파일의 해당 배열에 추가",
+  "_arrays": {
+    "graduateAlumni": "대학원 졸업생 (박사, 석사)",
+    "undergradAlumni": "학부연구생 졸업"
+  },
+  
+  "_graduate_example": {
+    "_comment": "=== 대학원 졸업생 (박사/석사) 템플릿 ===",
+    "name": "홍길동",
+    "nameKo": "(Hong, Ph.D.)",
+    "degrees": ["phd"],
+    "_degrees_options": ["phd", "ms", "or both: [\"ms\", \"phd\"]"],
+    
+    "periods": {
+      "phd": "2020.03 – 2025.02",
+      "ms": "2018.03 – 2020.02"
+    },
+    "_periods_note": "해당 학위만 작성 (마지막 날짜가 '졸업 시점'으로 표시됨)",
+    
+    "education": [
+      {
+        "_comment": "FINDS Lab.에서 취득한 학위 (필수)",
+        "degree": "phd",
+        "school": "Gachon University",
+        "dept": "Business Administration",
+        "year": "2025"
+      },
+      {
+        "_comment": "이전 학위들 (선택)",
+        "degree": "ms",
+        "school": "Gachon University", 
+        "dept": "Business Administration",
+        "year": "2020"
+      },
+      {
+        "degree": "bs",
+        "school": "Previous University",
+        "dept": "Computer Science",
+        "year": "2018"
+      }
+    ],
+    "_education_note": "school에 'Gachon' 또는 'Dongduk'이 포함되면 Affiliation으로 표시됨",
+    
+    "thesis": {
+      "phd": {
+        "title": "박사 학위논문 제목",
+        "url": "https://example.com/thesis/hong-phd-2025.pdf"
+      },
+      "ms": {
+        "title": "석사 학위논문 제목",
+        "url": "https://example.com/thesis/hong-ms-2020.pdf"
+      }
+    },
+    "_thesis_note": "url이 없으면 빈 문자열 또는 필드 삭제",
+    
+    "company": "현재 소속 회사/기관",
+    "_company_note": "없으면 빈 문자열 또는 필드 삭제"
+  },
+  
+  "_undergrad_example": {
+    "_comment": "=== 학부연구생 졸업 템플릿 ===",
+    "name": "김학사",
+    "nameKo": "(Kim, B.S.)",
+    "degrees": ["ur"],
+    "cohort": "1기",
+    
+    "periods": {
+      "ur": "2024.03 – 2025.02"
+    },
+    
+    "education": [
+      {
+        "degree": "bs",
+        "school": "Gachon University",
+        "dept": "Business Administration",
+        "year": "2025"
+      }
+    ],
+    
+    "thesis": {
+      "ur": {
+        "title": "학부 연구 논문/프로젝트 제목",
+        "url": "https://example.com/thesis/kim-bs-2025.pdf"
+      }
+    },
+    
+    "company": "취업 회사"
+  }
+}
