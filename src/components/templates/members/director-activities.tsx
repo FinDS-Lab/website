@@ -1132,15 +1132,11 @@ export const MembersDirectorActivitiesTemplate = () => {
     return Array.from(yearsSet).sort((a, b) => Number(b) - Number(a))
   }, [menteesByYear])
 
-  // 연도별 멘티 수 계산 (해당 연도까지의 누적 멘티 수)
+  // 연도별 멘티 수 계산 (해당 연도만)
   const getMenteeCountByYear = useCallback((year: string) => {
     const uniqueMentees = new Set<string>()
-    const selectedYearNum = Number(year)
     Object.keys(menteesByYear).forEach((key) => {
-      // 연도 추출 (2024-1 → 2024)
-      const keyYear = Number(key.split('-')[0])
-      // 선택한 연도 이하의 모든 멘티 포함
-      if (keyYear <= selectedYearNum) {
+      if (key === year || key.startsWith(year + '-')) {
         menteesByYear[key].forEach((m) => uniqueMentees.add(m.id))
       }
     })
@@ -1156,12 +1152,10 @@ export const MembersDirectorActivitiesTemplate = () => {
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
       result = Array.from(uniqueMentees.values())
     } else {
-      // 선택한 연도 이하의 모든 멘티 포함 (해당 연도까지의 누적)
+      // 선택한 연도와 해당 연도의 학기들 모두 포함
       const uniqueMentees = new Map<string, MenteeWithId>()
-      const selectedYearNum = Number(selectedMentoringYear)
       Object.keys(menteesByYear).forEach((key) => {
-        const keyYear = Number(key.split('-')[0])
-        if (keyYear <= selectedYearNum) {
+        if (key === selectedMentoringYear || key.startsWith(selectedMentoringYear + '-')) {
           menteesByYear[key].forEach((m) => uniqueMentees.set(m.id, m))
         }
       })
@@ -1498,7 +1492,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalItems}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalItems}</span>
                                   <div className="flex items-center gap-6">
                                     <span className="text-sm md:text-base">📊</span>
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -1686,14 +1680,14 @@ export const MembersDirectorActivitiesTemplate = () => {
                         )}
                       </div>
 
-                      {/* Journal Reviewer - Table format */}
+                      {/* Journal Reviewer - Single column with SCI badge */}
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center justify-between mb-16">
                           <div className="flex items-center gap-8">
                             <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                             <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{journals.length}</span>
                           </div>
-                          {journals.length > 20 && (
+                          {journals.length > 15 && (
                             <button
                               onClick={() => setShowAllJournals(!showAllJournals)}
                               className="text-xs text-primary font-medium flex items-center gap-4 hover:underline"
@@ -1703,23 +1697,26 @@ export const MembersDirectorActivitiesTemplate = () => {
                             </button>
                           )}
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-6">
                           {displayedJournals.map((journal) => (
                             <a
                               key={journal.id}
                               href={journal.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-primary/30"
+                              className="flex items-center justify-between px-16 py-10 rounded-lg text-sm font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-primary/30"
                               title={`${journal.name} (${journal.type}, since ${journal.since})`}
                             >
-                              <span className="text-gray-700 truncate mr-8">{journal.name}</span>
-                              <span className={`px-6 py-1 rounded text-[10px] font-bold shrink-0 ${
-                                journal.type === 'SCIE' || journal.type === 'SSCI' ? 'bg-primary text-white' :
-                                  journal.type === 'ESCI' || journal.type === 'SCOPUS' ? 'bg-[#D6B04C] text-white' :
-                                    'bg-gray-400 text-white'
+                              <span className="text-gray-700">{journal.name}</span>
+                              <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
+                                journal.type === 'SCIE' ? 'bg-[#D6B04C] text-white' :
+                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
+                                journal.type === 'A&HCI' ? 'bg-[#726A69] text-white' :
+                                journal.type === 'ESCI' ? 'bg-[#D6C360] text-white' :
+                                journal.type === 'SCOPUS' ? 'bg-[#E8D688] text-gray-700' :
+                                'bg-[#FFBAC4] text-gray-700'
                               }`}>
-                                {journal.type}
+                                {journal.type} {(journal.type === 'SCIE' || journal.type === 'SSCI' || journal.type === 'A&HCI' || journal.type === 'ESCI') ? '' : ''}
                               </span>
                             </a>
                           ))}
@@ -1904,34 +1901,31 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                 </div>
 
-                {/* Year Filter - Cumulative */}
-                <div className="px-20 md:px-32 py-16 border-b border-gray-100">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase mb-12">Filter by Year (Cumulative)</p>
-                  <div className="flex items-center gap-8 md:gap-12 overflow-x-auto">
+                {/* Year Filter */}
+                <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
+                  <button
+                    onClick={() => setSelectedMentoringYear('all')}
+                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
+                      selectedMentoringYear === 'all'
+                        ? 'bg-primary text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    All ({mentees.length})
+                  </button>
+                  {mentoringYears.map((year) => (
                     <button
-                      onClick={() => setSelectedMentoringYear('all')}
+                      key={year}
+                      onClick={() => setSelectedMentoringYear(year)}
                       className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
-                        selectedMentoringYear === 'all'
+                        selectedMentoringYear === year
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      All ({mentees.length})
+                      {year} ({getMenteeCountByYear(year)})
                     </button>
-                    {mentoringYears.slice(0, 5).map((year) => (
-                      <button
-                        key={year}
-                        onClick={() => setSelectedMentoringYear(year)}
-                        className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
-                          selectedMentoringYear === year
-                            ? 'bg-primary text-white'
-                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                        }`}
-                      >
-                        ~{year} ({getMenteeCountByYear(year)})
-                      </button>
-                    ))}
-                  </div>
+                  ))}
                 </div>
 
                 {/* University Distribution - Clickable Filter */}
@@ -2030,7 +2024,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <div className="px-20 md:px-32 py-12 md:py-16 bg-gray-50/50 border-t border-gray-100">
                   <p className="text-[11px] md:text-xs text-gray-500">
                     Showing <span className="font-bold text-gray-700">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
-                    {selectedMentoringYear !== 'all' && <span className="text-primary"> up to {selectedMentoringYear}</span>}
+                    {selectedMentoringYear !== 'all' && <span className="text-primary"> in {selectedMentoringYear}</span>}
                     {selectedUniversity !== 'all' && <span className="text-primary"> from {selectedUniversity}</span>}
                   </p>
                 </div>

@@ -919,7 +919,6 @@ export const MembersDirectorTemplate = () => {
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
                   <span className="w-1 h-20 bg-primary rounded-full" />
                   Teaching
-                  <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full ml-4">{totalSemesters} semesters</span>
                 </h3>
 
                 {/* Search */}

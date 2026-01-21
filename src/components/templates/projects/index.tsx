@@ -242,7 +242,7 @@ export const ProjectsTemplate = () => {
   const statisticsItems = [
     { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
     { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#E8889C]' },
-    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#D6B04C]' },
+    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#4A4A4A]' },
   ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''

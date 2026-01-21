@@ -303,7 +303,7 @@ export const PublicationsTemplate = () => {
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' }, // Red for conferences
       { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' }, // Light yellow for books
       { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' }, // Sakura for reports
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#D6B04C' }, // Gold for total
+      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#4A4A4A' }, // Dark gray for total
     ]
   }, [publications])
 
@@ -520,24 +520,33 @@ export const PublicationsTemplate = () => {
               <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Authorship Remarks</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
-              {authorshipRemarks.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
-                >
-                  <div className="size-32 md:size-46 flex-shrink-0">
-                    <img
-                      src={pubIcons[index]}
-                      alt={item.label}
-                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                    />
+              {authorshipRemarks.map((item, index) => {
+                // FINDS Lab color palette for icons
+                const colors = ['#D6B04C', '#D6B04C', '#D6C360', '#D6B04C', '#D6B04C', '#E8D688', '#726A69', '#AC0E0E']
+                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(172,14,14,0.15)']
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
+                  >
+                    <div 
+                      className="size-32 md:size-46 flex-shrink-0 rounded-lg flex items-center justify-center"
+                      style={{backgroundColor: bgColors[index]}}
+                    >
+                      <img
+                        src={pubIcons[index]}
+                        alt={item.label}
+                        className="w-[70%] h-[70%] object-contain"
+                        style={{filter: `drop-shadow(0 0 0 ${colors[index]})`}}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs md:text-base font-semibold text-gray-900">{item.label}</span>
+                      <span className="text-[10px] md:text-xs text-gray-500 hidden sm:block">{item.subLabel}</span>
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs md:text-base font-semibold text-gray-900">{item.label}</span>
-                    <span className="text-[10px] md:text-xs text-gray-500 hidden sm:block">{item.subLabel}</span>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 

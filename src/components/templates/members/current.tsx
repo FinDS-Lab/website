@@ -115,7 +115,7 @@ export const MembersCurrentTemplate = () => {
       { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B04C' },
       { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#E8889C' },
       { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#FFBAC4' },
-      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#D6B04C' },
+      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#4A4A4A' },
     ]
   }, [members])
 

@@ -74,9 +74,9 @@ export const AboutHonorsTemplate = () => {
       })
     })
     return [
-      { label: 'Honors', subLabel: 'Honorary Recognition', count: honors, icon: Medal },
-      { label: 'Awards', subLabel: 'Competition Awards', count: awards, icon: Trophy },
-      { label: 'Total', subLabel: 'Total Achievements', count: honors + awards, icon: Award },
+      { label: 'Honors', subLabel: 'Honorary Recognition', count: honors, icon: Medal, color: '#D6B04C' },
+      { label: 'Awards', subLabel: 'Competition Awards', count: awards, icon: Trophy, color: '#AC0E0E' },
+      { label: 'Total', subLabel: 'Total Achievements', count: honors + awards, icon: Award, color: '#4A4A4A' },
     ]
   }, [honorsData])
 
@@ -159,25 +159,24 @@ export const AboutHonorsTemplate = () => {
       {/* Content */}
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px]">
         {/* Statistics Section */}
-        <div className="flex flex-col gap-12 md:gap-[20px] mb-24 md:mb-[40px]">
-          <div className="flex items-center gap-[8px]">
-            <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Statistics</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 md:gap-[20px]">
+        <div className="flex flex-col gap-16 md:gap-24 mb-24 md:mb-[40px]">
+          <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <span className="w-8 h-8 rounded-full bg-primary" />
+            Statistics
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between px-16 md:px-20 py-16 md:py-[24px] bg-white border border-gray-100 rounded-xl md:rounded-[20px] shadow-sm"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
-                <div className="flex items-center gap-8 md:gap-[12px]">
-                  <stat.icon className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
-                  <div className="flex flex-col">
-                    <span className="text-sm md:text-md font-semibold text-gray-900">{stat.label}</span>
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
+                  <div className="flex items-center gap-6">
+                    <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
                   </div>
-                </div>
-                <div className="flex items-baseline gap-[2px]">
-                  <span className="text-xl md:text-[24px] font-semibold text-primary">{stat.count}</span>
-                  <span className="text-[10px] md:text-[12px] font-semibold text-gray-700">건</span>
                 </div>
               </div>
             ))}
@@ -237,7 +236,7 @@ export const AboutHonorsTemplate = () => {
                       {isCurrentYear && (
                         <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
-                      <span className={`text-xs md:text-[14px] ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>{yearCount}건</span>
+                      <span className={`text-xs md:text-[14px] ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>{yearCount}</span>
                     </div>
                     {expandedYear === year ? (
                       <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />

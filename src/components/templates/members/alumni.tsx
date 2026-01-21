@@ -228,7 +228,7 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalCount}</span>
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#4A4A4A'}}>{totalCount}</span>
                     <span className="text-xs md:text-sm font-medium text-gray-600">
                       Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
                     </span>
