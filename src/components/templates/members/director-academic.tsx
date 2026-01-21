@@ -121,7 +121,7 @@ const employment = [
   {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab.', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2025.08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025.03 – 2025.08', logo: logoKaist, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
@@ -218,7 +218,7 @@ const CollaborationNetwork = memo(() => {
   const [loading, setLoading] = useState(true)
   const [hoveredNode, setHoveredNode] = useState<string | null>(null)
   const [selectedNode, setSelectedNode] = useState<string | null>(null)
-  const [coworkRateThreshold, setCoworkRateThreshold] = useState(2) // 1-100%, default 2%
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(0) // 0-100%, default 0%
   const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
@@ -288,7 +288,7 @@ const CollaborationNetwork = memo(() => {
 
         // Get collaborators filtered by co-work rate threshold
         const directorCollabs = collaborationMap.get('1') || new Map()
-        const minPubCount = Math.max(1, Math.ceil(totalPubs * coworkRateThreshold / 100))
+        const minPubCount = coworkRateThreshold === 0 ? 1 : Math.max(1, Math.ceil(totalPubs * coworkRateThreshold / 100))
         const topCollaborators = Array.from(directorCollabs.entries())
           .filter(([, count]) => count >= minPubCount) // cowork rate 기준 필터링
           .sort((a, b) => b[1] - a[1])
@@ -623,7 +623,7 @@ const CollaborationNetwork = memo(() => {
           <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">Co-work Rate ≥</span>
           <input
             type="range"
-            min="1"
+            min="0"
             max="100"
             value={coworkRateThreshold}
             onChange={(e) => setCoworkRateThreshold(Number(e.target.value))}
@@ -946,7 +946,7 @@ export const MembersDirectorAcademicTemplate = () => {
     projects: true,
     teaching: true,
     lecturer: true,
-    teachingAssistant: false
+    teachingAssistant: true
   })
   
   const toggleSection = (section: string) => {
@@ -1668,7 +1668,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                     </div>
                                     <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
                                     <p className="text-[10px] md:text-xs text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
-                                    <p className="text-[10px] md:text-xs text-gray-500 mt-4">{project.fundingAgency}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-4"><span className="font-bold">{project.fundingAgency}</span></p>
                                   </div>
                                 </div>
                               </div>

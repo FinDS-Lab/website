@@ -78,6 +78,7 @@ const education = [
       {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
     ],
     awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
+    honors: [],
     logo: logoKaist
   },
   {
@@ -90,6 +91,7 @@ const education = [
     ],
     leadership: [],
     awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    honors: [],
     logo: logoKaist
   },
   {
@@ -105,7 +107,8 @@ const education = [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017.01 - 2017.11'},
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016.01 - 2016.12'},
     ],
-    awards: [{title: 'Valedictorian', org: '1st out of 86 students'}],
+    awards: [],
+    honors: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
   },
 ]
@@ -117,7 +120,7 @@ const employment = [
   {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab.', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2025.08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025.03 – 2025.08', logo: logoKaist, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering', departmentKo: '전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
@@ -514,8 +517,10 @@ export const MembersDirectorTemplate = () => {
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Department of Big Data Business Management</p>
+                    <p className="text-[10px] md:text-xs text-gray-500 font-normal">Big Data Business Management Major</p>
+                    <p className="text-[10px] md:text-xs text-gray-600 font-medium">Department of Finance and Big Data</p>
+                    <p className="text-[10px] md:text-xs text-gray-700 font-semibold">College of Business</p>
+                    <p className="text-[10px] md:text-xs text-gray-800 font-bold">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
@@ -571,11 +576,11 @@ export const MembersDirectorTemplate = () => {
                   View CV <ExternalLink size={14}/>
                 </button>
                 <a 
-                  href="https://scholar.google.com" 
+                  href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
-                  style={{color: '#ffffff'}}
+                  className="flex items-center justify-center gap-6 py-12 text-xs md:text-sm font-bold rounded-xl hover:opacity-90 transition-all"
+                  style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
                 >
                   Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
@@ -597,36 +602,36 @@ export const MembersDirectorTemplate = () => {
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
+                  I am an Assistant Professor at Gachon University and the Director of FINDS Lab, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My research brings together modern data science and financial engineering to tackle practical questions in finance and broader business domains.
+                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
-                  In particular, I focus on three directions:
+                  My research focuses on three main areas:
                 </p>
                 <div className="space-y-16 mb-24">
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">AI-driven solutions for quantitative finance</span> — portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                      <span className="font-semibold text-gray-800">AI applications in quantitative finance</span> — including portfolio optimization, algorithmic trading, and financial time-series forecasting.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Advanced analytics across business domains</span>, employing a comprehensive suite of analytical approaches—from time-series models to graph-based analytics and beyond—to surface actionable insights.
+                      <span className="font-semibold text-gray-800">Business analytics</span> using various analytical methods—from time-series models to graph-based approaches—to uncover meaningful insights.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Intelligent decision support systems</span> that pair optimization techniques with user-friendly interfaces for complex business problems.
+                      <span className="font-semibold text-gray-800">Decision support systems</span> that combine optimization methods with intuitive interfaces for solving complex business problems.
                     </p>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.
+                  My goal is to connect academic research with practical applications, developing ideas that are both rigorous and useful.
                 </p>
               </div>
               )}
@@ -701,9 +706,15 @@ export const MembersDirectorTemplate = () => {
                           <div className="flex flex-wrap items-center gap-8 mb-8">
                             <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
                             {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-4 px-8 py-4 bg-[#FFF3CC] text-[#B8962D] text-[10px] font-bold rounded-full">
+                              <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
                                 <Award size={10} />
                                 Award
+                              </span>
+                            )}
+                            {edu.honors && edu.honors.length > 0 && (
+                              <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
+                                <Medal size={10} />
+                                Honor
                               </span>
                             )}
                           </div>
@@ -759,11 +770,28 @@ export const MembersDirectorTemplate = () => {
                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
                             <div className="space-y-6">
                               {edu.awards.map((a, i) => (
-                                <div key={i} className="flex items-start gap-8 bg-gray-50 rounded-lg px-12 py-8">
-                                  <span className="text-[#D6B04C] shrink-0">🏆</span>
+                                <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                  <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-gray-800">{a.title}</span>
                                     <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {edu.honors && edu.honors.length > 0 && (
+                          <div className="pt-12 border-t border-gray-100">
+                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Honors</p>
+                            <div className="space-y-6">
+                              {edu.honors.map((h, i) => (
+                                <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
+                                  <span className="shrink-0" style={{color: '#D6B04C'}}>🎖️</span>
+                                  <div className="flex-1">
+                                    <span className="text-xs font-semibold text-gray-800">{h.title}</span>
+                                    <span className="text-[10px] text-gray-500 block mt-2">{h.org}</span>
                                   </div>
                                 </div>
                               ))}

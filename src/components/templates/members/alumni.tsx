@@ -20,6 +20,8 @@ type AlumniMember = {
   nameKo: string
   degrees: string[]
   cohort?: string
+  cohortName?: string
+  currentPosition?: string
   periods: Record<string, string>
   education: Education[]
   thesis?: Record<string, Thesis>
@@ -554,11 +556,11 @@ export const MembersAlumniTemplate = () => {
                     <table className="w-full min-w-[700px] table-fixed">
                       <thead>
                         <tr className="bg-gray-50/80">
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Cohort</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation (at time of internship)</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
-                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Current Position</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Name</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Cohort</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (at time of internship)</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
+                          <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Current Position</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -576,9 +578,14 @@ export const MembersAlumniTemplate = () => {
                               </div>
                             </td>
                             <td className="py-12 md:py-16 px-12 md:px-16">
-                              <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
-                                {alumni.cohort || '-'}
-                              </span>
+                              <div className="flex flex-col gap-4">
+                                <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                  {alumni.cohort || '-'}
+                                </span>
+                                {alumni.cohortName && (
+                                  <span className="text-[10px] text-gray-500">{alumni.cohortName}</span>
+                                )}
+                              </div>
                             </td>
                             <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
                               {getAffiliation(alumni)}
@@ -587,10 +594,10 @@ export const MembersAlumniTemplate = () => {
                               {alumni.periods?.ur || '-'}
                             </td>
                             <td className="py-12 md:py-16 px-12 md:px-16">
-                              {alumni.company ? (
+                              {(alumni.currentPosition || alumni.company) ? (
                                 <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
                                   <Building2 size={14} style={{color: '#FFBAC4'}}/>
-                                  <span>{alumni.company}</span>
+                                  <span>{alumni.currentPosition || alumni.company}</span>
                                 </div>
                               ) : (
                                 <span className="text-gray-400">-</span>

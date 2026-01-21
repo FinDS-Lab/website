@@ -56,7 +56,7 @@ const FilterModal = ({
     {
       key: 'indexing' as const,
       label: 'Journal Indexing',
-      options: ['SCIE', 'SSCI', 'A&HCI', 'ESCI', 'Scopus', 'Other International', 'KCI Excellent', 'KCI Accredited', 'Other Domestic', 'Preprint']
+      options: ['SCIE', 'SSCI', 'A&HCI', 'ESCI', 'Scopus', 'Other International', 'KCI', 'Other Domestic', 'Preprint']
     },
     {
       key: 'conference' as const,
@@ -721,14 +721,14 @@ export const PublicationsTemplate = () => {
                                           pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
                                           pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
                                           pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.08)' :
-                                          ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.10)' :
+                                          pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.10)' :
                                           'rgba(148,163,184,0.10)',
                                         borderColor: 
                                           ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
                                           pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
                                           pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
                                           pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.18)' :
-                                          ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgba(100,116,139,0.20)' :
+                                          pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.20)' :
                                           'rgba(148,163,184,0.20)'
                                       }}
                                     >
@@ -740,7 +740,7 @@ export const PublicationsTemplate = () => {
                                             pub.indexing_group === 'ESCI' ? 'rgba(180,130,20,0.8)' :
                                             pub.indexing_group === 'Scopus' ? 'rgb(160,120,40)' :
                                             pub.indexing_group === 'Other International' ? 'rgba(160,120,40,0.75)' :
-                                            ['KCI Excellent', 'KCI Accredited'].includes(pub.indexing_group) ? 'rgb(100,116,139)' :
+                                            pub.indexing_group === 'KCI' ? 'rgb(100,116,139)' :
                                             'rgb(148,163,184)'
                                         }}
                                       >
