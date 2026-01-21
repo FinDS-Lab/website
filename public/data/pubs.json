@@ -33,7 +33,7 @@
     "code_label": "C",
     "published_date": "2025-12-05",
     "year": 2025,
-    "title": "Graph-based analysis of research trends in fintech and digital finance",
+    "title": "Graph-Based Analysis of Research Trends in Fintech and Digital Finance",
     "title_ko": "그래프 기반 핀테크 및 디지털 금융 연구 동향 분석",
     "authors": [
       1,
@@ -76,7 +76,7 @@
     "code_label": "C",
     "published_date": "2025-12-05",
     "year": 2025,
-    "title": "Examining the best lag effects in the dynamic causality analysis of Bitcoin's Kimchi premium: A comprehensive temporal dependency approach",
+    "title": "Examining the Best Lag Effects in the Dynamic Causality Analysis of Bitcoin's Kimchi Premium: A Comprehensive Temporal Dependency Approach",
     "title_ko": "비트코인 김치 프리미엄의 동적 인과 관계 분석에서 최적의 시차 효과 탐구",
     "authors": [
       1
@@ -105,7 +105,7 @@
     "code_label": "J",
     "published_date": "2025-12-01",
     "year": 2025,
-    "title": "Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis across Regional Disparities and Temporal Shifts",
+    "title": "Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis Across Regional Disparities and Temporal Shifts",
     "authors": [
       1,
       45
@@ -136,7 +136,7 @@
     "code_label": "C",
     "published_date": "2025-11-28",
     "year": 2025,
-    "title": "Financial asset return prediction via diversified statistical dependence-based spatiotemporal graph encoding",
+    "title": "Financial Asset Return Prediction via Diversified Statistical Dependence-Based Spatiotemporal Graph Encoding",
     "title_ko": "다변화된 통계적 의존성 기반 시공간 그래프 인코딩을 활용한 금융 상품 수익률 예측",
     "authors": [
       1,
@@ -167,7 +167,7 @@
     "code_label": "C",
     "published_date": "2025-11-07",
     "year": 2025,
-    "title": "Analyzing Causal Risk Spillover Mechanisms between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm",
+    "title": "Analyzing Causal Risk Spillover Mechanisms Between Major Metal Futures and Cryptocurrency Markets Using the PCMCI+ Algorithm",
     "title_ko": "PCMCI+ 알고리즘을 활용한 주요 금속 선물과 암호화폐 시장의 인과적 리스크 전이 메커니즘 분석",
     "authors": [
       1,
@@ -383,7 +383,7 @@
     "code_label": "C",
     "published_date": "2025-11-01",
     "year": 2025,
-    "title": "Farthest-first asset selection under cardinality constraints based on dynamic planar maximally filtered graphs",
+    "title": "Farthest-First Asset Selection Under Cardinality Constraints Based on Dynamic Planar Maximally Filtered Graphs",
     "title_ko": "동적 평면 극대 필터링 그래프 기반 최원 우선 전략을 활용한 개수 제약하에서의 자산 선택 방법론",
     "authors": [
       1
@@ -486,7 +486,7 @@
     "code_label": "C",
     "published_date": "2025-08-29",
     "year": 2025,
-    "title": "Sub‑Universe Portfolio Management Strategy through Financial Statement‑Based Clustering",
+    "title": "Sub‑Universe Portfolio Management Strategy Through Financial Statement‑Based Clustering",
     "title_ko": "재무제표 기반 클러스터링을 통한 하위 투자군 기반 포트폴리오 운용전략",
     "authors": [
       8,
@@ -821,7 +821,7 @@
     "code_label": "C",
     "published_date": "2024-11-22",
     "year": 2024,
-    "title": "An empirical verification of normality in financial time series data – focusing on moving-window-based normality tests",
+    "title": "An Empirical Verification of Normality in Financial Time Series Data – Focusing on Moving-Window-Based Normality Tests",
     "title_ko": "금융 시계열의 정규성에 대한 경험적 검증 – 이동창 기반 정규성 검정을 중심으로",
     "authors": [
       1,
@@ -913,7 +913,7 @@
     "code_label": "C",
     "published_date": "2024-11-15",
     "year": 2024,
-    "title": "Analysis of asset allocation results based on predictions for data-driven financial personas",
+    "title": "Analysis of Asset Allocation Results Based on Predictions for Data-Driven Financial Personas",
     "title_ko": "데이터 기반 금융 페르소나별 예측치 기반의 자산 배분 결과 분석",
     "authors": [
       1,
@@ -944,7 +944,7 @@
     "code_label": "C",
     "published_date": "2024-11-08",
     "year": 2024,
-    "title": "Utilization of conditional information transfer graphs for predicting downside risk in financial markets",
+    "title": "Utilization of Conditional Information Transfer Graphs for Predicting Downside Risk in Financial Markets",
     "title_ko": "금융 시장 하방 위험의 예측을 위한 조건부 정보 전이 그래프의 활용",
     "authors": [
       1,
@@ -1272,7 +1272,7 @@
     "code_label": "C",
     "published_date": "2024-10-24",
     "year": 2024,
-    "title": "Investigating the presence of normality in financial time series through empirical analysis – focusing on the discrepancy between theoretical and empirical values of statistical dependence measures related to the Pearson correlation coefficient",
+    "title": "Investigating the Presence of Normality in Financial Time Series Through Empirical Analysis – Focusing on the Discrepancy Between Theoretical and Empirical Values of Statistical Dependence Measures Related to the Pearson Correlation Coefficient",
     "title_ko": "금융 시계열의 정규성에 대한 경험적 검증 – Pearson 상관 계수와 유관한 통계적 의존성 지표의 이론치와 측정치 간의 괴리를 중심으로",
     "authors": [
       1,
@@ -2366,7 +2366,7 @@
     "code_label": "C",
     "published_date": "2023-11-25",
     "year": 2023,
-    "title": "Verifying financial time-series prediction importance based on Wasserstein distance characteristics between distributions",
+    "title": "Verifying Financial Time-Series Prediction Importance Based on Wasserstein Distance Characteristics Between Distributions",
     "title_ko": "분포 간 Wasserstein 거리 특성을 기반으로 한 금융 시계열 예측 중요성 검증",
     "authors": [
       1,
@@ -3121,7 +3121,7 @@
     "code_label": "C",
     "published_date": "2023-10-26",
     "year": 2023,
-    "title": "An interpretation of interdependence of market fluctuation estimation framework via omnifarious bivariate distance functions",
+    "title": "An Interpretation of Interdependence of Market Fluctuation Estimation Framework via Omnifarious Bivariate Distance Functions",
     "authors": [
       1,
       2
@@ -3407,7 +3407,7 @@
     "code_label": "C",
     "published_date": "2023-06-15",
     "year": 2023,
-    "title": "An explainable financial portfolio provision service framework based on investment clusters and product networks",
+    "title": "An Explainable Financial Portfolio Provision Service Framework Based on Investment Clusters and Product Networks",
     "title_ko": "투자 군집과 상품 네트워크를 바탕으로 한 설명 가능한 금융 포트폴리오 제공 서비스 프레임워크 개발",
     "authors": [
       1,
@@ -4654,7 +4654,7 @@
     "code_label": "C",
     "published_date": "2022-06-17",
     "year": 2022,
-    "title": "Predicting fluctuations of the KOSPI and KOSDAQ based on nonlinear network using return data of global market indices",
+    "title": "Predicting Fluctuations of the KOSPI and KOSDAQ Based on Nonlinear Network Using Return Data of Global Market Indices",
     "authors": [
       1,
       2
@@ -4785,7 +4785,7 @@
     "code_label": "C",
     "published_date": "2022-06-03",
     "year": 2022,
-    "title": "Analyzing the Possibility of Incorporating Cryptocurrency ETF Into the Korean Financial Market: From the Perspective of Systemic Risk and Mean-Variance Portfolio Theory",
+    "title": "Analyzing the Possibility of Incorporating Cryptocurrency ETF into the Korean Financial Market: From the Perspective of Systemic Risk and Mean-Variance Portfolio Theory",
     "title_ko": "국내 시장에서의 암호화폐 ETF 도입 가능성 분석 – 시스템 리스크와 평균–분산 포트폴리오 이론의 관점에서",
     "authors": [
       1,
@@ -5057,7 +5057,7 @@
     "code_label": "C",
     "published_date": "2022-05-13",
     "year": 2022,
-    "title": "A Study on the Linear and Non-linear Financial Market Networks Based on the Empirical Characteristics of the Global Financial Market Return Distributions",
+    "title": "A Study on the Linear and Non-Linear Financial Market Networks Based on the Empirical Characteristics of the Global Financial Market Return Distributions",
     "title_ko": "글로벌 금융 시장 수익률 분포의 경험적 특성을 기반으로 한 선형 및 비선형 금융 시장 네트워크에 관한 연구",
     "authors": [
       1,
@@ -5161,7 +5161,7 @@
     "code_label": "C",
     "published_date": "2021-12-20",
     "year": 2021,
-    "title": "Forecasting exchange rate fluctuations using nonlinear causal network analysis and deep learning techniques",
+    "title": "Forecasting Exchange Rate Fluctuations Using Nonlinear Causal Network Analysis and Deep Learning Techniques",
     "authors": [
       1,
       73,
@@ -5572,7 +5572,7 @@
     "code_label": "C",
     "published_date": "2021-11-12",
     "year": 2021,
-    "title": "Developing an Exchange Trade Fund (ETF) Black-Litterman Model-Based Bottom-up Investment Strategy Using Shapley Additive Explanations (SHAP) Values and Causality Measures",
+    "title": "Developing an Exchange Trade Fund (ETF) Black-Litterman Model-Based Bottom-Up Investment Strategy Using Shapley Additive Explanations (SHAP) Values and Causality Measures",
     "title_ko": "SHAP 및 인과관계를 이용한 전망을 기반으로 한 Black–Litterman 모형을 이용한 Bottom–up 방식의 ETF 포트폴리오 설계",
     "authors": [
       1,
@@ -5790,7 +5790,7 @@
     "code_label": "C",
     "published_date": "2021-10-22",
     "year": 2021,
-    "title": "Secular Trends of Dietary Patterns in Korean Adults Over the Past 10 Years Using Natural Language Processing Techniques",
+    "title": "Secular Trends of Dietary Patterns in Korean Adults over the Past 10 Years Using Natural Language Processing Techniques",
     "title_ko": "자연어 처리 기법을 활용한 한국 성인의 식생활 패턴의 대중적 경향의 분석",
     "authors": [
       1,
@@ -5959,7 +5959,7 @@
     "code_label": "C",
     "published_date": "2020-11-13",
     "year": 2020,
-    "title": "Developing a Themed Stock-Based Network Using Text Mining and Causal Relationship Network Analysis – From the Perspective of RegTech and SupTech",
+    "title": "Developing a Themed Stock-Based Network Using Text Mining and Causal Relationship Network Analysis – from the Perspective of RegTech and SupTech",
     "title_ko": "텍스트 마이닝과 인과관계 네트워크 분석을 이용한 테마형 주식기반 네트워크 개발 – 레그테크와 섭테크의 관점에서",
     "authors": [
       1,
@@ -6228,7 +6228,7 @@
     "code_label": "C",
     "published_date": "2019-04-12",
     "year": 2019,
-    "title": "Literature review: Tax-loss harvesting (TLH), a fascinating portfolio construction strategy for taxable investors",
+    "title": "Literature Review: Tax-Loss Harvesting (TLH), a Fascinating Portfolio Construction Strategy for Taxable Investors",
     "authors": [
       1,
       108,
@@ -6259,7 +6259,7 @@
     "code_label": "C",
     "published_date": "2017-11-04",
     "year": 2017,
-    "title": "Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of Aram (All Random All Mid), the game mode of the online game League of Legends",
+    "title": "Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of Aram (All Random All Mid), the Game Mode of the Online Game League of Legends",
     "title_ko": "한정된 정보가 주어진 경쟁 환경에서의 승률 예측 및 경쟁 전략 설계: 온라인 게임 ʻ리그 오브 레전드'의 게임 형태 ʻ무작위 총력전ʼ을 예시로",
     "authors": [
       1,
