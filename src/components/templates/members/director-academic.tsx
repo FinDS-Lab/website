@@ -169,19 +169,6 @@ export const MembersDirectorAcademicTemplate = () => {
   const [projectSearchTerm, setProjectSearchTerm] = useState('')
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
-  const [expandedSections, setExpandedSections] = useState({
-    introduction: true,
-    researchInterests: true,
-    education: true,
-    employment: true,
-    publicationStats: true,
-    projects: true,
-    teaching: true
-  })
-  
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
-  }
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
@@ -560,16 +547,12 @@ export const MembersDirectorAcademicTemplate = () => {
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Introduction */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('introduction')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Introduction</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.introduction ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.introduction && (
-              <div className="p-20 md:p-24 border-t border-gray-100 bg-gradient-to-br from-gray-50 to-white">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Introduction
+              </h3>
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl md:rounded-2xl p-20 md:p-32 border border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
                   I am an Assistant Professor at Dongduk Women's University and the Director of FINDS Lab, working across{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
@@ -603,20 +586,14 @@ export const MembersDirectorAcademicTemplate = () => {
                   The goal is simple: bridge academic rigor and real-world application, and share ideas that are both sound and genuinely useful.
                 </p>
               </div>
-              )}
             </section>
 
             {/* Research Interests */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('researchInterests')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Interests</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researchInterests ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.researchInterests && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Research Interests
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
@@ -646,21 +623,14 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
                 ))}
               </div>
-            </div>
-              )}
             </section>
 
             {/* Education */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('education')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.education ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.education && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Education
+              </h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group">
@@ -749,21 +719,14 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
                 ))}
               </div>
-            </div>
-              )}
             </section>
 
             {/* Employment */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('employment')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Employment</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.employment ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.employment && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Employment
+              </h3>
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {employment.map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
@@ -793,21 +756,14 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
                 ))}
               </div>
-            </div>
-              )}
             </section>
 
             {/* Publication Statistics */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('publicationStats')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.publicationStats && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
+            <section>
+              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                <span className="w-1 h-20 bg-primary rounded-full" />
+                Publication Statistics
+              </h3>
               <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
                 {pubStats.map((stat, index) => (
                   <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
@@ -927,23 +883,16 @@ export const MembersDirectorAcademicTemplate = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-                )}
               </section>
             )}
 
-            {/* Teaching */}
+            {/* Teaching Section */}
             {lectures.length > 0 && (
-              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-                <button
-                  onClick={() => toggleSection('teaching')}
-                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
-                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
-                </button>
-                {expandedSections.teaching && (
-                <div className="p-20 md:p-24 border-t border-gray-100">
+              <section>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-24 flex items-center gap-8">
+                  <span className="w-1 h-20 bg-primary rounded-full" />
+                  Teaching
+                </h3>
 
                 {/* Search */}
                 <div className="relative mb-16">
@@ -1025,8 +974,6 @@ export const MembersDirectorAcademicTemplate = () => {
                       ))}
                     </div>
                   </div>
-                )}
-              </div>
                 )}
               </section>
             )}

@@ -1619,21 +1619,49 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
                           <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
-                          <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{affiliations.length}</span>
+                          <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                         </div>
                         <div className="space-y-8">
-                          {affiliations.map((aff, index) => (
-                            <div key={index} className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
-                              <div>
-                                <p className="text-xs font-bold text-gray-900">{aff.organization}</p>
-                                <p className="text-[10px] text-gray-500 mt-2">{aff.krOrg}</p>
-                              </div>
-                              <div className="flex items-center gap-6">
-                                <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">{aff.role}</span>
-                                <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
-                              </div>
+                          <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                            <div>
+                              <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                              <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                             </div>
-                          ))}
+                            <div className="flex items-center gap-6 shrink-0">
+                              <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                              <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025.06 – Present</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                            <div>
+                              <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                              <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
+                            </div>
+                            <div className="flex items-center gap-6 shrink-0">
+                              <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                              <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.09 – Present</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                            <div>
+                              <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                              <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
+                            </div>
+                            <div className="flex items-center gap-6 shrink-0">
+                              <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                              <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.06 – Present</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                            <div>
+                              <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                              <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
+                            </div>
+                            <div className="flex items-center gap-6 shrink-0">
+                              <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                              <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2022.06 – Present</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
