@@ -488,8 +488,8 @@ export const MembersDirectorTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">가천관 614호</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
@@ -845,9 +845,6 @@ export const MembersDirectorTemplate = () => {
                       >
                         <div className="flex items-center gap-8">
                           <span className="text-sm md:text-base font-bold text-gray-900">{year}</span>
-                          <span className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
-                            {projectsByYear[year].length} {projectsByYear[year].length === 1 ? 'Project' : 'Projects'}
-                          </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
                       </button>

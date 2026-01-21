@@ -18,7 +18,7 @@ interface GalleryItem {
 const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; date?: string }) => {
   const [content, setContent] = useState<string>('')
   const [loading, setLoading] = useState(true)
-  const [metadata, setMetadata] = useState<{ title?: string; date?: string }>({})
+  const [metadata, setMetadata] = useState<{ title?: string; date?: string; tags?: string[] }>({})
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -31,30 +31,95 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
           data.date = id.slice(0, 10)
         }
 
-        setMetadata({ title: data.title as string || title, date: data.date as string || date })
+        setMetadata({ 
+          title: data.title as string || title, 
+          date: data.date as string || date,
+          tags: (Array.isArray(data.tags) ? data.tags : []) as string[]
+        })
         const processedContent = processJekyllContent(content, data, { basePath: baseUrl.replace(/\/$/, '') })
         setContent(processedContent)
         setLoading(false)
       })
   }, [id])
 
-  if (loading) return <div className="p-60 text-center text-gray-500">Loading...</div>
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-80">
+        <div className="flex flex-col items-center gap-16">
+          <div className="w-40 h-40 border-3 border-[#FFBAC4] border-t-transparent rounded-full animate-spin" />
+          <span className="text-sm text-gray-400 font-medium">Loading...</span>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="archive-detail-content max-h-[80vh]">
-      {/* Styled Header */}
-      <div className="sticky top-0 bg-gradient-to-r from-[#FFF9E6] to-white border-b border-[#FFF3CC] px-24 py-16 -mx-24 -mt-24 mb-24 rounded-t-lg">
-        <div className="flex items-center gap-8 mb-8">
-          <Calendar className="size-14 text-[#D6B04C]" />
-          <span className="text-sm font-medium text-gray-500">{metadata.date}</span>
+    <article className="relative">
+      {/* Premium Header */}
+      <header className="relative mb-32 md:mb-48 pb-32 md:pb-40 border-b border-gray-100">
+        {/* Category Badge & Tags */}
+        <div className="flex items-center gap-12 mb-20 md:mb-24 flex-wrap">
+          <span className="px-12 py-4 bg-gradient-to-r from-[#FFBAC4] to-[#E8889C] text-white text-[10px] md:text-xs font-bold uppercase tracking-wider rounded-full">
+            Gallery
+          </span>
+          {metadata.tags && metadata.tags.length > 0 && (
+            <>
+              <div className="h-4 w-px bg-gray-200" />
+              <div className="flex flex-wrap gap-6">
+                {metadata.tags.map((tag, idx) => (
+                  <span key={idx} className="px-10 py-4 bg-gray-100 text-gray-500 text-[10px] md:text-xs font-medium rounded-full">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
         </div>
-        <h2 className="text-xl font-bold text-gray-900">{metadata.title}</h2>
-      </div>
-      <div
-        className="prose prose-sm max-w-none"
+        
+        {/* Title */}
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-16 md:mb-20">
+          {metadata.title}
+        </h1>
+        
+        {/* Meta Info */}
+        <div className="flex items-center gap-16">
+          <div className="flex items-center gap-8">
+            <Calendar className="size-16 text-[#E8889C]" />
+            <time className="text-sm md:text-base font-medium text-gray-500">{metadata.date}</time>
+          </div>
+        </div>
+        
+        {/* Decorative Line */}
+        <div className="absolute bottom-0 left-0 w-80 h-[3px] bg-gradient-to-r from-[#FFBAC4] to-transparent rounded-full" />
+      </header>
+
+      {/* Content - Premium Typography with Image Styling */}
+      <div 
+        className="prose prose-lg max-w-none
+          prose-headings:font-bold prose-headings:text-gray-900
+          prose-h2:text-xl prose-h2:md:text-2xl prose-h2:mt-40 prose-h2:mb-20
+          prose-h3:text-lg prose-h3:md:text-xl prose-h3:mt-32 prose-h3:mb-16
+          prose-p:text-gray-600 prose-p:leading-[1.9] prose-p:text-sm prose-p:md:text-base prose-p:mb-20
+          prose-a:text-[#E8889C] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-gray-800 prose-strong:font-semibold
+          prose-ul:my-20 prose-li:text-gray-600 prose-li:text-sm prose-li:md:text-base
+          prose-blockquote:border-l-4 prose-blockquote:border-[#FFBAC4] prose-blockquote:bg-[#FFF5F7] prose-blockquote:py-16 prose-blockquote:px-20 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+          prose-code:bg-gray-100 prose-code:px-6 prose-code:py-2 prose-code:rounded prose-code:text-sm prose-code:font-mono
+          prose-img:rounded-xl prose-img:shadow-lg prose-img:my-24"
         dangerouslySetInnerHTML={{ __html: content }}
       />
-    </div>
+      
+      {/* Footer */}
+      <footer className="mt-40 md:mt-60 pt-24 md:pt-32 border-t border-gray-100">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-12">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FFBAC4] to-[#E8889C]" />
+            <span className="text-xs md:text-sm font-medium text-gray-400">FINDS Lab. Gallery</span>
+          </div>
+          <span className="text-[10px] md:text-xs text-gray-300">{metadata.date}</span>
+        </div>
+      </footer>
+    </article>
   )
 }
 
