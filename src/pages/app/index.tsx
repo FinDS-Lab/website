@@ -64,16 +64,33 @@ interface YTPlayer {
 // Home Button Component - Always visible except on home page
 const HomeButton = memo(() => {
   const location = useLocation()
+  const { isMinimized, playlist } = useMusicPlayerStore()
   
   // Don't show on home page
   if (location.pathname === '/' || location.pathname === '/website/' || location.pathname === '/website') {
     return null
   }
+
+  // Don't show on playlist page (music player also hidden there)
+  const isPlaylistPage = location.pathname === '/archives/playlist'
+  
+  // Calculate bottom position based on music player state
+  // If music player is minimized or not present, position at bottom
+  // If music player is expanded, move up
+  const hasPlaylist = playlist.length > 0 && !isPlaylistPage
+  const playerExpanded = hasPlaylist && !isMinimized
+  
+  // When player is expanded, move home button above it (player is ~450px tall)
+  const bottomClass = playerExpanded 
+    ? "bottom-[520px] md:bottom-[540px]" 
+    : hasPlaylist 
+      ? "bottom-[80px] md:bottom-[90px]"
+      : "bottom-16 md:bottom-20"
   
   return (
     <Link
       to="/"
-      className="fixed bottom-[80px] md:bottom-[90px] right-16 md:right-20 z-[10000] flex items-center justify-center size-44 md:size-52 bg-white border-2 border-gray-300 rounded-full shadow-xl hover:bg-primary hover:border-primary transition-all group"
+      className={`fixed ${bottomClass} right-16 md:right-20 z-[10000] flex items-center justify-center size-44 md:size-52 bg-white border-2 border-gray-300 rounded-full shadow-xl hover:bg-primary hover:border-primary transition-all duration-300 group`}
       title="홈으로"
     >
       <HomeIcon size={24} className="text-gray-700 group-hover:text-white" />

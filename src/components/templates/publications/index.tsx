@@ -755,6 +755,23 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     </div>
                                   )}
+                                  {/* Book and Report types get a simple rounded bottom */}
+                                  {(pub.type === 'book' || pub.type === 'report') && (
+                                    <div 
+                                      className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
+                                      style={{
+                                        backgroundColor: pub.type === 'book' ? 'rgba(232,214,136,0.15)' : 'rgba(255,186,196,0.15)',
+                                        borderColor: pub.type === 'book' ? 'rgba(232,214,136,0.35)' : 'rgba(255,186,196,0.35)'
+                                      }}
+                                    >
+                                      <span 
+                                        className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
+                                        style={{ color: pub.type === 'book' ? 'rgb(180,150,60)' : 'rgb(200,120,140)' }}
+                                      >
+                                        {pub.type === 'book' ? 'Book' : 'Report'}
+                                      </span>
+                                    </div>
+                                  )}
                                 </div>
 
                                 {/* Middle: Content */}
