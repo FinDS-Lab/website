@@ -115,16 +115,23 @@ export const ArchivesGalleryTemplate = () => {
             const response = await fetch(`${baseUrl}data/gallery/${folder}/index.md`)
             const text = await response.text()
             const { data } = parseMarkdown(text)
+            // date를 문자열로 확실히 변환
+            const dateStr = data.date ? String(data.date).slice(0, 10) : ''
             return {
               id: folder,
               title: (data.title as string) || 'No Title',
-              date: (data.date as string) || '',
+              date: dateStr,
               thumb: (data.thumb as string) || '',
               author: (data.author as string) || 'FINDS Lab.'
             }
           })
         )
-        setGalleryItems(results.sort((a, b) => b.date.localeCompare(a.date)))
+        // 최신 날짜가 먼저 오도록 정렬 (내림차순) - 왼쪽 첫 번째에 최신 글
+        setGalleryItems(results.sort((a, b) => {
+          const dateA = new Date(a.date).getTime() || 0
+          const dateB = new Date(b.date).getTime() || 0
+          return dateB - dateA  // 최신이 먼저 (내림차순)
+        }))
       } catch (err) {
         console.error('Failed to load galleries:', err)
       } finally {

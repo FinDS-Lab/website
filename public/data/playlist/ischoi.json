@@ -1,10 +1,35 @@
 {
   "shuffle": true,
   "items": [
-    { "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N" },
-    { "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3" },
-    { "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r" },
-    { "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE" },
-    { "url": "https://music.youtube.com/watch?v=ZjIPFe0hE4Y&si=OeJ5ZQemZs-FMYUY" }
+    { 
+      "url": "https://music.youtube.com/watch?v=MqcFHCNXiok&si=EF5Zu-543JuwcO8N",
+      "artist": "IU (아이유)",
+      "title": "Blueming",
+      "date": "2025.01"
+    },
+    { 
+      "url": "https://music.youtube.com/watch?v=950BdJKBhGo&si=yVyO-EvFTf_73Kq3",
+      "artist": "AKMU (악동뮤지션)",
+      "title": "How can I love the heartbreak, you`re the one I love",
+      "date": "2025.01"
+    },
+    { 
+      "url": "https://music.youtube.com/watch?v=3NNhrqHZqlI&si=Qg3wo6k4gYrK9md7r",
+      "artist": "10cm",
+      "title": "Lean On Me",
+      "date": "2025.01"
+    },
+    { 
+      "url": "https://music.youtube.com/watch?v=7sJES_4FiAs&si=zu3uFMfCY-EMhpdE",
+      "artist": "Crush",
+      "title": "Beautiful",
+      "date": "2025.01"
+    },
+    { 
+      "url": "https://music.youtube.com/watch?v=ZjIPFe0hE4Y&si=OeJ5ZQemZs-FMYUY",
+      "artist": "Zion.T",
+      "title": "Yanghwa BRDG",
+      "date": "2025.01"
+    }
   ]
 }

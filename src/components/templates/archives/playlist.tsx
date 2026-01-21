@@ -1,25 +1,52 @@
 import { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Play, Calendar, Home } from 'lucide-react'
-
-// Image Imports
-import banner4 from '@/assets/images/banner/4.webp'
+import { Play, Home, Music2, User } from 'lucide-react'
+import { useStoreModal } from '@/store/modal'
 
 interface PlaylistItem {
+  artist: string;
   title: string;
   date: string;
-  duration: string;
   thumbnail?: string;
   youtubeUrl: string;
+  videoId: string;
 }
 
 interface RawPlaylistItem {
   url: string;
+  artist?: string;
+  title?: string;
+  date?: string;
+}
+
+// YouTube 임베드 모달 컴포넌트
+const YouTubePlayerModal = ({ videoId, artist, title }: { videoId: string; artist: string; title: string }) => {
+  return (
+    <div className="relative">
+      {/* Header */}
+      <div className="bg-gray-900 px-20 py-14">
+        <p className="text-gray-400 text-xs mb-2">{artist}</p>
+        <h2 className="text-white font-semibold text-base truncate">{title}</h2>
+      </div>
+      
+      {/* YouTube Embed - privacy-enhanced mode */}
+      <div className="aspect-video bg-black">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+          title={title}
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  )
 }
 
 export const ArchivesPlaylistTemplate = () => {
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
   const [loading, setLoading] = useState(true)
+  const { showModal } = useStoreModal()
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -30,16 +57,17 @@ export const ArchivesPlaylistTemplate = () => {
         const cleaned = text.replace(/,(\s*[}\]])/g, '$1')
         const data = JSON.parse(cleaned)
 
-        // 데이터 형식 변환 (ischoi.json -> UI 형식)
+        // 데이터 형식 변환
         const items = data.items.map((item: RawPlaylistItem) => {
           // YouTube URL에서 비디오 ID 추출
-          const videoId = item.url.split('v=')[1]?.split('&')[0]
+          const videoId = item.url.split('v=')[1]?.split('&')[0] || ''
           return {
-            title: 'FINDS Lab Playlist Video', // 실제 타이틀은 API 등으로 가져와야 하지만 여기서는 기본값
-            date: '2025.01.01', // 기본값
-            duration: '00:00', // 기본값
+            artist: item.artist || 'Unknown Artist',
+            title: item.title || 'Unknown Title',
+            date: item.date || '',
             thumbnail: videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : undefined,
-            youtubeUrl: item.url
+            youtubeUrl: item.url,
+            videoId: videoId
           }
         })
 
@@ -54,85 +82,108 @@ export const ArchivesPlaylistTemplate = () => {
     fetchPlaylists()
   }, [])
 
-  return (
-    <div className="flex flex-col">
-      {/* Banner */}
-      <div className="relative w-full h-200 md:h-332 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${banner4})` }}
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative h-full flex items-center justify-center">
-          <h1 className="text-2xl md:text-[36px] font-semibold text-white text-center">
-            Playlist
-          </h1>
-        </div>
-      </div>
+  const handlePlayVideo = (item: PlaylistItem) => {
+    if (item.videoId) {
+      showModal({
+        maxWidth: '800px',
+        children: <YouTubePlayerModal videoId={item.videoId} artist={item.artist} title={item.title} />
+      })
+    }
+  }
 
-      {/* Breadcrumb */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-20 md:py-40">
-        <div className="flex items-center gap-8 md:gap-10 flex-wrap">
-          <Link to="/" className="text-gray-400 hover:text-primary transition-colors">
-            <Home size={16} />
-          </Link>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-gray-400">Archives</span>
-          <span className="text-[#cdcdcd]">›</span>
-          <span className="text-sm md:text-base text-primary font-medium">Playlist</span>
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Minimal Compact Header */}
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="max-w-1480 mx-auto px-12 md:px-20">
+          <div className="flex items-center justify-between h-44 md:h-52">
+            {/* Home Button - 작고 직관적 */}
+            <Link 
+              to="/" 
+              className="flex items-center justify-center w-36 h-36 bg-gray-100 hover:bg-primary hover:text-white rounded-full transition-all"
+              title="Home"
+            >
+              <Home size={18} />
+            </Link>
+            
+            {/* Title - 컴팩트 */}
+            <div className="flex items-center gap-6">
+              <Music2 size={18} className="text-primary" />
+              <span className="text-sm md:text-base font-bold text-gray-900">Playlist</span>
+            </div>
+            
+            {/* Spacer for balance */}
+            <div className="w-36" />
+          </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <div className="flex-1 max-w-1480 mx-auto w-full px-12 md:px-20 py-20 md:py-32">
         {loading ? (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500">
-            Loading playlist...
+          <div className="flex items-center justify-center py-60">
+            <div className="w-28 h-28 border-3 border-primary/20 border-t-primary rounded-full animate-spin" />
           </div>
         ) : playlists.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-20">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 md:gap-16">
             {playlists.map((item, index) => (
-              <a
+              <div
                 key={index}
-                href={item.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden hover:shadow-lg transition-shadow group"
+                onClick={() => handlePlayVideo(item)}
+                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all group cursor-pointer"
               >
-                <div className="relative aspect-video bg-[#f9fafb] flex items-center justify-center">
+                {/* Thumbnail */}
+                <div className="relative aspect-square bg-gray-100 overflow-hidden">
                   {item.thumbnail ? (
-                    <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" />
+                    <>
+                      <img 
+                        src={item.thumbnail} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          if (target.src.includes('maxresdefault')) {
+                            target.src = target.src.replace('maxresdefault', 'hqdefault')
+                          }
+                        }}
+                      />
+                      {/* Play overlay */}
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                        <div className="w-44 h-44 md:w-52 md:h-52 bg-white/95 rounded-full flex items-center justify-center shadow-xl">
+                          <Play className="w-20 h-20 md:w-24 md:h-24 text-primary ml-4" fill="currentColor" />
+                        </div>
+                      </div>
+                    </>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                      <div className="w-48 h-48 md:w-60 md:h-60 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-24 h-24 md:w-30 md:h-30 text-white ml-4" fill="white" />
+                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+                      <div className="w-40 h-40 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Play className="w-18 h-18 text-white ml-2" fill="white" />
                       </div>
                     </div>
                   )}
                 </div>
-                <div className="p-16 md:p-20">
-                  <h3 className="text-sm md:text-md font-semibold text-[#222222] mb-8 md:mb-12 group-hover:text-primary transition-colors line-clamp-2">
+                
+                {/* Info */}
+                <div className="p-12 md:p-14">
+                  <h3 className="text-xs md:text-sm font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors line-clamp-1">
                     {item.title}
                   </h3>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 md:gap-8">
-                      <Calendar className="w-12 h-12 md:w-14 md:h-14 text-[#7f8894]" />
-                      <span className="text-[11px] md:text-[13px] text-[#7f8894]">{item.date}</span>
-                    </div>
-                  </div>
+                  <p className="text-[11px] md:text-xs text-gray-500 truncate">
+                    {item.artist}
+                  </p>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         ) : (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-40 md:p-60 text-center">
-            <div className="w-60 h-60 md:w-80 md:h-80 bg-white rounded-full flex items-center justify-center mx-auto mb-16 md:mb-20">
-              <Play className="w-28 h-28 md:w-40 md:h-40 text-[#cdcdcd]" />
+          <div className="bg-white rounded-xl p-32 md:p-48 text-center">
+            <div className="w-48 h-48 md:w-60 md:h-60 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-16">
+              <Music2 className="w-24 h-24 md:w-28 md:h-28 text-gray-300" />
             </div>
-            <p className="text-base md:text-[18px] font-medium text-[#222222] mb-6 md:mb-8">
+            <p className="text-sm md:text-base font-semibold text-gray-900 mb-6">
               플레이리스트 준비 중
             </p>
-            <p className="text-xs md:text-[14px] text-[#7f8894]">
+            <p className="text-xs md:text-sm text-gray-500">
               아직 등록된 영상이 없습니다.
             </p>
           </div>
@@ -143,8 +194,3 @@ export const ArchivesPlaylistTemplate = () => {
 }
 
 export default memo(ArchivesPlaylistTemplate)
-
-
-
-
-
