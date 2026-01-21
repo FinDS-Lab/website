@@ -1,4 +1,4 @@
-import {memo, useState, useEffect, useMemo} from 'react'
+import {memo, useState, useEffect, useMemo, useRef} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
@@ -23,8 +23,8 @@ import {
   Search,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
-import type {AcademicActivitiesData} from '@/types/data'
-import {CollaborationNetwork} from '@/components/organisms/collaboration-network'
+import type {AcademicActivitiesData, Publication} from '@/types/data'
+import type {AuthorsData} from '@/types/data'
 
 // Types
 type Project = {
@@ -163,6 +163,765 @@ const researchInterests = [
     ]
   },
 ]
+
+
+// Collaboration Network Types
+type PublicationBreakdown = {
+  journal: number
+  conference: number
+  book: number
+  report: number
+  others: number
+}
+
+type CollabPublication = {
+  title: string
+  titleKo: string
+  year: number
+  venue: string
+  venueKo: string
+  type: string
+}
+
+type NetworkNode = {
+  id: string
+  name: string
+  nameKo: string
+  x: number
+  y: number
+  vx: number
+  vy: number
+  publications: number
+  isDirector: boolean
+  collabPubs: CollabPublication[]
+  breakdown: PublicationBreakdown
+  coworkRate: number
+}
+
+type NetworkLink = {
+  source: string
+  target: string
+  weight: number
+}
+
+// Collaboration Network Component
+const CollaborationNetwork = memo(() => {
+  const svgRef = useRef<SVGSVGElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [nodes, setNodes] = useState<NetworkNode[]>([])
+  const [links, setLinks] = useState<NetworkLink[]>([])
+  const [loading, setLoading] = useState(true)
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null)
+  const [selectedNode, setSelectedNode] = useState<string | null>(null)
+  const [coworkRateThreshold, setCoworkRateThreshold] = useState(2) // 1-100%, default 2%
+  const [totalPubsCount, setTotalPubsCount] = useState(0)
+  
+  // 모바일/데스크탑에 따른 기본 zoom 값
+  const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.6 : 1.3
+  const [zoom, setZoom] = useState(getDefaultZoom)
+  
+  const [pan, setPan] = useState({x: 0, y: 0})
+  const [isPanning, setIsPanning] = useState(false)
+  const [panStart, setPanStart] = useState({x: 0, y: 0})
+  const animationRef = useRef<number | null>(null)
+  const nodesRef = useRef<NetworkNode[]>([])
+
+  // Load and process collaboration data
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const baseUrl = import.meta.env.BASE_URL || '/'
+        const [pubsRes, authorsRes] = await Promise.all([
+          fetch(`${baseUrl}data/pubs.json`),
+          fetch(`${baseUrl}data/authors.json`),
+        ])
+        const pubs: Publication[] = await pubsRes.json()
+        const authors: AuthorsData = await authorsRes.json()
+
+        // Build collaboration map
+        const collaborationMap = new Map<string, Map<string, number>>()
+        const authorPubCount = new Map<string, number>()
+        // 각 저자별 공동 논문 목록
+        const authorCollabPubs = new Map<string, CollabPublication[]>()
+
+        // 전체 논문 수 (co-work rate 계산용)
+        const totalPubs = pubs.filter(pub => pub.authors.includes(1)).length
+        setTotalPubsCount(totalPubs)
+
+        pubs.forEach((pub) => {
+          if (pub.authors.includes(1)) {
+            // Only publications with director
+            pub.authors.forEach((authorId) => {
+              const idStr = String(authorId)
+              authorPubCount.set(idStr, (authorPubCount.get(idStr) || 0) + 1)
+
+              // 공동 논문 저장 (type 포함)
+              if (!authorCollabPubs.has(idStr)) authorCollabPubs.set(idStr, [])
+              authorCollabPubs.get(idStr)!.push({
+                title: pub.title,
+                titleKo: pub.title_ko,
+                year: pub.year,
+                venue: pub.venue,
+                venueKo: pub.venue_ko,
+                type: pub.type || 'other',
+              })
+            })
+
+            // Create links between all co-authors
+            for (let i = 0; i < pub.authors.length; i++) {
+              for (let j = i + 1; j < pub.authors.length; j++) {
+                const a = String(pub.authors[i])
+                const b = String(pub.authors[j])
+                if (!collaborationMap.has(a)) collaborationMap.set(a, new Map())
+                if (!collaborationMap.has(b)) collaborationMap.set(b, new Map())
+                collaborationMap.get(a)!.set(b, (collaborationMap.get(a)!.get(b) || 0) + 1)
+                collaborationMap.get(b)!.set(a, (collaborationMap.get(b)!.get(a) || 0) + 1)
+              }
+            }
+          }
+        })
+
+        // Get collaborators filtered by co-work rate threshold
+        const directorCollabs = collaborationMap.get('1') || new Map()
+        const minPubCount = Math.max(1, Math.ceil(totalPubs * coworkRateThreshold / 100))
+        const topCollaborators = Array.from(directorCollabs.entries())
+          .filter(([, count]) => count >= minPubCount) // cowork rate 기준 필터링
+          .sort((a, b) => b[1] - a[1])
+          .map(([id]) => id)
+
+        const nodesToShow = ['1', ...topCollaborators]
+
+        // Initialize nodes with concentric circle layout
+        const width = 800
+        const height = 500
+        const centerX = width / 2
+        const centerY = height / 2
+
+        // Sort collaborators by publication count for better layout
+        const sortedCollabs = topCollaborators.sort((a, b) => {
+          const countA = authorPubCount.get(a) || 0
+          const countB = authorPubCount.get(b) || 0
+          return countB - countA
+        })
+
+        const initialNodes: NetworkNode[] = nodesToShow.map((id, idx) => {
+          const author = authors[id]
+          const isDirector = id === '1'
+          const collabPubsList = authorCollabPubs.get(id) || []
+          const pubCount = authorPubCount.get(id) || 0
+
+          let x = centerX
+          let y = centerY
+
+          if (!isDirector) {
+            // Find position in sorted list
+            const sortedIdx = sortedCollabs.indexOf(id)
+            const total = sortedCollabs.length
+            
+            // Multi-ring layout - inner ring for top collaborators, outer for others
+            const innerRingCount = Math.min(6, Math.ceil(total / 2))
+            const isInnerRing = sortedIdx < innerRingCount
+            
+            if (isInnerRing && innerRingCount > 0) {
+              // Inner ring - closer to center, evenly spaced
+              const angle = (2 * Math.PI * sortedIdx) / innerRingCount - Math.PI / 2
+              const radius = 120
+              x = centerX + Math.cos(angle) * radius
+              y = centerY + Math.sin(angle) * radius
+            } else {
+              // Outer ring
+              const outerIdx = sortedIdx - innerRingCount
+              const outerCount = total - innerRingCount
+              if (outerCount > 0) {
+                const angle = (2 * Math.PI * outerIdx) / outerCount - Math.PI / 2 + Math.PI / outerCount
+                const radius = 200
+                x = centerX + Math.cos(angle) * radius
+                y = centerY + Math.sin(angle) * radius
+              } else {
+                // Fallback - place at random position in outer area
+                const angle = Math.random() * 2 * Math.PI
+                const radius = 200
+                x = centerX + Math.cos(angle) * radius
+                y = centerY + Math.sin(angle) * radius
+              }
+            }
+          }
+
+          // 논문 유형별 분류
+          const breakdown: PublicationBreakdown = {
+            journal: collabPubsList.filter(p => p.type === 'journal').length,
+            conference: collabPubsList.filter(p => p.type === 'conference').length,
+            book: collabPubsList.filter(p => p.type === 'book').length,
+            report: collabPubsList.filter(p => p.type === 'report' || p.type === 'other').length,
+          }
+
+          // Co-work rate 계산 (Director 전체 논문 대비 공동 작업 비율)
+          const coworkRate = totalPubs > 0 ? Math.round((pubCount / totalPubs) * 100) : 0
+
+          return {
+            id,
+            name: author?.en || `Author ${id}`,
+            nameKo: author?.ko || '',
+            x,
+            y,
+            vx: 0,
+            vy: 0,
+            publications: pubCount,
+            isDirector,
+            collabPubs: collabPubsList,
+            breakdown,
+            coworkRate,
+          }
+        })
+
+        // Create links
+        const networkLinks: NetworkLink[] = []
+        nodesToShow.forEach((sourceId) => {
+          const collabs = collaborationMap.get(sourceId)
+          if (collabs) {
+            collabs.forEach((weight, targetId) => {
+              if (
+                nodesToShow.includes(targetId) &&
+                sourceId < targetId // Avoid duplicates
+              ) {
+                networkLinks.push({source: sourceId, target: targetId, weight})
+              }
+            })
+          }
+        })
+
+        setNodes(initialNodes)
+        nodesRef.current = initialNodes
+        setLinks(networkLinks)
+        setLoading(false)
+      } catch (err) {
+        console.error('Failed to load collaboration data:', err)
+        setLoading(false)
+      }
+    }
+    loadData()
+  }, [coworkRateThreshold])
+
+  // Force simulation
+  useEffect(() => {
+    if (nodes.length === 0) return
+
+    let iterationCount = 0
+    const maxIterations = 150 // 최대 약 2.5초 (60fps 기준)
+    
+    const simulate = () => {
+      const newNodes = [...nodesRef.current]
+      const centerX = 400
+      const centerY = 250
+
+      // Apply forces
+      newNodes.forEach((node) => {
+        // Center gravity for director
+        if (node.isDirector) {
+          node.vx += (centerX - node.x) * 0.1
+          node.vy += (centerY - node.y) * 0.1
+        } else {
+          // Weak center gravity
+          node.vx += (centerX - node.x) * 0.002
+          node.vy += (centerY - node.y) * 0.002
+        }
+
+        // Repulsion from other nodes
+        newNodes.forEach((other) => {
+          if (node.id !== other.id) {
+            const dx = node.x - other.x
+            const dy = node.y - other.y
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1
+            const minDist = 70 // 풀네임 표시를 위해 거리 확보
+            if (dist < minDist) {
+              const force = ((minDist - dist) / dist) * 0.3
+              node.vx += dx * force
+              node.vy += dy * force
+            }
+          }
+        })
+      })
+
+      // Apply link forces (attraction)
+      links.forEach((link) => {
+        const source = newNodes.find((n) => n.id === link.source)
+        const target = newNodes.find((n) => n.id === link.target)
+        if (source && target) {
+          const dx = target.x - source.x
+          const dy = target.y - source.y
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1
+          const idealDist = 80 - link.weight * 3
+          const force = (dist - idealDist) * 0.005
+
+          if (!source.isDirector) {
+            source.vx += (dx / dist) * force
+            source.vy += (dy / dist) * force
+          }
+          if (!target.isDirector) {
+            target.vx -= (dx / dist) * force
+            target.vy -= (dy / dist) * force
+          }
+        }
+      })
+
+      // Update positions with velocity and stronger damping
+      let totalVelocity = 0
+      newNodes.forEach((node) => {
+        if (!node.isDirector) {
+          // 강화된 damping (0.9 -> 0.7)으로 더 빠르게 안정화
+          node.vx *= 0.7
+          node.vy *= 0.7
+          node.x += node.vx
+          node.y += node.vy
+          
+          // 총 속도 계산 (안정화 체크용)
+          totalVelocity += Math.abs(node.vx) + Math.abs(node.vy)
+          
+          // NaN check - reset to center if invalid
+          if (isNaN(node.x) || isNaN(node.y)) {
+            node.x = centerX + (Math.random() - 0.5) * 200
+            node.y = centerY + (Math.random() - 0.5) * 200
+            node.vx = 0
+            node.vy = 0
+          }
+          
+          // Boundary constraints
+          node.x = Math.max(50, Math.min(750, node.x))
+          node.y = Math.max(50, Math.min(450, node.y))
+        } else {
+          node.x = centerX
+          node.y = centerY
+          node.vx = 0
+          node.vy = 0
+        }
+      })
+
+      nodesRef.current = newNodes
+      setNodes([...newNodes])
+      
+      iterationCount++
+      
+      // 안정화 조건: 총 속도가 임계값 이하이거나 최대 반복 횟수 도달
+      const isStabilized = totalVelocity < 0.5 || iterationCount >= maxIterations
+      
+      if (!isStabilized) {
+        animationRef.current = requestAnimationFrame(simulate)
+      }
+    }
+
+    animationRef.current = requestAnimationFrame(simulate)
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
+    }
+  }, [links, nodes.length])
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setIsPanning(true)
+    setPanStart({x: e.clientX - pan.x, y: e.clientY - pan.y})
+  }, [pan])
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (isPanning) {
+      setPan({x: e.clientX - panStart.x, y: e.clientY - panStart.y})
+    }
+  }, [isPanning, panStart])
+
+  const handleMouseUp = useCallback(() => {
+    setIsPanning(false)
+  }, [])
+
+  const handleZoomIn = useCallback(() => {
+    setZoom((z) => Math.min(z * 1.2, 3))
+  }, [])
+
+  const handleZoomOut = useCallback(() => {
+    setZoom((z) => Math.max(z / 1.2, 0.5))
+  }, [])
+
+  const handleReset = useCallback(() => {
+    setZoom(getDefaultZoom())
+    setPan({x: 0, y: 0})
+    setSelectedNode(null)
+  }, [])
+
+  const getNodeSize = useCallback((node: NetworkNode) => {
+    if (node.isDirector) return 20
+    return Math.max(6, Math.min(14, 5 + node.publications * 0.8))
+  }, [])
+
+  const getLinkOpacity = useCallback(
+    (link: NetworkLink) => {
+      if (selectedNode) {
+        if (link.source === selectedNode || link.target === selectedNode) {
+          return 0.8
+        }
+        return 0.1
+      }
+      if (hoveredNode) {
+        if (link.source === hoveredNode || link.target === hoveredNode) {
+          return 0.8
+        }
+        return 0.2
+      }
+      return 0.4
+    },
+    [hoveredNode, selectedNode]
+  )
+
+  const getNodeOpacity = useCallback(
+    (node: NetworkNode) => {
+      if (selectedNode) {
+        if (node.id === selectedNode) return 1
+        const connectedLinks = links.filter(
+          (l) => l.source === selectedNode || l.target === selectedNode
+        )
+        const connectedNodeIds = connectedLinks.flatMap((l) => [l.source, l.target])
+        if (connectedNodeIds.includes(node.id)) return 1
+        return 0.2
+      }
+      if (hoveredNode) {
+        if (node.id === hoveredNode) return 1
+        const connectedLinks = links.filter(
+          (l) => l.source === hoveredNode || l.target === hoveredNode
+        )
+        const connectedNodeIds = connectedLinks.flatMap((l) => [l.source, l.target])
+        if (connectedNodeIds.includes(node.id)) return 1
+        return 0.3
+      }
+      return 1
+    },
+    [hoveredNode, selectedNode, links]
+  )
+
+  if (loading) {
+    return (
+      <div className="bg-gray-50 rounded-3xl p-60 text-center border border-gray-100">
+        <div className="size-64 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-16 mx-auto animate-pulse">
+          <Network size={32}/>
+        </div>
+        <p className="text-lg font-bold text-gray-900 mb-8">Loading Network Data...</p>
+        <p className="text-sm text-gray-500">Analyzing collaboration patterns</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+      {/* Header */}
+      <div className="bg-gray-50/50 px-16 md:px-32 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 gap-12 md:gap-0">
+        {/* Co-work Rate Threshold Slider */}
+        <div className="flex items-center gap-8 md:gap-12 w-full md:w-auto">
+          <span className="text-[10px] md:text-xs text-gray-500 font-medium whitespace-nowrap">Co-work Rate ≥</span>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value={coworkRateThreshold}
+            onChange={(e) => setCoworkRateThreshold(Number(e.target.value))}
+            className="w-80 md:w-100 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+          />
+          <span className="text-[10px] md:text-xs font-bold text-primary w-28">{coworkRateThreshold}%</span>
+        </div>
+        <div className="flex items-center gap-8">
+          <span className="text-[10px] md:text-xs text-gray-400 font-medium mr-8 md:mr-12">
+            {nodes.length} Collaborators · {links.length} Connections
+          </span>
+          <button
+            onClick={handleZoomIn}
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            title="Zoom In"
+          >
+            <ZoomIn size={14}/>
+          </button>
+          <button
+            onClick={handleZoomOut}
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            title="Zoom Out"
+          >
+            <ZoomOut size={14}/>
+          </button>
+          <button
+            onClick={handleReset}
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            title="Reset View"
+          >
+            <Maximize2 size={14}/>
+          </button>
+        </div>
+      </div>
+
+      {/* Network Graph */}
+      <div
+        ref={containerRef}
+        className="relative h-500 bg-gradient-to-br from-gray-50 via-white to-gray-50 cursor-grab active:cursor-grabbing overflow-hidden"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
+        <svg
+          ref={svgRef}
+          width="100%"
+          height="100%"
+          viewBox="0 0 800 500"
+          style={{
+            transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+            transformOrigin: 'center center',
+          }}
+        >
+          <defs>
+            <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#E8C86A"/>
+              <stop offset="100%" stopColor="#D6B04C"/>
+            </radialGradient>
+            <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#ffd6dd"/>
+              <stop offset="100%" stopColor="#FFBAC4"/>
+            </radialGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15"/>
+            </filter>
+          </defs>
+
+          {/* Links */}
+          <g className="links">
+            {links.map((link) => {
+              const source = nodes.find((n) => n.id === link.source)
+              const target = nodes.find((n) => n.id === link.target)
+              if (!source || !target) return null
+              return (
+                <line
+                  key={`${link.source}-${link.target}`}
+                  x1={source.x}
+                  y1={source.y}
+                  x2={target.x}
+                  y2={target.y}
+                  stroke={
+                    source.isDirector || target.isDirector
+                      ? 'rgb(172,14,14)'
+                      : '#FFBAC4'
+                  }
+                  strokeWidth={Math.max(0.5, Math.min(2.5, link.weight * 0.6))}
+                  opacity={getLinkOpacity(link)}
+                  className="transition-opacity duration-200"
+                />
+              )
+            })}
+          </g>
+
+          {/* Nodes */}
+          <g className="nodes">
+            {nodes.map((node) => {
+              const size = getNodeSize(node)
+              const isHighlighted =
+                node.id === hoveredNode || node.id === selectedNode
+              // Calculate fill color based on coworkRate (higher = darker)
+              const getNodeFillColor = () => {
+                if (node.isDirector) return 'url(#directorGradient)'
+                // coworkRate is 0-100%, map to color intensity
+                // Light: #ffd6dd (low rate) to Dark: #E8889C (high rate)
+                const rate = Math.min(100, node.coworkRate)
+                // Interpolate between light pink and dark pink
+                const r = Math.round(255 - (rate / 100) * (255 - 232))
+                const g = Math.round(214 - (rate / 100) * (214 - 135))
+                const b = Math.round(221 - (rate / 100) * (221 - 155))
+                return `rgb(${r}, ${g}, ${b})`
+              }
+              return (
+                <g
+                  key={node.id}
+                  transform={`translate(${node.x}, ${node.y})`}
+                  opacity={getNodeOpacity(node)}
+                  className="cursor-pointer transition-opacity duration-200"
+                  onMouseEnter={() => setHoveredNode(node.id)}
+                  onMouseLeave={() => setHoveredNode(null)}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setSelectedNode(selectedNode === node.id ? null : node.id)
+                  }}
+                >
+                  {/* Node circle */}
+                  <circle
+                    r={size}
+                    fill={getNodeFillColor()}
+                    stroke={node.isDirector ? 'rgb(172,14,14)' : (isHighlighted ? 'rgb(172,14,14)' : 'white')}
+                    strokeWidth={node.isDirector ? 3 : (isHighlighted ? 3 : 2)}
+                    filter={isHighlighted ? 'url(#glow)' : 'url(#shadow)'}
+                    className="transition-all duration-200"
+                  />
+
+                  {/* Director icon */}
+                  {node.isDirector && (
+                    <text
+                      textAnchor="middle"
+                      dy="0.35em"
+                      fill="#FFFFFF"
+                      fontSize="12"
+                      fontWeight="bold"
+                    >
+                      IC
+                    </text>
+                  )}
+
+                  {/* Label - Full Name */}
+                  <text
+                    y={size + 14}
+                    textAnchor="middle"
+                    fill={node.isDirector ? '#D6B04C' : '#374151'}
+                    stroke={node.isDirector ? '#000000' : 'none'}
+                    strokeWidth={node.isDirector ? 0.5 : 0}
+                    paintOrder="stroke"
+                    fontSize={node.isDirector ? 12 : 7}
+                    fontWeight={node.isDirector ? 700 : 600}
+                    className="pointer-events-none select-none"
+                  >
+                    {node.name}
+                  </text>
+                </g>
+              )
+            })}
+          </g>
+        </svg>
+
+        {/* Tooltip / Popup */}
+        {(hoveredNode || selectedNode) && (
+          <div
+            className={`absolute bg-white/98 max-md:w-[calc(100%-40px)] backdrop-blur-sm border border-gray-200 rounded-2xl shadow-xl overflow-hidden ${
+              selectedNode
+                ? 'bottom-20 left-20 w-340 max-h-500 overflow-y-auto pointer-events-auto'
+                : 'bottom-20 left-20 w-300 pointer-events-none'
+            }`}
+          >
+            {(() => {
+              const node = nodes.find(
+                (n) => n.id === (selectedNode || hoveredNode)
+              )
+              if (!node) return null
+
+              return (
+                <>
+                  {/* Header */}
+                  <div className="bg-gray-50 px-20 py-16 border-b border-gray-100">
+                    <div className="flex items-center justify-between gap-12">
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-gray-900 truncate">
+                          {node.name}
+                        </p>
+                        {node.nameKo && (
+                          <p className="text-xs text-gray-500">{node.nameKo}</p>
+                        )}
+                      </div>
+                      {selectedNode && (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedNode(null)}
+                          className="size-24 rounded-md border border-gray-200 text-gray-400 hover:text-gray-600 hover:border-gray-300 hover:bg-white transition-colors flex items-center justify-center shrink-0"
+                          title="Close"
+                        >
+                          <X size={12}/>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="p-16 space-y-12">
+                    {/* Total Works & Co-work Rate */}
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="bg-primary/5 rounded-lg p-12 text-center border border-primary/10">
+                        <div className="flex items-center justify-center gap-6 mb-4">
+                          <p className="text-[10px] font-bold text-gray-500 uppercase">Total Works</p>
+                        </div>
+                        <p className="text-2xl font-bold text-primary">
+                          {node.publications}
+                        </p>
+                      </div>
+                      <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
+                        <div className="flex items-center justify-center gap-6 mb-4">
+                          <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
+                        </div>
+                        <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
+                          {node.coworkRate}%
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Breakdown */}
+                    <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
+                      <div className="flex items-center gap-6 mb-10">
+                        <p className="text-[10px] font-bold text-gray-500 uppercase">Breakdown</p>
+                      </div>
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-8">
+                          <span className="size-4 rounded-full bg-blue-500"/>
+                          <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
+                        </div>
+                        <div className="flex items-center gap-8">
+                          <span className="size-4 rounded-full bg-purple-500"/>
+                          <span className="text-xs text-gray-600 flex-1">conference proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
+                        </div>
+                        <div className="flex items-center gap-8">
+                          <span className="size-4 rounded-full bg-orange-500"/>
+                          <span className="text-xs text-gray-600 flex-1">book{node.breakdown.book !== 1 ? 's' : ''}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.book}</span>
+                        </div>
+                        <div className="flex items-center gap-8">
+                          <span className="size-4 rounded-full bg-gray-400"/>
+                          <span className="text-xs text-gray-600 flex-1">report{node.breakdown.report !== 1 ? 's' : ''}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.report}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hint for hover */}
+                  {!selectedNode && (
+                    <div className="px-16 pb-12">
+                      <p className="text-[10px] text-gray-400 text-center">
+                        Click to see publications
+                      </p>
+                    </div>
+                  )}
+                </>
+              )
+            })()}
+          </div>
+        )}
+
+        {/* Legend */}
+        <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
+          <div className="flex items-center gap-6 mb-6">
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B04C'}}>IC</div>
+            <span className="text-gray-600 font-medium">Director</span>
+          </div>
+          <div className="flex items-center gap-6 mb-6">
+            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #FFBAC4 100%)'}}/>
+            <span className="text-gray-600 font-medium">Collaborator</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <div className="w-12 h-1 rounded" style={{backgroundColor: 'rgb(172,14,14)'}}/>
+            <span className="text-gray-600 font-medium">Connection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+})
+
+CollaborationNetwork.displayName = 'CollaborationNetwork'
+
 
 export const MembersDirectorAcademicTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
