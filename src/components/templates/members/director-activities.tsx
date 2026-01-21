@@ -1615,6 +1615,28 @@ export const MembersDirectorActivitiesTemplate = () => {
                         </div>
                       </div>
 
+                      {/* Academic Memberships */}
+                      <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                        <div className="flex items-center gap-8 mb-16">
+                          <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
+                          <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">{affiliations.length}</span>
+                        </div>
+                        <div className="space-y-8">
+                          {affiliations.map((aff, index) => (
+                            <div key={index} className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-primary/30 transition-colors">
+                              <div>
+                                <p className="text-xs font-bold text-gray-900">{aff.organization}</p>
+                                <p className="text-[10px] text-gray-500 mt-2">{aff.krOrg}</p>
+                              </div>
+                              <div className="flex items-center gap-6">
+                                <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">{aff.role}</span>
+                                <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">{aff.period}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
                       {/* Conference & Workshop Organizing Committee */}
                       <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                         <div className="flex items-center gap-8 mb-16">
