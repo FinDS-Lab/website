@@ -204,34 +204,44 @@ const GlobalMusicPlayer = memo(() => {
         isMinimized ? (
           <button
             onClick={() => setIsMinimized(false)}
-            className="flex items-center gap-6 md:gap-8 px-12 md:px-16 py-10 md:py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
+            className="group flex items-center gap-8 px-16 py-12 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
           >
-            <Music size={16} className="md:w-[18px] md:h-[18px]" />
-            <span className="text-xs md:text-sm font-medium">Playlist</span>
+            <div className="relative">
+              <Music size={18} className="text-primary" />
+              {isPlaying && (
+                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
+              )}
+            </div>
+            <span className="text-sm font-medium tracking-wide">Playlist</span>
           </button>
         ) : (
-          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[280px] md:w-[320px]">
+          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[300px] md:w-[340px] border border-gray-800/50">
             {/* Header */}
-            <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-primary to-[#D6C360]">
-              <div className="flex items-center gap-6 md:gap-8">
-                <Music size={14} className="text-white md:w-4 md:h-4" />
-                <span className="text-xs md:text-sm font-bold text-white">FINDS Playlist</span>
+            <div className="flex items-center justify-between px-16 py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
+              <div className="flex items-center gap-10">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                  <Music size={16} className="text-white" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-white tracking-wider">FINDS</span>
+                  <span className="text-xs font-medium text-gray-400 ml-1">Playlist</span>
+                </div>
               </div>
               <button
                 onClick={toggleMinimize}
-                className="text-white/80 hover:text-white transition-colors"
+                className="w-8 h-8 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
               >
-                <X size={16} className="md:w-[18px] md:h-[18px]" />
+                <X size={14} className="text-gray-400" />
               </button>
             </div>
 
-            {/* Current Track Info - Always visible when track exists */}
+            {/* Current Track Info */}
             {currentTrack && (
-              <div className="px-12 md:px-16 py-8 md:py-10 bg-gray-50 border-b border-gray-100">
-                <p className="text-[10px] md:text-xs font-bold truncate" style={{ color: '#D6B14D' }}>
+              <div className="px-16 py-12 border-b border-gray-800/50">
+                <p className="text-primary text-[11px] font-bold tracking-wider uppercase mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.artist}
                 </p>
-                <p className="text-xs md:text-sm font-medium text-gray-900 truncate">
+                <p className="text-white text-base font-semibold truncate" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.title}
                 </p>
               </div>
@@ -242,44 +252,54 @@ const GlobalMusicPlayer = memo(() => {
               {isPlaying && currentVideoId ? (
                 <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
                   <button
                     onClick={togglePlay}
-                    className="w-48 h-48 md:w-60 md:h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                    className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl shadow-primary/30"
                   >
-                    <Play size={24} className="text-white ml-3 md:ml-4 md:w-7 md:h-7" />
+                    <Play size={26} className="text-white ml-1" />
                   </button>
                 </div>
               )}
             </div>
 
             {/* Controls */}
-            <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12">
-              <span className="text-[10px] md:text-xs text-gray-500">
-                Track {currentIndex + 1} / {playlist.length}
-              </span>
-              <div className="flex items-center gap-6 md:gap-8">
+            <div className="px-16 py-14 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
+              {/* Progress indicator */}
+              <div className="flex items-center justify-center gap-16 mb-12">
                 <button
                   onClick={prevTrack}
-                  className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-10 h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Previous"
                 >
-                  <SkipBack size={16} className="md:w-[18px] md:h-[18px]" />
+                  <SkipBack size={16} className="text-gray-300" />
                 </button>
                 <button
                   onClick={togglePlay}
-                  className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
                   title={isPlaying ? "Pause" : "Play"}
                 >
-                  {isPlaying ? <Pause size={16} className="md:w-[18px] md:h-[18px]" /> : <Play size={16} className="md:w-[18px] md:h-[18px]" />}
+                  {isPlaying ? (
+                    <Pause size={20} className="text-white" />
+                  ) : (
+                    <Play size={20} className="text-white ml-0.5" />
+                  )}
                 </button>
                 <button
                   onClick={nextTrack}
-                  className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  className="w-10 h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Next"
                 >
-                  <SkipForward size={16} className="md:w-[18px] md:h-[18px]" />
+                  <SkipForward size={16} className="text-gray-300" />
                 </button>
+              </div>
+              
+              {/* Track counter */}
+              <div className="flex items-center justify-center">
+                <span className="text-[11px] text-gray-500 font-medium tracking-wide">
+                  {currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}
+                </span>
               </div>
             </div>
           </div>
