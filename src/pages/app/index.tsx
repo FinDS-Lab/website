@@ -4,7 +4,7 @@ import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
 import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
-import { Music, Play, Pause, X, Home as HomeIcon } from 'lucide-react'
+import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -71,7 +71,8 @@ const GlobalMusicPlayer = memo(() => {
     isLoaded,
     setPlaylist, 
     setIsLoaded,
-    nextTrack, 
+    nextTrack,
+    prevTrack,
     togglePlay, 
     toggleMinimize,
     setIsMinimized,
@@ -191,10 +192,10 @@ const GlobalMusicPlayer = memo(() => {
       {location.pathname !== '/' && (
         <Link
           to="/"
-          className="flex items-center justify-center size-40 md:size-48 bg-white border border-gray-200 text-gray-600 rounded-full shadow-lg hover:bg-primary hover:text-white hover:border-primary transition-all"
+          className="flex items-center justify-center size-48 md:size-56 bg-white border-2 border-gray-300 text-gray-600 rounded-full shadow-xl hover:bg-primary hover:text-white hover:border-primary transition-all"
           title="홈으로"
         >
-          <HomeIcon size={18} className="md:w-5 md:h-5" />
+          <HomeIcon size={24} className="md:w-7 md:h-7" />
         </Link>
       )}
       
@@ -257,18 +258,27 @@ const GlobalMusicPlayer = memo(() => {
               <span className="text-[10px] md:text-xs text-gray-500">
                 Track {currentIndex + 1} / {playlist.length}
               </span>
-              <div className="flex items-center gap-8 md:gap-12">
+              <div className="flex items-center gap-6 md:gap-8">
+                <button
+                  onClick={prevTrack}
+                  className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  title="Previous"
+                >
+                  <SkipBack size={16} className="md:w-[18px] md:h-[18px]" />
+                </button>
                 <button
                   onClick={togglePlay}
                   className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  title={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? <Pause size={16} className="md:w-[18px] md:h-[18px]" /> : <Play size={16} className="md:w-[18px] md:h-[18px]" />}
                 </button>
                 <button
                   onClick={nextTrack}
-                  className="px-10 md:px-12 py-5 md:py-6 text-[10px] md:text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                  className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                  title="Next"
                 >
-                  Next
+                  <SkipForward size={16} className="md:w-[18px] md:h-[18px]" />
                 </button>
               </div>
             </div>
