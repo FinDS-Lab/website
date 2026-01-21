@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-12",
-    "end": "2026-02"
+    "start": "2025.12.24.",
+    "end": "2026.03.01."
   },
   "contact": {
     "email": "sungjun758@naver.com",
@@ -37,5 +37,5 @@
     }
   ]
 ,
-  "avatar": "/website/images/members/LSJ-1.png"
+  "avatar": "/website/images/members/LSJ-1.webp"
 }

@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-12",
-    "end": "2026-02"
+    "start": "2025.12.24.",
+    "end": "2026.03.01."
   },
   "contact": {
     "email": "qocn0123@khu.ac.kr"
@@ -38,5 +38,5 @@
     "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
   ]
 ,
-  "avatar": "/website/images/members/PSS-1.png"
+  "avatar": "/website/images/members/PSS-1.webp"
 }

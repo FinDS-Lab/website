@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-12",
-    "end": "2026-02"
+    "start": "2025.12.24.",
+    "end": "2026.03.01."
   },
   "contact": {
     "email": "ehdgns7337@inha.edu",
@@ -35,5 +35,5 @@
       "note": "Double major in Statistics"
     }
   ],
-  "avatar": "/website/images/members/YDH-1.png"
+  "avatar": "/website/images/members/YDH-1.webp"
 }
