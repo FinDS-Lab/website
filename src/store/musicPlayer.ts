@@ -12,6 +12,7 @@ interface MusicPlayerState {
   setIsMinimized: (isMinimized: boolean) => void
   setIsLoaded: (isLoaded: boolean) => void
   nextTrack: () => void
+  prevTrack: () => void
   togglePlay: () => void
   toggleMinimize: () => void
 }
@@ -30,6 +31,10 @@ export const useMusicPlayerStore = create<MusicPlayerState>((set, get) => ({
   nextTrack: () => {
     const { playlist, currentIndex } = get()
     set({ currentIndex: (currentIndex + 1) % playlist.length })
+  },
+  prevTrack: () => {
+    const { playlist, currentIndex } = get()
+    set({ currentIndex: currentIndex === 0 ? playlist.length - 1 : currentIndex - 1 })
   },
   togglePlay: () => {
     const { isPlaying, isMinimized } = get()

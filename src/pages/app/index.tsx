@@ -4,7 +4,7 @@ import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
 import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
-import { Music, Play, Pause, X, Home as HomeIcon } from 'lucide-react'
+import { Music, Play, Pause, X, Home as HomeIcon, List, SkipForward, SkipBack } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -91,16 +91,19 @@ const GlobalMusicPlayer = memo(() => {
     isLoaded,
     setPlaylist, 
     setIsLoaded,
-    nextTrack, 
+    nextTrack,
+    prevTrack,
     togglePlay, 
     toggleMinimize,
     setIsMinimized,
-    setIsPlaying
+    setIsPlaying,
+    setCurrentIndex
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
+  const [showPlaylist, setShowPlaylist] = useState(false)
   const location = useLocation()
 
   // Load YouTube IFrame API
@@ -210,78 +213,159 @@ const GlobalMusicPlayer = memo(() => {
     return null
   }
 
+  // Handle track selection from playlist
+  const handleTrackSelect = (index: number) => {
+    setCurrentIndex(index)
+    if (!isPlaying) {
+      togglePlay()
+    }
+    setShowPlaylist(false)
+  }
+
   return (
     <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9998]">
       {isMinimized ? (
         <button
           onClick={() => setIsMinimized(false)}
-          className="flex items-center gap-6 md:gap-8 px-12 md:px-16 py-10 md:py-12 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all"
+          className="group flex items-center gap-8 px-16 py-12 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700"
         >
-          <Music size={16} className="md:w-[18px] md:h-[18px]" />
-          <span className="text-xs md:text-sm font-medium">Playlist</span>
+          <div className="relative">
+            <Music size={18} className="text-primary" />
+            {isPlaying && (
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            )}
+          </div>
+          <span className="text-sm font-medium tracking-wide">Playlist</span>
         </button>
       ) : (
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden w-[280px] md:w-[320px]">
+        <div className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden w-[300px] md:w-[340px] border border-gray-800">
           {/* Header */}
-          <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-primary to-[#D6C360]">
-            <div className="flex items-center gap-6 md:gap-8">
-              <Music size={14} className="text-white md:w-4 md:h-4" />
-              <span className="text-xs md:text-sm font-bold text-white">FINDS Playlist</span>
+          <div className="relative px-16 py-14 bg-gradient-to-br from-gray-800 via-gray-850 to-gray-900">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-10">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center">
+                  <Music size={18} className="text-white" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold text-white/90 tracking-wider uppercase">Now Playing</span>
+                </div>
+              </div>
+              <button
+                onClick={toggleMinimize}
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <X size={14} className="text-white/70" />
+              </button>
             </div>
-            <button
-              onClick={toggleMinimize}
-              className="text-white/80 hover:text-white transition-colors"
-            >
-                <X size={16} className="md:w-[18px] md:h-[18px]" />
-            </button>
           </div>
 
-          {/* Current Track Info - Always visible when track exists */}
+          {/* Current Track Info */}
           {currentTrack && (
-            <div className="px-12 md:px-16 py-8 md:py-10 bg-gray-50 border-b border-gray-100">
-              <p className="text-[10px] md:text-xs font-bold truncate" style={{ color: '#D6B14D' }}>
+            <div className="px-16 py-12 bg-gray-850 border-b border-gray-800">
+              <p className="text-primary text-xs font-bold tracking-wide mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 {currentTrack.artist}
               </p>
-              <p className="text-xs md:text-sm font-medium text-gray-900 truncate">
+              <p className="text-white text-sm font-medium truncate" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 {currentTrack.title}
               </p>
             </div>
           )}
 
-          {/* Video Player */}
-          <div className="relative aspect-video bg-black">
-            {isPlaying && currentVideoId ? (
-              <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
+          {/* Video Player or Playlist View */}
+          {showPlaylist ? (
+            <div className="bg-gray-850 max-h-[240px] overflow-y-auto scrollbar-thin">
+              {trackInfo.map((track, index) => (
                 <button
-                  onClick={togglePlay}
-                  className="w-48 h-48 md:w-60 md:h-60 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors"
+                  key={index}
+                  onClick={() => handleTrackSelect(index)}
+                  className={`w-full px-16 py-10 flex items-center gap-12 hover:bg-gray-800 transition-colors border-b border-gray-800/50 ${
+                    index === currentIndex ? 'bg-gray-800' : ''
+                  }`}
                 >
-                  <Play size={24} className="text-white ml-3 md:ml-4 md:w-7 md:h-7" />
+                  <span className={`w-6 text-xs font-mono ${index === currentIndex ? 'text-primary' : 'text-gray-500'}`}>
+                    {index + 1}
+                  </span>
+                  <div className="flex-1 min-w-0 text-left">
+                    <p className={`text-xs truncate ${index === currentIndex ? 'text-primary font-semibold' : 'text-gray-400'}`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                      {track.artist}
+                    </p>
+                    <p className={`text-sm truncate ${index === currentIndex ? 'text-white font-medium' : 'text-gray-300'}`} style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                      {track.title}
+                    </p>
+                  </div>
+                  {index === currentIndex && isPlaying && (
+                    <div className="flex gap-1">
+                      <span className="w-1 h-3 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1 h-4 bg-primary rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                    </div>
+                  )}
                 </button>
-              </div>
-            )}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="relative aspect-video bg-black">
+              {isPlaying && currentVideoId ? (
+                <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+                  <div className="text-center">
+                    <div className="w-16 h-16 rounded-full bg-gray-800/50 flex items-center justify-center mb-8 mx-auto">
+                      <Music size={24} className="text-gray-600" />
+                    </div>
+                    <p className="text-gray-500 text-xs">Press play to start</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Controls */}
-          <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12">
-            <span className="text-[10px] md:text-xs text-gray-500">
-              Track {currentIndex + 1} / {playlist.length}
-            </span>
-            <div className="flex items-center gap-8 md:gap-12">
+          <div className="px-16 py-14 bg-gray-900 border-t border-gray-800">
+            <div className="flex items-center justify-between">
+              {/* Track Counter / List Toggle */}
               <button
-                onClick={togglePlay}
-                className="p-6 md:p-8 rounded-full hover:bg-gray-100 transition-colors"
+                onClick={() => setShowPlaylist(!showPlaylist)}
+                className={`flex items-center gap-6 px-10 py-6 rounded-lg transition-all ${
+                  showPlaylist 
+                    ? 'bg-primary/20 text-primary' 
+                    : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700'
+                }`}
               >
-                {isPlaying ? <Pause size={16} className="md:w-[18px] md:h-[18px]" /> : <Play size={16} className="md:w-[18px] md:h-[18px]" />}
+                <List size={14} />
+                <span className="text-xs font-medium">{currentIndex + 1}/{playlist.length}</span>
               </button>
-              <button
-                onClick={nextTrack}
-                className="px-10 md:px-12 py-5 md:py-6 text-[10px] md:text-xs font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
-              >
-                Next
-              </button>
+
+              {/* Main Controls */}
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={prevTrack}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all"
+                >
+                  <SkipBack size={16} />
+                </button>
+                
+                <button
+                  onClick={togglePlay}
+                  className="w-12 h-12 rounded-full bg-primary flex items-center justify-center hover:bg-primary/90 transition-all shadow-lg shadow-primary/30"
+                >
+                  {isPlaying ? (
+                    <Pause size={18} className="text-white" />
+                  ) : (
+                    <Play size={18} className="text-white ml-0.5" />
+                  )}
+                </button>
+                
+                <button
+                  onClick={nextTrack}
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 transition-all"
+                >
+                  <SkipForward size={16} />
+                </button>
+              </div>
+
+              {/* Spacer for balance */}
+              <div className="w-[72px]" />
             </div>
           </div>
         </div>
