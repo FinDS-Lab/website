@@ -411,18 +411,18 @@ export const MembersDirectorTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
             <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Members
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -738,7 +738,7 @@ export const MembersDirectorTemplate = () => {
                                   className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
                                 >
                                   <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B04C]" />
+                                    <GraduationCap className="size-14 text-[#D6B14D]" />
                                     <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
                                   </div>
                                   <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
@@ -788,7 +788,7 @@ export const MembersDirectorTemplate = () => {
                             <div className="space-y-6">
                               {edu.honors.map((h, i) => (
                                 <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
-                                  <span className="shrink-0" style={{color: '#D6B04C'}}>🎖️</span>
+                                  <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                   <div className="flex-1">
                                     <span className="text-xs font-semibold text-gray-800">{h.title}</span>
                                     <span className="text-[10px] text-gray-500 block mt-2">{h.org}</span>
@@ -885,9 +885,9 @@ export const MembersDirectorTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalHonors}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
-                                    <Medal className="size-14 md:size-16" style={{color: '#D6B04C', opacity: 0.7}} />
+                                    <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
                                   </div>
                                 </div>
@@ -902,12 +902,12 @@ export const MembersDirectorTemplate = () => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="group relative bg-[#FFF9E6] border border-[#D6B04C]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B04C]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B04C'}}>{totalItems}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
                                   <div className="flex items-center gap-6">
-                                    <Award className="size-14 md:size-16" style={{color: '#D6B04C', opacity: 0.7}} />
+                                    <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                                   </div>
                                 </div>

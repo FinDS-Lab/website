@@ -91,11 +91,11 @@ export const AboutResearchTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
@@ -139,7 +139,7 @@ export const AboutResearchTemplate = () => {
             <span className="inline-block">Driving</span>
             <span className="inline-block mx-4"> </span>
             <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
+              <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
                 Innovation
               </span>
               <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
@@ -169,7 +169,7 @@ export const AboutResearchTemplate = () => {
               `}
             >
               {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#D6B04C]/10 to-transparent rounded-full blur-2xl" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#D6B14D]/10 to-transparent rounded-full blur-2xl" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-xl" />
               
               <div className={`
@@ -181,13 +181,13 @@ export const AboutResearchTemplate = () => {
                   {/* 헤더 */}
                   <div className="mb-20 md:mb-24">
                     <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-[#FFF9E6] to-primary/5 border border-[#FFEB99]/50 rounded-full mb-12 md:mb-16">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#D6B04C]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
                       <span className="text-[10px] md:text-xs font-bold text-[#B8962D] tracking-wide">
                         {area.badge}
                       </span>
                     </div>
                     <h2>
-                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent mb-6">
+                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent mb-6">
                         {area.titleEn}
                       </span>
                       <span className="text-base md:text-lg font-semibold text-gray-600">
@@ -203,7 +203,7 @@ export const AboutResearchTemplate = () => {
                         key={idx}
                         className="relative pl-20 md:pl-24 group/item"
                       >
-                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-[#D6B04C]/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
+                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-[#D6B14D]/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
                           <span className="w-2 h-2 rounded-full bg-primary" />
                         </span>
                         <span className="block text-sm md:text-base font-semibold text-gray-800 leading-snug group-hover/item:text-primary transition-colors">

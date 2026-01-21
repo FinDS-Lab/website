@@ -149,12 +149,12 @@ export const ArchivesGalleryTemplate = () => {
         <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${banner4})` }} />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
             <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">Archives</span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
           </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight">Gallery</h1>
         </div>

@@ -681,7 +681,7 @@ const CollaborationNetwork = memo(() => {
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#E8C86A"/>
-              <stop offset="100%" stopColor="#D6B04C"/>
+              <stop offset="100%" stopColor="#D6B14D"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stopColor="#ffd6dd"/>
@@ -783,7 +783,7 @@ const CollaborationNetwork = memo(() => {
                   <text
                     y={size + 14}
                     textAnchor="middle"
-                    fill={node.isDirector ? '#D6B04C' : '#374151'}
+                    fill={node.isDirector ? '#D6B14D' : '#374151'}
                     stroke={node.isDirector ? '#000000' : 'none'}
                     strokeWidth={node.isDirector ? 0.5 : 0}
                     paintOrder="stroke"
@@ -909,7 +909,7 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B04C'}}>IC</div>
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
@@ -1182,18 +1182,18 @@ export const MembersDirectorAcademicTemplate = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
             <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Members
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -1438,7 +1438,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                     </div>
                     <div className="space-y-8">
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
@@ -1448,7 +1448,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
@@ -1458,7 +1458,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.09 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
@@ -1468,7 +1468,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B04C]/30 transition-colors">
+                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
                         <div>
                           <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
@@ -1485,15 +1485,15 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="p-24 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
                       <p className="text-xs font-bold text-gray-900">Program Committee</p>
-                      <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                      <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                     </div>
                     {committees.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B04C]/30">
+                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30">
                             <span className="text-gray-700">{comm.name}</span>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 bg-[#D6B04C] text-white">{comm.period || comm.since}</span>
+                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1506,15 +1506,15 @@ export const MembersDirectorAcademicTemplate = () => {
                   <div className="p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
                       <p className="text-xs font-bold text-gray-900">Session Chair</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B04C'}}>{sessionChairs.length}</span>
+                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{sessionChairs.length}</span>
                     </div>
                     {sessionChairs.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B04C]/30">
+                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30">
                             <span className="text-gray-700">{chair.name}</span>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B04C', color: 'white'}}>{chair.period || chair.since}</span>
+                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1631,7 +1631,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             }
                             const typeColors = {
                               government: 'bg-primary text-white',
-                              industry: 'bg-[#D6B04C] text-white',
+                              industry: 'bg-[#D6B14D] text-white',
                               institution: 'bg-[#FFBAC4] text-white',
                               academic: 'bg-gray-700 text-white',
                             }
@@ -1718,7 +1718,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Lecturer</p>
-                        <span className="px-8 py-2 bg-[#D6B04C] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
+                        <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
                       </div>
                       <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${expandedSections.lecturer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1728,7 +1728,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214, 176, 76,0.15)'}}>
-                              <BookOpen size={18} style={{color: '#D6B04C'}} />
+                              <BookOpen size={18} style={{color: '#D6B14D'}} />
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">

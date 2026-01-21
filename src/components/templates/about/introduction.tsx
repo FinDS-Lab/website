@@ -14,7 +14,7 @@ const focusAreas = [
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     desc: '금융 시장의 복잡한 데이터를 수집하고 분석하여 가치 있는 패턴과 인사이트를 발견합니다.',
-    gradient: 'from-[#D6B04C]/10 via-[#D6C360]/5 to-transparent',
+    gradient: 'from-[#D6B14D]/10 via-[#D6C360]/5 to-transparent',
   },
   {
     image: icon11,
@@ -39,7 +39,7 @@ const pillars = [
     number: '01',
     title: 'We pursue research from multiple perspectives.',
     description: 'Using <b>rigorous methodologies</b> in <b>financial data science</b> and <b>business analytics</b>, we advance knowledge while developing <b>clear frameworks</b> that support <b>practical applications</b> and <b>informed decision-making</b>.',
-    accent: 'group-hover:from-[#D6B04C] group-hover:to-[#D6C360]',
+    accent: 'group-hover:from-[#D6B14D] group-hover:to-[#D6C360]',
   },
   {
     icon: Zap,
@@ -108,11 +108,11 @@ export const AboutIntroductionTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
@@ -181,7 +181,7 @@ export const AboutIntroductionTemplate = () => {
               <div className="relative z-10 text-center max-w-4xl mx-auto">
                 {/* Badge */}
                 <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
-                  <Sparkles size={14} className="text-[#D6B04C]" />
+                  <Sparkles size={14} className="text-[#D6B14D]" />
                   <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                     Our Mission
                   </span>
@@ -191,7 +191,7 @@ export const AboutIntroductionTemplate = () => {
                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
                   <span className="inline-block">Towards</span>{' '}
                   <span className="relative inline-block">
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
                       Data-Illuminated
                     </span>
                   </span>
@@ -202,7 +202,7 @@ export const AboutIntroductionTemplate = () => {
                 {/* Divider */}
                 <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
                   <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                  <div className="w-2 h-2 rounded-full bg-[#D6B04C]" />
+                  <div className="w-2 h-2 rounded-full bg-[#D6B14D]" />
                   <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
                 </div>
 
@@ -273,7 +273,7 @@ export const AboutIntroductionTemplate = () => {
                   <div className={`absolute inset-0 bg-gradient-to-br ${area.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
                   {/* Top Accent Line */}
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B04C] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Content */}
                   <div className="relative p-28 md:p-40 lg:p-48">
@@ -338,7 +338,7 @@ export const AboutIntroductionTemplate = () => {
             <div className="relative z-10 text-center max-w-4xl mx-auto">
               {/* Badge */}
               <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
-                <Sparkles size={14} className="text-[#D6B04C]" />
+                <Sparkles size={14} className="text-[#D6B14D]" />
                 <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Vision
                 </span>
@@ -349,17 +349,17 @@ export const AboutIntroductionTemplate = () => {
                 We illuminate the future of
                 <br />
                 <span className="relative inline-block mt-8 md:mt-12">
-                  <span className="bg-gradient-to-r from-primary via-[#D6B04C] to-primary bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
                     Better Data Intelligence
                   </span>
-                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
                 </span>
               </h2>
 
               {/* Divider */}
               <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
                 <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                <div className="w-2 h-2 rounded-full bg-[#D6B04C]" />
+                <div className="w-2 h-2 rounded-full bg-[#D6B14D]" />
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
               </div>
 
@@ -390,7 +390,7 @@ export const AboutIntroductionTemplate = () => {
             {/* Section Header */}
             <div className="text-center mb-48 md:mb-80">
               <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-16 md:mb-24 shadow-sm">
-                <Sparkles size={14} className="text-[#D6B04C]" />
+                <Sparkles size={14} className="text-[#D6B14D]" />
                 <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
                   Our Pillars
                 </span>
@@ -405,10 +405,10 @@ export const AboutIntroductionTemplate = () => {
                 </span>
                 <span className="relative">
                   Impact
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#D6B04C]/30 to-[#D6C360] rounded-full" />
+                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#D6B14D]/30 to-[#D6C360] rounded-full" />
                 </span>
                 <span className="flex items-center gap-4">
-                  <span className="size-2 rounded-full bg-[#D6B04C]" />
+                  <span className="size-2 rounded-full bg-[#D6B14D]" />
                 </span>
                 <span className="relative">
                   Philosophy
@@ -461,7 +461,7 @@ export const AboutIntroductionTemplate = () => {
                         
                         {/* Subtitle for Philosophy */}
                         {pillar.subtitle && (
-                          <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B04C]">
+                          <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B14D]">
                             {pillar.subtitle}
                           </p>
                         )}

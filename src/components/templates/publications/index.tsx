@@ -162,7 +162,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
                 ? 'bg-gray-900 font-mono text-xs border-gray-700 whitespace-pre-wrap'
                 : 'bg-gray-50 text-gray-600 border-gray-100'
             }`}
-              style={format.key === 'bibtex' ? {color: '#D6B04C'} : undefined}
+              style={format.key === 'bibtex' ? {color: '#D6B14D'} : undefined}
               dangerouslySetInnerHTML={format.key !== 'bibtex' ? {__html: text} : undefined}
             >
               {format.key === 'bibtex' ? text : null}
@@ -299,7 +299,7 @@ export const PublicationsTemplate = () => {
     })
 
     return [
-      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B04C' }, // Gold for journals
+      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' }, // Gold for journals
       { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' }, // Red for conferences
       { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' }, // Light yellow for books
       { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' }, // Sakura for reports
@@ -444,21 +444,21 @@ export const PublicationsTemplate = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B04C]/50 to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
         
         {/* Floating Accent */}
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B04C]/10 blur-3xl animate-pulse" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
           <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
             <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
               Research Output
             </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B04C]/80" />
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
           </div>
           
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
@@ -501,7 +501,7 @@ export const PublicationsTemplate = () => {
                 <div
                   key={index}
                   className={`group relative border rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 ${
-                    stat.label.includes('Total') ? 'bg-[#FFF9E6] border-[#D6B04C]/20' : 'bg-white border-gray-100'
+                    stat.label.includes('Total') ? 'bg-[#FFF9E6] border-[#D6B14D]/20' : 'bg-white border-gray-100'
                   }`}
                 >
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -525,7 +525,7 @@ export const PublicationsTemplate = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
                 // FINDS Lab color palette for icons
-                const colors = ['#D6B04C', '#D6B04C', '#D6C360', '#D6B04C', '#D6B04C', '#E8D688', '#726A69', '#AC0E0E']
+                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#726A69', '#AC0E0E']
                 const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(172,14,14,0.15)']
                 return (
                   <div
@@ -634,7 +634,7 @@ export const PublicationsTemplate = () => {
                         <div className="flex items-center gap-12">
                           <span className={`text-lg font-semibold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
                           {isCurrentYear && (
-                            <span className="px-8 py-2 bg-[#D6B04C] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
                         </div>
                         <span className={`text-base max-md:hidden ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
@@ -661,7 +661,7 @@ export const PublicationsTemplate = () => {
                           const authorList = getAuthorNames(pub.authors, pub.author_marks, pub.language)
                           const typeLabel = pub.type === 'journal' ? 'Journal' : pub.type === 'conference' ? 'Conference' : pub.type === 'book' ? 'Book' : pub.type === 'report' ? 'Report' : pub.type.charAt(0).toUpperCase() + pub.type.slice(1)
                           const typeColor = pub.type === 'journal'
-                            ? 'bg-[#D6B04C]'
+                            ? 'bg-[#D6B14D]'
                             : pub.type === 'conference'
                             ? 'bg-[#AC0E0E]'
                             : pub.type === 'book'
