@@ -1,6 +1,6 @@
 ---
 title: "FINDS Lab Color Palette"
-date: 2025-01-21
+date: 2025-01-31
 author: "FINDS Lab"
 thumb: "color-palette.svg"
 ---
