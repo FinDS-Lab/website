@@ -233,7 +233,13 @@ const GlobalMusicPlayer = memo(() => {
               </div>
             </div>
             {/* Mini Controls */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={prevTrack}
+                className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+              >
+                <SkipBack size={10} className="text-gray-400" />
+              </button>
               <button
                 onClick={togglePlay}
                 className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
