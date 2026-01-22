@@ -4,7 +4,7 @@ import { Copy, Home, Clock, MapPin } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import locationImg from '@/assets/images/location/1.png'
+import locationImg from '@/assets/images/location/1.webp'
 
 export const LocationTemplate = () => {
   const handleCopyAddress = () => {
