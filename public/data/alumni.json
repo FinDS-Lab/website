@@ -46,7 +46,7 @@
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Hanyang University (ERICA)", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Hanyang University ERICA", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
@@ -68,7 +68,7 @@
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
       "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Korea University",
+      "currentPosition": "Graduate School\nKorea University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
@@ -128,7 +128,7 @@
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
       "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Seoul National University",
+      "currentPosition": "Graduate School\nSeoul National University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
@@ -136,7 +136,7 @@
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "KAIST", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Korea Advanced Institute of Science and Technology (KAIST)", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
@@ -158,7 +158,7 @@
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
       "education": [{"degree": "bs", "school": "Kyung Hee University", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "Graduate School, Korea University",
+      "currentPosition": "Graduate School\nKorea University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {

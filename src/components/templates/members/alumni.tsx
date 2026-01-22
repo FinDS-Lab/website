@@ -120,7 +120,27 @@ export const MembersAlumniTemplate = () => {
 
   // Get primary affiliation (the school where they got their degree from lab)
   const getAffiliation = (alumni: AlumniMember) => {
-    return alumni.education[0]?.school || '-'
+    const school = alumni.education[0]?.school
+    if (!school) return '-'
+    return <span className="font-semibold">{school}</span>
+  }
+
+  // Render currentPosition with Graduate School formatting
+  const renderCurrentPosition = (position: string | undefined) => {
+    if (!position) return <span className="text-gray-400">-</span>
+    
+    // Check if it contains Graduate School with newline
+    if (position.includes('Graduate School\n')) {
+      const parts = position.split('\n')
+      return (
+        <div className="flex flex-col">
+          <span className="text-gray-500">{parts[0]}</span>
+          <span className="font-semibold text-gray-700">{parts[1]}</span>
+        </div>
+      )
+    }
+    
+    return <span>{position}</span>
   }
 
   // Get graduation date only (for Ph.D./M.S.)
@@ -604,9 +624,9 @@ export const MembersAlumniTemplate = () => {
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {(alumni.currentPosition || alumni.company) ? (
-                                    <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                      <Building2 size={14} style={{color: '#FFBAC4'}}/>
-                                      <span>{alumni.currentPosition || alumni.company}</span>
+                                    <div className="flex items-start gap-6 text-xs md:text-sm text-gray-600">
+                                      <Building2 size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
+                                      {renderCurrentPosition(alumni.currentPosition || alumni.company)}
                                     </div>
                                   ) : (
                                     <span className="text-gray-400">-</span>

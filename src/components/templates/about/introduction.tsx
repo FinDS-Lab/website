@@ -38,7 +38,7 @@ const pillars = [
     label: 'Research',
     number: '01',
     title: 'We pursue research from multiple perspectives.',
-    description: 'Using <b>rigorous methodologies</b> in <b>financial data science</b> and <b>business analytics</b>, we advance knowledge while developing <b>clear frameworks</b> that support <b>practical applications</b> and <b>informed decision-making</b>.',
+    description: 'Using <b>systematic methodologies</b> in <b>financial data science</b> and <b>business analytics</b>, we advance knowledge while developing <b>clear frameworks</b> that support <b>practical applications</b> and <b>informed decision-making</b>.',
     accent: 'group-hover:from-[#D6B14D] group-hover:to-[#D6C360]',
   },
   {

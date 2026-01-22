@@ -1,4 +1,4 @@
-import { memo, ReactNode, useState } from 'react'
+import React, { memo, ReactNode, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, X, Mail, Copy, Check } from 'lucide-react'
 import clsx from 'clsx'
@@ -335,26 +335,30 @@ const LayoutOrganisms = ({ children }: props) => {
       <main>{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-white border-t border-gray-100">
-        <div className="max-w-1480 mx-auto flex flex-col items-center gap-12 md:gap-16 px-16 md:px-20 py-20 md:py-24">
-          {/* Footer Links */}
-          <div className="flex flex-wrap items-center justify-center gap-16 md:gap-40 lg:gap-60">
-            {footerLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm md:text-base text-gray-500! hover:text-gray-700"
-              >
-                {link.name}
-              </a>
+      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
+        <div className="max-w-1480 mx-auto px-16 md:px-20 py-24 md:py-32">
+          {/* Links Row - Minimal elegant style */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-20 md:mb-24">
+            {footerLinks.map((link, idx) => (
+              <React.Fragment key={link.name}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] md:text-xs text-gray-400 hover:text-gray-600 transition-colors tracking-wide"
+                >
+                  {link.name}
+                </a>
+                {idx < footerLinks.length - 1 && (
+                  <span className="w-[3px] h-[3px] rounded-full bg-gray-200" />
+                )}
+              </React.Fragment>
             ))}
           </div>
 
-          {/* Copyright */}
-          <p className="text-sm md:text-base text-gray-500 text-center">
-            © 2026 FINDS Lab All Rights Reserved.
+          {/* Copyright - Clean typography */}
+          <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
+            © 2026 FINDS Lab
           </p>
         </div>
       </footer>
