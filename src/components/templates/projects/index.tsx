@@ -466,96 +466,81 @@ export const ProjectsTemplate = () => {
                       </button>
                       
                       {isExpanded && (
-                        <div className="flex flex-col">
+                        <div className="border-t border-gray-100 divide-y divide-gray-50">
                           {yearProjects.map((project, idx) => {
                             const config = typeConfig[project.type]
                             const Icon = config?.icon || Briefcase
                             const status = getProjectStatus(project.period)
                             
+                            // Determine director's role
+                            const getDirectorRole = () => {
+                              if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
+                              if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
+                              if (project.roles.researchers?.includes('최인수')) return 'Researcher'
+                              return null
+                            }
+                            const roleColor: Record<string, string> = {
+                              'Principal Investigator': 'bg-gray-900 text-white',
+                              'Lead Researcher': 'bg-gray-600 text-white',
+                              'Researcher': 'bg-gray-400 text-white'
+                            }
+                            const directorRole = getDirectorRole()
+                            
+                            const typeColors: Record<string, string> = {
+                              government: 'bg-primary text-white',
+                              industry: 'bg-[#D6B14D] text-white',
+                              institution: 'bg-[#FFBAC4] text-white',
+                              academic: 'bg-gray-700 text-white',
+                            }
+                            
                             return (
-                              <div key={idx} className="relative p-20 md:p-32 bg-white border-t border-gray-100 overflow-hidden">
-                                {/* Mobile: Ribbon-style badge at top-left corner */}
-                                <div className="md:hidden absolute top-0 left-0 flex items-stretch">
-                                  {/* Type Badge - Main ribbon */}
-                                  <div className={`${config?.color || 'bg-gray-500'} px-12 py-6 rounded-br-lg shadow-sm flex items-center gap-4`}>
-                                    <Icon size={12} className="text-white" />
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-wide">
-                                      {config?.label || project.type}
-                                    </span>
+                              <div key={idx} className="p-16 md:p-20 hover:bg-gray-50/50 transition-all">
+                                <div className="flex items-start gap-12 md:gap-16">
+                                  <div className={`size-40 md:size-48 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
+                                    <Icon size={20} className="md:w-24 md:h-24" />
                                   </div>
-                                  {/* Status Badge */}
-                                  <div 
-                                    className={`px-10 py-6 flex items-center rounded-br-lg -ml-1 ${
-                                      status === 'ongoing' 
-                                        ? 'bg-[#FFF9E6] border-b border-r border-[#FFEB99]' 
-                                        : 'bg-gray-50 border-b border-r border-gray-200'
-                                    }`}
-                                  >
-                                    <span className={`text-[9px] font-bold uppercase tracking-wide ${
-                                      status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
-                                    }`}>
-                                      {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                    </span>
-                                  </div>
-                                </div>
-                                
-                                {/* Mobile content padding to account for ribbon */}
-                                <div className="md:hidden h-6" />
-                                
-                                <div className="flex flex-col md:flex-row md:items-start gap-16 md:gap-24">
-                                  {/* Desktop: Type Badge - keep original */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-100">
-                                    <div className={`w-full py-10 rounded-t-lg text-center ${config?.color || 'bg-gray-500'}`}>
-                                      <Icon size={16} className="inline text-white mb-2" />
-                                      <span className="block text-xs font-semibold text-white uppercase tracking-wide">
-                                        {config?.label || project.type}
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-6 mb-8">
+                                      <span className="px-10 py-4 bg-gray-100 text-gray-600 text-[10px] md:text-xs font-bold rounded-full flex items-center gap-4">
+                                        <Calendar size={12} />
+                                        {project.period}
                                       </span>
-                                    </div>
-                                    <div className={`w-full py-8 rounded-b-lg text-center border-x border-b ${
-                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
-                                    }`}>
-                                      <span className={`text-xs font-medium ${
-                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
+                                      <span className={`px-10 py-4 text-[10px] md:text-xs font-bold rounded-full ${
+                                        status === 'ongoing' 
+                                          ? 'bg-[#FFF9E6] text-[#D6B14D] border border-[#FFEB99]' 
+                                          : 'bg-gray-100 text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>
-                                    </div>
-                                  </div>
-
-                                  {/* Content */}
-                                  <div className="flex-1 min-w-0">
-                                    <h4 className="text-base md:text-lg font-bold text-gray-900 mb-8 leading-relaxed">
-                                      {project.titleEn}
-                                    </h4>
-                                    <p className="text-sm md:text-base text-gray-600 mb-12">{project.titleKo}</p>
-                                    
-                                    <div className="flex flex-col gap-8">
-                                      <div className="flex flex-wrap gap-8 md:gap-12">
-                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
-                                          <Calendar size={12} />
-                                          {project.period}
+                                      {directorRole && (
+                                        <span className={`px-10 py-4 text-[10px] md:text-xs font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                          {directorRole}
                                         </span>
-                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
-                                          <Building2 size={12} />
-                                          <span className="font-bold text-gray-800">{project.fundingAgency}</span>
-                                        </span>
-                                      </div>
-                                      {/* Researcher info */}
-                                      {project.roles && (project.roles.principalInvestigator || project.roles.leadResearcher) && (
-                                        <div className="flex flex-wrap gap-6 text-xs text-gray-500">
-                                          {project.roles.principalInvestigator && (
-                                            <span className="inline-flex items-center gap-4">
-                                              <span className="font-semibold text-gray-600">PI:</span> {project.roles.principalInvestigator}
-                                            </span>
-                                          )}
-                                          {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
-                                            <span className="inline-flex items-center gap-4">
-                                              <span className="font-semibold text-gray-600">Lead:</span> {project.roles.leadResearcher}
-                                            </span>
-                                          )}
-                                        </div>
                                       )}
                                     </div>
+                                    <p className="text-sm md:text-base font-bold text-gray-900 leading-relaxed line-clamp-2">{project.titleKo}</p>
+                                    <p className="text-xs md:text-sm text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-xs md:text-sm text-gray-500 mt-6">
+                                      <span className="font-bold text-gray-700">{project.fundingAgency}</span>
+                                      {project.fundingAgencyKo && project.fundingAgencyKo !== project.fundingAgency && (
+                                        <span className="text-gray-400 ml-4">({project.fundingAgencyKo})</span>
+                                      )}
+                                    </p>
+                                    {/* Researcher info */}
+                                    {project.roles && (project.roles.principalInvestigator || project.roles.leadResearcher) && (
+                                      <div className="flex flex-wrap gap-8 mt-8 text-[10px] md:text-xs text-gray-500">
+                                        {project.roles.principalInvestigator && (
+                                          <span className="inline-flex items-center gap-4 px-8 py-2 bg-gray-50 rounded">
+                                            <span className="font-semibold text-gray-600">PI:</span> {project.roles.principalInvestigator}
+                                          </span>
+                                        )}
+                                        {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
+                                          <span className="inline-flex items-center gap-4 px-8 py-2 bg-gray-50 rounded">
+                                            <span className="font-semibold text-gray-600">Lead:</span> {project.roles.leadResearcher}
+                                          </span>
+                                        )}
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
                               </div>
