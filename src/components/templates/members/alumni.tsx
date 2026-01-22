@@ -624,8 +624,7 @@ export const MembersAlumniTemplate = () => {
                                 </td>
                                 <td className="py-12 md:py-16 px-12 md:px-16">
                                   {(alumni.currentPosition || alumni.company) ? (
-                                    <div className="flex items-start gap-6 text-xs md:text-sm text-gray-600">
-                                      <Building2 size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
+                                    <div className="text-xs md:text-sm text-gray-600">
                                       {renderCurrentPosition(alumni.currentPosition || alumni.company)}
                                     </div>
                                   ) : (
