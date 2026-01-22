@@ -177,6 +177,7 @@ export const MembersDirectorTemplate = () => {
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
+  const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set()) // For education awards/honors
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
     researchInterests: true,
@@ -187,6 +188,18 @@ export const MembersDirectorTemplate = () => {
   
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
+  }
+  
+  const toggleEduAwards = (idx: number) => {
+    setExpandedEduAwards(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(idx)) {
+        newSet.delete(idx)
+      } else {
+        newSet.add(idx)
+      }
+      return newSet
+    })
   }
   
   const toggleYear = (year: string) => {
@@ -762,37 +775,48 @@ export const MembersDirectorTemplate = () => {
                           </div>
                         )}
                         
-                        {edu.awards && edu.awards.length > 0 && (
+                        {/* Collapsible Awards & Honors */}
+                        {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
                           <div className="pt-12 border-t border-gray-100">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Awards</p>
-                            <div className="space-y-6">
-                              {edu.awards.map((a, i) => (
-                                <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                  <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
-                                  <div className="flex-1">
-                                    <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                    <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                            <button 
+                              onClick={() => toggleEduAwards(index)}
+                              className="flex items-center justify-between w-full group mb-8"
+                            >
+                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Awards & Honors</p>
+                              <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
+                            </button>
+                            
+                            {expandedEduAwards.has(index) && (
+                              <div className="space-y-12">
+                                {edu.awards && edu.awards.length > 0 && (
+                                  <div className="space-y-6">
+                                    {edu.awards.map((a, i) => (
+                                      <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                        <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
+                                        <div className="flex-1">
+                                          <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                          <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {edu.honors && edu.honors.length > 0 && (
-                          <div className="pt-12 border-t border-gray-100">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Honors</p>
-                            <div className="space-y-6">
-                              {edu.honors.map((h, i) => (
-                                <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
-                                  <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
-                                  <div className="flex-1">
-                                    <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                    <span className="text-[10px] text-gray-500 block mt-2">{h.org}</span>
+                                )}
+                                
+                                {edu.honors && edu.honors.length > 0 && (
+                                  <div className="space-y-6">
+                                    {edu.honors.map((h, i) => (
+                                      <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
+                                        <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
+                                        <div className="flex-1">
+                                          <span className="text-xs font-semibold text-gray-800">{h.title}</span>
+                                          <span className="text-[10px] text-gray-500 block mt-2">{h.org}</span>
+                                        </div>
+                                      </div>
+                                    ))}
                                   </div>
-                                </div>
-                              ))}
-                            </div>
+                                )}
+                              </div>
+                            )}
                           </div>
                         )}
                       </div>

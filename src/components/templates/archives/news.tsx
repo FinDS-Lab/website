@@ -82,7 +82,10 @@ const NewsDetailModal = ({ id, title, date }: { id: string; title?: string; date
             [&>hr]:my-28 [&>hr]:border-0 [&>hr]:h-px [&>hr]:bg-gray-200
             [&_strong]:font-semibold [&_strong]:text-gray-800
             [&_a]:text-primary [&_a]:font-medium [&_a]:no-underline hover:[&_a]:underline
-            [&_img]:my-20 [&_img]:rounded-lg [&_img]:max-w-full [&_img]:shadow-sm
+            [&_img]:my-16 [&_img]:rounded-lg [&_img]:max-w-full [&_img]:shadow-sm [&_img]:mx-auto [&_img]:block
+            [&>p>img]:my-12
+            [&>p>img+img]:mt-8
+            [&>p:has(img)+p:has(img)]:mt-8
             [&>code]:text-[12px] [&>code]:bg-gray-100 [&>code]:px-6 [&>code]:py-2 [&>code]:rounded [&>code]:font-mono [&>code]:text-gray-700
             [&>pre]:my-20 [&>pre]:bg-gray-900 [&>pre]:text-gray-100 [&>pre]:rounded-lg [&>pre]:p-16 [&>pre]:overflow-x-auto [&>pre]:text-[12px]
           "

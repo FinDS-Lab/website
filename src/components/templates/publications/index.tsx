@@ -691,97 +691,126 @@ export const PublicationsTemplate = () => {
                             : 'bg-gray-500'
 
                           return (
-                            <div key={idx} className="p-20 md:p-24 bg-white border-t border-gray-100">
-                              <div className="flex flex-col md:flex-row md:items-start gap-16 md:gap-20">
-                                {/* Left: Type Label + Number + Presentation */}
-                                <div className="flex flex-col items-center shrink-0 w-70 md:w-90">
-                                  <div className={`w-full py-6 md:py-8 rounded-t-lg text-center ${typeColor}`}>
-                                    <span className="text-[9px] md:text-xs font-semibold text-white uppercase tracking-wide">
+                            <div key={idx} className="p-16 md:p-24 bg-white border-t border-gray-100">
+                              <div className="flex flex-col gap-12 md:gap-20">
+                                {/* Mobile: Badge row */}
+                                <div className="flex md:hidden items-center gap-12">
+                                  <div className={`px-10 py-4 rounded-full text-center ${typeColor}`}>
+                                    <span className="text-[10px] font-bold text-white uppercase tracking-wide">
                                       {typeLabel}
                                     </span>
                                   </div>
-                                  {/* Number row - rounded bottom for Book/Report, flat for others */}
-                                  <div className={`w-full py-8 md:py-10 bg-gray-100 text-center border-x border-gray-200 ${
-                                    (pub.type === 'book' || pub.type === 'report') ? 'rounded-b-lg border-b' : ''
-                                  }`}>
-                                    <span className="text-sm md:text-base font-bold text-gray-700">
-                                      {getPublicationNumber(pub)}
-                                    </span>
-                                  </div>
-                                  {pub.type === 'conference' && pub.presentation_type && (
-                                    <div className={`w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b ${
-                                      pub.presentation_type === 'oral' 
-                                        ? 'border-pink-200' 
-                                        : 'border-pink-100'
-                                    }`}
-                                      style={{
-                                        backgroundColor: pub.presentation_type === 'oral' 
-                                          ? 'rgba(232,135,155,0.15)' 
-                                          : 'rgba(255,183,197,0.15)'
-                                      }}
-                                    >
-                                      <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wide"
-                                        style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
-                                      >
-                                        {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
-                                      </span>
-                                    </div>
-                                  )}
-                                  {pub.type === 'conference' && !pub.presentation_type && (
-                                    <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
-                                      <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
-                                        -
-                                      </span>
-                                    </div>
-                                  )}
-                                  {/* Journal Index Badge */}
+                                  <span className="text-sm font-bold text-gray-700">
+                                    #{getPublicationNumber(pub)}
+                                  </span>
                                   {pub.type === 'journal' && pub.indexing_group && (
-                                    <div 
-                                      className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b"
+                                    <span 
+                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase"
                                       style={{
                                         backgroundColor: 
                                           ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
                                           pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
                                           pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
-                                          pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.08)' :
-                                          pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.10)' :
-                                          'rgba(148,163,184,0.10)',
-                                        borderColor: 
-                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
-                                          pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
-                                          pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
-                                          pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.18)' :
-                                          pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.20)' :
-                                          'rgba(148,163,184,0.20)'
+                                          'rgba(100,116,139,0.10)',
+                                        color: 
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
+                                          pub.indexing_group === 'ESCI' ? '#C9A833' :
+                                          pub.indexing_group === 'Scopus' ? '#D6B14D' :
+                                          '#64748b'
                                       }}
                                     >
-                                      <span 
-                                        className="text-[8px] md:text-[9px] font-bold uppercase tracking-wide"
-                                        style={{
-                                          color: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgb(180,130,20)' :
-                                            pub.indexing_group === 'ESCI' ? 'rgba(180,130,20,0.8)' :
-                                            pub.indexing_group === 'Scopus' ? 'rgb(160,120,40)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(160,120,40,0.75)' :
-                                            pub.indexing_group === 'KCI' ? 'rgb(100,116,139)' :
-                                            'rgb(148,163,184)'
-                                        }}
-                                      >
-                                        {pub.indexing_group}
-                                      </span>
-                                    </div>
+                                      {pub.indexing_group}
+                                    </span>
                                   )}
-                                  {pub.type === 'journal' && !pub.indexing_group && (
-                                    <div className="w-full py-4 md:py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
-                                      <span className="text-[9px] md:text-[10px] font-semibold uppercase tracking-wide text-gray-400">
-                                        -
-                                      </span>
-                                    </div>
+                                  {pub.type === 'conference' && pub.presentation_type && (
+                                    <span 
+                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase"
+                                      style={{
+                                        backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.15)' : 'rgba(255,183,197,0.15)',
+                                        color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'
+                                      }}
+                                    >
+                                      {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                    </span>
                                   )}
                                 </div>
+                                
+                                <div className="flex flex-row items-start gap-16 md:gap-20">
+                                  {/* Desktop: Left Type Badge */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-90">
+                                    <div className={`w-full py-8 rounded-t-lg text-center ${typeColor}`}>
+                                      <span className="text-xs font-semibold text-white uppercase tracking-wide">
+                                        {typeLabel}
+                                      </span>
+                                    </div>
+                                    <div className={`w-full py-10 bg-gray-100 text-center border-x border-gray-200 ${
+                                      (pub.type === 'book' || pub.type === 'report') ? 'rounded-b-lg border-b' : ''
+                                    }`}>
+                                      <span className="text-base font-bold text-gray-700">
+                                        {getPublicationNumber(pub)}
+                                      </span>
+                                    </div>
+                                    {pub.type === 'conference' && pub.presentation_type && (
+                                      <div className={`w-full py-6 rounded-b-lg text-center border-x border-b ${
+                                        pub.presentation_type === 'oral' ? 'border-pink-200' : 'border-pink-100'
+                                      }`}
+                                        style={{
+                                          backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.15)' : 'rgba(255,183,197,0.15)'
+                                        }}
+                                      >
+                                        <span className="text-[10px] font-bold uppercase tracking-wide"
+                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
+                                        >
+                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                        </span>
+                                      </div>
+                                    )}
+                                    {pub.type === 'conference' && !pub.presentation_type && (
+                                      <div className="w-full py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
+                                        <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">-</span>
+                                      </div>
+                                    )}
+                                    {pub.type === 'journal' && pub.indexing_group && (
+                                      <div 
+                                        className="w-full py-6 rounded-b-lg text-center border-x border-b"
+                                        style={{
+                                          backgroundColor: 
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
+                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
+                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.08)' :
+                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.10)' : 'rgba(148,163,184,0.10)',
+                                          borderColor: 
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
+                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
+                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.18)' :
+                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.20)' : 'rgba(148,163,184,0.20)'
+                                        }}
+                                      >
+                                        <span 
+                                          className="text-[9px] font-bold uppercase tracking-wide"
+                                          style={{
+                                            color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
+                                              pub.indexing_group === 'ESCI' ? '#C9A833' :
+                                              pub.indexing_group === 'Scopus' ? '#D6B14D' :
+                                              pub.indexing_group === 'Other International' ? '#D6C360' :
+                                              pub.indexing_group === 'KCI' ? '#64748b' : '#94a3b8'
+                                          }}
+                                        >
+                                          {pub.indexing_group}
+                                        </span>
+                                      </div>
+                                    )}
+                                    {pub.type === 'journal' && !pub.indexing_group && (
+                                      <div className="w-full py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
+                                        <span className="text-[9px] font-semibold uppercase tracking-wide text-gray-400">-</span>
+                                      </div>
+                                    )}
+                                  </div>
 
-                                {/* Middle: Content */}
-                                <div className="flex-1 min-w-0">
+                                  {/* Middle: Content */}
+                                  <div className="flex-1 min-w-0">
                                   <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
                                     {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
                                       <span className="relative inline-block mr-6 group">
@@ -853,6 +882,7 @@ export const PublicationsTemplate = () => {
                                 </div>
                               </div>
                             </div>
+                          </div>
                           )
                         })}
                       </div>
