@@ -46,7 +46,7 @@
       "degrees": ["ur"],
       "cohort": "1기",
       "periods": {"ur": "2025.12.22 – 2026.03.01"},
-      "education": [{"degree": "bs", "school": "Hanyang University ERICA", "year": "2026"}],
+      "education": [{"degree": "bs", "school": "Hanyang University ERICA Campus", "year": "2026"}],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
