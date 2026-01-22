@@ -691,7 +691,7 @@ export const PublicationsTemplate = () => {
                             : 'bg-gray-500'
 
                           return (
-                            <div key={idx} className="relative p-16 md:p-24 bg-white border-t border-gray-100">
+                            <div key={idx} className="relative p-16 md:p-24 pb-24 md:pb-28 bg-white border-t border-gray-100">
                               {/* Mobile: Ribbon-style badge at top-left corner */}
                               <div className="md:hidden absolute top-0 left-0 flex items-stretch">
                                 {/* Type Badge - Main ribbon */}

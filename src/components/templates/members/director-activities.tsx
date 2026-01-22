@@ -1659,7 +1659,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         >
                           <span className="truncate">{univ}</span>
                           <span className="flex items-center gap-2 shrink-0">
-                            <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>({count})</span>
+                            <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>{count}</span>
                             {selectedUniversity === univ && <X size={12}/>}
                           </span>
                         </button>

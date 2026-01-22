@@ -705,10 +705,11 @@ export const MembersDirectorTemplate = () => {
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group">
-                    {/* Timeline dot - positioned on the line (same as Employment) */}
-                    <div className="absolute -left-[30px] md:-left-40 top-8 md:top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
-                    <div className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md transition-all">
-                      <div className="flex items-start gap-16 mb-16">
+                    {/* Timeline dot - aligned with logo center on mobile */}
+                    <div className="absolute -left-[30px] md:-left-40 top-[28px] md:top-[32px] size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
+                      {/* Mobile: Stack vertically, Desktop: Horizontal */}
+                      <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
                         <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
                           <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
@@ -731,12 +732,13 @@ export const MembersDirectorTemplate = () => {
                             </div>
                           </div>
                           <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
-                          <p className="text-xs md:text-sm text-gray-600">{edu.field}</p>
+                          <p className="text-xs md:text-sm text-gray-600 break-words">{edu.field}</p>
                         </div>
                       </div>
                       
+                      {/* Content - same indent as degree/field on mobile */}
                       <div className="pl-0 md:pl-80">
-                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4">{edu.school}</p>
+                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4 break-words">{edu.school}</p>
                         {edu.advisors && edu.advisors.length > 0 && (
                           <div className="mb-12">
                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
@@ -844,8 +846,8 @@ export const MembersDirectorTemplate = () => {
               <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
                 {employment.map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    {/* Timeline dot - positioned on the line */}
-                    <div className={`absolute -left-[30px] md:-left-40 top-6 md:top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
+                    {/* Timeline dot - aligned with logo center */}
+                    <div className={`absolute -left-[30px] md:-left-40 top-[18px] md:top-[22px] size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
                       emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                     }`}/>
                     <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">

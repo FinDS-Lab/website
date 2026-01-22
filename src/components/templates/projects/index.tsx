@@ -529,15 +529,32 @@ export const ProjectsTemplate = () => {
                                     </h4>
                                     <p className="text-sm md:text-base text-gray-600 mb-12">{project.titleKo}</p>
                                     
-                                    <div className="flex flex-wrap gap-8 md:gap-12">
-                                      <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
-                                        <Calendar size={12} />
-                                        {project.period}
-                                      </span>
-                                      <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
-                                        <Building2 size={12} />
-                                        <span className="font-bold text-gray-800">{project.fundingAgency}</span>
-                                      </span>
+                                    <div className="flex flex-col gap-8">
+                                      <div className="flex flex-wrap gap-8 md:gap-12">
+                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
+                                          <Calendar size={12} />
+                                          {project.period}
+                                        </span>
+                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
+                                          <Building2 size={12} />
+                                          <span className="font-bold text-gray-800">{project.fundingAgency}</span>
+                                        </span>
+                                      </div>
+                                      {/* Researcher info */}
+                                      {project.roles && (project.roles.principalInvestigator || project.roles.leadResearcher) && (
+                                        <div className="flex flex-wrap gap-6 text-xs text-gray-500">
+                                          {project.roles.principalInvestigator && (
+                                            <span className="inline-flex items-center gap-4">
+                                              <span className="font-semibold text-gray-600">PI:</span> {project.roles.principalInvestigator}
+                                            </span>
+                                          )}
+                                          {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
+                                            <span className="inline-flex items-center gap-4">
+                                              <span className="font-semibold text-gray-600">Lead:</span> {project.roles.leadResearcher}
+                                            </span>
+                                          )}
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

@@ -83,6 +83,7 @@ const GlobalMusicPlayer = memo(() => {
   const playerContainerRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [isCompact, setIsCompact] = useState(false)
+  const [isHidden, setIsHidden] = useState(false) // Permanently hide until refresh
   const location = useLocation()
 
   // Load YouTube IFrame API
@@ -187,6 +188,34 @@ const GlobalMusicPlayer = memo(() => {
   // Hide on playlist page
   const isPlaylistPage = location.pathname === '/archives/playlist'
 
+  // Handle permanent hide
+  const handleHidePlayer = () => {
+    if (playerRef.current) {
+      playerRef.current.destroy()
+      playerRef.current = null
+    }
+    setIsPlaying(false)
+    setIsHidden(true)
+  }
+
+  // Don't render if hidden
+  if (isHidden) {
+    return (
+      <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9999] flex flex-col items-end gap-10 md:gap-12">
+        {/* Home Button - Always visible except on home page */}
+        {location.pathname !== '/' && (
+          <Link
+            to="/"
+            className="flex items-center justify-center w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 bg-primary text-white rounded-full shadow-xl hover:bg-primary/90 hover:scale-105 transition-all duration-200"
+            title="홈으로"
+          >
+            <HomeIcon className="w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16" />
+          </Link>
+        )}
+      </div>
+    )
+  }
+
   return (
     <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9999] flex flex-col items-end gap-10 md:gap-12">
       {/* Home Button - Always visible except on home page */}
@@ -204,18 +233,30 @@ const GlobalMusicPlayer = memo(() => {
       {playlist.length > 0 && !isPlaylistPage && (
         isMinimized ? (
           // Minimized: Floating button with proper design proportions
-          <button
-            onClick={() => setIsMinimized(false)}
-            className="group flex items-center gap-12 md:gap-14 px-20 md:px-28 py-14 md:py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105"
-          >
-            <div className="relative flex items-center justify-center w-44 h-44 md:w-52 md:h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
-              <Music className="w-18 h-18 md:w-22 md:h-22" style={{color: 'rgb(214,177,77)'}} />
-              {isPlaying && (
-                <span className="absolute -top-2 -right-2 w-12 h-12 md:w-14 md:h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />
-              )}
-            </div>
-            <span className="text-base md:text-lg font-semibold tracking-wide" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
-          </button>
+          <div className="flex items-center gap-8">
+            <button
+              onClick={handleHidePlayer}
+              className="flex items-center justify-center w-32 h-32 md:w-36 md:h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50"
+              title="플레이리스트 숨기기"
+            >
+              <X className="w-14 h-14 md:w-16 md:h-16" />
+            </button>
+            <button
+              onClick={() => setIsMinimized(false)}
+              className="group flex items-center gap-12 md:gap-14 px-20 md:px-28 py-14 md:py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105"
+            >
+              <div className="relative flex items-center justify-center w-44 h-44 md:w-52 md:h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
+                <Music className="w-18 h-18 md:w-22 md:h-22" style={{color: 'rgb(214,177,77)'}} />
+                {isPlaying && (
+                  <span className="absolute -top-2 -right-2 w-12 h-12 md:w-14 md:h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />
+                )}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm md:text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
+                <span className="text-xs md:text-sm font-medium text-gray-400">Playlist</span>
+              </div>
+            </button>
+          </div>
         ) : isCompact ? (
           // Compact: Just artist + title with controls (music keeps playing)
           <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
@@ -284,28 +325,35 @@ const GlobalMusicPlayer = memo(() => {
             {/* Header */}
             <div className="flex items-center justify-between px-14 md:px-20 py-12 md:py-16 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
               <div className="flex items-center gap-10 md:gap-14">
-                <div className="w-36 h-36 md:w-44 md:h-44 rounded-xl flex items-center justify-center shadow-lg overflow-hidden" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)'}}>
+                <div className="w-36 h-36 md:w-44 md:h-44 rounded-xl flex items-center justify-center shadow-lg overflow-hidden shrink-0" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)'}}>
                   <Music className="w-16 h-16 md:w-20 md:h-20 text-white" />
                 </div>
-                <div>
+                <div className="flex flex-col">
                   <span className="text-xs md:text-sm font-bold text-white tracking-wider">FINDS</span>
-                  <span className="text-xs md:text-sm font-medium ml-1" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
+                  <span className="text-xs md:text-sm font-medium" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
                 </div>
               </div>
-              <div className="flex items-center gap-6 md:gap-8">
+              <div className="flex items-center gap-4 md:gap-6">
                 <button
                   onClick={() => setIsCompact(true)}
-                  className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
                   title="최소화"
                 >
-                  <Minimize2 className="w-12 h-12 md:w-14 md:h-14 text-gray-400" />
+                  <Minimize2 className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
                 </button>
                 <button
                   onClick={toggleMinimize}
-                  className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
-                  title="닫기"
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  title="접기"
                 >
-                  <X className="w-12 h-12 md:w-14 md:h-14 text-gray-400" />
+                  <Minimize2 className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
+                </button>
+                <button
+                  onClick={handleHidePlayer}
+                  className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-red-600/80 transition-colors border border-gray-700/50"
+                  title="플레이리스트 숨기기"
+                >
+                  <X className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
                 </button>
               </div>
             </div>

@@ -1438,42 +1438,42 @@ export const MembersDirectorAcademicTemplate = () => {
                       <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                     </div>
                     <div className="space-y-8">
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
-                        <div>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                         </div>
-                        <div className="flex items-center gap-6 shrink-0">
+                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
-                        <div>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
                         </div>
-                        <div className="flex items-center gap-6 shrink-0">
+                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.09 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
-                        <div>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
                         </div>
-                        <div className="flex items-center gap-6 shrink-0">
+                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.06 – Present</span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors">
-                        <div>
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex-1 min-w-0">
                           <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
                         </div>
-                        <div className="flex items-center gap-6 shrink-0">
+                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
                           <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2022.06 – Present</span>
                         </div>
@@ -1569,9 +1569,9 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30">
-                          <span className="text-gray-700">{conf.name}</span>
-                          <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#FFBAC4', color: 'white'}}>{conf.period || conf.since}</span>
+                          className="flex flex-col md:flex-row md:items-start md:justify-between px-12 py-10 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6">
+                          <span className="text-gray-700 break-words">{conf.name}</span>
+                          <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 w-fit" style={{backgroundColor: '#FFBAC4', color: 'white'}}>{conf.period || conf.since}</span>
                         </a>
                       ))}
                     </div>
