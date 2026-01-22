@@ -51,41 +51,40 @@ const NewsDetailModal = ({ id, title, date }: { id: string; title?: string; date
 
   return (
     <div className="relative bg-white">
-      {/* Header - Minimal Red-dot style */}
-      <div className="px-28 md:px-40 pt-32 md:pt-40 pb-20 md:pb-24">
-        <h1 className="text-lg md:text-xl font-medium text-gray-900 leading-snug tracking-[-0.02em] mb-16 md:mb-20">
+      {/* Header - Clean minimal style */}
+      <div className="px-24 md:px-32 pt-28 md:pt-36 pb-20 md:pb-24">
+        <h1 className="text-lg md:text-xl font-bold text-gray-900 leading-snug tracking-[-0.02em] mb-12 md:mb-16">
           {metadata.title}
         </h1>
-        <div className="flex items-center gap-12 text-[11px] text-gray-400 tracking-wide">
-          <span>{metadata.date}</span>
+        <div className="flex items-center gap-8 text-[12px] text-gray-500">
+          <span className="font-medium">{metadata.author}</span>
           <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
-          <span>{metadata.author}</span>
+          <span>{metadata.date}</span>
         </div>
       </div>
       
       {/* Divider */}
-      <div className="mx-28 md:mx-40 h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent" />
+      <div className="mx-24 md:mx-32 h-px bg-gray-200" />
       
-      {/* Content - Red-dot inspired typography */}
-      <div className="px-28 md:px-40 py-28 md:py-36">
+      {/* Content - Clean typography with subtle styling */}
+      <div className="px-24 md:px-32 py-24 md:py-32">
         <article 
           className="
-            [&>p]:text-[14px] [&>p]:leading-[1.9] [&>p]:text-gray-600 [&>p]:mb-24 [&>p]:tracking-[-0.01em]
-            [&>h2]:text-[13px] [&>h2]:font-semibold [&>h2]:text-gray-800 [&>h2]:uppercase [&>h2]:tracking-[0.05em] [&>h2]:mt-40 [&>h2]:mb-20
-            [&>h3]:text-[13px] [&>h3]:font-medium [&>h3]:text-gray-700 [&>h3]:mt-32 [&>h3]:mb-16
-            [&>ul]:my-24 [&>ul]:space-y-12
-            [&>ul>li]:relative [&>ul>li]:pl-20 [&>ul>li]:text-[14px] [&>ul>li]:leading-[1.8] [&>ul>li]:text-gray-600
-            [&>ul>li]:before:content-[''] [&>ul>li]:before:absolute [&>ul>li]:before:left-0 [&>ul>li]:before:top-[10px] [&>ul>li]:before:w-[5px] [&>ul>li]:before:h-[5px] [&>ul>li]:before:rounded-full [&>ul>li]:before:bg-primary
-            [&>ol]:my-24 [&>ol]:space-y-12 [&>ol]:list-none [&>ol]:counter-reset-[item]
-            [&>ol>li]:relative [&>ol>li]:pl-24 [&>ol>li]:text-[14px] [&>ol>li]:leading-[1.8] [&>ol>li]:text-gray-600 [&>ol>li]:counter-increment-[item]
-            [&>ol>li]:before:content-[counter(item)] [&>ol>li]:before:absolute [&>ol>li]:before:left-0 [&>ol>li]:before:text-[12px] [&>ol>li]:before:font-medium [&>ol>li]:before:text-primary
-            [&>blockquote]:my-28 [&>blockquote]:pl-24 [&>blockquote]:border-l-2 [&>blockquote]:border-primary/30 [&>blockquote]:text-[13px] [&>blockquote]:text-gray-500 [&>blockquote]:italic [&>blockquote]:leading-[1.8]
-            [&>hr]:my-36 [&>hr]:border-0 [&>hr]:h-px [&>hr]:bg-gradient-to-r [&>hr]:from-gray-200 [&>hr]:via-gray-100 [&>hr]:to-transparent
+            [&>p]:text-[14px] [&>p]:leading-[1.85] [&>p]:text-gray-600 [&>p]:mb-20 [&>p]:tracking-[-0.01em]
+            [&>h2]:text-[15px] [&>h2]:font-bold [&>h2]:text-gray-900 [&>h2]:mt-32 [&>h2]:mb-16 [&>h2]:pb-8 [&>h2]:border-b [&>h2]:border-primary/30
+            [&>h3]:text-[14px] [&>h3]:font-semibold [&>h3]:text-gray-800 [&>h3]:mt-24 [&>h3]:mb-12 [&>h3]:pl-12 [&>h3]:border-l-2 [&>h3]:border-primary
+            [&>ul]:my-16 [&>ul]:space-y-8
+            [&>ul>li]:relative [&>ul>li]:pl-16 [&>ul>li]:text-[14px] [&>ul>li]:leading-[1.75] [&>ul>li]:text-gray-600
+            [&>ul>li]:before:content-[''] [&>ul>li]:before:absolute [&>ul>li]:before:left-0 [&>ul>li]:before:top-[9px] [&>ul>li]:before:w-[5px] [&>ul>li]:before:h-[5px] [&>ul>li]:before:rounded-full [&>ul>li]:before:bg-primary/60
+            [&>ol]:my-16 [&>ol]:space-y-8 [&>ol]:list-decimal [&>ol]:pl-20
+            [&>ol>li]:text-[14px] [&>ol>li]:leading-[1.75] [&>ol>li]:text-gray-600 [&>ol>li]:pl-4
+            [&>blockquote]:my-20 [&>blockquote]:px-16 [&>blockquote]:py-12 [&>blockquote]:bg-amber-50/50 [&>blockquote]:border-l-3 [&>blockquote]:border-primary/40 [&>blockquote]:rounded-r-lg [&>blockquote]:text-[13px] [&>blockquote]:text-gray-600 [&>blockquote]:leading-[1.7]
+            [&>hr]:my-28 [&>hr]:border-0 [&>hr]:h-px [&>hr]:bg-gray-200
             [&_strong]:font-semibold [&_strong]:text-gray-800
-            [&_a]:text-primary [&_a]:no-underline [&_a]:border-b [&_a]:border-primary/30 hover:[&_a]:border-primary
-            [&_img]:my-28 [&_img]:rounded-lg [&_img]:max-w-full
-            [&>code]:text-[12px] [&>code]:bg-gray-50 [&>code]:px-6 [&>code]:py-2 [&>code]:rounded [&>code]:font-mono [&>code]:text-gray-600
-            [&>pre]:my-28 [&>pre]:bg-gray-900 [&>pre]:text-gray-100 [&>pre]:rounded-lg [&>pre]:p-20 [&>pre]:overflow-x-auto [&>pre]:text-[12px]
+            [&_a]:text-primary [&_a]:font-medium [&_a]:no-underline hover:[&_a]:underline
+            [&_img]:my-20 [&_img]:rounded-lg [&_img]:max-w-full [&_img]:shadow-sm
+            [&>code]:text-[12px] [&>code]:bg-gray-100 [&>code]:px-6 [&>code]:py-2 [&>code]:rounded [&>code]:font-mono [&>code]:text-gray-700
+            [&>pre]:my-20 [&>pre]:bg-gray-900 [&>pre]:text-gray-100 [&>pre]:rounded-lg [&>pre]:p-16 [&>pre]:overflow-x-auto [&>pre]:text-[12px]
           "
           dangerouslySetInnerHTML={{ __html: content }}
         />

@@ -4,7 +4,7 @@ import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp } from 'lucide-react
 import type { HonorsData, HonorItem } from '@/types/data'
 
 // Image Imports
-import banner3 from '@/assets/images/banner/3.webp'
+import banner1 from '@/assets/images/banner/1.webp'
 
 type FilterType = 'all' | 'honor' | 'award'
 
@@ -118,7 +118,7 @@ export const AboutHonorsTemplate = () => {
         {/* Background Image with Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
-          style={{ backgroundImage: `url(${banner3})` }}
+          style={{ backgroundImage: `url(${banner1})` }}
         />
         
         {/* Luxurious Gold Gradient Overlay */}

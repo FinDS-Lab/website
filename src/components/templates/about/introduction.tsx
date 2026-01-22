@@ -3,7 +3,7 @@ import { Home, Search, Zap, Lightbulb, Quote, Sparkles, ArrowRight } from 'lucid
 import { Link } from 'react-router-dom'
 
 // Image Imports
-import banner3 from '@/assets/images/banner/3.webp'
+import banner1 from '@/assets/images/banner/1.webp'
 import icon10 from '@/assets/images/icons/10.png'
 import icon11 from '@/assets/images/icons/11.png'
 import icon12 from '@/assets/images/icons/12.png'
@@ -100,7 +100,7 @@ export const AboutIntroductionTemplate = () => {
         {/* Background Image with Overlay */}
         <div
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
-          style={{ backgroundImage: `url(${banner3})` }}
+          style={{ backgroundImage: `url(${banner1})` }}
         />
         
         {/* Luxurious Gold Gradient Overlay */}
