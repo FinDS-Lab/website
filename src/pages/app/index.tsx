@@ -208,8 +208,8 @@ const GlobalMusicPlayer = memo(() => {
             onClick={() => setIsMinimized(false)}
             className="group flex items-center gap-8 md:gap-10 px-14 md:px-20 py-12 md:py-14 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
           >
-            <div className="relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
-              <Music size={18} className="md:w-[22px] md:h-[22px]" style={{color: 'rgb(214,177,77)'}} />
+            <div className="relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
+              <Music size={14} className="md:w-4 md:h-4" style={{color: 'rgb(214,177,77)'}} />
               {isPlaying && (
                 <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 md:w-3 md:h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
               )}
@@ -284,8 +284,8 @@ const GlobalMusicPlayer = memo(() => {
             {/* Header */}
             <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
               <div className="flex items-center gap-8 md:gap-12">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(194,157,57) 100%)'}}>
-                  <Music size={16} className="md:w-[20px] md:h-[20px] text-white" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg overflow-hidden" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(194,157,57) 100%)'}}>
+                  <Music size={14} className="md:w-4 md:h-4 text-white" />
                 </div>
                 <div>
                   <span className="text-[11px] md:text-[13px] font-bold text-white tracking-wider">FINDS</span>
