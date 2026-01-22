@@ -280,48 +280,48 @@ const GlobalMusicPlayer = memo(() => {
           </div>
         ) : (
           // Full: Complete player view (smaller on mobile)
-          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[180px] md:w-[320px] border border-gray-800/50">
+          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[180px] md:w-[280px] border border-gray-800/50">
             {/* Header */}
-            <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
-              <div className="flex items-center gap-6 md:gap-10">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
-                  <Music size={14} className="md:w-[18px] md:h-[18px] text-white" />
+            <div className="flex items-center justify-between px-12 md:px-14 py-10 md:py-10 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
+              <div className="flex items-center gap-6 md:gap-8">
+                <div className="w-8 h-8 md:w-9 md:h-9 rounded-lg bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                  <Music size={14} className="md:w-[16px] md:h-[16px] text-white" />
                 </div>
                 <div>
-                  <span className="text-[11px] md:text-[13px] font-bold text-white tracking-wider">FINDS</span>
-                  <span className="text-[11px] md:text-[13px] font-medium text-gray-400 ml-1">Playlist</span>
+                  <span className="text-[11px] md:text-[12px] font-bold text-white tracking-wider">FINDS</span>
+                  <span className="text-[11px] md:text-[12px] font-medium text-gray-400 ml-1">Playlist</span>
                 </div>
               </div>
-              <div className="flex items-center gap-4 md:gap-6">
+              <div className="flex items-center gap-4 md:gap-5">
                 <button
                   onClick={() => setIsCompact(true)}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
                   title="최소화"
                 >
-                  <Minimize2 size={12} className="md:w-[14px] md:h-[14px] text-gray-400" />
+                  <Minimize2 size={12} className="md:w-[13px] md:h-[13px] text-gray-400" />
                 </button>
                 <button
                   onClick={toggleMinimize}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
                   title="닫기"
                 >
-                  <X size={12} className="md:w-[14px] md:h-[14px] text-gray-400" />
+                  <X size={12} className="md:w-[13px] md:h-[13px] text-gray-400" />
                 </button>
               </div>
             </div>
 
             {/* Current Track Info with Marquee */}
             {currentTrack && (
-              <div className="px-12 md:px-16 py-10 md:py-12 border-b border-gray-800/50 overflow-hidden">
-                <p className="text-primary text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              <div className="px-12 md:px-14 py-10 md:py-10 border-b border-gray-800/50 overflow-hidden">
+                <p className="text-primary text-[10px] md:text-[10px] font-bold tracking-wider uppercase mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.artist}
                 </p>
                 <div className="overflow-hidden">
                   <p 
-                    className={`text-white text-[13px] md:text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}
+                    className={`text-white text-[13px] md:text-sm font-semibold whitespace-nowrap ${currentTrack.title.length > 18 ? 'animate-marquee' : ''}`}
                     style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                   >
-                    {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
+                    {currentTrack.title}{currentTrack.title.length > 18 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
                   </p>
                 </div>
               </div>
@@ -345,39 +345,39 @@ const GlobalMusicPlayer = memo(() => {
             </div>
 
             {/* Controls */}
-            <div className="px-12 md:px-16 py-10 md:py-12 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
+            <div className="px-12 md:px-14 py-10 md:py-12 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
               {/* Progress indicator */}
-              <div className="flex items-center justify-center gap-12 md:gap-16 mb-8 md:mb-10">
+              <div className="flex items-center justify-center gap-12 md:gap-14 mb-8 md:mb-10">
                 <button
                   onClick={prevTrack}
-                  className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Previous"
                 >
-                  <SkipBack size={14} className="md:w-[18px] md:h-[18px] text-gray-300" />
+                  <SkipBack size={14} className="md:w-[16px] md:h-[16px] text-gray-300" />
                 </button>
                 <button
                   onClick={togglePlay}
-                  className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
+                  className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
                   title={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
-                    <Pause size={18} className="md:w-[22px] md:h-[22px] text-white" />
+                    <Pause size={18} className="md:w-[20px] md:h-[20px] text-white" />
                   ) : (
-                    <Play size={18} className="md:w-[22px] md:h-[22px] text-white ml-0.5" />
+                    <Play size={18} className="md:w-[20px] md:h-[20px] text-white ml-0.5" />
                   )}
                 </button>
                 <button
                   onClick={nextTrack}
-                  className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Next"
                 >
-                  <SkipForward size={14} className="md:w-[18px] md:h-[18px] text-gray-300" />
+                  <SkipForward size={14} className="md:w-[16px] md:h-[16px] text-gray-300" />
                 </button>
               </div>
               
               {/* Track counter */}
               <div className="flex items-center justify-center">
-                <span className="text-[10px] md:text-[11px] text-gray-500 font-medium tracking-wide">
+                <span className="text-[10px] md:text-[10px] text-gray-500 font-medium tracking-wide">
                   {currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}
                 </span>
               </div>
