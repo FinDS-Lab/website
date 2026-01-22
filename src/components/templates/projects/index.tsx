@@ -473,87 +473,43 @@ export const ProjectsTemplate = () => {
                             const status = getProjectStatus(project.period)
                             
                             return (
-                              <div key={idx} className="bg-white border-t border-gray-100 overflow-hidden">
-                                {/* Mobile Card View */}
-                                <div className="md:hidden relative">
-                                  {/* Corner Ribbon Badge */}
-                                  <div className={`absolute top-0 left-0 ${config?.color || 'bg-gray-500'} px-12 py-6 rounded-br-xl flex items-center gap-6`}>
-                                    <Icon size={12} className="text-white" />
-                                    <span className="text-[10px] font-bold text-white uppercase tracking-wide">
-                                      {config?.label || project.type}
-                                    </span>
-                                  </div>
-                                  
-                                  {/* Status badge - top right */}
-                                  <div className="absolute top-6 right-12">
-                                    <span className={`px-8 py-3 rounded-full text-[9px] font-bold uppercase shadow-sm ${
-                                      status === 'ongoing' 
-                                        ? 'bg-[#FFF9E6] text-[#B8962D]' 
-                                        : 'bg-gray-100 text-gray-500'
+                              <div key={idx} className="p-20 md:p-32 bg-white border-t border-gray-100">
+                                <div className="flex flex-col md:flex-row md:items-start gap-16 md:gap-24">
+                                  {/* Left: Type Badge */}
+                                  <div className="flex flex-col items-center shrink-0 w-80 md:w-100">
+                                    <div className={`w-full py-8 md:py-10 rounded-t-lg text-center ${config?.color || 'bg-gray-500'}`}>
+                                      <Icon size={16} className="inline text-white mb-2" />
+                                      <span className="block text-[10px] md:text-xs font-semibold text-white uppercase tracking-wide">
+                                        {config?.label || project.type}
+                                      </span>
+                                    </div>
+                                    <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
+                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
-                                      {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                    </span>
+                                      <span className={`text-[10px] md:text-xs font-medium ${
+                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
+                                      }`}>
+                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                                      </span>
+                                    </div>
                                   </div>
-                                  
-                                  {/* Content */}
-                                  <div className="pt-36 px-16 pb-16">
-                                    <h4 className="text-sm font-bold text-gray-900 mb-6 leading-relaxed">
+
+                                  {/* Middle: Content */}
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="text-base md:text-lg font-bold text-gray-900 mb-8 leading-relaxed">
                                       {project.titleEn}
                                     </h4>
-                                    <p className="text-xs text-gray-600 mb-12">{project.titleKo}</p>
+                                    <p className="text-sm md:text-base text-gray-600 mb-12">{project.titleKo}</p>
                                     
-                                    <div className="flex flex-wrap gap-6">
-                                      <span className="inline-flex items-center gap-4 px-10 py-4 bg-gray-100 rounded-full text-[11px] text-gray-600">
-                                        <Calendar size={10} />
+                                    <div className="flex flex-wrap gap-8 md:gap-12">
+                                      <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
+                                        <Calendar size={12} />
                                         {project.period}
                                       </span>
-                                      <span className="inline-flex items-center gap-4 px-10 py-4 bg-gray-100 rounded-full text-[11px] text-gray-600">
-                                        <Building2 size={10} />
+                                      <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
+                                        <Building2 size={12} />
                                         {project.fundingAgency}
                                       </span>
-                                    </div>
-                                  </div>
-                                </div>
-                                
-                                {/* Desktop View */}
-                                <div className="hidden md:block p-32">
-                                  <div className="flex flex-row items-start gap-24">
-                                    {/* Left: Type Badge */}
-                                    <div className="flex flex-col items-center shrink-0 w-100">
-                                      <div className={`w-full py-10 rounded-t-lg text-center ${config?.color || 'bg-gray-500'}`}>
-                                        <Icon size={16} className="inline text-white mb-2" />
-                                        <span className="block text-xs font-semibold text-white uppercase tracking-wide">
-                                          {config?.label || project.type}
-                                        </span>
-                                      </div>
-                                      <div className={`w-full py-8 rounded-b-lg text-center border-x border-b ${
-                                        status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
-                                      }`}>
-                                        <span className={`text-xs font-medium ${
-                                          status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
-                                        }`}>
-                                          {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                        </span>
-                                      </div>
-                                    </div>
-
-                                    {/* Middle: Content */}
-                                    <div className="flex-1 min-w-0">
-                                      <h4 className="text-lg font-bold text-gray-900 mb-8 leading-relaxed">
-                                        {project.titleEn}
-                                      </h4>
-                                      <p className="text-base text-gray-600 mb-12">{project.titleKo}</p>
-                                      
-                                      <div className="flex flex-wrap gap-12">
-                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-sm text-gray-600">
-                                          <Calendar size={12} />
-                                          {project.period}
-                                        </span>
-                                        <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-sm text-gray-600">
-                                          <Building2 size={12} />
-                                          {project.fundingAgency}
-                                        </span>
-                                      </div>
                                     </div>
                                   </div>
                                 </div>

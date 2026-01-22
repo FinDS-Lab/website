@@ -691,31 +691,31 @@ export const PublicationsTemplate = () => {
                             : 'bg-gray-500'
 
                           return (
-                            <div key={idx} className="bg-white border-t border-gray-100 overflow-hidden">
-                              {/* Mobile Card View */}
-                              <div className="md:hidden relative">
-                                {/* Corner Ribbon Badge */}
-                                <div className={`absolute top-0 left-0 ${typeColor} px-12 py-6 rounded-br-xl`}>
-                                  <span className="text-[10px] font-bold text-white uppercase tracking-wide">
-                                    {typeLabel} #{getPublicationNumber(pub)}
+                            <div key={idx} className="p-16 md:p-24 bg-white border-t border-gray-100">
+                              <div className="flex flex-col gap-12 md:gap-20">
+                                {/* Mobile: Badge row */}
+                                <div className="flex md:hidden items-center gap-12">
+                                  <div className={`px-10 py-4 rounded-full text-center ${typeColor}`}>
+                                    <span className="text-[10px] font-bold text-white uppercase tracking-wide">
+                                      {typeLabel}
+                                    </span>
+                                  </div>
+                                  <span className="text-sm font-bold text-gray-700">
+                                    #{getPublicationNumber(pub)}
                                   </span>
-                                </div>
-                                
-                                {/* Secondary badges - top right */}
-                                <div className="absolute top-6 right-12 flex items-center gap-6">
                                   {pub.type === 'journal' && pub.indexing_group && (
                                     <span 
-                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase shadow-sm"
+                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase"
                                       style={{
                                         backgroundColor: 
-                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.2)' :
-                                          pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.15)' :
-                                          pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.18)' :
-                                          'rgba(100,116,139,0.15)',
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
+                                          pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
+                                          pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
+                                          'rgba(100,116,139,0.10)',
                                         color: 
-                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#9A7D1F' :
-                                          pub.indexing_group === 'ESCI' ? '#B8962D' :
-                                          pub.indexing_group === 'Scopus' ? '#C9A833' :
+                                          ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
+                                          pub.indexing_group === 'ESCI' ? '#C9A833' :
+                                          pub.indexing_group === 'Scopus' ? '#D6B14D' :
                                           '#64748b'
                                       }}
                                     >
@@ -724,10 +724,10 @@ export const PublicationsTemplate = () => {
                                   )}
                                   {pub.type === 'conference' && pub.presentation_type && (
                                     <span 
-                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase shadow-sm"
+                                      className="px-8 py-3 rounded-full text-[9px] font-bold uppercase"
                                       style={{
-                                        backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.2)' : 'rgba(255,183,197,0.2)',
-                                        color: pub.presentation_type === 'oral' ? '#D6758A' : '#E8889C'
+                                        backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.15)' : 'rgba(255,183,197,0.15)',
+                                        color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'
                                       }}
                                     >
                                       {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
@@ -735,46 +735,9 @@ export const PublicationsTemplate = () => {
                                   )}
                                 </div>
                                 
-                                {/* Content */}
-                                <div className="pt-36 px-16 pb-16">
-                                  <h4 className="text-sm font-semibold text-gray-800 mb-8 leading-relaxed">
-                                    {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
-                                      <span className="mr-4">🏆</span>
-                                    )}
-                                    {pub.title}
-                                  </h4>
-                                  <p className="text-xs text-gray-600 mb-8 leading-relaxed">
-                                    {authorList.map((a, i) => (
-                                      <span key={i}>
-                                        {a.name}{a.mark && <sup className="text-primary ml-0.5">{a.mark}</sup>}
-                                        {i < authorList.length - 1 && ', '}
-                                      </span>
-                                    ))}
-                                  </p>
-                                  <p className="text-[11px] text-gray-500 italic mb-8">
-                                    {(pub.indexing_group?.includes('KCI') || pub.language === 'korean') && pub.venue_ko ? pub.venue_ko : pub.venue}
-                                  </p>
-                                  <div className="flex items-center justify-between pt-8 border-t border-gray-100">
-                                    <span className="text-[11px] text-gray-400">{pub.published_date}</span>
-                                    <button
-                                      onClick={() => showModal({
-                                        title: 'Citation Formats',
-                                        maxWidth: '600px',
-                                        children: <CitationModal citation={pub.citations} />
-                                      })}
-                                      className="px-10 py-4 bg-gray-50 border border-gray-100 rounded-lg text-[10px] font-medium text-gray-600 hover:bg-primary/10 hover:text-primary transition-colors"
-                                    >
-                                      Cite
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                              
-                              {/* Desktop View */}
-                              <div className="hidden md:block p-24">
-                                <div className="flex flex-row items-start gap-20">
+                                <div className="flex flex-row items-start gap-16 md:gap-20">
                                   {/* Desktop: Left Type Badge */}
-                                  <div className="flex flex-col items-center shrink-0 w-90">
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-90">
                                     <div className={`w-full py-8 rounded-t-lg text-center ${typeColor}`}>
                                       <span className="text-xs font-semibold text-white uppercase tracking-wide">
                                         {typeLabel}
