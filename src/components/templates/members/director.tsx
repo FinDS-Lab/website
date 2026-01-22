@@ -693,7 +693,7 @@ export const MembersDirectorTemplate = () => {
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group">
                     {/* Timeline dot - positioned on the line (same as Employment) */}
-                    <div className="absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    <div className="absolute -left-[30px] md:-left-40 top-8 md:top-0 size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     <div className="bg-white border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-md transition-all">
                       <div className="flex items-start gap-16 mb-16">
                         <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
@@ -819,7 +819,7 @@ export const MembersDirectorTemplate = () => {
                 {employment.map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
                     {/* Timeline dot - positioned on the line */}
-                    <div className={`absolute -left-[30px] md:-left-40 top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
+                    <div className={`absolute -left-[30px] md:-left-40 top-6 md:top-0 size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
                       emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                     }`}/>
                     <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
