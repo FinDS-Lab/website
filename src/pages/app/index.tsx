@@ -203,18 +203,18 @@ const GlobalMusicPlayer = memo(() => {
       {/* Playlist Button/Player - Only show when playlist is loaded */}
       {playlist.length > 0 && !isPlaylistPage && (
         isMinimized ? (
-          // Minimized: Just a button - larger size with rgb(214,177,77) color
+          // Minimized: Floating button with proper design proportions
           <button
             onClick={() => setIsMinimized(false)}
-            className="group flex items-center gap-8 md:gap-10 px-14 md:px-20 py-12 md:py-14 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
+            className="group flex items-center gap-12 md:gap-14 px-20 md:px-28 py-14 md:py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105"
           >
-            <div className="relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
-              <Music size={14} className="md:w-4 md:h-4" style={{color: 'rgb(214,177,77)'}} />
+            <div className="relative flex items-center justify-center w-44 h-44 md:w-52 md:h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
+              <Music className="w-18 h-18 md:w-22 md:h-22" style={{color: 'rgb(214,177,77)'}} />
               {isPlaying && (
-                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 md:w-3 md:h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
+                <span className="absolute -top-2 -right-2 w-12 h-12 md:w-14 md:h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />
               )}
             </div>
-            <span className="text-sm md:text-base font-medium tracking-wide" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
+            <span className="text-base md:text-lg font-semibold tracking-wide" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
           </button>
         ) : isCompact ? (
           // Compact: Just artist + title with controls (music keeps playing)
@@ -280,32 +280,32 @@ const GlobalMusicPlayer = memo(() => {
           </div>
         ) : (
           // Full: Complete player view (smaller on mobile)
-          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[180px] md:w-[320px] border border-gray-800/50">
+          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[200px] md:w-[340px] border border-gray-800/50">
             {/* Header */}
-            <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
-              <div className="flex items-center gap-8 md:gap-12">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg overflow-hidden" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(194,157,57) 100%)'}}>
-                  <Music size={14} className="md:w-4 md:h-4 text-white" />
+            <div className="flex items-center justify-between px-14 md:px-20 py-12 md:py-16 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
+              <div className="flex items-center gap-10 md:gap-14">
+                <div className="w-36 h-36 md:w-44 md:h-44 rounded-xl flex items-center justify-center shadow-lg overflow-hidden" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)'}}>
+                  <Music className="w-16 h-16 md:w-20 md:h-20 text-white" />
                 </div>
                 <div>
-                  <span className="text-[11px] md:text-[13px] font-bold text-white tracking-wider">FINDS</span>
-                  <span className="text-[11px] md:text-[13px] font-medium ml-1" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
+                  <span className="text-xs md:text-sm font-bold text-white tracking-wider">FINDS</span>
+                  <span className="text-xs md:text-sm font-medium ml-1" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
                 </div>
               </div>
-              <div className="flex items-center gap-4 md:gap-6">
+              <div className="flex items-center gap-6 md:gap-8">
                 <button
                   onClick={() => setIsCompact(true)}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
                   title="최소화"
                 >
-                  <Minimize2 size={12} className="md:w-[14px] md:h-[14px] text-gray-400" />
+                  <Minimize2 className="w-12 h-12 md:w-14 md:h-14 text-gray-400" />
                 </button>
                 <button
                   onClick={toggleMinimize}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  className="w-28 h-28 md:w-32 md:h-32 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
                   title="닫기"
                 >
-                  <X size={12} className="md:w-[14px] md:h-[14px] text-gray-400" />
+                  <X className="w-12 h-12 md:w-14 md:h-14 text-gray-400" />
                 </button>
               </div>
             </div>
@@ -336,48 +336,50 @@ const GlobalMusicPlayer = memo(() => {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
                   <button
                     onClick={togglePlay}
-                    className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl shadow-primary/30"
+                    className="relative w-56 h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl"
+                    style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 8px 32px rgba(214,177,77,0.4)'}}
                   >
-                    <Play size={18} className="md:w-[22px] md:h-[22px] text-white ml-1" />
+                    <Play className="w-24 h-24 md:w-28 md:h-28 text-white ml-4" />
                   </button>
                 </div>
               )}
             </div>
 
             {/* Controls */}
-            <div className="px-12 md:px-16 py-10 md:py-12 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
+            <div className="px-14 md:px-20 py-12 md:py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
               {/* Progress indicator */}
-              <div className="flex items-center justify-center gap-12 md:gap-16 mb-8 md:mb-10">
+              <div className="flex items-center justify-center gap-16 md:gap-20 mb-10 md:mb-12">
                 <button
                   onClick={prevTrack}
-                  className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Previous"
                 >
-                  <SkipBack size={14} className="md:w-[18px] md:h-[18px] text-gray-300" />
+                  <SkipBack className="w-16 h-16 md:w-20 md:h-20 text-gray-300" />
                 </button>
                 <button
                   onClick={togglePlay}
-                  className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
+                  className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg"
+                  style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}}
                   title={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
-                    <Pause size={18} className="md:w-[22px] md:h-[22px] text-white" />
+                    <Pause className="w-20 h-20 md:w-24 md:h-24 text-white" />
                   ) : (
-                    <Play size={18} className="md:w-[22px] md:h-[22px] text-white ml-0.5" />
+                    <Play className="w-20 h-20 md:w-24 md:h-24 text-white ml-2" />
                   )}
                 </button>
                 <button
                   onClick={nextTrack}
-                  className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Next"
                 >
-                  <SkipForward size={14} className="md:w-[18px] md:h-[18px] text-gray-300" />
+                  <SkipForward className="w-16 h-16 md:w-20 md:h-20 text-gray-300" />
                 </button>
               </div>
               
               {/* Track counter */}
               <div className="flex items-center justify-center">
-                <span className="text-[10px] md:text-[11px] text-gray-500 font-medium tracking-wide">
+                <span className="text-xs md:text-sm text-gray-500 font-medium tracking-wide">
                   {currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}
                 </span>
               </div>
