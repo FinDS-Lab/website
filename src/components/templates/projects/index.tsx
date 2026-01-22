@@ -470,21 +470,6 @@ export const ProjectsTemplate = () => {
                           {yearProjects.map((project, idx) => {
                             const config = typeConfig[project.type]
                             const Icon = config?.icon || Briefcase
-                            const status = getProjectStatus(project.period)
-                            
-                            // Determine director's role
-                            const getDirectorRole = () => {
-                              if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
-                              if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
-                              if (project.roles.researchers?.includes('최인수')) return 'Researcher'
-                              return null
-                            }
-                            const roleColor: Record<string, string> = {
-                              'Principal Investigator': 'bg-gray-900 text-white',
-                              'Lead Researcher': 'bg-gray-600 text-white',
-                              'Researcher': 'bg-gray-400 text-white'
-                            }
-                            const directorRole = getDirectorRole()
                             
                             const typeColors: Record<string, string> = {
                               government: 'bg-primary text-white',
@@ -496,51 +481,65 @@ export const ProjectsTemplate = () => {
                             return (
                               <div key={idx} className="p-16 md:p-20 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
-                                  <div className={`size-40 md:size-48 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
-                                    <Icon size={20} className="md:w-24 md:h-24" />
+                                  <div className={`size-36 md:size-44 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
+                                    <Icon size={18} className="md:w-5 md:h-5" />
                                   </div>
                                   <div className="flex-1 min-w-0">
+                                    {/* Period badge */}
                                     <div className="flex flex-wrap items-center gap-6 mb-8">
-                                      <span className="px-10 py-4 bg-gray-100 text-gray-600 text-[10px] md:text-xs font-bold rounded-full flex items-center gap-4">
-                                        <Calendar size={12} />
+                                      <span className="px-8 py-3 bg-gray-100 text-gray-600 text-[9px] md:text-[11px] font-bold rounded-full flex items-center gap-4">
+                                        <Calendar size={10} className="md:w-3 md:h-3" />
                                         {project.period}
                                       </span>
-                                      <span className={`px-10 py-4 text-[10px] md:text-xs font-bold rounded-full ${
-                                        status === 'ongoing' 
-                                          ? 'bg-[#FFF9E6] text-[#D6B14D] border border-[#FFEB99]' 
-                                          : 'bg-gray-100 text-gray-500'
-                                      }`}>
-                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                      </span>
-                                      {directorRole && (
-                                        <span className={`px-10 py-4 text-[10px] md:text-xs font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
-                                          {directorRole}
-                                        </span>
-                                      )}
                                     </div>
-                                    <p className="text-sm md:text-base font-bold text-gray-900 leading-relaxed line-clamp-2">{project.titleKo}</p>
-                                    <p className="text-xs md:text-sm text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
-                                    <p className="text-xs md:text-sm text-gray-500 mt-6">
+                                    
+                                    {/* Title */}
+                                    <p className="text-xs md:text-sm font-bold text-gray-900 leading-relaxed line-clamp-2">{project.titleKo}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-600 mt-4 leading-relaxed line-clamp-2">{project.titleEn}</p>
+                                    
+                                    {/* Funding Agency */}
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-6">
                                       <span className="font-bold text-gray-700">{project.fundingAgency}</span>
-                                      {project.fundingAgencyKo && project.fundingAgencyKo !== project.fundingAgency && (
-                                        <span className="text-gray-400 ml-4">({project.fundingAgencyKo})</span>
-                                      )}
                                     </p>
-                                    {/* Researcher info */}
-                                    {project.roles && (project.roles.principalInvestigator || project.roles.leadResearcher) && (
-                                      <div className="flex flex-wrap gap-8 mt-8 text-[10px] md:text-xs text-gray-500">
-                                        {project.roles.principalInvestigator && (
-                                          <span className="inline-flex items-center gap-4 px-8 py-2 bg-gray-50 rounded">
-                                            <span className="font-semibold text-gray-600">PI:</span> {project.roles.principalInvestigator}
+                                    
+                                    {/* Roles - styled like Director-Academic */}
+                                    <div className="mt-10 pt-10 border-t border-gray-100">
+                                      <div className="flex flex-col gap-6">
+                                        {/* Principal Investigator */}
+                                        <div className="flex items-center gap-8">
+                                          <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                            Principal Investigator
                                           </span>
-                                        )}
+                                          <span className="text-[10px] md:text-xs text-gray-700 font-medium">
+                                            {project.roles.principalInvestigator || '—'}
+                                          </span>
+                                        </div>
+                                        
+                                        {/* Lead Researcher */}
                                         {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
-                                          <span className="inline-flex items-center gap-4 px-8 py-2 bg-gray-50 rounded">
-                                            <span className="font-semibold text-gray-600">Lead:</span> {project.roles.leadResearcher}
-                                          </span>
+                                          <div className="flex items-center gap-8">
+                                            <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-600 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                              Lead Researcher
+                                            </span>
+                                            <span className="text-[10px] md:text-xs text-gray-700 font-medium">
+                                              {project.roles.leadResearcher}
+                                            </span>
+                                          </div>
+                                        )}
+                                        
+                                        {/* Researchers */}
+                                        {project.roles.researchers && project.roles.researchers.length > 0 && (
+                                          <div className="flex items-center gap-8">
+                                            <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-400 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                              Researcher
+                                            </span>
+                                            <span className="text-[10px] md:text-xs text-gray-700 font-medium">
+                                              {project.roles.researchers.filter(r => r !== project.roles.principalInvestigator && r !== project.roles.leadResearcher).join(', ') || '—'}
+                                            </span>
+                                          </div>
                                         )}
                                       </div>
-                                    )}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
