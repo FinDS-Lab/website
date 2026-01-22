@@ -910,7 +910,6 @@ export const PublicationsTemplate = () => {
                               </div>
                             </div>
                           </div>
-                        </div>
                           )
                         })}
                       </div>
