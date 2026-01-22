@@ -203,18 +203,18 @@ const GlobalMusicPlayer = memo(() => {
       {/* Playlist Button/Player - Only show when playlist is loaded */}
       {playlist.length > 0 && !isPlaylistPage && (
         isMinimized ? (
-          // Minimized: Just a button
+          // Minimized: Just a button - larger size with rgb(214,177,77) color
           <button
             onClick={() => setIsMinimized(false)}
-            className="group flex items-center gap-6 md:gap-8 px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
+            className="group flex items-center gap-8 md:gap-10 px-14 md:px-20 py-12 md:py-14 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
           >
-            <div className="relative">
-              <Music size={16} className="md:w-[18px] md:h-[18px] text-primary" />
+            <div className="relative flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.15)'}}>
+              <Music size={18} className="md:w-[22px] md:h-[22px]" style={{color: 'rgb(214,177,77)'}} />
               {isPlaying && (
-                <span className="absolute -top-1 -right-1 w-2 h-2 md:w-2.5 md:h-2.5 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 md:w-3 md:h-3 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
               )}
             </div>
-            <span className="text-xs md:text-sm font-medium tracking-wide">Playlist</span>
+            <span className="text-sm md:text-base font-medium tracking-wide" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
           </button>
         ) : isCompact ? (
           // Compact: Just artist + title with controls (music keeps playing)
@@ -283,13 +283,13 @@ const GlobalMusicPlayer = memo(() => {
           <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[180px] md:w-[320px] border border-gray-800/50">
             {/* Header */}
             <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
-              <div className="flex items-center gap-6 md:gap-10">
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
-                  <Music size={14} className="md:w-[18px] md:h-[18px] text-white" />
+              <div className="flex items-center gap-8 md:gap-12">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(194,157,57) 100%)'}}>
+                  <Music size={16} className="md:w-[20px] md:h-[20px] text-white" />
                 </div>
                 <div>
                   <span className="text-[11px] md:text-[13px] font-bold text-white tracking-wider">FINDS</span>
-                  <span className="text-[11px] md:text-[13px] font-medium text-gray-400 ml-1">Playlist</span>
+                  <span className="text-[11px] md:text-[13px] font-medium ml-1" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
                 </div>
               </div>
               <div className="flex items-center gap-4 md:gap-6">

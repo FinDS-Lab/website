@@ -713,20 +713,22 @@ export const MembersDirectorTemplate = () => {
                           <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-8 mb-8">
-                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
-                            {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
-                                <Award size={10} />
-                                Award
-                              </span>
-                            )}
-                            {edu.honors && edu.honors.length > 0 && (
-                              <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
-                                <Medal size={10} />
-                                Honor
-                              </span>
-                            )}
+                          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
+                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white w-fit">{edu.period}</span>
+                            <div className="flex flex-wrap items-center gap-6">
+                              {edu.awards && edu.awards.length > 0 && (
+                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
+                                  <Award size={10} />
+                                  Award
+                                </span>
+                              )}
+                              {edu.honors && edu.honors.length > 0 && (
+                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
+                                  <Medal size={10} />
+                                  Honor
+                                </span>
+                              )}
+                            </div>
                           </div>
                           <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
                           <p className="text-xs md:text-sm text-gray-600">{edu.field}</p>
@@ -860,9 +862,9 @@ export const MembersDirectorTemplate = () => {
                         </div>
                         <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
                         {emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{emp.department}</p>
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
-                        <p className="text-[10px] md:text-xs text-gray-500 truncate">{emp.organization}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.organization}</p>
                       </div>
                     </div>
                   </div>

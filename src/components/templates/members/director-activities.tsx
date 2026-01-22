@@ -1645,20 +1645,23 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <div className="flex items-center justify-between mb-12">
                       <p className="text-[10px] font-bold text-gray-400 uppercase">University Distribution</p>
                     </div>
-                    <div className="flex flex-wrap gap-6 md:gap-8">
+                    <div className="grid grid-cols-2 gap-6 md:gap-8">
                       {universityStats.map(([univ, count]) => (
                         <button
                           key={univ}
                           onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
-                          className={`px-10 md:px-12 py-4 md:py-6 rounded-full text-[11px] md:text-xs font-medium transition-all flex items-center gap-4 ${
+                          className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-[11px] md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
                             selectedUniversity === univ
                               ? 'text-white'
                               : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
                           }`}
                           style={selectedUniversity === univ ? {backgroundColor: '#E8889C'} : {}}
                         >
-                          {univ} <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>({count})</span>
-                          {selectedUniversity === univ && <X size={12}/>}
+                          <span className="truncate">{univ}</span>
+                          <span className="flex items-center gap-2 shrink-0">
+                            <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>({count})</span>
+                            {selectedUniversity === univ && <X size={12}/>}
+                          </span>
                         </button>
                       ))}
                     </div>

@@ -536,7 +536,7 @@ export const ProjectsTemplate = () => {
                                       </span>
                                       <span className="inline-flex items-center gap-6 px-12 py-6 bg-gray-100 rounded-full text-xs md:text-sm text-gray-600">
                                         <Building2 size={12} />
-                                        {project.fundingAgency}
+                                        <span className="font-bold text-gray-800">{project.fundingAgency}</span>
                                       </span>
                                     </div>
                                   </div>
