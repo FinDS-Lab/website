@@ -658,11 +658,11 @@ export const PublicationsTemplate = () => {
                           )}
                         </div>
                         <span className={`text-base max-md:hidden ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
-                          {stats.journals} Journals · {stats.conferences} Conferences · {stats.books} Books · {stats.reports} Reports
+                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span> Journals · <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span> Conferences · <span className="font-bold text-[#E8D688]">{stats.books}</span> Books · <span className="font-bold text-[#FFBAC4]">{stats.reports}</span> Reports
                         </span>
 
                         <span className={`hidden text-base max-md:block text-start ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
-                          {stats.journals} Journals · {stats.conferences} Conferences <br/> {stats.books} Books · {stats.reports} Reports
+                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span> Journals · <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span> Conferences <br/> <span className="font-bold text-[#E8D688]">{stats.books}</span> Books · <span className="font-bold text-[#FFBAC4]">{stats.reports}</span> Reports
                         </span>
                       </div>
                       {expandedYear === year ? (

@@ -628,7 +628,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  My goal is to <span className="font-semibold text-gray-800">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">rigorous</span> and <span className="font-semibold text-primary">useful</span>.
+                  My goal is to <span className="font-semibold text-gray-800">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">well-grounded</span> and <span className="font-semibold text-primary">useful</span>.
                 </p>
               </div>
               )}
