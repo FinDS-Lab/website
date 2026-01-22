@@ -469,7 +469,7 @@ export const MembersDirectorTemplate = () => {
               className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
             >
               <BookOpen size={16} />
-              Research
+              Academics
             </Link>
             <Link
               to="/members/director/activities"
@@ -628,7 +628,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  My goal is to connect academic research with practical applications, developing ideas that are both rigorous and useful.
+                  My goal is to <span className="font-semibold text-gray-800">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">rigorous</span> and <span className="font-semibold text-primary">useful</span>.
                 </p>
               </div>
               )}
