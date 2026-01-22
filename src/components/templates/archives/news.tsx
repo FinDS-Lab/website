@@ -5,7 +5,7 @@ import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
 // Image Imports
-import banner4 from '@/assets/images/banner/4.webp'
+import banner5 from '@/assets/images/banner/5.webp'
 
 interface NewsItem {
   id: string;
@@ -140,7 +140,7 @@ export const ArchivesNewsTemplate = () => {
     <div className="flex flex-col">
       {/* Banner */}
       <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${banner4})` }} />
+        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${banner5})` }} />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />

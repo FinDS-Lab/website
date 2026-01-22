@@ -1,15 +1,20 @@
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { Copy, Home, Clock, MapPin } from 'lucide-react'
+import { Copy, Home, MapPin, Phone, Building2, Navigation, CheckCircle2 } from 'lucide-react'
+import { useState } from 'react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
 import locationImg from '@/assets/images/location/1.webp'
 
 export const LocationTemplate = () => {
+  const [copied, setCopied] = useState(false)
+  
   const handleCopyAddress = () => {
     const address = '(13120) 경기도 성남시 수정구 성남대로 1342 가천대학교 가천관 614호'
     navigator.clipboard.writeText(address)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -67,9 +72,9 @@ export const LocationTemplate = () => {
 
       {/* Content Section */}
       <section className="pb-60 md:pb-80 px-16 md:px-20">
-        <div className="max-w-1480 mx-auto flex flex-col lg:flex-row gap-16 md:gap-20">
+        <div className="max-w-1480 mx-auto flex flex-col lg:flex-row gap-20 md:gap-32">
           {/* Map Section */}
-          <div className="flex-1 h-300 md:h-520 rounded-xl md:rounded-[20px] border border-gray-100 overflow-hidden">
+          <div className="flex-1 h-300 md:h-520 rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50">
             <iframe
               src="https://maps.google.com/maps?q=가천대학교+가천관&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -82,104 +87,160 @@ export const LocationTemplate = () => {
             />
           </div>
 
-          {/* Info Section */}
-          <div className="w-full lg:w-500 flex flex-col gap-16 md:gap-20">
+          {/* Info Section - Premium Design */}
+          <div className="w-full lg:w-480 flex flex-col gap-20 md:gap-24">
             
-            {/* FINDS Lab Card */}
-            <div className="rounded-xl md:rounded-[20px] border border-gray-100 overflow-hidden">
+            {/* FINDS Lab Card - Premium Style */}
+            <div className="group relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+              {/* Decorative gradient accent */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-amber-500 to-primary" />
+              
+              {/* Image Header */}
               <div className="relative h-100 md:h-120 overflow-hidden">
                 <img
                   src={locationImg}
                   alt="Gachon Hall"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 px-16 md:px-20 py-12 md:py-14">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-sm md:text-md font-semibold text-white">
-                        금융인텔리전스연구실
-                      </h3>
-                      <p className="text-xs md:text-sm text-gray-300">
-                        FINDS Lab
-                      </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 px-20 md:px-24 py-16">
+                  <div className="flex items-center gap-8">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/20 backdrop-blur-sm flex items-center justify-center">
+                      <Building2 size={18} className="text-primary" />
                     </div>
-                    <div className="flex items-center gap-6 px-10 py-4 bg-white/20 backdrop-blur-sm rounded-full">
-                      <MapPin size={12} className="text-white" />
-                      <span className="text-xs font-medium text-white">운영 중</span>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-white">FINDS Lab</h3>
+                      <p className="text-xs text-gray-400">금융인텔리전스연구실</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="p-16 md:p-20">
-                <div className="flex items-center gap-8 mb-12">
-                  <div className="w-3 h-16 md:h-18 bg-[#AC0E0E] rounded-full" />
-                  <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    가천대학교 글로벌캠퍼스 가천관 614호
-                  </h4>
-                </div>
-                <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
-                  <p className="text-sm text-gray-600">
-                    금융인텔리전스연구실 (FINDS Lab)
-                  </p>
+              
+              {/* Content */}
+              <div className="p-20 md:p-24">
+                <div className="flex items-start gap-12 mb-16">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-2">
+                    <MapPin size={14} className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm md:text-base font-semibold text-white mb-4">
+                      Room 614 (FINDS Lab), Gachon Hall
+                    </p>
+                    <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
+                      Gachon University, Global Campus<br />
+                      1342 Seongnam-daero, Sujeong-gu,<br />
+                      Seongnam-si, Gyeonggi-do 13120, Korea
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Professor's Office Card */}
-            <div className="rounded-xl md:rounded-[20px] border border-gray-100 overflow-hidden">
-              <div className="relative h-100 md:h-120 overflow-hidden">
+            {/* Professor's Office Card - Premium Style */}
+            <div className="relative bg-white rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
+              {/* Decorative accent line */}
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#AC0E0E] via-primary to-[#AC0E0E]" />
+              
+              {/* Header with image */}
+              <div className="relative h-100 md:h-140 overflow-hidden">
                 <img
                   src={locationImg}
                   alt="Gachon Hall"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 px-16 md:px-20 py-12 md:py-14">
-                  <div className="flex items-center justify-between">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-20 md:p-28">
+                  <div className="flex items-end justify-between">
                     <div>
-                      <h3 className="text-sm md:text-md font-semibold text-white">
-                        최인수 교수
-                      </h3>
-                      <p className="text-xs md:text-sm text-gray-300">
-                        Prof. Insu Choi's Profile
-                      </p>
+                      <p className="text-[10px] md:text-xs text-primary font-bold uppercase tracking-[0.2em] mb-6">Location</p>
+                      <h3 className="text-xl md:text-2xl font-bold text-white">Prof. Insu Choi's Office</h3>
                     </div>
-                    <div className="flex items-center gap-6 px-10 py-4 bg-white/20 backdrop-blur-sm rounded-full">
-                      <MapPin size={12} className="text-white" />
-                      <span className="text-xs font-medium text-white">운영 중</span>
+                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                      <Navigation size={24} className="text-white" />
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="p-16 md:p-20">
-                <div className="flex items-center gap-8 mb-12">
-                  <div className="w-3 h-16 md:h-18 bg-primary rounded-full" />
-                  <h4 className="text-base md:text-lg font-semibold text-gray-900">
-                    가천대학교 글로벌캠퍼스 가천관 614호
-                  </h4>
-                </div>
-                <div className="bg-gray-50 rounded-xl md:rounded-[12px] p-12 md:p-16">
-                  <div className="flex justify-between items-start">
-                    <div className="flex flex-col gap-6 md:gap-8">
-                      <p className="text-sm md:text-base font-medium text-gray-900">
-                        (13120) 경기도 성남시 수정구 성남대로 1342 가천대학교 가천관 614호
-                      </p>
-                      <p className="text-sm md:text-base font-medium text-gray-700">
-                        Tel. 031-750-0614
-                      </p>
-                      <p className="text-xs md:text-sm text-gray-500">
-                        Room 614, Gachon Hall, Gachon University<br />
-                        1342 Seongnam-daero, Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
-                      </p>
+              
+              {/* Content - Premium Card Grid */}
+              <div className="p-16 md:p-24">
+                <div className="grid grid-cols-1 gap-12 md:gap-16">
+                  
+                  {/* Korean Address Card */}
+                  <div className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-16 md:p-20 border border-gray-100 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-3xl" />
+                    <div className="flex items-start gap-14 md:gap-16">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                        <MapPin size={20} className="text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-8 mb-8">
+                          <span className="text-[10px] font-bold text-primary uppercase tracking-wider">KR</span>
+                          <div className="flex-1 h-px bg-gradient-to-r from-primary/20 to-transparent" />
+                        </div>
+                        <p className="text-sm md:text-base font-medium text-gray-900 leading-relaxed mb-4">
+                          가천대학교 가천관 614호 (금융인텔리전스연구실)
+                        </p>
+                        <p className="text-xs md:text-sm text-gray-500">
+                          (13120) 경기도 성남시 수정구 성남대로 1342
+                        </p>
+                      </div>
+                      <button
+                        onClick={handleCopyAddress}
+                        className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-white border border-gray-200 rounded-xl hover:bg-primary hover:border-primary hover:text-white transition-all duration-200 shrink-0 shadow-sm"
+                        title="주소 복사"
+                      >
+                        {copied ? <CheckCircle2 size={16} className="text-emerald-500" /> : <Copy size={14} className="text-gray-400" />}
+                      </button>
                     </div>
-                    <button
-                      onClick={handleCopyAddress}
-                      className="w-24 h-24 md:w-28 md:h-28 flex items-center justify-center bg-white border border-gray-100 rounded-lg md:rounded-[8px] hover:bg-gray-100 transition-colors shrink-0 ml-8"
-                    >
-                      <Copy className="w-14 h-14 md:w-16 md:h-16 text-gray-500" />
-                    </button>
                   </div>
+
+                  {/* English Address Card */}
+                  <div className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-16 md:p-20 border border-gray-100 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-3xl" />
+                    <div className="flex items-start gap-14 md:gap-16">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-lg shadow-gray-300/30 shrink-0">
+                        <Building2 size={20} className="text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-8 mb-8">
+                          <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">EN</span>
+                          <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
+                        </div>
+                        <p className="text-sm md:text-base font-medium text-gray-900 leading-relaxed mb-4">
+                          Room 614 (FINDS Lab), Gachon Hall
+                        </p>
+                        <p className="text-xs md:text-sm text-gray-500 leading-relaxed">
+                          Gachon University, 1342 Seongnam-daero,<br className="hidden md:block" />
+                          Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Phone Card - Highlighted */}
+                  <div className="group relative bg-gradient-to-r from-primary/5 via-amber-50/50 to-primary/5 rounded-2xl p-16 md:p-20 border border-primary/10 hover:border-primary/30 transition-all duration-300">
+                    <div className="flex items-center gap-14 md:gap-16">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center shadow-lg shadow-primary/20 shrink-0">
+                        <Phone size={20} className="text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-8 mb-6">
+                          <span className="text-[10px] font-bold text-primary uppercase tracking-wider">Tel</span>
+                          <div className="flex-1 h-px bg-gradient-to-r from-primary/20 to-transparent" />
+                        </div>
+                        <p className="text-lg md:text-xl font-bold text-gray-900 tracking-wide">031-750-0614</p>
+                      </div>
+                      <a
+                        href="tel:031-750-0614"
+                        className="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center bg-primary/10 rounded-xl hover:bg-primary hover:text-white transition-all duration-200 shrink-0"
+                        title="전화 걸기"
+                      >
+                        <Phone size={16} className="text-primary group-hover:text-white" />
+                      </a>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
 import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
-import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward } from 'lucide-react'
+import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward, Minimize2, Maximize2 } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
 // Public Pages
@@ -82,6 +82,7 @@ const GlobalMusicPlayer = memo(() => {
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
+  const [isCompact, setIsCompact] = useState(false)
   const location = useLocation()
 
   // Load YouTube IFrame API
@@ -153,7 +154,7 @@ const GlobalMusicPlayer = memo(() => {
         playerRef.current = null
       }
 
-      // Create new player
+      // Create new player (even in compact mode, we need audio)
       playerRef.current = new window.YT.Player('yt-player', {
         videoId: currentVideoId,
         playerVars: {
@@ -202,6 +203,7 @@ const GlobalMusicPlayer = memo(() => {
       {/* Playlist Button/Player - Only show when playlist is loaded */}
       {playlist.length > 0 && !isPlaylistPage && (
         isMinimized ? (
+          // Minimized: Just a button
           <button
             onClick={() => setIsMinimized(false)}
             className="group flex items-center gap-6 md:gap-8 px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-primary/20 transition-all duration-300 border border-gray-700/50"
@@ -214,34 +216,101 @@ const GlobalMusicPlayer = memo(() => {
             </div>
             <span className="text-xs md:text-sm font-medium tracking-wide">Playlist</span>
           </button>
-        ) : (
-          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[260px] md:w-[340px] border border-gray-800/50">
-            {/* Header */}
-            <div className="flex items-center justify-between px-12 md:px-16 py-10 md:py-12 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
-              <div className="flex items-center gap-8 md:gap-10">
-                <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
-                  <Music size={14} className="md:w-4 md:h-4 text-white" />
-                </div>
-                <div>
-                  <span className="text-[11px] md:text-xs font-bold text-white tracking-wider">FINDS</span>
-                  <span className="text-[11px] md:text-xs font-medium text-gray-400 ml-1">Playlist</span>
-                </div>
+        ) : isCompact ? (
+          // Compact: Just artist + title with controls (music keeps playing)
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-10 pr-6 py-6">
+            {/* Track Info */}
+            <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[140px] md:max-w-[220px]">
+              <div className="relative shrink-0">
+                <Music size={14} className="text-primary" />
+                {isPlaying && (
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                )}
               </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[9px] md:text-[10px] text-primary font-semibold truncate">{currentTrack?.artist}</p>
+                <p className="text-[10px] md:text-xs text-white font-medium truncate">{currentTrack?.title}</p>
+              </div>
+            </div>
+            {/* Mini Controls */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={togglePlay}
+                className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
+              >
+                {isPlaying ? (
+                  <Pause size={12} className="text-primary" />
+                ) : (
+                  <Play size={12} className="text-primary ml-0.5" />
+                )}
+              </button>
+              <button
+                onClick={nextTrack}
+                className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+              >
+                <SkipForward size={10} className="text-gray-400" />
+              </button>
+              <button
+                onClick={() => setIsCompact(false)}
+                className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+                title="확장"
+              >
+                <Maximize2 size={10} className="text-gray-400" />
+              </button>
               <button
                 onClick={toggleMinimize}
-                className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+                title="닫기"
               >
-                <X size={12} className="md:w-[14px] md:h-[14px] text-gray-400" />
+                <X size={10} className="text-gray-400" />
               </button>
+            </div>
+            {/* Hidden player for audio */}
+            {isPlaying && currentVideoId && (
+              <div className="absolute -left-[9999px]">
+                <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
+              </div>
+            )}
+          </div>
+        ) : (
+          // Full: Complete player view (smaller on mobile)
+          <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[200px] md:w-[300px] border border-gray-800/50">
+            {/* Header */}
+            <div className="flex items-center justify-between px-10 md:px-14 py-8 md:py-10 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
+              <div className="flex items-center gap-6 md:gap-8">
+                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-primary via-amber-500 to-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                  <Music size={12} className="md:w-[14px] md:h-[14px] text-white" />
+                </div>
+                <div>
+                  <span className="text-[10px] md:text-[11px] font-bold text-white tracking-wider">FINDS</span>
+                  <span className="text-[10px] md:text-[11px] font-medium text-gray-400 ml-1">Playlist</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setIsCompact(true)}
+                  className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  title="최소화"
+                >
+                  <Minimize2 size={10} className="md:w-[12px] md:h-[12px] text-gray-400" />
+                </button>
+                <button
+                  onClick={toggleMinimize}
+                  className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
+                  title="닫기"
+                >
+                  <X size={10} className="md:w-[12px] md:h-[12px] text-gray-400" />
+                </button>
+              </div>
             </div>
 
             {/* Current Track Info */}
             {currentTrack && (
-              <div className="px-12 md:px-16 py-10 md:py-12 border-b border-gray-800/50">
-                <p className="text-primary text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1 md:mb-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              <div className="px-10 md:px-14 py-8 md:py-10 border-b border-gray-800/50">
+                <p className="text-primary text-[9px] md:text-[10px] font-bold tracking-wider uppercase mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.artist}
                 </p>
-                <p className="text-white text-sm md:text-base font-semibold truncate" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <p className="text-white text-xs md:text-sm font-semibold truncate" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.title}
                 </p>
               </div>
@@ -256,48 +325,48 @@ const GlobalMusicPlayer = memo(() => {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
                   <button
                     onClick={togglePlay}
-                    className="relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl shadow-primary/30"
+                    className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl shadow-primary/30"
                   >
-                    <Play size={22} className="md:w-[26px] md:h-[26px] text-white ml-1" />
+                    <Play size={18} className="md:w-[22px] md:h-[22px] text-white ml-1" />
                   </button>
                 </div>
               )}
             </div>
 
             {/* Controls */}
-            <div className="px-12 md:px-16 py-10 md:py-14 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
+            <div className="px-10 md:px-14 py-8 md:py-10 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
               {/* Progress indicator */}
-              <div className="flex items-center justify-center gap-12 md:gap-16 mb-8 md:mb-12">
+              <div className="flex items-center justify-center gap-10 md:gap-12 mb-6 md:mb-8">
                 <button
                   onClick={prevTrack}
-                  className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Previous"
                 >
-                  <SkipBack size={14} className="md:w-4 md:h-4 text-gray-300" />
+                  <SkipBack size={12} className="md:w-[14px] md:h-[14px] text-gray-300" />
                 </button>
                 <button
                   onClick={togglePlay}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg shadow-primary/25"
                   title={isPlaying ? "Pause" : "Play"}
                 >
                   {isPlaying ? (
-                    <Pause size={18} className="md:w-5 md:h-5 text-white" />
+                    <Pause size={16} className="md:w-[18px] md:h-[18px] text-white" />
                   ) : (
-                    <Play size={18} className="md:w-5 md:h-5 text-white ml-0.5" />
+                    <Play size={16} className="md:w-[18px] md:h-[18px] text-white ml-0.5" />
                   )}
                 </button>
                 <button
                   onClick={nextTrack}
-                  className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
+                  className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
                   title="Next"
                 >
-                  <SkipForward size={14} className="md:w-4 md:h-4 text-gray-300" />
+                  <SkipForward size={12} className="md:w-[14px] md:h-[14px] text-gray-300" />
                 </button>
               </div>
               
               {/* Track counter */}
               <div className="flex items-center justify-center">
-                <span className="text-[10px] md:text-[11px] text-gray-500 font-medium tracking-wide">
+                <span className="text-[9px] md:text-[10px] text-gray-500 font-medium tracking-wide">
                   {currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}
                 </span>
               </div>

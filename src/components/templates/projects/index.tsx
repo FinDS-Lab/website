@@ -1,7 +1,7 @@
 import {memo, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search} from 'lucide-react'
-import banner2 from '@/assets/images/banner/2.webp'
+import banner4 from '@/assets/images/banner/4.webp'
 
 type Project = {
   titleEn: string
@@ -249,7 +249,7 @@ export const ProjectsTemplate = () => {
       <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
-          style={{backgroundImage: `url(${banner2})`}}
+          style={{backgroundImage: `url(${banner4})`}}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
