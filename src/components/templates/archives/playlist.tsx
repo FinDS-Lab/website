@@ -24,9 +24,9 @@ const YouTubePlayerModal = ({ videoId, artist, title }: { videoId: string; artis
   return (
     <div className="relative">
       {/* Header */}
-      <div className="bg-gray-900 px-16 py-10">
-        <p className="text-gray-400 text-[10px] mb-2">{artist}</p>
-        <h2 className="text-white font-semibold text-sm truncate">{title}</h2>
+      <div className="bg-gray-900 px-16 md:px-20 py-12 md:py-14">
+        <p className="text-gray-400 text-[10px] md:text-xs mb-2">{artist}</p>
+        <h2 className="text-white font-semibold text-sm md:text-base truncate">{title}</h2>
       </div>
       
       {/* YouTube Embed - privacy-enhanced mode */}
@@ -85,7 +85,7 @@ export const ArchivesPlaylistTemplate = () => {
   const handlePlayVideo = (item: PlaylistItem) => {
     if (item.videoId) {
       showModal({
-        maxWidth: '700px',
+        maxWidth: '800px',
         children: <YouTubePlayerModal videoId={item.videoId} artist={item.artist} title={item.title} />
       })
     }
@@ -126,12 +126,12 @@ export const ArchivesPlaylistTemplate = () => {
             <div className="w-24 h-24 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
           </div>
         ) : playlists.length > 0 ? (
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 md:gap-16">
             {playlists.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handlePlayVideo(item)}
-                className="bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-md hover:border-primary/20 transition-all group cursor-pointer"
+                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all group cursor-pointer"
               >
                 {/* Thumbnail */}
                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
@@ -148,28 +148,28 @@ export const ArchivesPlaylistTemplate = () => {
                           }
                         }}
                       />
-                      {/* Play overlay */}
+                      {/* Play overlay - larger button */}
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                        <div className="w-32 h-32 md:w-36 md:h-36 bg-white/95 rounded-full flex items-center justify-center shadow-lg">
-                          <Play className="w-14 h-14 md:w-16 md:h-16 text-primary ml-2" fill="currentColor" />
+                        <div className="w-48 h-48 md:w-56 md:h-56 bg-white/95 rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
+                          <Play className="w-20 h-20 md:w-24 md:h-24 text-primary ml-2" fill="currentColor" />
                         </div>
                       </div>
                     </>
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                      <div className="w-28 h-28 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-12 h-12 text-white ml-1" fill="white" />
+                      <div className="w-40 h-40 md:w-48 md:h-48 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <Play className="w-16 h-16 md:w-20 md:h-20 text-white ml-2" fill="white" />
                       </div>
                     </div>
                   )}
                 </div>
                 
                 {/* Info */}
-                <div className="p-8 md:p-10">
-                  <h3 className="text-[10px] md:text-[11px] font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-1">
+                <div className="p-12 md:p-14">
+                  <h3 className="text-xs md:text-sm font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-[9px] md:text-[10px] text-gray-500 truncate">
+                  <p className="text-[10px] md:text-xs text-gray-500 truncate">
                     {item.artist}
                   </p>
                 </div>
@@ -177,14 +177,14 @@ export const ArchivesPlaylistTemplate = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-lg p-24 md:p-36 text-center">
-            <div className="w-36 h-36 md:w-44 md:h-44 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-12">
-              <Music2 className="w-18 h-18 md:w-20 md:h-20 text-gray-300" />
+          <div className="bg-white rounded-xl p-32 md:p-48 text-center">
+            <div className="w-48 h-48 md:w-56 md:h-56 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-16">
+              <Music2 className="w-24 h-24 md:w-28 md:h-28 text-gray-300" />
             </div>
-            <p className="text-xs md:text-sm font-semibold text-gray-900 mb-4">
+            <p className="text-sm md:text-base font-semibold text-gray-900 mb-6">
               플레이리스트 준비 중
             </p>
-            <p className="text-[10px] md:text-xs text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500">
               아직 등록된 영상이 없습니다.
             </p>
           </div>

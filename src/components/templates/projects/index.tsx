@@ -473,20 +473,48 @@ export const ProjectsTemplate = () => {
                             const status = getProjectStatus(project.period)
                             
                             return (
-                              <div key={idx} className="p-20 md:p-32 bg-white border-t border-gray-100">
+                              <div key={idx} className="relative p-20 md:p-32 bg-white border-t border-gray-100 overflow-hidden">
+                                {/* Mobile: Ribbon-style badge at top-left corner */}
+                                <div className="md:hidden absolute top-0 left-0 flex items-stretch">
+                                  {/* Type Badge - Main ribbon */}
+                                  <div className={`${config?.color || 'bg-gray-500'} px-12 py-6 rounded-br-lg shadow-sm flex items-center gap-4`}>
+                                    <Icon size={12} className="text-white" />
+                                    <span className="text-[10px] font-bold text-white uppercase tracking-wide">
+                                      {config?.label || project.type}
+                                    </span>
+                                  </div>
+                                  {/* Status Badge */}
+                                  <div 
+                                    className={`px-10 py-6 flex items-center rounded-br-lg -ml-1 ${
+                                      status === 'ongoing' 
+                                        ? 'bg-[#FFF9E6] border-b border-r border-[#FFEB99]' 
+                                        : 'bg-gray-50 border-b border-r border-gray-200'
+                                    }`}
+                                  >
+                                    <span className={`text-[9px] font-bold uppercase tracking-wide ${
+                                      status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
+                                    }`}>
+                                      {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                                    </span>
+                                  </div>
+                                </div>
+                                
+                                {/* Mobile content padding to account for ribbon */}
+                                <div className="md:hidden h-6" />
+                                
                                 <div className="flex flex-col md:flex-row md:items-start gap-16 md:gap-24">
-                                  {/* Left: Type Badge */}
-                                  <div className="flex flex-col items-center shrink-0 w-80 md:w-100">
-                                    <div className={`w-full py-8 md:py-10 rounded-t-lg text-center ${config?.color || 'bg-gray-500'}`}>
+                                  {/* Desktop: Type Badge - keep original */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-100">
+                                    <div className={`w-full py-10 rounded-t-lg text-center ${config?.color || 'bg-gray-500'}`}>
                                       <Icon size={16} className="inline text-white mb-2" />
-                                      <span className="block text-[10px] md:text-xs font-semibold text-white uppercase tracking-wide">
+                                      <span className="block text-xs font-semibold text-white uppercase tracking-wide">
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
+                                    <div className={`w-full py-8 rounded-b-lg text-center border-x border-b ${
                                       status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
-                                      <span className={`text-[10px] md:text-xs font-medium ${
+                                      <span className={`text-xs font-medium ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -494,7 +522,7 @@ export const ProjectsTemplate = () => {
                                     </div>
                                   </div>
 
-                                  {/* Middle: Content */}
+                                  {/* Content */}
                                   <div className="flex-1 min-w-0">
                                     <h4 className="text-base md:text-lg font-bold text-gray-900 mb-8 leading-relaxed">
                                       {project.titleEn}
