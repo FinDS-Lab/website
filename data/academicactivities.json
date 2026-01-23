@@ -39,8 +39,8 @@
     {
       "id": 5,
       "category": "chair",
-      "name": "2025 Fall Conference of the Korean Institute of Information Technology",
-      "name_ko": "2025 한국정보기술학회 추계종합학술대회",
+      "name": "2025 Fall Conference of the Korean Institute of Information Technology — Session 2-OA",
+      "name_ko": "2025 한국정보기술학회 추계종합학술대회 2-OA 세션 좌장",
       "publisher": "Korean Institute of Information Technology",
       "type": "Session Chair",
       "period": "2025-11-27 – 2025-11-29",
@@ -481,8 +481,8 @@
     {
       "id": 54,
       "category": "committee",
-      "name": "1st Shinhan Investment Corp. – KAIST Mock Investment Competition",
-      "name_ko": "제1회 신한투자증권 – KAIST 모의투자대회",
+      "name": "1st Shinhan Investment Corp. Shinhan Alpha – KAIST Competition",
+      "name_ko": "제1회 신한금융투자 신한알파 – KAIST 모의투자대회",
       "publisher": "Shinhan Investment Corp., KAIST",
       "type": "Committee Member",
       "period": "2021-06-01 – 2021-08-31",
