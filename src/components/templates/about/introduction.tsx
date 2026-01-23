@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react'
-import { Home, Search, Zap, Lightbulb, Quote, Sparkles, ArrowRight } from 'lucide-react'
+import { Home, Search, Zap, Lightbulb, Quote, Sparkles, ArrowRight, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 // Image Imports
@@ -8,14 +8,14 @@ import icon10 from '@/assets/images/icons/10.png'
 import icon11 from '@/assets/images/icons/11.png'
 import icon12 from '@/assets/images/icons/12.png'
 
-// Bilingual fade animation hook
+// Bilingual fade animation hook (5 seconds)
 const useBilingualFade = () => {
   const [showKorean, setShowKorean] = useState(true)
   
   useEffect(() => {
     const interval = setInterval(() => {
       setShowKorean(prev => !prev)
-    }, 4000)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
   
@@ -50,29 +50,51 @@ const pillars = [
   {
     icon: Search,
     label: 'Research',
+    labelKo: '연구',
     number: '01',
     title: 'We pursue research from multiple perspectives.',
+    titleKo: '다양한 관점에서 연구를 추구합니다.',
     description: 'Using <b>systematic methodologies</b> in <b>financial data science</b> and <b>business analytics</b>, we advance knowledge while developing <b>clear frameworks</b> that support <b>practical applications</b> and <b>informed decision-making</b>.',
+    descriptionKo: '<b>금융 데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 <b>체계적인 방법론</b>을 활용하여 지식을 발전시키고, <b>실용적인 적용</b>과 <b>합리적인 의사결정</b>을 지원하는 <b>명확한 프레임워크</b>를 개발합니다.',
     accent: 'group-hover:from-[#D6B14D] group-hover:to-[#D6C360]',
   },
   {
     icon: Zap,
     label: 'Impact',
+    labelKo: '영향력',
     number: '02',
     title: 'We turn theory into practical solutions.',
+    titleKo: '이론을 실용적인 솔루션으로 전환합니다.',
     description: 'Our work helps practitioners <b>manage uncertainty</b> and <b>connect</b> <b>analytical methods</b> with <b>everyday practice</b>, in both <b>financial markets</b> and <b>business operations</b>.',
+    descriptionKo: '우리의 연구는 실무자들이 <b>금융 시장</b>과 <b>비즈니스 운영</b>에서 <b>불확실성을 관리</b>하고, <b>분석적 방법론</b>을 <b>일상적인 실무</b>에 <b>연결</b>할 수 있도록 돕습니다.',
     accent: 'group-hover:from-primary group-hover:to-[#D6C360]',
   },
   {
     icon: Lightbulb,
     label: 'Philosophy',
+    labelKo: '철학',
     number: '03',
     title: 'We strive toward "des avenirs lucides".',
+    titleKo: '"명징한 미래(des avenirs lucides)"를 향해 나아갑니다.',
     subtitle: '— lucid futures',
+    subtitleKo: '— 명징한 미래',
     description: 'Through <b>data science</b>, we aim to bring <b>clarity</b>, <b>understanding</b>, and <b>openness</b> to complex problems, working toward a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future in finance and business.',
+    descriptionKo: '<b>데이터 사이언스</b>를 통해 복잡한 문제에 <b>명확함</b>, <b>이해</b>, 그리고 <b>개방성</b>을 가져오고, 금융과 비즈니스 분야에서 더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래를 향해 나아갑니다.',
     accent: 'group-hover:from-[#D6C360] group-hover:to-primary',
   },
 ]
+
+// Vision section content
+const visionContent = {
+  title: {
+    en: <>We illuminate the future of<br /><span className="relative inline-block mt-8 md:mt-12"><span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">Better Data Intelligence</span><div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" /></span></>,
+    ko: <>더 나은 데이터 인텔리전스의<br /><span className="relative inline-block mt-8 md:mt-12"><span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">미래를 밝혀갑니다</span><div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" /></span></>
+  },
+  description: {
+    en: <>We envision a future where <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">data intelligence</span> diminishes knowledge asymmetry, turning complex data streams into <span className="text-primary font-bold">clear, accessible, and strategically valuable insights</span> — a future built upon meaningful <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>finds</span> that guide decision-makers across <span className="font-bold text-gray-800">finance</span>, <span className="font-bold text-gray-800">business</span>, and diverse societal domains.</>,
+    ko: <>우리는 <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span className="text-primary font-bold">명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다 — <span className="font-bold text-gray-800">금융</span>, <span className="font-bold text-gray-800">비즈니스</span>, 그리고 다양한 사회 영역에서 의사결정자를 이끄는 의미 있는 <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>을 기반으로 구축되는 미래입니다.</>
+  }
+}
 
 // Scroll animation hook
 const useScrollAnimation = () => {
@@ -105,6 +127,10 @@ export const AboutIntroductionTemplate = () => {
   const visionAnimation = useScrollAnimation()
   const pillarsAnimation = useScrollAnimation()
   const showKorean = useBilingualFade()
+  
+  // Language state for Vision and Pillars sections
+  const [visionLang, setVisionLang] = useState<'ko' | 'en'>('ko')
+  const [pillarsLang, setPillarsLang] = useState<'ko' | 'en'>('ko')
 
   return (
     <div className="flex flex-col bg-white">
@@ -354,25 +380,51 @@ export const AboutIntroductionTemplate = () => {
 
             {/* Content */}
             <div className="relative z-10 text-center max-w-4xl mx-auto">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-32 md:mb-48 shadow-sm">
-                <Sparkles size={14} className="text-[#D6B14D]" />
-                <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                  Our Vision
-                </span>
+              {/* Badge with Language Toggle */}
+              <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
+                <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full shadow-sm">
+                  <Sparkles size={14} className="text-[#D6B14D]" />
+                  <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                    {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
+                  </span>
+                </div>
+                {/* Language Toggle */}
+                <button
+                  onClick={() => setVisionLang(prev => prev === 'ko' ? 'en' : 'ko')}
+                  className="group relative flex items-center gap-6 px-12 py-6 bg-white/90 backdrop-blur-sm rounded-full border border-gray-200 hover:border-primary/30 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <Globe size={12} className="text-gray-400 group-hover:text-primary transition-colors" />
+                  <span className={`text-[10px] font-bold transition-colors ${visionLang === 'ko' ? 'text-primary' : 'text-gray-400'}`}>KO</span>
+                  <span className="text-gray-300">/</span>
+                  <span className={`text-[10px] font-bold transition-colors ${visionLang === 'en' ? 'text-primary' : 'text-gray-400'}`}>EN</span>
+                </button>
               </div>
 
-              {/* Main Title */}
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
-                We illuminate the future of
-                <br />
-                <span className="relative inline-block mt-8 md:mt-12">
-                  <span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                    Better Data Intelligence
+              {/* Main Title with fade animation */}
+              <div className="relative h-[120px] md:h-[160px] mb-32 md:mb-48 overflow-hidden">
+                <h2 className={`absolute inset-0 flex flex-col items-center justify-center text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
+                  visionLang === 'ko' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+                }`}>
+                  더 나은 데이터 인텔리전스의
+                  <span className="relative inline-block mt-8 md:mt-12">
+                    <span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
+                      미래를 밝혀갑니다
+                    </span>
+                    <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
                   </span>
-                  <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
-                </span>
-              </h2>
+                </h2>
+                <h2 className={`absolute inset-0 flex flex-col items-center justify-center text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
+                  visionLang === 'en' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}>
+                  We illuminate the future of
+                  <span className="relative inline-block mt-8 md:mt-12">
+                    <span className="bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
+                      Better Data Intelligence
+                    </span>
+                    <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
+                  </span>
+                </h2>
+              </div>
 
               {/* Divider */}
               <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
@@ -381,16 +433,19 @@ export const AboutIntroductionTemplate = () => {
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
               </div>
 
-              {/* Description */}
-              <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
-                We envision a future where{' '}
-                <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">data intelligence</span>{' '}
-                diminishes knowledge asymmetry, turning complex data streams into{' '}
-                <span className="text-primary font-bold">clear, accessible, and strategically valuable insights</span>{' '}
-                — a future built upon meaningful{' '}
-                <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>finds</span>{' '}
-                that guide decision-makers across <span className="font-bold text-gray-800">finance</span>, <span className="font-bold text-gray-800">business</span>, and diverse societal domains.
-              </p>
+              {/* Description with language switch */}
+              <div className="relative min-h-[120px] md:min-h-[100px]">
+                <p className={`text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium transition-all duration-700 ${
+                  visionLang === 'ko' ? 'opacity-100' : 'opacity-0 absolute inset-0'
+                }`}>
+                  우리는 <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span className="text-primary font-bold">명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다 — <span className="font-bold text-gray-800">금융</span>, <span className="font-bold text-gray-800">비즈니스</span>, 그리고 다양한 사회 영역에서 의사결정자를 이끄는 의미 있는 <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>발견(finds)</span>을 기반으로 구축되는 미래입니다.
+                </p>
+                <p className={`text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium transition-all duration-700 ${
+                  visionLang === 'en' ? 'opacity-100' : 'opacity-0 absolute inset-0'
+                }`}>
+                  We envision a future where <span className="text-gray-900 font-bold border-b-2 border-[#D6C360] pb-1">data intelligence</span> diminishes knowledge asymmetry, turning complex data streams into <span className="text-primary font-bold">clear, accessible, and strategically valuable insights</span> — a future built upon meaningful <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>finds</span> that guide decision-makers across <span className="font-bold text-gray-800">finance</span>, <span className="font-bold text-gray-800">business</span>, and diverse societal domains.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -405,13 +460,25 @@ export const AboutIntroductionTemplate = () => {
             ref={pillarsAnimation.ref}
             className={`transition-all duration-1000 delay-400 ${pillarsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            {/* Section Header */}
+            {/* Section Header with Language Toggle */}
             <div className="text-center mb-48 md:mb-80">
-              <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full mb-16 md:mb-24 shadow-sm">
-                <Sparkles size={14} className="text-[#D6B14D]" />
-                <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
-                  Our Pillars
-                </span>
+              <div className="flex items-center justify-center gap-12">
+                <div className="inline-flex items-center gap-8 px-16 py-8 bg-white/80 backdrop-blur-sm border border-[#FFEB99]/50 rounded-full shadow-sm">
+                  <Sparkles size={14} className="text-[#D6B14D]" />
+                  <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                    {pillarsLang === 'ko' ? '핵심 가치' : 'Our Pillars'}
+                  </span>
+                </div>
+                {/* Language Toggle */}
+                <button
+                  onClick={() => setPillarsLang(prev => prev === 'ko' ? 'en' : 'ko')}
+                  className="group relative flex items-center gap-6 px-12 py-6 bg-white/90 backdrop-blur-sm rounded-full border border-gray-200 hover:border-primary/30 shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <Globe size={12} className="text-gray-400 group-hover:text-primary transition-colors" />
+                  <span className={`text-[10px] font-bold transition-colors ${pillarsLang === 'ko' ? 'text-primary' : 'text-gray-400'}`}>KO</span>
+                  <span className="text-gray-300">/</span>
+                  <span className={`text-[10px] font-bold transition-colors ${pillarsLang === 'en' ? 'text-primary' : 'text-gray-400'}`}>EN</span>
+                </button>
               </div>
             </div>
 
@@ -424,7 +491,7 @@ export const AboutIntroductionTemplate = () => {
                     {/* Title above card - Research / Impact / Philosophy - All in primary color */}
                     <div className="text-center mb-16 md:mb-20">
                       <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
-                        {pillar.label}
+                        {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
                       </h3>
                       <div className="w-40 h-1 bg-primary rounded-full mx-auto mt-8" />
                     </div>
@@ -455,20 +522,20 @@ export const AboutIntroductionTemplate = () => {
 
                         {/* Title */}
                         <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-8 md:mb-12 leading-[1.4] group-hover:text-gray-900 transition-colors">
-                          {pillar.title}
+                          {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
                         </h4>
                         
                         {/* Subtitle for Philosophy */}
                         {pillar.subtitle && (
                           <p className="text-sm font-medium italic mb-12 md:mb-16 text-[#D6B14D]">
-                            {pillar.subtitle}
+                            {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
                           </p>
                         )}
 
                         {/* Description */}
                         <p 
                           className="text-sm md:text-base text-gray-500 leading-[1.9] group-hover:text-gray-600 transition-colors [&>b]:text-gray-700 [&>b]:font-semibold"
-                          dangerouslySetInnerHTML={{ __html: pillar.description }}
+                          dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
                         />
                       </div>
                     </div>

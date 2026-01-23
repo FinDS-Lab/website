@@ -63,7 +63,7 @@ const useLogoTextAnimation = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setShowAlt(prev => !prev)
-    }, 4000)
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
   
@@ -196,8 +196,8 @@ const LayoutOrganisms = ({ children }: props) => {
                   showAltText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
                 }`}
               >
-                <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wide">Financial Data Intelligence</span>
-                <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wide">& Solutions Laboratory</span>
+                <span className="text-[8px] md:text-[10px] font-semibold text-primary tracking-wide">Financial Data Intelligence</span>
+                <span className="text-[8px] md:text-[10px] font-semibold text-primary tracking-wide">& Solutions Laboratory</span>
               </span>
             </div>
           </Link>
