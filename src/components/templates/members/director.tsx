@@ -27,6 +27,21 @@ import {
 import {useStoreModal} from '@/store/modal'
 import type {HonorsData} from '@/types/data'
 
+// Format date from "Dec 5" to "MM-DD" format
+const formatHonorDate = (dateStr: string): string => {
+  const monthMap: Record<string, string> = {
+    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+  }
+  const parts = dateStr.split(' ')
+  if (parts.length === 2) {
+    const month = monthMap[parts[0]] || '00'
+    const day = parts[1].padStart(2, '0')
+    return `${month}-${day}`
+  }
+  return dateStr
+}
+
 // Types
 type Project = {
   titleEn: string
@@ -1001,7 +1016,7 @@ export const MembersDirectorTemplate = () => {
                                               <p className="text-xs text-gray-600 mt-2">{item.event}</p>
                                               <p className="text-[10px] text-gray-400 mt-2">{item.organization}</p>
                                             </div>
-                                            <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{item.date}</span>
+                                            <span className="text-[10px] text-gray-400 font-medium shrink-0 whitespace-nowrap">{year}-{formatHonorDate(item.date)}</span>
                                           </div>
                                         </div>
                                       </div>

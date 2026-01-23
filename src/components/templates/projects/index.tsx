@@ -370,13 +370,13 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-gray-50 border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-300 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400">{stats.completed}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-300">{stats.completed}</span>
                   <div className="flex items-center gap-6">
                     <CheckCircle className="size-14 md:size-16 text-gray-300" />
-                    <span className="text-xs md:text-sm font-medium text-gray-400">Completed</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-300">Completed</span>
                   </div>
                 </div>
               </div>

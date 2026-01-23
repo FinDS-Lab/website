@@ -1491,15 +1491,15 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-8">
-                            <div className="flex-1">
+                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6">
+                            <div>
                               <p className="text-xs font-bold text-gray-900">{comm.name}</p>
                               {comm.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                               )}
                             </div>
-                            <div className="flex items-center justify-end">
-                              <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
+                            <div className="flex justify-end">
+                              <span className="px-8 py-2 rounded text-[10px] font-bold bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
                             </div>
                           </a>
                         ))}
@@ -1519,15 +1519,15 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-8">
-                            <div className="flex-1">
+                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6">
+                            <div>
                               <p className="text-xs font-bold text-gray-900">{chair.name}</p>
                               {chair.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                               )}
                             </div>
-                            <div className="flex items-center justify-end">
-                              <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
+                            <div className="flex justify-end">
+                              <span className="px-8 py-2 rounded text-[10px] font-bold" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
                             </div>
                           </a>
                         ))}
@@ -1553,23 +1553,15 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {displayedJournals.map((journal) => (
                         <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                          <div className="flex items-start justify-between gap-8">
-                            <span className="text-gray-700 flex-1">{journal.name}</span>
-                            <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
-                              journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                              journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
-                              journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
-                              journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                              'bg-[#FFD6DD] text-gray-700'
-                            }`}>{journal.type}</span>
-                          </div>
-                          <div className="flex items-center justify-end">
-                            <span className="inline-flex items-center gap-4 px-8 py-3 bg-gray-50 border border-gray-100 rounded-md text-[9px] font-bold text-gray-500">
-                              <Calendar size={10} className="text-gray-400" />
-                              Since {journal.since}
-                            </span>
-                          </div>
+                          className="flex items-center justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                          <span className="text-gray-700 flex-1">{journal.name}</span>
+                          <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
+                            journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
+                            journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
+                            journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
+                            journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
+                            'bg-[#FFD6DD] text-gray-700'
+                          }`}>{journal.type}</span>
                         </a>
                       ))}
                     </div>

@@ -8,7 +8,7 @@ import banner1 from '@/assets/images/banner/1.webp'
 
 type FilterType = 'all' | 'honor' | 'award'
 
-// Format date from "Dec 5" to "12.05"
+// Format date from "Dec 5" to "MM-DD" format
 const formatDate = (dateStr: string): string => {
   const monthMap: Record<string, string> = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
@@ -18,7 +18,7 @@ const formatDate = (dateStr: string): string => {
   if (parts.length === 2) {
     const month = monthMap[parts[0]] || '00'
     const day = parts[1].padStart(2, '0')
-    return `${month}.${day}`
+    return `${month}-${day}`
   }
   return dateStr
 }
@@ -317,7 +317,7 @@ export const AboutHonorsTemplate = () => {
                             )}
                           </div>
                           <div className="text-xs md:text-[14px] text-gray-500 font-medium whitespace-nowrap">
-                            {formatDate(item.date)}
+                            {year}-{formatDate(item.date)}
                           </div>
                         </div>
                       ))}
