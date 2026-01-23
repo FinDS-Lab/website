@@ -759,12 +759,16 @@ export const MembersAlumniTemplate = () => {
                                     </div>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
-                                    <div className="flex flex-col gap-4">
-                                      <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                    <div className="group relative inline-block">
+                                      <span className="px-10 md:px-12 py-4 md:py-5 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit cursor-default transition-all duration-200 group-hover:shadow-md" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
                                         {alumni.cohort || '-'}
                                       </span>
                                       {alumni.cohortName && (
-                                        <span className="text-[10px] text-gray-500">{alumni.cohortName}</span>
+                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 px-12 py-6 bg-gray-900 text-white text-[10px] font-medium rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
+                                          {/* Extract season from cohortName like "1st Cohort (2025 Winter)" -> "2025 Winter" */}
+                                          {alumni.cohortName.match(/\(([^)]+)\)/)?.[1] || alumni.cohortName}
+                                          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-5 border-r-5 border-t-5 border-transparent border-t-gray-900" />
+                                        </div>
                                       )}
                                     </div>
                                   </td>
@@ -835,8 +839,13 @@ export const MembersAlumniTemplate = () => {
                                     />
                                   )}
                                 </div>
-                                <span className="px-8 py-2 mt-4 text-[10px] font-bold rounded-full inline-block" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
-                                  {alumni.cohort || '-'} {alumni.cohortName && `· ${alumni.cohortName}`}
+                                <span className="group relative px-10 py-3 mt-4 text-[10px] font-bold rounded-full inline-block cursor-default transition-all duration-200 active:scale-95" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                  {alumni.cohort || '-'}
+                                  {alumni.cohortName && (
+                                    <span className="absolute left-full ml-8 top-1/2 -translate-y-1/2 px-10 py-4 bg-gray-900 text-white text-[9px] font-medium rounded-md whitespace-nowrap opacity-0 invisible group-active:opacity-100 group-active:visible transition-all duration-200 z-10 shadow-lg">
+                                      {alumni.cohortName.match(/\(([^)]+)\)/)?.[1] || alumni.cohortName}
+                                    </span>
+                                  )}
                                 </span>
                               </div>
                             </div>

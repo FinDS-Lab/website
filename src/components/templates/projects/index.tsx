@@ -578,27 +578,21 @@ export const ProjectsTemplate = () => {
                             return (
                               <div key={idx} className="p-16 md:p-24 hover:bg-gray-50/50 transition-all relative">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
-                                  {/* Left: Type Badge - Publications style */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-90">
-                                    <div className={`w-full py-8 rounded-t-lg text-center ${typeColors[project.type] || 'bg-gray-500'}`}>
-                                      <Icon size={18} className={`inline mb-2 ${typeTextColors[project.type] || 'text-white'}`} />
+                                  {/* Left: Type Badge - Refined minimal design */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-80">
+                                    <div className={`w-full py-10 rounded-xl text-center ${typeColors[project.type] || 'bg-gray-500'} shadow-sm`}>
+                                      <Icon size={20} className={`inline mb-4 ${typeTextColors[project.type] || 'text-white'}`} />
                                       <span className={`block text-[10px] font-bold uppercase tracking-wide ${typeTextColors[project.type] || 'text-white'}`}>
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-6 text-center border-x border-b ${
-                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
+                                    <div className={`w-full mt-6 py-5 text-center rounded-lg ${
+                                      status === 'ongoing' ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
                                     }`}>
-                                      <span className={`text-[10px] font-bold ${
-                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
+                                      <span className={`text-[9px] font-bold ${
+                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
-                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                      </span>
-                                    </div>
-                                    {/* Date below badge */}
-                                    <div className="w-full py-6 rounded-b-lg text-center bg-gray-50 border-x border-b border-gray-200">
-                                      <span className="text-[10px] font-bold text-primary tracking-wide">
-                                        {project.period.split(' ~ ')[0]}
+                                        {status === 'ongoing' ? 'ONGOING' : 'COMPLETED'}
                                       </span>
                                     </div>
                                   </div>
@@ -631,15 +625,16 @@ export const ProjectsTemplate = () => {
                                     <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
                                     <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
                                     
-                                    {/* Period - Desktop only */}
-                                    <p className="hidden md:block text-xs text-gray-500 mt-6">
-                                      {project.period}
-                                    </p>
-                                    
-                                    {/* Funding Agency */}
-                                    <p className="text-xs md:text-sm text-gray-500 mt-6 italic">
-                                      {project.fundingAgency}
-                                    </p>
+                                    {/* Funding Agency + Date - same line like Honors & Awards */}
+                                    <div className="flex flex-wrap items-center gap-8 mt-8">
+                                      <p className="text-xs md:text-sm text-gray-700 font-bold">
+                                        {project.fundingAgency}
+                                      </p>
+                                      <span className="text-gray-300 hidden md:inline">|</span>
+                                      <p className="hidden md:block text-[11px] md:text-xs text-gray-400 font-medium">
+                                        {project.period}
+                                      </p>
+                                    </div>
                                     
                                     {/* Roles - only show non-empty roles */}
                                     {(project.roles.principalInvestigator || project.roles.leadResearcher || filteredResearchers.length > 0) && (

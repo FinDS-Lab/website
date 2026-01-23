@@ -275,21 +275,19 @@ export const AboutHonorsTemplate = () => {
                       {isCurrentYear && (
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
-                      {/* White badge with counts */}
+                      {/* White badge with counts - always show both */}
                       <span className="px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                         {(() => {
                           const yearStats = getYearStats(year)
-                          const parts = []
-                          if (yearStats.honors > 0) {
-                            parts.push(<span key="h" className="font-bold" style={{color: '#D6B14D'}}>{yearStats.honors}</span>)
-                            parts.push(<span key="ht" className="text-gray-500"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>)
-                          }
-                          if (yearStats.honors > 0 && yearStats.awards > 0) parts.push(<span key="dot" className="text-gray-300"> · </span>)
-                          if (yearStats.awards > 0) {
-                            parts.push(<span key="a" className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>)
-                            parts.push(<span key="at" className="text-gray-500"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>)
-                          }
-                          return parts
+                          return (
+                            <>
+                              <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.honors}</span>
+                              <span className="text-gray-500"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>
+                              <span className="text-gray-300"> · </span>
+                              <span className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>
+                              <span className="text-gray-500"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>
+                            </>
+                          )
                         })()}
                       </span>
                     </div>

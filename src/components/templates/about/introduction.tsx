@@ -7,28 +7,28 @@ import icon10 from '@/assets/images/icons/10.png'
 import icon11 from '@/assets/images/icons/11.png'
 import icon12 from '@/assets/images/icons/12.png'
 
-// Focus Areas Data - with bold keywords
+// Focus Areas Data - with bold keywords and longer Korean descriptions
 const focusAreas = [
   {
     image: icon12,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     desc: 'We collect and analyze <b>complex financial market data</b> to discover <b>valuable patterns</b> and <b>insights</b>.',
-    descKo: '금융 시장의 <b>복잡한 데이터</b>를 수집하고 분석하여 <b>가치 있는 패턴</b>과 <b>인사이트</b>를 발견합니다.',
+    descKo: '금융 시장에서 발생하는 <b>복잡하고 방대한 데이터</b>를 체계적으로 수집·정제하고, <b>고급 분석 기법</b>을 적용하여 시장의 흐름과 <b>숨겨진 패턴</b>을 발견합니다. 이를 통해 <b>투자 전략</b> 수립과 <b>리스크 관리</b>에 필요한 핵심 인사이트를 도출합니다.',
   },
   {
     image: icon11,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     desc: 'We propose <b>optimal business strategies</b> and <b>solutions</b> through <b>data-driven statistical methodologies</b>.',
-    descKo: '<b>데이터 기반</b>의 <b>통계적 방법론</b>을 통해 <b>최적의 비즈니스 전략</b>과 <b>솔루션</b>을 제안합니다.',
+    descKo: '<b>데이터 중심의 통계적 방법론</b>과 <b>머신러닝 기법</b>을 활용하여 비즈니스 현장의 복잡한 문제를 분석합니다. 이를 바탕으로 <b>실행 가능한 전략</b>과 <b>최적의 솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>와 <b>성과 향상</b>에 기여합니다.',
   },
   {
     image: icon10,
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
     desc: 'We help make <b>clearer</b> and <b>more rational decisions</b> by leveraging <b>objective data intelligence</b>.',
-    descKo: '<b>객관적인 데이터 인텔리전스</b>를 활용하여 더 <b>명확</b>하고 <b>합리적인 의사결정</b>을 돕습니다.',
+    descKo: '<b>객관적인 데이터 인텔리전스</b>를 기반으로 불확실성 속에서도 <b>명확하고 합리적인 의사결정</b>이 가능하도록 지원합니다. 직관에 의존하지 않고 <b>데이터에 근거한 판단</b>을 통해 <b>비즈니스 리스크</b>를 최소화하고 <b>성공 확률</b>을 높입니다.',
   },
 ]
 
