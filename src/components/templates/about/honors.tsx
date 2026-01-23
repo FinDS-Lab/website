@@ -270,29 +270,33 @@ export const AboutHonorsTemplate = () => {
                         : 'bg-gray-50 hover:bg-gray-100'
                     }`}
                   >
-                    <div className="flex items-center gap-12 md:gap-[16px]">
+                    <div className="flex items-center gap-12 md:gap-[16px] flex-wrap">
                       <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
                       {isCurrentYear && (
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
-                      {/* Publications-style count display */}
-                      <span className={`text-[10px] md:text-xs ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
+                      {/* White badge with counts */}
+                      <span className="px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                         {(() => {
                           const yearStats = getYearStats(year)
                           const parts = []
-                          if (yearStats.honors > 0) parts.push(<span key="h" style={{color: '#D6B14D'}}>{yearStats.honors}</span>)
-                          if (yearStats.honors > 0) parts.push(<span key="ht"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>)
-                          if (yearStats.honors > 0 && yearStats.awards > 0) parts.push(<span key="dot"> · </span>)
-                          if (yearStats.awards > 0) parts.push(<span key="a" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>)
-                          if (yearStats.awards > 0) parts.push(<span key="at"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>)
+                          if (yearStats.honors > 0) {
+                            parts.push(<span key="h" className="font-bold" style={{color: '#D6B14D'}}>{yearStats.honors}</span>)
+                            parts.push(<span key="ht" className="text-gray-500"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>)
+                          }
+                          if (yearStats.honors > 0 && yearStats.awards > 0) parts.push(<span key="dot" className="text-gray-300"> · </span>)
+                          if (yearStats.awards > 0) {
+                            parts.push(<span key="a" className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>)
+                            parts.push(<span key="at" className="text-gray-500"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>)
+                          }
                           return parts
                         })()}
                       </span>
                     </div>
                     {expandedYear === year ? (
-                      <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
+                      <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                     ) : (
-                      <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
+                      <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                     )}
                   </button>
                   {expandedYear === year && (
@@ -318,15 +322,18 @@ export const AboutHonorsTemplate = () => {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            {/* Date at top */}
-                            <p className="text-[10px] md:text-xs text-gray-400 font-medium mb-6">
-                              {year}-{formatDate(item.date)}
-                            </p>
                             <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-4 md:mb-[4px]">
                               {item.title}
                             </h4>
                             <p className="text-xs md:text-[14px] text-gray-600 mb-4 md:mb-[4px]">{item.event}</p>
-                            <p className="text-[11px] md:text-[13px] text-gray-500">{item.organization}</p>
+                            {/* Organization + Date on same line */}
+                            <div className="flex flex-wrap items-center gap-8 mb-4">
+                              <p className="text-[11px] md:text-[13px] text-gray-500">{item.organization}</p>
+                              <span className="text-gray-300">|</span>
+                              <p className="text-[10px] md:text-[12px] text-gray-400 font-medium">
+                                {year}-{formatDate(item.date)}
+                              </p>
+                            </div>
                             {item.winners && item.winners.length > 0 && (
                               <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mt-8 md:mt-[8px]">
                                 {item.winners.map((winner, idx) => (

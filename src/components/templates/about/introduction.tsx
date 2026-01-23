@@ -7,28 +7,28 @@ import icon10 from '@/assets/images/icons/10.png'
 import icon11 from '@/assets/images/icons/11.png'
 import icon12 from '@/assets/images/icons/12.png'
 
-// Focus Areas Data
+// Focus Areas Data - with bold keywords
 const focusAreas = [
   {
     image: icon12,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
-    desc: 'We collect and analyze complex financial market data to discover valuable patterns and insights.',
-    descKo: '금융 시장의 복잡한 데이터를 수집하고 분석하여 가치 있는 패턴과 인사이트를 발견합니다.',
+    desc: 'We collect and analyze <b>complex financial market data</b> to discover <b>valuable patterns</b> and <b>insights</b>.',
+    descKo: '금융 시장의 <b>복잡한 데이터</b>를 수집하고 분석하여 <b>가치 있는 패턴</b>과 <b>인사이트</b>를 발견합니다.',
   },
   {
     image: icon11,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
-    desc: 'We propose optimal business strategies and solutions through data-driven statistical methodologies.',
-    descKo: '데이터 기반의 통계적 방법론을 통해 최적의 비즈니스 전략과 솔루션을 제안합니다.',
+    desc: 'We propose <b>optimal business strategies</b> and <b>solutions</b> through <b>data-driven statistical methodologies</b>.',
+    descKo: '<b>데이터 기반</b>의 <b>통계적 방법론</b>을 통해 <b>최적의 비즈니스 전략</b>과 <b>솔루션</b>을 제안합니다.',
   },
   {
     image: icon10,
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
-    desc: 'We help make clearer and more rational decisions by leveraging objective data intelligence.',
-    descKo: '객관적인 데이터 인텔리전스를 활용하여 더 명확하고 합리적인 의사결정을 돕습니다.',
+    desc: 'We help make <b>clearer</b> and <b>more rational decisions</b> by leveraging <b>objective data intelligence</b>.',
+    descKo: '<b>객관적인 데이터 인텔리전스</b>를 활용하여 더 <b>명확</b>하고 <b>합리적인 의사결정</b>을 돕습니다.',
   },
 ]
 
@@ -68,7 +68,7 @@ const pillars = [
   },
 ]
 
-// Scroll animation hook
+// Scroll animation hook with brightness tracking
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -91,6 +91,38 @@ const useScrollAnimation = () => {
   }, [])
 
   return { ref, isVisible }
+}
+
+// Scroll-based brightness hook for Vision section
+const useScrollBrightness = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [brightness, setBrightness] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return
+      
+      const rect = ref.current.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const elementCenter = rect.top + rect.height / 2
+      const viewportCenter = windowHeight / 2
+      
+      // Calculate how close element center is to viewport center
+      const distanceFromCenter = Math.abs(elementCenter - viewportCenter)
+      const maxDistance = windowHeight / 2 + rect.height / 2
+      
+      // Normalize to 0-1 (1 when centered, 0 when far)
+      const normalizedBrightness = Math.max(0, 1 - (distanceFromCenter / maxDistance))
+      setBrightness(normalizedBrightness)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll() // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return { ref, brightness }
 }
 
 // Elegant Language Toggle - Pill style, minimal
@@ -122,11 +154,14 @@ const LangToggle = ({ lang, setLang, variant = 'light' }: { lang: 'ko' | 'en', s
 export const AboutIntroductionTemplate = () => {
   const heroAnimation = useScrollAnimation()
   const focusAnimation = useScrollAnimation()
-  const visionAnimation = useScrollAnimation()
   const pillarsAnimation = useScrollAnimation()
+  const { ref: visionRef, brightness } = useScrollBrightness()
   
-  // Global language state
-  const [lang, setLang] = useState<'ko' | 'en'>('ko')
+  // Separate language states for each section
+  const [missionLang, setMissionLang] = useState<'ko' | 'en'>('ko')
+  const [focusLang, setFocusLang] = useState<'ko' | 'en'>('ko')
+  const [visionLang, setVisionLang] = useState<'ko' | 'en'>('ko')
+  const [pillarsLang, setPillarsLang] = useState<'ko' | 'en'>('ko')
 
   return (
     <div className="flex flex-col bg-white">
@@ -171,15 +206,15 @@ export const AboutIntroductionTemplate = () => {
                 <div className="flex items-center gap-8">
                   <Sparkles size={14} className="text-[#D6B14D]" />
                   <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                    {lang === 'ko' ? '우리의 사명' : 'Our Mission'}
+                    {missionLang === 'ko' ? '우리의 사명' : 'Our Mission'}
                   </span>
                 </div>
-                <LangToggle lang={lang} setLang={setLang} />
+                <LangToggle lang={missionLang} setLang={setMissionLang} />
               </div>
 
               {/* Title */}
               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.4] mb-24 md:mb-40 text-center">
-                {lang === 'ko' ? (
+                {missionLang === 'ko' ? (
                   <>
                     <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
                     <br className="md:hidden" />{' '}
@@ -204,7 +239,7 @@ export const AboutIntroductionTemplate = () => {
 
               {/* Description */}
               <div className="max-w-3xl mx-auto space-y-16 text-center md:text-left">
-                {lang === 'ko' ? (
+                {missionLang === 'ko' ? (
                   <>
                     <p className="text-sm md:text-base text-gray-600 leading-[2]">
                       <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
@@ -248,10 +283,10 @@ export const AboutIntroductionTemplate = () => {
               <div className="flex items-center gap-8">
                 <Sparkles size={14} className="text-[#D6B14D]" />
                 <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                  {lang === 'ko' ? '연구 분야' : 'Our Focus Areas'}
+                  {focusLang === 'ko' ? '연구 분야' : 'Our Focus Areas'}
                 </span>
               </div>
-              <LangToggle lang={lang} setLang={setLang} />
+              <LangToggle lang={focusLang} setLang={setFocusLang} />
             </div>
 
             {/* Cards */}
@@ -269,17 +304,15 @@ export const AboutIntroductionTemplate = () => {
                     </div>
                   </div>
 
-                  {/* Text */}
+                  {/* Text - title in gold color */}
                   <div className="text-center">
-                    <h3 className="text-base md:text-lg font-bold text-gray-900 mb-4">
-                      {lang === 'ko' ? area.titleKo : area.title}
+                    <h3 className="text-base md:text-lg font-bold mb-12" style={{ color: '#D6B14D' }}>
+                      {focusLang === 'ko' ? area.titleKo : area.title}
                     </h3>
-                    <p className="text-[10px] text-[#D6B14D] font-medium mb-12">
-                      {lang === 'ko' ? area.title : area.titleKo}
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-500 leading-[1.8]">
-                      {lang === 'ko' ? area.descKo : area.desc}
-                    </p>
+                    <p 
+                      className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                      dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
+                    />
                   </div>
                 </div>
               ))}
@@ -289,21 +322,35 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          VISION SECTION
+          VISION SECTION - With scroll-based brightness
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-white via-[#FFFDF5] to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-48 md:py-80">
-          <section
-            ref={visionAnimation.ref}
-            className={`transition-all duration-1000 ${visionAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-          >
-            <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl md:rounded-3xl p-24 md:p-48 lg:p-64 overflow-hidden">
-              {/* Background */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl" />
+          <section ref={visionRef}>
+            <div 
+              className="relative rounded-2xl md:rounded-3xl p-24 md:p-48 lg:p-64 overflow-hidden transition-all duration-500"
+              style={{
+                background: `linear-gradient(135deg, 
+                  rgba(17, 24, 39, ${1 - brightness * 0.3}) 0%, 
+                  rgba(31, 41, 55, ${1 - brightness * 0.3}) 50%, 
+                  rgba(17, 24, 39, ${1 - brightness * 0.3}) 100%)`
+              }}
+            >
+              {/* Animated glow effect based on scroll */}
+              <div 
+                className="absolute inset-0 transition-opacity duration-500"
+                style={{ opacity: brightness * 0.5 }}
+              >
+                <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-20" />
+                <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-20" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
               </div>
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D] to-transparent" />
+              
+              {/* Top accent line - brightness controlled */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D] to-transparent transition-opacity duration-500"
+                style={{ opacity: 0.3 + brightness * 0.7 }}
+              />
 
               <div className="relative z-10">
                 {/* Header */}
@@ -311,35 +358,41 @@ export const AboutIntroductionTemplate = () => {
                   <div className="flex items-center gap-8">
                     <Sparkles size={14} className="text-[#D6B14D]" />
                     <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                      {lang === 'ko' ? '우리의 비전' : 'Our Vision'}
+                      {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
                     </span>
                   </div>
-                  <LangToggle lang={lang} setLang={setLang} variant="dark" />
+                  <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
                 </div>
 
                 <Quote size={32} className="text-[#D6B14D]/20 mb-12" />
 
-                {/* Title */}
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-[1.5] mb-20 md:mb-28">
-                  {lang === 'ko' ? (
-                    <>더 나은 <span className="text-[#D6B14D]">데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
+                {/* Title with brightness effect */}
+                <h2 
+                  className="text-xl md:text-2xl lg:text-3xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
+                  style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}
+                >
+                  {visionLang === 'ko' ? (
+                    <>더 나은 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
                   ) : (
-                    <>We illuminate the future of <span className="text-[#D6B14D]">Better Data Intelligence</span></>
+                    <>We illuminate the future of <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>Better Data Intelligence</span></>
                   )}
                 </h2>
 
-                {/* Description */}
-                <p className="text-xs md:text-sm text-gray-400 leading-[2] max-w-2xl">
-                  {lang === 'ko' ? (
+                {/* Description with brightness effect */}
+                <p 
+                  className="text-xs md:text-sm leading-[2] max-w-2xl transition-all duration-500"
+                  style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
+                >
+                  {visionLang === 'ko' ? (
                     <>
-                      우리는 <span className="text-white font-medium">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
-                      복잡한 데이터 흐름을 <span className="text-[#D6B14D]">명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
+                      우리는 <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
+                      복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
                       전환하는 미래를 꿈꿉니다.
                     </>
                   ) : (
                     <>
-                      We envision a future where <span className="text-white font-medium">data intelligence</span> diminishes knowledge asymmetry, 
-                      turning complex data streams into <span className="text-[#D6B14D]">clear, accessible, and strategically valuable insights</span>.
+                      We envision a future where <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>data intelligence</span> diminishes knowledge asymmetry, 
+                      turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>clear, accessible, and strategically valuable insights</span>.
                     </>
                   )}
                 </p>
@@ -363,10 +416,10 @@ export const AboutIntroductionTemplate = () => {
               <div className="flex items-center gap-8">
                 <Sparkles size={14} className="text-[#D6B14D]" />
                 <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                  {lang === 'ko' ? '핵심 가치' : 'Our Pillars'}
+                  {pillarsLang === 'ko' ? '핵심 가치' : 'Our Pillars'}
                 </span>
               </div>
-              <LangToggle lang={lang} setLang={setLang} />
+              <LangToggle lang={pillarsLang} setLang={setPillarsLang} />
             </div>
 
             {/* Cards */}
@@ -378,7 +431,7 @@ export const AboutIntroductionTemplate = () => {
                     {/* Label */}
                     <div className="text-center mb-12">
                       <h3 className="text-lg md:text-xl font-bold text-primary">
-                        {lang === 'ko' ? pillar.labelKo : pillar.label}
+                        {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
                       </h3>
                       <div className="w-24 h-0.5 bg-primary/30 rounded-full mx-auto mt-6" />
                     </div>
@@ -397,20 +450,20 @@ export const AboutIntroductionTemplate = () => {
 
                       {/* Title */}
                       <h4 className="text-sm md:text-base font-bold text-gray-900 mb-6 leading-[1.5]">
-                        {lang === 'ko' ? pillar.titleKo : pillar.title}
+                        {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
                       </h4>
                       
                       {/* Subtitle */}
                       {pillar.subtitle && (
                         <p className="text-[10px] font-medium italic mb-10 text-[#D6B14D]">
-                          {lang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
+                          {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
                         </p>
                       )}
 
                       {/* Description */}
                       <p 
                         className="text-xs text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
-                        dangerouslySetInnerHTML={{ __html: lang === 'ko' ? pillar.descriptionKo : pillar.description }}
+                        dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
                       />
                     </div>
                   </div>

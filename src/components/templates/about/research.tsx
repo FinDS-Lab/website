@@ -1,6 +1,6 @@
-import { memo } from 'react'
+import { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Home } from 'lucide-react'
+import { Home, Sparkles } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
@@ -13,6 +13,7 @@ const researchAreas = [
   {
     id: 'fds',
     badge: '핀테크 혁신의 핵심 동력',
+    badgeEn: 'Core Driver of Fintech Innovation',
     titleEn: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     image: icon12,
@@ -34,6 +35,7 @@ const researchAreas = [
   {
     id: 'ba',
     badge: '디지털 전환 시대의 경쟁력',
+    badgeEn: 'Competitive Edge in Digital Transformation',
     titleEn: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     image: icon11,
@@ -55,6 +57,7 @@ const researchAreas = [
   {
     id: 'dim',
     badge: '불확실성을 기회로 바꾸는 방법',
+    badgeEn: 'Turning Uncertainty into Opportunity',
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: icon10,
@@ -75,7 +78,46 @@ const researchAreas = [
   },
 ]
 
+// Language Toggle Component
+const LangToggle = ({ lang, setLang }: { lang: 'ko' | 'en', setLang: (l: 'ko' | 'en') => void }) => (
+  <div className="inline-flex items-center rounded-full p-1 bg-gray-100">
+    <button
+      onClick={() => setLang('ko')}
+      className={`px-8 py-4 text-[10px] font-bold rounded-full transition-all duration-300 ${
+        lang === 'ko' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-600'
+      }`}
+    >
+      KO
+    </button>
+    <button
+      onClick={() => setLang('en')}
+      className={`px-8 py-4 text-[10px] font-bold rounded-full transition-all duration-300 ${
+        lang === 'en' ? 'bg-gray-900 text-white' : 'text-gray-400 hover:text-gray-600'
+      }`}
+    >
+      EN
+    </button>
+  </div>
+)
+
+// Bilingual fade animation hook
+const useBilingualFade = () => {
+  const [showKorean, setShowKorean] = useState(true)
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowKorean(prev => !prev)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+  
+  return showKorean
+}
+
 export const AboutResearchTemplate = () => {
+  const [lang, setLang] = useState<'ko' | 'en'>('ko')
+  const showKorean = useBilingualFade()
+
   return (
     <div className="flex flex-col bg-white">
       {/* Banner - Introduction과 동일한 스타일 */}
@@ -132,25 +174,57 @@ export const AboutResearchTemplate = () => {
         </div>
       </div>
 
-      {/* Hero Section - Introduction 스타일 */}
+      {/* Hero Section - with bilingual fade animation */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] mb-16 md:mb-24">
-            <span className="inline-block">Driving</span>
-            <span className="inline-block mx-4"> </span>
-            <span className="relative inline-block">
-              <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                Innovation
+          {/* Animated Title */}
+          <div className="relative h-[80px] md:h-[100px] mb-16 md:mb-24 overflow-hidden">
+            {/* English */}
+            <h2 className={`absolute inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
+              showKorean ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
+            }`}>
+              <span className="inline-block">Driving</span>
+              <span className="inline-block mx-4"> </span>
+              <span className="relative inline-block">
+                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
+                  Innovation
+                </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
-            </span>
-            <span className="inline-block mx-4"> </span>
-            <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
-          </h2>
+              <span className="inline-block mx-4"> </span>
+              <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
+            </h2>
+            {/* Korean */}
+            <h2 className={`absolute inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
+              showKorean ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
+            }`}>
+              <span className="relative inline-block">
+                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
+                  데이터
+                </span>
+                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
+              </span>
+              <span className="inline-block">로 이끄는 </span>
+              <span style={{color: 'rgb(172, 14, 14)'}}>혁신</span>
+            </h2>
+          </div>
+          
+          {/* Header with Language Toggle */}
+          <div className="flex items-center justify-center gap-16 mb-16">
+            <div className="flex items-center gap-8">
+              <Sparkles size={14} className="text-[#D6B14D]" />
+              <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                {lang === 'ko' ? '연구 분야' : 'Research Areas'}
+              </span>
+            </div>
+            <LangToggle lang={lang} setLang={setLang} />
+          </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 금융데이터사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정의 세 가지 핵심 연구 분야를 통해 
-            실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
+            {lang === 'ko' 
+              ? 'FINDS Lab은 금융데이터사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정의 세 가지 핵심 연구 분야를 통해 실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.'
+              : 'FINDS Lab conducts innovative research that creates real value through three core research areas: Financial Data Science, Business Analytics, and Data-Informed Decision Making.'
+            }
           </p>
         </div>
       </div>
@@ -183,34 +257,25 @@ export const AboutResearchTemplate = () => {
                     <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-[#FFF9E6] to-primary/5 border border-[#FFEB99]/50 rounded-full mb-12 md:mb-16">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
                       <span className="text-[10px] md:text-xs font-bold text-[#B8962D] tracking-wide">
-                        {area.badge}
+                        {lang === 'ko' ? area.badge : area.badgeEn}
                       </span>
                     </div>
                     <h2>
-                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent mb-6">
-                        {area.titleEn}
-                      </span>
-                      <span className="text-base md:text-lg font-semibold text-gray-600">
-                        {area.titleKo}
+                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold mb-6" style={{ color: '#D6B14D' }}>
+                        {lang === 'ko' ? area.titleKo : area.titleEn}
                       </span>
                     </h2>
                   </div>
 
-                  {/* 항목 리스트 */}
+                  {/* 항목 리스트 - without bullet dots */}
                   <ul className="flex flex-col gap-16 md:gap-20">
                     {area.items.map((item, idx) => (
                       <li
                         key={idx}
-                        className="relative pl-20 md:pl-24 group/item"
+                        className="relative group/item"
                       >
-                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-[#D6B14D]/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
-                          <span className="w-2 h-2 rounded-full bg-primary" />
-                        </span>
                         <span className="block text-sm md:text-base font-semibold text-gray-800 leading-snug group-hover/item:text-primary transition-colors">
-                          {item.en}
-                        </span>
-                        <span className="block text-xs md:text-sm text-gray-500 mt-6 leading-relaxed">
-                          {item.ko}
+                          {lang === 'ko' ? item.ko : item.en}
                         </span>
                       </li>
                     ))}

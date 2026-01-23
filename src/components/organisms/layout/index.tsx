@@ -56,18 +56,21 @@ const footerLinks = [
   { name: 'Scopus', url: 'https://www.scopus.com' },
 ]
 
-// Header logo text animation hook
+// Header logo text animation hook with random direction
 const useLogoTextAnimation = () => {
   const [showAlt, setShowAlt] = useState(false)
+  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right' | 'rotate'>('up')
   
   useEffect(() => {
+    const directions: ('up' | 'down' | 'left' | 'right' | 'rotate')[] = ['up', 'down', 'left', 'right', 'rotate']
     const interval = setInterval(() => {
+      setDirection(directions[Math.floor(Math.random() * directions.length)])
       setShowAlt(prev => !prev)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
   
-  return showAlt
+  return { showAlt, direction }
 }
 
 // Contact Us Modal Content
@@ -140,7 +143,7 @@ const LayoutOrganisms = ({ children }: props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null)
   const { showModal } = useStoreModal()
-  const showAltText = useLogoTextAnimation()
+  const { showAlt: showAltText, direction: animDirection } = useLogoTextAnimation()
   const isHomePage = location.pathname === '/'
 
   const handleContactClick = () => {
@@ -183,25 +186,38 @@ const LayoutOrganisms = ({ children }: props) => {
             <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
             
             {/* Mobile: Static FINDS Lab */}
-            <span className="md:hidden text-lg font-bold" style={{ color: '#D6B14D' }}>
-              FINDS Lab
+            <span className="md:hidden text-lg font-bold">
+              <span style={{ color: '#D6B14D' }}>FINDS </span>
+              <span className="text-gray-900">Lab</span>
             </span>
             
-            {/* PC: Animated text */}
+            {/* PC: Animated text with random direction */}
             <div className="hidden md:flex relative h-[44px] items-center overflow-hidden min-w-[200px]">
               {/* FINDS Lab */}
               <span 
                 className={`font-bold transition-all duration-700 ease-in-out text-xl ${
-                  showAltText ? 'opacity-0 -translate-y-full' : 'opacity-100 translate-y-0'
+                  showAltText 
+                    ? animDirection === 'up' ? 'opacity-0 -translate-y-full'
+                    : animDirection === 'down' ? 'opacity-0 translate-y-full'
+                    : animDirection === 'left' ? 'opacity-0 -translate-x-full'
+                    : animDirection === 'right' ? 'opacity-0 translate-x-full'
+                    : 'opacity-0 rotate-180 scale-50'
+                    : 'opacity-100 translate-y-0 translate-x-0 rotate-0 scale-100'
                 }`}
-                style={{ color: '#D6B14D' }}
               >
-                FINDS Lab
+                <span style={{ color: '#D6B14D' }}>FINDS </span>
+                <span className="text-gray-900">Lab</span>
               </span>
               {/* Financial Data Intelligence & Solutions Laboratory */}
               <span 
                 className={`absolute left-0 flex flex-col leading-tight transition-all duration-700 ease-in-out ${
-                  showAltText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
+                  showAltText 
+                    ? 'opacity-100 translate-y-0 translate-x-0 rotate-0 scale-100'
+                    : animDirection === 'up' ? 'opacity-0 translate-y-full'
+                    : animDirection === 'down' ? 'opacity-0 -translate-y-full'
+                    : animDirection === 'left' ? 'opacity-0 translate-x-full'
+                    : animDirection === 'right' ? 'opacity-0 -translate-x-full'
+                    : 'opacity-0 -rotate-180 scale-50'
                 }`}
               >
                 <span className="text-[10px] font-semibold tracking-wide" style={{ color: '#D6B14D' }}>Financial Data Intelligence</span>
@@ -379,22 +395,19 @@ const LayoutOrganisms = ({ children }: props) => {
       {/* Footer */}
       <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
         <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
-          {/* Links Row */}
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 mb-20 md:mb-24">
+          {/* Links Row - Redesigned */}
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-20 md:mb-24">
             {footerLinks.map((link, idx) => (
-              <React.Fragment key={link.name}>
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[11px] md:text-xs text-gray-400 hover:text-primary transition-colors tracking-wide"
-                >
-                  {link.name}
-                </a>
-                {idx < footerLinks.length - 1 && (
-                  <span className="w-1 h-1 rounded-full bg-gray-200" />
-                )}
-              </React.Fragment>
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative px-12 py-6 text-[10px] md:text-[11px] text-gray-500 hover:text-primary transition-all duration-300 font-medium tracking-wide"
+              >
+                <span className="relative z-10">{link.name}</span>
+                <span className="absolute inset-0 bg-gray-100/0 group-hover:bg-primary/5 rounded-full transition-all duration-300" />
+              </a>
             ))}
           </div>
 
@@ -403,7 +416,7 @@ const LayoutOrganisms = ({ children }: props) => {
 
           {/* Copyright */}
           <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
-            © 2026 FINDS Lab · Gachon University
+            © 2026 <span style={{ color: '#D6B14D' }}>FINDS Lab</span> · Gachon University
           </p>
         </div>
       </footer>
