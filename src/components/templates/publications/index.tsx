@@ -786,14 +786,14 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     </div>
                                     <div className={`w-full py-10 bg-gray-100 text-center border-x border-gray-200 ${
-                                      (pub.type === 'book' || pub.type === 'report') ? 'rounded-b-lg border-b' : ''
+                                      (pub.type === 'book' || pub.type === 'report') ? '' : ''
                                     }`}>
                                       <span className="text-base font-bold text-gray-700">
                                         {getPublicationNumber(pub)}
                                       </span>
                                     </div>
                                     {pub.type === 'conference' && pub.presentation_type && (
-                                      <div className={`w-full py-6 rounded-b-lg text-center border-x border-b ${
+                                      <div className={`w-full py-6 text-center border-x border-b ${
                                         pub.presentation_type === 'oral' ? 'border-pink-200' : 'border-pink-100'
                                       }`}
                                         style={{
@@ -808,13 +808,13 @@ export const PublicationsTemplate = () => {
                                       </div>
                                     )}
                                     {pub.type === 'conference' && !pub.presentation_type && (
-                                      <div className="w-full py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
+                                      <div className="w-full py-6 text-center border-x border-b border-gray-200 bg-gray-50">
                                         <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">-</span>
                                       </div>
                                     )}
                                     {pub.type === 'journal' && pub.indexing_group && (
                                       <div 
-                                        className="w-full py-6 rounded-b-lg text-center border-x border-b"
+                                        className="w-full py-6 text-center border-x border-b"
                                         style={{
                                           backgroundColor: 
                                             ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
@@ -845,10 +845,19 @@ export const PublicationsTemplate = () => {
                                       </div>
                                     )}
                                     {pub.type === 'journal' && !pub.indexing_group && (
-                                      <div className="w-full py-6 rounded-b-lg text-center border-x border-b border-gray-200 bg-gray-50">
+                                      <div className="w-full py-6 text-center border-x border-b border-gray-200 bg-gray-50">
                                         <span className="text-[9px] font-semibold uppercase tracking-wide text-gray-400">-</span>
                                       </div>
                                     )}
+                                    {(pub.type === 'book' || pub.type === 'report') && (
+                                      <div className="w-full border-x border-b border-gray-200" />
+                                    )}
+                                    {/* Date below badge */}
+                                    <div className="w-full py-6 rounded-b-lg text-center bg-gray-50 border-x border-b border-gray-200">
+                                      <span className="text-[10px] font-bold text-primary tracking-wide">
+                                        {pub.published_date}
+                                      </span>
+                                    </div>
                                   </div>
 
                                   {/* Middle: Content */}

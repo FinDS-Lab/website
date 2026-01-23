@@ -74,7 +74,7 @@ export const LocationTemplate = () => {
       <section className="pb-60 md:pb-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto flex flex-col lg:flex-row gap-20 md:gap-32">
           {/* Map Section - Height matches info cards combined */}
-          <div className="flex-1 min-h-[300px] lg:min-h-[580px] rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50">
+          <div className="flex-1 min-h-[300px] lg:min-h-[520px] rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50">
             <iframe
               src="https://maps.google.com/maps?q=가천대학교+가천관&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -87,127 +87,114 @@ export const LocationTemplate = () => {
             />
           </div>
 
-          {/* Info Section - Two Cards */}
-          <div className="w-full lg:w-420 flex flex-col gap-16 md:gap-20">
+          {/* Info Section - Two Cards with Unified Design */}
+          <div className="w-full lg:w-400 flex flex-col gap-16 md:gap-20">
             
-            {/* FINDS Lab Card - Top Card with Name Format */}
+            {/* FINDS Lab Card - Dark Theme */}
             <div className="group relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl flex-1">
-              {/* Decorative gradient accent */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-[#D6C360] to-primary" />
               
-              {/* Content with Large Icon */}
-              <div className="p-24 md:p-32 h-full flex flex-col">
-                {/* Header with Icon */}
-                <div className="flex items-center gap-16 mb-20">
-                  <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 backdrop-blur-sm flex items-center justify-center border border-primary/20">
-                    <Building2 size={28} className="text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4">FINDS Lab</h3>
-                    <p className="text-sm text-gray-400">금융인텔리전스연구실</p>
-                  </div>
+              <div className="p-20 md:p-28 h-full flex flex-col">
+                {/* Title */}
+                <div className="mb-16 md:mb-20">
+                  <h3 className="text-lg md:text-xl font-bold text-white">FINDS Lab</h3>
+                  <p className="text-xs text-gray-400 mt-2">금융인텔리전스연구실</p>
                 </div>
                 
-                {/* Address Info */}
-                <div className="flex-1 flex flex-col justify-center">
-                  <div className="flex items-start gap-12">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-2">
-                      <MapPin size={14} className="text-primary" />
+                {/* Address - KR */}
+                <div className="flex-1 flex flex-col gap-12">
+                  <div className="bg-white/5 rounded-xl p-14 border border-white/10">
+                    <div className="flex items-center gap-6 mb-8">
+                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KR</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                     </div>
-                    <div>
-                      <p className="text-sm md:text-base font-semibold text-white mb-6">
-                        가천대학교 가천관 614호
-                      </p>
-                      <p className="text-xs md:text-sm text-gray-400 leading-relaxed">
-                        (13120) 경기도 성남시 수정구 성남대로 1342
-                      </p>
+                    <p className="text-sm font-medium text-white leading-relaxed">
+                      가천대학교 가천관 614호
+                    </p>
+                    <p className="text-xs text-gray-400 mt-4">
+                      (13120) 경기도 성남시 수정구 성남대로 1342
+                    </p>
+                  </div>
+
+                  {/* Address - EN */}
+                  <div className="bg-white/5 rounded-xl p-14 border border-white/10">
+                    <div className="flex items-center gap-6 mb-8">
+                      <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">EN</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-gray-600 to-transparent" />
                     </div>
+                    <p className="text-sm font-medium text-white leading-relaxed">
+                      Room 614, Gachon Hall, Gachon University
+                    </p>
+                    <p className="text-xs text-gray-400 leading-relaxed mt-4">
+                      1342 Seongnam-daero, Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Director's Office Card - Bottom Card with Address Format */}
+            {/* Director's Office Card - Light Theme */}
             <div className="relative bg-white rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex-1">
-              {/* Decorative accent line */}
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#AC0E0E] via-primary to-[#AC0E0E]" />
               
-              {/* Content */}
-              <div className="p-24 md:p-32 h-full flex flex-col">
-                {/* Header */}
-                <div className="mb-20">
-                  <p className="text-[10px] md:text-xs text-primary font-bold uppercase tracking-[0.15em] mb-6">Location</p>
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900">Director's Office</h3>
-                  <p className="text-sm text-gray-500 mt-4">최인수 교수 연구실</p>
+              <div className="p-20 md:p-28 h-full flex flex-col">
+                {/* Title */}
+                <div className="mb-16 md:mb-20">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Director's Office</h3>
+                  <p className="text-xs text-gray-500 mt-2">최인수 교수 연구실</p>
                 </div>
                 
-                {/* Address Cards */}
+                {/* Address - KR */}
                 <div className="flex-1 flex flex-col gap-12">
-                  {/* Korean Address */}
-                  <div className="group relative bg-gradient-to-br from-gray-50 to-white rounded-xl p-16 border border-gray-100 hover:border-primary/20 transition-all duration-300">
-                    <div className="flex items-start gap-12">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center shadow-md shadow-primary/20 shrink-0">
-                        <MapPin size={16} className="text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-6 mb-6">
-                          <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KR</span>
-                          <div className="flex-1 h-px bg-gradient-to-r from-primary/20 to-transparent" />
-                        </div>
-                        <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                          가천대학교 가천관 614호
-                        </p>
-                        <p className="text-xs text-gray-500 mt-4">
-                          (13120) 경기도 성남시 수정구 성남대로 1342
-                        </p>
+                  <div className="bg-gray-50 rounded-xl p-14 border border-gray-100">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="flex items-center gap-6">
+                        <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KR</span>
+                        <div className="w-16 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                       </div>
                       <button
                         onClick={handleCopyAddress}
-                        className="w-9 h-9 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-primary hover:border-primary hover:text-white transition-all duration-200 shrink-0 shadow-sm"
+                        className="w-8 h-8 flex items-center justify-center bg-white border border-gray-200 rounded-lg hover:bg-primary hover:border-primary hover:text-white transition-all duration-200 shadow-sm"
                         title="주소 복사"
                       >
-                        {copied ? <CheckCircle2 size={14} className="text-emerald-500" /> : <Copy size={12} className="text-gray-400" />}
+                        {copied ? <CheckCircle2 size={12} className="text-emerald-500" /> : <Copy size={10} className="text-gray-400" />}
                       </button>
                     </div>
+                    <p className="text-sm font-medium text-gray-900 leading-relaxed">
+                      가천대학교 가천관 614호
+                    </p>
+                    <p className="text-xs text-gray-500 mt-4">
+                      (13120) 경기도 성남시 수정구 성남대로 1342
+                    </p>
                   </div>
 
-                  {/* English Address */}
-                  <div className="group relative bg-gradient-to-br from-gray-50 to-white rounded-xl p-16 border border-gray-100 hover:border-gray-200 transition-all duration-300">
-                    <div className="flex items-start gap-12">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center shadow-md shadow-gray-300/30 shrink-0">
-                        <Building2 size={16} className="text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-6 mb-6">
-                          <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">EN</span>
-                          <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
-                        </div>
-                        <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                          Room 614, Gachon Hall, Gachon University
-                        </p>
-                        <p className="text-xs text-gray-500 leading-relaxed mt-4">
-                          1342 Seongnam-daero, Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
-                        </p>
-                      </div>
+                  {/* Address - EN */}
+                  <div className="bg-gray-50 rounded-xl p-14 border border-gray-100">
+                    <div className="flex items-center gap-6 mb-8">
+                      <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">EN</span>
+                      <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
+                    <p className="text-sm font-medium text-gray-900 leading-relaxed">
+                      Room 614, Gachon Hall, Gachon University
+                    </p>
+                    <p className="text-xs text-gray-500 leading-relaxed mt-4">
+                      1342 Seongnam-daero, Sujeong-gu, Seongnam-si, Gyeonggi-do 13120, Korea
+                    </p>
                   </div>
 
                   {/* Phone */}
-                  <div className="group relative bg-gradient-to-r from-primary/5 via-amber-50/50 to-primary/5 rounded-xl p-16 border border-primary/10 hover:border-primary/30 transition-all duration-300">
-                    <div className="flex items-center gap-12">
-                      <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-amber-500 flex items-center justify-center shadow-md shadow-primary/20 shrink-0">
-                        <Phone size={16} className="text-white" />
-                      </div>
-                      <div className="flex-1">
+                  <div className="bg-gradient-to-r from-primary/5 via-amber-50/50 to-primary/5 rounded-xl p-14 border border-primary/10">
+                    <div className="flex items-center justify-between">
+                      <div>
                         <span className="text-[9px] font-bold text-primary uppercase tracking-wider">Tel</span>
-                        <p className="text-base md:text-lg font-bold text-gray-900 tracking-wide mt-2">031-750-0614</p>
+                        <p className="text-base font-bold text-gray-900 tracking-wide mt-2">031-750-0614</p>
                       </div>
                       <a
                         href="tel:031-750-0614"
-                        className="w-9 h-9 flex items-center justify-center bg-primary/10 rounded-lg hover:bg-primary hover:text-white transition-all duration-200 shrink-0"
+                        className="w-9 h-9 flex items-center justify-center bg-primary/10 rounded-lg hover:bg-primary hover:text-white transition-all duration-200"
                         title="전화 걸기"
                       >
-                        <Phone size={14} className="text-primary group-hover:text-white" />
+                        <Phone size={14} className="text-primary" />
                       </a>
                     </div>
                   </div>

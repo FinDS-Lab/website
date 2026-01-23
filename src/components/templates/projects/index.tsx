@@ -576,7 +576,7 @@ export const ProjectsTemplate = () => {
                             ) || []
                             
                             return (
-                              <div key={idx} className="p-16 md:p-24 hover:bg-gray-50/50 transition-all">
+                              <div key={idx} className="p-16 md:p-24 hover:bg-gray-50/50 transition-all relative">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
                                   {/* Left: Type Badge - Publications style */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-90">
@@ -586,13 +586,19 @@ export const ProjectsTemplate = () => {
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-6 rounded-b-lg text-center border-x border-b ${
+                                    <div className={`w-full py-6 text-center border-x border-b ${
                                       status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
                                       <span className={`text-[10px] font-bold ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                                      </span>
+                                    </div>
+                                    {/* Date below badge */}
+                                    <div className="w-full py-6 rounded-b-lg text-center bg-gray-50 border-x border-b border-gray-200">
+                                      <span className="text-[10px] font-bold text-primary tracking-wide">
+                                        {project.period.split(' ~ ')[0]}
                                       </span>
                                     </div>
                                   </div>
@@ -616,8 +622,8 @@ export const ProjectsTemplate = () => {
                                   </div>
                                   
                                   <div className="flex-1 min-w-0 md:pt-0 pt-8">
-                                    {/* Date at top - Publications style */}
-                                    <p className="text-[10px] md:text-xs text-gray-400 font-medium mb-6 md:mb-8">
+                                    {/* Mobile: Date at top */}
+                                    <p className="md:hidden text-[10px] text-primary font-bold mb-6">
                                       {project.period}
                                     </p>
                                     
@@ -625,8 +631,13 @@ export const ProjectsTemplate = () => {
                                     <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
                                     <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
                                     
+                                    {/* Period - Desktop only */}
+                                    <p className="hidden md:block text-xs text-gray-500 mt-6">
+                                      {project.period}
+                                    </p>
+                                    
                                     {/* Funding Agency */}
-                                    <p className="text-xs md:text-sm text-gray-500 mt-8 italic">
+                                    <p className="text-xs md:text-sm text-gray-500 mt-6 italic">
                                       {project.fundingAgency}
                                     </p>
                                     

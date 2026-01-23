@@ -1,4 +1,4 @@
-import React, { memo, ReactNode, useState } from 'react'
+import React, { memo, ReactNode, useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, X, Mail, Copy, Check } from 'lucide-react'
 import clsx from 'clsx'
@@ -55,6 +55,20 @@ const footerLinks = [
   { name: 'Web of Science', url: 'https://www.webofscience.com' },
   { name: 'Scopus', url: 'https://www.scopus.com' },
 ]
+
+// Header logo text animation hook
+const useLogoTextAnimation = () => {
+  const [showAlt, setShowAlt] = useState(false)
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowAlt(prev => !prev)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [])
+  
+  return showAlt
+}
 
 // Contact Us Modal Content
 const ContactModalContent = () => {
@@ -126,6 +140,8 @@ const LayoutOrganisms = ({ children }: props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null)
   const { showModal } = useStoreModal()
+  const showAltText = useLogoTextAnimation()
+  const isHomePage = location.pathname === '/'
 
   const handleContactClick = () => {
     showModal({
@@ -159,13 +175,31 @@ const LayoutOrganisms = ({ children }: props) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
-      {/* Header */}
-      <header className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-[9999]">
+      {/* Header - sticky on home page only */}
+      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`}>
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
-          {/* Logo */}
+          {/* Logo with animated text */}
           <Link to="/" className="flex items-center gap-12 md:gap-16">
             <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
-            <span className="text-lg md:text-xl font-bold text-gray-900">FINDS Lab</span>
+            <div className="relative h-[44px] flex items-center overflow-hidden">
+              {/* FINDS Lab */}
+              <span 
+                className={`text-lg md:text-xl font-bold text-gray-900 transition-all duration-700 ease-in-out ${
+                  showAltText ? 'opacity-0 -translate-y-full' : 'opacity-100 translate-y-0'
+                }`}
+              >
+                FINDS Lab
+              </span>
+              {/* Financial Data Intelligence & Solutions Laboratory */}
+              <span 
+                className={`absolute left-0 flex flex-col leading-tight transition-all duration-700 ease-in-out ${
+                  showAltText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
+                }`}
+              >
+                <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wide">Financial Data Intelligence</span>
+                <span className="text-[10px] md:text-xs font-semibold text-primary tracking-wide">& Solutions Laboratory</span>
+              </span>
+            </div>
           </Link>
 
           {/* Mobile Menu Button */}
@@ -335,50 +369,34 @@ const LayoutOrganisms = ({ children }: props) => {
       <main className="overflow-x-hidden">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-b from-gray-50/50 to-gray-100/80 border-t border-gray-200/50">
-        <div className="max-w-1480 mx-auto px-16 md:px-20 py-32 md:py-48">
-          {/* Top Section - Logo & Description */}
-          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-24 md:gap-40 mb-32 md:mb-40">
-            <div className="flex flex-col items-center md:items-start gap-12">
-              <Link to="/" className="flex items-center gap-10">
-                <img src={logoFinds} alt="FINDS Lab" className="h-32 md:h-40 opacity-80" />
-                <span className="text-base md:text-lg font-bold text-gray-600">FINDS Lab</span>
-              </Link>
-              <p className="text-[11px] md:text-xs text-gray-400 text-center md:text-left max-w-xs leading-relaxed">
-                Financial Data Intelligence &amp; Strategy Lab<br />
-                가천대학교 경영대학 금융·빅데이터학부
-              </p>
-            </div>
-            
-            {/* Quick Links */}
-            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
-              {footerLinks.map((link) => (
+      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
+        <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
+          {/* Links Row */}
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 mb-20 md:mb-24">
+            {footerLinks.map((link, idx) => (
+              <React.Fragment key={link.name}>
                 <a
-                  key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[11px] md:text-xs text-gray-400 hover:text-primary transition-colors duration-300"
+                  className="text-[11px] md:text-xs text-gray-400 hover:text-primary transition-colors tracking-wide"
                 >
                   {link.name}
                 </a>
-              ))}
-            </div>
+                {idx < footerLinks.length - 1 && (
+                  <span className="w-1 h-1 rounded-full bg-gray-200" />
+                )}
+              </React.Fragment>
+            ))}
           </div>
 
           {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-20 md:mb-24" />
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
 
-          {/* Bottom Section - Copyright */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <p className="text-[10px] md:text-[11px] text-gray-400 tracking-wide">
-              © 2026 FINDS Lab. All rights reserved.
-            </p>
-            <div className="flex items-center gap-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary/60" />
-              <span className="text-[10px] text-gray-400">Gachon University</span>
-            </div>
-          </div>
+          {/* Copyright */}
+          <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
+            © 2026 FINDS Lab · Gachon University
+          </p>
         </div>
       </footer>
     </div>
