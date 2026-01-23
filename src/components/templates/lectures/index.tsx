@@ -6,6 +6,22 @@ import clsx from 'clsx'
 
 // Image Imports
 import banner3 from '@/assets/images/banner/3.webp'
+import logoKaist from '@/assets/images/logos/kaist.png'
+import logoKyunghee from '@/assets/images/logos/kyunghee.png'
+import logoGcu from '@/assets/images/logos/gcu.png'
+import logoDwu from '@/assets/images/logos/dwu.png'
+import logoKangnam from '@/assets/images/logos/kangnam.png'
+import logoKorea from '@/assets/images/logos/korea.png'
+
+// School logo mapping
+const schoolLogos: Record<string, string> = {
+  'KAIST': logoKaist,
+  'Kyung Hee University': logoKyunghee,
+  'Gachon University': logoGcu,
+  'Dongduk Women\'s University': logoDwu,
+  'Kangnam University': logoKangnam,
+  'Korea University': logoKorea,
+}
 
 // Types
 type Course = {
@@ -369,13 +385,16 @@ export const LecturesTemplate = () => {
                                 {/* Middle: Content */}
                                 <div className="flex-1 min-w-0">
                                   {/* School & Role Badges */}
-                                  <div className="flex flex-wrap gap-6 mb-8">
+                                  <div className="flex flex-wrap items-center gap-6 mb-8">
                                     <span
                                       className={clsx(
-                                        'px-8 py-4 rounded-md text-[10px] md:text-xs font-bold border',
-                                        isLecturer ? 'bg-white text-[#D6B14D] border-[#FFF9E6]0' : 'bg-white text-red-600 border-red-500'
+                                        'inline-flex items-center gap-6 px-8 py-4 rounded-md text-[10px] md:text-xs font-bold border',
+                                        isLecturer ? 'bg-white text-[#D6B14D] border-[#FFF9E6]' : 'bg-white text-red-600 border-red-200'
                                       )}
                                     >
+                                      {schoolLogos[item.school] && (
+                                        <img src={schoolLogos[item.school]} alt={item.school} className="w-14 h-14 md:w-16 md:h-16 object-contain" />
+                                      )}
                                       {item.school}
                                     </span>
                                     <span

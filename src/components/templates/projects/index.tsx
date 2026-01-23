@@ -319,7 +319,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.government}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
@@ -329,7 +329,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{stats.industry}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
@@ -339,7 +339,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.institution}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
@@ -349,7 +349,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6C360'}}>{stats.academic}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Academic</span>
@@ -491,6 +491,14 @@ export const ProjectsTemplate = () => {
                   const yearProjects = projectsByYear[year]
                   const isCurrentYear = year === currentYear
                   const isExpanded = expandedYear === year
+                  
+                  // Type별 개수 계산
+                  const yearStats = {
+                    government: yearProjects.filter(p => p.type === 'government').length,
+                    industry: yearProjects.filter(p => p.type === 'industry').length,
+                    institution: yearProjects.filter(p => p.type === 'institution').length,
+                    academic: yearProjects.filter(p => p.type === 'academic').length,
+                  }
 
                   return (
                     <div key={year}>
@@ -512,10 +520,27 @@ export const ProjectsTemplate = () => {
                                 NEW
                               </span>
                             )}
-                            <span className={`text-sm font-medium ${isCurrentYear ? 'text-gray-500' : 'text-gray-500'}`}>
-                              <span className="font-bold" style={{color: 'rgb(214,177,77)'}}>{yearProjects.length}</span> {yearProjects.length === 1 ? 'Project' : 'Projects'}
-                            </span>
                           </div>
+                          {/* Desktop: 한 줄 */}
+                          <span className={`hidden md:block text-xs font-medium ${isCurrentYear ? 'text-gray-500' : 'text-gray-500'}`}>
+                            {yearStats.government > 0 && <><span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span> Gov</>}
+                            {yearStats.government > 0 && (yearStats.industry > 0 || yearStats.institution > 0 || yearStats.academic > 0) && ' · '}
+                            {yearStats.industry > 0 && <><span className="font-bold text-primary">{yearStats.industry}</span> Ind</>}
+                            {yearStats.industry > 0 && (yearStats.institution > 0 || yearStats.academic > 0) && ' · '}
+                            {yearStats.institution > 0 && <><span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span> Inst</>}
+                            {yearStats.institution > 0 && yearStats.academic > 0 && ' · '}
+                            {yearStats.academic > 0 && <><span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span> Acad</>}
+                          </span>
+                          {/* Mobile: 2줄 */}
+                          <span className={`block md:hidden text-[10px] font-medium ${isCurrentYear ? 'text-gray-500' : 'text-gray-500'}`}>
+                            {yearStats.government > 0 && <><span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span> Gov</>}
+                            {yearStats.government > 0 && yearStats.industry > 0 && ' · '}
+                            {yearStats.industry > 0 && <><span className="font-bold text-primary">{yearStats.industry}</span> Ind</>}
+                            {(yearStats.government > 0 || yearStats.industry > 0) && (yearStats.institution > 0 || yearStats.academic > 0) && <br/>}
+                            {yearStats.institution > 0 && <><span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span> Inst</>}
+                            {yearStats.institution > 0 && yearStats.academic > 0 && ' · '}
+                            {yearStats.academic > 0 && <><span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span> Acad</>}
+                          </span>
                         </div>
                         {isExpanded ? (
                           <ChevronUp className="size-20 text-gray-500" />
@@ -532,10 +557,10 @@ export const ProjectsTemplate = () => {
                             const status = getProjectStatus(project.period)
                             
                             const typeColors: Record<string, string> = {
-                              government: 'bg-primary text-white',
-                              industry: 'bg-[#D6B14D] text-white',
-                              institution: 'bg-[#FFBAC4] text-white',
-                              academic: 'bg-gray-700 text-white',
+                              government: 'bg-[#D6B14D] text-white',
+                              industry: 'bg-primary text-white',
+                              institution: 'bg-[#E8D688] text-gray-800',
+                              academic: 'bg-[#FFBAC4] text-gray-800',
                             }
                             
                             // Filter out empty researchers

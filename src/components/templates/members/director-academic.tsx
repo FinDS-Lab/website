@@ -869,23 +869,23 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-blue-500"/>
-                          <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
+                          <span className="size-4 rounded-full" style={{backgroundColor: '#D6B14D'}}/>
+                          <span className="text-xs text-gray-600 flex-1">Journal Paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
                         </div>
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-purple-500"/>
-                          <span className="text-xs text-gray-600 flex-1">conference proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
+                          <span className="size-4 rounded-full" style={{backgroundColor: '#AC0E0E'}}/>
+                          <span className="text-xs text-gray-600 flex-1">Conference Proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
                         </div>
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-orange-500"/>
-                          <span className="text-xs text-gray-600 flex-1">book{node.breakdown.book !== 1 ? 's' : ''}</span>
+                          <span className="size-4 rounded-full" style={{backgroundColor: '#E8D688'}}/>
+                          <span className="text-xs text-gray-600 flex-1">Book{node.breakdown.book !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.book}</span>
                         </div>
                         <div className="flex items-center gap-8">
-                          <span className="size-4 rounded-full bg-gray-400"/>
-                          <span className="text-xs text-gray-600 flex-1">report{node.breakdown.report !== 1 ? 's' : ''}</span>
+                          <span className="size-4 rounded-full" style={{backgroundColor: '#FFBAC4'}}/>
+                          <span className="text-xs text-gray-600 flex-1">Report{node.breakdown.report !== 1 ? 's' : ''}</span>
                           <span className="text-xs font-bold text-gray-800">{node.breakdown.report}</span>
                         </div>
                       </div>
@@ -1491,16 +1491,14 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6">
-                            <div>
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            <div className="flex-1 min-w-0">
                               <p className="text-xs font-bold text-gray-900">{comm.name}</p>
                               {comm.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                               )}
                             </div>
-                            <div className="flex justify-end">
-                              <span className="px-8 py-2 rounded text-[10px] font-bold bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
-                            </div>
+                            <span className="px-8 py-2 rounded text-[10px] font-bold bg-[#D6B14D] text-white shrink-0 self-end md:self-center">{comm.period || comm.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1519,16 +1517,14 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6">
-                            <div>
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            <div className="flex-1 min-w-0">
                               <p className="text-xs font-bold text-gray-900">{chair.name}</p>
                               {chair.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                               )}
                             </div>
-                            <div className="flex justify-end">
-                              <span className="px-8 py-2 rounded text-[10px] font-bold" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
-                            </div>
+                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 self-end md:self-center" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1583,14 +1579,12 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-8">
-                          <span className="text-gray-700 break-words">{conf.name}</span>
-                          <div className="flex items-center justify-end">
-                            <span className="inline-flex items-center gap-4 px-8 py-3 rounded-md text-[9px] font-bold" style={{backgroundColor: 'rgba(255,186,196,0.2)', color: '#E8889C'}}>
-                              <Calendar size={10} />
-                              {conf.period || conf.since}
-                            </span>
-                          </div>
+                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6 md:gap-12">
+                          <span className="text-gray-700 break-words flex-1 min-w-0">{conf.name}</span>
+                          <span className="inline-flex items-center gap-4 px-8 py-3 rounded-md text-[9px] font-bold shrink-0 self-end md:self-center" style={{backgroundColor: 'rgba(255,186,196,0.2)', color: '#E8889C'}}>
+                            <Calendar size={10} />
+                            {conf.period || conf.since}
+                          </span>
                         </a>
                       ))}
                     </div>
