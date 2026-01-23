@@ -778,60 +778,47 @@ export const PublicationsTemplate = () => {
                                 <div className="md:hidden h-8" />
                                 
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
-                                  {/* Desktop: Left Type Badge */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-90">
-                                    <div className={`w-full py-8 rounded-t-lg text-center ${typeColor}`}>
-                                      <span className="text-xs font-semibold text-white uppercase tracking-wide">
+                                  {/* Desktop: Left Type Badge - Projects style */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-80">
+                                    <div className={`w-full py-10 rounded-xl text-center ${typeColor} shadow-sm`}>
+                                      <span className="block text-xs font-semibold text-white uppercase tracking-wide mb-2">
                                         {typeLabel}
                                       </span>
-                                    </div>
-                                    <div className={`w-full py-10 bg-gray-100 text-center border-x border-gray-200 ${
-                                      (pub.type === 'book' || pub.type === 'report') ? '' : ''
-                                    }`}>
-                                      <span className="text-base font-bold text-gray-700">
+                                      <span className="text-lg font-bold text-white/90">
                                         {getPublicationNumber(pub)}
                                       </span>
                                     </div>
+                                    {/* Status badge below */}
                                     {pub.type === 'conference' && pub.presentation_type && (
-                                      <div className={`w-full py-6 text-center border-x border-b ${
-                                        pub.presentation_type === 'oral' ? 'border-pink-200' : 'border-pink-100'
-                                      }`}
-                                        style={{
-                                          backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.15)' : 'rgba(255,183,197,0.15)'
-                                        }}
-                                      >
-                                        <span className="text-[10px] font-bold uppercase tracking-wide"
+                                      <div className={`w-full mt-6 py-5 text-center rounded-lg ${
+                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
+                                      }`}>
+                                        <span className="text-[9px] font-bold uppercase"
                                           style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
                                         >
-                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                          {pub.presentation_type === 'oral' ? 'ORAL' : 'POSTER'}
                                         </span>
                                       </div>
                                     )}
-                                    {pub.type === 'conference' && !pub.presentation_type && (
-                                      <div className="w-full py-6 text-center border-x border-b border-gray-200 bg-gray-50">
-                                        <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-400">-</span>
-                                      </div>
-                                    )}
                                     {pub.type === 'journal' && pub.indexing_group && (
-                                      <div 
-                                        className="w-full py-6 text-center border-x border-b"
+                                      <div className={`w-full mt-6 py-5 text-center rounded-lg border`}
                                         style={{
                                           backgroundColor: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.15)' :
-                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.10)' :
-                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.12)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.08)' :
-                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.10)' : 'rgba(148,163,184,0.10)',
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.1)' :
+                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.08)' :
+                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.08)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.06)' :
+                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.08)' : 'rgba(148,163,184,0.08)',
                                           borderColor: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.35)' :
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.3)' :
                                             pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
                                             pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.18)' :
-                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.20)' : 'rgba(148,163,184,0.20)'
+                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.2)' :
+                                            pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.2)' : 'rgba(148,163,184,0.2)'
                                         }}
                                       >
                                         <span 
-                                          className="text-[9px] font-bold uppercase tracking-wide"
+                                          className="text-[9px] font-bold uppercase"
                                           style={{
                                             color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
                                               pub.indexing_group === 'ESCI' ? '#C9A833' :
@@ -844,20 +831,6 @@ export const PublicationsTemplate = () => {
                                         </span>
                                       </div>
                                     )}
-                                    {pub.type === 'journal' && !pub.indexing_group && (
-                                      <div className="w-full py-6 text-center border-x border-b border-gray-200 bg-gray-50">
-                                        <span className="text-[9px] font-semibold uppercase tracking-wide text-gray-400">-</span>
-                                      </div>
-                                    )}
-                                    {(pub.type === 'book' || pub.type === 'report') && (
-                                      <div className="w-full border-x border-b border-gray-200" />
-                                    )}
-                                    {/* Date below badge */}
-                                    <div className="w-full py-6 rounded-b-lg text-center bg-gray-50 border-x border-b border-gray-200">
-                                      <span className="text-[10px] font-bold text-primary tracking-wide">
-                                        {pub.published_date}
-                                      </span>
-                                    </div>
                                   </div>
 
                                   {/* Middle: Content */}
@@ -898,10 +871,14 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     ))}
                                   </div>
-                                  <p className="text-xs md:text-sm text-gray-500 italic">
+                                  <p className="text-xs md:text-sm text-gray-700 font-bold">
                                     {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean') && pub.venue_ko 
                                       ? pub.venue_ko 
                                       : pub.venue}
+                                  </p>
+                                  {/* Date below venue */}
+                                  <p className="text-[11px] md:text-xs text-gray-400 font-medium mt-4">
+                                    {pub.published_date}
                                   </p>
                                   {pub.doi && (
                                     <a
@@ -928,14 +905,6 @@ export const PublicationsTemplate = () => {
                                     Cite
                                   </button>
                                 </div>
-                              </div>
-                              
-                              {/* Bottom: Date badge */}
-                              <div className="flex items-center justify-end mt-12 pt-12 border-t border-gray-50">
-                                <span className="inline-flex items-center gap-6 px-10 py-4 bg-[#FFF9E6] border border-[#FFEB99]/50 rounded-full text-[10px] md:text-xs font-bold" style={{color: 'rgb(214,177,77)'}}>
-                                  <Calendar size={12} />
-                                  {pub.published_date}
-                                </span>
                               </div>
                             </div>
                           </div>

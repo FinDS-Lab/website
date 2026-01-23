@@ -223,59 +223,49 @@ export const MembersAlumniTemplate = () => {
           </div>
         ) : (
           <div className="space-y-48">
-            {/* Stats Summary */}
+            {/* Stats Summary - Total on top, 3 categories below */}
             <div className="flex flex-col gap-16 md:gap-24">
               <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                 <span className="w-8 h-8 rounded-full bg-primary" />
                 Statistics
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <div className="flex items-center gap-6">
-                      <GraduationCap className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">
-                        Ph.D. {pluralize(phdCount, 'Graduate', 'Graduates')}
-                      </span>
-                    </div>
+              
+              {/* Total - Full width on top */}
+              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-20 md:p-24 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-12">
+                    <Users className="size-20 md:size-24" style={{color: '#D6B14D'}} />
+                    <span className="text-sm md:text-base font-bold text-gray-800">Total Alumni</span>
+                  </div>
+                  <span className="text-3xl md:text-4xl font-bold" style={{color: '#D6B14D'}}>{totalCount}</span>
+                </div>
+              </div>
+              
+              {/* 3 Categories - Grid below */}
+              <div className="grid grid-cols-3 gap-8 md:gap-12">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #D6B14D, transparent)'}} />
+                  <div className="flex flex-col items-center text-center">
+                    <GraduationCap className="size-16 md:size-20 mb-8" style={{color: '#D6B14D'}} />
+                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#D6B14D'}}>{phdCount}</span>
+                    <span className="text-[10px] md:text-xs font-medium text-gray-500">Ph.D.</span>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{msCount}</span>
-                    <div className="flex items-center gap-6">
-                      <BookOpen className="size-14 md:size-16" style={{color: '#E8889C', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">
-                        M.S. {pluralize(msCount, 'Graduate', 'Graduates')}
-                      </span>
-                    </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#E8889C]/30 hover:shadow-lg hover:shadow-pink-100 transition-all duration-300">
+                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #E8889C, transparent)'}} />
+                  <div className="flex flex-col items-center text-center">
+                    <BookOpen className="size-16 md:size-20 mb-8" style={{color: '#E8889C'}} />
+                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#E8889C'}}>{msCount}</span>
+                    <span className="text-[10px] md:text-xs font-medium text-gray-500">M.S.</span>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <div className="flex items-center gap-6">
-                      <UserCheck className="size-14 md:size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">
-                        Undergraduate Research {pluralize(undergradCount, 'Alumnus', 'Alumni')}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalCount}</span>
-                    <div className="flex items-center gap-6">
-                      <Users className="size-14 md:size-16" style={{color: '#4A4A4A', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">
-                        Total {pluralize(totalCount, 'Alumnus', 'Alumni')}
-                      </span>
-                    </div>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#FFBAC4]/30 hover:shadow-lg hover:shadow-pink-50 transition-all duration-300">
+                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #FFBAC4, transparent)'}} />
+                  <div className="flex flex-col items-center text-center">
+                    <UserCheck className="size-16 md:size-20 mb-8" style={{color: '#FFBAC4'}} />
+                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#FFBAC4'}}>{undergradCount}</span>
+                    <span className="text-[10px] md:text-xs font-medium text-gray-500">Undergrad</span>
                   </div>
                 </div>
               </div>
@@ -308,11 +298,11 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[700px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Post-Graduation</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[10%]">Degree</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Graduated</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[24%]">Post-Graduation</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -324,7 +314,7 @@ export const MembersAlumniTemplate = () => {
                             return (
                               <React.Fragment key={idx}>
                                 <tr 
-                                  className={`border-b border-gray-100 hover:bg-[#FFF9E6]/30 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
+                                  className={`border-b border-gray-100 hover:bg-[#D6B14D]/5 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
                                   onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
@@ -336,7 +326,7 @@ export const MembersAlumniTemplate = () => {
                                         <span className="text-xs md:text-sm font-bold" style={{color: '#D6B14D'}}>{alumniNumber}</span>
                                       </div>
                                       <div className="flex items-center gap-8">
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#D6B14D] transition-colors">
                                           {alumni.nameKo || alumni.name}
                                         </p>
                                         {hasThesis && (
@@ -516,11 +506,11 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[700px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Name</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[12%]">Degree</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Graduated</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Post-Graduation</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[10%]">Degree</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Graduated</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[24%]">Post-Graduation</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -532,7 +522,7 @@ export const MembersAlumniTemplate = () => {
                             return (
                               <React.Fragment key={idx}>
                                 <tr 
-                                  className={`border-b border-gray-100 hover:bg-pink-50/30 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
+                                  className={`border-b border-gray-100 hover:bg-[#E8889C]/5 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
                                   onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
@@ -544,7 +534,7 @@ export const MembersAlumniTemplate = () => {
                                         <span className="text-xs md:text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
                                       </div>
                                       <div className="flex items-center gap-8">
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#E8889C] transition-colors">
                                           {alumni.nameKo || alumni.name}
                                         </p>
                                         {hasThesis && (
@@ -724,11 +714,11 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[700px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Name</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Cohort</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[22%]">Affiliation (Pre-Internship)</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[20%]">Affiliation (Post-Internship)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[10%]">Cohort</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Pre)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation (Post)</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -739,7 +729,7 @@ export const MembersAlumniTemplate = () => {
                             return (
                               <React.Fragment key={idx}>
                                 <tr 
-                                  className={`border-b border-gray-100 hover:bg-pink-50/30 transition-colors group ${hasProject ? 'cursor-pointer' : ''}`}
+                                  className={`border-b border-gray-100 hover:bg-[#FFBAC4]/10 transition-colors group ${hasProject ? 'cursor-pointer' : ''}`}
                                   onClick={() => hasProject && toggleAlumniExpand(alumni.name)}
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
@@ -748,7 +738,7 @@ export const MembersAlumniTemplate = () => {
                                         <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
                                       </div>
                                       <div className="flex items-center gap-8">
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">{alumni.name}</p>
+                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#FFBAC4] transition-colors">{alumni.name}</p>
                                         {hasProject && (
                                           <ChevronDown 
                                             size={14} 

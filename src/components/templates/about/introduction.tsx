@@ -289,28 +289,28 @@ export const AboutIntroductionTemplate = () => {
               <LangToggle lang={focusLang} setLang={setFocusLang} />
             </div>
 
-            {/* Cards */}
+            {/* Cards - Fixed height for consistency */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
               {focusAreas.map((area, index) => (
                 <div
                   key={index}
-                  className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-20 md:p-28 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-500"
+                  className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-20 md:p-28 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-500 flex flex-col h-[320px] md:h-[380px]"
                 >
                   {/* Icon */}
-                  <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-20">
+                  <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-20 shrink-0">
                     <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
                       <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
                     </div>
                   </div>
 
-                  {/* Text - title in gold color */}
-                  <div className="text-center">
-                    <h3 className="text-base md:text-lg font-bold mb-12" style={{ color: '#D6B14D' }}>
+                  {/* Text - Fixed layout */}
+                  <div className="text-center flex-1 flex flex-col">
+                    <h3 className="text-base md:text-lg font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
                       {focusLang === 'ko' ? area.titleKo : area.title}
                     </h3>
                     <p 
-                      className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                      className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold flex-1 overflow-hidden"
                       dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
                     />
                   </div>

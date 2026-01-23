@@ -510,42 +510,30 @@ export const ProjectsTemplate = () => {
                             : 'bg-gray-50 hover:bg-gray-100'
                         }`}
                       >
-                        <div className="flex flex-col items-start gap-4">
-                          <div className="flex items-center gap-12">
-                            <span className={`text-lg md:text-xl font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>
-                              {year}
-                            </span>
-                            {isCurrentYear && (
-                              <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">
-                                NEW
-                              </span>
-                            )}
-                          </div>
-                          {/* Desktop: 한 줄 */}
-                          <span className={`hidden md:block text-xs font-medium ${isCurrentYear ? 'text-gray-500' : 'text-gray-500'}`}>
-                            {yearStats.government > 0 && <><span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span> Gov</>}
-                            {yearStats.government > 0 && (yearStats.industry > 0 || yearStats.institution > 0 || yearStats.academic > 0) && ' · '}
-                            {yearStats.industry > 0 && <><span className="font-bold text-primary">{yearStats.industry}</span> Ind</>}
-                            {yearStats.industry > 0 && (yearStats.institution > 0 || yearStats.academic > 0) && ' · '}
-                            {yearStats.institution > 0 && <><span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span> Inst</>}
-                            {yearStats.institution > 0 && yearStats.academic > 0 && ' · '}
-                            {yearStats.academic > 0 && <><span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span> Acad</>}
-                          </span>
-                          {/* Mobile: 2줄 */}
-                          <span className={`block md:hidden text-[10px] font-medium ${isCurrentYear ? 'text-gray-500' : 'text-gray-500'}`}>
-                            {yearStats.government > 0 && <><span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span> Gov</>}
-                            {yearStats.government > 0 && yearStats.industry > 0 && ' · '}
-                            {yearStats.industry > 0 && <><span className="font-bold text-primary">{yearStats.industry}</span> Ind</>}
-                            {(yearStats.government > 0 || yearStats.industry > 0) && (yearStats.institution > 0 || yearStats.academic > 0) && <br/>}
-                            {yearStats.institution > 0 && <><span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span> Inst</>}
-                            {yearStats.institution > 0 && yearStats.academic > 0 && ' · '}
-                            {yearStats.academic > 0 && <><span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span> Acad</>}
+                        <div className="flex items-center gap-12 md:gap-[16px] flex-wrap">
+                          <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
+                          {isCurrentYear && (
+                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                          )}
+                          {/* White badge with counts - always show all */}
+                          <span className="px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                            <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
+                            <span className="text-gray-500"> Gov</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold text-primary">{yearStats.industry}</span>
+                            <span className="text-gray-500"> Ind</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
+                            <span className="text-gray-500"> Inst</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
+                            <span className="text-gray-500"> Acad</span>
                           </span>
                         </div>
                         {isExpanded ? (
-                          <ChevronUp className="size-20 text-gray-500" />
+                          <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                         ) : (
-                          <ChevronDown className="size-20 text-gray-500" />
+                          <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                         )}
                       </button>
                       

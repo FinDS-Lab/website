@@ -161,7 +161,7 @@ export const AboutResearchTemplate = () => {
               <span className="inline-block mx-4"> </span>
               <span className="relative inline-block">
                 <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                  Innovation
+                  Business Innovation
                 </span>
                 <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
               </span>
@@ -179,12 +179,12 @@ export const AboutResearchTemplate = () => {
                 <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
               </span>
               <span className="inline-block">로 이끄는 </span>
-              <span style={{color: 'rgb(172, 14, 14)'}}>혁신</span>
+              <span style={{color: 'rgb(172, 14, 14)'}}>경영 혁신</span>
             </h2>
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 금융데이터사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정의 세 가지 핵심 연구 분야를 통해 
+            FINDS Lab은 <b className="text-gray-700">금융데이터사이언스</b>, <b className="text-gray-700">비즈니스 애널리틱스</b>, <b className="text-gray-700">데이터 기반 의사결정</b>의 세 가지 핵심 연구 분야를 통해 
             실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
           </p>
         </div>
