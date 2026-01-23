@@ -319,13 +319,15 @@ export const PublicationsTemplate = () => {
       else if (pub.type === 'report') reports++
     })
 
-    return [
-      { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' }, // Gold for journals
-      { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' }, // Red for conferences
-      { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' }, // Light yellow for books
-      { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' }, // Sakura for reports
-      { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#4A4A4A' }, // Dark gray for total
-    ]
+    return {
+      total: { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#D6B14D' },
+      items: [
+        { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' },
+        { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' },
+        { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' },
+        { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' },
+      ]
+    }
   }, [publications])
 
   const getAuthorNames = useCallback(
@@ -513,17 +515,29 @@ export const PublicationsTemplate = () => {
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           {/* Statistics Section - Red Dot Style */}
           <div className="flex flex-col gap-16 md:gap-24">
-            <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
-              {statistics.map((stat, index) => (
+            </h3>
+            
+            {/* Total - Full Width */}
+            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: statistics.total.color}}>{statistics.total.count}</span>
+                <div className="flex items-center gap-6">
+                  <statistics.total.icon className="size-14 md:size-16" style={{color: statistics.total.color, opacity: 0.7}} />
+                  <span className="text-xs md:text-sm font-medium text-gray-600">{statistics.total.label}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Other Stats - 2x2 Grid */}
+            <div className="grid grid-cols-2 gap-8 md:gap-12">
+              {statistics.items.map((stat, index) => (
                 <div
                   key={index}
-                  className={`group relative border rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 ${
-                    stat.label.includes('Total') ? 'bg-[#FFF9E6] border-[#D6B14D]/20' : 'bg-white border-gray-100'
-                  }`}
+                  className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                 >
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">

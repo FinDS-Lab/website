@@ -298,9 +298,10 @@ export const MembersDirectorTemplate = () => {
       .then(res => res.json())
       .then((data: HonorsData) => {
         setHonorsData(data)
-        // Auto-expand all years
+        // Auto-expand only recent years (2018 and later)
         const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
-        setExpandedYears(new Set(years))
+        const recentYears = years.filter(year => Number(year) >= 2018)
+        setExpandedYears(new Set(recentYears))
       })
       .catch(console.error)
   }, [])
@@ -702,11 +703,13 @@ export const MembersDirectorTemplate = () => {
               </button>
               {expandedSections.education && (
               <div className="p-20 md:p-24 border-t border-gray-100">
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+              <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {education.map((edu, index) => (
-                  <div key={index} className="relative pb-32 last:pb-0 group">
-                    {/* Timeline dot - aligned with logo center on mobile */}
-                    <div className="absolute -left-[30px] md:-left-40 top-[28px] md:top-[32px] size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                  <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
+                    {/* Timeline dot - vertically centered */}
+                    <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
+                      <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                    </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
                       {/* Mobile: Stack vertically, Desktop: Horizontal */}
                       <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
@@ -843,13 +846,15 @@ export const MembersDirectorTemplate = () => {
               </button>
               {expandedSections.employment && (
               <div className="p-20 md:p-24 border-t border-gray-100">
-              <div className="relative pl-24 md:pl-32 border-l-2 border-primary/20">
+              <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {employment.map((emp, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group">
-                    {/* Timeline dot - aligned with logo center */}
-                    <div className={`absolute -left-[30px] md:-left-40 top-[18px] md:top-[22px] size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
-                      emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
-                    }`}/>
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
+                    {/* Timeline dot - vertically centered */}
+                    <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
+                      <div className={`size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
+                        emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
+                      }`}/>
+                    </div>
                     <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
                         <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
@@ -906,7 +911,21 @@ export const MembersDirectorTemplate = () => {
                               <span className="w-8 h-8 rounded-full bg-primary" />
                               Statistics
                             </h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+                            
+                            {/* Total - Full Width */}
+                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="flex flex-col items-center justify-center">
+                                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
+                                <div className="flex items-center gap-6">
+                                  <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Honors & Awards - 2 columns */}
+                            <div className="grid grid-cols-2 gap-8 md:gap-12">
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
@@ -924,16 +943,6 @@ export const MembersDirectorTemplate = () => {
                                   <div className="flex items-center gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
-                                  <div className="flex items-center gap-6">
-                                    <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                                   </div>
                                 </div>
                               </div>

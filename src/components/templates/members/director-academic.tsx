@@ -946,7 +946,7 @@ export const MembersDirectorAcademicTemplate = () => {
     projects: true,
     teaching: true,
     lecturer: true,
-    teachingAssistant: true
+    teachingAssistant: false  // Collapsed by default
   })
   
   const toggleSection = (section: string) => {
@@ -1491,9 +1491,16 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30">
-                            <span className="text-gray-700">{comm.name}</span>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
+                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-8">
+                            <div className="flex-1">
+                              <p className="text-xs font-bold text-gray-900">{comm.name}</p>
+                              {comm.name_ko && (
+                                <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-end">
+                              <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 bg-[#D6B14D] text-white">{comm.period || comm.since}</span>
+                            </div>
                           </a>
                         ))}
                       </div>
@@ -1512,9 +1519,16 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30">
-                            <span className="text-gray-700">{chair.name}</span>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
+                            className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-8">
+                            <div className="flex-1">
+                              <p className="text-xs font-bold text-gray-900">{chair.name}</p>
+                              {chair.name_ko && (
+                                <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
+                              )}
+                            </div>
+                            <div className="flex items-center justify-end">
+                              <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
+                            </div>
                           </a>
                         ))}
                       </div>
@@ -1539,15 +1553,23 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {displayedJournals.map((journal) => (
                         <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-between px-12 py-8 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30">
-                          <span className="text-gray-700">{journal.name}</span>
-                          <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
-                            journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                            journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
-                            journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
-                            journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                            'bg-[#FFD6DD] text-gray-700'
-                          }`}>{journal.type}</span>
+                          className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                          <div className="flex items-start justify-between gap-8">
+                            <span className="text-gray-700 flex-1">{journal.name}</span>
+                            <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
+                              journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
+                              journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
+                              journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
+                              journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
+                              'bg-[#FFD6DD] text-gray-700'
+                            }`}>{journal.type}</span>
+                          </div>
+                          <div className="flex items-center justify-end">
+                            <span className="inline-flex items-center gap-4 px-8 py-3 bg-gray-50 border border-gray-100 rounded-md text-[9px] font-bold text-gray-500">
+                              <Calendar size={10} className="text-gray-400" />
+                              Since {journal.since}
+                            </span>
+                          </div>
                         </a>
                       ))}
                     </div>
@@ -1569,9 +1591,14 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col md:flex-row md:items-start md:justify-between px-12 py-10 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6">
+                          className="flex flex-col p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-8">
                           <span className="text-gray-700 break-words">{conf.name}</span>
-                          <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 w-fit" style={{backgroundColor: '#FFBAC4', color: 'white'}}>{conf.period || conf.since}</span>
+                          <div className="flex items-center justify-end">
+                            <span className="inline-flex items-center gap-4 px-8 py-3 rounded-md text-[9px] font-bold" style={{backgroundColor: 'rgba(255,186,196,0.2)', color: '#E8889C'}}>
+                              <Calendar size={10} />
+                              {conf.period || conf.since}
+                            </span>
+                          </div>
                         </a>
                       ))}
                     </div>

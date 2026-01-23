@@ -1,6 +1,6 @@
 import {memo, useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search} from 'lucide-react'
+import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search, CheckCircle, Factory} from 'lucide-react'
 import banner4 from '@/assets/images/banner/4.webp'
 
 type Project = {
@@ -233,13 +233,11 @@ export const ProjectsTemplate = () => {
     total: projects.length,
     ongoing: projects.filter(p => getProjectStatus(p.period) === 'ongoing').length,
     completed: projects.filter(p => getProjectStatus(p.period) === 'completed').length,
+    government: projects.filter(p => p.type === 'government').length,
+    industry: projects.filter(p => p.type === 'industry').length,
+    institution: projects.filter(p => p.type === 'institution').length,
+    academic: projects.filter(p => p.type === 'academic').length,
   }
-
-  const statisticsItems = [
-    { icon: TrendingUp, label: stats.ongoing === 1 ? 'Ongoing' : 'Ongoing', count: stats.ongoing, color: 'text-primary' },
-    { icon: Briefcase, label: stats.completed === 1 ? 'Completed' : 'Completed', count: stats.completed, color: 'text-[#E8889C]' },
-    { icon: Folder, label: stats.total === 1 ? 'Total Project' : 'Total Projects', count: stats.total, color: 'text-[#4A4A4A]' },
-  ]
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
 
@@ -297,30 +295,91 @@ export const ProjectsTemplate = () => {
       <section className="py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           
-          {/* Statistics Section - Red Dot Style */}
+          {/* Statistics Section - Publications Style */}
           <div className="flex flex-col gap-16 md:gap-24">
-            <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
-            </h2>
-            <div className="grid grid-cols-3 gap-8 md:gap-12">
-              {statisticsItems.map((stat, index) => (
-                <div
-                  key={index}
-                  className={`group relative border rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 ${
-                    stat.label.includes('Total') ? 'bg-[#FFF9E6] border-[#D6B14D]/20' : 'bg-white border-gray-100'
-                  }`}
-                >
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col">
-                    <span className={`text-2xl md:text-3xl font-bold mb-4 ${stat.color || 'text-primary'}`}>{stat.count}</span>
-                    <div className="flex items-center gap-6">
-                      <stat.icon className="size-14 md:size-16 text-gray-400" />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
-                    </div>
+            </h3>
+            
+            {/* Total - Full Width */}
+            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.total}</span>
+                <div className="flex items-center gap-6">
+                  <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Total Projects</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Type Stats - 2x2 Grid */}
+            <div className="grid grid-cols-2 gap-8 md:gap-12">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.government}</span>
+                  <div className="flex items-center gap-6">
+                    <Landmark className="size-14 md:size-16 text-gray-400" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
                   </div>
                 </div>
-              ))}
+              </div>
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{stats.industry}</span>
+                  <div className="flex items-center gap-6">
+                    <Factory className="size-14 md:size-16 text-gray-400" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
+                  </div>
+                </div>
+              </div>
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.institution}</span>
+                  <div className="flex items-center gap-6">
+                    <Building2 className="size-14 md:size-16 text-gray-400" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
+                  </div>
+                </div>
+              </div>
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6C360'}}>{stats.academic}</span>
+                  <div className="flex items-center gap-6">
+                    <GraduationCap className="size-14 md:size-16 text-gray-400" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Academic</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Status Stats - 2 columns (ON/OFF style) */}
+            <div className="grid grid-cols-2 gap-8 md:gap-12">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{stats.ongoing}</span>
+                  <div className="flex items-center gap-6">
+                    <TrendingUp className="size-14 md:size-16 text-gray-600" />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Ongoing</span>
+                  </div>
+                </div>
+              </div>
+              <div className="group relative bg-gray-50 border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-300 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400">{stats.completed}</span>
+                  <div className="flex items-center gap-6">
+                    <CheckCircle className="size-14 md:size-16 text-gray-300" />
+                    <span className="text-xs md:text-sm font-medium text-gray-400">Completed</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -488,17 +547,17 @@ export const ProjectsTemplate = () => {
                               <div key={idx} className="p-16 md:p-20 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
                                   {/* Left: Type badge with status */}
-                                  <div className="flex flex-col items-center shrink-0 w-[70px] md:w-[90px]">
-                                    <div className={`w-full py-8 md:py-10 rounded-t-lg text-center ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
-                                      <Icon size={16} className="inline mb-2 md:w-5 md:h-5" />
-                                      <span className="block text-[9px] md:text-[10px] font-bold uppercase tracking-wide">
+                                  <div className="flex flex-col items-center shrink-0 w-[80px] md:w-[100px]">
+                                    <div className={`w-full py-12 md:py-14 rounded-t-lg text-center ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
+                                      <Icon size={24} className="inline mb-4 md:w-7 md:h-7" />
+                                      <span className="block text-[9px] md:text-[11px] font-bold uppercase tracking-wide">
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-6 md:py-8 rounded-b-lg text-center border-x border-b ${
+                                    <div className={`w-full py-8 md:py-10 rounded-b-lg text-center border-x border-b ${
                                       status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
-                                      <span className={`text-[9px] md:text-[10px] font-bold ${
+                                      <span className={`text-[9px] md:text-[11px] font-bold ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
