@@ -335,16 +335,9 @@ const GlobalMusicPlayer = memo(() => {
               </div>
               <div className="flex items-center gap-4 md:gap-6">
                 <button
-                  onClick={() => setIsCompact(true)}
-                  className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
-                  title="최소화"
-                >
-                  <Minimize2 className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
-                </button>
-                <button
                   onClick={toggleMinimize}
                   className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
-                  title="접기"
+                  title="최소화"
                 >
                   <Minimize2 className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
                 </button>

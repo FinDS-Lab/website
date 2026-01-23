@@ -130,23 +130,23 @@ const LangToggle = ({ lang, setLang, variant = 'light' }: { lang: 'ko' | 'en', s
   <div className={`inline-flex items-center rounded-full p-1 ${variant === 'dark' ? 'bg-white/10' : 'bg-gray-100'}`}>
     <button
       onClick={() => setLang('ko')}
-      className={`px-8 py-4 text-[10px] font-bold rounded-full transition-all duration-300 ${
+      className={`px-10 py-5 text-[10px] md:text-[11px] font-bold rounded-full transition-all duration-300 ${
         lang === 'ko' 
           ? variant === 'dark' ? 'bg-[#D6B14D] text-gray-900' : 'bg-gray-900 text-white'
           : variant === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-400 hover:text-gray-600'
       }`}
     >
-      KO
+      KOR
     </button>
     <button
       onClick={() => setLang('en')}
-      className={`px-8 py-4 text-[10px] font-bold rounded-full transition-all duration-300 ${
+      className={`px-10 py-5 text-[10px] md:text-[11px] font-bold rounded-full transition-all duration-300 ${
         lang === 'en' 
           ? variant === 'dark' ? 'bg-[#D6B14D] text-gray-900' : 'bg-gray-900 text-white'
           : variant === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-400 hover:text-gray-600'
       }`}
     >
-      EN
+      ENG
     </button>
   </div>
 )
@@ -210,7 +210,7 @@ export const AboutIntroductionTemplate = () => {
               {/* Card Content - Fixed min-height */}
               <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
                 {/* Title */}
-                <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
                   {missionLang === 'ko' ? (
                     <>
                       <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
@@ -238,11 +238,11 @@ export const AboutIntroductionTemplate = () => {
                 <div className="max-w-3xl mx-auto space-y-16 text-center">
                   {missionLang === 'ko' ? (
                     <>
-                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                      <p className="text-base md:text-lg text-gray-600 leading-[2]">
                         <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
                         데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
                       </p>
-                      <p className="text-xs md:text-sm text-gray-500 leading-[2]">
+                      <p className="text-sm md:text-base text-gray-500 leading-[2]">
                         저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와 <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
                         복잡한 데이터 속에서 새로운 <span className="font-semibold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 
                         데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
@@ -250,11 +250,11 @@ export const AboutIntroductionTemplate = () => {
                     </>
                   ) : (
                     <>
-                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                      <p className="text-base md:text-lg text-gray-600 leading-[2]">
                         <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
                         conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
                       </p>
-                      <p className="text-xs md:text-sm text-gray-500 leading-[2]">
+                      <p className="text-sm md:text-base text-gray-500 leading-[2]">
                         We combine <span className="text-primary font-semibold">Financial Data Science</span> and <span className="text-primary font-semibold">Business Analytics</span> to 
                         extract new <span className="font-semibold" style={{color: '#AC0E0E'}}>finds</span> from complex data and build intelligence that supports sophisticated data-driven decision-making.
                       </p>
@@ -298,20 +298,20 @@ export const AboutIntroductionTemplate = () => {
                       className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex flex-col"
                     >
                       {/* Icon */}
-                      <div className="relative w-44 h-44 md:w-52 md:h-52 mx-auto mb-16 shrink-0">
+                      <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-16 shrink-0">
                         <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                         <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                          <img src={area.image} alt={area.title} className="w-24 h-24 md:w-32 md:h-32 object-contain" />
+                          <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
                         </div>
                       </div>
 
                       {/* Text */}
                       <div className="text-center flex-1 flex flex-col">
-                        <h3 className="text-sm md:text-base font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
+                        <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
                           {focusLang === 'ko' ? area.titleKo : area.title}
                         </h3>
                         <p 
-                          className="text-[11px] md:text-xs text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                          className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
                           dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
                         />
                       </div>
@@ -325,26 +325,41 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          VISION SECTION - Uniform Card Style (Dark)
+          VISION SECTION - Uniform Card Style (Dark) with Light-up Effect
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-white via-[#FFFDF5] to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section ref={visionRef}>
-            {/* Uniform Card Container - Dark variant */}
+            {/* Uniform Card Container - Dark variant with dynamic lighting */}
             <div 
-              className="rounded-2xl md:rounded-3xl border border-gray-800 shadow-sm overflow-hidden transition-all duration-500"
+              className="rounded-2xl md:rounded-3xl border shadow-lg overflow-hidden transition-all duration-700"
               style={{
+                borderColor: `rgba(214, 177, 77, ${0.1 + brightness * 0.4})`,
                 background: `linear-gradient(135deg, 
-                  rgba(17, 24, 39, ${1 - brightness * 0.3}) 0%, 
-                  rgba(31, 41, 55, ${1 - brightness * 0.3}) 50%, 
-                  rgba(17, 24, 39, ${1 - brightness * 0.3}) 100%)`
+                  rgba(17, 24, 39, ${1 - brightness * 0.15}) 0%, 
+                  rgba(31, 41, 55, ${1 - brightness * 0.15}) 50%, 
+                  rgba(17, 24, 39, ${1 - brightness * 0.15}) 100%)`,
+                boxShadow: `0 0 ${brightness * 60}px rgba(214, 177, 77, ${brightness * 0.3})`
               }}
             >
               {/* Card Header - Fixed height, matching other sections */}
-              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-700/50 bg-gray-900/50">
+              <div 
+                className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b transition-all duration-500"
+                style={{ 
+                  borderColor: `rgba(214, 177, 77, ${0.1 + brightness * 0.3})`,
+                  background: `rgba(17, 24, 39, ${0.8 - brightness * 0.2})`
+                }}
+              >
                 <div className="flex items-center gap-8">
-                  <Sparkles size={14} className="text-[#D6B14D]" />
-                  <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                  <Sparkles 
+                    size={14} 
+                    className="transition-all duration-500"
+                    style={{ color: `rgba(214, 177, 77, ${0.5 + brightness * 0.5})` }}
+                  />
+                  <span 
+                    className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-500"
+                    style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
+                  >
                     {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
                   </span>
                 </div>
@@ -352,46 +367,76 @@ export const AboutIntroductionTemplate = () => {
               </div>
 
               {/* Card Content - Fixed min-height */}
-              <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
-                {/* Animated glow effect based on scroll */}
+              <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center overflow-hidden">
+                {/* Animated glow effect based on scroll - stronger */}
                 <div 
-                  className="absolute inset-0 transition-opacity duration-500 pointer-events-none"
-                  style={{ opacity: brightness * 0.5 }}
+                  className="absolute inset-0 transition-all duration-700 pointer-events-none"
+                  style={{ opacity: brightness }}
                 >
+                  <div 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl transition-all duration-700"
+                    style={{ 
+                      width: `${200 + brightness * 300}px`, 
+                      height: `${200 + brightness * 300}px`,
+                      background: `radial-gradient(circle, rgba(214, 177, 77, ${0.15 + brightness * 0.2}) 0%, transparent 70%)`
+                    }}
+                  />
                   <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-20" />
-                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-20" />
+                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-15" />
                 </div>
 
-                <div className="relative z-10">
-                  <Quote size={28} className="text-[#D6B14D]/30 mb-12" />
+                {/* Top accent line - brightness controlled */}
+                <div 
+                  className="absolute top-0 left-0 right-0 h-1 transition-all duration-500"
+                  style={{ 
+                    background: `linear-gradient(90deg, transparent, rgba(214, 177, 77, ${brightness * 0.8}), transparent)`,
+                    boxShadow: `0 0 ${brightness * 20}px rgba(214, 177, 77, ${brightness * 0.5})`
+                  }}
+                />
 
-                  {/* Title with brightness effect */}
+                <div className="relative z-10">
+                  <Quote 
+                    size={32} 
+                    className="mb-12 transition-all duration-500"
+                    style={{ color: `rgba(214, 177, 77, ${0.2 + brightness * 0.4})` }}
+                  />
+
+                  {/* Title with brightness effect - bigger */}
                   <h2 
-                    className="text-xl md:text-2xl lg:text-3xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
-                    style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}
+                    className="text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
+                    style={{ 
+                      color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})`,
+                      textShadow: brightness > 0.5 ? `0 0 ${brightness * 30}px rgba(255, 255, 255, 0.3)` : 'none'
+                    }}
                   >
                     {visionLang === 'ko' ? (
-                      <>더 나은 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
+                      <>더 나은 <span style={{ 
+                        color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})`,
+                        textShadow: brightness > 0.5 ? `0 0 ${brightness * 20}px rgba(214, 177, 77, 0.5)` : 'none'
+                      }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
                     ) : (
-                      <>We illuminate the future of <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>Better Data Intelligence</span></>
+                      <>We illuminate the future of <span style={{ 
+                        color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})`,
+                        textShadow: brightness > 0.5 ? `0 0 ${brightness * 20}px rgba(214, 177, 77, 0.5)` : 'none'
+                      }}>Better Data Intelligence</span></>
                     )}
                   </h2>
 
-                  {/* Description with brightness effect */}
+                  {/* Description with brightness effect - bigger */}
                   <p 
-                    className="text-xs md:text-sm leading-[2] max-w-2xl transition-all duration-500"
-                    style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
+                    className="text-sm md:text-base leading-[2] max-w-2xl transition-all duration-500"
+                    style={{ color: `rgba(156, 163, 175, ${0.4 + brightness * 0.6})` }}
                   >
                     {visionLang === 'ko' ? (
                       <>
-                        우리는 <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
-                        복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
+                        우리는 <span className="font-semibold" style={{ color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
+                        복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
                         전환하는 미래를 꿈꿉니다.
                       </>
                     ) : (
                       <>
-                        We envision a future where <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>data intelligence</span> diminishes knowledge asymmetry, 
-                        turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>clear, accessible, and strategically valuable insights</span>.
+                        We envision a future where <span className="font-semibold" style={{ color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})` }}>data intelligence</span> diminishes knowledge asymmetry, 
+                        turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})` }}>clear, accessible, and strategically valuable insights</span>.
                       </>
                     )}
                   </p>
@@ -433,39 +478,39 @@ export const AboutIntroductionTemplate = () => {
                       <div key={index} className="flex flex-col">
                         {/* Label */}
                         <div className="text-center mb-12">
-                          <h3 className="text-base md:text-lg font-bold text-primary">
+                          <h3 className="text-lg md:text-xl font-bold text-primary">
                             {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
                           </h3>
                           <div className="w-20 h-0.5 bg-primary/30 rounded-full mx-auto mt-6" />
                         </div>
                         
                         {/* Inner Card */}
-                        <div className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex-1 p-16 md:p-20">
+                        <div className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex-1 p-16 md:p-24">
                           {/* Number & Icon */}
                           <div className="flex items-center justify-between mb-12">
-                            <div className="size-32 md:size-36 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-300">
-                              <Icon size={16} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+                            <div className="size-36 md:size-40 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-300">
+                              <Icon size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
                             </div>
-                            <span className="text-xl md:text-2xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors">
+                            <span className="text-2xl md:text-3xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors">
                               {pillar.number}
                             </span>
                           </div>
 
                           {/* Title */}
-                          <h4 className="text-xs md:text-sm font-bold text-gray-900 mb-6 leading-[1.5]">
+                          <h4 className="text-sm md:text-base font-bold text-gray-900 mb-6 leading-[1.5]">
                             {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
                           </h4>
                           
                           {/* Subtitle */}
                           {pillar.subtitle && (
-                            <p className="text-[10px] font-medium italic mb-8 text-[#D6B14D]">
+                            <p className="text-[11px] md:text-xs font-medium italic mb-8 text-[#D6B14D]">
                               {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
                             </p>
                           )}
 
                           {/* Description */}
                           <p 
-                            className="text-[11px] text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                            className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
                             dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
                           />
                         </div>

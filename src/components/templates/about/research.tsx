@@ -75,22 +75,51 @@ const researchAreas = [
   },
 ]
 
-// Bilingual fade animation hook for title only
+// Bilingual fade animation hook for title only - with typewriter effect
 const useBilingualFade = () => {
   const [showKorean, setShowKorean] = useState(false)
+  const [typedText, setTypedText] = useState('')
+  const [isTyping, setIsTyping] = useState(true)
+  
+  const englishText = 'Business Innovation'
+  const koreanText = '경영 혁신'
   
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShowKorean(prev => !prev)
-    }, 4000)
-    return () => clearInterval(interval)
-  }, [])
+    const currentText = showKorean ? koreanText : englishText
+    
+    if (isTyping) {
+      if (typedText.length < currentText.length) {
+        const timeout = setTimeout(() => {
+          setTypedText(currentText.slice(0, typedText.length + 1))
+        }, showKorean ? 150 : 80) // Korean typing slower for effect
+        return () => clearTimeout(timeout)
+      } else {
+        // Finished typing, wait then switch
+        const timeout = setTimeout(() => {
+          setIsTyping(false)
+        }, 2000)
+        return () => clearTimeout(timeout)
+      }
+    } else {
+      // Erasing effect
+      if (typedText.length > 0) {
+        const timeout = setTimeout(() => {
+          setTypedText(typedText.slice(0, -1))
+        }, 40)
+        return () => clearTimeout(timeout)
+      } else {
+        // Finished erasing, switch language
+        setShowKorean(prev => !prev)
+        setIsTyping(true)
+      }
+    }
+  }, [typedText, isTyping, showKorean])
   
-  return showKorean
+  return { showKorean, typedText, isTyping }
 }
 
 export const AboutResearchTemplate = () => {
-  const showKorean = useBilingualFade()
+  const { showKorean, typedText, isTyping } = useBilingualFade()
 
   return (
     <div className="flex flex-col bg-white">
@@ -148,38 +177,50 @@ export const AboutResearchTemplate = () => {
         </div>
       </div>
 
-      {/* Hero Section - with bilingual fade animation on title only */}
+      {/* Hero Section - with typewriter animation on title */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title */}
-          <div className="relative h-[80px] md:h-[100px] mb-16 md:mb-24 overflow-hidden">
-            {/* English */}
-            <h2 className={`absolute inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
-              showKorean ? 'opacity-0 translate-y-8' : 'opacity-100 translate-y-0'
-            }`}>
-              <span className="inline-block">Driving</span>
-              <span className="inline-block mx-4"> </span>
-              <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                  Business Innovation
-                </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
-              </span>
-              <span className="inline-block mx-4"> </span>
-              <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
-            </h2>
-            {/* Korean */}
-            <h2 className={`absolute inset-0 flex items-center justify-center text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3] transition-all duration-700 ${
-              showKorean ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-            }`}>
-              <span className="relative inline-block">
-                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                  데이터
-                </span>
-                <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
-              </span>
-              <span className="inline-block">로 이끄는 </span>
-              <span style={{color: 'rgb(172, 14, 14)'}}>경영 혁신</span>
+          {/* Animated Title with Typewriter Effect */}
+          <div className="relative h-[80px] md:h-[100px] mb-16 md:mb-24 flex items-center justify-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3]">
+              {showKorean ? (
+                <>
+                  <span className="relative inline-block">
+                    <span 
+                      className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent"
+                      style={{ fontFamily: '"Nanum Pen Script", cursive' }}
+                    >
+                      데이터
+                    </span>
+                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
+                  </span>
+                  <span className="inline-block">로 이끄는 </span>
+                  <span 
+                    className="relative inline-block"
+                    style={{ fontFamily: '"Nanum Pen Script", cursive', color: 'rgb(172, 14, 14)' }}
+                  >
+                    {typedText}
+                    <span className={`inline-block w-[3px] h-[1.1em] bg-[#AC0E0E] ml-1 align-middle ${isTyping ? 'animate-pulse' : ''}`} />
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="inline-block">Driving</span>
+                  <span className="inline-block mx-2"> </span>
+                  <span 
+                    className="relative inline-block"
+                    style={{ fontFamily: '"Caveat", cursive' }}
+                  >
+                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl">
+                      {typedText}
+                      <span className={`inline-block w-[3px] h-[1.1em] bg-[#D6B14D] ml-1 align-middle ${isTyping ? 'animate-pulse' : ''}`} />
+                    </span>
+                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
+                  </span>
+                  <span className="inline-block mx-2"> </span>
+                  <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
+                </>
+              )}
             </h2>
           </div>
           

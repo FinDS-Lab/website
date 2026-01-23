@@ -778,19 +778,34 @@ export const PublicationsTemplate = () => {
                                 <div className="md:hidden h-8" />
                                 
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
-                                  {/* Desktop: Left Type Badge - Projects style */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-80">
-                                    <div className={`w-full py-10 rounded-xl text-center ${typeColor} shadow-sm`}>
-                                      <span className="block text-xs font-semibold text-white uppercase tracking-wide mb-2">
+                                  {/* Desktop: Left Type Badge - White background style matching Honors */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-72">
+                                    <div className={`w-full py-8 rounded-lg text-center bg-white border-2 shadow-sm ${
+                                      pub.type === 'journal' ? 'border-[#D6B14D]' :
+                                      pub.type === 'conference' ? 'border-[#AC0E0E]' :
+                                      pub.type === 'book' ? 'border-[#E8D688]' :
+                                      pub.type === 'report' ? 'border-[#FFBAC4]' : 'border-gray-300'
+                                    }`}>
+                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${
+                                        pub.type === 'journal' ? 'text-[#D6B14D]' :
+                                        pub.type === 'conference' ? 'text-[#AC0E0E]' :
+                                        pub.type === 'book' ? 'text-[#B8962D]' :
+                                        pub.type === 'report' ? 'text-[#E8889C]' : 'text-gray-500'
+                                      }`}>
                                         {typeLabel}
                                       </span>
-                                      <span className="text-lg font-bold text-white/90">
+                                      <span className={`text-lg font-bold ${
+                                        pub.type === 'journal' ? 'text-[#D6B14D]' :
+                                        pub.type === 'conference' ? 'text-[#AC0E0E]' :
+                                        pub.type === 'book' ? 'text-[#B8962D]' :
+                                        pub.type === 'report' ? 'text-[#E8889C]' : 'text-gray-500'
+                                      }`}>
                                         {getPublicationNumber(pub)}
                                       </span>
                                     </div>
                                     {/* Status badge below */}
                                     {pub.type === 'conference' && pub.presentation_type && (
-                                      <div className={`w-full mt-6 py-5 text-center rounded-lg ${
+                                      <div className={`w-full mt-4 py-4 text-center rounded-md ${
                                         pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
                                       }`}>
                                         <span className="text-[9px] font-bold uppercase"
@@ -801,7 +816,7 @@ export const PublicationsTemplate = () => {
                                       </div>
                                     )}
                                     {pub.type === 'journal' && pub.indexing_group && (
-                                      <div className={`w-full mt-6 py-5 text-center rounded-lg border`}
+                                      <div className={`w-full mt-4 py-4 text-center rounded-md border`}
                                         style={{
                                           backgroundColor: 
                                             ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.1)' :
@@ -835,30 +850,37 @@ export const PublicationsTemplate = () => {
 
                                   {/* Middle: Content */}
                                   <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-6 md:mb-8 leading-relaxed">
-                                    {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
-                                      <span className="relative inline-block mr-6 group">
-                                        <span className="cursor-help">🏆</span>
-                                        <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
-                                          {pub.award_details ? (
-                                            <>
-                                              <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
-                                              {pub.award_details.category_ko || pub.award_details.category ? (
-                                                <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
-                                              ) : null}
-                                              <span className="block text-gray-400 mt-1 text-[10px]">{pub.award_details.organization_ko || pub.award_details.organization}</span>
-                                            </>
-                                          ) : (
-                                            <span>Award-winning paper</span>
-                                          )}
-                                          <span className="absolute left-4 top-full border-4 border-transparent border-t-gray-900"></span>
+                                  {/* Title with date at top-right on PC */}
+                                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12 mb-6 md:mb-8">
+                                    <h4 className="text-sm md:text-md font-semibold text-gray-800 leading-relaxed flex-1">
+                                      {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
+                                        <span className="relative inline-block mr-6 group">
+                                          <span className="cursor-help">🏆</span>
+                                          <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
+                                            {pub.award_details ? (
+                                              <>
+                                                <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
+                                                {pub.award_details.category_ko || pub.award_details.category ? (
+                                                  <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
+                                                ) : null}
+                                                <span className="block text-gray-400 mt-1 text-[10px]">{pub.award_details.organization_ko || pub.award_details.organization}</span>
+                                              </>
+                                            ) : (
+                                              <span>Award-winning paper</span>
+                                            )}
+                                            <span className="absolute left-4 top-full border-4 border-transparent border-t-gray-900"></span>
+                                          </span>
                                         </span>
-                                      </span>
-                                    )}
-                                    {pub.title}
-                                  </h4>
+                                      )}
+                                      {pub.title}
+                                    </h4>
+                                    {/* Date badge - top right on PC, unified style */}
+                                    <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
+                                      {pub.published_date}
+                                    </span>
+                                  </div>
                                   {pub.title_ko && (
-                                    <p className="text-xs md:text-base text-gray-600 mb-6 md:mb-8">{pub.title_ko}</p>
+                                    <p className="text-xs md:text-sm text-gray-600 mb-6 md:mb-8">{pub.title_ko}</p>
                                   )}
                                   <div className="flex flex-wrap gap-2 md:gap-4 mb-6 md:mb-8">
                                     {authorList.map((author, aIdx) => (
@@ -871,21 +893,23 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     ))}
                                   </div>
+                                  {/* Venue */}
                                   <p className="text-xs md:text-sm text-gray-700 font-bold">
                                     {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean') && pub.venue_ko 
                                       ? pub.venue_ko 
                                       : pub.venue}
                                   </p>
-                                  {/* Date below venue */}
-                                  <p className="text-[11px] md:text-xs text-gray-400 font-medium mt-4">
+                                  {/* Mobile: Date below venue */}
+                                  <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
                                     {pub.published_date}
                                   </p>
+                                  {/* DOI below venue/date */}
                                   {pub.doi && (
                                     <a
                                       href={`https://doi.org/${pub.doi}`}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-xs md:text-sm text-primary hover:underline mt-4 inline-block"
+                                      className="text-[11px] md:text-xs text-primary hover:underline mt-4 inline-block"
                                     >
                                       DOI: {pub.doi}
                                     </a>
