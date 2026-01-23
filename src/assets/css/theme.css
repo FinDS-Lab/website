@@ -90,3 +90,17 @@
     transform: translateY(0px);
   }
 }
+
+/* Portrait/Vertical Monitor Optimization */
+@media (orientation: portrait) and (min-width: 768px) {
+  .max-w-1480 {
+    max-width: 95%;
+  }
+}
+
+/* Tall screens (aspect ratio based) */
+@media (min-aspect-ratio: 9/16) and (min-width: 768px) {
+  .max-w-1480 {
+    max-width: 90%;
+  }
+}

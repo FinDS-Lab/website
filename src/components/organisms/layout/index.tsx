@@ -160,7 +160,7 @@ const LayoutOrganisms = ({ children }: props) => {
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       {/* Header */}
-      <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-[9999]">
+      <header className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-[9999]">
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-12 md:gap-16">
@@ -335,31 +335,50 @@ const LayoutOrganisms = ({ children }: props) => {
       <main className="overflow-x-hidden">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
-        <div className="max-w-1480 mx-auto px-16 md:px-20 py-24 md:py-32">
-          {/* Links Row - Minimal elegant style */}
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-20 md:mb-24">
-            {footerLinks.map((link, idx) => (
-              <React.Fragment key={link.name}>
+      <footer className="w-full bg-gradient-to-b from-gray-50/50 to-gray-100/80 border-t border-gray-200/50">
+        <div className="max-w-1480 mx-auto px-16 md:px-20 py-32 md:py-48">
+          {/* Top Section - Logo & Description */}
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-24 md:gap-40 mb-32 md:mb-40">
+            <div className="flex flex-col items-center md:items-start gap-12">
+              <Link to="/" className="flex items-center gap-10">
+                <img src={logoFinds} alt="FINDS Lab" className="h-32 md:h-40 opacity-80" />
+                <span className="text-base md:text-lg font-bold text-gray-600">FINDS Lab</span>
+              </Link>
+              <p className="text-[11px] md:text-xs text-gray-400 text-center md:text-left max-w-xs leading-relaxed">
+                Financial Data Intelligence &amp; Strategy Lab<br />
+                가천대학교 경영대학 금융·빅데이터학부
+              </p>
+            </div>
+            
+            {/* Quick Links */}
+            <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+              {footerLinks.map((link) => (
                 <a
+                  key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[11px] md:text-xs text-gray-400 hover:text-gray-600 transition-colors tracking-wide"
+                  className="text-[11px] md:text-xs text-gray-400 hover:text-primary transition-colors duration-300"
                 >
                   {link.name}
                 </a>
-                {idx < footerLinks.length - 1 && (
-                  <span className="w-[3px] h-[3px] rounded-full bg-gray-200" />
-                )}
-              </React.Fragment>
-            ))}
+              ))}
+            </div>
           </div>
 
-          {/* Copyright - Clean typography */}
-          <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
-            © 2026 FINDS Lab
-          </p>
+          {/* Divider */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-20 md:mb-24" />
+
+          {/* Bottom Section - Copyright */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <p className="text-[10px] md:text-[11px] text-gray-400 tracking-wide">
+              © 2026 FINDS Lab. All rights reserved.
+            </p>
+            <div className="flex items-center gap-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary/60" />
+              <span className="text-[10px] text-gray-400">Gachon University</span>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

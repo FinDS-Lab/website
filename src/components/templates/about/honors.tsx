@@ -113,6 +113,14 @@ export const AboutHonorsTemplate = () => {
     return items?.filter((item) => item.type === filter).length
   }
 
+  // Get year stats for display like Publications
+  const getYearStats = (year: string) => {
+    const items = honorsData[year] || []
+    const honors = items.filter(item => item.type === 'honor').length
+    const awards = items.filter(item => item.type === 'award').length
+    return { honors, awards }
+  }
+
   return (
     <div className="flex flex-col bg-white">
       {/* Banner - Introduction과 동일한 스타일 */}
@@ -267,7 +275,19 @@ export const AboutHonorsTemplate = () => {
                       {isCurrentYear && (
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
-                      <span className={`text-xs md:text-[14px] ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>{yearCount}</span>
+                      {/* Publications-style count display */}
+                      <span className={`text-[10px] md:text-xs ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
+                        {(() => {
+                          const yearStats = getYearStats(year)
+                          const parts = []
+                          if (yearStats.honors > 0) parts.push(<span key="h" style={{color: '#D6B14D'}}>{yearStats.honors}</span>)
+                          if (yearStats.honors > 0) parts.push(<span key="ht"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>)
+                          if (yearStats.honors > 0 && yearStats.awards > 0) parts.push(<span key="dot"> · </span>)
+                          if (yearStats.awards > 0) parts.push(<span key="a" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>)
+                          if (yearStats.awards > 0) parts.push(<span key="at"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>)
+                          return parts
+                        })()}
+                      </span>
                     </div>
                     {expandedYear === year ? (
                       <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500" />
@@ -298,6 +318,10 @@ export const AboutHonorsTemplate = () => {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
+                            {/* Date at top */}
+                            <p className="text-[10px] md:text-xs text-gray-400 font-medium mb-6">
+                              {year}-{formatDate(item.date)}
+                            </p>
                             <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-4 md:mb-[4px]">
                               {item.title}
                             </h4>
@@ -315,9 +339,6 @@ export const AboutHonorsTemplate = () => {
                                 ))}
                               </div>
                             )}
-                          </div>
-                          <div className="text-xs md:text-[14px] text-gray-500 font-medium whitespace-nowrap">
-                            {year}-{formatDate(item.date)}
                           </div>
                         </div>
                       ))}

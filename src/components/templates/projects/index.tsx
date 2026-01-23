@@ -557,10 +557,17 @@ export const ProjectsTemplate = () => {
                             const status = getProjectStatus(project.period)
                             
                             const typeColors: Record<string, string> = {
-                              government: 'bg-[#D6B14D] text-white',
-                              industry: 'bg-primary text-white',
-                              institution: 'bg-[#E8D688] text-gray-800',
-                              academic: 'bg-[#FFBAC4] text-gray-800',
+                              government: 'bg-[#D6B14D]',
+                              industry: 'bg-primary',
+                              institution: 'bg-[#E8D688]',
+                              academic: 'bg-[#FFBAC4]',
+                            }
+                            
+                            const typeTextColors: Record<string, string> = {
+                              government: 'text-white',
+                              industry: 'text-white',
+                              institution: 'text-gray-800',
+                              academic: 'text-gray-800',
                             }
                             
                             // Filter out empty researchers
@@ -569,20 +576,20 @@ export const ProjectsTemplate = () => {
                             ) || []
                             
                             return (
-                              <div key={idx} className="p-16 md:p-20 hover:bg-gray-50/50 transition-all">
-                                <div className="flex items-start gap-12 md:gap-16">
-                                  {/* Left: Type badge with status */}
-                                  <div className="flex flex-col items-center shrink-0 w-[80px] md:w-[100px]">
-                                    <div className={`w-full py-12 md:py-14 rounded-t-lg text-center ${typeColors[project.type] || 'bg-gray-500 text-white'}`}>
-                                      <Icon size={24} className="inline mb-4 md:w-7 md:h-7" />
-                                      <span className="block text-[9px] md:text-[11px] font-bold uppercase tracking-wide">
+                              <div key={idx} className="p-16 md:p-24 hover:bg-gray-50/50 transition-all">
+                                <div className="flex flex-row items-start gap-12 md:gap-20">
+                                  {/* Left: Type Badge - Publications style */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-90">
+                                    <div className={`w-full py-8 rounded-t-lg text-center ${typeColors[project.type] || 'bg-gray-500'}`}>
+                                      <Icon size={18} className={`inline mb-2 ${typeTextColors[project.type] || 'text-white'}`} />
+                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${typeTextColors[project.type] || 'text-white'}`}>
                                         {config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`w-full py-8 md:py-10 rounded-b-lg text-center border-x border-b ${
+                                    <div className={`w-full py-6 rounded-b-lg text-center border-x border-b ${
                                       status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
-                                      <span className={`text-[9px] md:text-[11px] font-bold ${
+                                      <span className={`text-[10px] font-bold ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
                                       }`}>
                                         {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -590,27 +597,42 @@ export const ProjectsTemplate = () => {
                                     </div>
                                   </div>
                                   
-                                  <div className="flex-1 min-w-0">
-                                    {/* Period badge */}
-                                    <div className="flex flex-wrap items-center gap-6 mb-8">
-                                      <span className="px-8 py-3 bg-gray-100 text-gray-600 text-[9px] md:text-[11px] font-bold rounded-full flex items-center gap-4">
-                                        <Calendar size={10} className="md:w-3 md:h-3" />
-                                        {project.period}
+                                  {/* Mobile: Ribbon badge */}
+                                  <div className="md:hidden absolute top-0 left-0 flex items-stretch">
+                                    <div className={`${typeColors[project.type] || 'bg-gray-500'} px-10 py-5 rounded-br-lg shadow-sm`}>
+                                      <span className={`text-[9px] font-bold uppercase tracking-wide ${typeTextColors[project.type] || 'text-white'}`}>
+                                        {config?.label || project.type}
                                       </span>
                                     </div>
+                                    <div className={`px-8 py-5 rounded-br-lg -ml-1 border-b border-r ${
+                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
+                                    }`}>
+                                      <span className={`text-[9px] font-bold ${
+                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
+                                      }`}>
+                                        {status === 'ongoing' ? 'Ongoing' : 'Done'}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="flex-1 min-w-0 md:pt-0 pt-8">
+                                    {/* Date at top - Publications style */}
+                                    <p className="text-[10px] md:text-xs text-gray-400 font-medium mb-6 md:mb-8">
+                                      {project.period}
+                                    </p>
                                     
                                     {/* Title */}
-                                    <p className="text-xs md:text-sm font-bold text-gray-900 leading-relaxed line-clamp-2">{project.titleKo}</p>
-                                    <p className="text-[10px] md:text-xs text-gray-600 mt-4 leading-relaxed line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
+                                    <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
                                     
                                     {/* Funding Agency */}
-                                    <p className="text-[10px] md:text-xs text-gray-500 mt-6">
-                                      <span className="font-bold text-gray-700">{project.fundingAgency}</span>
+                                    <p className="text-xs md:text-sm text-gray-500 mt-8 italic">
+                                      {project.fundingAgency}
                                     </p>
                                     
                                     {/* Roles - only show non-empty roles */}
                                     {(project.roles.principalInvestigator || project.roles.leadResearcher || filteredResearchers.length > 0) && (
-                                      <div className="mt-10 pt-10 border-t border-gray-100">
+                                      <div className="mt-12 pt-12 border-t border-gray-100">
                                         <div className="flex flex-col gap-6">
                                           {/* Principal Investigator - only show if exists */}
                                           {project.roles.principalInvestigator && (

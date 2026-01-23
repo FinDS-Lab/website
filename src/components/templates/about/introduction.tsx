@@ -8,6 +8,53 @@ import icon10 from '@/assets/images/icons/10.png'
 import icon11 from '@/assets/images/icons/11.png'
 import icon12 from '@/assets/images/icons/12.png'
 
+// Bilingual typewriter hook
+const useBilingualTypewriter = () => {
+  const texts = [
+    { text: '데이터로 밝히는 금융의 미래', lang: 'ko' },
+    { text: 'Data-Illuminated Financial Innovation', lang: 'en' }
+  ]
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+
+  useEffect(() => {
+    const currentText = texts[currentIndex].text
+    
+    if (isPaused) {
+      const pauseTimer = setTimeout(() => {
+        setIsPaused(false)
+        setIsDeleting(true)
+      }, 3000) // Pause for 3 seconds
+      return () => clearTimeout(pauseTimer)
+    }
+
+    if (!isDeleting && displayText === currentText) {
+      setIsPaused(true)
+      return
+    }
+
+    if (isDeleting && displayText === '') {
+      setIsDeleting(false)
+      setCurrentIndex((prev) => (prev + 1) % texts.length)
+      return
+    }
+
+    const timer = setTimeout(() => {
+      if (isDeleting) {
+        setDisplayText(currentText.substring(0, displayText.length - 1))
+      } else {
+        setDisplayText(currentText.substring(0, displayText.length + 1))
+      }
+    }, isDeleting ? 30 : 80)
+
+    return () => clearTimeout(timer)
+  }, [displayText, isDeleting, currentIndex, isPaused, texts])
+
+  return { displayText, currentLang: texts[currentIndex].lang }
+}
+
 const focusAreas = [
   {
     image: icon12,
@@ -90,6 +137,7 @@ export const AboutIntroductionTemplate = () => {
   const focusAnimation = useScrollAnimation()
   const visionAnimation = useScrollAnimation()
   const pillarsAnimation = useScrollAnimation()
+  const typewriter = useBilingualTypewriter()
 
   return (
     <div className="flex flex-col bg-white">
@@ -187,17 +235,17 @@ export const AboutIntroductionTemplate = () => {
                   </span>
                 </div>
 
-                {/* Main Title */}
-                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.3] mb-32 md:mb-48">
-                  <span className="inline-block">Towards</span>{' '}
-                  <span className="relative inline-block">
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent">
-                      Data-Illuminated
+                {/* Main Title with Typewriter Effect */}
+                <div className="mb-32 md:mb-48">
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] min-h-[2.8em] md:min-h-[2.4em] flex items-center justify-center">
+                    <span className="relative">
+                      <span className={`bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent ${typewriter.currentLang === 'ko' ? 'tracking-tight' : 'tracking-normal'}`}>
+                        {typewriter.displayText}
+                      </span>
+                      <span className="animate-pulse text-primary">|</span>
                     </span>
-                  </span>
-                  <br className="hidden md:block" />
-                  <span className="inline-block mt-8 md:mt-0">Financial Innovation</span>
-                </h2>
+                  </h2>
+                </div>
 
                 {/* Divider */}
                 <div className="flex items-center justify-center gap-12 mb-32 md:mb-48">
@@ -209,10 +257,7 @@ export const AboutIntroductionTemplate = () => {
                 {/* Introduction Paragraphs */}
                 <div className="space-y-16 md:space-y-20 text-left">
                   <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-[2] font-medium">
-                    <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부</span>{' '}
-                    <span className="relative inline-block mx-2">
-                      <span className="font-bold" style={{color: 'rgb(172,14,14)'}}>FINDS Lab</span>
-                    </span>
+                    <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>
                     은 데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서{' '}
                     <span className="text-gray-900 font-bold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
                   </p>
@@ -256,9 +301,6 @@ export const AboutIntroductionTemplate = () => {
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-12 md:mb-16">
                 Research <span className="text-primary">&</span> Expertise
               </h2>
-              <p className="text-sm md:text-base text-gray-400 max-w-xl mx-auto">
-                FINDS Lab이 집중적으로 탐구하고 있는 주요 연구 분야입니다
-              </p>
             </div>
 
             {/* Cards Grid */}
@@ -401,16 +443,14 @@ export const AboutIntroductionTemplate = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24 lg:gap-32">
               {pillars.map((pillar, index) => {
                 const Icon = pillar.icon
-                const titleColors = ['from-primary to-primary/70', 'from-[#D6B14D] to-[#D6C360]', 'from-[#E8889C] to-[#FFBAC4]']
-                const underlineColors = ['bg-primary', 'bg-[#D6B14D]', 'bg-[#E8889C]']
                 return (
                   <div key={index} className="flex flex-col">
-                    {/* Title above card - Research / Impact / Philosophy */}
+                    {/* Title above card - Research / Impact / Philosophy - All in primary color */}
                     <div className="text-center mb-16 md:mb-20">
-                      <h3 className={`text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r ${titleColors[index]} bg-clip-text text-transparent`}>
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-primary">
                         {pillar.label}
                       </h3>
-                      <div className={`w-40 h-1 ${underlineColors[index]} rounded-full mx-auto mt-8`} />
+                      <div className="w-40 h-1 bg-primary rounded-full mx-auto mt-8" />
                     </div>
                     
                     <div
