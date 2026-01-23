@@ -186,83 +186,81 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          MISSION SECTION
+          MISSION SECTION - Uniform Card Style
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-[#FFFDF5] to-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-48 md:py-80">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section
             ref={heroAnimation.ref}
             className={`transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            <div className="relative bg-white rounded-2xl md:rounded-3xl p-24 md:p-48 lg:p-64 shadow-xl shadow-[#D6B14D]/5 border border-[#FFF3CC]/50">
-              {/* Decorative corners */}
-              <div className="absolute top-0 left-0 w-16 h-16 border-l-2 border-t-2 border-[#D6B14D]/30 rounded-tl-2xl" />
-              <div className="absolute top-0 right-0 w-16 h-16 border-r-2 border-t-2 border-[#D6B14D]/30 rounded-tr-2xl" />
-              <div className="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-[#D6B14D]/30 rounded-bl-2xl" />
-              <div className="absolute bottom-0 right-0 w-16 h-16 border-r-2 border-b-2 border-[#D6B14D]/30 rounded-br-2xl" />
-
-              {/* Header */}
-              <div className="flex items-center justify-between mb-24 md:mb-40">
+            {/* Uniform Card Container */}
+            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+              {/* Card Header - Fixed height */}
+              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
                 <div className="flex items-center gap-8">
                   <Sparkles size={14} className="text-[#D6B14D]" />
-                  <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
                     {missionLang === 'ko' ? '우리의 사명' : 'Our Mission'}
                   </span>
                 </div>
                 <LangToggle lang={missionLang} setLang={setMissionLang} />
               </div>
 
-              {/* Title */}
-              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.4] mb-24 md:mb-40 text-center">
-                {missionLang === 'ko' ? (
-                  <>
-                    <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
-                    <br className="md:hidden" />{' '}
-                    금융 혁신의 미래
-                  </>
-                ) : (
-                  <>
-                    Towards{' '}
-                    <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">Data-Illuminated</span>
-                    <br className="md:hidden" />{' '}
-                    Financial Innovation
-                  </>
-                )}
-              </h2>
+              {/* Card Content - Fixed min-height */}
+              <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
+                {/* Title */}
+                <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
+                  {missionLang === 'ko' ? (
+                    <>
+                      <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
+                      <br className="md:hidden" />{' '}
+                      금융 혁신의 미래
+                    </>
+                  ) : (
+                    <>
+                      Towards{' '}
+                      <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">Data-Illuminated</span>
+                      <br className="md:hidden" />{' '}
+                      Financial Innovation
+                    </>
+                  )}
+                </h2>
 
-              {/* Divider */}
-              <div className="flex items-center justify-center gap-8 mb-24 md:mb-40">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
-              </div>
+                {/* Divider */}
+                <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                </div>
 
-              {/* Description */}
-              <div className="max-w-3xl mx-auto space-y-16 text-center md:text-left">
-                {missionLang === 'ko' ? (
-                  <>
-                    <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                      <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
-                      데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-500 leading-[2]">
-                      저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와 <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
-                      복잡한 데이터 속에서 새로운 <span className="font-semibold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 
-                      데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                      <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
-                      conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
-                    </p>
-                    <p className="text-xs md:text-sm text-gray-500 leading-[2]">
-                      We combine <span className="text-primary font-semibold">Financial Data Science</span> and <span className="text-primary font-semibold">Business Analytics</span> to 
-                      extract new <span className="font-semibold" style={{color: '#AC0E0E'}}>finds</span> from complex data and build intelligence that supports sophisticated data-driven decision-making.
-                    </p>
-                  </>
-                )}
+                {/* Description */}
+                <div className="max-w-3xl mx-auto space-y-16 text-center">
+                  {missionLang === 'ko' ? (
+                    <>
+                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                        <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
+                        데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-500 leading-[2]">
+                        저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와 <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
+                        복잡한 데이터 속에서 새로운 <span className="font-semibold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 
+                        데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                        <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
+                        conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-500 leading-[2]">
+                        We combine <span className="text-primary font-semibold">Financial Data Science</span> and <span className="text-primary font-semibold">Business Analytics</span> to 
+                        extract new <span className="font-semibold" style={{color: '#AC0E0E'}}>finds</span> from complex data and build intelligence that supports sophisticated data-driven decision-making.
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
           </section>
@@ -270,65 +268,71 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          FOCUS AREAS
+          FOCUS AREAS - Uniform Card Style
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-48 md:py-80">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section
             ref={focusAnimation.ref}
             className={`transition-all duration-1000 ${focusAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between mb-32 md:mb-48">
-              <div className="flex items-center gap-8">
-                <Sparkles size={14} className="text-[#D6B14D]" />
-                <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                  {focusLang === 'ko' ? '연구 분야' : 'Our Focus Areas'}
-                </span>
-              </div>
-              <LangToggle lang={focusLang} setLang={setFocusLang} />
-            </div>
-
-            {/* Cards - Fixed height for consistency */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
-              {focusAreas.map((area, index) => (
-                <div
-                  key={index}
-                  className="group relative bg-gradient-to-br from-gray-50 to-white rounded-2xl p-20 md:p-28 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-500 flex flex-col h-[320px] md:h-[380px]"
-                >
-                  {/* Icon */}
-                  <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-20 shrink-0">
-                    <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                      <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
-                    </div>
-                  </div>
-
-                  {/* Text - Fixed layout */}
-                  <div className="text-center flex-1 flex flex-col">
-                    <h3 className="text-base md:text-lg font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
-                      {focusLang === 'ko' ? area.titleKo : area.title}
-                    </h3>
-                    <p 
-                      className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold flex-1 overflow-hidden"
-                      dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
-                    />
-                  </div>
+            {/* Uniform Card Container */}
+            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+              {/* Card Header - Fixed height, matching other sections */}
+              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                <div className="flex items-center gap-8">
+                  <Sparkles size={14} className="text-[#D6B14D]" />
+                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                    {focusLang === 'ko' ? '연구 분야' : 'Our Focus Areas'}
+                  </span>
                 </div>
-              ))}
+                <LangToggle lang={focusLang} setLang={setFocusLang} />
+              </div>
+
+              {/* Card Content - Fixed min-height with 3 cards inside */}
+              <div className="p-20 md:p-32 min-h-[400px] md:min-h-[450px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 h-full">
+                  {focusAreas.map((area, index) => (
+                    <div
+                      key={index}
+                      className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex flex-col"
+                    >
+                      {/* Icon */}
+                      <div className="relative w-44 h-44 md:w-52 md:h-52 mx-auto mb-16 shrink-0">
+                        <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
+                        <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                          <img src={area.image} alt={area.title} className="w-24 h-24 md:w-32 md:h-32 object-contain" />
+                        </div>
+                      </div>
+
+                      {/* Text */}
+                      <div className="text-center flex-1 flex flex-col">
+                        <h3 className="text-sm md:text-base font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
+                          {focusLang === 'ko' ? area.titleKo : area.title}
+                        </h3>
+                        <p 
+                          className="text-[11px] md:text-xs text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                          dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </section>
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          VISION SECTION - With scroll-based brightness
+          VISION SECTION - Uniform Card Style (Dark)
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-white via-[#FFFDF5] to-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-48 md:py-80">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section ref={visionRef}>
+            {/* Uniform Card Container - Dark variant */}
             <div 
-              className="relative rounded-2xl md:rounded-3xl p-24 md:p-48 lg:p-64 overflow-hidden transition-all duration-500"
+              className="rounded-2xl md:rounded-3xl border border-gray-800 shadow-sm overflow-hidden transition-all duration-500"
               style={{
                 background: `linear-gradient(135deg, 
                   rgba(17, 24, 39, ${1 - brightness * 0.3}) 0%, 
@@ -336,66 +340,62 @@ export const AboutIntroductionTemplate = () => {
                   rgba(17, 24, 39, ${1 - brightness * 0.3}) 100%)`
               }}
             >
-              {/* Animated glow effect based on scroll */}
-              <div 
-                className="absolute inset-0 transition-opacity duration-500"
-                style={{ opacity: brightness * 0.5 }}
-              >
-                <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-20" />
-                <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-20" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+              {/* Card Header - Fixed height, matching other sections */}
+              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-700/50 bg-gray-900/50">
+                <div className="flex items-center gap-8">
+                  <Sparkles size={14} className="text-[#D6B14D]" />
+                  <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
+                    {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
+                  </span>
+                </div>
+                <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
               </div>
-              
-              {/* Top accent line - brightness controlled */}
-              <div 
-                className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D6B14D] to-transparent transition-opacity duration-500"
-                style={{ opacity: 0.3 + brightness * 0.7 }}
-              />
 
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-24 md:mb-40">
-                  <div className="flex items-center gap-8">
-                    <Sparkles size={14} className="text-[#D6B14D]" />
-                    <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                      {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
-                    </span>
-                  </div>
-                  <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
+              {/* Card Content - Fixed min-height */}
+              <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
+                {/* Animated glow effect based on scroll */}
+                <div 
+                  className="absolute inset-0 transition-opacity duration-500 pointer-events-none"
+                  style={{ opacity: brightness * 0.5 }}
+                >
+                  <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-20" />
+                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-20" />
                 </div>
 
-                <Quote size={32} className="text-[#D6B14D]/20 mb-12" />
+                <div className="relative z-10">
+                  <Quote size={28} className="text-[#D6B14D]/30 mb-12" />
 
-                {/* Title with brightness effect */}
-                <h2 
-                  className="text-xl md:text-2xl lg:text-3xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
-                  style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}
-                >
-                  {visionLang === 'ko' ? (
-                    <>더 나은 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
-                  ) : (
-                    <>We illuminate the future of <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>Better Data Intelligence</span></>
-                  )}
-                </h2>
+                  {/* Title with brightness effect */}
+                  <h2 
+                    className="text-xl md:text-2xl lg:text-3xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
+                    style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}
+                  >
+                    {visionLang === 'ko' ? (
+                      <>더 나은 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
+                    ) : (
+                      <>We illuminate the future of <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>Better Data Intelligence</span></>
+                    )}
+                  </h2>
 
-                {/* Description with brightness effect */}
-                <p 
-                  className="text-xs md:text-sm leading-[2] max-w-2xl transition-all duration-500"
-                  style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
-                >
-                  {visionLang === 'ko' ? (
-                    <>
-                      우리는 <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
-                      복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
-                      전환하는 미래를 꿈꿉니다.
-                    </>
-                  ) : (
-                    <>
-                      We envision a future where <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>data intelligence</span> diminishes knowledge asymmetry, 
-                      turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>clear, accessible, and strategically valuable insights</span>.
-                    </>
-                  )}
-                </p>
+                  {/* Description with brightness effect */}
+                  <p 
+                    className="text-xs md:text-sm leading-[2] max-w-2xl transition-all duration-500"
+                    style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
+                  >
+                    {visionLang === 'ko' ? (
+                      <>
+                        우리는 <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
+                        복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
+                        전환하는 미래를 꿈꿉니다.
+                      </>
+                    ) : (
+                      <>
+                        We envision a future where <span className="font-medium" style={{ color: `rgba(255, 255, 255, ${0.7 + brightness * 0.3})` }}>data intelligence</span> diminishes knowledge asymmetry, 
+                        turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.7 + brightness * 0.3})` }}>clear, accessible, and strategically valuable insights</span>.
+                      </>
+                    )}
+                  </p>
+                </div>
               </div>
             </div>
           </section>
@@ -403,79 +403,84 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PILLARS SECTION
+          PILLARS SECTION - Uniform Card Style
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-48 md:py-80">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section
             ref={pillarsAnimation.ref}
             className={`transition-all duration-1000 ${pillarsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            {/* Header */}
-            <div className="flex items-center justify-between mb-32 md:mb-48">
-              <div className="flex items-center gap-8">
-                <Sparkles size={14} className="text-[#D6B14D]" />
-                <span className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.15em]">
-                  {pillarsLang === 'ko' ? '핵심 가치' : 'Our Pillars'}
-                </span>
+            {/* Uniform Card Container */}
+            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+              {/* Card Header - Fixed height, matching other sections */}
+              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                <div className="flex items-center gap-8">
+                  <Sparkles size={14} className="text-[#D6B14D]" />
+                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                    {pillarsLang === 'ko' ? '핵심 가치' : 'Our Pillars'}
+                  </span>
+                </div>
+                <LangToggle lang={pillarsLang} setLang={setPillarsLang} />
               </div>
-              <LangToggle lang={pillarsLang} setLang={setPillarsLang} />
-            </div>
 
-            {/* Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20">
-              {pillars.map((pillar, index) => {
-                const Icon = pillar.icon
-                return (
-                  <div key={index} className="flex flex-col">
-                    {/* Label */}
-                    <div className="text-center mb-12">
-                      <h3 className="text-lg md:text-xl font-bold text-primary">
-                        {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
-                      </h3>
-                      <div className="w-24 h-0.5 bg-primary/30 rounded-full mx-auto mt-6" />
-                    </div>
-                    
-                    {/* Card */}
-                    <div className="group bg-white rounded-xl border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-500 flex-1 p-20 md:p-24">
-                      {/* Number & Icon */}
-                      <div className="flex items-center justify-between mb-16">
-                        <div className="size-36 md:size-40 bg-gray-50 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-500">
-                          <Icon size={18} className="text-gray-400 group-hover:text-white transition-colors duration-500" />
+              {/* Card Content - Fixed min-height with 3 cards inside */}
+              <div className="p-20 md:p-32 min-h-[400px] md:min-h-[450px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
+                  {pillars.map((pillar, index) => {
+                    const Icon = pillar.icon
+                    return (
+                      <div key={index} className="flex flex-col">
+                        {/* Label */}
+                        <div className="text-center mb-12">
+                          <h3 className="text-base md:text-lg font-bold text-primary">
+                            {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
+                          </h3>
+                          <div className="w-20 h-0.5 bg-primary/30 rounded-full mx-auto mt-6" />
                         </div>
-                        <span className="text-2xl md:text-3xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors">
-                          {pillar.number}
-                        </span>
+                        
+                        {/* Inner Card */}
+                        <div className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex-1 p-16 md:p-20">
+                          {/* Number & Icon */}
+                          <div className="flex items-center justify-between mb-12">
+                            <div className="size-32 md:size-36 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-300">
+                              <Icon size={16} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+                            </div>
+                            <span className="text-xl md:text-2xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors">
+                              {pillar.number}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h4 className="text-xs md:text-sm font-bold text-gray-900 mb-6 leading-[1.5]">
+                            {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
+                          </h4>
+                          
+                          {/* Subtitle */}
+                          {pillar.subtitle && (
+                            <p className="text-[10px] font-medium italic mb-8 text-[#D6B14D]">
+                              {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
+                            </p>
+                          )}
+
+                          {/* Description */}
+                          <p 
+                            className="text-[11px] text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
+                            dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
+                          />
+                        </div>
                       </div>
-
-                      {/* Title */}
-                      <h4 className="text-sm md:text-base font-bold text-gray-900 mb-6 leading-[1.5]">
-                        {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
-                      </h4>
-                      
-                      {/* Subtitle */}
-                      {pillar.subtitle && (
-                        <p className="text-[10px] font-medium italic mb-10 text-[#D6B14D]">
-                          {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
-                        </p>
-                      )}
-
-                      {/* Description */}
-                      <p 
-                        className="text-xs text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
-                        dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
+                    )
+                  })}
+                </div>
+              </div>
             </div>
           </section>
         </div>
       </div>
 
       {/* Bottom Spacer */}
-      <div className="h-32 md:h-48" />
+      <div className="h-24 md:h-40" />
     </div>
   )
 }

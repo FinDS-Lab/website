@@ -426,8 +426,8 @@ const LayoutOrganisms = ({ children }: props) => {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
 
           {/* Copyright - simplified */}
-          <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
-            © 2026 <span style={{ color: '#D6B14D' }}>FINDS Lab</span>
+          <p className="text-[10px] md:text-[11px] text-gray-400 text-center tracking-wide">
+            © 2026 FINDS Lab. All Rights Reserved.
           </p>
         </div>
       </footer>
