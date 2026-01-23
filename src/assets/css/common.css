@@ -11,6 +11,16 @@
   font-family: "Pretendard Variable", sans-serif;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Safe area for mobile browsers (notch, etc.) */
+html {
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
 /* 복사 방지 - 전체 페이지 */
 body {
   box-sizing: border-box;
@@ -20,6 +30,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  position: relative;
 }
 
 /* 복사 허용 영역 - .select-text 클래스가 있는 요소 */

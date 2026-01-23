@@ -158,9 +158,9 @@ const LayoutOrganisms = ({ children }: props) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       {/* Header */}
-      <header className="w-full bg-white/20 border-b border-gray-100 relative z-50">
+      <header className="w-full bg-white border-b border-gray-100 sticky top-0 z-[9999]">
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-12 md:gap-16">
@@ -332,7 +332,7 @@ const LayoutOrganisms = ({ children }: props) => {
       </header>
 
       {/* Main Content */}
-      <main>{children}</main>
+      <main className="overflow-x-hidden">{children}</main>
 
       {/* Footer */}
       <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
