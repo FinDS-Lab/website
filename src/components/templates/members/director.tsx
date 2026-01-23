@@ -147,13 +147,13 @@ const researchInterests = [
     items: [
       'AI in Quantitative Finance & Asset Management',
       'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
+      'Hyperpersonalized Finance & Behavioral Decision Modeling'
     ]
   },
   {
     category: 'Business Analytics',
     items: [
-      'Data Analytics for Cross-Industry & Cross-Domain Convergences',
+      'Data Analytics for Cross-Industry & Cross-Domain Convergence',
       'Data Visualization & Transparency in Business Analytics',
       'Business Insights from Data Science Techniques'
     ]
@@ -624,19 +624,19 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">AI applications in quantitative finance</span> — including portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                      <span className="font-semibold text-gray-800">Financial Data Science</span> — including AI applications in quantitative finance, portfolio optimization, algorithmic trading, and financial time-series forecasting.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Business analytics</span> using various analytical methods—from time-series models to graph-based approaches—to uncover meaningful insights.
+                      <span className="font-semibold text-gray-800">Business Analytics</span> — using various analytical methods from time-series models to graph-based approaches to uncover meaningful insights.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Decision support systems</span> that combine optimization methods with intuitive interfaces for solving complex business problems.
+                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — combining optimization methods with intuitive interfaces for solving complex business problems.
                     </p>
                   </div>
                 </div>

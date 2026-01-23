@@ -395,39 +395,22 @@ export const AboutIntroductionTemplate = () => {
                   Our Pillars
                 </span>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 flex items-center justify-center gap-12 md:gap-20">
-                <span className="relative">
-                  Research
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-primary to-primary/30 rounded-full" />
-                </span>
-                <span className="flex items-center gap-4">
-                  <span className="size-2 rounded-full bg-primary" />
-                </span>
-                <span className="relative">
-                  Impact
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#D6B14D]/30 to-[#D6C360] rounded-full" />
-                </span>
-                <span className="flex items-center gap-4">
-                  <span className="size-2 rounded-full bg-[#D6B14D]" />
-                </span>
-                <span className="relative">
-                  Philosophy
-                  <span className="absolute -bottom-6 left-0 right-0 h-1 bg-gradient-to-r from-[#FFBAC4] to-[#FFBAC4]/30 rounded-full" />
-                </span>
-              </h2>
             </div>
 
-            {/* Cards Grid */}
+            {/* Cards Grid - 3 columns with title above each card */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24 lg:gap-32">
               {pillars.map((pillar, index) => {
                 const Icon = pillar.icon
+                const titleColors = ['from-primary to-primary/70', 'from-[#D6B14D] to-[#D6C360]', 'from-[#E8889C] to-[#FFBAC4]']
+                const underlineColors = ['bg-primary', 'bg-[#D6B14D]', 'bg-[#E8889C]']
                 return (
                   <div key={index} className="flex flex-col">
-                    {/* Title above card */}
+                    {/* Title above card - Research / Impact / Philosophy */}
                     <div className="text-center mb-16 md:mb-20">
-                      <span className="inline-block px-16 py-6 bg-[#FFF9E6] text-primary text-sm md:text-base font-bold uppercase tracking-[0.1em] rounded-full">
+                      <h3 className={`text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r ${titleColors[index]} bg-clip-text text-transparent`}>
                         {pillar.label}
-                      </span>
+                      </h3>
+                      <div className={`w-40 h-1 ${underlineColors[index]} rounded-full mx-auto mt-8`} />
                     </div>
                     
                     <div
@@ -455,9 +438,9 @@ export const AboutIntroductionTemplate = () => {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-8 md:mb-12 leading-[1.4] group-hover:text-gray-900 transition-colors">
+                        <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-8 md:mb-12 leading-[1.4] group-hover:text-gray-900 transition-colors">
                           {pillar.title}
-                        </h3>
+                        </h4>
                         
                         {/* Subtitle for Philosophy */}
                         {pillar.subtitle && (

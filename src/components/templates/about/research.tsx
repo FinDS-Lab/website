@@ -26,7 +26,7 @@ const researchAreas = [
         ko: '변동성 예측, 국면 전환 모형, 선·후행 관계 분석, 수익률 예측 등 금융 시계열 모형 연구',
       },
       {
-        en: 'Personalized Finance & Behavioral Decision Modeling',
+        en: 'Hyperpersonalized Finance & Behavioral Decision Modeling',
         ko: '초개인화 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화',
       },
     ],

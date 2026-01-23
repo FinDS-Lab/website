@@ -13,6 +13,7 @@ import {
   BarChart3,
   Copy,
   Check,
+  Calendar,
 } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import type { Publication, AuthorsData } from '@/types/data'
@@ -891,11 +892,8 @@ export const PublicationsTemplate = () => {
                                   )}
                                 </div>
 
-                                {/* Right: Date + Cite */}
+                                {/* Right: Cite button only */}
                                 <div className="flex flex-col items-start md:items-end gap-8 md:gap-12 shrink-0">
-                                  <div className="text-xs md:text-sm text-gray-500 whitespace-nowrap">
-                                    {pub.published_date}
-                                  </div>
                                   <button
                                     onClick={() => showModal({
                                       title: 'Citation Formats',
@@ -907,6 +905,14 @@ export const PublicationsTemplate = () => {
                                     Cite
                                   </button>
                                 </div>
+                              </div>
+                              
+                              {/* Bottom: Date badge */}
+                              <div className="flex items-center justify-end mt-12 pt-12 border-t border-gray-50">
+                                <span className="inline-flex items-center gap-6 px-10 py-4 bg-[#FFF9E6] border border-[#FFEB99]/50 rounded-full text-[10px] md:text-xs font-bold" style={{color: 'rgb(214,177,77)'}}>
+                                  <Calendar size={12} />
+                                  {pub.published_date}
+                                </span>
                               </div>
                             </div>
                           </div>
