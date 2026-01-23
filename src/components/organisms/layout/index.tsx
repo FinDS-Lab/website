@@ -178,15 +178,23 @@ const LayoutOrganisms = ({ children }: props) => {
       {/* Header - sticky on home page only */}
       <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`}>
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
-          {/* Logo with animated text */}
+          {/* Logo with animated text - PC only animation, mobile static */}
           <Link to="/" className="flex items-center gap-12 md:gap-16">
             <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
-            <div className="relative h-[44px] flex items-center overflow-hidden">
+            
+            {/* Mobile: Static FINDS Lab */}
+            <span className="md:hidden text-lg font-bold" style={{ color: '#D6B14D' }}>
+              FINDS Lab
+            </span>
+            
+            {/* PC: Animated text */}
+            <div className="hidden md:flex relative h-[44px] items-center overflow-hidden min-w-[200px]">
               {/* FINDS Lab */}
               <span 
-                className={`text-lg md:text-xl font-bold text-gray-900 transition-all duration-700 ease-in-out ${
+                className={`font-bold transition-all duration-700 ease-in-out text-xl ${
                   showAltText ? 'opacity-0 -translate-y-full' : 'opacity-100 translate-y-0'
                 }`}
+                style={{ color: '#D6B14D' }}
               >
                 FINDS Lab
               </span>
@@ -196,8 +204,8 @@ const LayoutOrganisms = ({ children }: props) => {
                   showAltText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
                 }`}
               >
-                <span className="text-[8px] md:text-[10px] font-semibold text-primary tracking-wide">Financial Data Intelligence</span>
-                <span className="text-[8px] md:text-[10px] font-semibold text-primary tracking-wide">& Solutions Laboratory</span>
+                <span className="text-[10px] font-semibold tracking-wide" style={{ color: '#D6B14D' }}>Financial Data Intelligence</span>
+                <span className="text-[10px] font-semibold tracking-wide" style={{ color: '#D6B14D' }}>&amp; Solutions Laboratory</span>
               </span>
             </div>
           </Link>
