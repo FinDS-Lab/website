@@ -102,7 +102,7 @@ const ContactModalContent = () => {
       <div className="flex flex-col gap-12">
         {contacts.map((contact, index) => (
           <div key={index} className="bg-gray-50 rounded-xl p-16 max-md:p-12">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-col gap-4 mb-8">
               <span className="text-base font-bold text-primary">{contact.role}</span>
               <span className="text-xs text-gray-400">{contact.description}</span>
             </div>
@@ -220,8 +220,18 @@ const LayoutOrganisms = ({ children }: props) => {
                     : 'opacity-0 -rotate-180 scale-50'
                 }`}
               >
-                <span className="text-[10px] font-semibold tracking-wide" style={{ color: '#D6B14D' }}>Financial Data Intelligence</span>
-                <span className="text-[10px] font-semibold tracking-wide" style={{ color: '#D6B14D' }}>&amp; Solutions Laboratory</span>
+                <span className="text-[10px] font-semibold tracking-wide">
+                  <span style={{ color: '#D6B14D' }}>Fin</span>
+                  <span style={{ color: '#E8D688' }}>ancial </span>
+                  <span style={{ color: '#D6B14D' }}>D</span>
+                  <span style={{ color: '#E8D688' }}>ata Intelligence</span>
+                </span>
+                <span className="text-[10px] font-semibold tracking-wide">
+                  <span style={{ color: '#E8D688' }}>&amp; </span>
+                  <span style={{ color: '#D6B14D' }}>S</span>
+                  <span style={{ color: '#E8D688' }}>olutions </span>
+                  <span className="text-gray-900">Laboratory</span>
+                </span>
               </span>
             </div>
           </Link>
@@ -395,7 +405,7 @@ const LayoutOrganisms = ({ children }: props) => {
       {/* Footer */}
       <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
         <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
-          {/* Links Row - Redesigned */}
+          {/* Links Row - Redesigned with gold hover */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-20 md:mb-24">
             {footerLinks.map((link, idx) => (
               <a
@@ -403,10 +413,11 @@ const LayoutOrganisms = ({ children }: props) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative px-12 py-6 text-[10px] md:text-[11px] text-gray-500 hover:text-primary transition-all duration-300 font-medium tracking-wide"
+                className="group relative px-12 py-6 text-[10px] md:text-[11px] text-gray-500 transition-all duration-300 font-medium tracking-wide"
+                style={{ color: undefined }}
               >
-                <span className="relative z-10">{link.name}</span>
-                <span className="absolute inset-0 bg-gray-100/0 group-hover:bg-primary/5 rounded-full transition-all duration-300" />
+                <span className="relative z-10 group-hover:text-[#D6B14D] transition-colors duration-300">{link.name}</span>
+                <span className="absolute inset-0 bg-transparent group-hover:bg-[#FFF9E6] rounded-full transition-all duration-300" />
               </a>
             ))}
           </div>
@@ -414,9 +425,9 @@ const LayoutOrganisms = ({ children }: props) => {
           {/* Divider */}
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
 
-          {/* Copyright */}
+          {/* Copyright - simplified */}
           <p className="text-[10px] md:text-[11px] text-gray-300 text-center tracking-widest uppercase">
-            © 2026 <span style={{ color: '#D6B14D' }}>FINDS Lab</span> · Gachon University
+            © 2026 <span style={{ color: '#D6B14D' }}>FINDS Lab</span>
           </p>
         </div>
       </footer>
