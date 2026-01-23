@@ -3,6 +3,15 @@
     {
       "id": 1,
       "category": "journal",
+      "name": "Measurement",
+      "publisher": "Elsevier",
+      "type": "SCIE",
+      "since": "2026-01-23",
+      "url": "https://www.sciencedirect.com/journal/measurement"
+    },
+    {
+      "id": 2,
+      "category": "journal",
       "name": "Frontiers in Nutrition",
       "publisher": "Frontiers",
       "type": "SCIE",
@@ -10,7 +19,7 @@
       "url": "https://www.frontiersin.org/journals/nutrition"
     },
     {
-      "id": 2,
+      "id": 3,
       "category": "journal",
       "name": "Journal of King Saud University Computer and Information Sciences",
       "publisher": "Springer",
@@ -19,7 +28,7 @@
       "url": "https://link.springer.com/journal/44443"
     },
     {
-      "id": 3,
+      "id": 4,
       "category": "journal",
       "name": "Discover Computing",
       "publisher": "Springer",

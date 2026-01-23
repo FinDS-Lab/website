@@ -1,6 +1,28 @@
 [
   {
     "role": "Lecturer",
+    "periods": ["2026 Spring"],
+    "school": "Gachon University",
+    "courses": [
+      {
+        "en": "Financial Investment (13994004)",
+        "ko": "금융투자 (13994004)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": ["2026 Spring"],
+    "school": "Gachon University",
+    "courses": [
+      {
+        "en": "Business Intelligence and Analytics (15122001)",
+        "ko": "비즈니스 인텔리전스와 분석 (15122001)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
     "periods": ["2025 Fall"],
     "school": "Dongduk Women's University",
     "courses": [
@@ -35,7 +57,7 @@
   {
     "role": "Lecturer",
     "periods": ["2025 Spring"],
-    "school": "Korea University Sejong Campus",
+    "school": "Korea University",
     "courses": [
       {
         "en": "Algorithmic Trading (DIGB441)",

@@ -30,7 +30,7 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사학위논문상 우수상",
+      "title": "우수상",
       "event": "제11회 경영과학 박사학위논문상",
       "organization": "한국경영과학회",
       "date": "Nov 8",
@@ -41,8 +41,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "경쟁 부문 우수상",
-      "event": "2024 한국경영과학회 추계학술대회",
+      "title": "우수상",
+      "event": "2024 한국경영과학회 추계학술대회 경쟁 부문",
       "organization": "한국경영과학회",
       "date": "Nov 8",
       "winners": [
@@ -52,8 +52,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "대학원생 논문발표 부문 장려상",
-      "event": "2024 한국데이터정보과학회 춘계학술논문발표회",
+      "title": "장려상",
+      "event": "2024 한국데이터정보과학회 춘계학술논문발표회 대학원생 논문발표 부문",
       "organization": "한국데이터정보과학회",
       "date": "May 17",
       "winners": [
@@ -87,8 +87,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "포스터 발표 부문 우수연구상",
-      "event": "2023 한국산업경영시스템학회 추계학술대회",
+      "title": "우수연구상",
+      "event": "2023 한국산업경영시스템학회 추계학술대회 포스터 발표 부문",
       "organization": "한국산업경영시스템학회",
       "date": "Nov 10",
       "winners": [
@@ -98,8 +98,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "대학원생 논문 경쟁 부문 우수상",
-      "event": "2023 한국경영과학회 추계학술대회",
+      "title": "우수상",
+      "event": "2023 한국경영과학회 추계학술대회 대학원생 논문 경쟁 부문",
       "organization": "한국경영과학회",
       "date": "Nov 10",
       "winners": [
@@ -109,8 +109,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사과정 우수논문상 장려상",
-      "event": "2023 한국데이터정보과학회 추계학술논문발표회",
+      "title": "장려상",
+      "event": "2023 한국데이터정보과학회 추계학술논문발표회 박사과정 우수논문상",
       "organization": "한국데이터정보과학회",
       "date": "Nov 3",
       "winners": [
@@ -120,8 +120,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "대학원생 논문 및 캡스톤디자인 공모전 우수상",
-      "event": "2023 한국정책학회 하계국제학술대회",
+      "title": "우수상",
+      "event": "2023 한국정책학회 하계국제학술대회 대학원생 논문 및 캡스톤디자인 공모전",
       "organization": "한국정책학회",
       "date": "Jun 15",
       "winners": [
@@ -131,8 +131,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사과정 우수논문상 장려상",
-      "event": "2023 한국데이터정보과학회 춘계학술논문발표회",
+      "title": "장려상",
+      "event": "2023 한국데이터정보과학회 춘계학술논문발표회 박사과정 우수논문상",
       "organization": "한국데이터정보과학회",
       "date": "May 12",
       "winners": [
@@ -155,8 +155,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "일반 부문 우수논문상",
-      "event": "2022 한국정보기술학회 추계종합학술대회",
+      "title": "우수논문상",
+      "event": "2022 한국정보기술학회 추계종합학술대회 일반 부문",
       "organization": "한국정보기술학회",
       "date": "Dec 2",
       "winners": [
@@ -167,7 +167,7 @@
       "type": "award",
       "icon": "🏆",
       "title": "공학교육혁신인상",
-      "event": "우수 멘토 부문",
+      "event": "1인 1멘토 평생 멘토링 프로그램 우수 멘토 부문",
       "organization": "경희대학교 공학교육혁신센터",
       "date": "Nov 24",
       "winners": [
@@ -178,7 +178,7 @@
       "type": "award",
       "icon": "🏆",
       "title": "공학교육도전인상",
-      "event": "우수 멘토 부문",
+      "event": "1인 1멘토 평생 멘토링 프로그램 우수 멘토 부문",
       "organization": "경희대학교 공학교육혁신센터",
       "date": "Nov 24",
       "winners": [
@@ -210,8 +210,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사과정 우수논문상 장려상",
-      "event": "2022 한국데이터정보과학회 추계학술논문발표회",
+      "title": "장려상",
+      "event": "2022 한국데이터정보과학회 추계학술논문발표회 박사과정 우수논문상",
       "organization": "한국데이터정보과학회",
       "date": "Nov 4",
       "winners": [
@@ -243,8 +243,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "우수연구 포스터 부문 장려상",
-      "event": "2022 한국통계학회 하계학술논문발표회",
+      "title": "장려상",
+      "event": "2022 한국통계학회 하계학술논문발표회 우수연구 포스터 부문",
       "organization": "한국통계학회",
       "date": "Jun 25",
       "winners": [
@@ -265,8 +265,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "일반 부문 우수논문상",
-      "event": "2022 한국정보기술학회 하계종합학술대회",
+      "title": "우수논문상",
+      "event": "2022 한국정보기술학회 하계종합학술대회 일반 부문",
       "organization": "한국정보기술학회",
       "date": "Jun 3",
       "winners": [
@@ -276,8 +276,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사과정 우수논문상 장려상",
-      "event": "2022 한국데이터정보과학회 춘계학술논문발표회",
+      "title": "장려상",
+      "event": "2022 한국데이터정보과학회 춘계학술논문발표회 박사과정 우수논문상",
       "organization": "한국데이터정보과학회",
       "date": "May 13",
       "winners": [
@@ -300,8 +300,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "박사과정 우수논문상 장려상",
-      "event": "2021 한국데이터정보과학회 추계학술논문발표회",
+      "title": "장려상",
+      "event": "2021 한국데이터정보과학회 추계학술논문발표회 박사과정 우수논문상",
       "organization": "한국데이터정보과학회",
       "date": "Nov 26",
       "winners": [
@@ -322,7 +322,7 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "석사논문경진대회 우수상",
+      "title": "우수상",
       "event": "제17회 대한산업공학회 석사논문경진대회",
       "organization": "대한산업공학회",
       "date": "Nov 12",
@@ -333,8 +333,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "질병관리청 자료 활용 부문 우수논문상",
-      "event": "2021 대한지역사회영양학회 추계학술대회",
+      "title": "우수논문상",
+      "event": "2021 대한지역사회영양학회 추계학술대회 질병관리청 자료 활용 부문",
       "organization": "대한지역사회영양학회",
       "date": "Oct 22",
       "winners": [
@@ -355,8 +355,8 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "KAIST 인성장학금 (공로 부문)",
-      "event": "KAIST 인성장학금 (공로 부문)",
+      "title": "KAIST 인성장학금",
+      "event": "KAIST 인성장학금 공로 부문",
       "organization": "한국과학기술원 (KAIST)",
       "date": "Aug 27",
       "winners": [
@@ -364,11 +364,11 @@
       ]
     },
     {
-      "type": "award",
-      "icon": "🏆",
-      "title": "최우수상",
-      "event": "2021 FIELD 캠프",
-      "organization": "대한산업공학회",
+      "type": "honor",
+      "icon": "🎓",
+      "title": "국가우수장학금(이공계)",
+      "event": "국가우수장학금(이공계) 대학원과정 장학생",
+      "organization": "한국장학재단",
       "date": "Aug 14",
       "winners": [
         {"name": "최인수", "level": "phd"}
@@ -460,8 +460,8 @@
     {
       "type": "award",
       "icon": "🏆",
-      "title": "학업우수부문 공과대학장상",
-      "event": "2017학년도 전기 학위수여식",
+      "title": "공과대학장상",
+      "event": "2017학년도 전기 학위수여식 학업우수부문",
       "organization": "경희대학교",
       "date": "Feb 13",
       "winners": [
@@ -496,7 +496,7 @@
       "type": "award",
       "icon": "🏆",
       "title": "최우수멘토상",
-      "event": "1인1멘토 평생멘토링 6기 우수 멘토 시상",
+      "event": "1인 1멘토 평생 멘토링 6기 우수 멘토 시상",
       "organization": "경희대학교 공학교육혁신센터",
       "date": "Nov 30",
       "winners": [
@@ -653,7 +653,7 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "국가우수장학금(이공계) 재학중우수자",
+      "title": "국가우수장학금(이공계)",
       "event": "국가우수장학금(이공계) 재학중우수자",
       "organization": "한국장학재단",
       "date": "Feb 28",
