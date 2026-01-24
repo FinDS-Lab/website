@@ -151,6 +151,14 @@ export const ArchivesNewsTemplate = () => {
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
         
         <div className="relative h-full flex flex-col items-center justify-center px-20">
+          <div className="flex items-center gap-8 mb-16 md:mb-20">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+              Archives
+            </span>
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
+          </div>
+          
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">News</h1>
           
           {/* Divider - < . > style */}

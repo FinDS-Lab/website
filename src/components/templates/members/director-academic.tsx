@@ -1423,125 +1423,125 @@ export const MembersDirectorAcademicTemplate = () => {
               {expandedSections.academicService && (
                 <div className="border-t border-gray-100">
                   {/* Editorial Board Memberships */}
-                  <div className="p-24">
+                  <div className="p-20 md:p-24">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-xs font-bold text-gray-900">Editorial Board Memberships</p>
+                      <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
                       <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
                     </div>
-                    <div className="py-16 text-center text-xs text-gray-400">Coming soon...</div>
+                    <div className="py-16 text-center text-[11px] text-gray-400">Coming soon...</div>
                   </div>
 
                   {/* Academic Memberships */}
-                  <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-xs font-bold text-gray-900">Academic Memberships</p>
+                      <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
                       <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
                     </div>
                     <div className="space-y-8">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                          <p className="text-[11px] font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                         </div>
-                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
+                        <div className="flex flex-wrap items-center gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025-06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                          <p className="text-[11px] font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
                         </div>
-                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
+                        <div className="flex flex-wrap items-center gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023-09 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                          <p className="text-[11px] font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
                         </div>
-                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
+                        <div className="flex flex-wrap items-center gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023-06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                          <p className="text-[11px] font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
                         </div>
-                        <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
+                        <div className="flex flex-wrap items-center gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2022-06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Program Committee */}
-                  <div className="p-24 border-t border-gray-100">
+                  <div className="p-20 md:p-24 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-xs font-bold text-gray-900">Program Committee</p>
+                      <p className="text-sm font-bold text-gray-900">Program Committee</p>
                       <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                     </div>
                     {committees.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-bold text-gray-900">{comm.name}</p>
+                              <p className="text-[11px] font-bold text-gray-900">{comm.name}</p>
                               {comm.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                               )}
                             </div>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold bg-[#D6B14D] text-white shrink-0 self-end md:self-center">{comm.period || comm.since}</span>
+                            <span className="px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0 self-end md:self-center">{comm.period || comm.since}</span>
                           </a>
                         ))}
                       </div>
                     ) : (
-                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                      <div className="py-8 text-[11px] text-gray-400">Coming soon...</div>
                     )}
                   </div>
 
                   {/* Session Chair */}
-                  <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center gap-8 mb-16">
-                      <p className="text-xs font-bold text-gray-900">Session Chair</p>
+                      <p className="text-sm font-bold text-gray-900">Session Chair</p>
                       <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{sessionChairs.length}</span>
                     </div>
                     {sessionChairs.length > 0 ? (
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-bold text-gray-900">{chair.name}</p>
+                              <p className="text-[11px] font-bold text-gray-900">{chair.name}</p>
                               {chair.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                               )}
                             </div>
-                            <span className="px-8 py-2 rounded text-[10px] font-bold shrink-0 self-end md:self-center" style={{backgroundColor: '#D6B14D', color: 'white'}}>{chair.period || chair.since}</span>
+                            <span className="px-8 py-2 rounded-full text-[9px] font-bold shrink-0 self-end md:self-center bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
                           </a>
                         ))}
                       </div>
                     ) : (
-                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                      <div className="py-8 text-[11px] text-gray-400">Coming soon...</div>
                     )}
                   </div>
 
                   {/* Journal Reviewer */}
-                  <div className="p-24 border-t border-gray-100">
+                  <div className="p-20 md:p-24 border-t border-gray-100">
                     <div className="flex items-center justify-between mb-16">
                       <div className="flex items-center gap-8">
-                        <p className="text-xs font-bold text-gray-900">Journal Reviewer</p>
+                        <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
                       </div>
                       {journals.length > 15 && (
-                        <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-xs text-primary font-medium hover:underline">
+                        <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-[11px] text-primary font-medium hover:underline">
                           {showAllJournals ? 'Show Less' : 'Show All'}
                         </button>
                       )}
@@ -1549,9 +1549,9 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {displayedJournals.map((journal) => (
                         <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                          <span className="text-gray-700 flex-1">{journal.name}</span>
-                          <span className={`px-8 py-2 rounded text-[10px] font-bold shrink-0 ${
+                          className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                          <span className="text-[11px] font-medium text-gray-700 flex-1">{journal.name}</span>
+                          <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                             journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                             journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
                             journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
@@ -1564,14 +1564,14 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
 
                   {/* Conference Reviewer */}
-                  <div className="p-24 bg-gray-50/50 border-t border-gray-100">
+                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
                     <div className="flex items-center justify-between mb-16">
                       <div className="flex items-center gap-8">
-                        <p className="text-xs font-bold text-gray-900">Conference Reviewer</p>
+                        <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                       </div>
                       {conferenceReviewers.length > 20 && (
-                        <button onClick={() => setShowAllConferences(!showAllConferences)} className="text-xs text-primary font-medium hover:underline">
+                        <button onClick={() => setShowAllConferences(!showAllConferences)} className="text-[11px] text-primary font-medium hover:underline">
                           {showAllConferences ? 'Show Less' : 'Show All'}
                         </button>
                       )}
@@ -1579,9 +1579,9 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6 md:gap-12">
-                          <span className="text-gray-700 break-words flex-1 min-w-0">{conf.name}</span>
-                          <span className="inline-flex items-center gap-4 px-8 py-3 rounded-md text-[9px] font-bold shrink-0 self-end md:self-center" style={{backgroundColor: 'rgba(255,186,196,0.2)', color: '#E8889C'}}>
+                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6 md:gap-12">
+                          <span className="text-[11px] font-medium text-gray-700 break-words flex-1 min-w-0">{conf.name}</span>
+                          <span className="inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 self-end md:self-center bg-white border border-gray-200 text-gray-600">
                             {conf.period || conf.since}
                           </span>
                         </a>
@@ -1702,20 +1702,20 @@ export const MembersDirectorAcademicTemplate = () => {
                             }
                             const directorRole = getDirectorRole()
                             return (
-                              <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
-                                <div className="flex items-start gap-12 md:gap-16">
-                                  {/* Left badge - Type + Status */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-72">
-                                    <div className={`w-full py-8 rounded-lg text-center bg-white border-2 shadow-sm ${typeBorderColors[project.type]}`}>
-                                      <Icon size={18} className={`inline mb-2 ${typeTextColors[project.type]}`} />
-                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
+                              <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
+                                <div className="flex items-start gap-10 md:gap-14">
+                                  {/* Left badge - Type + Status - smaller width */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-56">
+                                    <div className={`w-full py-6 rounded-lg text-center bg-white border-2 shadow-sm ${typeBorderColors[project.type]}`}>
+                                      <Icon size={14} className={`inline mb-1 ${typeTextColors[project.type]}`} />
+                                      <span className={`block text-[8px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
                                         {typeLabels[project.type]}
                                       </span>
                                     </div>
-                                    <div className={`w-full mt-4 py-4 text-center rounded-md ${
+                                    <div className={`w-full mt-3 py-3 text-center rounded-md ${
                                       isOngoing ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
                                     }`}>
-                                      <span className={`text-[9px] font-bold ${
+                                      <span className={`text-[8px] font-bold ${
                                         isOngoing ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
                                         {isOngoing ? 'ONGOING' : 'COMPLETED'}
@@ -1723,30 +1723,31 @@ export const MembersDirectorAcademicTemplate = () => {
                                     </div>
                                   </div>
                                   
-                                  {/* Mobile: Ribbon badge */}
-                                  <div className="md:hidden absolute top-0 left-0 flex items-stretch">
-                                    <div className={`px-10 py-5 rounded-br-lg shadow-sm bg-white border-2 ${typeBorderColors[project.type]}`}>
-                                      <span className={`text-[9px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
-                                        {typeLabels[project.type]}
-                                      </span>
-                                    </div>
+                                  {/* Mobile: Ribbon badge - positioned relative to item */}
+                                  <div className="md:hidden flex items-center gap-4 mb-6">
+                                    <span className={`px-6 py-3 rounded-md text-[8px] font-bold uppercase bg-white border-2 ${typeBorderColors[project.type]} ${typeTextColors[project.type]}`}>
+                                      {typeLabels[project.type]}
+                                    </span>
+                                    <span className={`px-4 py-2 rounded text-[8px] font-bold ${
+                                      isOngoing ? 'bg-[#FFF9E6] text-[#D6B14D]' : 'bg-gray-100 text-gray-400'
+                                    }`}>
+                                      {isOngoing ? 'Ongoing' : 'Done'}
+                                    </span>
                                   </div>
                                   
                                   <div className="flex-1 min-w-0">
-                                    {/* Title + Period (Desktop: Period on right) */}
-                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-8">
-                                      <div className="flex flex-wrap items-center gap-6">
-                                        <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
-                                          {directorRole}
-                                        </span>
-                                      </div>
-                                      <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                    {/* Role + Period */}
+                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-12 mb-6">
+                                      <span className={`px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                        {directorRole}
+                                      </span>
+                                      <span className="inline-flex items-center px-8 py-3 bg-white border border-gray-200 rounded-full text-[9px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
                                       </span>
                                     </div>
-                                    <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
-                                    <p className="text-[10px] md:text-xs text-gray-600 mt-4 line-clamp-2">{project.titleEn}</p>
-                                    <p className="text-[10px] md:text-xs text-gray-500 mt-4"><span className="font-bold">{project.fundingAgency}</span></p>
+                                    <p className="text-[11px] md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
+                                    <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
+                                    <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
                                   </div>
                                 </div>
                               </div>
