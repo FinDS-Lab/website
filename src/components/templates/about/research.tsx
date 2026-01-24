@@ -23,11 +23,11 @@ const researchAreas = [
       },
       {
         en: 'Financial Time-Series Modeling & Forecasting',
-        ko: '변동성 예측, 국면 전환 모형, 선·후행 관계 분석, 수익률 예측 등 금융 시계열 모형 연구',
+        ko: '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
       },
       {
         en: 'Personalized Finance & Behavioral Decision Modeling',
-        ko: '개인화 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화',
+        ko: '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정',
       },
     ],
   },
@@ -39,16 +39,16 @@ const researchAreas = [
     image: icon11,
     items: [
       {
-        en: 'Data Analytics for Cross-Industry Convergence',
-        ko: '다양한 산업과 분야 간의 융합을 위한 데이터 분석',
+        en: 'Cross-Industry Data Analytics',
+        ko: '다양한 산업 간 융합을 위한 데이터 분석',
       },
       {
         en: 'Data Visualization & Transparency',
-        ko: '복잡한 데이터를 직관적으로 표현하고 투명성을 높이는 시각화 기법',
+        ko: '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
       },
       {
-        en: 'Business Insights from Statistical and Data Science Techniques',
-        ko: '통계적 방법론과 데이터 사이언스 기법을 활용한 비즈니스 인사이트 발굴',
+        en: 'Business Insights from Statistical Methods',
+        ko: '통계적 방법론을 활용한 비즈니스 인사이트 도출',
       },
     ],
   },
@@ -61,15 +61,15 @@ const researchAreas = [
     items: [
       {
         en: 'Trustworthy Decision Systems & Optimization',
-        ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화 기법',
+        ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
       },
       {
-        en: 'Risk-Aware & User-Friendly Decision Tools',
-        ko: '경영 위험을 반영하고 사용자 친화성을 갖춘 의사결정 도구',
+        en: 'Risk-Aware Decision Support Tools',
+        ko: '경영 위험을 고려한 의사결정 지원 도구',
       },
       {
-        en: 'Iridescent Data Intelligence for Complex Problems',
-        ko: '복잡한 경영 및 투자 문제 해결을 위한 다각도의 데이터 인텔리전스',
+        en: 'Iridescent Data Intelligence',
+        ko: '다각도(iridescent) 데이터 인텔리전스를 통한 복잡한 문제 해결',
       },
     ],
   },

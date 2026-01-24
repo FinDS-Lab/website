@@ -163,25 +163,25 @@ const researchInterests = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'Investment Strategy and Risk Management'
+      'Personalized Finance & Behavioral Decisions'
     ]
   },
   {
     category: 'Business Analytics',
     categoryKo: '비즈니스 애널리틱스',
     items: [
-      'Statistical Methodologies & Data Science Techniques',
+      'Cross-Industry Data Analytics',
       'Data Visualization & Transparency',
-      'Cross-Industry Data Analytics'
+      'Business Insights from Statistical Methods'
     ]
   },
   {
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Iridescent Data Intelligence',
       'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools'
+      'Risk-Aware Decision Support Tools',
+      'Iridescent Data Intelligence'
     ]
   },
 ]

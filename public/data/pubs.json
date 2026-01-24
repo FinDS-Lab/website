@@ -1,5 +1,33 @@
 [
   {
+    "type": "journal",
+    "indexing_group": "SCIE",
+    "code_label": "J",
+    "published_date": "2026-03-01",
+    "year": 2026,
+    "title": "Navigating the Flow: Unveiling Directional Information Transfer in Commodity Markets with Transfer Entropy and Moving Window Analysis",
+    "authors": [
+      1,
+      2
+    ],
+    "author_marks": [
+      "1",
+      "*"
+    ],
+    "venue": "Complexity",
+    "doi": "10.1155/cplx/5511110",
+    "language": "English",
+    "awards": 0,
+    "citations": {
+      "apa": "Choi, I., & Kim, W. C. (2026). Navigating the flow: Unveiling directional information transfer in commodity markets with transfer entropy and moving window analysis. <em>Complexity</em>, 2026, 5511110. https://doi.org/10.1155/cplx/5511110",
+      "mla": "Choi, Insu, and Woo Chang Kim. \"Navigating the Flow: Unveiling Directional Information Transfer in Commodity Markets with Transfer Entropy and Moving Window Analysis.\" <em>Complexity</em>, vol. 2026, 2026, p. 5511110. doi:10.1155/cplx/5511110.",
+      "chicago": "Choi, Insu, and Woo Chang Kim. \"Navigating the Flow: Unveiling Directional Information Transfer in Commodity Markets with Transfer Entropy and Moving Window Analysis.\" <em>Complexity</em> 2026 (2026): 5511110. https://doi.org/10.1155/cplx/5511110.",
+      "harvard": "Choi, I & Kim, WC 2026, 'Navigating the flow: Unveiling directional information transfer in commodity markets with transfer entropy and moving window analysis', <em>Complexity</em>, vol. 2026, p. 5511110.",
+      "vancouver": "Choi I, Kim WC. Navigating the flow: Unveiling directional information transfer in commodity markets with transfer entropy and moving window analysis. Complexity. 2026;2026:5511110.",
+      "bibtex": "@article{choi2026navigating,\n  title = {{Navigating the Flow: Unveiling Directional Information Transfer in Commodity Markets with Transfer Entropy and Moving Window Analysis}},\n  author = {Choi, I. and Kim, W. C.},\n  journal = {Complexity},\n  volume = {2026},\n  pages = {5511110},\n  year = {2026},\n  publisher = {Wiley},\n  doi = {10.1155/cplx/5511110}\n}"
+    }
+  },
+  {
     "type": "book",
     "indexing_group": "Book",
     "code_label": "B",

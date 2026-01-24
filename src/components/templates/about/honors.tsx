@@ -343,7 +343,7 @@ export const AboutHonorsTemplate = () => {
                                 {item.winners.map((winner, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-8 md:px-[10px] py-3 md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[12px] text-gray-600"
+                                    className="px-8 md:px-[10px] py-3 md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[12px] text-gray-700 font-semibold"
                                   >
                                     {winner.name}
                                   </span>
