@@ -628,7 +628,7 @@ export const MembersDirectorTemplate = () => {
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an Assistant Professor at Gachon University and the Director of FINDS Lab, with research interests spanning{' '}
+                  I am an <span className="font-bold text-gray-900">Assistant Professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">Director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
                   <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.

@@ -188,20 +188,29 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           HERO BANNER
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative w-full h-[260px] md:h-[380px] overflow-hidden">
+      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
         
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-medium tracking-[0.3em] uppercase mb-12">
-            About FINDS
-          </span>
-          <h1 className="text-3xl md:text-5xl font-bold text-white text-center tracking-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Introduction
           </h1>
+          
+          {/* Divider - < . > style */}
+          <div className="flex items-center justify-center gap-8 md:gap-12">
+            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
+            <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
+            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
+          </div>
         </div>
       </div>
 
@@ -240,8 +249,8 @@ export const AboutIntroductionTemplate = () => {
                       <div className="p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
                         {/* Title with Quote */}
                         <div className="text-center mb-32 md:mb-40">
-                          <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
-                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
+                          <span className="text-4xl md:text-5xl font-serif" style={{ color: 'rgba(214, 177, 77, 0.5)' }}>"</span>
+                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16 mt-8">
                             {missionLang === 'ko' ? (
                               <><span className="text-[#D6B14D]">데이터로 밝히는</span> 금융 혁신의 미래</>
                             ) : (
@@ -284,7 +293,7 @@ export const AboutIntroductionTemplate = () => {
                         </div>
                         
                         {/* Closing Quote */}
-                        <Quote size={32} className="mx-auto mt-20 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
+                        <span className="text-4xl md:text-5xl font-serif mx-auto mt-20" style={{ color: 'rgba(214, 177, 77, 0.5)' }}>"</span>
                       </div>
                     </div>
                   </div>
@@ -335,8 +344,8 @@ export const AboutIntroductionTemplate = () => {
                         <div className="relative z-10">
                           {/* Title with Quote */}
                           <div className="text-center mb-32 md:mb-40">
-                            <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
+                            <span className="text-4xl md:text-5xl font-serif" style={{ color: 'rgba(214, 177, 77, 0.4)' }}>"</span>
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16 mt-8" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                               {visionLang === 'ko' ? (
                                 <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
                               ) : (
@@ -362,7 +371,7 @@ export const AboutIntroductionTemplate = () => {
                           </div>
                           
                           {/* Closing Quote */}
-                          <Quote size={32} className="mx-auto mt-20 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
+                          <span className="text-4xl md:text-5xl font-serif mx-auto block text-center mt-20" style={{ color: 'rgba(214, 177, 77, 0.4)' }}>"</span>
                         </div>
                       </div>
                     </div>

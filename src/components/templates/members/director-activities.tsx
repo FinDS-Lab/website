@@ -909,10 +909,10 @@ const CollaborationNetwork = memo(() => {
                     <div className="flex items-center justify-between gap-12">
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-gray-900 truncate">
-                          {node.name}
+                          {node.nameKo || node.name}
                         </p>
                         {node.nameKo && (
-                          <p className="text-xs text-gray-500">{node.nameKo}</p>
+                          <p className="text-xs text-gray-500">{node.name}</p>
                         )}
                       </div>
                       {selectedNode && (

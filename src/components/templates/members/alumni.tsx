@@ -199,10 +199,6 @@ export const MembersAlumniTemplate = () => {
         <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
 
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
-            Members
-          </span>
-          
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Alumni
           </h1>

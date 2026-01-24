@@ -126,10 +126,6 @@ export const AboutResearchTemplate = () => {
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase mb-16 md:mb-20">
-            About FINDS
-          </span>
-          
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Research Areas
           </h1>
@@ -188,8 +184,8 @@ export const AboutResearchTemplate = () => {
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해<br className="hidden md:block" />
-            경영과 산업현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
+            <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해<br className="hidden md:block" />
+            경영현장과 산업현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>

@@ -1618,16 +1618,37 @@ export const MembersDirectorAcademicTemplate = () => {
 
                 {/* Year-grouped projects */}
                 <div className="space-y-12">
-                  {projectYears.map(year => (
+                  {projectYears.map(year => {
+                    const yearProjects = projectsByYear[year]
+                    const govCount = yearProjects.filter(p => p.type === 'government').length
+                    const indCount = yearProjects.filter(p => p.type === 'industry').length
+                    const instCount = yearProjects.filter(p => p.type === 'institution').length
+                    const acadCount = yearProjects.filter(p => p.type === 'academic').length
+                    const currentYear = new Date().getFullYear()
+                    const isCurrentYear = Number(year) === currentYear
+                    
+                    return (
                     <div key={year} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
                       <button
                         onClick={() => toggleProjectYear(year)}
-                        className="w-full flex items-center justify-between p-16 hover:bg-gray-50 transition-colors"
+                        className={`w-full flex items-center justify-between p-16 transition-colors ${
+                          isCurrentYear ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' : 'hover:bg-gray-50'
+                        }`}
                       >
-                        <div className="flex items-center gap-8">
-                          <span className="text-sm md:text-base font-bold text-gray-900">{year}</span>
-                          <span className="px-8 py-2 bg-primary/10 text-primary text-[10px] font-bold rounded-full">
-                            {projectsByYear[year].length} {projectsByYear[year].length === 1 ? 'Project' : 'Projects'}
+                        <div className="flex items-center gap-8 flex-wrap">
+                          <span className={`text-sm md:text-base font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
+                          {isCurrentYear && (
+                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
+                          )}
+                          {/* White badge with type counts */}
+                          <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
+                            {govCount > 0 && <><span className="font-bold text-primary">{govCount}</span><span className="text-gray-500"> Gov</span></>}
+                            {govCount > 0 && (indCount > 0 || instCount > 0 || acadCount > 0) && <span className="text-gray-300"> · </span>}
+                            {indCount > 0 && <><span className="font-bold text-[#D6B14D]">{indCount}</span><span className="text-gray-500"> Ind</span></>}
+                            {indCount > 0 && (instCount > 0 || acadCount > 0) && <span className="text-gray-300"> · </span>}
+                            {instCount > 0 && <><span className="font-bold text-[#E8889C]">{instCount}</span><span className="text-gray-500"> Inst</span></>}
+                            {instCount > 0 && acadCount > 0 && <span className="text-gray-300"> · </span>}
+                            {acadCount > 0 && <><span className="font-bold text-gray-600">{acadCount}</span><span className="text-gray-500"> Acad</span></>}
                           </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
@@ -1669,13 +1690,15 @@ export const MembersDirectorAcademicTemplate = () => {
                                     <Icon size={18} />
                                   </div>
                                   <div className="flex-1 min-w-0">
-                                    <div className="flex flex-wrap items-center gap-6 mb-8">
-                                      <span className="px-8 py-2 bg-gray-100 text-gray-600 text-[9px] md:text-[10px] font-bold rounded-full flex items-center gap-4">
-                                        <Calendar size={10} />
+                                    {/* Period badge on right */}
+                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-8">
+                                      <div className="flex flex-wrap items-center gap-6">
+                                        <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                          {directorRole}
+                                        </span>
+                                      </div>
+                                      <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
-                                      </span>
-                                      <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
-                                        {directorRole}
                                       </span>
                                     </div>
                                     <p className="text-xs md:text-sm font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
@@ -1689,7 +1712,8 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                       )}
                     </div>
-                  ))}
+                    )
+                  })}
                 </div>
                 </div>
                 )}
