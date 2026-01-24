@@ -418,7 +418,7 @@ export const MembersCurrentTemplate = () => {
                               </a>
                             )}
                             <Link
-                              to={`/members/${member.id}`}
+                              to={`/members/detail/${member.id}`}
                               className="ml-auto flex items-center gap-4 text-xs md:text-[13px] font-medium hover:text-primary transition-colors"
                             >
                               View Profile
