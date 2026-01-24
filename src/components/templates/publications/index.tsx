@@ -722,7 +722,7 @@ export const PublicationsTemplate = () => {
                               <div className="md:hidden absolute top-0 left-0 flex items-stretch">
                                 {/* Type Badge - Main ribbon */}
                                 <div className={`${typeColor} px-12 py-6 rounded-br-lg shadow-sm`}>
-                                  <span className="text-[10px] font-bold text-white uppercase tracking-wide">
+                                  <span className="text-[10px] font-bold text-white tracking-wide">
                                     {typeLabel}
                                   </span>
                                 </div>
@@ -752,7 +752,7 @@ export const PublicationsTemplate = () => {
                                     }}
                                   >
                                     <span 
-                                      className="text-[9px] font-bold uppercase tracking-wide"
+                                      className="text-[9px] font-bold tracking-wide"
                                       style={{
                                         color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
                                           pub.indexing_group === 'ESCI' ? '#C9A833' :
@@ -775,7 +775,7 @@ export const PublicationsTemplate = () => {
                                     }}
                                   >
                                     <span 
-                                      className="text-[9px] font-bold uppercase tracking-wide"
+                                      className="text-[9px] font-bold tracking-wide"
                                       style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
                                     >
                                       {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
@@ -799,7 +799,7 @@ export const PublicationsTemplate = () => {
                                         pub.type === 'book' ? 'bg-[#E8D688]' :
                                         pub.type === 'report' ? 'bg-[#FFBAC4]' : 'bg-gray-500'
                                       }`}>
-                                        <span className={`text-[9px] font-bold uppercase tracking-wide ${
+                                        <span className={`text-[9px] font-bold tracking-wide ${
                                           pub.type === 'book' || pub.type === 'report' ? 'text-gray-800' : 'text-white'
                                         }`}>
                                           {typeLabel}
@@ -822,10 +822,10 @@ export const PublicationsTemplate = () => {
                                       <div className={`w-full mt-4 py-4 text-center rounded-md ${
                                         pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
                                       }`}>
-                                        <span className="text-[9px] font-bold uppercase"
+                                        <span className="text-[9px] font-bold"
                                           style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
                                         >
-                                          {pub.presentation_type === 'oral' ? 'ORAL' : 'POSTER'}
+                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                         </span>
                                       </div>
                                     )}
@@ -847,7 +847,7 @@ export const PublicationsTemplate = () => {
                                         }}
                                       >
                                         <span 
-                                          className="text-[9px] font-bold uppercase"
+                                          className="text-[9px] font-bold"
                                           style={{
                                             color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
                                               pub.indexing_group === 'ESCI' ? '#C9A833' :

@@ -527,19 +527,19 @@ export const ProjectsTemplate = () => {
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
-                          {/* White badge with counts - PC: Full name */}
+                          {/* White badge with counts - PC: Full name with "Project" */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500">&nbsp;Government</span>
+                            <span className="text-gray-500">&nbsp;Government {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500">&nbsp;Industry</span>
+                            <span className="text-gray-500">&nbsp;Industry {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Institution</span>
+                            <span className="text-gray-500">&nbsp;Institution {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Research</span>
+                            <span className="text-gray-500">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 2-line format with abbreviations */}
                           <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
@@ -609,7 +609,7 @@ export const ProjectsTemplate = () => {
                                         project.type === 'institution' ? 'text-[#B8962D]' :
                                         project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-500'
                                       }`} />
-                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${
+                                      <span className={`block text-[10px] font-bold tracking-wide ${
                                         project.type === 'government' ? 'text-[#D6B14D]' :
                                         project.type === 'industry' ? 'text-primary' :
                                         project.type === 'institution' ? 'text-[#B8962D]' :
@@ -624,7 +624,7 @@ export const ProjectsTemplate = () => {
                                       <span className={`text-[9px] font-bold ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
-                                        {status === 'ongoing' ? 'ONGOING' : 'COMPLETED'}
+                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>
                                     </div>
                                   </div>
@@ -637,10 +637,10 @@ export const ProjectsTemplate = () => {
                                       project.type === 'institution' ? 'bg-[#E8D688]' :
                                       project.type === 'academic' ? 'bg-[#FFBAC4]' : 'bg-gray-500'
                                     }`}>
-                                      <span className={`text-[10px] font-bold uppercase tracking-wide ${
+                                      <span className={`text-[10px] font-bold tracking-wide ${
                                         project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                       }`}>
-                                        {config?.labelShort || config?.label || project.type}
+                                        {config?.label || project.type}
                                       </span>
                                     </div>
                                     <div className={`px-10 py-6 rounded-br-lg -ml-1 border-b border-r ${

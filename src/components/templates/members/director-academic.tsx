@@ -1728,7 +1728,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
                                 {/* Mobile: Top ribbon badges */}
                                 <div className="md:hidden flex items-center gap-4 mb-10">
-                                  <span className={`px-8 py-4 rounded-md text-[8px] font-bold uppercase ${typeBgColors[project.type]} text-white`}>
+                                  <span className={`px-8 py-4 rounded-md text-[8px] font-bold ${typeBgColors[project.type]} text-white`}>
                                     {typeLabels[project.type]}
                                   </span>
                                   <span className={`px-6 py-3 rounded text-[8px] font-bold ${
@@ -1743,7 +1743,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-60">
                                     <div className={`w-full py-5 rounded-lg text-center ${typeBgColors[project.type]} shadow-sm`}>
                                       <Icon size={12} className="inline mb-1 text-white" />
-                                      <span className="block text-[8px] font-bold uppercase tracking-wide text-white">
+                                      <span className="block text-[8px] font-bold tracking-wide text-white">
                                         {typeLabels[project.type]}
                                       </span>
                                     </div>
@@ -1753,7 +1753,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                       <span className={`text-[7px] font-bold ${
                                         isOngoing ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
-                                        {isOngoing ? 'ONGOING' : 'COMPLETED'}
+                                        {isOngoing ? 'Ongoing' : 'Completed'}
                                       </span>
                                     </div>
                                   </div>
