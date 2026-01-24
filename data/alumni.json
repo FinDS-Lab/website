@@ -18,7 +18,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "고현우",
@@ -37,7 +37,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "김강현",
@@ -56,7 +56,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "김다인",
@@ -75,7 +75,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "김연후",
@@ -94,7 +94,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "김재엽",
@@ -113,7 +113,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "박성수",
@@ -133,7 +133,10 @@
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업경영공학부\n고려대학교",
       "currentPositionEn": "M.S. Student\nIndustrial and Management Engineering\nKorea University",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality",
+        "Fundamental-Driven Sub-Universe Construction for Portfolio Optimization: Evidence from the Korean Equity Market"
+      ]
     },
     {
       "name": "신경수",
@@ -152,7 +155,9 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
+      ]
     },
     {
       "name": "신정윤",
@@ -171,7 +176,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "심은",
@@ -190,7 +195,9 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Housing–fertility interdependencies in South Korea: A dynamic analysis across regional disparities and temporal shifts"
+      ]
     },
     {
       "name": "양동훈",
@@ -209,7 +216,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "이성준",
@@ -228,7 +235,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "이수인",
@@ -248,7 +255,9 @@
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업공학과\n서울대학교",
       "currentPositionEn": "M.S. Student\nIndustrial Engineering\nSeoul National University",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
+      ]
     },
     {
       "name": "이유섭",
@@ -267,7 +276,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "이채은",
@@ -286,7 +295,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "이태경",
@@ -306,7 +315,13 @@
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n기술경영전문대학원\n고려대학교",
       "currentPositionEn": "M.S. Student\nGraduate School of Technology Management\nKorea University",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality",
+        "Symmetry-Aware Graph Neural Approaches for Data-Efficient Return Prediction in International Financial Market Indices",
+        "Stochastic Refinement of Correlation Structures: A Score-Based Generative Approach to Tail Risk Mitigation in Multi-Asset Portfolios",
+        "Fundamental-Driven Sub-Universe Construction for Portfolio Optimization: Evidence from the Korean Equity Market",
+        "Dynamic Risk Budgeting via Large Language Models: A Context-Aware Framework for Adaptive Portfolio Allocation"
+      ]
     },
     {
       "name": "임소영",
@@ -325,7 +340,10 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Dynamic Risk Budgeting via Large Language Models: A Context-Aware Framework for Adaptive Portfolio Allocation",
+        "Metric-Based Technical Indicators for Yield Forecasting"
+      ]
     },
     {
       "name": "정유진",
@@ -345,7 +363,9 @@
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업경영공학과\n경희대학교",
       "currentPositionEn": "M.S. Student\nIndustrial and Management Systems Engineering\nKyung Hee University",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Personalized Travel Policy Recommendation System Using Individual Demand Function Modeling: A Decision Support Framework for Tourism Policy Optimization"
+      ]
     },
     {
       "name": "조윤수",
@@ -364,7 +384,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "최문혁",
@@ -383,7 +403,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     },
     {
       "name": "최진우",
@@ -402,7 +422,9 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": [
+        "Do Forecasting Models Beat Buy-and-Hold? An Empirical Investigation of Sector ETF Trading Strategies Using Machine Learning and LPPL Heuristics"
+      ]
     },
     {
       "name": "하승민",
@@ -421,7 +443,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
+      "projects": []
     }
   ],
   "sinceDate": "2025.06.14"
