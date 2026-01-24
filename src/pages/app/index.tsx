@@ -189,7 +189,7 @@ const GlobalMusicPlayer = memo(() => {
         
         {/* Compact UI */}
         {!hidePlayer && !isMinimized && isCompact && (
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8 w-[320px]">
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8 w-[280px]">
             <div className="flex items-center gap-6 flex-1 min-w-0">
               <div className="relative shrink-0">
                 <Music size={16} style={{color: 'rgb(214,177,77)'}} />
