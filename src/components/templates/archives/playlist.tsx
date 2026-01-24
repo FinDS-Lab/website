@@ -136,42 +136,32 @@ export const ArchivesPlaylistTemplate = () => {
                 {/* Thumbnail */}
                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
                   {item.thumbnail ? (
-                    <>
-                      <img 
-                        src={item.thumbnail} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement
-                          if (target.src.includes('maxresdefault')) {
-                            target.src = target.src.replace('maxresdefault', 'hqdefault')
-                          }
-                        }}
-                      />
-                      {/* Play overlay - larger button */}
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                        <div className="w-48 h-48 md:w-56 md:h-56 bg-white/95 rounded-full flex items-center justify-center shadow-xl transform group-hover:scale-110 transition-transform">
-                          <Play className="w-20 h-20 md:w-24 md:h-24 text-primary ml-2" fill="currentColor" />
-                        </div>
-                      </div>
-                    </>
+                    <img 
+                      src={item.thumbnail} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement
+                        if (target.src.includes('maxresdefault')) {
+                          target.src = target.src.replace('maxresdefault', 'hqdefault')
+                        }
+                      }}
+                    />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                      <div className="w-40 h-40 md:w-48 md:h-48 bg-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                        <Play className="w-16 h-16 md:w-20 md:h-20 text-white ml-2" fill="white" />
-                      </div>
+                      <Music2 className="w-24 h-24 text-primary/30" />
                     </div>
                   )}
                 </div>
                 
-                {/* Info */}
+                {/* Info - 아티스트 먼저, 제목 아래 */}
                 <div className="p-12 md:p-14">
-                  <h3 className="text-xs md:text-sm font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-[10px] md:text-xs text-gray-500 truncate">
+                  <p className="text-[10px] md:text-xs text-gray-500 mb-2 truncate">
                     {item.artist}
                   </p>
+                  <h3 className="text-xs md:text-sm font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                    {item.title}
+                  </h3>
                 </div>
               </div>
             ))}
