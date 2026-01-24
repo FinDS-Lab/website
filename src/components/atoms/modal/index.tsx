@@ -43,19 +43,24 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
           return (
             <div
               key={index}
-              className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-20 animate-fadeIn"
+              className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-16 animate-fadeIn"
               style={{zIndex}}
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
               ref={isTopModal ? modalRef : undefined}
             >
               <div
-                className="w-full max-h-[80vh] bg-white rounded shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[10vh_auto_auto_auto] animate-slideYMargin"
+                className="w-full max-h-[85vh] bg-white rounded-xl shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[5vh_auto_auto_auto] animate-slideYMargin"
                 style={{maxWidth: modal.maxWidth || '900px'}}
               >
-                <div className="flex absolute right-0 top-[-30px]">
-                  <X onClick={closeModal} className={'text-white'}/>
-                </div>
+                {/* X button inside modal for mobile visibility */}
+                <button 
+                  onClick={closeModal} 
+                  className="absolute right-12 top-12 z-10 w-32 h-32 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X size={18} className="text-gray-600"/>
+                </button>
 
                 {
                   (title || modal.title) &&

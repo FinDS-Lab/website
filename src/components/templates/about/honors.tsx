@@ -321,18 +321,23 @@ export const AboutHonorsTemplate = () => {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm md:text-md font-semibold text-gray-800 mb-4 md:mb-[4px]">
-                              {item.title}
-                            </h4>
-                            <p className="text-xs md:text-[14px] text-gray-600 mb-4 md:mb-[4px]">{item.event}</p>
-                            {/* Organization + Date on same line */}
-                            <div className="flex flex-wrap items-center gap-8 mb-4">
-                              <p className="text-[11px] md:text-[13px] text-gray-500">{item.organization}</p>
-                              <span className="text-gray-300">|</span>
-                              <p className="text-[10px] md:text-[12px] text-gray-400 font-medium">
+                            {/* Title with date badge at top-right on PC */}
+                            <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12 mb-4 md:mb-[4px]">
+                              <h4 className="text-sm md:text-md font-semibold text-gray-800 flex-1">
+                                {item.title}
+                              </h4>
+                              {/* Date badge - top right on PC, same style as Publications */}
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
                                 {year}-{formatDate(item.date)}
-                              </p>
+                              </span>
                             </div>
+                            <p className="text-xs md:text-[14px] text-gray-600 mb-4 md:mb-[4px]">{item.event}</p>
+                            {/* Organization */}
+                            <p className="text-[11px] md:text-[13px] text-gray-500 mb-4">{item.organization}</p>
+                            {/* Mobile: Date below organization */}
+                            <p className="md:hidden text-[10px] text-gray-400 font-medium mb-4">
+                              {year}-{formatDate(item.date)}
+                            </p>
                             {item.winners && item.winners.length > 0 && (
                               <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mt-8 md:mt-[8px]">
                                 {item.winners.map((winner, idx) => (

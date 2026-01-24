@@ -1,7 +1,6 @@
 import { memo, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Play, Home, Music2, User } from 'lucide-react'
-import { useStoreModal } from '@/store/modal'
+import { Home, Music2, X, Minimize2, Maximize2 } from 'lucide-react'
 
 interface PlaylistItem {
   artist: string;
@@ -19,34 +18,11 @@ interface RawPlaylistItem {
   date?: string;
 }
 
-// YouTube 임베드 모달 컴포넌트
-const YouTubePlayerModal = ({ videoId, artist, title }: { videoId: string; artist: string; title: string }) => {
-  return (
-    <div className="relative">
-      {/* Header */}
-      <div className="bg-gray-900 px-16 md:px-20 py-12 md:py-14">
-        <p className="text-gray-400 text-[10px] md:text-xs mb-2">{artist}</p>
-        <h2 className="text-white font-semibold text-sm md:text-base truncate">{title}</h2>
-      </div>
-      
-      {/* YouTube Embed - privacy-enhanced mode */}
-      <div className="aspect-video bg-black">
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-          title={title}
-          className="w-full h-full"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-        />
-      </div>
-    </div>
-  )
-}
-
 export const ArchivesPlaylistTemplate = () => {
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
   const [loading, setLoading] = useState(true)
-  const { showModal } = useStoreModal()
+  const [currentVideo, setCurrentVideo] = useState<PlaylistItem | null>(null)
+  const [isMinimized, setIsMinimized] = useState(false)
 
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -84,11 +60,14 @@ export const ArchivesPlaylistTemplate = () => {
 
   const handlePlayVideo = (item: PlaylistItem) => {
     if (item.videoId) {
-      showModal({
-        maxWidth: '800px',
-        children: <YouTubePlayerModal videoId={item.videoId} artist={item.artist} title={item.title} />
-      })
+      setCurrentVideo(item)
+      setIsMinimized(false)
     }
+  }
+
+  const handleClosePlayer = () => {
+    setCurrentVideo(null)
+    setIsMinimized(false)
   }
 
   return (
@@ -120,7 +99,7 @@ export const ArchivesPlaylistTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className="flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24">
+      <div className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}>
         {loading ? (
           <div className="flex items-center justify-center py-48">
             <div className="w-24 h-24 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
@@ -131,7 +110,11 @@ export const ArchivesPlaylistTemplate = () => {
               <div
                 key={index}
                 onClick={() => handlePlayVideo(item)}
-                className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-lg hover:border-primary/20 transition-all group cursor-pointer"
+                className={`bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-all group cursor-pointer ${
+                  currentVideo?.videoId === item.videoId 
+                    ? 'border-primary ring-2 ring-primary/20' 
+                    : 'border-gray-100 hover:border-primary/20'
+                }`}
               >
                 {/* Thumbnail */}
                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
@@ -150,6 +133,17 @@ export const ArchivesPlaylistTemplate = () => {
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
                       <Music2 className="w-24 h-24 text-primary/30" />
+                    </div>
+                  )}
+                  {/* Now Playing indicator */}
+                  {currentVideo?.videoId === item.videoId && (
+                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
+                        <div className="w-2 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                        <div className="w-2 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                        <div className="w-2 h-10 bg-white rounded-full animate-pulse" style={{ animationDelay: '450ms' }} />
+                      </div>
                     </div>
                   )}
                 </div>
@@ -180,6 +174,62 @@ export const ArchivesPlaylistTemplate = () => {
           </div>
         )}
       </div>
+
+      {/* Fixed Bottom Player */}
+      {currentVideo && (
+        <div 
+          className={`fixed bottom-0 left-0 right-0 bg-gray-900 shadow-2xl z-50 transition-all duration-300 ${
+            isMinimized ? 'h-[60px]' : 'h-auto'
+          }`}
+        >
+          {/* Player Header - Always visible */}
+          <div className="flex items-center justify-between px-12 md:px-20 py-8 border-b border-gray-700/50">
+            <div className="flex items-center gap-12 flex-1 min-w-0">
+              {/* Thumbnail - only in minimized mode */}
+              {isMinimized && (
+                <img 
+                  src={currentVideo.thumbnail?.replace('maxresdefault', 'default')} 
+                  alt={currentVideo.title}
+                  className="w-40 h-40 object-cover rounded-md"
+                />
+              )}
+              <div className="min-w-0">
+                <p className="text-gray-400 text-[10px] md:text-xs truncate">{currentVideo.artist}</p>
+                <h2 className="text-white font-semibold text-xs md:text-sm truncate">{currentVideo.title}</h2>
+              </div>
+            </div>
+            
+            {/* Controls */}
+            <div className="flex items-center gap-8">
+              <button
+                onClick={() => setIsMinimized(!isMinimized)}
+                className="p-8 text-gray-400 hover:text-white transition-colors"
+                title={isMinimized ? "확대" : "최소화"}
+              >
+                {isMinimized ? <Maximize2 size={18} /> : <Minimize2 size={18} />}
+              </button>
+              <button
+                onClick={handleClosePlayer}
+                className="p-8 text-gray-400 hover:text-red-400 transition-colors"
+                title="닫기"
+              >
+                <X size={18} />
+              </button>
+            </div>
+          </div>
+          
+          {/* YouTube Embed - Hidden when minimized but keeps playing */}
+          <div className={`${isMinimized ? 'h-0 overflow-hidden' : 'aspect-video max-h-[50vh]'}`}>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${currentVideo.videoId}?autoplay=1&rel=0&modestbranding=1`}
+              title={currentVideo.title}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -159,26 +159,29 @@ const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', coun
 const researchInterests = [
   {
     category: 'Financial Data Science',
+    categoryKo: '금융 데이터 사이언스',
     items: [
-      'Complex Financial Market Data Analysis',
-      'Pattern Discovery and Valuable Insights',
+      'Portfolio Optimization & Algorithmic Trading',
+      'Financial Time-Series Modeling & Forecasting',
       'Investment Strategy and Risk Management'
     ]
   },
   {
     category: 'Business Analytics',
+    categoryKo: '비즈니스 애널리틱스',
     items: [
-      'Data-Driven Statistical Methodologies',
-      'Machine Learning for Business Problems',
-      'Actionable Strategies and Optimal Solutions'
+      'Statistical Methodologies & Data Science Techniques',
+      'Data Visualization & Transparency',
+      'Cross-Industry Data Analytics'
     ]
   },
   {
     category: 'Data-Informed Decision Making',
+    categoryKo: '데이터 기반 의사결정',
     items: [
-      'Objective Data Intelligence',
-      'Clear and Rational Decision Support',
-      'Risk Minimization and Success Optimization'
+      'Iridescent Data Intelligence',
+      'Trustworthy Decision Systems & Optimization',
+      'Risk-Aware Decision Support Tools'
     ]
   },
 ]
