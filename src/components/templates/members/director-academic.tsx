@@ -791,7 +791,7 @@ const CollaborationNetwork = memo(() => {
                     fontWeight={node.isDirector ? 700 : 600}
                     className="pointer-events-none select-none"
                   >
-                    {node.name}
+                    {node.nameKo || node.name}
                   </text>
                 </g>
               )
@@ -1640,15 +1640,19 @@ export const MembersDirectorAcademicTemplate = () => {
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
                           )}
-                          {/* White badge with type counts */}
+                          {/* White badge with type counts - "N Type. Project(s)" format */}
                           <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
-                            {govCount > 0 && <><span className="font-bold text-primary">{govCount}</span><span className="text-gray-500"> Gov</span></>}
-                            {govCount > 0 && (indCount > 0 || instCount > 0 || acadCount > 0) && <span className="text-gray-300"> · </span>}
-                            {indCount > 0 && <><span className="font-bold text-[#D6B14D]">{indCount}</span><span className="text-gray-500"> Ind</span></>}
-                            {indCount > 0 && (instCount > 0 || acadCount > 0) && <span className="text-gray-300"> · </span>}
-                            {instCount > 0 && <><span className="font-bold text-[#E8889C]">{instCount}</span><span className="text-gray-500"> Inst</span></>}
-                            {instCount > 0 && acadCount > 0 && <span className="text-gray-300"> · </span>}
-                            {acadCount > 0 && <><span className="font-bold text-gray-600">{acadCount}</span><span className="text-gray-500"> Acad</span></>}
+                            <span className="font-bold text-primary">{govCount}</span>
+                            <span className="text-gray-500"> Gov. {govCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold text-[#D6B14D]">{indCount}</span>
+                            <span className="text-gray-500"> Ind. {indCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold text-[#E8889C]">{instCount}</span>
+                            <span className="text-gray-500"> Inst. {instCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-300"> · </span>
+                            <span className="font-bold text-gray-600">{acadCount}</span>
+                            <span className="text-gray-500"> Acad. {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
@@ -1662,16 +1666,30 @@ export const MembersDirectorAcademicTemplate = () => {
                               institution: GraduationCap,
                               academic: Briefcase,
                             }
-                            const typeColors = {
-                              government: 'bg-primary text-white',
-                              industry: 'bg-[#D6B14D] text-white',
-                              institution: 'bg-[#FFBAC4] text-white',
-                              academic: 'bg-gray-700 text-white',
+                            const typeLabels: Record<string, string> = {
+                              government: 'Government',
+                              industry: 'Industry',
+                              institution: 'Institution',
+                              academic: 'Research',
+                            }
+                            const typeBorderColors: Record<string, string> = {
+                              government: 'border-[#D6B14D]',
+                              industry: 'border-primary',
+                              institution: 'border-[#E8D688]',
+                              academic: 'border-[#FFBAC4]',
+                            }
+                            const typeTextColors: Record<string, string> = {
+                              government: 'text-[#D6B14D]',
+                              industry: 'text-primary',
+                              institution: 'text-[#B8962D]',
+                              academic: 'text-[#E8889C]',
                             }
                             const Icon = typeIcons[project.type]
+                            // Determine status
+                            const endDate = project.period.split('–')[1]?.trim()
+                            const isOngoing = endDate === 'Present' || endDate === '현재'
                             // Determine director's role
                             const getDirectorRole = () => {
-                              // Check if 최인수 is the principalInvestigator
                               if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
                               if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
                               if (project.roles.researchers?.includes('최인수')) return 'Researcher'
@@ -1686,11 +1704,36 @@ export const MembersDirectorAcademicTemplate = () => {
                             return (
                               <div key={index} className="p-16 hover:bg-gray-50/50 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
-                                  <div className={`size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 ${typeColors[project.type]}`}>
-                                    <Icon size={18} />
+                                  {/* Left badge - Type + Status */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-72">
+                                    <div className={`w-full py-8 rounded-lg text-center bg-white border-2 shadow-sm ${typeBorderColors[project.type]}`}>
+                                      <Icon size={18} className={`inline mb-2 ${typeTextColors[project.type]}`} />
+                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
+                                        {typeLabels[project.type]}
+                                      </span>
+                                    </div>
+                                    <div className={`w-full mt-4 py-4 text-center rounded-md ${
+                                      isOngoing ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
+                                    }`}>
+                                      <span className={`text-[9px] font-bold ${
+                                        isOngoing ? 'text-[#D6B14D]' : 'text-gray-400'
+                                      }`}>
+                                        {isOngoing ? 'ONGOING' : 'COMPLETED'}
+                                      </span>
+                                    </div>
                                   </div>
+                                  
+                                  {/* Mobile: Ribbon badge */}
+                                  <div className="md:hidden absolute top-0 left-0 flex items-stretch">
+                                    <div className={`px-10 py-5 rounded-br-lg shadow-sm bg-white border-2 ${typeBorderColors[project.type]}`}>
+                                      <span className={`text-[9px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
+                                        {typeLabels[project.type]}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  
                                   <div className="flex-1 min-w-0">
-                                    {/* Period badge on right */}
+                                    {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-8">
                                       <div className="flex flex-wrap items-center gap-6">
                                         <span className={`px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>

@@ -156,7 +156,7 @@ export const ArchivesPlaylistTemplate = () => {
                 
                 {/* Info - 아티스트 먼저, 제목 아래 */}
                 <div className="p-12 md:p-14">
-                  <p className="text-[10px] md:text-[11px] text-gray-500 mb-4 truncate font-medium">
+                  <p className="text-[11px] md:text-xs text-gray-500 mb-4 truncate font-bold">
                     {item.artist}
                   </p>
                   <h3 className="text-[11px] md:text-xs font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">

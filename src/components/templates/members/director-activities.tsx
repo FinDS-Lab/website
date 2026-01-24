@@ -879,7 +879,7 @@ const CollaborationNetwork = memo(() => {
                     fontWeight={node.isDirector ? 700 : 600}
                     className="pointer-events-none select-none"
                   >
-                    {node.name}
+                    {node.nameKo || node.name}
                   </text>
                 </g>
               )

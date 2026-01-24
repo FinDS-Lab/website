@@ -1027,18 +1027,17 @@ export const MembersDirectorTemplate = () => {
                                         )}
                                       </div>
                                       <div className="flex-1 min-w-0">
-                                        <h4 className="text-sm font-semibold text-gray-800 mb-4">
-                                          {item.title}
-                                        </h4>
-                                        <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                        {/* Organization + Date on same line */}
-                                        <div className="flex flex-wrap items-center gap-8 mb-4">
-                                          <p className="text-[11px] text-gray-500">{item.organization}</p>
-                                          <span className="text-gray-300">|</span>
-                                          <p className="text-[10px] text-gray-400 font-medium">
+                                        {/* Title + Date Badge (right) */}
+                                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-4">
+                                          <h4 className="text-sm font-semibold text-gray-800 flex-1">
+                                            {item.title}
+                                          </h4>
+                                          <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                             {year}-{formatHonorDate(item.date)}
-                                          </p>
+                                          </span>
                                         </div>
+                                        <p className="text-xs text-gray-600 mb-4">{item.event}</p>
+                                        <p className="text-[11px] text-gray-500">{item.organization}</p>
                                       </div>
                                     </div>
                                   ))}

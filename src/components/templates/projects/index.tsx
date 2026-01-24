@@ -21,7 +21,7 @@ type Project = {
 const typeConfig = {
   government: {
     icon: Landmark,
-    label: 'Government Project',
+    label: 'Government',
     labelPlural: 'Government Projects',
     labelKo: '정부과제',
     color: 'bg-[rgb(172,14,14)]',
@@ -31,7 +31,7 @@ const typeConfig = {
   },
   industry: {
     icon: Building2,
-    label: 'Industry Project',
+    label: 'Industry',
     labelPlural: 'Industry Projects',
     labelKo: '산업체과제',
     color: 'bg-[rgb(214, 176, 76)]',
@@ -41,7 +41,7 @@ const typeConfig = {
   },
   institution: {
     icon: GraduationCap,
-    label: 'Institution Project',
+    label: 'Institution',
     labelPlural: 'Institution Projects',
     labelKo: '기관과제',
     color: 'bg-[#FFBAC4]',
@@ -51,7 +51,7 @@ const typeConfig = {
   },
   academic: {
     icon: Briefcase,
-    label: 'Research Project',
+    label: 'Research',
     labelPlural: 'Research Projects',
     labelKo: '연구과제',
     color: 'bg-[#D6B14D]',
@@ -511,33 +511,33 @@ export const ProjectsTemplate = () => {
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
-                          {/* White badge with counts - always show all, full names */}
+                          {/* White badge with counts - "N Type. Project(s)" format */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500">&nbsp;Government</span>
+                            <span className="text-gray-500">&nbsp;Gov. {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500">&nbsp;Industry</span>
+                            <span className="text-gray-500">&nbsp;Ind. {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Institution</span>
+                            <span className="text-gray-500">&nbsp;Inst. {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Research</span>
+                            <span className="text-gray-500">&nbsp;Acad. {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
                           </span>
-                          {/* Mobile: same as desktop */}
+                          {/* Mobile: same format */}
                           <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500">&nbsp;Government</span>
+                            <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500">&nbsp;Industry</span>
+                            <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Institution</span>
+                            <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Research</span>
+                            <span className="text-gray-500">&nbsp;Acad.</span>
                           </span>
                         </div>
                         {isExpanded ? (

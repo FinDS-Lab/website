@@ -239,7 +239,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
                           <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                            {missionLang === 'ko' ? 'FINDS Lab의 사명' : 'FINDS Lab Mission'}
+                            {missionLang === 'ko' ? 'FINDS Lab의 목표' : 'FINDS Lab Goal'}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -262,6 +262,7 @@ export const AboutIntroductionTemplate = () => {
                             <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
                             <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
                           </div>
+                          <span className="text-4xl md:text-5xl font-serif" style={{ color: 'rgba(214, 177, 77, 0.5)' }}>"</span>
                         </div>
 
                         {/* Description */}
@@ -291,9 +292,6 @@ export const AboutIntroductionTemplate = () => {
                             </>
                           )}
                         </div>
-                        
-                        {/* Closing Quote */}
-                        <span className="text-4xl md:text-5xl font-serif mx-auto mt-20" style={{ color: 'rgba(214, 177, 77, 0.5)' }}>"</span>
                       </div>
                     </div>
                   </div>
@@ -357,6 +355,7 @@ export const AboutIntroductionTemplate = () => {
                               <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
                               <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
                             </div>
+                            <span className="text-4xl md:text-5xl font-serif" style={{ color: 'rgba(214, 177, 77, 0.4)' }}>"</span>
                           </div>
 
                           {/* Description */}
@@ -369,9 +368,6 @@ export const AboutIntroductionTemplate = () => {
                               )}
                             </p>
                           </div>
-                          
-                          {/* Closing Quote */}
-                          <span className="text-4xl md:text-5xl font-serif mx-auto block text-center mt-20" style={{ color: 'rgba(214, 177, 77, 0.4)' }}>"</span>
                         </div>
                       </div>
                     </div>
