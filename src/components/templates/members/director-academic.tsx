@@ -1673,16 +1673,22 @@ export const MembersDirectorAcademicTemplate = () => {
                               academic: 'Research',
                             }
                             const typeBorderColors: Record<string, string> = {
-                              government: 'border-[#D6B14D]',
-                              industry: 'border-primary',
-                              institution: 'border-[#E8D688]',
-                              academic: 'border-[#FFBAC4]',
+                              government: 'border-[rgb(172,14,14)]',
+                              industry: 'border-[rgb(214,176,76)]',
+                              institution: 'border-[#FFBAC4]',
+                              academic: 'border-[#D6B14D]',
                             }
                             const typeTextColors: Record<string, string> = {
-                              government: 'text-[#D6B14D]',
-                              industry: 'text-primary',
-                              institution: 'text-[#B8962D]',
-                              academic: 'text-[#E8889C]',
+                              government: 'text-[rgb(172,14,14)]',
+                              industry: 'text-[rgb(214,176,76)]',
+                              institution: 'text-pink-500',
+                              academic: 'text-[#B8962D]',
+                            }
+                            const typeBgColors: Record<string, string> = {
+                              government: 'bg-[rgb(172,14,14)]',
+                              industry: 'bg-[rgb(214,176,76)]',
+                              institution: 'bg-[#FFBAC4]',
+                              academic: 'bg-[#D6B14D]',
                             }
                             const Icon = typeIcons[project.type]
                             // Determine status
@@ -1704,18 +1710,18 @@ export const MembersDirectorAcademicTemplate = () => {
                             return (
                               <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
                                 <div className="flex items-start gap-10 md:gap-14">
-                                  {/* Left badge - Type + Status - smaller width */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-56">
-                                    <div className={`w-full py-6 rounded-lg text-center bg-white border-2 shadow-sm ${typeBorderColors[project.type]}`}>
-                                      <Icon size={14} className={`inline mb-1 ${typeTextColors[project.type]}`} />
-                                      <span className={`block text-[8px] font-bold uppercase tracking-wide ${typeTextColors[project.type]}`}>
+                                  {/* Left badge - Type + Status - compact */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-48">
+                                    <div className={`w-full py-5 rounded-lg text-center ${typeBgColors[project.type]} shadow-sm`}>
+                                      <Icon size={12} className="inline mb-1 text-white" />
+                                      <span className="block text-[7px] font-bold uppercase tracking-wide text-white">
                                         {typeLabels[project.type]}
                                       </span>
                                     </div>
                                     <div className={`w-full mt-3 py-3 text-center rounded-md ${
                                       isOngoing ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
                                     }`}>
-                                      <span className={`text-[8px] font-bold ${
+                                      <span className={`text-[7px] font-bold ${
                                         isOngoing ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
                                         {isOngoing ? 'ONGOING' : 'COMPLETED'}
@@ -1723,12 +1729,12 @@ export const MembersDirectorAcademicTemplate = () => {
                                     </div>
                                   </div>
                                   
-                                  {/* Mobile: Ribbon badge - positioned relative to item */}
+                                  {/* Mobile: Ribbon badge */}
                                   <div className="md:hidden flex items-center gap-4 mb-6">
-                                    <span className={`px-6 py-3 rounded-md text-[8px] font-bold uppercase bg-white border-2 ${typeBorderColors[project.type]} ${typeTextColors[project.type]}`}>
+                                    <span className={`px-6 py-3 rounded-md text-[7px] font-bold uppercase ${typeBgColors[project.type]} text-white`}>
                                       {typeLabels[project.type]}
                                     </span>
-                                    <span className={`px-4 py-2 rounded text-[8px] font-bold ${
+                                    <span className={`px-4 py-2 rounded text-[7px] font-bold ${
                                       isOngoing ? 'bg-[#FFF9E6] text-[#D6B14D]' : 'bg-gray-100 text-gray-400'
                                     }`}>
                                       {isOngoing ? 'Ongoing' : 'Done'}

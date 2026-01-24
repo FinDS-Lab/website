@@ -78,7 +78,7 @@ const researchAreas = [
 // 영어/한글 전체 문장 Dissolve 전환
 const useTitleFade = () => {
   const titles = [
-    { text: 'Catalyzing Business and Industry Innovation via Data', lang: 'en' },
+    { text: 'Transforming Business and Industry Innovation via Data', lang: 'en' },
     { text: '데이터를 통한 비즈니스와 산업 혁신', lang: 'ko' }
   ]
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -174,7 +174,7 @@ export const AboutResearchTemplate = () => {
             >
               {currentTitle.lang === 'en' ? (
                 <>
-                  <span className="text-gray-900">Catalyzing </span>
+                  <span className="text-gray-900">Transforming </span>
                   <span style={{ color: '#AC0E0E' }}>Business and Industry Innovation</span>
                   <span className="text-gray-900"> via </span>
                   <span style={{ color: '#D6B14D' }}>Data</span>
