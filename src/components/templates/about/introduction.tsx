@@ -380,9 +380,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
                               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래</>
+                                  <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>경영 및 산업 현장</span>의 미래를 위하여</>
                                 ) : (
-                                  <>Toward Better <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Data Intelligence</span></>
+                                  <>Toward a Better Future for <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Business & Industry</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -407,6 +407,12 @@ export const AboutIntroductionTemplate = () => {
                                 our lab aims to reduce <span className="font-bold" style={{ color: '#D6B14D' }}>inefficiencies in business and industry</span> caused by information asymmetry,<br />
                                 and turn complex data into <span style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
+                            </p>
+                            {/* Bottom tagline - moved here from carousel navigation */}
+                            <p className="text-xs md:text-sm text-gray-500 pt-8">
+                              {visionLang === 'ko' 
+                                ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'
+                                : 'We strive to illuminate a better future for data-driven business and industry.'}
                             </p>
                           </div>
                         </div>
@@ -445,12 +451,6 @@ export const AboutIntroductionTemplate = () => {
                     <ChevronRight size={16} className={carouselIndex === 1 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
                   </button>
                 </div>
-                {/* Bottom tagline */}
-                <p className="text-xs md:text-sm text-gray-400 text-center">
-                  {missionLang === 'ko' || visionLang === 'ko' 
-                    ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'
-                    : 'We strive to illuminate a better future for data-driven business and industry.'}
-                </p>
               </div>
             </div>
           </section>

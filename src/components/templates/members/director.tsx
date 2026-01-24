@@ -655,7 +655,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — iridescent view extraction for multi-perspective interpretation and synthesis to support decisions in business and industry.
+                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — <span className="font-semibold" style={{color: '#D6B14D'}}>iridescent view extraction</span> for multi-perspective interpretation and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>

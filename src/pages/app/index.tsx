@@ -235,6 +235,12 @@ const GlobalMusicPlayer = memo(() => {
         {isMinimized ? (
           // Minimized: Floating button with proper design proportions
           <div className="flex items-center gap-8">
+            {/* Hidden player for audio continuation */}
+            {isPlaying && currentVideoId && (
+              <div className="absolute -left-[9999px]">
+                <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
+              </div>
+            )}
             <button
               onClick={handleHidePlayer}
               className="flex items-center justify-center w-32 h-32 md:w-36 md:h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50"
@@ -270,7 +276,7 @@ const GlobalMusicPlayer = memo(() => {
                 )}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] md:text-[10px] text-primary font-semibold truncate">{currentTrack?.artist}</p>
+                <p className="text-[10px] md:text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
                 <p className="text-[11px] md:text-xs text-white font-medium truncate">{currentTrack?.title}</p>
               </div>
             </div>
@@ -355,13 +361,12 @@ const GlobalMusicPlayer = memo(() => {
             {/* Current Track Info with Marquee */}
             {currentTrack && (
               <div className="px-12 md:px-16 py-10 md:py-12 border-b border-gray-800/50 overflow-hidden">
-                <p className="text-primary text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                <p className="text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1" style={{ color: 'rgb(214,177,77)' }}>
                   {currentTrack.artist}
                 </p>
                 <div className="overflow-hidden">
                   <p 
                     className={`text-white text-[13px] md:text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}
-                    style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                   >
                     {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
                   </p>
@@ -376,13 +381,12 @@ const GlobalMusicPlayer = memo(() => {
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
-                  <button
-                    onClick={togglePlay}
-                    className="relative w-56 h-56 md:w-64 md:h-64 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-xl"
-                    style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 8px 32px rgba(214,177,77,0.4)'}}
-                  >
-                    <Play className="w-24 h-24 md:w-28 md:h-28 text-white ml-4" />
-                  </button>
+                  <div className="flex flex-col items-center gap-8">
+                    <div className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(184,150,45,0.1) 100%)', border: '2px solid rgba(214,177,77,0.3)'}}>
+                      <Music className="w-20 h-20 md:w-24 md:h-24" style={{color: 'rgb(214,177,77)'}} />
+                    </div>
+                    <span className="text-xs text-gray-500">Press play to start</span>
+                  </div>
                 </div>
               )}
             </div>
