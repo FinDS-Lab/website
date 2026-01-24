@@ -786,7 +786,7 @@ export const PublicationsTemplate = () => {
                               
                               <div className="flex flex-col gap-12 md:gap-20">
                                 {/* Mobile content padding to account for ribbon */}
-                                <div className="md:hidden h-8" />
+                                <div className="md:hidden h-20" />
                                 
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
                                   {/* Desktop: Left Type Badge - Split design (top colored, bottom white) */}

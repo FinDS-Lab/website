@@ -1709,8 +1709,20 @@ export const MembersDirectorAcademicTemplate = () => {
                             const directorRole = getDirectorRole()
                             return (
                               <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
+                                {/* Mobile: Top ribbon badges */}
+                                <div className="md:hidden flex items-center gap-4 mb-10">
+                                  <span className={`px-8 py-4 rounded-md text-[8px] font-bold uppercase ${typeBgColors[project.type]} text-white`}>
+                                    {typeLabels[project.type]}
+                                  </span>
+                                  <span className={`px-6 py-3 rounded text-[8px] font-bold ${
+                                    isOngoing ? 'bg-[#FFF9E6] text-[#D6B14D] border border-[#FFEB99]' : 'bg-gray-100 text-gray-400 border border-gray-200'
+                                  }`}>
+                                    {isOngoing ? 'Ongoing' : 'Completed'}
+                                  </span>
+                                </div>
+                                
                                 <div className="flex items-start gap-10 md:gap-14">
-                                  {/* Left badge - Type + Status - compact */}
+                                  {/* Left badge - Type + Status - Desktop only */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-60">
                                     <div className={`w-full py-5 rounded-lg text-center ${typeBgColors[project.type]} shadow-sm`}>
                                       <Icon size={12} className="inline mb-1 text-white" />
@@ -1727,18 +1739,6 @@ export const MembersDirectorAcademicTemplate = () => {
                                         {isOngoing ? 'ONGOING' : 'COMPLETED'}
                                       </span>
                                     </div>
-                                  </div>
-                                  
-                                  {/* Mobile: Ribbon badge */}
-                                  <div className="md:hidden flex items-center gap-4 mb-6">
-                                    <span className={`px-6 py-3 rounded-md text-[7px] font-bold uppercase ${typeBgColors[project.type]} text-white`}>
-                                      {typeLabels[project.type]}
-                                    </span>
-                                    <span className={`px-4 py-2 rounded text-[7px] font-bold ${
-                                      isOngoing ? 'bg-[#FFF9E6] text-[#D6B14D]' : 'bg-gray-100 text-gray-400'
-                                    }`}>
-                                      {isOngoing ? 'Ongoing' : 'Done'}
-                                    </span>
                                   </div>
                                   
                                   <div className="flex-1 min-w-0">

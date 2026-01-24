@@ -13,22 +13,22 @@ const focusAreas = [
     image: icon12,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
-    desc: 'We collect and analyze <b>financial market data</b> to uncover <b>patterns</b> and generate <b>insights</b> for <b>investment strategy</b> and <b>risk management</b>.',
+    desc: 'We collect and analyze <b>financial market data</b> to uncover hidden <b>patterns</b> and generate actionable <b>insights</b>. Our work supports better <b>investment strategies</b> and more robust <b>risk management</b> practices.',
     descKo: '금융 시장의 <b>복잡한 데이터</b>를 수집·정제하고, <b>통계적 분석</b>을 통해 시장 흐름과 <b>숨겨진 패턴</b>을 발견합니다.<br/>이를 바탕으로 <b>투자 전략</b>과 <b>위험 관리</b>에 필요한 인사이트를 도출합니다.',
   },
   {
     image: icon11,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
-    desc: 'We tackle complex business problems with <b>statistical methods</b> and <b>analytics techniques</b>, delivering <b>actionable strategies</b>.',
+    desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b>. By transforming raw data into meaningful patterns, we deliver <b>actionable strategies</b> that drive competitive advantage.',
     descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 <b style="color:#D6B14D">경영 및 산업 현장</b>의 복잡한 문제를 분석합니다.<br/><b>실행 가능한 전략</b>과 <b>솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>에 기여합니다.',
   },
   {
     image: icon10,
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
-    desc: 'We support <b>clearer</b>, <b>more rational decisions</b> through <b>objective</b>, <b>iridescent data intelligence</b>.',
-    descKo: '<b>객관적</b>이면서도 <b>다각도(iridescent)의 데이터 인텔리전스</b>를 바탕으로 <b>명확하고 합리적인 의사결정</b>을 지원합니다.<br/><b>데이터 기반 판단</b>으로 <b>경영 위험</b>을 줄이고 <b>성공 가능성</b>을 높입니다.',
+    desc: 'We support <b>clearer</b> and <b>more rational decisions</b> through <b>objective</b> analysis combined with <b>iridescent data intelligence</b> — multi-perspective insights that reveal hidden dimensions.',
+    descKo: '<b>객관적</b>이면서도 <b>다양한 관점에서 바라보는 데이터 인텔리전스</b>를 바탕으로 <b>명확하고 합리적인 의사결정</b>을 지원합니다.<br/><b>데이터 기반 판단</b>으로 <b>경영 위험</b>을 줄이고 <b>성공 가능성</b>을 높입니다.',
   },
 ]
 
@@ -317,9 +317,6 @@ export const AboutIntroductionTemplate = () => {
                                 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고<br />
                                 데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
                               </p>
-                              <p className="text-sm md:text-base text-gray-400 leading-[2]">
-                                더 나은 데이터 기반 경영 환경의 미래를 밝혀갑니다.
-                              </p>
                             </>
                           ) : (
                             <>
@@ -332,9 +329,6 @@ export const AboutIntroductionTemplate = () => {
                                 Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span><br />
                                 to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data<br />
                                 and support sharper, data-grounded decision-making.
-                              </p>
-                              <p className="text-sm md:text-base text-gray-400 leading-[2]">
-                                We light the way toward better data-driven business environments.
                               </p>
                             </>
                           )}
@@ -431,32 +425,40 @@ export const AboutIntroductionTemplate = () => {
               </div>
 
               {/* Carousel Navigation - Modern Arrow Style */}
-              <div className="flex items-center justify-center gap-16 mt-24 md:mt-28">
-                <button 
-                  onClick={() => setCarouselIndex(0)} 
-                  className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
-                    carouselIndex === 0 
-                      ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
-                  }`}
-                  aria-label="Goal slide"
-                >
-                  <ChevronLeft size={16} className={carouselIndex === 0 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
-                  <span className="text-xs font-semibold tracking-wide">Goal</span>
-                </button>
-                <div className="w-px h-16 bg-gray-200" />
-                <button 
-                  onClick={() => setCarouselIndex(1)} 
-                  className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
-                    carouselIndex === 1 
-                      ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
-                  }`}
-                  aria-label="Vision slide"
-                >
-                  <span className="text-xs font-semibold tracking-wide">Vision</span>
-                  <ChevronRight size={16} className={carouselIndex === 1 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
-                </button>
+              <div className="flex flex-col items-center gap-16 mt-24 md:mt-28">
+                <div className="flex items-center justify-center gap-16">
+                  <button 
+                    onClick={() => setCarouselIndex(0)} 
+                    className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
+                      carouselIndex === 0 
+                        ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                    }`}
+                    aria-label="Goal slide"
+                  >
+                    <ChevronLeft size={16} className={carouselIndex === 0 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
+                    <span className="text-xs font-semibold tracking-wide">Goal</span>
+                  </button>
+                  <div className="w-px h-16 bg-gray-200" />
+                  <button 
+                    onClick={() => setCarouselIndex(1)} 
+                    className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
+                      carouselIndex === 1 
+                        ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                    }`}
+                    aria-label="Vision slide"
+                  >
+                    <span className="text-xs font-semibold tracking-wide">Vision</span>
+                    <ChevronRight size={16} className={carouselIndex === 1 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
+                  </button>
+                </div>
+                {/* Bottom tagline */}
+                <p className="text-xs md:text-sm text-gray-400 text-center">
+                  {missionLang === 'ko' || visionLang === 'ko' 
+                    ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'
+                    : 'We strive to illuminate a better future for data-driven business and industry.'}
+                </p>
               </div>
             </div>
           </section>

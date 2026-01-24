@@ -8,7 +8,7 @@ import locationImg from '@/assets/images/location/1.webp'
 
 export const LocationTemplate = () => {
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white scroll-mt-[80px]">
       {/* Banner */}
       <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
         <div

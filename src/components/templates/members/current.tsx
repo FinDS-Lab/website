@@ -320,7 +320,7 @@ export const MembersCurrentTemplate = () => {
                                 <img
                                   src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
                                   alt={member.name.ko}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-cover object-top"
                                   onError={(e) => {
                                     e.currentTarget.style.display = 'none'
                                     e.currentTarget.nextElementSibling?.classList.remove('hidden')

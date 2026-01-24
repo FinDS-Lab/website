@@ -69,7 +69,7 @@ const researchAreas = [
       },
       {
         en: 'Iridescent Data Intelligence',
-        ko: '다각도(iridescent) 데이터 인텔리전스를 통한 복잡한 문제 해결',
+        ko: '다양한 관점에서 바라보는 데이터 인텔리전스를 통한 복잡한 문제 해결',
       },
     ],
   },
