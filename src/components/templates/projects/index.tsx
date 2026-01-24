@@ -22,6 +22,7 @@ const typeConfig = {
   government: {
     icon: Landmark,
     label: 'Government',
+    labelShort: 'Gov.',
     labelPlural: 'Government Projects',
     labelKo: '정부과제',
     color: 'bg-[rgb(172,14,14)]',
@@ -32,6 +33,7 @@ const typeConfig = {
   industry: {
     icon: Building2,
     label: 'Industry',
+    labelShort: 'Ind.',
     labelPlural: 'Industry Projects',
     labelKo: '산업체과제',
     color: 'bg-[rgb(214, 176, 76)]',
@@ -42,6 +44,7 @@ const typeConfig = {
   institution: {
     icon: GraduationCap,
     label: 'Institution',
+    labelShort: 'Inst.',
     labelPlural: 'Institution Projects',
     labelKo: '기관과제',
     color: 'bg-[#FFBAC4]',
@@ -52,6 +55,7 @@ const typeConfig = {
   academic: {
     icon: Briefcase,
     label: 'Research',
+    labelShort: 'Res.',
     labelPlural: 'Research Projects',
     labelKo: '연구과제',
     color: 'bg-[#D6B14D]',
@@ -318,7 +322,10 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.government === 1 ? 'Government Project' : 'Government Projects'}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
+                      <span className="hidden sm:inline">{stats.government === 1 ? 'Government' : 'Government'}</span>
+                      <span className="sm:hidden">Gov.</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -328,7 +335,10 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.industry === 1 ? 'Industry Project' : 'Industry Projects'}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
+                      <span className="hidden sm:inline">{stats.industry === 1 ? 'Industry' : 'Industry'}</span>
+                      <span className="sm:hidden">Ind.</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -338,7 +348,10 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.institution === 1 ? 'Institution Project' : 'Institution Projects'}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
+                      <span className="hidden sm:inline">{stats.institution === 1 ? 'Institution' : 'Institution'}</span>
+                      <span className="sm:hidden">Inst.</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -348,7 +361,10 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.academic === 1 ? 'Research Project' : 'Research Projects'}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
+                      <span className="hidden sm:inline">{stats.academic === 1 ? 'Research' : 'Research'}</span>
+                      <span className="sm:hidden">Res.</span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -514,20 +530,6 @@ export const ProjectsTemplate = () => {
                           {/* White badge with counts - "N Type. Project(s)" format */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500">&nbsp;Gov. {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500">&nbsp;Ind. {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Inst. {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Acad. {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
-                          </span>
-                          {/* Mobile: same format */}
-                          <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
-                            <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
                             <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
@@ -537,7 +539,24 @@ export const ProjectsTemplate = () => {
                             <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Acad.</span>
+                            <span className="text-gray-500">&nbsp;Res.</span>
+                          </span>
+                          {/* Mobile: 2-line format (Gov Ind / Inst Acad) */}
+                          <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
+                            <span className="flex items-center justify-center">
+                              <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
+                              <span className="text-gray-500">&nbsp;Gov.</span>
+                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                              <span className="font-bold text-primary">{yearStats.industry}</span>
+                              <span className="text-gray-500">&nbsp;Ind.</span>
+                            </span>
+                            <span className="flex items-center justify-center">
+                              <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
+                              <span className="text-gray-500">&nbsp;Inst.</span>
+                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                              <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
+                              <span className="text-gray-500">&nbsp;Res.</span>
+                            </span>
                           </span>
                         </div>
                         {isExpanded ? (
@@ -610,35 +629,35 @@ export const ProjectsTemplate = () => {
                                     </div>
                                   </div>
                                   
-                                  {/* Mobile: Ribbon badge */}
+                                  {/* Mobile: Ribbon badge - Publications style */}
                                   <div className="md:hidden absolute top-0 left-0 flex items-stretch">
-                                    <div className={`px-10 py-5 rounded-br-lg shadow-sm bg-white border-2 ${
-                                      project.type === 'government' ? 'border-[#D6B14D]' :
-                                      project.type === 'industry' ? 'border-primary' :
-                                      project.type === 'institution' ? 'border-[#E8D688]' :
-                                      project.type === 'academic' ? 'border-[#FFBAC4]' : 'border-gray-300'
+                                    <div className={`px-12 py-6 rounded-br-lg shadow-sm ${
+                                      project.type === 'government' ? 'bg-[#D6B14D]' :
+                                      project.type === 'industry' ? 'bg-primary' :
+                                      project.type === 'institution' ? 'bg-[#E8D688]' :
+                                      project.type === 'academic' ? 'bg-[#FFBAC4]' : 'bg-gray-500'
                                     }`}>
-                                      <span className={`text-[9px] font-bold uppercase tracking-wide ${
-                                        project.type === 'government' ? 'text-[#D6B14D]' :
-                                        project.type === 'industry' ? 'text-primary' :
-                                        project.type === 'institution' ? 'text-[#B8962D]' :
-                                        project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-500'
+                                      <span className={`text-[10px] font-bold uppercase tracking-wide ${
+                                        project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                       }`}>
-                                        {config?.label || project.type}
+                                        {config?.labelShort || config?.label || project.type}
                                       </span>
                                     </div>
-                                    <div className={`px-8 py-5 rounded-br-lg -ml-1 border-b border-r ${
+                                    <div className={`px-10 py-6 rounded-br-lg -ml-1 border-b border-r ${
                                       status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
                                     }`}>
-                                      <span className={`text-[9px] font-bold ${
+                                      <span className={`text-[10px] font-bold ${
                                         status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
                                       }`}>
-                                        {status === 'ongoing' ? 'Ongoing' : 'Done'}
+                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
                                       </span>
                                     </div>
                                   </div>
                                   
                                   <div className="flex-1 min-w-0 md:pt-0 pt-8">
+                                    {/* Mobile content padding */}
+                                    <div className="md:hidden h-16" />
+                                    
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
                                       <div className="flex-1 min-w-0">
@@ -651,17 +670,17 @@ export const ProjectsTemplate = () => {
                                       </span>
                                     </div>
                                     
-                                    {/* Mobile: Date at top */}
-                                    <p className="md:hidden text-[10px] text-primary font-bold mt-6">
-                                      {project.period}
-                                    </p>
-                                    
                                     {/* Funding Agency */}
                                     <div className="flex flex-wrap items-center gap-8 mt-8">
                                       <p className="text-xs md:text-sm text-gray-700 font-bold">
                                         {project.fundingAgency}
                                       </p>
                                     </div>
+                                    
+                                    {/* Mobile: Date below FundingAgency - same as Publications */}
+                                    <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
+                                      {project.period}
+                                    </p>
                                     
                                     {/* Roles - only show non-empty roles */}
                                     {(project.roles.principalInvestigator || project.roles.leadResearcher || filteredResearchers.length > 0) && (

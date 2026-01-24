@@ -401,14 +401,17 @@ export const AboutIntroductionTemplate = () => {
                               {visionLang === 'ko' ? (
                                 <>저희 연구실은 데이터를 바탕으로 한 다양한 연구를 통해<br />
                                 지식과 정보의 비대칭으로 인한 <span className="font-bold text-white">경영 및 산업 현장의 비효율</span>을 줄이고,<br />
-                                복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.<br />
-                                더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.</>
+                                복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through data-driven research,<br />
                                 our lab aims to reduce <span className="font-bold text-white">inefficiencies in business and industry</span> caused by information asymmetry,<br />
-                                and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.<br />
-                                We strive to illuminate a better future for data-driven business and industry.</>
+                                and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
+                            </p>
+                            <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
+                              {visionLang === 'ko' 
+                                ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'
+                                : 'We strive to illuminate a better future for data-driven business and industry.'}
                             </p>
                           </div>
                         </div>

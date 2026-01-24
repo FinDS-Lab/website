@@ -32,6 +32,36 @@ const ArchivesNotice = lazy(() => import('../archives/notice').then((module) => 
 const ArchivesGallery = lazy(() => import('../archives/gallery').then((module) => ({ default: module.ArchivesGallery })));
 const ArchivesPlaylist = lazy(() => import('../archives/playlist').then((module) => ({ default: module.ArchivesPlaylist })));
 
+// Declare YouTube types
+declare global {
+  interface Window {
+    YT: {
+      Player: new (elementId: string, config: {
+        videoId?: string;
+        playerVars?: Record<string, number | string>;
+        events?: {
+          onReady?: (event: { target: YTPlayer }) => void;
+          onStateChange?: (event: { data: number; target: YTPlayer }) => void;
+        };
+      }) => YTPlayer;
+      PlayerState: {
+        ENDED: number;
+        PLAYING: number;
+        PAUSED: number;
+      };
+    };
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
+interface YTPlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  loadVideoById: (videoId: string) => void;
+  cueVideoById: (videoId: string) => void;
+  destroy: () => void;
+}
+
 // Global Music Player Component - Outside Routes for persistence
 const GlobalMusicPlayer = memo(() => {
   const { 
@@ -50,11 +80,26 @@ const GlobalMusicPlayer = memo(() => {
     setIsPlaying
   } = useMusicPlayerStore()
   
-  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const playerRef = useRef<YTPlayer | null>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [isCompact, setIsCompact] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
+  const [playerReady, setPlayerReady] = useState(false)
+  const lastVideoIdRef = useRef<string | null>(null)
   const location = useLocation()
+
+  const currentVideoId = playlist[currentIndex]
+  const currentTrack = trackInfo[currentIndex]
+
+  // Load YouTube IFrame API - only once
+  useEffect(() => {
+    if (!window.YT) {
+      const tag = document.createElement('script')
+      tag.src = 'https://www.youtube.com/iframe_api'
+      const firstScriptTag = document.getElementsByTagName('script')[0]
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag)
+    }
+  }, [])
 
   // Load playlist data
   useEffect(() => {
@@ -93,14 +138,74 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [isLoaded, setPlaylist, setIsLoaded])
 
-  const currentVideoId = playlist[currentIndex]
-  const currentTrack = trackInfo[currentIndex]
+  // Initialize YouTube Player ONCE - never destroy it
+  useEffect(() => {
+    if (!currentVideoId || playerRef.current) return
+
+    const initPlayer = () => {
+      if (!window.YT || !window.YT.Player) {
+        setTimeout(initPlayer, 100)
+        return
+      }
+
+      playerRef.current = new window.YT.Player('yt-player', {
+        videoId: currentVideoId,
+        playerVars: {
+          autoplay: 0,
+          controls: 1,
+          modestbranding: 1,
+          rel: 0,
+          playsinline: 1,
+        },
+        events: {
+          onReady: () => {
+            setPlayerReady(true)
+            lastVideoIdRef.current = currentVideoId
+          },
+          onStateChange: (event) => {
+            if (event.data === 0) {
+              nextTrack()
+            }
+          },
+        },
+      })
+    }
+
+    initPlayer()
+  }, [currentVideoId, nextTrack])
+
+  // Handle track changes using loadVideoById (NOT recreating player)
+  useEffect(() => {
+    if (!playerRef.current || !playerReady || !currentVideoId) return
+    if (lastVideoIdRef.current === currentVideoId) return
+    
+    lastVideoIdRef.current = currentVideoId
+    if (isPlaying) {
+      playerRef.current.loadVideoById(currentVideoId)
+    } else {
+      playerRef.current.cueVideoById(currentVideoId)
+    }
+  }, [currentVideoId, playerReady, isPlaying])
+
+  // Handle play/pause
+  useEffect(() => {
+    if (!playerRef.current || !playerReady) return
+    
+    if (isPlaying) {
+      playerRef.current.playVideo()
+    } else {
+      playerRef.current.pauseVideo()
+    }
+  }, [isPlaying, playerReady])
 
   // Hide on playlist page
   const isPlaylistPage = location.pathname === '/archives/playlist'
 
   // Handle permanent hide
   const handleHidePlayer = () => {
+    if (playerRef.current) {
+      playerRef.current.pauseVideo()
+    }
     setIsPlaying(false)
     setIsHidden(true)
   }
@@ -109,7 +214,6 @@ const GlobalMusicPlayer = memo(() => {
   if (isHidden) {
     return (
       <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9999] flex flex-col items-end gap-10 md:gap-12">
-        {/* Home Button - Always visible except on home page */}
         {location.pathname !== '/' && (
           <Link
             to="/"
@@ -125,7 +229,7 @@ const GlobalMusicPlayer = memo(() => {
 
   return (
     <div className="fixed bottom-16 md:bottom-20 right-16 md:right-20 z-[9999] flex flex-col items-end gap-10 md:gap-12">
-      {/* Home Button - Always visible except on home page */}
+      {/* Home Button */}
       {location.pathname !== '/' && (
         <Link
           to="/"
@@ -136,32 +240,17 @@ const GlobalMusicPlayer = memo(() => {
         </Link>
       )}
       
-      {/* Playlist Button/Player - Only show when playlist is loaded, hidden on mobile */}
+      {/* YouTube Player - ALWAYS in DOM, visibility controlled by CSS */}
+      <div className={isPlaying && !isMinimized && !isCompact ? "w-full" : "fixed -left-[9999px] -top-[9999px] w-1 h-1 overflow-hidden"}>
+        <div id="yt-player" />
+      </div>
+      
+      {/* Playlist Button/Player - hidden on mobile */}
       {playlist.length > 0 && !isPlaylistPage && (
         <div className="hidden md:block">
-          {/* Persistent iframe - always exists, hidden when not in full mode */}
-          {currentVideoId && (
-            <iframe
-              ref={iframeRef}
-              className={isPlaying && !isMinimized && !isCompact ? "w-full aspect-video" : "fixed -left-[9999px] -top-[9999px] w-1 h-1"}
-              src={isPlaying ? `https://www.youtube.com/embed/${currentVideoId}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1` : undefined}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ display: isPlaying && !isMinimized && !isCompact ? 'block' : 'none' }}
-            />
-          )}
-          
           {isMinimized ? (
             // Minimized: Floating button
             <div className="flex items-center gap-8">
-              {/* Hidden audio iframe */}
-              {isPlaying && currentVideoId && (
-                <iframe
-                  className="fixed -left-[9999px] -top-[9999px] w-1 h-1"
-                  src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&enablejsapi=1&rel=0`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                />
-              )}
               <button
                 onClick={handleHidePlayer}
                 className="flex items-center justify-center w-32 h-32 md:w-36 md:h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50"
@@ -188,15 +277,6 @@ const GlobalMusicPlayer = memo(() => {
           ) : isCompact ? (
             // Compact: Artist + title with controls
             <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
-              {/* Hidden audio iframe */}
-              {isPlaying && currentVideoId && (
-                <iframe
-                  className="fixed -left-[9999px] -top-[9999px] w-1 h-1"
-                  src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&enablejsapi=1&rel=0`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                />
-              )}
-              {/* Track Info */}
               <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[160px] md:max-w-[220px]">
                 <div className="relative shrink-0">
                   <Music size={16} style={{color: 'rgb(214,177,77)'}} />
@@ -205,47 +285,25 @@ const GlobalMusicPlayer = memo(() => {
                   )}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[10px] md:text-[10px] font-bold tracking-wide truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
+                  <p className="text-[10px] font-bold tracking-wide truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
                   <p className="text-[11px] md:text-xs text-white font-medium truncate">{currentTrack?.title}</p>
                 </div>
               </div>
-              {/* Mini Controls */}
               <div className="flex items-center gap-4">
-                <button
-                  onClick={prevTrack}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                >
-                  <SkipBack size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+                <button onClick={prevTrack} className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors">
+                  <SkipBack size={12} className="text-gray-400" />
                 </button>
-                <button
-                  onClick={togglePlay}
-                  className="w-9 h-9 md:w-8 md:h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
-                >
-                  {isPlaying ? (
-                    <Pause size={14} className="md:w-[12px] md:h-[12px] text-primary" />
-                  ) : (
-                    <Play size={14} className="md:w-[12px] md:h-[12px] text-primary ml-0.5" />
-                  )}
+                <button onClick={togglePlay} className="w-9 h-9 md:w-8 md:h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
+                  {isPlaying ? <Pause size={14} className="text-primary" /> : <Play size={14} className="text-primary ml-0.5" />}
                 </button>
-                <button
-                  onClick={nextTrack}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                >
-                  <SkipForward size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+                <button onClick={nextTrack} className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors">
+                  <SkipForward size={12} className="text-gray-400" />
                 </button>
-                <button
-                  onClick={() => setIsCompact(false)}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                  title="확장"
-                >
-                  <Maximize2 size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+                <button onClick={() => setIsCompact(false)} className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장">
+                  <Maximize2 size={12} className="text-gray-400" />
                 </button>
-                <button
-                  onClick={toggleMinimize}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                  title="닫기"
-                >
-                  <X size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+                <button onClick={toggleMinimize} className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기">
+                  <X size={12} className="text-gray-400" />
                 </button>
               </div>
             </div>
@@ -264,18 +322,10 @@ const GlobalMusicPlayer = memo(() => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4 md:gap-6">
-                  <button
-                    onClick={toggleMinimize}
-                    className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50"
-                    title="최소화"
-                  >
+                  <button onClick={() => setIsCompact(true)} className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="컴팩트">
                     <Minimize2 className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
                   </button>
-                  <button
-                    onClick={handleHidePlayer}
-                    className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-red-600/80 transition-colors border border-gray-700/50"
-                    title="플레이리스트 숨기기"
-                  >
+                  <button onClick={toggleMinimize} className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="최소화">
                     <X className="w-10 h-10 md:w-12 md:h-12 text-gray-400" />
                   </button>
                 </div>
@@ -295,15 +345,19 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               )}
 
-              {/* Video Player */}
-              <div className="relative aspect-video bg-black">
+              {/* Video Player Area - Shows YouTube player when playing */}
+              <div className="relative aspect-video bg-black overflow-hidden">
                 {isPlaying && currentVideoId ? (
-                  <iframe
-                    className="w-full h-full"
-                    src={`https://www.youtube.com/embed/${currentVideoId}?autoplay=1&enablejsapi=1&rel=0&modestbranding=1`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
+                    <div className="flex flex-col items-center gap-8">
+                      <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(184,150,45,0.1) 100%)', border: '2px solid rgba(214,177,77,0.3)'}}>
+                        <Music className="w-20 h-20 md:w-24 md:h-24" style={{color: 'rgb(214,177,77)'}} />
+                        <span className="absolute -top-2 -right-2 w-16 h-16 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
+                      </div>
+                      <span className="text-xs text-gray-400">Now Playing</span>
+                    </div>
+                  </div>
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
@@ -311,6 +365,7 @@ const GlobalMusicPlayer = memo(() => {
                       <div className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(184,150,45,0.1) 100%)', border: '2px solid rgba(214,177,77,0.3)'}}>
                         <Music className="w-20 h-20 md:w-24 md:h-24" style={{color: 'rgb(214,177,77)'}} />
                       </div>
+                      <span className="text-xs text-gray-500">Press play to start</span>
                     </div>
                   </div>
                 )}
@@ -319,43 +374,25 @@ const GlobalMusicPlayer = memo(() => {
               {/* Controls */}
               <div className="px-14 md:px-20 py-12 md:py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
                 <div className="flex items-center justify-center gap-16 md:gap-20 mb-10 md:mb-12">
-                  <button
-                    onClick={prevTrack}
-                    className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
-                    title="Previous"
-                  >
+                  <button onClick={prevTrack} className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous">
                     <SkipBack className="w-16 h-16 md:w-20 md:h-20 text-gray-300" />
                   </button>
-                  <button
-                    onClick={togglePlay}
-                    className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg"
-                    style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}}
-                    title={isPlaying ? "Pause" : "Play"}
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-20 h-20 md:w-24 md:h-24 text-white" />
-                    ) : (
-                      <Play className="w-20 h-20 md:w-24 md:h-24 text-white ml-2" />
-                    )}
+                  <button onClick={togglePlay} className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
+                    {isPlaying ? <Pause className="w-20 h-20 md:w-24 md:h-24 text-white" /> : <Play className="w-20 h-20 md:w-24 md:h-24 text-white ml-2" />}
                   </button>
-                  <button
-                    onClick={nextTrack}
-                    className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30"
-                    title="Next"
-                  >
+                  <button onClick={nextTrack} className="w-36 h-36 md:w-44 md:h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next">
                     <SkipForward className="w-16 h-16 md:w-20 md:h-20 text-gray-300" />
                   </button>
                 </div>
                 
-                {/* Track counter */}
                 <div className="flex items-center justify-center">
                   <span className="text-xs md:text-sm text-gray-500 font-medium tracking-wide">
                     {currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}
                   </span>
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
       )}
     </div>
@@ -373,50 +410,46 @@ export const App = () => {
     <>
       <Suspense fallback={
         <div className="min-h-screen flex items-center justify-center">
-          <div className="flex flex-col items-center gap-16">
-            <div className="size-40 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-            <p className="text-sm text-gray-400 font-medium">Loading...</p>
-          </div>
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
         </div>
       }>
         <Routes>
-          {/* Public Routes - Main Website */}
           <Route path="/" element={<Home />} />
-
+          <Route path="/publications" element={<Publications />} />
+          <Route path="/projects" element={<Projects />} />
+          
           {/* About FINDS */}
-          <Route path="/about" element={<Navigate to="/about/introduction" replace />} />
           <Route path="/about/introduction" element={<AboutIntroduction />} />
           <Route path="/about/research" element={<AboutResearch />} />
           <Route path="/about/honors" element={<AboutHonors />} />
           <Route path="/about/location" element={<AboutLocation />} />
-
+          
           {/* Members */}
-          <Route path="/members" element={<Navigate to="/members/director" replace />} />
           <Route path="/members/director" element={<MembersDirector />} />
-          <Route path="/members/director/academic" element={<MembersDirectorAcademic />} />
           <Route path="/members/director/activities" element={<MembersDirectorActivities />} />
+          <Route path="/members/director/academic" element={<MembersDirectorAcademic />} />
           <Route path="/members/current" element={<MembersCurrent />} />
           <Route path="/members/alumni" element={<MembersAlumni />} />
           <Route path="/members/:id" element={<MembersDetail />} />
-
-          {/* Publications */}
-          <Route path="/publications" element={<Publications />} />
-
-          {/* Projects */}
-          <Route path="/projects" element={<Projects />} />
-
+          
           {/* Archives */}
-          <Route path="/archives" element={<Navigate to="/archives/news" replace />} />
           <Route path="/archives/news" element={<ArchivesNews />} />
           <Route path="/archives/notice" element={<ArchivesNotice />} />
           <Route path="/archives/gallery" element={<ArchivesGallery />} />
           <Route path="/archives/playlist" element={<ArchivesPlaylist />} />
-
+          
+          {/* Redirects */}
+          <Route path="/about" element={<Navigate to="/about/introduction" replace />} />
+          <Route path="/members" element={<Navigate to="/members/director" replace />} />
+          <Route path="/archives" element={<Navigate to="/archives/news" replace />} />
+          
+          {/* 404 */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
       
-      {/* Global Music Player - persists across page navigation */}
+      {/* Global Music Player - Always rendered outside routes */}
       <GlobalMusicPlayer />
     </>
   );
-}
+};
