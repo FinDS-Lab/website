@@ -222,7 +222,13 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div className="relative">
                     <button
                       onClick={() => setShowEmailPopup(!showEmailPopup)}
-                      className="flex items-center justify-center gap-8 px-16 py-10 bg-gray-100 hover:bg-primary/10 hover:text-primary rounded-xl text-sm font-medium text-gray-700 transition-colors w-full"
+                      className={`flex items-center justify-center gap-8 px-16 py-10 rounded-xl text-sm font-medium transition-colors w-full ${
+                        member.degree === 'undergrad' 
+                          ? 'bg-[#E8889C]/10 hover:bg-[#E8889C]/20 text-[#E8889C]'
+                          : member.degree === 'phd'
+                          ? 'bg-[#D6B14D]/10 hover:bg-[#D6B14D]/20 text-[#D6B14D]'
+                          : 'bg-[#FF6B6B]/10 hover:bg-[#FF6B6B]/20 text-[#FF6B6B]'
+                      }`}
                     >
                       <Mail size={16} />
                       <span>Email</span>

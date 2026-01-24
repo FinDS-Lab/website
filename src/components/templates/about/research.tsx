@@ -26,8 +26,8 @@ const researchAreas = [
         ko: '변동성 예측, 국면 전환 모형, 선·후행 관계 분석, 수익률 예측 등 금융 시계열 모형 연구',
       },
       {
-        en: 'Hyperpersonalized Finance & Behavioral Decision Modeling',
-        ko: '초개인화 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화',
+        en: 'Personalized Finance & Behavioral Decision Modeling',
+        ko: '개인화 금융과 투자자 행동 분석, 행동재무학 기반 의사결정 모형화',
       },
     ],
   },
@@ -60,7 +60,7 @@ const researchAreas = [
     image: icon10,
     items: [
       {
-        en: 'Trustworthy Decision Systems & Optimization',
+        en: 'Trustworthy AI (TAI) Decision Systems & Optimization',
         ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화 기법',
       },
       {
@@ -75,9 +75,12 @@ const researchAreas = [
   },
 ]
 
-// Driving 단어만 페이드 인/아웃으로 변경
-const useDrivingFade = () => {
-  const drivingWords = ['Driving', 'Powering', 'Enabling']
+// 영어/한글 전체 문장 Dissolve 전환
+const useTitleFade = () => {
+  const titles = [
+    { text: 'Catalyzing Business and Industry Innovation via Data', lang: 'en' },
+    { text: '데이터를 통한 비즈니스와 산업 혁신', lang: 'ko' }
+  ]
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   
@@ -85,48 +88,19 @@ const useDrivingFade = () => {
     const cycleInterval = setInterval(() => {
       setIsVisible(false)
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % drivingWords.length)
+        setCurrentIndex((prev) => (prev + 1) % titles.length)
         setIsVisible(true)
-      }, 400)
-    }, 3500)
+      }, 500)
+    }, 4000)
     
     return () => clearInterval(cycleInterval)
   }, [])
   
-  return { currentWord: drivingWords[currentIndex], isVisible }
-}
-
-// 물결치는 그라데이션 애니메이션을 위한 훅
-const useWaveGradient = () => {
-  const [gradientPosition, setGradientPosition] = useState(0)
-  
-  useEffect(() => {
-    const animationInterval = setInterval(() => {
-      setGradientPosition((prev) => (prev + 1) % 100)
-    }, 50)
-    return () => clearInterval(animationInterval)
-  }, [])
-  
-  return gradientPosition
+  return { currentTitle: titles[currentIndex], isVisible }
 }
 
 export const AboutResearchTemplate = () => {
-  const { currentWord, isVisible } = useDrivingFade()
-  const gradientPosition = useWaveGradient()
-
-  // 물결치는 그라데이션 스타일
-  const waveGradientStyle = {
-    backgroundImage: `linear-gradient(90deg, 
-      #AC0E0E ${gradientPosition}%, 
-      #D6B14D ${gradientPosition + 25}%, 
-      #AC0E0E ${gradientPosition + 50}%, 
-      #D6B14D ${gradientPosition + 75}%,
-      #AC0E0E ${gradientPosition + 100}%)`,
-    backgroundSize: '200% 100%',
-    backgroundClip: 'text',
-    WebkitBackgroundClip: 'text',
-    color: 'transparent',
-  }
+  const { currentTitle, isVisible } = useTitleFade()
 
   return (
     <div className="flex flex-col bg-white">
@@ -187,49 +161,23 @@ export const AboutResearchTemplate = () => {
       {/* Hero Section */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title */}
+          {/* Animated Title - 전체 Dissolve */}
           <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-[1.4]">
-              <span 
-                className={`inline-block transition-all duration-400 ease-in-out ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
-                }`}
-                style={{ color: '#AC0E0E' }}
-              >
-                {currentWord}
-              </span>
-              {' '}Business and Industry Innovation via{' '}
-              <span style={{ color: '#D6B14D' }}>Data</span>
+            <h2 
+              className={`text-xl md:text-2xl lg:text-3xl font-bold leading-[1.4] transition-all duration-500 ease-in-out ${
+                isVisible ? 'opacity-100' : 'opacity-0'
+              }`}
+              style={{ 
+                color: currentTitle.lang === 'en' ? '#AC0E0E' : '#D6B14D'
+              }}
+            >
+              {currentTitle.text}
             </h2>
-            
-            {/* 3가지 연구 분야 - 물결치는 그라데이션 */}
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mt-8">
-              <span 
-                className="text-base md:text-lg font-bold"
-                style={waveGradientStyle}
-              >
-                금융 데이터 사이언스
-              </span>
-              <span className="text-gray-300">·</span>
-              <span 
-                className="text-base md:text-lg font-bold"
-                style={waveGradientStyle}
-              >
-                비즈니스 애널리틱스
-              </span>
-              <span className="text-gray-300">·</span>
-              <span 
-                className="text-base md:text-lg font-bold"
-                style={waveGradientStyle}
-              >
-                데이터 기반 의사결정
-              </span>
-            </div>
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 데이터 의사결정의 <br className="md:hidden" />
-            세 가지 핵심 연구 분야를 통해 실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
+            FINDS Lab은 데이터를 바탕으로 하는 세 가지 핵심 연구 분야를 통해<br className="hidden md:block" />
+            경영과 산업현장에서의 실질적인 가치를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>

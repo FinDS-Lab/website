@@ -5,15 +5,15 @@
   },
   "degree": "undergrad",
   "role": {
-    "ko": "학부연구생",
+    "ko": "Undergraduate Researcher",
     "en": "Undergraduate Researcher"
   },
   "status": "active",
   "avatar": "/website/images/members/LCE-1.webp",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-01",
-    "end": "2025-02"
+    "start": "2025-12-22",
+    "end": "2026-03-01"
   },
   "contact": {
     "email": ""
@@ -26,7 +26,7 @@
   },
   "education": [
     {
-      "degree": "학부과정",
+      "degree": "Undergraduate",
       "field": "기계·스마트·산업공학부 산업공학전공",
       "field_en": "Department of Mechanical, Smart and Industrial Engineering (Industrial Engineering Major)",
       "school": "가천대학교",

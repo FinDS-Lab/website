@@ -5,14 +5,14 @@
   },
   "degree": "undergrad",
   "role": {
-    "ko": "학부연구생",
+    "ko": "Undergraduate Researcher",
     "en": "Undergraduate Researcher"
   },
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-01",
-    "end": "2025-02"
+    "start": "2025-12-22",
+    "end": "2026-03-01"
   },
   "contact": {
     "email": "garamkg@khu.ac.kr",
@@ -28,7 +28,7 @@
   },
   "education": [
     {
-      "degree": "학부과정",
+      "degree": "Undergraduate",
       "field": "컴퓨터공학부",
       "field_en": "Department of Computer Science & Engineering",
       "school": "경희대학교",

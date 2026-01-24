@@ -6,7 +6,7 @@
       "nameEn": "Byeong-Oh Kang",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -25,7 +25,7 @@
       "nameEn": "Hyun-Woo Ko",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -44,7 +44,7 @@
       "nameEn": "Kang-Hyun Kim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -63,7 +63,7 @@
       "nameEn": "Da-In Kim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -82,7 +82,7 @@
       "nameEn": "Yeon-Hu Kim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -101,7 +101,7 @@
       "nameEn": "Jae-Yeop Kim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -120,7 +120,7 @@
       "nameEn": "Seong-Su Park",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -140,7 +140,7 @@
       "nameEn": "Kyeong-Su Shin",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -159,7 +159,7 @@
       "nameEn": "Jeong-Yun Shin",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -178,7 +178,7 @@
       "nameEn": "Eun Sim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -197,7 +197,7 @@
       "nameEn": "Dong-Hoon Yang",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -216,7 +216,7 @@
       "nameEn": "Seong-Jun Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -235,7 +235,7 @@
       "nameEn": "Su-In Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -255,7 +255,7 @@
       "nameEn": "Yu-Seop Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.01"},
+      "periods": {"ur": "2025-12-01 – 2026-01-31"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -274,7 +274,7 @@
       "nameEn": "Chae-Eun Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -293,7 +293,7 @@
       "nameEn": "Tae-Kyeong Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -313,7 +313,7 @@
       "nameEn": "So-Young Lim",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -332,7 +332,7 @@
       "nameEn": "Yu-Jin Jeong",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -352,7 +352,7 @@
       "nameEn": "Yun-Su Jo",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -371,7 +371,7 @@
       "nameEn": "Mun-Hyeok Choi",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -390,7 +390,7 @@
       "nameEn": "Jin-Woo Choi",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
@@ -409,7 +409,7 @@
       "nameEn": "Seung-Min Ha",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025-12-22 – 2026-03-01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",

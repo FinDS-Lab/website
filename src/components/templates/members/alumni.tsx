@@ -39,7 +39,7 @@ const degreeLabels: Record<string, string> = {
   phd: 'Ph.D.',
   ms: 'M.S.',
   bs: 'B.S.',
-  ur: 'Undergraduate',
+  ur: 'Undergraduate Researcher',
 }
 
 const degreeOrder: Record<string, number> = {
@@ -292,7 +292,7 @@ export const MembersAlumniTemplate = () => {
                     <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <div className="flex items-center gap-6">
                       <UserCheck className="size-14 md:size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">Undergrad</span>
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Undergraduate Researcher</span>
                     </div>
                   </div>
                 </div>

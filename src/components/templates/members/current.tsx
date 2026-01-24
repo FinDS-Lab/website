@@ -58,7 +58,7 @@ const degreeLabels = {
   phd: 'Ph.D.',
   combined: 'Ph.D.-M.S. Combined',
   ms: 'M.S.',
-  undergrad: 'Undergraduate Interns',
+  undergrad: 'Undergraduate Researchers',
 }
 
 const degreeColors = {
@@ -158,7 +158,7 @@ export const MembersCurrentTemplate = () => {
       phd: { label: 'Ph.D.', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       combined: { label: 'Ph.D. - M.S. Combined', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
       ms: { label: 'M.S.', count: msCount, icon: BookOpen, color: '#FF6B6B' },
-      undergrad: { label: 'Undergraduate', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      undergrad: { label: 'Undergraduate Researcher', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#4A4A4A' },
     }
   }, [members])
@@ -341,7 +341,7 @@ export const MembersCurrentTemplate = () => {
                                   className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-bold ${degreeColors[groupKey]}`}
                                   style={degreeBgStyles[groupKey]}
                                 >
-                                  {member.role.ko}
+                                  {member.role.en}
                                 </span>
                               </div>
                               <p className="text-[11px] md:text-[13px] text-gray-500">

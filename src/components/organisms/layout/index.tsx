@@ -56,21 +56,18 @@ const footerLinks = [
   { name: 'Scopus', url: 'https://www.scopus.com' },
 ]
 
-// Header logo text animation hook with random direction
+// Header logo text animation hook - simple dissolve fade
 const useLogoTextAnimation = () => {
   const [showAlt, setShowAlt] = useState(false)
-  const [direction, setDirection] = useState<'up' | 'down' | 'left' | 'right' | 'rotate'>('up')
   
   useEffect(() => {
-    const directions: ('up' | 'down' | 'left' | 'right' | 'rotate')[] = ['up', 'down', 'left', 'right', 'rotate']
     const interval = setInterval(() => {
-      setDirection(directions[Math.floor(Math.random() * directions.length)])
       setShowAlt(prev => !prev)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
   
-  return { showAlt, direction }
+  return { showAlt }
 }
 
 // Contact Us Modal Content
@@ -143,7 +140,7 @@ const LayoutOrganisms = ({ children }: props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null)
   const { showModal } = useStoreModal()
-  const { showAlt: showAltText, direction: animDirection } = useLogoTextAnimation()
+  const { showAlt: showAltText } = useLogoTextAnimation()
   const isHomePage = location.pathname === '/'
 
   const handleContactClick = () => {
@@ -191,18 +188,12 @@ const LayoutOrganisms = ({ children }: props) => {
               <span className="text-gray-900">Lab</span>
             </span>
             
-            {/* PC: Animated text with random direction */}
+            {/* PC: Animated text with simple dissolve */}
             <div className="hidden md:flex relative h-[44px] items-center overflow-hidden min-w-[200px]">
               {/* FINDS Lab */}
               <span 
                 className={`font-bold transition-all duration-700 ease-in-out text-xl ${
-                  showAltText 
-                    ? animDirection === 'up' ? 'opacity-0 -translate-y-full'
-                    : animDirection === 'down' ? 'opacity-0 translate-y-full'
-                    : animDirection === 'left' ? 'opacity-0 -translate-x-full'
-                    : animDirection === 'right' ? 'opacity-0 translate-x-full'
-                    : 'opacity-0 rotate-180 scale-50'
-                    : 'opacity-100 translate-y-0 translate-x-0 rotate-0 scale-100'
+                  showAltText ? 'opacity-0' : 'opacity-100'
                 }`}
               >
                 <span style={{ color: '#D6B14D' }}>FINDS </span>
@@ -211,13 +202,7 @@ const LayoutOrganisms = ({ children }: props) => {
               {/* Financial Data Intelligence & Solutions Laboratory */}
               <span 
                 className={`absolute left-0 flex flex-col leading-tight transition-all duration-700 ease-in-out ${
-                  showAltText 
-                    ? 'opacity-100 translate-y-0 translate-x-0 rotate-0 scale-100'
-                    : animDirection === 'up' ? 'opacity-0 translate-y-full'
-                    : animDirection === 'down' ? 'opacity-0 -translate-y-full'
-                    : animDirection === 'left' ? 'opacity-0 translate-x-full'
-                    : animDirection === 'right' ? 'opacity-0 -translate-x-full'
-                    : 'opacity-0 -rotate-180 scale-50'
+                  showAltText ? 'opacity-100' : 'opacity-0'
                 }`}
               >
                 <span className="text-[10px] font-semibold tracking-wide">

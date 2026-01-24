@@ -5,15 +5,15 @@
   },
   "degree": "undergrad",
   "role": {
-    "ko": "학부연구생",
+    "ko": "Undergraduate Researcher",
     "en": "Undergraduate Researcher"
   },
   "status": "active",
   "avatar": "/website/images/members/LSI-1.webp",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025-01",
-    "end": "2025-02"
+    "start": "2025-12-22",
+    "end": "2026-03-01"
   },
   "contact": {
     "email": ""
@@ -26,7 +26,7 @@
   },
   "education": [
     {
-      "degree": "학부과정",
+      "degree": "Undergraduate",
       "field": "산업경영공학과",
       "field_en": "Department of Industrial and Management Systems Engineering",
       "school": "경희대학교",
