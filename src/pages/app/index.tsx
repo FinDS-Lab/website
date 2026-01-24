@@ -3,7 +3,7 @@ import "../../assets/css/theme.css";
 import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
-import {lazy, Suspense, useEffect, memo, useRef, useState, useCallback} from "react";
+import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
 import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward, Minimize2, Maximize2 } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
@@ -56,13 +56,13 @@ const GlobalMusicPlayer = memo(() => {
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
+  const playerWrapperRef = useRef<HTMLDivElement>(null)
   const videoAreaRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [playerReady, setPlayerReady] = useState(false)
   const lastVideoIdRef = useRef<string | null>(null)
   const [isCompact, setIsCompact] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
-  const [playerPosition, setPlayerPosition] = useState<{top: number; left: number; width: number; height: number} | null>(null)
   const location = useLocation()
 
   useEffect(() => {
@@ -105,25 +105,53 @@ const GlobalMusicPlayer = memo(() => {
   const isPlaylistPage = location.pathname === '/archives/playlist'
   const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage
 
-  // Update player position based on videoArea - NO DOM movement
-  const updatePlayerPosition = useCallback(() => {
-    if (showFullPlayer && videoAreaRef.current) {
-      const rect = videoAreaRef.current.getBoundingClientRect()
-      setPlayerPosition({ top: rect.top, left: rect.left, width: rect.width, height: rect.height })
-    } else {
-      setPlayerPosition(null)
+  // Player wrapper 위치 업데이트 - DOM API 직접 사용 (React 렌더링과 분리)
+  useEffect(() => {
+    const wrapper = playerWrapperRef.current
+    const videoArea = videoAreaRef.current
+    if (!wrapper) return
+    
+    const updatePosition = () => {
+      if (showFullPlayer && videoArea) {
+        const rect = videoArea.getBoundingClientRect()
+        wrapper.style.position = 'fixed'
+        wrapper.style.top = rect.top + 'px'
+        wrapper.style.left = rect.left + 'px'
+        wrapper.style.width = rect.width + 'px'
+        wrapper.style.height = rect.height + 'px'
+        wrapper.style.zIndex = '10'
+        wrapper.style.overflow = 'visible'
+      } else {
+        wrapper.style.position = 'fixed'
+        wrapper.style.left = '-9999px'
+        wrapper.style.top = '-9999px'
+        wrapper.style.width = '1px'
+        wrapper.style.height = '1px'
+        wrapper.style.overflow = 'hidden'
+        wrapper.style.zIndex = '-1'
+      }
+    }
+    
+    updatePosition()
+    window.addEventListener('resize', updatePosition)
+    window.addEventListener('scroll', updatePosition)
+    
+    // RAF for smooth updates
+    let rafId: number
+    const rafUpdate = () => {
+      updatePosition()
+      rafId = requestAnimationFrame(rafUpdate)
+    }
+    if (showFullPlayer) {
+      rafId = requestAnimationFrame(rafUpdate)
+    }
+    
+    return () => {
+      window.removeEventListener('resize', updatePosition)
+      window.removeEventListener('scroll', updatePosition)
+      if (rafId) cancelAnimationFrame(rafId)
     }
   }, [showFullPlayer])
-
-  useEffect(() => {
-    updatePlayerPosition()
-    window.addEventListener('resize', updatePlayerPosition)
-    window.addEventListener('scroll', updatePlayerPosition)
-    return () => {
-      window.removeEventListener('resize', updatePlayerPosition)
-      window.removeEventListener('scroll', updatePlayerPosition)
-    }
-  }, [updatePlayerPosition])
 
   // Initialize YouTube Player ONCE
   useEffect(() => {
@@ -177,15 +205,10 @@ const GlobalMusicPlayer = memo(() => {
     setIsHidden(true)
   }
 
-  // Player container style - CSS only, no DOM movement
-  const playerStyle: React.CSSProperties = playerPosition 
-    ? { position: 'fixed', top: playerPosition.top, left: playerPosition.left, width: playerPosition.width, height: playerPosition.height, zIndex: 10 }
-    : { position: 'fixed', left: -9999, top: -9999, width: 1, height: 1, overflow: 'hidden' }
-
   return (
     <>
-      {/* Player Container - ALWAYS in same DOM position, only CSS changes */}
-      <div style={playerStyle}>
+      {/* 플레이어 wrapper - 항상 렌더링, style은 DOM API로만 변경 (React 건드리지 않음) */}
+      <div ref={playerWrapperRef}>
         <div id="yt-player" style={{width: '100%', height: '100%'}} />
       </div>
       
@@ -269,7 +292,7 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               )}
 
-              {/* Video Area - Player overlays this via CSS positioning */}
+              {/* Video Area - 플레이어가 이 위치에 오버레이됨 */}
               <div ref={videoAreaRef} className="relative aspect-video bg-black" />
 
               <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
