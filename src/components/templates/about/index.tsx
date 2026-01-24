@@ -56,7 +56,7 @@ export const LocationTemplate = () => {
       <section className="pb-60 md:pb-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto flex flex-col lg:flex-row gap-20 md:gap-32">
           {/* Map Section */}
-          <div className="flex-1 min-h-[300px] lg:min-h-[520px] rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50">
+          <div className="flex-1 min-h-[300px] lg:min-h-[520px] rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50 relative group">
             <iframe
               src="https://maps.google.com/maps?q=가천대학교+가천관&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -67,6 +67,15 @@ export const LocationTemplate = () => {
               referrerPolicy="no-referrer-when-downgrade"
               title="Gachon University - Gachon Hall"
             />
+            {/* Hover overlay with location image */}
+            <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+              <div className="w-full h-full p-16 md:p-24">
+                <div 
+                  className="w-full h-full rounded-xl bg-cover bg-center"
+                  style={{ backgroundImage: `url(${locationImg})` }}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Info Section */}
@@ -89,11 +98,11 @@ export const LocationTemplate = () => {
                   <p className="text-xs text-gray-400 mt-2">금융인텔리전스연구실</p>
                 </div>
                 
-                {/* Address - KR */}
+                {/* Address - KOR */}
                 <div className="flex-1 flex flex-col gap-12">
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-white/10">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KR</span>
+                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KOR</span>
                       <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
@@ -104,10 +113,10 @@ export const LocationTemplate = () => {
                     </p>
                   </div>
 
-                  {/* Address - EN */}
+                  {/* Address - ENG */}
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-white/10">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">EN</span>
+                      <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">ENG</span>
                       <div className="flex-1 h-px bg-gradient-to-r from-gray-600 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
@@ -140,11 +149,11 @@ export const LocationTemplate = () => {
                   <p className="text-xs text-gray-500 mt-2">최인수 교수 연구실</p>
                 </div>
                 
-                {/* Address - KR */}
+                {/* Address - KOR */}
                 <div className="flex-1 flex flex-col gap-12">
                   <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KR</span>
+                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KOR</span>
                       <div className="w-16 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
@@ -155,10 +164,10 @@ export const LocationTemplate = () => {
                     </p>
                   </div>
 
-                  {/* Address - EN */}
+                  {/* Address - ENG */}
                   <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">EN</span>
+                      <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">ENG</span>
                       <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">

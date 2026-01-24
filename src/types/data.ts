@@ -101,15 +101,19 @@ export type MemberData = {
 // Alumni data types
 export type AlumniMember = {
   name: string
-  nameKo: string
+  nameEn?: string
+  nameKo?: string
   degrees: string[]
   periods: {
     [degree: string]: string
   }
   education: {
     degree: string
+    degreeEn?: string
     school: string
-    dept: string
+    schoolEn?: string
+    dept?: string
+    deptEn?: string
     year: string
   }[]
   thesis?: {
@@ -120,7 +124,13 @@ export type AlumniMember = {
   }
   company?: string
   cohort?: string
+  cohortName?: string
+  currentPosition?: string
+  currentPositionEn?: string
   projects?: string[]
+  project?: {
+    title: string
+  }
 }
 
 export type AlumniData = {
