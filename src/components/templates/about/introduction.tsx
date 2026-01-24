@@ -163,6 +163,7 @@ export const AboutIntroductionTemplate = () => {
   const [visionLang, setVisionLang] = useState<'ko' | 'en'>('ko')
   const [pillarsLang, setPillarsLang] = useState<'ko' | 'en'>('ko')
   const [carouselIndex, setCarouselIndex] = useState(0)
+  const [carousel2Index, setCarousel2Index] = useState(0)
 
   return (
     <div className="flex flex-col bg-white">
@@ -218,7 +219,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
+                      <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center text-center">
                         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
                           {missionLang === 'ko' ? (
                             <>
@@ -307,22 +308,33 @@ export const AboutIntroductionTemplate = () => {
 
                         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
 
-                        <div className="relative z-10">
-                          <Quote size={32} className="mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
-                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.5] mb-20 md:mb-28 text-white" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
+                        <div className="relative z-10 text-center">
+                          {/* Title */}
+                          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.4] mb-20 md:mb-32 text-white" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
                             {visionLang === 'ko' ? (
                               <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
                             ) : (
                               <>We illuminate the future of <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Better Data Intelligence</span></>
                             )}
                           </h2>
-                          <p className="text-sm md:text-base leading-[2] max-w-2xl text-gray-400">
-                            {visionLang === 'ko' ? (
-                              <>우리는 <span className="font-semibold text-white">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span style={{ color: '#D6B14D' }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다.</>
-                            ) : (
-                              <>We envision a future where <span className="font-semibold text-white">data intelligence</span> diminishes knowledge asymmetry, turning complex data streams into <span style={{ color: '#D6B14D' }}>clear, accessible, and strategically valuable insights</span>.</>
-                            )}
-                          </p>
+
+                          {/* Divider - matching Mission style */}
+                          <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
+                            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
+                          </div>
+
+                          {/* Description */}
+                          <div className="max-w-3xl mx-auto space-y-16">
+                            <p className="text-sm md:text-base leading-[2] text-gray-400">
+                              {visionLang === 'ko' ? (
+                                <>우리는 <span className="font-semibold text-white">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span style={{ color: '#D6B14D' }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다.</>
+                              ) : (
+                                <>We envision a future where <span className="font-semibold text-white">data intelligence</span> diminishes knowledge asymmetry, turning complex data streams into <span style={{ color: '#D6B14D' }}>clear, accessible, and strategically valuable insights</span>.</>
+                              )}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -341,7 +353,7 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          FOCUS AREAS - Uniform Card Style
+          FOCUS AREAS & PILLARS CAROUSEL
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
@@ -349,125 +361,198 @@ export const AboutIntroductionTemplate = () => {
             ref={focusAnimation.ref}
             className={`transition-all duration-1000 ${focusAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            {/* Uniform Card Container */}
-            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-              {/* Card Header - Fixed height, matching other sections */}
-              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
-                <div className="flex items-center gap-8">
-                  <Sparkles size={14} className="text-[#D6B14D]" />
-                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                    {focusLang === 'ko' ? '연구 분야' : 'Our Focus Areas'}
-                  </span>
-                </div>
-                <LangToggle lang={focusLang} setLang={setFocusLang} />
-              </div>
-
-              {/* Card Content - Fixed min-height with 3 cards inside */}
-              <div className="p-20 md:p-32 min-h-[400px] md:min-h-[450px]">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20 h-full">
-                  {focusAreas.map((area, index) => (
-                    <div
-                      key={index}
-                      className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex flex-col"
-                    >
-                      {/* Icon */}
-                      <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-16 shrink-0">
-                        <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                        <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                          <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
+            {/* Carousel Container */}
+            <div className="relative">
+              {/* Carousel Content */}
+              <div className="overflow-hidden rounded-2xl md:rounded-3xl">
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${carousel2Index * 100}%)` }}
+                >
+                  {/* Slide 1: Focus Areas (Light Theme) */}
+                  <div className="w-full flex-shrink-0">
+                    <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+                      {/* Card Header */}
+                      <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                        <div className="flex items-center gap-8">
+                          <Sparkles size={14} className="text-[#D6B14D]" />
+                          <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}
+                          </span>
                         </div>
+                        <LangToggle lang={focusLang} setLang={setFocusLang} />
                       </div>
 
-                      {/* Text */}
-                      <div className="text-center flex-1 flex flex-col">
-                        <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
-                          {focusLang === 'ko' ? area.titleKo : area.title}
-                        </h3>
-                        <p 
-                          className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
-                          dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
-                        />
+                      {/* Card Content */}
+                      <div className="p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center">
+                        {/* Title with decorative elements */}
+                        <div className="text-center mb-32 md:mb-40">
+                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
+                            {focusLang === 'ko' ? (
+                              <>세 가지 <span className="text-[#D6B14D]">핵심 연구 분야</span></>
+                            ) : (
+                              <>Three <span className="text-[#D6B14D]">Core Research Areas</span></>
+                            )}
+                          </h2>
+                          <div className="flex items-center justify-center gap-8">
+                            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                          </div>
+                        </div>
+
+                        {/* 3 Cards Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24">
+                          {focusAreas.map((area, index) => (
+                            <div
+                              key={index}
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-20 md:p-28 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col"
+                            >
+                              {/* Icon */}
+                              <div className="relative w-56 h-56 md:w-64 md:h-64 mx-auto mb-20 shrink-0">
+                                <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                                  <img src={area.image} alt={area.title} className="w-32 h-32 md:w-40 md:h-40 object-contain" />
+                                </div>
+                              </div>
+
+                              {/* Text */}
+                              <div className="text-center flex-1 flex flex-col">
+                                <h3 className="text-lg md:text-xl font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
+                                  {focusLang === 'ko' ? area.titleKo : area.title}
+                                </h3>
+                                <p 
+                                  className="text-sm md:text-base text-gray-500 leading-[1.9] [&>b]:text-gray-700 [&>b]:font-semibold"
+                                  dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
+                  </div>
 
-      {/* ═══════════════════════════════════════════════════════════════
-          PILLARS SECTION - Uniform Card Style
-      ═══════════════════════════════════════════════════════════════ */}
-      <div className="bg-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
-          <section
-            ref={pillarsAnimation.ref}
-            className={`transition-all duration-1000 ${pillarsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-          >
-            {/* Uniform Card Container */}
-            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-              {/* Card Header - Fixed height, matching other sections */}
-              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
-                <div className="flex items-center gap-8">
-                  <Sparkles size={14} className="text-[#D6B14D]" />
-                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                    {pillarsLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
-                  </span>
-                </div>
-                <LangToggle lang={pillarsLang} setLang={setPillarsLang} />
-              </div>
-
-              {/* Card Content - Fixed min-height with 3 cards inside */}
-              <div className="p-20 md:p-32 min-h-[400px] md:min-h-[450px]">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
-                  {pillars.map((pillar, index) => {
-                    const Icon = pillar.icon
-                    return (
-                      <div key={index} className="flex flex-col">
-                        {/* Label */}
-                        <div className="text-center mb-12">
-                          <h3 className="text-lg md:text-xl font-bold text-primary">
-                            {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
-                          </h3>
-                          <div className="w-20 h-0.5 bg-primary/30 rounded-full mx-auto mt-6" />
+                  {/* Slide 2: Pillars (Dark Theme) */}
+                  <div className="w-full flex-shrink-0">
+                    <div 
+                      className="overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.98) 100%)',
+                      }}
+                    >
+                      {/* Card Header */}
+                      <div 
+                        className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b"
+                        style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
+                      >
+                        <div className="flex items-center gap-8">
+                          <Sparkles size={14} style={{ color: '#D6B14D' }} />
+                          <span className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                            {pillarsLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
+                          </span>
                         </div>
-                        
-                        {/* Inner Card */}
-                        <div className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-md transition-all duration-300 flex-1 p-16 md:p-24">
-                          {/* Number & Icon */}
-                          <div className="flex items-center justify-between mb-12">
-                            <div className="size-36 md:size-40 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-[#D6C360] transition-all duration-300">
-                              <Icon size={18} className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+                        <LangToggle lang={pillarsLang} setLang={setPillarsLang} variant="dark" />
+                      </div>
+
+                      {/* Card Content with symmetric lighting */}
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center overflow-hidden">
+                        {/* Symmetric lighting effects */}
+                        <div className="absolute inset-0 pointer-events-none">
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, transparent 70%)' }} />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
+                        </div>
+
+                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
+
+                        <div className="relative z-10">
+                          {/* Title with decorative elements */}
+                          <div className="text-center mb-32 md:mb-40">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
+                              {pillarsLang === 'ko' ? (
+                                <>세 가지 <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
+                              ) : (
+                                <>Three <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
+                              )}
+                            </h2>
+                            <div className="flex items-center justify-center gap-8">
+                              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
                             </div>
-                            <span className="text-2xl md:text-3xl font-black text-gray-100 group-hover:text-[#FFF3CC] transition-colors">
-                              {pillar.number}
-                            </span>
                           </div>
 
-                          {/* Title */}
-                          <h4 className="text-sm md:text-base font-bold text-gray-900 mb-6 leading-[1.5]">
-                            {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
-                          </h4>
-                          
-                          {/* Subtitle */}
-                          {pillar.subtitle && (
-                            <p className="text-[11px] md:text-xs font-medium italic mb-8 text-[#D6B14D]">
-                              {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
-                            </p>
-                          )}
+                          {/* 3 Cards Grid */}
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24">
+                            {pillars.map((pillar, index) => {
+                              const Icon = pillar.icon
+                              return (
+                                <div 
+                                  key={index} 
+                                  className="group rounded-xl p-20 md:p-28 border transition-all duration-300 flex flex-col"
+                                  style={{ 
+                                    background: 'rgba(255, 255, 255, 0.03)', 
+                                    borderColor: 'rgba(214, 177, 77, 0.15)',
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'rgba(214, 177, 77, 0.08)'
+                                    e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.3)'
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+                                    e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.15)'
+                                  }}
+                                >
+                                  {/* Icon & Number */}
+                                  <div className="flex items-center justify-between mb-16">
+                                    <div className="size-48 md:size-56 rounded-xl flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.15)' }}>
+                                      <Icon size={24} style={{ color: '#D6B14D' }} />
+                                    </div>
+                                    <span className="text-3xl md:text-4xl font-black" style={{ color: 'rgba(214, 177, 77, 0.2)' }}>
+                                      {pillar.number}
+                                    </span>
+                                  </div>
 
-                          {/* Description */}
-                          <p 
-                            className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
-                            dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
-                          />
+                                  {/* Label */}
+                                  <h3 className="text-lg md:text-xl font-bold mb-8" style={{ color: '#D6B14D' }}>
+                                    {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
+                                  </h3>
+
+                                  {/* Title */}
+                                  <h4 className="text-sm md:text-base font-semibold text-white mb-8 leading-[1.5]">
+                                    {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
+                                  </h4>
+                                  
+                                  {/* Subtitle */}
+                                  {pillar.subtitle && (
+                                    <p className="text-xs font-medium italic mb-10" style={{ color: 'rgba(214, 177, 77, 0.7)' }}>
+                                      {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
+                                    </p>
+                                  )}
+
+                                  {/* Description */}
+                                  <p 
+                                    className="text-sm text-gray-400 leading-[1.9] [&>b]:text-gray-300 [&>b]:font-semibold"
+                                    dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
+                                  />
+                                </div>
+                              )
+                            })}
+                          </div>
                         </div>
                       </div>
-                    )
-                  })}
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              {/* Carousel Dots */}
+              <div className="flex items-center justify-center gap-8 mt-20 md:mt-24">
+                <button onClick={() => setCarousel2Index(0)} className={`w-8 h-8 rounded-full transition-all duration-300 ${carousel2Index === 0 ? 'bg-[#D6B14D] scale-125' : 'bg-gray-300 hover:bg-gray-400'}`} aria-label="Focus Areas slide" />
+                <button onClick={() => setCarousel2Index(1)} className={`w-8 h-8 rounded-full transition-all duration-300 ${carousel2Index === 1 ? 'bg-[#D6B14D] scale-125' : 'bg-gray-300 hover:bg-gray-400'}`} aria-label="Pillars slide" />
               </div>
             </div>
           </section>
