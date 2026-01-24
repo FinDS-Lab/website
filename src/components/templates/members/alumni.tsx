@@ -797,7 +797,7 @@ export const MembersAlumniTemplate = () => {
                                     {getAffiliation(alumni)}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
-                                    {hasChange ? renderCurrentPosition(alumni.currentPosition) : <span className="text-gray-400 text-xs">-</span>}
+                                    {hasChange ? renderCurrentPosition(alumni.currentPosition) : getAffiliation(alumni)}
                                   </td>
                                 </tr>
                                 {isExpanded && hasProject && (

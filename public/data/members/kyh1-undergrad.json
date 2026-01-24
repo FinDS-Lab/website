@@ -29,9 +29,10 @@
       "degree": "Undergraduate",
       "field": "산업경영공학과",
       "field_en": "Department of Industrial & Management Engineering",
-      "school": "한양대학교 ERICA",
+      "school": "한양대학교 ERICA 캠퍼스",
       "school_en": "Hanyang University ERICA",
-      "expected": "Present"
+      "expected": "Present",
+      "start": "2024-03"
     }
   ]
 }

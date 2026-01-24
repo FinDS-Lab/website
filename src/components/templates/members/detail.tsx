@@ -210,7 +210,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
               {/* Period */}
               <div className="flex items-center gap-8 text-sm text-gray-600 mb-20 justify-center">
                 <Calendar size={14} className="text-gray-400"/>
-                <span>{member.period.start?.replace(/-/g, '.')} - {member.period.expected_graduation?.replace(/-/g, '.') || 'Present'}</span>
+                <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
               </div>
 
               {/* Divider */}
@@ -329,12 +329,12 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div key={idx} className="flex items-start justify-between gap-16 p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
                       <h4 className="text-base font-bold text-gray-900">
-                        {edu.degree === 'B.S.' || edu.degree === '학부과정' ? `${edu.field}` : `${edu.degree} in ${edu.field}`}
+                        {edu.field_en || edu.field}
                       </h4>
-                      <p className="text-sm text-gray-600">{edu.school}</p>
+                      <p className="text-sm text-gray-600">{edu.school_en || edu.school}</p>
                     </div>
                     <span className="text-xs md:text-sm font-semibold whitespace-nowrap" style={{ color: '#E8889C' }}>
-                      {edu.start?.replace(/-/g, '.')} - {edu.end?.replace(/-/g, '.') || edu.expected || 'Present'}
+                      {edu.start} - {edu.end || edu.expected || 'Present'}
                     </span>
                   </div>
                 ))}

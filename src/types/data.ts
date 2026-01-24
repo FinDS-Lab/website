@@ -83,7 +83,9 @@ export type MemberData = {
   education: {
     degree: string
     field: string
+    field_en?: string
     school: string
+    school_en?: string
     start: string
     end?: string
     expected?: string

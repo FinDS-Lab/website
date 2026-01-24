@@ -84,10 +84,10 @@ const degreeHoverColors = {
   undergrad: '#E8889C',
 }
 
-// 날짜 포맷 변환 함수 (2025-03 -> 2025.03)
+// 날짜 포맷 - 하이픈 유지 (2025-12-22 형식)
 const formatPeriod = (dateStr: string): string => {
   if (!dateStr) return ''
-  return dateStr.replace(/-/g, '.')
+  return dateStr
 }
 
 export const MembersCurrentTemplate = () => {
