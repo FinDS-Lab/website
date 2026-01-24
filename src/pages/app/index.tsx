@@ -56,8 +56,6 @@ const GlobalMusicPlayer = memo(() => {
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
-  const playerWrapperRef = useRef<HTMLDivElement>(null)
-  const videoAreaRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [playerReady, setPlayerReady] = useState(false)
   const lastVideoIdRef = useRef<string | null>(null)
@@ -104,58 +102,6 @@ const GlobalMusicPlayer = memo(() => {
   const currentTrack = trackInfo[currentIndex]
   const isPlaylistPage = location.pathname === '/archives/playlist'
   const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage
-
-  // Player wrapper 위치 업데이트 - DOM API 직접 사용 (React 렌더링과 분리)
-  useEffect(() => {
-    const wrapper = playerWrapperRef.current
-    if (!wrapper) return
-    
-    const updatePosition = () => {
-      const videoArea = videoAreaRef.current  // 매번 새로 가져옴
-      if (showFullPlayer && videoArea) {
-        const rect = videoArea.getBoundingClientRect()
-        if (rect.width > 0 && rect.height > 0) {
-          wrapper.style.position = 'fixed'
-          wrapper.style.top = rect.top + 'px'
-          wrapper.style.left = rect.left + 'px'
-          wrapper.style.width = rect.width + 'px'
-          wrapper.style.height = rect.height + 'px'
-          wrapper.style.zIndex = '10'
-          wrapper.style.overflow = 'visible'
-          return
-        }
-      }
-      // Full 모드가 아니거나 videoArea가 없으면 화면 밖으로
-      wrapper.style.position = 'fixed'
-      wrapper.style.left = '-9999px'
-      wrapper.style.top = '-9999px'
-      wrapper.style.width = '1px'
-      wrapper.style.height = '1px'
-      wrapper.style.overflow = 'hidden'
-      wrapper.style.zIndex = '-1'
-    }
-    
-    // 렌더링 완료 후 위치 업데이트
-    const timerId = setTimeout(updatePosition, 50)
-    
-    window.addEventListener('resize', updatePosition)
-    window.addEventListener('scroll', updatePosition)
-    
-    // RAF for smooth updates when in full mode
-    let rafId: number
-    const rafUpdate = () => {
-      updatePosition()
-      rafId = requestAnimationFrame(rafUpdate)
-    }
-    rafId = requestAnimationFrame(rafUpdate)
-    
-    return () => {
-      clearTimeout(timerId)
-      window.removeEventListener('resize', updatePosition)
-      window.removeEventListener('scroll', updatePosition)
-      if (rafId) cancelAnimationFrame(rafId)
-    }
-  }, [showFullPlayer])
 
   // Initialize YouTube Player ONCE
   useEffect(() => {
@@ -209,13 +155,11 @@ const GlobalMusicPlayer = memo(() => {
     setIsHidden(true)
   }
 
+  // 플레이어 안 보여줄 조건
+  const hidePlayer = isHidden || playlist.length === 0 || isPlaylistPage
+
   return (
     <>
-      {/* 플레이어 wrapper - 항상 렌더링, style은 DOM API로만 변경 (React 건드리지 않음) */}
-      <div ref={playerWrapperRef}>
-        <div id="yt-player" style={{width: '100%', height: '100%'}} />
-      </div>
-      
       {/* Main UI - Hidden on mobile */}
       <div className="fixed bottom-20 right-20 z-[9999] hidden md:flex flex-col items-end gap-12">
         {location.pathname !== '/' && (
@@ -224,96 +168,110 @@ const GlobalMusicPlayer = memo(() => {
           </Link>
         )}
         
-        {!isHidden && playlist.length > 0 && !isPlaylistPage && (
-          isMinimized ? (
-            <div className="flex items-center gap-8">
-              <button onClick={handleHidePlayer} className="flex items-center justify-center w-36 h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50" title="플레이리스트 숨기기">
-                <X className="w-16 h-16" />
-              </button>
-              <button onClick={() => toggleMinimize()} className="group flex items-center gap-14 px-28 py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105">
-                <div className="relative flex items-center justify-center w-52 h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
-                  <Music className="w-22 h-22" style={{color: 'rgb(214,177,77)'}} />
-                  {isPlaying && <span className="absolute -top-2 -right-2 w-14 h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
-                  <span className="text-sm font-medium text-gray-400">Playlist</span>
-                </div>
-              </button>
-            </div>
-          ) : isCompact ? (
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8 w-[320px]">
-              <div className="flex items-center gap-6 flex-1 min-w-0">
-                <div className="relative shrink-0">
-                  <Music size={16} style={{color: 'rgb(214,177,77)'}} />
-                  {isPlaying && <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />}
-                </div>
-                <div className="min-w-0 flex-1 overflow-hidden">
-                  <p className="text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
-                  <div className="overflow-hidden">
-                    <p className={`text-xs text-white font-medium whitespace-nowrap ${(currentTrack?.title?.length || 0) > 18 ? 'animate-marquee' : ''}`}>
-                      {currentTrack?.title}{(currentTrack?.title?.length || 0) > 18 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack?.title}` : ''}
-                    </p>
-                  </div>
-                </div>
+        {/* Minimized Button */}
+        {!hidePlayer && isMinimized && (
+          <div className="flex items-center gap-8">
+            <button onClick={handleHidePlayer} className="flex items-center justify-center w-36 h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50" title="플레이리스트 숨기기">
+              <X className="w-16 h-16" />
+            </button>
+            <button onClick={() => toggleMinimize()} className="group flex items-center gap-14 px-28 py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105">
+              <div className="relative flex items-center justify-center w-52 h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
+                <Music className="w-22 h-22" style={{color: 'rgb(214,177,77)'}} />
+                {isPlaying && <span className="absolute -top-2 -right-2 w-14 h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />}
               </div>
-              <div className="flex items-center gap-4 shrink-0">
-                <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
-                <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
-                  {isPlaying ? <Pause size={12} className="text-primary" /> : <Play size={12} className="text-primary ml-0.5" />}
-                </button>
-                <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
-                <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장"><Maximize2 size={10} className="text-gray-400" /></button>
-                <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기"><X size={10} className="text-gray-400" /></button>
+              <div className="flex flex-col">
+                <span className="text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
+                <span className="text-sm font-medium text-gray-400">Playlist</span>
               </div>
-            </div>
-          ) : (
-            <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[340px] border border-gray-800/50">
-              <div className="flex items-center justify-between px-20 py-16 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
-                <div className="flex items-center gap-14">
-                  <div className="w-44 h-44 rounded-xl flex items-center justify-center shadow-lg overflow-hidden shrink-0" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)'}}>
-                    <Music className="w-20 h-20 text-white" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-white tracking-wider">FINDS</span>
-                    <span className="text-sm font-medium" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <button onClick={() => setIsCompact(true)} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="컴팩트"><Minimize2 className="w-12 h-12 text-gray-400" /></button>
-                  <button onClick={toggleMinimize} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="접기"><X className="w-12 h-12 text-gray-400" /></button>
-                </div>
-              </div>
-
-              {currentTrack && (
-                <div className="px-16 py-12 border-b border-gray-800/50 overflow-hidden">
-                  <p className="text-[11px] font-bold tracking-wider mb-1" style={{color: 'rgb(214,177,77)'}}>{currentTrack.artist}</p>
-                  <div className="overflow-hidden">
-                    <p className={`text-white text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}>
-                      {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Video Area - 플레이어가 이 위치에 오버레이됨 */}
-              <div ref={videoAreaRef} className="relative aspect-video bg-black" />
-
-              <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
-                <div className="flex items-center justify-center gap-20 mb-12">
-                  <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
-                  <button onClick={togglePlay} className="w-56 h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
-                    {isPlaying ? <Pause className="w-24 h-24 text-white" /> : <Play className="w-24 h-24 text-white ml-2" />}
-                  </button>
-                  <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
-                </div>
-                <div className="flex items-center justify-center">
-                  <span className="text-sm text-gray-500 font-medium tracking-wide">{currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}</span>
-                </div>
-              </div>
-            </div>
-          )
+            </button>
+          </div>
         )}
+        
+        {/* Compact UI */}
+        {!hidePlayer && !isMinimized && isCompact && (
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8 w-[320px]">
+            <div className="flex items-center gap-6 flex-1 min-w-0">
+              <div className="relative shrink-0">
+                <Music size={16} style={{color: 'rgb(214,177,77)'}} />
+                {isPlaying && <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />}
+              </div>
+              <div className="min-w-0 flex-1 overflow-hidden">
+                <p className="text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
+                <div className="overflow-hidden">
+                  <p className={`text-xs text-white font-medium whitespace-nowrap ${(currentTrack?.title?.length || 0) > 18 ? 'animate-marquee' : ''}`}>
+                    {currentTrack?.title}{(currentTrack?.title?.length || 0) > 18 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack?.title}` : ''}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
+              <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
+                {isPlaying ? <Pause size={12} className="text-primary" /> : <Play size={12} className="text-primary ml-0.5" />}
+              </button>
+              <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
+              <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장"><Maximize2 size={10} className="text-gray-400" /></button>
+              <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기"><X size={10} className="text-gray-400" /></button>
+            </div>
+          </div>
+        )}
+        
+        {/* Full Player - 항상 렌더링, CSS로만 표시/숨김 (DOM 이동 없음) */}
+        <div 
+          className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[340px] border border-gray-800/50"
+          style={{
+            opacity: showFullPlayer ? 1 : 0,
+            pointerEvents: showFullPlayer ? 'auto' : 'none',
+            position: showFullPlayer ? 'relative' : 'absolute',
+            left: showFullPlayer ? 'auto' : '-9999px',
+            top: showFullPlayer ? 'auto' : '-9999px',
+          }}
+        >
+          <div className="flex items-center justify-between px-20 py-16 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
+            <div className="flex items-center gap-14">
+              <div className="w-44 h-44 rounded-xl flex items-center justify-center shadow-lg overflow-hidden shrink-0" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)'}}>
+                <Music className="w-20 h-20 text-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-bold text-white tracking-wider">FINDS</span>
+                <span className="text-sm font-medium" style={{color: 'rgb(214,177,77)'}}>Playlist</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-6">
+              <button onClick={() => setIsCompact(true)} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="컴팩트"><Minimize2 className="w-12 h-12 text-gray-400" /></button>
+              <button onClick={toggleMinimize} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="접기"><X className="w-12 h-12 text-gray-400" /></button>
+            </div>
+          </div>
+
+          {currentTrack && (
+            <div className="px-16 py-12 border-b border-gray-800/50 overflow-hidden">
+              <p className="text-[11px] font-bold tracking-wider mb-1" style={{color: 'rgb(214,177,77)'}}>{currentTrack.artist}</p>
+              <div className="overflow-hidden">
+                <p className={`text-white text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}>
+                  {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Video Area - yt-player가 항상 여기에 있음 */}
+          <div className="relative aspect-video bg-black">
+            <div id="yt-player" style={{width: '100%', height: '100%'}} />
+          </div>
+
+          <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
+            <div className="flex items-center justify-center gap-20 mb-12">
+              <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
+              <button onClick={togglePlay} className="w-56 h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
+                {isPlaying ? <Pause className="w-24 h-24 text-white" /> : <Play className="w-24 h-24 text-white ml-2" />}
+              </button>
+              <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
+            </div>
+            <div className="flex items-center justify-center">
+              <span className="text-sm text-gray-500 font-medium tracking-wide">{currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
