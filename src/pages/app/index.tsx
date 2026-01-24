@@ -206,23 +206,27 @@ const GlobalMusicPlayer = memo(() => {
               </button>
             </div>
           ) : isCompact ? (
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
-              <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[220px]">
+            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8 w-[320px]">
+              <div className="flex items-center gap-6 flex-1 min-w-0">
                 <div className="relative shrink-0">
                   <Music size={16} style={{color: 'rgb(214,177,77)'}} />
                   {isPlaying && <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />}
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 overflow-hidden">
                   <p className="text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
-                  <p className="text-xs text-white font-medium truncate">{currentTrack?.title}</p>
+                  <div className="overflow-hidden">
+                    <p className={`text-xs text-white font-medium whitespace-nowrap ${(currentTrack?.title?.length || 0) > 18 ? 'animate-marquee' : ''}`}>
+                      {currentTrack?.title}{(currentTrack?.title?.length || 0) > 18 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack?.title}` : ''}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <button onClick={prevTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
+              <div className="flex items-center gap-4 shrink-0">
+                <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
                 <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
                   {isPlaying ? <Pause size={12} className="text-primary" /> : <Play size={12} className="text-primary ml-0.5" />}
                 </button>
-                <button onClick={nextTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
+                <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
                 <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장"><Maximize2 size={10} className="text-gray-400" /></button>
                 <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기"><X size={10} className="text-gray-400" /></button>
               </div>
@@ -261,11 +265,11 @@ const GlobalMusicPlayer = memo(() => {
 
               <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
                 <div className="flex items-center justify-center gap-20 mb-12">
-                  <button onClick={prevTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
+                  <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
                   <button onClick={togglePlay} className="w-56 h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
                     {isPlaying ? <Pause className="w-24 h-24 text-white" /> : <Play className="w-24 h-24 text-white ml-2" />}
                   </button>
-                  <button onClick={nextTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
+                  <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
                 </div>
                 <div className="flex items-center justify-center">
                   <span className="text-sm text-gray-500 font-medium tracking-wide">{currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}</span>
