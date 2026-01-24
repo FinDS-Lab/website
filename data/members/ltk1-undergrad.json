@@ -16,23 +16,26 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "leetk1224@khu.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Portfolio Optimization",
+      "Asset Allocation",
+      "Quantitative Modeling",
+      "Artificial Intelligence (AI) and Machine Learning (ML) in Finance"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial and Management Systems Engineering",
+      "field_en": "Industrial and Management Systems Engineering",
       "school": "경희대학교",
       "school_en": "Kyung Hee University",
       "expected": "Present",
-      "start": "2022-03"
+      "start": "2022-03",
+      "doubleMajor": "Software Convergence"
     }
   ]
 }

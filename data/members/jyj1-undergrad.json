@@ -16,19 +16,20 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "yujin010917@khu.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Data-Driven Process Mining",
+      "Multimodal Large Language Models",
+      "Manufacturing Analytics"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial and Management Systems Engineering",
+      "field_en": "Industrial and Management Systems Engineering",
       "school": "경희대학교",
       "school_en": "Kyung Hee University",
       "expected": "Present",

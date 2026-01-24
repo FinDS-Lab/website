@@ -16,19 +16,20 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "jadebank8@gachon.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Business Analytics",
+      "Consumer and Market Analytics",
+      "Data-Driven Behavioral Insights"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
-      "field": "기계·스마트·산업공학부 산업공학전공",
-      "field_en": "Department of Mechanical, Smart and Industrial Engineering (Industrial Engineering Major)",
+      "field": "산업공학과",
+      "field_en": "Industrial Engineering",
       "school": "가천대학교",
       "school_en": "Gachon University",
       "expected": "Present",
