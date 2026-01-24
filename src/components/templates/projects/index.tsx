@@ -527,21 +527,21 @@ export const ProjectsTemplate = () => {
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
-                          {/* White badge with counts - "N Type. Project(s)" format */}
+                          {/* White badge with counts - PC: Full name */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500">&nbsp;Gov.</span>
+                            <span className="text-gray-500">&nbsp;Government</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500">&nbsp;Ind.</span>
+                            <span className="text-gray-500">&nbsp;Industry</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Inst.</span>
+                            <span className="text-gray-500">&nbsp;Institution</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500">&nbsp;Res.</span>
+                            <span className="text-gray-500">&nbsp;Research</span>
                           </span>
-                          {/* Mobile: 2-line format (Gov Ind / Inst Acad) */}
+                          {/* Mobile: 2-line format with abbreviations */}
                           <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
                             <span className="flex items-center justify-center">
                               <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>

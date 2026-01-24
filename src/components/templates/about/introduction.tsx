@@ -21,7 +21,7 @@ const focusAreas = [
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b>. By transforming raw data into meaningful patterns, we deliver <b>actionable strategies</b> that drive competitive advantage.',
-    descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 <b style="color:#D6B14D">경영 및 산업 현장</b>의 복잡한 문제를 분석합니다.<br/><b>실행 가능한 전략</b>과 <b>솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>에 기여합니다.',
+    descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 경영 및 산업 환경의 복잡한 문제를 분석합니다.<br/><b>실행 가능한 전략</b>과 <b>솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>에 기여합니다.',
   },
   {
     image: icon10,
@@ -52,7 +52,7 @@ const coreValues = [
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
-    descriptionKo: '저희 연구실의 연구가 실무자들이 <b>금융 시장</b>과 <b style="color:#D6B14D">경영 및 산업 현장</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
+    descriptionKo: '저희 연구실의 연구가 실무자들이 <b>금융 시장</b>과 경영 및 산업 환경에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
   },
   {
     icon: Lightbulb,
@@ -60,7 +60,7 @@ const coreValues = [
     labelKo: '철학',
     number: '03',
     title: 'des avenirs lucides — lucid futures',
-    titleKo: '기술로 더 윤택한 <b style="color:#D6B14D">경영 및 산업 환경</b>을 향해 나아갑니다.',
+    titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
     subtitle: '',
     subtitleKo: '',
     description: 'Through <b>data science</b>, we strive to bring <b>clarity</b> to complex problems and contribute to a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future.',
@@ -380,7 +380,7 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
                               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 현장</span>의 미래를 위하여</>
+                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의 미래를 위하여</>
                                 ) : (
                                   <>Toward a Better Future for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
@@ -400,11 +400,11 @@ export const AboutIntroductionTemplate = () => {
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
                                 <>저희 연구실은 데이터를 바탕으로 한 다양한 연구를 통해<br />
-                                지식과 정보의 비대칭으로 인한 <span className="font-bold text-white">경영 및 산업 현장의 비효율</span>을 줄이고,<br />
+                                지식과 정보의 비대칭으로 인한 경영 및 산업 환경의 비효율을 줄이고,<br />
                                 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through data-driven research,<br />
-                                our lab aims to reduce <span className="font-bold text-white">inefficiencies in business and industry</span> caused by information asymmetry,<br />
+                                our lab aims to reduce inefficiencies in business and industry caused by information asymmetry,<br />
                                 and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
                             </p>

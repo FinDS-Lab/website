@@ -1635,24 +1635,41 @@ export const MembersDirectorAcademicTemplate = () => {
                           isCurrentYear ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' : 'hover:bg-gray-50'
                         }`}
                       >
-                        <div className="flex items-center gap-8 flex-wrap">
-                          <span className={`text-sm md:text-base font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
+                        <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+                          <span className={`text-base md:text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
                           )}
-                          {/* White badge with type counts - "N Type. Project(s)" format */}
-                          <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
+                          {/* PC: Full name */}
+                          <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
-                            <span className="text-gray-500"> Gov. {govCount === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300"> · </span>
+                            <span className="text-gray-500">&nbsp;Government</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#D6B14D]">{indCount}</span>
-                            <span className="text-gray-500"> Ind. {indCount === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300"> · </span>
+                            <span className="text-gray-500">&nbsp;Industry</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{instCount}</span>
-                            <span className="text-gray-500"> Inst. {instCount === 1 ? 'Project' : 'Projects'}</span>
-                            <span className="text-gray-300"> · </span>
+                            <span className="text-gray-500">&nbsp;Institution</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-gray-600">{acadCount}</span>
-                            <span className="text-gray-500"> Acad. {acadCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Research</span>
+                          </span>
+                          {/* Mobile: 2-line abbreviations */}
+                          <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
+                            <span className="flex items-center justify-center">
+                              <span className="font-bold text-primary">{govCount}</span>
+                              <span className="text-gray-500">&nbsp;Gov.</span>
+                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                              <span className="font-bold text-[#D6B14D]">{indCount}</span>
+                              <span className="text-gray-500">&nbsp;Ind.</span>
+                            </span>
+                            <span className="flex items-center justify-center">
+                              <span className="font-bold text-[#E8889C]">{instCount}</span>
+                              <span className="text-gray-500">&nbsp;Inst.</span>
+                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                              <span className="font-bold text-gray-600">{acadCount}</span>
+                              <span className="text-gray-500">&nbsp;Res.</span>
+                            </span>
                           </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
