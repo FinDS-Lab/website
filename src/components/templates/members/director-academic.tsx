@@ -1711,10 +1711,10 @@ export const MembersDirectorAcademicTemplate = () => {
                               <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
                                 <div className="flex items-start gap-10 md:gap-14">
                                   {/* Left badge - Type + Status - compact */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-48">
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-60">
                                     <div className={`w-full py-5 rounded-lg text-center ${typeBgColors[project.type]} shadow-sm`}>
                                       <Icon size={12} className="inline mb-1 text-white" />
-                                      <span className="block text-[7px] font-bold uppercase tracking-wide text-white">
+                                      <span className="block text-[8px] font-bold uppercase tracking-wide text-white">
                                         {typeLabels[project.type]}
                                       </span>
                                     </div>

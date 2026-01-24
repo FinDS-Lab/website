@@ -18,14 +18,16 @@ type Thesis = {
 type AlumniMember = {
   name: string
   nameKo?: string
+  nameEn?: string
   degrees: string[]
   cohort?: string
   cohortName?: string
   currentPosition?: string
+  currentPositionEn?: string
   periods: Record<string, string>
   education: Education[]
   thesis?: Record<string, Thesis>
-  project?: { title: string }
+  projects?: string[]
   company?: string
 }
 
@@ -746,24 +748,24 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[800px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[14%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Name</th>
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[8%]">Cohort</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[14%]">Period</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation (Pre-Internship)</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation (Post-Internship)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Pre-Internship)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Post-Internship)</th>
                           </tr>
                         </thead>
                         <tbody>
                           {sortedUndergradAlumni.map((alumni, idx) => {
                             const isExpanded = expandedAlumni.has(alumni.name)
-                            const hasProject = alumni.project && alumni.project.title
+                            const hasProjects = alumni.projects && alumni.projects.length > 0
                             const hasChange = hasPositionChange(alumni)
                             
                             return (
                               <React.Fragment key={idx}>
                                 <tr 
-                                  className={`border-b border-gray-100 hover:bg-[#FFBAC4]/10 transition-colors group ${hasProject ? 'cursor-pointer' : ''}`}
-                                  onClick={() => hasProject && toggleAlumniExpand(alumni.name)}
+                                  className={`border-b border-gray-100 hover:bg-[#FFBAC4]/10 transition-colors group ${hasProjects ? 'cursor-pointer' : ''}`}
+                                  onClick={() => hasProjects && toggleAlumniExpand(alumni.name)}
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="flex items-center gap-10 md:gap-12">
@@ -772,7 +774,7 @@ export const MembersAlumniTemplate = () => {
                                       </div>
                                       <div className="flex items-center gap-8">
                                         <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#FFBAC4] transition-colors">{alumni.name}</p>
-                                        {hasProject && (
+                                        {hasProjects && (
                                           <ChevronDown 
                                             size={14} 
                                             className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
@@ -804,18 +806,23 @@ export const MembersAlumniTemplate = () => {
                                     {hasChange ? renderCurrentPosition(alumni.currentPosition) : getAffiliation(alumni)}
                                   </td>
                                 </tr>
-                                {isExpanded && hasProject && (
+                                {isExpanded && hasProjects && (
                                   <tr className="bg-gray-50/50">
                                     <td colSpan={5} className="py-16 px-16">
                                       <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
                                         <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
                                         <div className="flex-1 min-w-0">
-                                          <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#E8889C'}}>
-                                            Research Project
+                                          <p className="text-[10px] md:text-xs font-bold mb-8" style={{color: '#E8889C'}}>
+                                            Research Projects
                                           </p>
-                                          <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
-                                            {alumni.project!.title}
-                                          </p>
+                                          <ul className="space-y-4">
+                                            {alumni.projects!.map((project, pIdx) => (
+                                              <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
+                                                <span className="text-[#FFBAC4] mt-1">•</span>
+                                                <span>{project}</span>
+                                              </li>
+                                            ))}
+                                          </ul>
                                         </div>
                                       </div>
                                     </td>
@@ -832,14 +839,14 @@ export const MembersAlumniTemplate = () => {
                     <div className="md:hidden flex flex-col gap-12">
                       {sortedUndergradAlumni.map((alumni, idx) => {
                         const isExpanded = expandedAlumni.has(alumni.name)
-                        const hasProject = alumni.project && alumni.project.title
+                        const hasProjects = alumni.projects && alumni.projects.length > 0
                         const hasChange = hasPositionChange(alumni)
                         
                         return (
                           <div 
                             key={idx}
-                            className={`rounded-xl border border-gray-100 bg-white overflow-hidden ${hasProject ? 'cursor-pointer' : ''}`}
-                            onClick={() => hasProject && toggleAlumniExpand(alumni.name)}
+                            className={`rounded-xl border border-gray-100 bg-white overflow-hidden ${hasProjects ? 'cursor-pointer' : ''}`}
+                            onClick={() => hasProjects && toggleAlumniExpand(alumni.name)}
                           >
                             {/* Card Header */}
                             <div className="p-16 flex items-center gap-12 bg-gradient-to-r from-pink-50/50 to-white">
@@ -849,7 +856,7 @@ export const MembersAlumniTemplate = () => {
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-8">
                                   <p className="text-base font-bold text-gray-900">{alumni.name}</p>
-                                  {hasProject && (
+                                  {hasProjects && (
                                     <ChevronDown 
                                       size={14} 
                                       className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
@@ -899,13 +906,20 @@ export const MembersAlumniTemplate = () => {
                             </div>
 
                             {/* Project Section */}
-                            {isExpanded && hasProject && (
+                            {isExpanded && hasProjects && (
                               <div className="px-16 pb-16">
                                 <div className="flex items-start gap-10 p-12 rounded-lg bg-gray-50 border border-gray-100">
                                   <FileText size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] font-bold mb-4" style={{color: '#E8889C'}}>Research Project</p>
-                                    <p className="text-xs text-gray-700 leading-relaxed">{alumni.project!.title}</p>
+                                    <p className="text-[10px] font-bold mb-6" style={{color: '#E8889C'}}>Research Projects</p>
+                                    <ul className="space-y-3">
+                                      {alumni.projects!.map((project, pIdx) => (
+                                        <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
+                                          <span className="text-[#FFBAC4] mt-0.5">•</span>
+                                          <span>{project}</span>
+                                        </li>
+                                      ))}
+                                    </ul>
                                   </div>
                                 </div>
                               </div>
