@@ -40,7 +40,7 @@ const Slider = ({
   const [emblaRef, emblaApi] = useEmblaCarousel({
       loop,
       align,
-      containScroll: loop ? false : 'trimSnaps',
+      containScroll: 'keepSnaps',
       dragFree: false,
       watchDrag: draggable,
       duration

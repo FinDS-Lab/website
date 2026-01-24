@@ -3,7 +3,7 @@ import "../../assets/css/theme.css";
 import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
-import {lazy, Suspense, useEffect, memo, useRef, useState, useLayoutEffect} from "react";
+import {lazy, Suspense, useEffect, memo, useRef, useState, useCallback} from "react";
 import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward, Minimize2, Maximize2 } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
@@ -56,13 +56,13 @@ const GlobalMusicPlayer = memo(() => {
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
-  const playerContainerRef = useRef<HTMLDivElement>(null)
   const videoAreaRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [playerReady, setPlayerReady] = useState(false)
   const lastVideoIdRef = useRef<string | null>(null)
   const [isCompact, setIsCompact] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
+  const [playerPosition, setPlayerPosition] = useState<{top: number; left: number; width: number; height: number} | null>(null)
   const location = useLocation()
 
   useEffect(() => {
@@ -105,21 +105,25 @@ const GlobalMusicPlayer = memo(() => {
   const isPlaylistPage = location.pathname === '/archives/playlist'
   const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage
 
-  // Move player container based on mode
-  useLayoutEffect(() => {
-    const container = playerContainerRef.current
-    const videoArea = videoAreaRef.current
-    
-    if (!container) return
-    
-    if (showFullPlayer && videoArea) {
-      videoArea.appendChild(container)
-      container.style.cssText = 'position: absolute; inset: 0; width: 100%; height: 100%;'
+  // Update player position based on videoArea - NO DOM movement
+  const updatePlayerPosition = useCallback(() => {
+    if (showFullPlayer && videoAreaRef.current) {
+      const rect = videoAreaRef.current.getBoundingClientRect()
+      setPlayerPosition({ top: rect.top, left: rect.left, width: rect.width, height: rect.height })
     } else {
-      document.body.appendChild(container)
-      container.style.cssText = 'position: fixed; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;'
+      setPlayerPosition(null)
     }
   }, [showFullPlayer])
+
+  useEffect(() => {
+    updatePlayerPosition()
+    window.addEventListener('resize', updatePlayerPosition)
+    window.addEventListener('scroll', updatePlayerPosition)
+    return () => {
+      window.removeEventListener('resize', updatePlayerPosition)
+      window.removeEventListener('scroll', updatePlayerPosition)
+    }
+  }, [updatePlayerPosition])
 
   // Initialize YouTube Player ONCE
   useEffect(() => {
@@ -173,10 +177,15 @@ const GlobalMusicPlayer = memo(() => {
     setIsHidden(true)
   }
 
+  // Player container style - CSS only, no DOM movement
+  const playerStyle: React.CSSProperties = playerPosition 
+    ? { position: 'fixed', top: playerPosition.top, left: playerPosition.left, width: playerPosition.width, height: playerPosition.height, zIndex: 10 }
+    : { position: 'fixed', left: -9999, top: -9999, width: 1, height: 1, overflow: 'hidden' }
+
   return (
     <>
-      {/* Player Container - ALWAYS in DOM, position controlled by useLayoutEffect */}
-      <div ref={playerContainerRef}>
+      {/* Player Container - ALWAYS in same DOM position, only CSS changes */}
+      <div style={playerStyle}>
         <div id="yt-player" style={{width: '100%', height: '100%'}} />
       </div>
       
@@ -260,7 +269,7 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               )}
 
-              {/* Video Area - Player will be moved here via useLayoutEffect */}
+              {/* Video Area - Player overlays this via CSS positioning */}
               <div ref={videoAreaRef} className="relative aspect-video bg-black" />
 
               <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
