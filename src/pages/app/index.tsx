@@ -7,26 +7,19 @@ import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
 import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward, Minimize2, Maximize2 } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
-// Public Pages
 const Home = lazy(() => import('../home').then((module) => ({ default: module.Home })));
 const Publications = lazy(() => import('../publications').then((module) => ({ default: module.Publications })));
 const Projects = lazy(() => import('../projects').then((module) => ({ default: module.Projects })));
-
-// About FINDS
 const AboutIntroduction = lazy(() => import('../about/introduction').then((module) => ({ default: module.AboutIntroduction })));
 const AboutResearch = lazy(() => import('../about/research').then((module) => ({ default: module.AboutResearch })));
 const AboutHonors = lazy(() => import('../about/honors').then((module) => ({ default: module.AboutHonors })));
 const AboutLocation = lazy(() => import('../about/location').then((module) => ({ default: module.AboutLocation })));
-
-// Members
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
 const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.default })));
 const MembersDirectorAcademic = lazy(() => import('../members/director-academic').then((module) => ({ default: module.MembersDirectorAcademic })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
 const MembersAlumni = lazy(() => import('../members/alumni').then((module) => ({ default: module.MembersAlumni })));
 const MembersDetail = lazy(() => import('../members/detail').then((module) => ({ default: module.MembersDetail })));
-
-// Archives
 const ArchivesNews = lazy(() => import('../archives/news').then((module) => ({ default: module.ArchivesNews })));
 const ArchivesNotice = lazy(() => import('../archives/notice').then((module) => ({ default: module.ArchivesNotice })));
 const ArchivesGallery = lazy(() => import('../archives/gallery').then((module) => ({ default: module.ArchivesGallery })));
@@ -63,6 +56,8 @@ const GlobalMusicPlayer = memo(() => {
   } = useMusicPlayerStore()
   
   const playerRef = useRef<YTPlayer | null>(null)
+  const playerContainerRef = useRef<HTMLDivElement>(null)
+  const videoAreaRef = useRef<HTMLDivElement>(null)
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [playerReady, setPlayerReady] = useState(false)
   const lastVideoIdRef = useRef<string | null>(null)
@@ -109,8 +104,31 @@ const GlobalMusicPlayer = memo(() => {
 
   const currentVideoId = playlist[currentIndex]
   const currentTrack = trackInfo[currentIndex]
+  const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && location.pathname !== '/archives/playlist'
 
-  // Initialize YouTube Player ONCE - never destroy
+  // Move player container to video area when in full mode
+  useEffect(() => {
+    const container = playerContainerRef.current
+    const videoArea = videoAreaRef.current
+    
+    if (showFullPlayer && container && videoArea) {
+      videoArea.appendChild(container)
+      container.style.position = 'absolute'
+      container.style.inset = '0'
+      container.style.width = '100%'
+      container.style.height = '100%'
+    } else if (container) {
+      // Move to body and hide off-screen
+      document.body.appendChild(container)
+      container.style.position = 'fixed'
+      container.style.left = '-9999px'
+      container.style.top = '-9999px'
+      container.style.width = '1px'
+      container.style.height = '1px'
+    }
+  }, [showFullPlayer])
+
+  // Initialize YouTube Player ONCE
   useEffect(() => {
     if (!currentVideoId || playerRef.current) return
 
@@ -133,7 +151,7 @@ const GlobalMusicPlayer = memo(() => {
     initPlayer()
   }, [currentVideoId])
 
-  // Handle track changes using loadVideoById
+  // Handle track changes
   useEffect(() => {
     if (!playerRef.current || !playerReady || !currentVideoId) return
     if (lastVideoIdRef.current === currentVideoId) return
@@ -146,7 +164,7 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [currentVideoId, playerReady, isPlaying])
 
-  // Handle play/pause - KEEP PLAYING in compact/minimized mode
+  // Handle play/pause
   useEffect(() => {
     if (!playerRef.current || !playerReady) return
     if (isPlaying) {
@@ -164,25 +182,28 @@ const GlobalMusicPlayer = memo(() => {
     setIsHidden(true)
   }
 
-  // Hidden state
   if (isHidden) {
     return (
-      <div className="fixed bottom-20 right-20 z-[9999] hidden md:flex flex-col items-end gap-12">
-        {location.pathname !== '/' && (
-          <Link to="/" className="flex items-center justify-center w-32 h-32 bg-primary text-white rounded-full shadow-xl hover:bg-primary/90 hover:scale-105 transition-all duration-200" title="홈으로">
-            <HomeIcon className="w-16 h-16" />
-          </Link>
-        )}
-        <div className="fixed -left-[9999px] -top-[9999px] w-1 h-1 overflow-hidden"><div id="yt-player" /></div>
-      </div>
+      <>
+        <div ref={playerContainerRef} style={{position: 'fixed', left: '-9999px', top: '-9999px', width: '1px', height: '1px'}}>
+          <div id="yt-player" />
+        </div>
+        <div className="fixed bottom-20 right-20 z-[9999] hidden md:flex flex-col items-end gap-12">
+          {location.pathname !== '/' && (
+            <Link to="/" className="flex items-center justify-center w-32 h-32 bg-primary text-white rounded-full shadow-xl hover:bg-primary/90 hover:scale-105 transition-all duration-200" title="홈으로">
+              <HomeIcon className="w-16 h-16" />
+            </Link>
+          )}
+        </div>
+      </>
     )
   }
 
   return (
     <>
-      {/* Player div - ALWAYS in DOM */}
-      <div className={(isMinimized || isCompact) ? "fixed -left-[9999px] -top-[9999px] w-1 h-1 overflow-hidden" : "hidden"}>
-        <div id="yt-player" />
+      {/* Player Container - will be moved via useEffect */}
+      <div ref={playerContainerRef} style={{position: 'fixed', left: '-9999px', top: '-9999px', width: '1px', height: '1px'}}>
+        <div id="yt-player" style={{width: '100%', height: '100%'}} />
       </div>
       
       {/* Main UI - Hidden on mobile */}
@@ -211,7 +232,6 @@ const GlobalMusicPlayer = memo(() => {
               </button>
             </div>
           ) : isCompact ? (
-            // Compact: Music keeps playing with mini controls
             <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
               <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[220px]">
                 <div className="relative shrink-0">
@@ -224,25 +244,16 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <button onClick={prevTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors">
-                  <SkipBack size={10} className="text-gray-400" />
-                </button>
+                <button onClick={prevTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
                 <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
                   {isPlaying ? <Pause size={12} className="text-primary" /> : <Play size={12} className="text-primary ml-0.5" />}
                 </button>
-                <button onClick={nextTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors">
-                  <SkipForward size={10} className="text-gray-400" />
-                </button>
-                <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장">
-                  <Maximize2 size={10} className="text-gray-400" />
-                </button>
-                <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기">
-                  <X size={10} className="text-gray-400" />
-                </button>
+                <button onClick={nextTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
+                <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장"><Maximize2 size={10} className="text-gray-400" /></button>
+                <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기"><X size={10} className="text-gray-400" /></button>
               </div>
             </div>
           ) : (
-            // Full player
             <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[340px] border border-gray-800/50">
               <div className="flex items-center justify-between px-20 py-16 bg-gradient-to-r from-gray-800/80 to-gray-900/80 backdrop-blur-sm border-b border-gray-800/50">
                 <div className="flex items-center gap-14">
@@ -255,12 +266,8 @@ const GlobalMusicPlayer = memo(() => {
                   </div>
                 </div>
                 <div className="flex items-center gap-6">
-                  <button onClick={() => setIsCompact(true)} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="컴팩트">
-                    <Minimize2 className="w-12 h-12 text-gray-400" />
-                  </button>
-                  <button onClick={toggleMinimize} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="접기">
-                    <X className="w-12 h-12 text-gray-400" />
-                  </button>
+                  <button onClick={() => setIsCompact(true)} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="컴팩트"><Minimize2 className="w-12 h-12 text-gray-400" /></button>
+                  <button onClick={toggleMinimize} className="w-28 h-28 rounded-full bg-gray-800/80 flex items-center justify-center hover:bg-gray-700 transition-colors border border-gray-700/50" title="접기"><X className="w-12 h-12 text-gray-400" /></button>
                 </div>
               </div>
 
@@ -275,30 +282,16 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               )}
 
-              <div className="relative aspect-video bg-black">
-                <div id="yt-player" className="w-full h-full" />
-                {!isPlaying && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
-                    <div className="flex flex-col items-center gap-8">
-                      <Music className="w-40 h-40" style={{color: 'rgb(214,177,77)'}} />
-                      <span className="text-gray-400 text-sm">Press play to start</span>
-                    </div>
-                  </div>
-                )}
-              </div>
+              {/* Video Area - Player will be moved here */}
+              <div ref={videoAreaRef} className="relative aspect-video bg-black" />
 
               <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
                 <div className="flex items-center justify-center gap-20 mb-12">
-                  <button onClick={prevTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous">
-                    <SkipBack className="w-20 h-20 text-gray-300" />
-                  </button>
+                  <button onClick={prevTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
                   <button onClick={togglePlay} className="w-56 h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
                     {isPlaying ? <Pause className="w-24 h-24 text-white" /> : <Play className="w-24 h-24 text-white ml-2" />}
                   </button>
-                  <button onClick={nextTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next">
-                    <SkipForward className="w-20 h-20 text-gray-300" />
-                  </button>
+                  <button onClick={nextTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
                 </div>
                 <div className="flex items-center justify-center">
                   <span className="text-sm text-gray-500 font-medium tracking-wide">{currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}</span>
