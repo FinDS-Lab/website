@@ -11,8 +11,8 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
     "email": "garamkg@khu.ac.kr",
@@ -28,10 +28,12 @@
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Computer Science and Engineering",
-      "school": "Kyung Hee University",
-      "start": "",
+      "degree": "학부과정",
+      "field": "컴퓨터공학부",
+      "field_en": "Department of Computer Science & Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
+      "start": "2019-03",
       "expected": "Present"
     }
   ],

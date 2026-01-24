@@ -11,28 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "tladms545@sogang.ac.kr",
-    "phone": "010-5031-3965"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Financial Data Analysis",
-      "Financial Machine Learning",
-      "Financial Engineering"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Computer Science and Engineering",
-      "school": "Sogang University",
-      "start": "2022-03",
+      "degree": "학부과정",
+      "field": "컴퓨터공학과",
+      "field_en": "Department of Computer Science and Engineering",
+      "school": "서강대학교",
+      "school_en": "Sogang University",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/SE-1.webp"
+  ]
 }

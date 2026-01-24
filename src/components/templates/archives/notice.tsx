@@ -100,7 +100,7 @@ export const ArchivesNoticeTemplate = () => {
   const { showModal } = useStoreModal()
 
   useEffect(() => {
-    const noticeFiles = ['2025-10-06-1.md', '2025-09-01-1.md']
+    const noticeFiles = ['2025-10-06-1.md', '2025-09-01-1.md', '2025-06-14-1.md']
     const baseUrl = import.meta.env.BASE_URL || '/'
 
     const fetchAllNotices = async () => {

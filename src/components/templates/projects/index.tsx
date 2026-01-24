@@ -529,19 +529,19 @@ export const ProjectsTemplate = () => {
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
                             <span className="text-gray-500">&nbsp;Research</span>
                           </span>
-                          {/* Mobile: shorter version */}
-                          <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm">
+                          {/* Mobile: same as desktop */}
+                          <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-400">&nbsp;Gov</span>
+                            <span className="text-gray-500">&nbsp;Government</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-400">&nbsp;Ind</span>
+                            <span className="text-gray-500">&nbsp;Industry</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-400">&nbsp;Inst</span>
+                            <span className="text-gray-500">&nbsp;Institution</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-400">&nbsp;Res</span>
+                            <span className="text-gray-500">&nbsp;Research</span>
                           </span>
                         </div>
                         {isExpanded ? (

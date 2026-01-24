@@ -11,28 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "jadebank8@gachon.ac.kr",
-    "phone": "010-3786-3576"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Consumer & Market Analytics",
-      "Data-Driven Behavioral Insights"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Gachon University",
-      "start": "2022-03",
+      "degree": "학부과정",
+      "field": "기계·스마트·산업공학부 산업공학전공",
+      "field_en": "Department of Mechanical, Smart and Industrial Engineering (Industrial Engineering Major)",
+      "school": "가천대학교",
+      "school_en": "Gachon University",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/LCE-1.webp"
+  ]
 }

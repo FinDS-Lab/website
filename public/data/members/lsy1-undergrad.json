@@ -11,27 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "lim.soyyeong@gmail.com"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Graph-Based Retrieval-Augmented Generation (RAG)",
-      "Large Language Model (LLM)",
-      "LLM Evaluation"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial and Management Systems Engineering",
-      "school": "Kyung Hee University",
-      "start": "2021-03",
+      "degree": "학부과정",
+      "field": "산업경영공학과",
+      "field_en": "Department of Industrial and Management Systems Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
       "expected": "Present"
     }
-  ],
-  "avatar": "/website/images/members/LSY-1.webp"
+  ]
 }

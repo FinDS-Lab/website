@@ -75,47 +75,58 @@ const researchAreas = [
   },
 ]
 
-// 전체 문장이 교체되는 세련된 애니메이션
-const useRotatingText = () => {
-  const phrases = [
-    { en: 'Engineering Decisions through Data', ko: '데이터 기반의 공학적 의사결정' },
-    { en: 'Optimizing Business with Analytics', ko: '분석으로 최적화하는 비즈니스' },
-    { en: 'Transforming Finance via Intelligence', ko: '인공지능으로 혁신하는 금융' },
-  ]
-  
+// Driving 단어만 페이드 인/아웃으로 변경
+const useDrivingFade = () => {
+  const drivingWords = ['Driving', 'Powering', 'Enabling']
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
-  const [showKorean, setShowKorean] = useState(false)
   
   useEffect(() => {
-    // 페이드 아웃 -> 언어/문장 변경 -> 페이드 인 사이클
     const cycleInterval = setInterval(() => {
-      setIsVisible(false) // 페이드 아웃 시작
-      
+      setIsVisible(false)
       setTimeout(() => {
-        if (showKorean) {
-          // 한글 표시 후 다음 영어 문장으로
-          setShowKorean(false)
-          setCurrentIndex((prev) => (prev + 1) % phrases.length)
-        } else {
-          // 영어 표시 후 한글로
-          setShowKorean(true)
-        }
-        setIsVisible(true) // 페이드 인
-      }, 500) // 페이드 아웃 시간
-    }, 3000) // 각 텍스트 표시 시간
+        setCurrentIndex((prev) => (prev + 1) % drivingWords.length)
+        setIsVisible(true)
+      }, 400)
+    }, 3500)
     
     return () => clearInterval(cycleInterval)
-  }, [showKorean, phrases.length])
+  }, [])
   
-  const currentPhrase = phrases[currentIndex]
-  const displayText = showKorean ? currentPhrase.ko : currentPhrase.en
+  return { currentWord: drivingWords[currentIndex], isVisible }
+}
+
+// 물결치는 그라데이션 애니메이션을 위한 훅
+const useWaveGradient = () => {
+  const [gradientPosition, setGradientPosition] = useState(0)
   
-  return { displayText, isVisible, showKorean }
+  useEffect(() => {
+    const animationInterval = setInterval(() => {
+      setGradientPosition((prev) => (prev + 1) % 100)
+    }, 50)
+    return () => clearInterval(animationInterval)
+  }, [])
+  
+  return gradientPosition
 }
 
 export const AboutResearchTemplate = () => {
-  const { displayText, isVisible, showKorean } = useRotatingText()
+  const { currentWord, isVisible } = useDrivingFade()
+  const gradientPosition = useWaveGradient()
+
+  // 물결치는 그라데이션 스타일
+  const waveGradientStyle = {
+    backgroundImage: `linear-gradient(90deg, 
+      #AC0E0E ${gradientPosition}%, 
+      #D6B14D ${gradientPosition + 25}%, 
+      #AC0E0E ${gradientPosition + 50}%, 
+      #D6B14D ${gradientPosition + 75}%,
+      #AC0E0E ${gradientPosition + 100}%)`,
+    backgroundSize: '200% 100%',
+    backgroundClip: 'text',
+    WebkitBackgroundClip: 'text',
+    color: 'transparent',
+  }
 
   return (
     <div className="flex flex-col bg-white">
@@ -173,30 +184,51 @@ export const AboutResearchTemplate = () => {
         </div>
       </div>
 
-      {/* Hero Section - with smooth rotating animation */}
+      {/* Hero Section */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title with Fade Effect */}
-          <div className="relative h-[60px] md:h-[80px] mb-16 md:mb-24 flex items-center justify-center overflow-hidden">
-            <h2 
-              className={`text-xl md:text-2xl lg:text-3xl font-bold leading-[1.3] transition-all duration-500 ease-in-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
+          {/* Animated Title */}
+          <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-[1.4]">
               <span 
-                className={`relative inline-block ${showKorean ? '' : ''}`}
-                style={{ fontFamily: showKorean ? '"Pretendard Variable", sans-serif' : 'inherit' }}
+                className={`inline-block transition-all duration-400 ease-in-out ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
+                }`}
+                style={{ color: '#AC0E0E' }}
               >
-                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-[#AC0E0E] bg-clip-text text-transparent">
-                  {displayText}
-                </span>
-                <span className="absolute -bottom-1 left-0 right-0 h-2 bg-gradient-to-r from-[#FFEB99]/40 via-primary/20 to-[#AC0E0E]/20 -skew-x-3 rounded" />
+                {currentWord}
               </span>
+              {' '}Business and Industry Innovation via{' '}
+              <span style={{ color: '#D6B14D' }}>Data</span>
             </h2>
+            
+            {/* 3가지 연구 분야 - 물결치는 그라데이션 */}
+            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mt-8">
+              <span 
+                className="text-base md:text-lg font-bold"
+                style={waveGradientStyle}
+              >
+                금융 데이터 사이언스
+              </span>
+              <span className="text-gray-300">·</span>
+              <span 
+                className="text-base md:text-lg font-bold"
+                style={waveGradientStyle}
+              >
+                비즈니스 애널리틱스
+              </span>
+              <span className="text-gray-300">·</span>
+              <span 
+                className="text-base md:text-lg font-bold"
+                style={waveGradientStyle}
+              >
+                데이터 기반 의사결정
+              </span>
+            </div>
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 <b className="text-gray-700">데이터 기반 의사결정</b>의 <br className="md:hidden" />
+            FINDS Lab은 데이터 의사결정의 <br className="md:hidden" />
             세 가지 핵심 연구 분야를 통해 실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
           </p>
         </div>

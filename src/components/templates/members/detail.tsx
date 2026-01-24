@@ -144,9 +144,9 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
   }
 
   const degreeColors: Record<string, string> = {
-    phd: 'bg-[#D6A076]/20 text-[#B8845A]',
-    ms: 'bg-[#E8889C]/20 text-[#C5667A]',
-    undergrad: 'bg-[#FFBAC4]/20 text-[#D98A98]',
+    phd: 'bg-[#FF6B6B]/20 text-[#FF6B6B]',
+    ms: 'bg-[#FF6B6B]/20 text-[#FF6B6B]',
+    undergrad: 'bg-[#FFBAC4]/20 text-[#E8889C]',
   }
 
   return (
@@ -209,7 +209,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
               {/* Period */}
               <div className="flex items-center gap-8 text-sm text-gray-600 mb-20 justify-center">
                 <Calendar size={14} className="text-gray-400"/>
-                <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
+                <span>{member.period.start?.replace(/-/g, '.')} - {member.period.expected_graduation?.replace(/-/g, '.') || 'Present'}</span>
               </div>
 
               {/* Divider */}
@@ -221,10 +221,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div className="relative">
                     <button
                       onClick={() => setShowEmailPopup(!showEmailPopup)}
-                      className="flex items-center gap-10 text-sm text-gray-600 hover:text-primary transition-colors w-full text-left"
+                      className="flex items-center justify-center gap-8 px-16 py-10 bg-gray-100 hover:bg-primary/10 hover:text-primary rounded-xl text-sm font-medium text-gray-700 transition-colors w-full"
                     >
-                      <Mail size={16} className="text-gray-400 shrink-0"/>
-                      <span className="truncate">{member.contact.email}</span>
+                      <Mail size={16} />
+                      <span>Email</span>
                     </button>
                     {showEmailPopup && (
                       <EmailPopup
@@ -322,12 +322,12 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div key={idx} className="flex items-start justify-between gap-16 p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
                       <h4 className="text-base font-bold text-gray-900">
-                        {edu.degree === 'B.S.' ? `Department of ${edu.field}` : `${edu.degree} in ${edu.field}`}
+                        {edu.degree === 'B.S.' || edu.degree === '학부과정' ? `${edu.field}` : `${edu.degree} in ${edu.field}`}
                       </h4>
                       <p className="text-sm text-gray-600">{edu.school}</p>
                     </div>
-                    <span className="text-xs md:text-sm font-semibold text-primary whitespace-nowrap">
-                      {edu.start} - {edu.end || edu.expected || 'Present'}
+                    <span className="text-xs md:text-sm font-semibold whitespace-nowrap" style={{ color: '#E8889C' }}>
+                      {edu.start?.replace(/-/g, '.')} - {edu.end?.replace(/-/g, '.') || edu.expected || 'Present'}
                     </span>
                   </div>
                 ))}

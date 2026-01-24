@@ -684,19 +684,19 @@ export const PublicationsTemplate = () => {
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
                           <span className="text-gray-500">&nbsp;Reports</span>
                         </span>
-                        {/* Mobile: shorter version */}
-                        <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm">
+                        {/* Mobile: same as desktop */}
+                        <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-400">&nbsp;J</span>
+                          <span className="text-gray-500">&nbsp;Journals</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-400">&nbsp;C</span>
+                          <span className="text-gray-500">&nbsp;Conferences</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-400">&nbsp;B</span>
+                          <span className="text-gray-500">&nbsp;Books</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-400">&nbsp;R</span>
+                          <span className="text-gray-500">&nbsp;Reports</span>
                         </span>
                       </div>
                       {expandedYear === year ? (

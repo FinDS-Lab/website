@@ -118,29 +118,46 @@ export const MembersAlumniTemplate = () => {
   const pluralize = (count: number, singular: string, plural: string) => 
     count === 1 ? singular : plural
 
-  // Get primary affiliation (the school where they got their degree from lab)
+  // Get primary affiliation (the school where they got their degree from lab) - Korean format
   const getAffiliation = (alumni: AlumniMember) => {
-    const school = alumni.education[0]?.school
-    if (!school) return '-'
-    return <span className="font-semibold">{school}</span>
+    const edu = alumni.education[0]
+    if (!edu) return <span className="text-gray-400">-</span>
+    
+    // 학부과정 / 학과 / 학교 형식으로 표시
+    return (
+      <div className="flex flex-col gap-0">
+        <span className="text-gray-400 text-[10px]">{edu.degree || '학부과정'}</span>
+        <span className="text-gray-500 text-[11px]">{edu.dept || '-'}</span>
+        <span className="text-gray-700 font-semibold text-xs">{edu.school}</span>
+      </div>
+    )
   }
 
-  // Render currentPosition with Graduate School formatting
+  // Render currentPosition with Graduate School formatting - Korean format
   const renderCurrentPosition = (position: string | undefined) => {
     if (!position) return <span className="text-gray-400">-</span>
     
-    // Check if it contains Graduate School with newline
-    if (position.includes('Graduate School\n')) {
+    // Check if it contains newline (multi-line format like "석사과정\n산업공학과\n서울대학교")
+    if (position.includes('\n')) {
       const parts = position.split('\n')
       return (
-        <div className="flex flex-col">
-          <span className="text-gray-500">{parts[0]}</span>
-          <span className="font-semibold text-gray-700">{parts[1]}</span>
+        <div className="flex flex-col gap-0">
+          <span className="text-gray-400 text-[10px]">{parts[0]}</span>
+          {parts[1] && <span className="text-gray-500 text-[11px]">{parts[1]}</span>}
+          {parts[2] && <span className="text-gray-700 font-semibold text-xs">{parts[2]}</span>}
         </div>
       )
     }
     
-    return <span>{position}</span>
+    // Simple position (재학생)
+    return <span className="text-gray-600">{position}</span>
+  }
+
+  // Check if alumni has position change (Pre != Post)
+  const hasPositionChange = (alumni: AlumniMember): boolean => {
+    if (!alumni.currentPosition) return false
+    if (alumni.currentPosition === '재학생') return false
+    return true
   }
 
   // Get graduation date only (for Ph.D./M.S.)
@@ -714,17 +731,17 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[700px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[15%]">Name</th>
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[10%]">Cohort</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Pre)</th>
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[26%]">Affiliation (Post)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[57%]">Affiliation</th>
                           </tr>
                         </thead>
                         <tbody>
                           {sortedUndergradAlumni.map((alumni, idx) => {
                             const isExpanded = expandedAlumni.has(alumni.name)
                             const hasProject = alumni.project && alumni.project.title
+                            const hasChange = hasPositionChange(alumni)
                             
                             return (
                               <React.Fragment key={idx}>
@@ -749,13 +766,12 @@ export const MembersAlumniTemplate = () => {
                                     </div>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
-                                    <div className="group relative inline-block">
-                                      <span className="px-10 md:px-12 py-4 md:py-5 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit cursor-default transition-all duration-200 group-hover:shadow-md" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                    <div className="group/tooltip relative inline-block">
+                                      <span className="px-10 md:px-12 py-4 md:py-5 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit cursor-default transition-all duration-200 group-hover/tooltip:shadow-md" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
                                         {alumni.cohort || '-'}
                                       </span>
                                       {alumni.cohortName && (
-                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 px-12 py-6 bg-gray-900 text-white text-[10px] font-medium rounded-lg whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 shadow-lg">
-                                          {/* Extract season from cohortName like "1st Cohort (2025 Winter)" -> "2025 Winter" */}
+                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 px-12 py-6 bg-gray-900 text-white text-[10px] font-medium rounded-lg whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10 shadow-lg">
                                           {alumni.cohortName.match(/\(([^)]+)\)/)?.[1] || alumni.cohortName}
                                           <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-5 border-r-5 border-t-5 border-transparent border-t-gray-900" />
                                         </div>
@@ -763,24 +779,29 @@ export const MembersAlumniTemplate = () => {
                                     </div>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                                    {getAffiliation(alumni)}
-                                  </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
                                     {alumni.periods?.ur || '-'}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
-                                    {(alumni.currentPosition || alumni.company) ? (
-                                      <div className="text-xs md:text-sm text-gray-600">
-                                        {renderCurrentPosition(alumni.currentPosition || alumni.company)}
+                                    {hasChange ? (
+                                      <div className="flex gap-20">
+                                        <div className="flex-1">
+                                          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-4">Pre</p>
+                                          {getAffiliation(alumni)}
+                                        </div>
+                                        <div className="w-px bg-gray-200"></div>
+                                        <div className="flex-1">
+                                          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-4">Post</p>
+                                          {renderCurrentPosition(alumni.currentPosition)}
+                                        </div>
                                       </div>
                                     ) : (
-                                      <span className="text-gray-400">-</span>
+                                      getAffiliation(alumni)
                                     )}
                                   </td>
                                 </tr>
                                 {isExpanded && hasProject && (
                                   <tr className="bg-gray-50/50">
-                                    <td colSpan={5} className="py-16 px-16">
+                                    <td colSpan={4} className="py-16 px-16">
                                       <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
                                         <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
                                         <div className="flex-1 min-w-0">
@@ -807,6 +828,7 @@ export const MembersAlumniTemplate = () => {
                       {sortedUndergradAlumni.map((alumni, idx) => {
                         const isExpanded = expandedAlumni.has(alumni.name)
                         const hasProject = alumni.project && alumni.project.title
+                        const hasChange = hasPositionChange(alumni)
                         
                         return (
                           <div 
@@ -841,21 +863,34 @@ export const MembersAlumniTemplate = () => {
                             </div>
                             
                             {/* Card Body */}
-                            <div className="px-16 py-12 space-y-8 border-t border-gray-50">
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Pre-Internship</span>
-                                <span className="text-xs text-gray-700 font-semibold text-right">{alumni.education[0]?.school || '-'}</span>
-                              </div>
+                            <div className="px-16 py-12 space-y-10 border-t border-gray-50">
                               <div className="flex justify-between items-start">
                                 <span className="text-[10px] text-gray-400 uppercase tracking-wide">Period</span>
                                 <span className="text-xs text-gray-600 text-right">{alumni.periods?.ur || '-'}</span>
                               </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post-Internship</span>
-                                <div className="text-xs text-gray-600 text-right">
-                                  {renderCurrentPosition(alumni.currentPosition || alumni.company)}
+                              {hasChange ? (
+                                <>
+                                  <div className="flex justify-between items-start">
+                                    <span className="text-[10px] text-gray-400 uppercase tracking-wide">Pre</span>
+                                    <div className="text-right">
+                                      {getAffiliation(alumni)}
+                                    </div>
+                                  </div>
+                                  <div className="flex justify-between items-start">
+                                    <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post</span>
+                                    <div className="text-right">
+                                      {renderCurrentPosition(alumni.currentPosition)}
+                                    </div>
+                                  </div>
+                                </>
+                              ) : (
+                                <div className="flex justify-between items-start">
+                                  <span className="text-[10px] text-gray-400 uppercase tracking-wide">Affiliation</span>
+                                  <div className="text-right">
+                                    {getAffiliation(alumni)}
+                                  </div>
                                 </div>
-                              </div>
+                              )}
                             </div>
 
                             {/* Project Section */}

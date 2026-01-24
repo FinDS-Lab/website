@@ -11,32 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "qocn0123@khu.ac.kr"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Deep Learning Algorithms",
-      "Multivariate Time Series Modeling",
-      "Anomaly Detection"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial and Management Systems Engineering",
-      "school": "Kyung Hee University",
-      "start": "2020-03",
-      "expected": "Present",
-      "note": "Double Major in Software Convergence"
+      "degree": "학부과정",
+      "field": "산업경영공학과",
+      "field_en": "Department of Industrial and Management Systems Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
+      "expected": "Present"
     }
-  ],
-  "publications": [
-    "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
   ]
-,
-  "avatar": "/website/images/members/PSS-1.webp"
 }

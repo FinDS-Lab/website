@@ -797,14 +797,14 @@ export const MembersDirectorTemplate = () => {
                           </div>
                         )}
                         
-                        {/* Collapsible Awards & Honors */}
+                        {/* Collapsible Honors & Awards */}
                         {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
                           <div className="pt-12 border-t border-gray-100">
                             <button 
                               onClick={() => toggleEduAwards(index)}
                               className="flex items-center justify-between w-full group mb-8"
                             >
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Awards & Honors</p>
+                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
                               <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
                             </button>
                             

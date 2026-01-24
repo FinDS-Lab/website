@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink } from 'lucide-react'
+import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles } from 'lucide-react'
 import type { MemberData } from '@/types/data'
 
 // Email Popup Component
@@ -55,27 +55,46 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
 import banner2 from '@/assets/images/banner/2.webp'
 
 const degreeLabels = {
+  combined: 'Ph.D. & M.S. Students',
   phd: 'Ph.D. Students',
   ms: 'M.S. Students',
-  undergrad: 'Undergraduate Researcher',
+  undergrad: 'Undergraduate Interns',
 }
 
 const degreeColors = {
+  combined: 'text-white',
   phd: 'text-white',
   ms: 'text-white',
   undergrad: 'text-white',
 }
 
+// Coral color for combined PhD/MS
 const degreeBgStyles = {
-  phd: {backgroundColor: '#D6B14D'},
-  ms: {backgroundColor: '#E8889C'},
+  combined: {backgroundColor: '#FF6B6B'},
+  phd: {backgroundColor: '#FF6B6B'},
+  ms: {backgroundColor: '#FF6B6B'},
   undergrad: {backgroundColor: '#FFBAC4'},
+}
+
+// Hover colors matching Alumni style
+const degreeHoverColors = {
+  combined: '#FF6B6B',
+  phd: '#FF6B6B',
+  ms: '#FF6B6B',
+  undergrad: '#FFBAC4',
+}
+
+// 날짜 포맷 변환 함수 (2025-03 -> 2025.03)
+const formatPeriod = (dateStr: string): string => {
+  if (!dateStr) return ''
+  return dateStr.replace(/-/g, '.')
 }
 
 export const MembersCurrentTemplate = () => {
   const [members, setMembers] = useState<MemberData[]>([])
   const [loading, setLoading] = useState(true)
   const [openEmailPopup, setOpenEmailPopup] = useState<string | null>(null)
+  const [hoveredMember, setHoveredMember] = useState<string | null>(null)
   const baseUrl = import.meta.env.BASE_URL || '/'
 
   useEffect(() => {
@@ -132,25 +151,26 @@ export const MembersCurrentTemplate = () => {
   const stats = useMemo(() => {
     const phdCount = members.filter((m) => m.degree === 'phd').length
     const msCount = members.filter((m) => m.degree === 'ms').length
+    const combinedCount = phdCount + msCount
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return [
-      { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#E8889C' },
-      { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#FFBAC4' },
+      { label: combinedCount === 1 ? 'Ph.D. & M.S. Student' : 'Ph.D. & M.S. Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
+      { label: undergradCount === 1 ? 'Undergraduate Intern' : 'Undergraduate Interns', count: undergradCount, icon: UserCheck, color: '#FFBAC4' },
       { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#4A4A4A' },
     ]
   }, [members])
 
   const groupedMembers = useMemo(() => {
     const grouped: { [key: string]: MemberData[] } = {
-      phd: [],
-      ms: [],
+      combined: [],
       undergrad: [],
     }
     members.forEach((m) => {
-      if (grouped[m.degree]) {
-        grouped[m.degree].push(m)
+      if (m.degree === 'phd' || m.degree === 'ms') {
+        grouped.combined.push(m)
+      } else if (m.degree === 'undergrad') {
+        grouped.undergrad.push(m)
       }
     })
     // Sort each group by Korean name (가나다순)
@@ -159,6 +179,12 @@ export const MembersCurrentTemplate = () => {
     })
     return grouped
   }, [members])
+
+  // 각 멤버의 degree에 맞는 hover color 반환
+  const getMemberHoverColor = (degree: string) => {
+    if (degree === 'phd' || degree === 'ms') return degreeHoverColors.combined
+    return degreeHoverColors.undergrad
+  }
 
   return (
     <div className="flex flex-col bg-white">
@@ -220,7 +246,7 @@ export const MembersCurrentTemplate = () => {
             <span className="w-8 h-8 rounded-full bg-primary" />
             Statistics
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-3 gap-8 md:gap-12">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -248,129 +274,141 @@ export const MembersCurrentTemplate = () => {
           </div>
         ) : members.length > 0 ? (
           <div className="flex flex-col gap-32 md:gap-[40px]">
-            {(['phd', 'ms', 'undergrad'] as const).map((degree) => {
-              const degreeMembers = groupedMembers[degree]
+            {(['combined', 'undergrad'] as const).map((groupKey) => {
+              const degreeMembers = groupedMembers[groupKey]
               if (degreeMembers.length === 0) return null
 
               return (
-                <div key={degree}>
+                <div key={groupKey}>
                   <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
-                    {degreeLabels[degree]}
+                    {degreeLabels[groupKey]}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
-                    {degreeMembers.map((member) => (
-                      <div
-                        key={member.id}
-                        className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
-                      >
-                        <div className="flex items-start gap-12 md:gap-[16px]">
-                          <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
-                            {member.avatar ? (
-                              <img
-                                src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
-                                alt={member.name.ko}
-                                className="w-full h-full object-cover"
-                                onError={(e) => {
-                                  e.currentTarget.style.display = 'none'
-                                  e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                                }}
-                              />
-                            ) : null}
-                            <span className={`text-[28px] md:text-[40px] ${member.avatar ? 'hidden' : ''}`}>👤</span>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mb-4 md:mb-[4px]">
-                              <h4 className="text-base md:text-[18px] font-semibold text-gray-800 group-hover:text-primary transition-colors">{member.name.ko}</h4>
-                              <span 
-                                className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-bold ${degreeColors[member.degree]}`}
-                                style={degreeBgStyles[member.degree]}
-                              >
-                                {member.role.ko}
-                              </span>
-                            </div>
-                            <p className="text-[11px] md:text-[13px] text-gray-500">
-                              {member.period.start} - {member.period.end || member.period.expected_graduation || 'Present'}
-                            </p>
-                          </div>
-                        </div>
-
-                        {member.research.interests.length > 0 && (
-                          <div className="mt-12 md:mt-[16px]">
-                            <p className="text-[10px] md:text-[12px] text-gray-500 mb-6 md:mb-[8px]">Research Interests</p>
-                            <div className="flex flex-wrap gap-4 md:gap-[6px]">
-                              {member.research.interests.slice(0, 4).map((interest, idx) => (
-                                <span
-                                  key={idx}
-                                  className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[11px] text-gray-600"
-                                >
-                                  {interest}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        <div className="mt-12 md:mt-[16px] pt-12 md:pt-[16px] border-t border-gray-100 flex items-center gap-8 md:gap-[12px]">
-                          {member.contact.email && (
-                            <div className="relative flex items-center justify-center">
-                              <button
-                                onClick={() => setOpenEmailPopup(openEmailPopup === member.id ? null : member.id)}
-                                className=""
-                                title="Email"
-                              >
-                                <Mail size={16} />
-                              </button>
-                              {openEmailPopup === member.id && (
-                                <EmailPopup
-                                  email={member.contact.email}
-                                  onClose={() => setOpenEmailPopup(null)}
+                    {degreeMembers.map((member) => {
+                      const hoverColor = getMemberHoverColor(member.degree)
+                      const isHovered = hoveredMember === member.id
+                      
+                      return (
+                        <div
+                          key={member.id}
+                          className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
+                          onMouseEnter={() => setHoveredMember(member.id)}
+                          onMouseLeave={() => setHoveredMember(null)}
+                        >
+                          <div className="flex items-start gap-12 md:gap-[16px]">
+                            <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
+                              {member.avatar ? (
+                                <img
+                                  src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
+                                  alt={member.name.ko}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none'
+                                    e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                                  }}
                                 />
-                              )}
+                              ) : null}
+                              <span className={`text-[28px] md:text-[40px] ${member.avatar ? 'hidden' : ''}`}>👤</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mb-4 md:mb-[4px]">
+                                <h4 
+                                  className="text-base md:text-[18px] font-semibold transition-colors"
+                                  style={{ color: isHovered ? hoverColor : '#1f2937' }}
+                                >
+                                  {member.name.ko}
+                                </h4>
+                                <span 
+                                  className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-bold ${degreeColors[groupKey]}`}
+                                  style={degreeBgStyles[groupKey]}
+                                >
+                                  {member.role.ko}
+                                </span>
+                              </div>
+                              <p className="text-[11px] md:text-[13px] text-gray-500">
+                                {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
+                              </p>
+                            </div>
+                          </div>
+
+                          {member.research.interests.length > 0 && (
+                            <div className="mt-12 md:mt-[16px]">
+                              <p className="text-[10px] md:text-[12px] text-gray-500 mb-6 md:mb-[8px]">Research Interests</p>
+                              <div className="flex flex-wrap gap-4 md:gap-[6px]">
+                                {member.research.interests.slice(0, 4).map((interest, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[11px] text-gray-600"
+                                  >
+                                    {interest}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
                           )}
-                          {member.social?.github && (
-                            <a
-                              href={member.social.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-primary transition-colors"
-                              title="GitHub"
+
+                          <div className="mt-12 md:mt-[16px] pt-12 md:pt-[16px] border-t border-gray-100 flex items-center gap-8 md:gap-[12px]">
+                            {member.contact.email && (
+                              <div className="relative flex items-center justify-center">
+                                <button
+                                  onClick={() => setOpenEmailPopup(openEmailPopup === member.id ? null : member.id)}
+                                  className="p-6 rounded-lg bg-gray-100 hover:bg-primary/10 hover:text-primary transition-colors"
+                                  title="Email"
+                                >
+                                  <Mail size={14} />
+                                </button>
+                                {openEmailPopup === member.id && (
+                                  <EmailPopup
+                                    email={member.contact.email}
+                                    onClose={() => setOpenEmailPopup(null)}
+                                  />
+                                )}
+                              </div>
+                            )}
+                            {member.social?.github && (
+                              <a
+                                href={member.social.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-primary transition-colors"
+                                title="GitHub"
+                              >
+                                <Github size={16} />
+                              </a>
+                            )}
+                            {member.social?.linkedin && (
+                              <a
+                                href={member.social.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-primary transition-colors"
+                                title="LinkedIn"
+                              >
+                                <Linkedin size={16} />
+                              </a>
+                            )}
+                            {member.social?.personal_website && (
+                              <a
+                                href={member.social.personal_website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-primary transition-colors"
+                                title="Personal Website"
+                              >
+                                <Globe size={16} />
+                              </a>
+                            )}
+                            <Link
+                              to={`/members/${member.id}`}
+                              className="ml-auto flex items-center gap-4 text-xs md:text-[13px] font-medium hover:text-primary transition-colors"
                             >
-                              <Github size={16} />
-                            </a>
-                          )}
-                          {member.social?.linkedin && (
-                            <a
-                              href={member.social.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-primary transition-colors"
-                              title="LinkedIn"
-                            >
-                              <Linkedin size={16} />
-                            </a>
-                          )}
-                          {member.social?.personal_website && (
-                            <a
-                              href={member.social.personal_website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-primary transition-colors"
-                              title="Personal Website"
-                            >
-                              <Globe size={16} />
-                            </a>
-                          )}
-                          <Link
-                            to={`/members/${member.id}`}
-                            className="ml-auto flex items-center gap-4 text-xs md:text-[13px] font-medium hover:text-primary transition-colors"
-                          >
-                            View Profile
-                            <ChevronRight size={14} />
-                          </Link>
+                              View Profile
+                              <ChevronRight size={14} />
+                            </Link>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    })}
                   </div>
                 </div>
               )

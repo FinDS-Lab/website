@@ -11,30 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "daini612015@g.hongik.ac.kr",
-    "phone": "010-8326-6733"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Quality Engineering",
-      "Industrial Data Analytics",
-      "Process Control",
-      "Statistical Data Analysis"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial & Data Engineering",
-      "school": "Hongik University",
-      "start": "2023-03",
+      "degree": "학부과정",
+      "field": "산업데이터공학과",
+      "field_en": "Department of Industrial and Data Engineering",
+      "school": "홍익대학교",
+      "school_en": "Hongik University",
       "expected": "Present"
     }
   ]
-,
-  "avatar": "/website/images/members/KDI-1.webp"
 }
