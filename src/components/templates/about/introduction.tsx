@@ -162,6 +162,7 @@ export const AboutIntroductionTemplate = () => {
   const [focusLang, setFocusLang] = useState<'ko' | 'en'>('ko')
   const [visionLang, setVisionLang] = useState<'ko' | 'en'>('ko')
   const [pillarsLang, setPillarsLang] = useState<'ko' | 'en'>('ko')
+  const [carouselIndex, setCarouselIndex] = useState(0)
 
   return (
     <div className="flex flex-col bg-white">
@@ -186,7 +187,7 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          MISSION SECTION - Uniform Card Style
+          MISSION & VISION CAROUSEL
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-[#FFFDF5] to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
@@ -194,73 +195,145 @@ export const AboutIntroductionTemplate = () => {
             ref={heroAnimation.ref}
             className={`transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
-            {/* Uniform Card Container */}
-            <div className="bg-white rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
-              {/* Card Header - Fixed height */}
-              <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
-                <div className="flex items-center gap-8">
-                  <Sparkles size={14} className="text-[#D6B14D]" />
-                  <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                    {missionLang === 'ko' ? 'FINDS Lab의 사명과 비전' : 'FINDS Lab Mission & Vision'}
-                  </span>
+            {/* Carousel Container */}
+            <div className="relative">
+              {/* Carousel Content */}
+              <div className="overflow-hidden rounded-2xl md:rounded-3xl">
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out"
+                  style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
+                >
+                  {/* Slide 1: Mission (Light Theme) */}
+                  <div className="w-full flex-shrink-0">
+                    <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+                      {/* Card Header */}
+                      <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                        <div className="flex items-center gap-8">
+                          <Sparkles size={14} className="text-[#D6B14D]" />
+                          <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                            {missionLang === 'ko' ? 'FINDS Lab의 사명' : 'FINDS Lab Mission'}
+                          </span>
+                        </div>
+                        <LangToggle lang={missionLang} setLang={setMissionLang} />
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
+                          {missionLang === 'ko' ? (
+                            <>
+                              <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
+                              <br className="md:hidden" />{' '}
+                              금융 혁신의 미래
+                            </>
+                          ) : (
+                            <>
+                              Towards{' '}
+                              <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">Data-Illuminated</span>
+                              <br className="md:hidden" />{' '}
+                              Financial Innovation
+                            </>
+                          )}
+                        </h2>
+
+                        <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
+                          <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                          <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                        </div>
+
+                        <div className="max-w-3xl mx-auto space-y-16 text-center">
+                          {missionLang === 'ko' ? (
+                            <>
+                              <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                                <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
+                                데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
+                              </p>
+                              <p className="text-sm md:text-base text-gray-500 leading-[2]">
+                                저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와 <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
+                                복잡한 데이터 속에서 새로운 <span className="font-semibold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 
+                                데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="text-sm md:text-base text-gray-600 leading-[2]">
+                                <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
+                                conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
+                              </p>
+                              <p className="text-sm md:text-base text-gray-500 leading-[2]">
+                                We combine <span className="text-primary font-semibold">Financial Data Science</span> and <span className="text-primary font-semibold">Business Analytics</span> to 
+                                extract new <span className="font-semibold" style={{color: '#AC0E0E'}}>finds</span> from complex data and build intelligence that supports sophisticated data-driven decision-making.
+                              </p>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Slide 2: Vision (Dark Theme with symmetric lighting) */}
+                  <div className="w-full flex-shrink-0">
+                    <div 
+                      className="overflow-hidden"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.98) 100%)',
+                      }}
+                    >
+                      {/* Card Header */}
+                      <div 
+                        className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b"
+                        style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
+                      >
+                        <div className="flex items-center gap-8">
+                          <Sparkles size={14} style={{ color: '#D6B14D' }} />
+                          <span className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                            {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
+                          </span>
+                        </div>
+                        <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
+                      </div>
+
+                      {/* Card Content with symmetric lighting */}
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center overflow-hidden">
+                        {/* Symmetric lighting effects */}
+                        <div className="absolute inset-0 pointer-events-none">
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(214, 177, 77, 0.2) 0%, transparent 70%)' }} />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-15" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-15" />
+                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                        </div>
+
+                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
+
+                        <div className="relative z-10">
+                          <Quote size={32} className="mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
+                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.5] mb-20 md:mb-28 text-white" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
+                            {visionLang === 'ko' ? (
+                              <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
+                            ) : (
+                              <>We illuminate the future of <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Better Data Intelligence</span></>
+                            )}
+                          </h2>
+                          <p className="text-sm md:text-base leading-[2] max-w-2xl text-gray-400">
+                            {visionLang === 'ko' ? (
+                              <>우리는 <span className="font-semibold text-white">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span style={{ color: '#D6B14D' }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다.</>
+                            ) : (
+                              <>We envision a future where <span className="font-semibold text-white">data intelligence</span> diminishes knowledge asymmetry, turning complex data streams into <span style={{ color: '#D6B14D' }}>clear, accessible, and strategically valuable insights</span>.</>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <LangToggle lang={missionLang} setLang={setMissionLang} />
               </div>
 
-              {/* Card Content - Fixed min-height */}
-              <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center">
-                {/* Title */}
-                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
-                  {missionLang === 'ko' ? (
-                    <>
-                      <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
-                      <br className="md:hidden" />{' '}
-                      금융 혁신의 미래
-                    </>
-                  ) : (
-                    <>
-                      Towards{' '}
-                      <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">Data-Illuminated</span>
-                      <br className="md:hidden" />{' '}
-                      Financial Innovation
-                    </>
-                  )}
-                </h2>
-
-                {/* Divider */}
-                <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
-                  <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                  <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
-                </div>
-
-                {/* Description */}
-                <div className="max-w-3xl mx-auto space-y-16 text-center">
-                  {missionLang === 'ko' ? (
-                    <>
-                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                        <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
-                        데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
-                      </p>
-                      <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                        저희는 <span className="text-primary font-semibold">금융데이터사이언스</span>와 <span className="text-primary font-semibold">비즈니스 애널리틱스</span>를 융합하여,
-                        복잡한 데이터 속에서 새로운 <span className="font-semibold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 
-                        데이터 기반의 정교한 의사결정을 돕는 인텔리전스를 구축하는 것을 목표로 합니다.
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                        <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
-                        conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
-                      </p>
-                      <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                        We combine <span className="text-primary font-semibold">Financial Data Science</span> and <span className="text-primary font-semibold">Business Analytics</span> to 
-                        extract new <span className="font-semibold" style={{color: '#AC0E0E'}}>finds</span> from complex data and build intelligence that supports sophisticated data-driven decision-making.
-                      </p>
-                    </>
-                  )}
-                </div>
+              {/* Carousel Dots */}
+              <div className="flex items-center justify-center gap-8 mt-20 md:mt-24">
+                <button onClick={() => setCarouselIndex(0)} className={`w-8 h-8 rounded-full transition-all duration-300 ${carouselIndex === 0 ? 'bg-[#D6B14D] scale-125' : 'bg-gray-300 hover:bg-gray-400'}`} aria-label="Mission slide" />
+                <button onClick={() => setCarouselIndex(1)} className={`w-8 h-8 rounded-full transition-all duration-300 ${carouselIndex === 1 ? 'bg-[#D6B14D] scale-125' : 'bg-gray-300 hover:bg-gray-400'}`} aria-label="Vision slide" />
               </div>
             </div>
           </section>
@@ -317,129 +390,6 @@ export const AboutIntroductionTemplate = () => {
                       </div>
                     </div>
                   ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          VISION SECTION - Uniform Card Style (Dark) with Light-up Effect
-      ═══════════════════════════════════════════════════════════════ */}
-      <div className="bg-gradient-to-b from-white via-[#FFFDF5] to-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
-          <section ref={visionRef}>
-            {/* Uniform Card Container - Dark variant with dynamic lighting */}
-            <div 
-              className="rounded-2xl md:rounded-3xl border shadow-lg overflow-hidden transition-all duration-700"
-              style={{
-                borderColor: `rgba(214, 177, 77, ${0.1 + brightness * 0.4})`,
-                background: `linear-gradient(135deg, 
-                  rgba(17, 24, 39, ${1 - brightness * 0.15}) 0%, 
-                  rgba(31, 41, 55, ${1 - brightness * 0.15}) 50%, 
-                  rgba(17, 24, 39, ${1 - brightness * 0.15}) 100%)`,
-                boxShadow: `0 0 ${brightness * 60}px rgba(214, 177, 77, ${brightness * 0.3})`
-              }}
-            >
-              {/* Card Header - Fixed height, matching other sections */}
-              <div 
-                className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b transition-all duration-500"
-                style={{ 
-                  borderColor: `rgba(214, 177, 77, ${0.1 + brightness * 0.3})`,
-                  background: `rgba(17, 24, 39, ${0.8 - brightness * 0.2})`
-                }}
-              >
-                <div className="flex items-center gap-8">
-                  <Sparkles 
-                    size={14} 
-                    className="transition-all duration-500"
-                    style={{ color: `rgba(214, 177, 77, ${0.5 + brightness * 0.5})` }}
-                  />
-                  <span 
-                    className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-500"
-                    style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
-                  >
-                    {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
-                  </span>
-                </div>
-                <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
-              </div>
-
-              {/* Card Content - Fixed min-height */}
-              <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center overflow-hidden">
-                {/* Animated glow effect based on scroll - stronger */}
-                <div 
-                  className="absolute inset-0 transition-all duration-700 pointer-events-none"
-                  style={{ opacity: brightness }}
-                >
-                  <div 
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl transition-all duration-700"
-                    style={{ 
-                      width: `${200 + brightness * 300}px`, 
-                      height: `${200 + brightness * 300}px`,
-                      background: `radial-gradient(circle, rgba(214, 177, 77, ${0.15 + brightness * 0.2}) 0%, transparent 70%)`
-                    }}
-                  />
-                  <div className="absolute top-0 right-0 w-80 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-20" />
-                  <div className="absolute bottom-0 left-0 w-56 h-56 bg-primary rounded-full blur-3xl opacity-15" />
-                </div>
-
-                {/* Top accent line - brightness controlled */}
-                <div 
-                  className="absolute top-0 left-0 right-0 h-1 transition-all duration-500"
-                  style={{ 
-                    background: `linear-gradient(90deg, transparent, rgba(214, 177, 77, ${brightness * 0.8}), transparent)`,
-                    boxShadow: `0 0 ${brightness * 20}px rgba(214, 177, 77, ${brightness * 0.5})`
-                  }}
-                />
-
-                <div className="relative z-10">
-                  <Quote 
-                    size={32} 
-                    className="mb-12 transition-all duration-500"
-                    style={{ color: `rgba(214, 177, 77, ${0.2 + brightness * 0.4})` }}
-                  />
-
-                  {/* Title with brightness effect - bigger */}
-                  <h2 
-                    className="text-2xl md:text-3xl lg:text-4xl font-bold leading-[1.5] mb-20 md:mb-28 transition-all duration-500"
-                    style={{ 
-                      color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})`,
-                      textShadow: brightness > 0.5 ? `0 0 ${brightness * 30}px rgba(255, 255, 255, 0.3)` : 'none'
-                    }}
-                  >
-                    {visionLang === 'ko' ? (
-                      <>더 나은 <span style={{ 
-                        color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})`,
-                        textShadow: brightness > 0.5 ? `0 0 ${brightness * 20}px rgba(214, 177, 77, 0.5)` : 'none'
-                      }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
-                    ) : (
-                      <>We illuminate the future of <span style={{ 
-                        color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})`,
-                        textShadow: brightness > 0.5 ? `0 0 ${brightness * 20}px rgba(214, 177, 77, 0.5)` : 'none'
-                      }}>Better Data Intelligence</span></>
-                    )}
-                  </h2>
-
-                  {/* Description with brightness effect - bigger */}
-                  <p 
-                    className="text-sm md:text-base leading-[2] max-w-2xl transition-all duration-500"
-                    style={{ color: `rgba(156, 163, 175, ${0.4 + brightness * 0.6})` }}
-                  >
-                    {visionLang === 'ko' ? (
-                      <>
-                        우리는 <span className="font-semibold" style={{ color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})` }}>데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 
-                        복잡한 데이터 흐름을 <span style={{ color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})` }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 
-                        전환하는 미래를 꿈꿉니다.
-                      </>
-                    ) : (
-                      <>
-                        We envision a future where <span className="font-semibold" style={{ color: `rgba(255, 255, 255, ${0.5 + brightness * 0.5})` }}>data intelligence</span> diminishes knowledge asymmetry, 
-                        turning complex data streams into <span style={{ color: `rgba(214, 177, 77, ${0.6 + brightness * 0.4})` }}>clear, accessible, and strategically valuable insights</span>.
-                      </>
-                    )}
-                  </p>
                 </div>
               </div>
             </div>

@@ -159,7 +159,7 @@ export const MembersCurrentTemplate = () => {
       combined: { label: 'Ph.D. - M.S. Combined', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
       ms: { label: 'M.S.', count: msCount, icon: BookOpen, color: '#FF6B6B' },
       undergrad: { label: 'Undergraduate Researcher', count: undergradCount, icon: UserCheck, color: '#E8889C' },
-      total: { label: 'Total', count: members.length, icon: Users, color: '#4A4A4A' },
+      total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
   }, [members])
 
