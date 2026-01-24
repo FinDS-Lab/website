@@ -3,7 +3,7 @@ import "../../assets/css/theme.css";
 import "../../assets/css/font.css";
 
 import {Route, Routes, useLocation, Navigate, Link} from "react-router-dom";
-import {lazy, Suspense, useEffect, memo, useRef, useState} from "react";
+import {lazy, Suspense, useEffect, memo, useRef, useState, useLayoutEffect} from "react";
 import { Music, Play, Pause, X, Home as HomeIcon, SkipBack, SkipForward, Minimize2, Maximize2 } from 'lucide-react'
 import { useMusicPlayerStore } from '@/store/musicPlayer'
 
@@ -65,7 +65,6 @@ const GlobalMusicPlayer = memo(() => {
   const [isHidden, setIsHidden] = useState(false)
   const location = useLocation()
 
-  // Load YouTube IFrame API
   useEffect(() => {
     if (!window.YT) {
       const tag = document.createElement('script')
@@ -75,7 +74,6 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [])
 
-  // Load playlist data
   useEffect(() => {
     if (!isLoaded) {
       const baseUrl = import.meta.env.BASE_URL || '/'
@@ -104,27 +102,22 @@ const GlobalMusicPlayer = memo(() => {
 
   const currentVideoId = playlist[currentIndex]
   const currentTrack = trackInfo[currentIndex]
-  const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && location.pathname !== '/archives/playlist'
+  const isPlaylistPage = location.pathname === '/archives/playlist'
+  const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage
 
-  // Move player container to video area when in full mode
-  useEffect(() => {
+  // Move player container based on mode
+  useLayoutEffect(() => {
     const container = playerContainerRef.current
     const videoArea = videoAreaRef.current
     
-    if (showFullPlayer && container && videoArea) {
+    if (!container) return
+    
+    if (showFullPlayer && videoArea) {
       videoArea.appendChild(container)
-      container.style.position = 'absolute'
-      container.style.inset = '0'
-      container.style.width = '100%'
-      container.style.height = '100%'
-    } else if (container) {
-      // Move to body and hide off-screen
+      container.style.cssText = 'position: absolute; inset: 0; width: 100%; height: 100%;'
+    } else {
       document.body.appendChild(container)
-      container.style.position = 'fixed'
-      container.style.left = '-9999px'
-      container.style.top = '-9999px'
-      container.style.width = '1px'
-      container.style.height = '1px'
+      container.style.cssText = 'position: fixed; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;'
     }
   }, [showFullPlayer])
 
@@ -174,35 +167,16 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [isPlaying, playerReady])
 
-  const isPlaylistPage = location.pathname === '/archives/playlist'
-
   const handleHidePlayer = () => {
     if (playerRef.current) playerRef.current.pauseVideo()
     setIsPlaying(false)
     setIsHidden(true)
   }
 
-  if (isHidden) {
-    return (
-      <>
-        <div ref={playerContainerRef} style={{position: 'fixed', left: '-9999px', top: '-9999px', width: '1px', height: '1px'}}>
-          <div id="yt-player" />
-        </div>
-        <div className="fixed bottom-20 right-20 z-[9999] hidden md:flex flex-col items-end gap-12">
-          {location.pathname !== '/' && (
-            <Link to="/" className="flex items-center justify-center w-32 h-32 bg-primary text-white rounded-full shadow-xl hover:bg-primary/90 hover:scale-105 transition-all duration-200" title="홈으로">
-              <HomeIcon className="w-16 h-16" />
-            </Link>
-          )}
-        </div>
-      </>
-    )
-  }
-
   return (
     <>
-      {/* Player Container - will be moved via useEffect */}
-      <div ref={playerContainerRef} style={{position: 'fixed', left: '-9999px', top: '-9999px', width: '1px', height: '1px'}}>
+      {/* Player Container - ALWAYS in DOM, position controlled by useLayoutEffect */}
+      <div ref={playerContainerRef}>
         <div id="yt-player" style={{width: '100%', height: '100%'}} />
       </div>
       
@@ -214,7 +188,7 @@ const GlobalMusicPlayer = memo(() => {
           </Link>
         )}
         
-        {playlist.length > 0 && !isPlaylistPage && (
+        {!isHidden && playlist.length > 0 && !isPlaylistPage && (
           isMinimized ? (
             <div className="flex items-center gap-8">
               <button onClick={handleHidePlayer} className="flex items-center justify-center w-36 h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50" title="플레이리스트 숨기기">
@@ -282,7 +256,7 @@ const GlobalMusicPlayer = memo(() => {
                 </div>
               )}
 
-              {/* Video Area - Player will be moved here */}
+              {/* Video Area - Player will be moved here via useLayoutEffect */}
               <div ref={videoAreaRef} className="relative aspect-video bg-black" />
 
               <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
