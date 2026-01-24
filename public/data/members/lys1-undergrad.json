@@ -16,23 +16,25 @@
     "end": "2026-01-31"
   },
   "contact": {
-    "email": ""
+    "email": "cats2969@kaist.ac.kr"
   },
   "research": {
     "interests": [
       "Financial Data Science",
-      "Business Analytics"
+      "Algorithm Trading",
+      "Data-Inspired Decision Making"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업및시스템공학과",
-      "field_en": "Department of Industrial and Systems Engineering",
-      "school": "한국과학기술원 (KAIST)",
+      "field_en": "Industrial and Systems Engineering",
+      "school": "KAIST",
       "school_en": "KAIST",
       "expected": "Present",
-      "start": "2023-03"
+      "start": "2023-03",
+      "doubleMajor": "Computer Science"
     }
   ]
 }

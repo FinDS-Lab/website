@@ -16,19 +16,20 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "jeenu37@khu.ac.kr"
   },
   "research": {
     "interests": [
       "Financial Data Science",
-      "Business Analytics"
+      "Business Analytics",
+      "Data-Inspired Decision Making"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial and Management Systems Engineering",
+      "field_en": "Industrial and Management Systems Engineering",
       "school": "경희대학교",
       "school_en": "Kyung Hee University",
       "expected": "Present",

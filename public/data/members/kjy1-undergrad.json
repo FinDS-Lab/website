@@ -16,19 +16,21 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "kimjy0010@hanyang.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Metrology and Inspection Data Analytics",
+      "Data-Driven Process Optimization",
+      "Multimodal Machine Learning",
+      "Reliability Engineering"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업공학과",
-      "field_en": "Department of Industrial Engineering",
+      "field_en": "Industrial Engineering",
       "school": "한양대학교",
       "school_en": "Hanyang University",
       "expected": "Present",

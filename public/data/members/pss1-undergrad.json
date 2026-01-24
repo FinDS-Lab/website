@@ -16,23 +16,25 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "qocn0123@khu.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Deep Learning Algorithms",
+      "Multivariate Time Series Modeling",
+      "Anomaly Detection"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial and Management Systems Engineering",
+      "field_en": "Industrial and Management Systems Engineering",
       "school": "경희대학교",
       "school_en": "Kyung Hee University",
       "expected": "Present",
-      "start": "2020-03"
+      "start": "2020-03",
+      "doubleMajor": "Software Convergence"
     }
   ]
 }

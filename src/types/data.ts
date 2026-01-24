@@ -89,6 +89,8 @@ export type MemberData = {
     start: string
     end?: string
     expected?: string
+    doubleMajor?: string
+    minor?: string
   }[]
   social?: {
     github?: string

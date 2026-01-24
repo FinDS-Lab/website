@@ -16,23 +16,27 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "sks5259@khu.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Financial Engineering",
+      "Market Microstructure",
+      "Factor Investing",
+      "Convex Optimization",
+      "Stochastic Calculus"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial and Management Systems Engineering",
+      "field_en": "Industrial and Management Systems Engineering",
       "school": "경희대학교",
       "school_en": "Kyung Hee University",
       "expected": "Present",
-      "start": "2023-03"
+      "start": "2023-03",
+      "doubleMajor": "Applied Mathematics"
     }
   ]
 }

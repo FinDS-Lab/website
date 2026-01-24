@@ -16,19 +16,20 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "kyh050412@hanyang.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Business Analytics",
+      "Financial Data Analysis",
+      "Risk Analysis"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업경영공학과",
-      "field_en": "Department of Industrial & Management Engineering",
+      "field_en": "Industrial and Management Engineering",
       "school": "한양대학교 ERICA 캠퍼스",
       "school_en": "Hanyang University ERICA",
       "expected": "Present",

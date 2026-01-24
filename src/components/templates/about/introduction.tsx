@@ -164,6 +164,24 @@ export const AboutIntroductionTemplate = () => {
   const [pillarsLang, setPillarsLang] = useState<'ko' | 'en'>('ko')
   const [carouselIndex, setCarouselIndex] = useState(0)
   const [carousel2Index, setCarousel2Index] = useState(0)
+  
+  // Mouse tracking for light effect
+  const [mousePos1, setMousePos1] = useState({ x: 50, y: 50 })
+  const [mousePos2, setMousePos2] = useState({ x: 50, y: 50 })
+  
+  const handleMouseMove1 = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePos1({ x, y })
+  }
+  
+  const handleMouseMove2 = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePos2({ x, y })
+  }
 
   return (
     <div className="flex flex-col bg-white">
@@ -273,13 +291,14 @@ export const AboutIntroductionTemplate = () => {
                     </div>
                   </div>
 
-                  {/* Slide 2: Vision (Dark Theme with symmetric lighting) */}
+                  {/* Slide 2: Vision (Dark Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
                       className="overflow-hidden"
                       style={{
                         background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.98) 100%)',
                       }}
+                      onMouseMove={handleMouseMove1}
                     >
                       {/* Card Header */}
                       <div 
@@ -295,20 +314,30 @@ export const AboutIntroductionTemplate = () => {
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
                       </div>
 
-                      {/* Card Content with symmetric lighting */}
+                      {/* Card Content with mouse-following light */}
                       <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center overflow-hidden">
-                        {/* Symmetric lighting effects */}
+                        {/* Mouse-following light effect */}
+                        <div 
+                          className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out"
+                          style={{ 
+                            left: `${mousePos1.x}%`,
+                            top: `${mousePos1.y}%`,
+                            transform: 'translate(-50%, -50%)',
+                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, transparent 60%)'
+                          }}
+                        />
+                        {/* Static symmetric lighting */}
                         <div className="absolute inset-0 pointer-events-none">
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(214, 177, 77, 0.2) 0%, transparent 70%)' }} />
-                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-15" />
-                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-15" />
-                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
-                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-80 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-32 h-64 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-32 h-64 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
                         </div>
 
                         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
 
                         <div className="relative z-10 text-center">
+                          {/* Quote icon */}
+                          <Quote size={36} className="mx-auto mb-16" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
+                          
                           {/* Title */}
                           <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.4] mb-20 md:mb-32 text-white" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
                             {visionLang === 'ko' ? (
@@ -318,7 +347,7 @@ export const AboutIntroductionTemplate = () => {
                             )}
                           </h2>
 
-                          {/* Divider - matching Mission style */}
+                          {/* Divider */}
                           <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
                             <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
                             <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
@@ -335,6 +364,9 @@ export const AboutIntroductionTemplate = () => {
                               )}
                             </p>
                           </div>
+                          
+                          {/* Closing Quote */}
+                          <Quote size={36} className="mx-auto mt-16 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
                         </div>
                       </div>
                     </div>
@@ -385,13 +417,14 @@ export const AboutIntroductionTemplate = () => {
 
                       {/* Card Content */}
                       <div className="p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center">
-                        {/* Title with decorative elements */}
+                        {/* Title with Quote */}
                         <div className="text-center mb-32 md:mb-40">
+                          <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
                           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
                             {focusLang === 'ko' ? (
-                              <>세 가지 <span className="text-[#D6B14D]">핵심 연구 분야</span></>
+                              <><span className="text-[#D6B14D]">핵심 연구 분야</span></>
                             ) : (
-                              <>Three <span className="text-[#D6B14D]">Core Research Areas</span></>
+                              <><span className="text-[#D6B14D]">Core Research Areas</span></>
                             )}
                           </h2>
                           <div className="flex items-center justify-center gap-8">
@@ -433,13 +466,14 @@ export const AboutIntroductionTemplate = () => {
                     </div>
                   </div>
 
-                  {/* Slide 2: Pillars (Dark Theme) */}
+                  {/* Slide 2: Pillars (Dark Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
                       className="overflow-hidden"
                       style={{
                         background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.98) 100%)',
                       }}
+                      onMouseMove={handleMouseMove2}
                     >
                       {/* Card Header */}
                       <div 
@@ -455,27 +489,35 @@ export const AboutIntroductionTemplate = () => {
                         <LangToggle lang={pillarsLang} setLang={setPillarsLang} variant="dark" />
                       </div>
 
-                      {/* Card Content with symmetric lighting */}
+                      {/* Card Content with mouse-following light */}
                       <div className="relative p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center overflow-hidden">
-                        {/* Symmetric lighting effects */}
+                        {/* Mouse-following light effect */}
+                        <div 
+                          className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out"
+                          style={{ 
+                            left: `${mousePos2.x}%`,
+                            top: `${mousePos2.y}%`,
+                            transform: 'translate(-50%, -50%)',
+                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.12) 0%, transparent 60%)'
+                          }}
+                        />
+                        {/* Static symmetric lighting */}
                         <div className="absolute inset-0 pointer-events-none">
-                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, transparent 70%)' }} />
-                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
-                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-48 h-96 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
-                          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
-                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-32 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-32 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
                         </div>
 
                         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
 
                         <div className="relative z-10">
-                          {/* Title with decorative elements */}
+                          {/* Title with Quote */}
                           <div className="text-center mb-32 md:mb-40">
+                            <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
                             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
                               {pillarsLang === 'ko' ? (
-                                <>세 가지 <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
+                                <><span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
                               ) : (
-                                <>Three <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
+                                <><span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
                               )}
                             </h2>
                             <div className="flex items-center justify-center gap-8">

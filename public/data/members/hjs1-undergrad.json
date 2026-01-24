@@ -16,23 +16,27 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "jason5839@jbnu.ac.kr"
   },
   "research": {
     "interests": [
       "Financial Data Science",
-      "Business Analytics"
+      "Business Analytics",
+      "Data-Inspired Decision Making",
+      "Optimization Design",
+      "Supply Chain Management (SCM)"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업정보시스템공학과",
-      "field_en": "Department of Industrial and Information Systems Engineering",
+      "field_en": "Industrial and Information Systems Engineering",
       "school": "전북대학교",
       "school_en": "Jeonbuk National University",
       "expected": "Present",
-      "start": "2021-03"
+      "start": "2021-03",
+      "doubleMajor": "Defense Industry"
     }
   ]
 }

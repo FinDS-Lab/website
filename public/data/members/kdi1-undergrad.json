@@ -16,19 +16,21 @@
     "end": "2026-03-01"
   },
   "contact": {
-    "email": ""
+    "email": "daini612015@g.hongik.ac.kr"
   },
   "research": {
     "interests": [
-      "Financial Data Science",
-      "Business Analytics"
+      "Quality Engineering",
+      "Industrial Data Analytics",
+      "Process Control",
+      "Statistical Data Analysis"
     ]
   },
   "education": [
     {
       "degree": "Undergraduate",
       "field": "산업데이터공학과",
-      "field_en": "Department of Industrial and Data Engineering",
+      "field_en": "Industrial and Data Engineering",
       "school": "홍익대학교",
       "school_en": "Hongik University",
       "expected": "Present",

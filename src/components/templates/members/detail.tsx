@@ -332,6 +332,16 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                         {edu.field_en || edu.field}
                       </h4>
                       <p className="text-sm text-gray-600">{edu.school_en || edu.school}</p>
+                      {edu.doubleMajor && (
+                        <p className="text-xs font-bold text-[#D6B14D] mt-2">
+                          • Double Major in {edu.doubleMajor}
+                        </p>
+                      )}
+                      {edu.minor && (
+                        <p className="text-xs font-bold text-[#D6B14D] mt-2">
+                          • Minor in {edu.minor}
+                        </p>
+                      )}
                     </div>
                     <span className="text-xs md:text-sm font-semibold whitespace-nowrap" style={{ color: '#E8889C' }}>
                       {edu.start} - {edu.end || edu.expected || 'Present'}
