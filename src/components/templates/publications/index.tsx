@@ -320,7 +320,7 @@ export const PublicationsTemplate = () => {
     })
 
     return {
-      total: { label: publications.length === 1 ? 'Total Output' : 'Total Outputs', count: publications.length, icon: BarChart3, color: '#D6B14D' },
+      total: { label: 'Total', count: publications.length, icon: BarChart3, color: '#D6B14D' },
       items: [
         { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' },
         { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' },
@@ -555,7 +555,7 @@ export const PublicationsTemplate = () => {
           {/* Authorship Remarks Section */}
           <div className="flex flex-col gap-12 md:gap-20">
             <div className="flex items-center gap-8">
-              <h2 className="text-xl md:text-[26px] font-semibold text-gray-900">Authorship Remarks</h2>
+              <h2 className="text-xl md:text-[26px] font-bold text-gray-900">Authorship Remarks</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
@@ -579,7 +579,7 @@ export const PublicationsTemplate = () => {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs md:text-base font-semibold text-gray-900">{item.label}</span>
+                      <span className="text-xs md:text-base font-bold text-gray-900">{item.label}</span>
                       <span className="text-[10px] md:text-xs text-gray-500 hidden sm:block">{item.subLabel}</span>
                     </div>
                   </div>

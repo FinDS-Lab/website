@@ -89,40 +89,41 @@ const ContactModalContent = () => {
   return (
     <div className="">
       <div className="flex flex-col items-center text-center mb-24">
-        <div className="size-80 bg-primary/10 rounded-full flex items-center justify-center mb-20">
-          <Mail size={36} className="text-primary" />
+        <div className="size-64 md:size-80 bg-primary/10 rounded-full flex items-center justify-center mb-16 md:mb-20">
+          <Mail size={28} className="text-primary md:hidden" />
+          <Mail size={36} className="text-primary hidden md:block" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-8 max-md:text-xl">Contact Us</h2>
-        <p className="text-base text-gray-500 max-md:text-sm">Feel free to reach out to us!</p>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">Contact Us</h2>
+        <p className="text-sm md:text-base text-gray-500">Feel free to reach out to us!</p>
       </div>
 
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-12 md:gap-16">
         {contacts.map((contact, index) => (
-          <div key={index} className="bg-gray-50 rounded-xl p-16 max-md:p-12">
-            <div className="flex flex-col gap-4 mb-8">
-              <span className="text-base font-bold text-primary">{contact.role}</span>
-              <span className="text-xs text-gray-400">{contact.description}</span>
+          <div key={index} className="bg-gray-50 rounded-xl p-14 md:p-16">
+            <div className="flex flex-col gap-2 mb-10">
+              <span className="text-sm md:text-base font-bold text-primary">{contact.role}</span>
+              <span className="text-[11px] md:text-xs text-gray-400 leading-relaxed">{contact.description}</span>
             </div>
-            <div className="flex items-center justify-between gap-12">
+            <div className="flex items-center justify-between gap-8 md:gap-12">
               <a
                 href={`mailto:${contact.email}`}
-                className="text-base font-semibold text-gray-700 hover:text-primary hover:underline transition-colors"
+                className="text-sm md:text-base font-semibold text-gray-700 hover:text-primary hover:underline transition-colors truncate"
               >
                 {contact.email}
               </a>
               <button
                 onClick={() => handleCopyEmail(contact.email)}
-                className="flex items-center gap-4 px-10 py-6 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white border border-gray-200 rounded-lg text-[11px] md:text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0"
               >
                 {copiedEmail === contact.email ? (
                   <>
                     <Check size={12} className="text-green-500" />
-                    Copied!
+                    <span className="hidden sm:inline">Copied!</span>
                   </>
                 ) : (
                   <>
                     <Copy size={12} />
-                    Copy
+                    <span className="hidden sm:inline">Copy</span>
                   </>
                 )}
               </button>

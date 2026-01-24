@@ -237,30 +237,25 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center text-center">
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-[1.4] mb-20 md:mb-32 text-center">
-                          {missionLang === 'ko' ? (
-                            <>
-                              <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">데이터로 밝히는</span>
-                              <br className="md:hidden" />{' '}
-                              금융 혁신의 미래
-                            </>
-                          ) : (
-                            <>
-                              Towards{' '}
-                              <span className="bg-gradient-to-r from-[#D6B14D] via-primary to-[#D6B14D] bg-clip-text text-transparent">Data-Illuminated</span>
-                              <br className="md:hidden" />{' '}
-                              Financial Innovation
-                            </>
-                          )}
-                        </h2>
-
-                        <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
-                          <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                          <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                      <div className="p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
+                        {/* Title with Quote */}
+                        <div className="text-center mb-32 md:mb-40">
+                          <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
+                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
+                            {missionLang === 'ko' ? (
+                              <><span className="text-[#D6B14D]">데이터로 밝히는</span> 금융 혁신의 미래</>
+                            ) : (
+                              <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span> Financial Innovation</>
+                            )}
+                          </h2>
+                          <div className="flex items-center justify-center gap-8">
+                            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
+                          </div>
                         </div>
 
+                        {/* Description */}
                         <div className="max-w-3xl mx-auto space-y-16 text-center">
                           {missionLang === 'ko' ? (
                             <>
@@ -287,6 +282,9 @@ export const AboutIntroductionTemplate = () => {
                             </>
                           )}
                         </div>
+                        
+                        {/* Closing Quote */}
+                        <Quote size={32} className="mx-auto mt-20 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
                       </div>
                     </div>
                   </div>
@@ -307,7 +305,7 @@ export const AboutIntroductionTemplate = () => {
                       >
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                          <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">
                             {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
                           </span>
                         </div>
@@ -315,47 +313,45 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[400px] md:min-h-[450px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
-                          className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out"
+                          className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
                           style={{ 
                             left: `${mousePos1.x}%`,
                             top: `${mousePos1.y}%`,
                             transform: 'translate(-50%, -50%)',
-                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, transparent 60%)'
+                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.18) 0%, rgba(214, 177, 77, 0.08) 30%, transparent 60%)'
                           }}
                         />
-                        {/* Static symmetric lighting */}
+                        {/* Static ambient lighting */}
                         <div className="absolute inset-0 pointer-events-none">
-                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-32 h-64 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
-                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-32 h-64 bg-[#D6B14D] rounded-full blur-3xl opacity-10" />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.08]" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.08]" />
                         </div>
 
-                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
+                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 20px rgba(214, 177, 77, 0.4)' }} />
 
-                        <div className="relative z-10 text-center">
-                          {/* Quote icon */}
-                          <Quote size={36} className="mx-auto mb-16" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
-                          
-                          {/* Title */}
-                          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.4] mb-20 md:mb-32 text-white" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
-                            {visionLang === 'ko' ? (
-                              <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
-                            ) : (
-                              <>We illuminate the future of <span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Better Data Intelligence</span></>
-                            )}
-                          </h2>
-
-                          {/* Divider */}
-                          <div className="flex items-center justify-center gap-8 mb-20 md:mb-32">
-                            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
+                        <div className="relative z-10">
+                          {/* Title with Quote */}
+                          <div className="text-center mb-32 md:mb-40">
+                            <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
+                              {visionLang === 'ko' ? (
+                                <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>데이터 인텔리전스</span>의 미래를 밝혀갑니다</>
+                              ) : (
+                                <>We illuminate the future of <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Better Data Intelligence</span></>
+                              )}
+                            </h2>
+                            <div className="flex items-center justify-center gap-8">
+                              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
+                              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
+                            </div>
                           </div>
 
                           {/* Description */}
-                          <div className="max-w-3xl mx-auto space-y-16">
+                          <div className="max-w-3xl mx-auto space-y-16 text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
                                 <>우리는 <span className="font-semibold text-white">데이터 인텔리전스</span>가 정보 비대칭을 줄이고, 복잡한 데이터 흐름을 <span style={{ color: '#D6B14D' }}>명확하고, 접근 가능하며, 전략적으로 가치 있는 인사이트</span>로 전환하는 미래를 꿈꿉니다.</>
@@ -366,7 +362,7 @@ export const AboutIntroductionTemplate = () => {
                           </div>
                           
                           {/* Closing Quote */}
-                          <Quote size={36} className="mx-auto mt-16 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
+                          <Quote size={32} className="mx-auto mt-20 rotate-180" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
                         </div>
                       </div>
                     </div>
@@ -416,10 +412,9 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center">
-                        {/* Title with Quote */}
-                        <div className="text-center mb-32 md:mb-40">
-                          <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.4)' }} />
+                      <div className="p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center">
+                        {/* Title */}
+                        <div className="text-center mb-28 md:mb-36">
                           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
                             {focusLang === 'ko' ? (
                               <><span className="text-[#D6B14D]">핵심 연구 분야</span></>
@@ -435,27 +430,27 @@ export const AboutIntroductionTemplate = () => {
                         </div>
 
                         {/* 3 Cards Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-20 md:p-28 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col"
                             >
                               {/* Icon */}
-                              <div className="relative w-56 h-56 md:w-64 md:h-64 mx-auto mb-20 shrink-0">
+                              <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                  <img src={area.image} alt={area.title} className="w-32 h-32 md:w-40 md:h-40 object-contain" />
+                                  <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
                                 </div>
                               </div>
 
                               {/* Text */}
                               <div className="text-center flex-1 flex flex-col">
-                                <h3 className="text-lg md:text-xl font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
+                                <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
                                   {focusLang === 'ko' ? area.titleKo : area.title}
                                 </h3>
                                 <p 
-                                  className="text-sm md:text-base text-gray-500 leading-[1.9] [&>b]:text-gray-700 [&>b]:font-semibold"
+                                  className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
                                   dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
                                 />
                               </div>
@@ -482,7 +477,7 @@ export const AboutIntroductionTemplate = () => {
                       >
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                          <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">
                             {pillarsLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
                           </span>
                         </div>
@@ -490,34 +485,33 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[550px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
-                          className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-300 ease-out"
+                          className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
                           style={{ 
                             left: `${mousePos2.x}%`,
                             top: `${mousePos2.y}%`,
                             transform: 'translate(-50%, -50%)',
-                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.12) 0%, transparent 60%)'
+                            background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, rgba(214, 177, 77, 0.06) 30%, transparent 60%)'
                           }}
                         />
-                        {/* Static symmetric lighting */}
+                        {/* Static ambient lighting */}
                         <div className="absolute inset-0 pointer-events-none">
-                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-32 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
-                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-32 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-8" />
+                          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.06]" />
+                          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.06]" />
                         </div>
 
-                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 15px rgba(214, 177, 77, 0.4)' }} />
+                        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 20px rgba(214, 177, 77, 0.4)' }} />
 
                         <div className="relative z-10">
-                          {/* Title with Quote */}
-                          <div className="text-center mb-32 md:mb-40">
-                            <Quote size={32} className="mx-auto mb-12" style={{ color: 'rgba(214, 177, 77, 0.3)' }} />
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.2)' }}>
+                          {/* Title */}
+                          <div className="text-center mb-28 md:mb-36">
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                               {pillarsLang === 'ko' ? (
-                                <><span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
+                                <><span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
                               ) : (
-                                <><span style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
+                                <><span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
                               )}
                             </h2>
                             <div className="flex items-center justify-center gap-8">
@@ -528,13 +522,13 @@ export const AboutIntroductionTemplate = () => {
                           </div>
 
                           {/* 3 Cards Grid */}
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-24">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                             {pillars.map((pillar, index) => {
                               const Icon = pillar.icon
                               return (
                                 <div 
                                   key={index} 
-                                  className="group rounded-xl p-20 md:p-28 border transition-all duration-300 flex flex-col"
+                                  className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col"
                                   style={{ 
                                     background: 'rgba(255, 255, 255, 0.03)', 
                                     borderColor: 'rgba(214, 177, 77, 0.15)',
@@ -549,35 +543,35 @@ export const AboutIntroductionTemplate = () => {
                                   }}
                                 >
                                   {/* Icon & Number */}
-                                  <div className="flex items-center justify-between mb-16">
-                                    <div className="size-48 md:size-56 rounded-xl flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.15)' }}>
-                                      <Icon size={24} style={{ color: '#D6B14D' }} />
+                                  <div className="flex items-center justify-between mb-12">
+                                    <div className="size-44 md:size-48 rounded-xl flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.15)' }}>
+                                      <Icon size={22} style={{ color: '#D6B14D' }} />
                                     </div>
-                                    <span className="text-3xl md:text-4xl font-black" style={{ color: 'rgba(214, 177, 77, 0.2)' }}>
+                                    <span className="text-2xl md:text-3xl font-black" style={{ color: 'rgba(214, 177, 77, 0.2)' }}>
                                       {pillar.number}
                                     </span>
                                   </div>
 
                                   {/* Label */}
-                                  <h3 className="text-lg md:text-xl font-bold mb-8" style={{ color: '#D6B14D' }}>
+                                  <h3 className="text-base md:text-lg font-bold mb-6" style={{ color: '#D6B14D' }}>
                                     {pillarsLang === 'ko' ? pillar.labelKo : pillar.label}
                                   </h3>
 
                                   {/* Title */}
-                                  <h4 className="text-sm md:text-base font-semibold text-white mb-8 leading-[1.5]">
+                                  <h4 className="text-sm font-semibold text-white mb-6 leading-[1.5]">
                                     {pillarsLang === 'ko' ? pillar.titleKo : pillar.title}
                                   </h4>
                                   
                                   {/* Subtitle */}
                                   {pillar.subtitle && (
-                                    <p className="text-xs font-medium italic mb-10" style={{ color: 'rgba(214, 177, 77, 0.7)' }}>
+                                    <p className="text-xs font-medium italic mb-8" style={{ color: 'rgba(214, 177, 77, 0.7)' }}>
                                       {pillarsLang === 'ko' ? pillar.subtitleKo : pillar.subtitle}
                                     </p>
                                   )}
 
                                   {/* Description */}
                                   <p 
-                                    className="text-sm text-gray-400 leading-[1.9] [&>b]:text-gray-300 [&>b]:font-semibold"
+                                    className="text-xs md:text-sm text-gray-400 leading-[1.8] [&>b]:text-gray-300 [&>b]:font-semibold"
                                     dangerouslySetInnerHTML={{ __html: pillarsLang === 'ko' ? pillar.descriptionKo : pillar.description }}
                                   />
                                 </div>

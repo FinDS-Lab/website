@@ -71,22 +71,22 @@ import logoJl from '@/assets/images/logos/jl.png'
 const education = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2025.02',
+    period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
     field: 'Industrial and Systems Engineering',
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
     leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021.09 - 2025.01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
+      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
+      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
     ],
     awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
     logo: logoKaist
   },
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2021.02',
+    period: '2021-02',
     degree: 'Master of Science (M.S.)',
     field: 'Industrial and Systems Engineering',
     advisors: [
@@ -98,7 +98,7 @@ const education = [
   },
   {
     school: 'Kyung Hee University',
-    period: '2018.02',
+    period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
     field: 'Industrial and Management Systems Engineering',
     advisors: [
@@ -106,8 +106,8 @@ const education = [
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
     ],
     leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017.01 - 2017.11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016.01 - 2016.12'},
+      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
+      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
     ],
     awards: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
@@ -116,26 +116,26 @@ const education = [
 
 // Static Data - Employment (sorted by start date, newest first)
 const employment = [
-  {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026.03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025.09 – 2026.02', logo: logoDwu, isCurrent: false},
-  {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab', organizationKo: '', period: '2025.06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2025.08', logo: logoKorea, isCurrent: false},
-  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025.03 – 2025.08', logo: logoKaist, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025.03 – 2026.02', logo: logoKangnam, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025.03 – 2026.02', logo: logoKorea, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024.03 – 2024.08', logo: logoKyunghee, isCurrent: false},
-  {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022.06 – Present', logo: logoWorldquant, isCurrent: true},
-  {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022.03 – 2025.02', logo: logoKaist, isCurrent: false},
-  {position: 'Intern', positionKo: '인턴', department: 'Data & Analytics Team', departmentKo: '데이터 애널리틱스 팀', organization: 'EY Consulting', organizationKo: 'EY컨설팅', period: '2020.03 – 2020.05', logo: logoEy, isCurrent: false},
-  {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014.06 – Present', logo: logoJl, isCurrent: true},
+  {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026-03 – Present', logo: logoGcu, isCurrent: true},
+  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
+  {position: 'Director', positionKo: '연구실장', department: '', departmentKo: '', organization: 'FINDS Lab', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
+  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
+  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
+  {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
+  {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
+  {position: 'Intern', positionKo: '인턴', department: 'Data & Analytics Team', departmentKo: '데이터 애널리틱스 팀', organization: 'EY Consulting', organizationKo: 'EY컨설팅', period: '2020-03 – 2020-05', logo: logoEy, isCurrent: false},
+  {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014-06 – Present', logo: logoJl, isCurrent: true},
 ]
 
 // Static Data - Professional Affiliations
 const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025.06 – Present'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023.09 – Present'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023.06 – Present'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022.06 – Present'},
+  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025-06 – Present'},
+  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023-09 – Present'},
+  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023-06 – Present'},
+  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present'},
 ]
 
 // Static Data - Citation Statistics (manually updated)
@@ -821,10 +821,10 @@ const CollaborationNetwork = memo(() => {
                     <div className="flex items-center justify-between gap-12">
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-gray-900 truncate">
-                          {node.name}
+                          {node.nameKo || node.name}
                         </p>
                         {node.nameKo && (
-                          <p className="text-xs text-gray-500">{node.nameKo}</p>
+                          <p className="text-xs text-gray-500">{node.name}</p>
                         )}
                       </div>
                       {selectedNode && (
@@ -1445,7 +1445,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025.06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2025-06 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
@@ -1455,7 +1455,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.09 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023-09 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
@@ -1465,7 +1465,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023.06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2023-06 – Present</span>
                         </div>
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
@@ -1475,7 +1475,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col items-start md:items-end gap-4 shrink-0">
                           <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2022.06 – Present</span>
+                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-primary text-white">2022-06 – Present</span>
                         </div>
                       </div>
                     </div>
@@ -1582,7 +1582,6 @@ export const MembersDirectorAcademicTemplate = () => {
                           className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg text-xs font-medium transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6 md:gap-12">
                           <span className="text-gray-700 break-words flex-1 min-w-0">{conf.name}</span>
                           <span className="inline-flex items-center gap-4 px-8 py-3 rounded-md text-[9px] font-bold shrink-0 self-end md:self-center" style={{backgroundColor: 'rgba(255,186,196,0.2)', color: '#E8889C'}}>
-                            <Calendar size={10} />
                             {conf.period || conf.since}
                           </span>
                         </a>
@@ -1737,11 +1736,28 @@ export const MembersDirectorAcademicTemplate = () => {
                     </button>
                     {expandedSections.lecturer && (
                     <div className="space-y-12 p-16">
-                      {lecturerCourses.map((course, index) => (
+                      {lecturerCourses.map((course, index) => {
+                        // Get school logo
+                        const getSchoolLogo = (school: string) => {
+                          if (school.includes('KAIST') || school.includes('Korea Advanced')) return logoKaist
+                          if (school.includes('Kyung Hee')) return logoKyunghee
+                          if (school.includes('Gachon')) return logoGcu
+                          if (school.includes('Dongduk')) return logoDwu
+                          if (school.includes('Kangnam')) return logoKangnam
+                          if (school.includes('Korea University') || school === 'Korea University') return logoKorea
+                          return null
+                        }
+                        const schoolLogo = getSchoolLogo(course.school)
+                        
+                        return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(214, 176, 76,0.15)'}}>
-                              <BookOpen size={18} style={{color: '#D6B14D'}} />
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
+                              {schoolLogo ? (
+                                <img src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                              ) : (
+                                <BookOpen size={18} style={{color: '#D6B14D'}} />
+                              )}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
@@ -1759,7 +1775,8 @@ export const MembersDirectorAcademicTemplate = () => {
                             </div>
                           </div>
                         </div>
-                      ))}
+                        )
+                      })}
                     </div>
                     )}
                   </div>
@@ -1780,11 +1797,28 @@ export const MembersDirectorAcademicTemplate = () => {
                     </button>
                     {expandedSections.teachingAssistant && (
                     <div className="space-y-12 p-16">
-                      {taCourses.map((course, index) => (
+                      {taCourses.map((course, index) => {
+                        // Get school logo
+                        const getSchoolLogo = (school: string) => {
+                          if (school.includes('KAIST') || school.includes('Korea Advanced')) return logoKaist
+                          if (school.includes('Kyung Hee')) return logoKyunghee
+                          if (school.includes('Gachon')) return logoGcu
+                          if (school.includes('Dongduk')) return logoDwu
+                          if (school.includes('Kangnam')) return logoKangnam
+                          if (school.includes('Korea University') || school === 'Korea University') return logoKorea
+                          return null
+                        }
+                        const schoolLogo = getSchoolLogo(course.school)
+                        
+                        return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0" style={{backgroundColor: 'rgba(232,135,155,0.15)'}}>
-                              <BookOpen size={18} style={{color: '#E8889C'}} />
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#E8889C]/30 bg-white overflow-hidden">
+                              {schoolLogo ? (
+                                <img src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                              ) : (
+                                <BookOpen size={18} style={{color: '#E8889C'}} />
+                              )}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
@@ -1802,7 +1836,8 @@ export const MembersDirectorAcademicTemplate = () => {
                             </div>
                           </div>
                         </div>
-                      ))}
+                        )
+                      })}
                     </div>
                     )}
                   </div>

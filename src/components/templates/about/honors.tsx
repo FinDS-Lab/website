@@ -88,11 +88,12 @@ export const AboutHonorsTemplate = () => {
         else if (item.type === 'award') awards++
       })
     })
+    const total = honors + awards
     return {
-      total: { label: 'Total', subLabel: 'Total Achievements', count: honors + awards, icon: Award, color: '#D6B14D' },
+      total: { label: 'Total', subLabel: '', count: total, icon: Award, color: '#D6B14D' },
       items: [
-        { label: 'Honors', subLabel: 'Honorary Recognition', count: honors, icon: Medal, color: '#D6B14D' },
-        { label: 'Awards', subLabel: 'Competition Awards', count: awards, icon: Trophy, color: '#AC0E0E' },
+        { label: honors === 1 ? 'Honor' : 'Honors', subLabel: 'Honorary Recognition', count: honors, icon: Medal, color: '#D6B14D' },
+        { label: awards === 1 ? 'Award' : 'Awards', subLabel: 'Competition Awards', count: awards, icon: Trophy, color: '#AC0E0E' },
       ]
     }
   }, [honorsData])

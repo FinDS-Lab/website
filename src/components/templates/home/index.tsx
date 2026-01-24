@@ -48,56 +48,60 @@ const heroSlides = [
 ]
 
 export const HomeTemplate = () => {
-  const [newsItems, setNewsItems] = useState<{ title: string; date: string }[]>([])
-  const [noticeItems, setNoticeItems] = useState<{ title: string; date: string }[]>([])
+  const [newsItems, setNewsItems] = useState<{ title: string; date: string; slug: string }[]>([])
+  const [noticeItems, setNoticeItems] = useState<{ title: string; date: string; slug: string }[]>([])
 
   useEffect(() => {
     const fetchLatest = async () => {
       const baseUrl = import.meta.env.BASE_URL || '/'
       try {
-        // 최근 뉴스 2개 로드
-        const newsFiles = ['2026-03-01-1.md', '2025-09-01-1.md']
-        const newsResults = await Promise.all(
-          newsFiles.map(async (file) => {
-            try {
-              const response = await fetch(`${baseUrl}data/news/${file}`)
-              if (!response.ok) {
-                console.error(`Failed to fetch news ${file}: ${response.status}`)
+        // News index.json 로드
+        const newsIndexRes = await fetch(`${baseUrl}data/news/index.json`)
+        if (newsIndexRes.ok) {
+          const newsIndex = await newsIndexRes.json()
+          const newsFiles = newsIndex.files.slice(0, 2) // 최신 2개만
+          
+          const newsResults = await Promise.all(
+            newsFiles.map(async (file: string) => {
+              try {
+                const response = await fetch(`${baseUrl}data/news/${file}`)
+                if (!response.ok) return null
+                const text = await response.text()
+                const { data } = parseMarkdown(text)
+                const slug = file.replace('.md', '')
+                return { title: data.title || 'No Title', date: data.date || '', slug }
+              } catch {
                 return null
               }
-              const text = await response.text()
-              const { data } = parseMarkdown(text)
-              return { title: data.title || 'No Title', date: data.date || '' }
-            } catch (err) {
-              console.error(`Error fetching news ${file}:`, err)
-              return null
-            }
-          })
-        )
-        const validNews = newsResults.filter((item) => item !== null) as { title: string; date: string }[]
-        setNewsItems(validNews)
+            })
+          )
+          const validNews = newsResults.filter((item): item is { title: string; date: string; slug: string } => item !== null)
+          setNewsItems(validNews)
+        }
 
-        // 최근 공지 2개 로드
-        const noticeFiles = ['2025-10-06-1.md', '2025-09-01-1.md']
-        const noticeResults = await Promise.all(
-          noticeFiles.map(async (file) => {
-            try {
-              const response = await fetch(`${baseUrl}data/notice/${file}`)
-              if (!response.ok) {
-                console.error(`Failed to fetch notice ${file}: ${response.status}`)
+        // Notice index.json 로드
+        const noticeIndexRes = await fetch(`${baseUrl}data/notice/index.json`)
+        if (noticeIndexRes.ok) {
+          const noticeIndex = await noticeIndexRes.json()
+          const noticeFiles = noticeIndex.files.slice(0, 2) // 최신 2개만
+          
+          const noticeResults = await Promise.all(
+            noticeFiles.map(async (file: string) => {
+              try {
+                const response = await fetch(`${baseUrl}data/notice/${file}`)
+                if (!response.ok) return null
+                const text = await response.text()
+                const { data } = parseMarkdown(text)
+                const slug = file.replace('.md', '')
+                return { title: data.title || 'No Title', date: data.date || '', slug }
+              } catch {
                 return null
               }
-              const text = await response.text()
-              const { data } = parseMarkdown(text)
-              return { title: data.title || 'No Title', date: data.date || '' }
-            } catch (err) {
-              console.error(`Error fetching notice ${file}:`, err)
-              return null
-            }
-          })
-        )
-        const validNotice = noticeResults.filter((item) => item !== null) as { title: string; date: string }[]
-        setNoticeItems(validNotice)
+            })
+          )
+          const validNotice = noticeResults.filter((item): item is { title: string; date: string; slug: string } => item !== null)
+          setNoticeItems(validNotice)
+        }
       } catch (err) {
         console.error('Failed to load home data:', err)
       }
@@ -189,7 +193,7 @@ export const HomeTemplate = () => {
                   newsItems.map((item, index) => (
                     <Link
                       key={index}
-                      to="/archives/news"
+                      to={`/archives/news/${item.slug}`}
                       className="flex items-center justify-between px-12 md:px-16 py-12 md:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
@@ -224,7 +228,7 @@ export const HomeTemplate = () => {
                   noticeItems.map((item, index) => (
                     <Link
                       key={index}
-                      to="/archives/notice"
+                      to={`/archives/notice/${item.slug}`}
                       className="flex items-center justify-between px-12 md:px-16 py-12 md:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>

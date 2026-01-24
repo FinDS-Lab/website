@@ -155,10 +155,10 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return {
-      phd: { label: 'Ph.D.', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      combined: { label: 'Ph.D. - M.S. Combined', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      ms: { label: 'M.S.', count: msCount, icon: BookOpen, color: '#FF6B6B' },
-      undergrad: { label: 'Undergraduate Researcher', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      phd: { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
+      combined: { label: combinedCount === 1 ? 'Ph.D. - M.S. Combined Student' : 'Ph.D. - M.S. Combined Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
+      ms: { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#FF6B6B' },
+      undergrad: { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
   }, [members])
@@ -261,7 +261,7 @@ export const MembersCurrentTemplate = () => {
               <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600">Total Members</span>
+                <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
               </div>
             </div>
           </div>

@@ -21,8 +21,9 @@ type Project = {
 const typeConfig = {
   government: {
     icon: Landmark,
-    label: 'Government',
-    labelKo: '정부',
+    label: 'Government Project',
+    labelPlural: 'Government Projects',
+    labelKo: '정부과제',
     color: 'bg-[rgb(172,14,14)]',
     bgColor: 'bg-red-50',
     borderColor: 'border-red-200',
@@ -30,8 +31,9 @@ const typeConfig = {
   },
   industry: {
     icon: Building2,
-    label: 'Industry',
-    labelKo: '산업체',
+    label: 'Industry Project',
+    labelPlural: 'Industry Projects',
+    labelKo: '산업체과제',
     color: 'bg-[rgb(214, 176, 76)]',
     bgColor: 'bg-[#FFF9E6]',
     borderColor: 'border-[#FFEB99]',
@@ -39,8 +41,9 @@ const typeConfig = {
   },
   institution: {
     icon: GraduationCap,
-    label: 'Institution',
-    labelKo: '기관',
+    label: 'Institution Project',
+    labelPlural: 'Institution Projects',
+    labelKo: '기관과제',
     color: 'bg-[#FFBAC4]',
     bgColor: 'bg-pink-50',
     borderColor: 'border-pink-200',
@@ -48,8 +51,9 @@ const typeConfig = {
   },
   academic: {
     icon: Briefcase,
-    label: 'Research',
-    labelKo: '연구',
+    label: 'Research Project',
+    labelPlural: 'Research Projects',
+    labelKo: '연구과제',
     color: 'bg-[#D6B14D]',
     bgColor: 'bg-[#FFF9E6]',
     borderColor: 'border-[#FFEB99]',
@@ -309,7 +313,7 @@ export const ProjectsTemplate = () => {
                 <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.total}</span>
                 <div className="flex items-center gap-6">
                   <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                  <span className="text-xs md:text-sm font-medium text-gray-600">Total Projects</span>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                 </div>
               </div>
             </div>
@@ -322,7 +326,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.government === 1 ? 'Government Project' : 'Government Projects'}</span>
                   </div>
                 </div>
               </div>
@@ -332,7 +336,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.industry === 1 ? 'Industry Project' : 'Industry Projects'}</span>
                   </div>
                 </div>
               </div>
@@ -342,7 +346,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.institution === 1 ? 'Institution Project' : 'Institution Projects'}</span>
                   </div>
                 </div>
               </div>
@@ -352,7 +356,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Academic</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">{stats.academic === 1 ? 'Research Project' : 'Research Projects'}</span>
                   </div>
                 </div>
               </div>
@@ -643,23 +647,27 @@ export const ProjectsTemplate = () => {
                                   </div>
                                   
                                   <div className="flex-1 min-w-0 md:pt-0 pt-8">
+                                    {/* Title + Period (Desktop: Period on right) */}
+                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
+                                        <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
+                                      </div>
+                                      {/* Period Badge - white background, right aligned */}
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                        {project.period}
+                                      </span>
+                                    </div>
+                                    
                                     {/* Mobile: Date at top */}
-                                    <p className="md:hidden text-[10px] text-primary font-bold mb-6">
+                                    <p className="md:hidden text-[10px] text-primary font-bold mt-6">
                                       {project.period}
                                     </p>
                                     
-                                    {/* Title */}
-                                    <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
-                                    <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
-                                    
-                                    {/* Funding Agency + Date - same line like Honors & Awards */}
+                                    {/* Funding Agency */}
                                     <div className="flex flex-wrap items-center gap-8 mt-8">
                                       <p className="text-xs md:text-sm text-gray-700 font-bold">
                                         {project.fundingAgency}
-                                      </p>
-                                      <span className="text-gray-300 hidden md:inline">|</span>
-                                      <p className="hidden md:block text-[11px] md:text-xs text-gray-400 font-medium">
-                                        {project.period}
                                       </p>
                                     </div>
                                     

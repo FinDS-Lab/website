@@ -24,6 +24,7 @@ import {
   Copy,
   Check,
   X,
+  Search,
 } from 'lucide-react'
 import type {AcademicActivitiesData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
@@ -89,22 +90,22 @@ import logoDading from '@/assets/images/logos/dading.png'
 const education = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2025.02',
+    period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
     field: 'Industrial and Systems Engineering',
     location: 'Korea Advanced Institute of Science and Technology (KAIST)',
     krName: '한국과학기술원 (KAIST) 산업및시스템공학 공학박사',
     advisor: 'Woo Chang Kim',
     leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021.09 - 2025.01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021.09 - 2025.01'},
+      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
+      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
     ],
     awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
     logo: logoKaist
   },
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2021.02',
+    period: '2021-02',
     degree: 'Master of Science (M.S.)',
     field: 'Industrial and Systems Engineering',
     location: 'Korea Advanced Institute of Science and Technology (KAIST)',
@@ -115,15 +116,15 @@ const education = [
   },
   {
     school: 'Kyung Hee University',
-    period: '2018.02',
+    period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
     field: 'Industrial and Management Systems Engineering',
     location: 'Kyung Hee University',
     krName: '경희대학교 산업경영공학 공학사',
     advisor: 'Jang Ho Kim, Myoung-Ju Park',
     leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017.01 - 2017.11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016.01 - 2016.12'},
+      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
+      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
     ],
     awards: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
@@ -134,7 +135,7 @@ const employment = [
   {
     position: 'Assistant Professor',
     organization: 'Gachon University',
-    period: '2026.03 – Present',
+    period: '2026-03 – Present',
     location: 'Department of Big Data Business Management, Gachon Business School',
     krOrg: '조교수 / 가천대학교 경영대학 금융·빅데이터학부',
     logo: logoGcu
@@ -142,16 +143,16 @@ const employment = [
   {
     position: 'Assistant Professor',
     organization: "Dongduk Women's University",
-    period: '2025.09 – 2026.02',
+    period: '2025-09 – 2026-02',
     location: 'Division of Business Administration, College of Business',
     krOrg: '조교수 / 동덕여자대학교 경영대학 경영융합학부',
     logo: logoDwu
   },
-  {position: 'Director', organization: 'FINDS Lab', period: '2025.06 – Present', location: 'FINDS Lab', krOrg: '디렉터 / FINDS Lab', logo: logoFinds},
+  {position: 'Director', organization: 'FINDS Lab', period: '2025-06 – Present', location: 'FINDS Lab', krOrg: '디렉터 / FINDS Lab', logo: logoFinds},
   {
     position: 'Lecturer',
     organization: 'Kangnam University',
-    period: '2025.03 – 2026.02',
+    period: '2025-03 – 2026-02',
     location: 'Department of Electronic and Semiconductor Engineering',
     krOrg: '강사 / 강남대학교 공과대학 전자반도체공학부',
     logo: logoKangnam
@@ -159,7 +160,7 @@ const employment = [
   {
     position: 'Lecturer',
     organization: 'Korea University',
-    period: '2025.03 – 2026.02',
+    period: '2025-03 – 2026-02',
     location: 'Digital Business Major, Division of Convergence Business',
     krOrg: '강사 / 고려대학교 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공',
     logo: logoKorea
@@ -167,21 +168,21 @@ const employment = [
   {
     position: 'Lecturer',
     organization: 'Kyung Hee University',
-    period: '2024.03 – 2024.08',
+    period: '2024-03 – 2024-08',
     location: 'Department of Industrial and Management Systems Engineering',
     krOrg: '강사 / 경희대학교 공과대학 산업경영공학과',
     logo: logoKyunghee
   },
-  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022.06 – Present', location: 'WorldQuant Brain', krOrg: '연구 컨설턴트 / 월드퀀트 브레인', logo: logoWorldquant},
-  {position: 'Intern', organization: 'EY Consulting', period: '2020.03 – 2020.05', location: 'Performance Improvement Department', krOrg: '인턴 / EY컨설팅 성과개선팀', logo: logoEy},
-  {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014.06 – Present', location: 'JL C&C', krOrg: '대표 / JL C&C', logo: logoJl},
+  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022-06 – Present', location: 'WorldQuant Brain', krOrg: '연구 컨설턴트 / 월드퀀트 브레인', logo: logoWorldquant},
+  {position: 'Intern', organization: 'EY Consulting', period: '2020-03 – 2020-05', location: 'Performance Improvement Department', krOrg: '인턴 / EY컨설팅 성과개선팀', logo: logoEy},
+  {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014-06 – Present', location: 'JL C&C', krOrg: '대표 / JL C&C', logo: logoJl},
 ]
 
 const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023.09 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023.06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022.06 – Present', role: 'Lifetime Member'},
+  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025-06 – Present', role: 'Lifetime Member'},
+  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023-09 – Present', role: 'Lifetime Member'},
+  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023-06 – Present', role: 'Lifetime Member'},
+  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022-06 – Present', role: 'Lifetime Member'},
 ]
 
 const activities = [
@@ -192,7 +193,7 @@ const activities = [
     fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리',
     generation: '',
     membership: [
-      {role: 'Member', period: '2013.03. - 2018.02.'},
+      {role: 'Member', period: '2013.03. - 2018-02.'},
       {role: 'Alumni', period: '2018.03. - Present'},
     ],
     leadership: [
@@ -263,7 +264,7 @@ const activities = [
     generation: '6th Generation',
     membership: [
       {role: 'Member', period: '2024.02. - 2024.07.'},
-      {role: 'Alumni', period: '2024.08. - Present'},
+      {role: 'Alumni', period: '2024-08. - Present'},
     ],
     leadership: [],
     url: '#'
@@ -1031,6 +1032,7 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [mentees, setMentees] = useState<MenteeWithId[]>([])
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [selectedUniversity, setSelectedUniversity] = useState<string>('all')
+  const [menteeSearchTerm, setMenteeSearchTerm] = useState('')
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025']))
@@ -1175,6 +1177,16 @@ export const MembersDirectorActivitiesTemplate = () => {
       result = result.filter(m => m.university === selectedUniversity)
     }
     
+    // 검색어 필터 적용
+    if (menteeSearchTerm.trim()) {
+      const term = menteeSearchTerm.toLowerCase().trim()
+      result = result.filter(m => 
+        m.name.toLowerCase().includes(term) ||
+        m.university.toLowerCase().includes(term) ||
+        m.department.toLowerCase().includes(term)
+      )
+    }
+    
     // 정렬: 참여연차 많은 순 → 이름 가나다순
     result.sort((a, b) => {
       const aYears = a.participationYears.length
@@ -1184,7 +1196,7 @@ export const MembersDirectorActivitiesTemplate = () => {
     })
     
     return result
-  }, [selectedMentoringYear, selectedUniversity, mentees, menteesByYear])
+  }, [selectedMentoringYear, selectedUniversity, menteeSearchTerm, mentees, menteesByYear])
 
   // 대학별 통계
   const universityStats = useMemo(() => {
@@ -1643,7 +1655,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 {universityStats.length > 0 && (
                   <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
                     <div className="flex items-center justify-between mb-12">
-                      <p className="text-[10px] font-bold text-gray-400 uppercase">University Distribution</p>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase">Affiliation Distribution</p>
                     </div>
                     <div className="grid grid-cols-2 gap-6 md:gap-8">
                       {universityStats.map(([univ, count]) => (
@@ -1667,6 +1679,20 @@ export const MembersDirectorActivitiesTemplate = () => {
                     </div>
                   </div>
                 )}
+
+                {/* Mentee Search */}
+                <div className="px-20 md:px-32 py-16 border-b border-gray-100">
+                  <div className="relative">
+                    <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search mentees by name, university, or department..."
+                      value={menteeSearchTerm}
+                      onChange={(e) => setMenteeSearchTerm(e.target.value)}
+                      className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    />
+                  </div>
+                </div>
 
                 {/* Mentee List */}
                 <div className="max-h-400 overflow-y-auto">
