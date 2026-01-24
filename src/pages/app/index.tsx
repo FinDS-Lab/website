@@ -155,12 +155,12 @@ const GlobalMusicPlayer = memo(() => {
         playerRef.current = null
       }
 
-      // Create new player
+      // Create new player (even in compact mode, we need audio)
       playerRef.current = new window.YT.Player('yt-player', {
         videoId: currentVideoId,
         playerVars: {
           autoplay: 1,
-          controls: 0,
+          controls: 1,
           modestbranding: 1,
           rel: 0,
         },
@@ -232,94 +232,95 @@ const GlobalMusicPlayer = memo(() => {
       {/* Playlist Button/Player - Only show when playlist is loaded, hidden on mobile */}
       {playlist.length > 0 && !isPlaylistPage && (
         <div className="hidden md:block">
-          {/* Single persistent hidden player - always exists */}
-          <div className="fixed -left-[9999px] -top-[9999px]">
-            <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
+        {isMinimized ? (
+          // Minimized: Floating button with proper design proportions
+          <div className="flex items-center gap-8">
+            <button
+              onClick={handleHidePlayer}
+              className="flex items-center justify-center w-32 h-32 md:w-36 md:h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50"
+              title="플레이리스트 숨기기"
+            >
+              <X className="w-14 h-14 md:w-16 md:h-16" />
+            </button>
+            <button
+              onClick={() => setIsMinimized(false)}
+              className="group flex items-center gap-12 md:gap-14 px-20 md:px-28 py-14 md:py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105"
+            >
+              <div className="relative flex items-center justify-center w-44 h-44 md:w-52 md:h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
+                <Music className="w-18 h-18 md:w-22 md:h-22" style={{color: 'rgb(214,177,77)'}} />
+                {isPlaying && (
+                  <span className="absolute -top-2 -right-2 w-12 h-12 md:w-14 md:h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />
+                )}
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm md:text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
+                <span className="text-xs md:text-sm font-medium text-gray-400">Playlist</span>
+              </div>
+            </button>
           </div>
-          
-          {isMinimized ? (
-            // Minimized: Floating button with proper design proportions
-            <div className="flex items-center gap-8">
-              <button
-                onClick={handleHidePlayer}
-                className="flex items-center justify-center w-32 h-32 md:w-36 md:h-36 bg-gray-800 text-gray-400 rounded-full shadow-lg hover:bg-gray-700 hover:text-white transition-all duration-200 border border-gray-700/50"
-                title="플레이리스트 숨기기"
-              >
-                <X className="w-14 h-14 md:w-16 md:h-16" />
-              </button>
-              <button
-                onClick={() => setIsMinimized(false)}
-                className="group flex items-center gap-12 md:gap-14 px-20 md:px-28 py-14 md:py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105"
-              >
-                <div className="relative flex items-center justify-center w-44 h-44 md:w-52 md:h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
-                  <Music className="w-18 h-18 md:w-22 md:h-22" style={{color: 'rgb(214,177,77)'}} />
-                  {isPlaying && (
-                    <span className="absolute -top-2 -right-2 w-12 h-12 md:w-14 md:h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />
-                  )}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-sm md:text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
-                  <span className="text-xs md:text-sm font-medium text-gray-400">Playlist</span>
-                </div>
-              </button>
-            </div>
-          ) : isCompact ? (
-            // Compact: Just artist + title with controls (music keeps playing)
-            <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
-              {/* Track Info */}
-              <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[160px] md:max-w-[220px]">
-                <div className="relative shrink-0">
-                  <Music size={16} style={{color: 'rgb(214,177,77)'}} />
-                  {isPlaying && (
-                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-[10px] md:text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
-                  <p className="text-[11px] md:text-xs text-white font-medium truncate">{currentTrack?.title}</p>
-                </div>
+        ) : isCompact ? (
+          // Compact: Just artist + title with controls (music keeps playing)
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-full shadow-2xl overflow-hidden border border-gray-700/50 flex items-center gap-6 pl-12 pr-8 py-8">
+            {/* Track Info */}
+            <div className="flex items-center gap-6 flex-1 min-w-0 max-w-[160px] md:max-w-[220px]">
+              <div className="relative shrink-0">
+                <Music size={16} className="text-primary" />
+                {isPlaying && (
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                )}
               </div>
-              {/* Mini Controls */}
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={prevTrack}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                >
-                  <SkipBack size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
-                </button>
-                <button
-                  onClick={togglePlay}
-                  className="w-9 h-9 md:w-8 md:h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
-                >
-                  {isPlaying ? (
-                    <Pause size={14} className="md:w-[12px] md:h-[12px] text-primary" />
-                  ) : (
-                    <Play size={14} className="md:w-[12px] md:h-[12px] text-primary ml-0.5" />
-                  )}
-                </button>
-                <button
-                  onClick={nextTrack}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                >
-                  <SkipForward size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
-                </button>
-                <button
-                  onClick={() => setIsCompact(false)}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                  title="확장"
-                >
-                  <Maximize2 size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
-                </button>
-                <button
-                  onClick={toggleMinimize}
-                  className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
-                  title="닫기"
-                >
-                  <X size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
-                </button>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] md:text-[10px] text-primary font-semibold truncate">{currentTrack?.artist}</p>
+                <p className="text-[11px] md:text-xs text-white font-medium truncate">{currentTrack?.title}</p>
               </div>
             </div>
-          ) : (
+            {/* Mini Controls */}
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prevTrack}
+                className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+              >
+                <SkipBack size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+              </button>
+              <button
+                onClick={togglePlay}
+                className="w-9 h-9 md:w-8 md:h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors"
+              >
+                {isPlaying ? (
+                  <Pause size={14} className="md:w-[12px] md:h-[12px] text-primary" />
+                ) : (
+                  <Play size={14} className="md:w-[12px] md:h-[12px] text-primary ml-0.5" />
+                )}
+              </button>
+              <button
+                onClick={nextTrack}
+                className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+              >
+                <SkipForward size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+              </button>
+              <button
+                onClick={() => setIsCompact(false)}
+                className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+                title="확장"
+              >
+                <Maximize2 size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+              </button>
+              <button
+                onClick={toggleMinimize}
+                className="w-8 h-8 md:w-7 md:h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"
+                title="닫기"
+              >
+                <X size={12} className="md:w-[10px] md:h-[10px] text-gray-400" />
+              </button>
+            </div>
+            {/* Hidden player for audio */}
+            {isPlaying && currentVideoId && (
+              <div className="absolute -left-[9999px]">
+                <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
+              </div>
+            )}
+          </div>
+        ) : (
           // Full: Complete player view (smaller on mobile)
           <div className="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl shadow-2xl overflow-hidden w-[200px] md:w-[340px] border border-gray-800/50">
             {/* Header */}
@@ -354,12 +355,13 @@ const GlobalMusicPlayer = memo(() => {
             {/* Current Track Info with Marquee */}
             {currentTrack && (
               <div className="px-12 md:px-16 py-10 md:py-12 border-b border-gray-800/50 overflow-hidden">
-                <p className="text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1" style={{ color: 'rgb(214,177,77)' }}>
+                <p className="text-primary text-[10px] md:text-[11px] font-bold tracking-wider uppercase mb-1" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                   {currentTrack.artist}
                 </p>
                 <div className="overflow-hidden">
                   <p 
                     className={`text-white text-[13px] md:text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}
+                    style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                   >
                     {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
                   </p>
@@ -367,20 +369,20 @@ const GlobalMusicPlayer = memo(() => {
               </div>
             )}
 
-            {/* Video Player Area - Visual indicator only (actual player is hidden) */}
+            {/* Video Player */}
             <div className="relative aspect-video bg-black">
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
-                <div className="flex flex-col items-center gap-8">
-                  <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(184,150,45,0.1) 100%)', border: '2px solid rgba(214,177,77,0.3)'}}>
-                    <Music className="w-20 h-20 md:w-24 md:h-24" style={{color: 'rgb(214,177,77)'}} />
-                    {isPlaying && (
-                      <span className="absolute -top-2 -right-2 w-16 h-16 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50" />
-                    )}
+              {isPlaying && currentVideoId ? (
+                <div id="yt-player" ref={playerContainerRef} className="w-full h-full" />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-950 to-black">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(214,177,77,0.08)_0%,_transparent_70%)]" />
+                  <div className="flex flex-col items-center gap-8">
+                    <div className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, rgba(214,177,77,0.15) 0%, rgba(184,150,45,0.1) 100%)', border: '2px solid rgba(214,177,77,0.3)'}}>
+                      <Music className="w-20 h-20 md:w-24 md:h-24" style={{color: 'rgb(214,177,77)'}} />
+                    </div>
                   </div>
-                  <span className="text-xs text-gray-500">{isPlaying ? 'Now Playing' : 'Press play to start'}</span>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Controls */}
