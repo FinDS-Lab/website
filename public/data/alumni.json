@@ -131,8 +131,8 @@
         "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "석사과정\n산업공학과\n고려대학교",
-      "currentPositionEn": "M.S. Student\nIndustrial Engineering\nKorea University",
+      "currentPosition": "석사과정\n산업경영공학부\n고려대학교",
+      "currentPositionEn": "M.S. Student\nIndustrial and Management Engineering\nKorea University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
@@ -304,8 +304,8 @@
         "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "석사과정\n산업공학과\n고려대학교",
-      "currentPositionEn": "M.S. Student\nIndustrial Engineering\nKorea University",
+      "currentPosition": "석사과정\n기술경영전문대학원\n고려대학교",
+      "currentPositionEn": "M.S. Student\nGraduate School of Technology Management\nKorea University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {

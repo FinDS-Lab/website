@@ -118,33 +118,38 @@ export const MembersAlumniTemplate = () => {
   const pluralize = (count: number, singular: string, plural: string) => 
     count === 1 ? singular : plural
 
-  // Get primary affiliation - 학교 학과 / 학위과정 형식
+  // Get primary affiliation - 학교(더볼드) 학과(볼드) 형식 (학부과정 표시 안함)
   const getAffiliation = (alumni: AlumniMember) => {
     const edu = alumni.education[0]
     if (!edu) return <span className="text-gray-400">-</span>
     
-    // 학교 학과 / 학위과정 형식으로 표시
     return (
-      <span className="text-gray-700 text-xs">
-        {edu.school} {edu.dept} / {edu.degree || '학부과정'}
+      <span className="text-xs">
+        <span className="font-bold text-gray-900">{edu.school}</span>
+        {' '}
+        <span className="font-semibold text-gray-700">{edu.dept}</span>
       </span>
     )
   }
 
-  // Render currentPosition - 학교 학과 / 학위과정 형식
+  // Render currentPosition - 학교(더볼드) 학과(볼드) 학위(일반)
   const renderCurrentPosition = (position: string | undefined) => {
     if (!position) return <span className="text-gray-400">-</span>
     
-    // Check if it contains newline (multi-line format like "석사과정\n산업공학과\n서울대학교")
+    // Check if it contains newline (multi-line format like "석사과정\n산업경영공학부\n고려대학교")
     if (position.includes('\n')) {
       const parts = position.split('\n')
-      // 순서: 학위과정 / 학과 / 학교 -> 학교 학과 / 학위과정
+      // 순서: 학위과정 / 학과 / 학교
       const degree = parts[0] || ''
       const dept = parts[1] || ''
       const school = parts[2] || ''
       return (
-        <span className="text-gray-700 text-xs">
-          {school} {dept} / {degree}
+        <span className="text-xs">
+          <span className="font-bold text-gray-900">{school}</span>
+          {' '}
+          <span className="font-semibold text-gray-700">{dept}</span>
+          {' '}
+          <span className="text-gray-600">{degree}</span>
         </span>
       )
     }
@@ -259,8 +264,8 @@ export const MembersAlumniTemplate = () => {
                 </div>
               </div>
               
-              {/* 3 Categories - 2x2 Grid */}
-              <div className="grid grid-cols-2 gap-8 md:gap-12">
+              {/* 3 Categories - 3 columns */}
+              <div className="grid grid-cols-3 gap-8 md:gap-12">
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
@@ -281,13 +286,13 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-span-2 group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
                     <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <div className="flex items-center gap-6">
                       <UserCheck className="size-14 md:size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">Undergraduate Interns</span>
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Undergrad</span>
                     </div>
                   </div>
                 </div>
@@ -741,7 +746,7 @@ export const MembersAlumniTemplate = () => {
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[8%]">Cohort</th>
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[14%]">Period</th>
                             <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation (Pre-Internship)</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Post-Internship</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation (Post-Internship)</th>
                           </tr>
                         </thead>
                         <tbody>
