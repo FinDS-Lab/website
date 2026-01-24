@@ -816,7 +816,7 @@ export const MembersAlumniTemplate = () => {
                                             Research Projects
                                           </p>
                                           <ul className="space-y-4">
-                                            {alumni.projects!.map((project, pIdx) => (
+                                            {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
                                               <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
                                                 <span className="text-[#FFBAC4] mt-1">•</span>
                                                 <span>{project}</span>
@@ -913,7 +913,7 @@ export const MembersAlumniTemplate = () => {
                                   <div className="flex-1 min-w-0">
                                     <p className="text-[10px] font-bold mb-6" style={{color: '#E8889C'}}>Research Projects</p>
                                     <ul className="space-y-3">
-                                      {alumni.projects!.map((project, pIdx) => (
+                                      {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
                                         <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
                                           <span className="text-[#FFBAC4] mt-0.5">•</span>
                                           <span>{project}</span>

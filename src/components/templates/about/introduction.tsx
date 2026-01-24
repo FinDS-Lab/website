@@ -168,6 +168,8 @@ export const AboutIntroductionTemplate = () => {
   // Mouse tracking for light effect
   const [mousePos1, setMousePos1] = useState({ x: 50, y: 50 })
   const [mousePos2, setMousePos2] = useState({ x: 50, y: 50 })
+  const [mousePosLight1, setMousePosLight1] = useState({ x: 50, y: 50 })
+  const [mousePosLight2, setMousePosLight2] = useState({ x: 50, y: 50 })
   
   const handleMouseMove1 = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
@@ -181,6 +183,20 @@ export const AboutIntroductionTemplate = () => {
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
     setMousePos2({ x, y })
+  }
+  
+  const handleMouseMoveLight1 = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePosLight1({ x, y })
+  }
+  
+  const handleMouseMoveLight2 = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePosLight2({ x, y })
   }
 
   return (
@@ -239,11 +255,21 @@ export const AboutIntroductionTemplate = () => {
                   className="flex transition-transform duration-700 ease-in-out"
                   style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
                 >
-                  {/* Slide 1: Mission (Light Theme) */}
+                  {/* Slide 1: Mission (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
-                    <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+                    <div 
+                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
+                      onMouseMove={handleMouseMoveLight1}
+                    >
+                      {/* Mouse-following light effect for light background */}
+                      <div 
+                        className="pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-300"
+                        style={{
+                          background: `radial-gradient(600px circle at ${mousePosLight1.x}% ${mousePosLight1.y}%, rgba(214, 177, 77, 0.08), transparent 40%)`
+                        }}
+                      />
                       {/* Card Header */}
-                      <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
                           <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
@@ -254,7 +280,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
                         {/* Title with Quote */}
                         <div className="text-center mb-32 md:mb-40">
                           <span className="text-4xl md:text-5xl font-serif" style={{ color: 'rgba(214, 177, 77, 0.5)' }}>"</span>
@@ -410,11 +436,21 @@ export const AboutIntroductionTemplate = () => {
                   className="flex transition-transform duration-700 ease-in-out"
                   style={{ transform: `translateX(-${carousel2Index * 100}%)` }}
                 >
-                  {/* Slide 1: Focus Areas (Light Theme) */}
+                  {/* Slide 1: Focus Areas (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
-                    <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
+                    <div 
+                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
+                      onMouseMove={handleMouseMoveLight2}
+                    >
+                      {/* Mouse-following light effect for light background */}
+                      <div 
+                        className="pointer-events-none absolute inset-0 opacity-60 transition-opacity duration-300"
+                        style={{
+                          background: `radial-gradient(600px circle at ${mousePosLight2.x}% ${mousePosLight2.y}%, rgba(214, 177, 77, 0.08), transparent 40%)`
+                        }}
+                      />
                       {/* Card Header */}
-                      <div className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
                           <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
@@ -425,7 +461,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center">
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center">
                         {/* Title */}
                         <div className="text-center mb-28 md:mb-36">
                           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
