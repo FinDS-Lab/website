@@ -141,7 +141,7 @@ const GlobalMusicPlayer = memo(() => {
 
   // Initialize/Update YouTube Player
   useEffect(() => {
-    if (!isPlaying || !currentVideoId || isMinimized) return
+    if (!isPlaying || !currentVideoId) return
 
     const initPlayer = () => {
       if (!window.YT || !window.YT.Player) {
@@ -155,12 +155,12 @@ const GlobalMusicPlayer = memo(() => {
         playerRef.current = null
       }
 
-      // Create new player (even in compact mode, we need audio)
+      // Create new player
       playerRef.current = new window.YT.Player('yt-player', {
         videoId: currentVideoId,
         playerVars: {
           autoplay: 1,
-          controls: 1,
+          controls: 0,
           modestbranding: 1,
           rel: 0,
         },
@@ -183,7 +183,7 @@ const GlobalMusicPlayer = memo(() => {
         playerRef.current = null
       }
     }
-  }, [isPlaying, currentVideoId, isMinimized, nextTrack])
+  }, [isPlaying, currentVideoId, nextTrack])
 
   // Hide on playlist page
   const isPlaylistPage = location.pathname === '/archives/playlist'
@@ -232,12 +232,10 @@ const GlobalMusicPlayer = memo(() => {
       {/* Playlist Button/Player - Only show when playlist is loaded, hidden on mobile */}
       {playlist.length > 0 && !isPlaylistPage && (
         <div className="hidden md:block">
-          {/* Single persistent hidden player - always exists when playing */}
-          {isPlaying && currentVideoId && (
-            <div className="fixed -left-[9999px] -top-[9999px]">
-              <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
-            </div>
-          )}
+          {/* Single persistent hidden player - always exists */}
+          <div className="fixed -left-[9999px] -top-[9999px]">
+            <div id="yt-player" ref={playerContainerRef} className="w-1 h-1" />
+          </div>
           
           {isMinimized ? (
             // Minimized: Floating button with proper design proportions

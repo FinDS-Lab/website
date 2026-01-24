@@ -380,9 +380,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
                               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>경영 및 산업 현장</span>의 미래를 위하여</>
+                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 현장</span>의 미래를 위하여</>
                                 ) : (
-                                  <>Toward a Better Future for <span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Business & Industry</span></>
+                                  <>Toward a Better Future for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -400,15 +400,15 @@ export const AboutIntroductionTemplate = () => {
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
                                 <>저희 연구실은 데이터를 바탕으로 한 다양한 연구를 통해<br />
-                                지식과 정보의 비대칭으로 인한 <span className="font-bold" style={{ color: '#D6B14D' }}>경영 및 산업 현장의 비효율</span>을 줄이고,<br />
-                                복잡한 데이터를 <span style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
+                                지식과 정보의 비대칭으로 인한 <span className="font-bold text-white">경영 및 산업 현장의 비효율</span>을 줄이고,<br />
+                                복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through data-driven research,<br />
-                                our lab aims to reduce <span className="font-bold" style={{ color: '#D6B14D' }}>inefficiencies in business and industry</span> caused by information asymmetry,<br />
-                                and turn complex data into <span style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
+                                our lab aims to reduce <span className="font-bold text-white">inefficiencies in business and industry</span> caused by information asymmetry,<br />
+                                and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
                             </p>
-                            {/* Bottom tagline - moved here from carousel navigation */}
+                            {/* Bottom tagline */}
                             <p className="text-xs md:text-sm text-gray-500 pt-8">
                               {visionLang === 'ko' 
                                 ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'

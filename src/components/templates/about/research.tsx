@@ -78,8 +78,8 @@ const researchAreas = [
 // 영어/한글 전체 문장 Dissolve 전환
 const useTitleFade = () => {
   const titles = [
-    { text: 'Transforming Business and Industry Innovation via Data', lang: 'en' },
-    { text: '데이터를 통한 비즈니스와 산업 혁신', lang: 'ko' }
+    { text: 'Innovation in Business & Industry through Data', lang: 'en' },
+    { text: '데이터를 통한 경영 및 산업 환경의 혁신', lang: 'ko' }
   ]
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
