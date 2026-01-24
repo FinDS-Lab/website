@@ -44,7 +44,7 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
             <div
               key={index}
               className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-16 animate-fadeIn"
-              style={{zIndex}}
+              style={{zIndex: 10000 + index}}
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
               ref={isTopModal ? modalRef : undefined}

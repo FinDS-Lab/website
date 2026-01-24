@@ -163,7 +163,7 @@ const researchInterests = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decisions'
+      'Personalized Finance & Behavioral Decision Modeling'
     ]
   },
   {
@@ -181,7 +181,7 @@ const researchInterests = [
     items: [
       'Trustworthy Decision Systems & Optimization',
       'Risk-Aware Decision Support Tools',
-      'Iridescent Data Intelligence'
+      'Iridescent View Extraction for Data-Informed Decision'
     ]
   },
 ]
@@ -655,7 +655,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — combining optimization methods with intuitive interfaces for solving complex business problems.
+                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — iridescent view extraction for multi-perspective interpretation and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>

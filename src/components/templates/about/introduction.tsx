@@ -27,8 +27,8 @@ const focusAreas = [
     image: icon10,
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
-    desc: 'We support <b>clearer</b> and <b>more rational decisions</b> through <b>objective</b> analysis combined with <b>iridescent data intelligence</b> — multi-perspective insights that reveal hidden dimensions.',
-    descKo: '<b>객관적</b>이면서도 <b>다양한 관점에서 바라보는 데이터 인텔리전스</b>를 바탕으로 <b>명확하고 합리적인 의사결정</b>을 지원합니다.<br/><b>데이터 기반 판단</b>으로 <b>경영 위험</b>을 줄이고 <b>성공 가능성</b>을 높입니다.',
+    desc: 'We support <b>clearer</b> and <b>more rational decisions</b> through <b>objective</b> analysis combined with <b>iridescent view extraction</b> — multi-perspective interpretation and synthesis for informed decisions.',
+    descKo: '<b>객관적</b>이면서도 <b>다양한 관점에서의 해석과 종합</b>을 바탕으로 <b>명확하고 합리적인 의사결정</b>을 지원합니다.<br/><b>데이터 기반 판단</b>으로 <b>경영 및 산업 환경의 불확실성</b>을 줄이고 <b>성공 가능성</b>을 높입니다.',
   },
 ]
 
@@ -308,27 +308,19 @@ export const AboutIntroductionTemplate = () => {
                           {missionLang === 'ko' ? (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                가천대학교 경영대학 금융·빅데이터학부<br className="md:hidden" /> <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은<br />
-                                데이터 중심으로 급변하는 경영 및 금융 분야를 비롯한 산업 환경 속에서<br />
-                                <span className="font-bold" style={{color: '#D6B14D'}}>실질적인 가치를 창출</span>하는 연구를 수행하고자 합니다.
+                                가천대학교 경영대학 금융·빅데이터학부 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 경영 및 금융 분야를 비롯한 산업 환경 속에서 <span className="font-bold" style={{color: '#D6B14D'}}>실질적인 가치를 창출</span>하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                저희 연구실은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여,<br />
-                                복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고<br />
-                                데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
+                                저희 연구실은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
                               </p>
                             </>
                           ) : (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                <span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab (<span className="font-bold" style={{color: '#AC0E0E'}}>Financial Data Intelligence</span> & Solutions Laboratory)<br className="md:hidden" /> at Gachon University<br />
-                                conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span><br />
-                                in the fast-changing, data-driven business and financial landscape.
+                                <span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab (<span className="font-bold" style={{color: '#AC0E0E'}}>Financial Data Intelligence</span> & Solutions Laboratory) at Gachon University conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span> in the fast-changing, data-driven business and financial landscape.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span><br />
-                                to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data<br />
-                                and support sharper, data-grounded decision-making.
+                                Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data and support sharper, data-grounded decision-making.
                               </p>
                             </>
                           )}

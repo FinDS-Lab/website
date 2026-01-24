@@ -229,9 +229,10 @@ const GlobalMusicPlayer = memo(() => {
         </Link>
       )}
       
-      {/* Playlist Button/Player - Only show when playlist is loaded */}
+      {/* Playlist Button/Player - Only show when playlist is loaded, hidden on mobile */}
       {playlist.length > 0 && !isPlaylistPage && (
-        isMinimized ? (
+        <div className="hidden md:block">
+        {isMinimized ? (
           // Minimized: Floating button with proper design proportions
           <div className="flex items-center gap-8">
             <button
@@ -426,7 +427,8 @@ const GlobalMusicPlayer = memo(() => {
               </div>
             </div>
           </div>
-        )
+        )}
+        </div>
       )}
     </div>
   )

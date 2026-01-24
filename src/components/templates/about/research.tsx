@@ -65,11 +65,11 @@ const researchAreas = [
       },
       {
         en: 'Risk-Aware Decision Support Tools',
-        ko: '경영 위험을 고려한 의사결정 지원 도구',
+        ko: '경영 및 산업 환경의 위험을 고려한 의사결정 지원 도구',
       },
       {
-        en: 'Iridescent Data Intelligence',
-        ko: '다양한 관점에서 바라보는 데이터 인텔리전스를 통한 복잡한 문제 해결',
+        en: 'Iridescent View Extraction for Data-Informed Decision',
+        ko: '데이터 기반 의사결정을 위한 다양한 관점에서의 해석과 종합',
       },
     ],
   },
@@ -193,7 +193,7 @@ export const AboutResearchTemplate = () => {
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
             <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해<br className="hidden md:block" />
-            경영현장과 산업현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
+            경영 및 산업 현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>
