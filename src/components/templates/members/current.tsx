@@ -2,6 +2,7 @@ import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles } from 'lucide-react'
 import type { MemberData } from '@/types/data'
+import SmartImage from '@/components/atoms/smart-image'
 
 // Email Popup Component
 const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) => {
@@ -317,14 +318,12 @@ export const MembersCurrentTemplate = () => {
                           <div className="flex items-start gap-12 md:gap-[16px]">
                             <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
                               {member.avatar ? (
-                                <img
+                                <SmartImage
                                   src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
                                   alt={member.name.ko}
-                                  className="w-full h-full object-cover object-top"
-                                  onError={(e) => {
-                                    e.currentTarget.style.display = 'none'
-                                    e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                                  }}
+                                  className="w-full h-full"
+                                  width={80}
+                                  height={80}
                                 />
                               ) : null}
                               <span className={`text-[28px] md:text-[40px] ${member.avatar ? 'hidden' : ''}`}>👤</span>
