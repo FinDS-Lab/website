@@ -63,7 +63,7 @@ export type MemberData = {
     ko: string
     en: string
   }
-  degree: 'phd' | 'ms' | 'undergrad'
+  degree: 'phd' | 'combined' | 'ms' | 'undergrad'
   role: {
     ko: string
     en: string

@@ -118,39 +118,39 @@ export const MembersAlumniTemplate = () => {
   const pluralize = (count: number, singular: string, plural: string) => 
     count === 1 ? singular : plural
 
-  // Get primary affiliation (the school where they got their degree from lab) - Korean format
+  // Get primary affiliation - 학교 학과 / 학위과정 형식
   const getAffiliation = (alumni: AlumniMember) => {
     const edu = alumni.education[0]
     if (!edu) return <span className="text-gray-400">-</span>
     
-    // 학부과정 / 학과 / 학교 형식으로 표시
+    // 학교 학과 / 학위과정 형식으로 표시
     return (
-      <div className="flex flex-col gap-0">
-        <span className="text-gray-400 text-[10px]">{edu.degree || '학부과정'}</span>
-        <span className="text-gray-500 text-[11px]">{edu.dept || '-'}</span>
-        <span className="text-gray-700 font-semibold text-xs">{edu.school}</span>
-      </div>
+      <span className="text-gray-700 text-xs">
+        {edu.school} {edu.dept} / {edu.degree || '학부과정'}
+      </span>
     )
   }
 
-  // Render currentPosition with Graduate School formatting - Korean format
+  // Render currentPosition - 학교 학과 / 학위과정 형식
   const renderCurrentPosition = (position: string | undefined) => {
     if (!position) return <span className="text-gray-400">-</span>
     
     // Check if it contains newline (multi-line format like "석사과정\n산업공학과\n서울대학교")
     if (position.includes('\n')) {
       const parts = position.split('\n')
+      // 순서: 학위과정 / 학과 / 학교 -> 학교 학과 / 학위과정
+      const degree = parts[0] || ''
+      const dept = parts[1] || ''
+      const school = parts[2] || ''
       return (
-        <div className="flex flex-col gap-0">
-          <span className="text-gray-400 text-[10px]">{parts[0]}</span>
-          {parts[1] && <span className="text-gray-500 text-[11px]">{parts[1]}</span>}
-          {parts[2] && <span className="text-gray-700 font-semibold text-xs">{parts[2]}</span>}
-        </div>
+        <span className="text-gray-700 text-xs">
+          {school} {dept} / {degree}
+        </span>
       )
     }
     
     // Simple position (재학생)
-    return <span className="text-gray-600">{position}</span>
+    return <span className="text-gray-600 text-xs">{position}</span>
   }
 
   // Check if alumni has position change (Pre != Post)
@@ -247,42 +247,48 @@ export const MembersAlumniTemplate = () => {
                 Statistics
               </h2>
               
-              {/* Total - Full width on top */}
-              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-20 md:p-24 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              {/* Total - Full width, centered */}
+              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-12">
-                    <Users className="size-20 md:size-24" style={{color: '#D6B14D'}} />
-                    <span className="text-sm md:text-base font-bold text-gray-800">Total Alumni</span>
+                <div className="flex flex-col items-center justify-center">
+                  <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalCount}</span>
+                  <div className="flex items-center gap-6">
+                    <Users className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Total Alumni</span>
                   </div>
-                  <span className="text-3xl md:text-4xl font-bold" style={{color: '#D6B14D'}}>{totalCount}</span>
                 </div>
               </div>
               
-              {/* 3 Categories - Grid below */}
-              <div className="grid grid-cols-3 gap-8 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#D6B14D]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #D6B14D, transparent)'}} />
-                  <div className="flex flex-col items-center text-center">
-                    <GraduationCap className="size-16 md:size-20 mb-8" style={{color: '#D6B14D'}} />
-                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <span className="text-[10px] md:text-xs font-medium text-gray-500">Ph.D.</span>
+              {/* 3 Categories - 2x2 Grid */}
+              <div className="grid grid-cols-2 gap-8 md:gap-12">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
+                    <div className="flex items-center gap-6">
+                      <GraduationCap className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Ph.D.</span>
+                    </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#E8889C]/30 hover:shadow-lg hover:shadow-pink-100 transition-all duration-300">
-                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #E8889C, transparent)'}} />
-                  <div className="flex flex-col items-center text-center">
-                    <BookOpen className="size-16 md:size-20 mb-8" style={{color: '#E8889C'}} />
-                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#E8889C'}}>{msCount}</span>
-                    <span className="text-[10px] md:text-xs font-medium text-gray-500">M.S.</span>
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{msCount}</span>
+                    <div className="flex items-center gap-6">
+                      <BookOpen className="size-14 md:size-16" style={{color: '#E8889C', opacity: 0.7}} />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">M.S.</span>
+                    </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-14 md:p-20 hover:border-[#FFBAC4]/30 hover:shadow-lg hover:shadow-pink-50 transition-all duration-300">
-                  <div className="absolute top-0 left-12 right-12 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: 'linear-gradient(to right, #FFBAC4, transparent)'}} />
-                  <div className="flex flex-col items-center text-center">
-                    <UserCheck className="size-16 md:size-20 mb-8" style={{color: '#FFBAC4'}} />
-                    <span className="text-xl md:text-2xl font-bold mb-2" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <span className="text-[10px] md:text-xs font-medium text-gray-500">Undergrad</span>
+                <div className="col-span-2 group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col">
+                    <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
+                    <div className="flex items-center gap-6">
+                      <UserCheck className="size-14 md:size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Undergraduate Interns</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -728,13 +734,14 @@ export const MembersAlumniTemplate = () => {
                   <>
                     {/* Desktop Table View */}
                     <div className="hidden md:block overflow-x-auto rounded-2xl border border-gray-100">
-                      <table className="w-full min-w-[700px] table-fixed">
+                      <table className="w-full min-w-[800px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[15%]">Name</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[10%]">Cohort</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[18%]">Period</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[57%]">Affiliation</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[14%]">Name</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[8%]">Cohort</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[14%]">Period</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Affiliation (Pre-Internship)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[32%]">Post-Internship</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -782,26 +789,15 @@ export const MembersAlumniTemplate = () => {
                                     {alumni.periods?.ur || '-'}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
-                                    {hasChange ? (
-                                      <div className="flex gap-20">
-                                        <div className="flex-1">
-                                          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-4">Pre</p>
-                                          {getAffiliation(alumni)}
-                                        </div>
-                                        <div className="w-px bg-gray-200"></div>
-                                        <div className="flex-1">
-                                          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-wide mb-4">Post</p>
-                                          {renderCurrentPosition(alumni.currentPosition)}
-                                        </div>
-                                      </div>
-                                    ) : (
-                                      getAffiliation(alumni)
-                                    )}
+                                    {getAffiliation(alumni)}
+                                  </td>
+                                  <td className="py-12 md:py-16 px-12 md:px-16">
+                                    {hasChange ? renderCurrentPosition(alumni.currentPosition) : <span className="text-gray-400 text-xs">-</span>}
                                   </td>
                                 </tr>
                                 {isExpanded && hasProject && (
                                   <tr className="bg-gray-50/50">
-                                    <td colSpan={4} className="py-16 px-16">
+                                    <td colSpan={5} className="py-16 px-16">
                                       <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
                                         <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
                                         <div className="flex-1 min-w-0">

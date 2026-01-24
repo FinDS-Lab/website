@@ -55,33 +55,33 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
 import banner2 from '@/assets/images/banner/2.webp'
 
 const degreeLabels = {
-  combined: 'Ph.D. & M.S. Students',
-  phd: 'Ph.D. Students',
-  ms: 'M.S. Students',
+  phd: 'Ph.D.',
+  combined: 'Ph.D.-M.S. Combined',
+  ms: 'M.S.',
   undergrad: 'Undergraduate Interns',
 }
 
 const degreeColors = {
-  combined: 'text-white',
   phd: 'text-white',
+  combined: 'text-white',
   ms: 'text-white',
   undergrad: 'text-white',
 }
 
-// Coral color for combined PhD/MS
+// Gold for PhD, Coral for combined, MS, Deep pink for undergrad
 const degreeBgStyles = {
-  combined: {backgroundColor: '#FF6B6B'},
-  phd: {backgroundColor: '#FF6B6B'},
-  ms: {backgroundColor: '#FF6B6B'},
-  undergrad: {backgroundColor: '#FFBAC4'},
+  phd: {backgroundColor: '#D6B14D'},          // Gold
+  combined: {backgroundColor: '#FF6B6B'},      // Coral (석박사통합)
+  ms: {backgroundColor: '#FF6B6B'},            // Coral
+  undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
 }
 
 // Hover colors matching Alumni style
 const degreeHoverColors = {
+  phd: '#D6B14D',
   combined: '#FF6B6B',
-  phd: '#FF6B6B',
   ms: '#FF6B6B',
-  undergrad: '#FFBAC4',
+  undergrad: '#E8889C',
 }
 
 // 날짜 포맷 변환 함수 (2025-03 -> 2025.03)
@@ -150,25 +150,33 @@ export const MembersCurrentTemplate = () => {
 
   const stats = useMemo(() => {
     const phdCount = members.filter((m) => m.degree === 'phd').length
+    const combinedCount = members.filter((m) => m.degree === 'combined').length
     const msCount = members.filter((m) => m.degree === 'ms').length
-    const combinedCount = phdCount + msCount
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
-    return [
-      { label: combinedCount === 1 ? 'Ph.D. & M.S. Student' : 'Ph.D. & M.S. Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      { label: undergradCount === 1 ? 'Undergraduate Intern' : 'Undergraduate Interns', count: undergradCount, icon: UserCheck, color: '#FFBAC4' },
-      { label: members.length === 1 ? 'Total Member' : 'Total Members', count: members.length, icon: Users, color: '#4A4A4A' },
-    ]
+    return {
+      phd: { label: 'Ph.D.', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
+      combined: { label: '석박사통합', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
+      ms: { label: 'M.S.', count: msCount, icon: BookOpen, color: '#FF6B6B' },
+      undergrad: { label: 'Undergraduate', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      total: { label: 'Total', count: members.length, icon: Users, color: '#4A4A4A' },
+    }
   }, [members])
 
   const groupedMembers = useMemo(() => {
     const grouped: { [key: string]: MemberData[] } = {
+      phd: [],
       combined: [],
+      ms: [],
       undergrad: [],
     }
     members.forEach((m) => {
-      if (m.degree === 'phd' || m.degree === 'ms') {
+      if (m.degree === 'phd') {
+        grouped.phd.push(m)
+      } else if (m.degree === 'combined') {
         grouped.combined.push(m)
+      } else if (m.degree === 'ms') {
+        grouped.ms.push(m)
       } else if (m.degree === 'undergrad') {
         grouped.undergrad.push(m)
       }
@@ -182,8 +190,7 @@ export const MembersCurrentTemplate = () => {
 
   // 각 멤버의 degree에 맞는 hover color 반환
   const getMemberHoverColor = (degree: string) => {
-    if (degree === 'phd' || degree === 'ms') return degreeHoverColors.combined
-    return degreeHoverColors.undergrad
+    return degreeHoverColors[degree as keyof typeof degreeHoverColors] || '#E8889C'
   }
 
   return (
@@ -246,13 +253,25 @@ export const MembersCurrentTemplate = () => {
             <span className="w-8 h-8 rounded-full bg-primary" />
             Statistics
           </h2>
-          <div className="grid grid-cols-3 gap-8 md:gap-12">
-            {stats.map((stat, index) => (
+          
+          {/* Total - Full Width */}
+          <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+            <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="flex flex-col items-center justify-center">
+              <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: stats.total.color}}>{stats.total.count}</span>
+              <div className="flex items-center gap-6">
+                <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
+                <span className="text-xs md:text-sm font-medium text-gray-600">Total Members</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Other Stats - 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-8 md:gap-12">
+            {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className={`group relative border rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 ${
-                    stat.label.includes('Total') ? 'bg-[#FFF9E6] border-[#D6B14D]/20' : 'bg-white border-gray-100'
-                  }`}
+                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
@@ -274,7 +293,7 @@ export const MembersCurrentTemplate = () => {
           </div>
         ) : members.length > 0 ? (
           <div className="flex flex-col gap-32 md:gap-[40px]">
-            {(['combined', 'undergrad'] as const).map((groupKey) => {
+            {(['phd', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
               const degreeMembers = groupedMembers[groupKey]
               if (degreeMembers.length === 0) return null
 

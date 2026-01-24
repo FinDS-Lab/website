@@ -10,11 +10,11 @@
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
-        "dept": "컴퓨터공학과",
-        "deptEn": "Computer Science and Engineering",
+        "dept": "컴퓨터공학부",
+        "deptEn": "Department of Computer Science & Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": "2019.03 -"
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -30,10 +30,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -49,10 +49,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업정보시스템공학과",
-        "deptEn": "Industrial and Information Systems Engineering",
+        "deptEn": "Department of Industrial and Information Systems Engineering",
         "school": "숭실대학교",
         "schoolEn": "Soongsil University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -68,10 +68,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업데이터공학과",
-        "deptEn": "Industrial & Data Engineering",
+        "deptEn": "Department of Industrial and Data Engineering",
         "school": "홍익대학교",
         "schoolEn": "Hongik University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -87,10 +87,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Engineering",
-        "school": "한양대학교 에리카",
+        "deptEn": "Department of Industrial & Management Engineering",
+        "school": "한양대학교 ERICA 캠퍼스",
         "schoolEn": "Hanyang University (ERICA Campus)",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -106,10 +106,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업공학과",
-        "deptEn": "Industrial Engineering",
+        "deptEn": "Department of Industrial Engineering",
         "school": "한양대학교",
         "schoolEn": "Hanyang University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -125,10 +125,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업공학과\n고려대학교",
@@ -145,10 +145,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -164,10 +164,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -183,10 +183,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "컴퓨터공학과",
-        "deptEn": "Computer Science and Engineering",
+        "deptEn": "Department of Computer Science and Engineering",
         "school": "서강대학교",
         "schoolEn": "Sogang University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -201,11 +201,11 @@
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
-        "dept": "산업공학과",
-        "deptEn": "Industrial Engineering",
+        "dept": "산업경영공학과",
+        "deptEn": "Department of Industrial Engineering",
         "school": "인하대학교",
         "schoolEn": "Inha University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -221,10 +221,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -240,10 +240,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업공학과\n서울대학교",
@@ -255,15 +255,15 @@
       "nameEn": "Yu-Seop Lee",
       "degrees": ["ur"],
       "cohort": "1기",
-      "periods": {"ur": "2025.12 – 2026.02"},
+      "periods": {"ur": "2025.12 – 2026.01"},
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업및시스템공학과",
-        "deptEn": "Industrial & Systems Engineering",
-        "school": "KAIST",
+        "deptEn": "Department of Industrial and Systems Engineering",
+        "school": "한국과학기술원 (KAIST)",
         "schoolEn": "KAIST",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -278,11 +278,11 @@
       "education": [{
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
-        "dept": "산업공학과",
-        "deptEn": "Industrial Engineering",
+        "dept": "기계·스마트·산업공학부 산업공학전공",
+        "deptEn": "Department of Mechanical, Smart and Industrial Engineering (Industrial Engineering Major)",
         "school": "가천대학교",
         "schoolEn": "Gachon University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -298,10 +298,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "석사과정\n산업공학과\n고려대학교",
@@ -318,10 +318,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -337,13 +337,14 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
-      "currentPosition": "재학생",
+      "currentPosition": "석사과정\n산업경영공학과\n경희대학교",
+      "currentPositionEn": "M.S. Student\nIndustrial and Management Systems Engineering\nKyung Hee University",
       "project": {"title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."}
     },
     {
@@ -356,10 +357,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -375,10 +376,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -394,10 +395,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업경영공학과",
-        "deptEn": "Industrial and Management Systems Engineering",
+        "deptEn": "Department of Industrial and Management Systems Engineering",
         "school": "경희대학교",
         "schoolEn": "Kyung Hee University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
@@ -413,10 +414,10 @@
         "degree": "학부과정",
         "degreeEn": "Undergraduate",
         "dept": "산업정보시스템공학과",
-        "deptEn": "Industrial and Information System Engineering",
+        "deptEn": "Department of Industrial and Information Systems Engineering",
         "school": "전북대학교",
         "schoolEn": "Jeonbuk National University",
-        "year": "2026"
+        "year": ""
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
