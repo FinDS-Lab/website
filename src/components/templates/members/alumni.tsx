@@ -124,7 +124,7 @@ export const MembersAlumniTemplate = () => {
     if (!edu) return <span className="text-gray-400">-</span>
     
     return (
-      <span className="text-xs">
+      <span className="text-sm">
         <span className="font-bold text-gray-900">{edu.school}</span>
         {' '}
         <span className="font-semibold text-gray-700">{edu.dept}</span>
@@ -144,7 +144,7 @@ export const MembersAlumniTemplate = () => {
       const dept = parts[1] || ''
       const school = parts[2] || ''
       return (
-        <span className="text-xs">
+        <span className="text-sm">
           <span className="font-bold text-gray-900">{school}</span>
           {' '}
           <span className="font-semibold text-gray-700">{dept}</span>
@@ -155,7 +155,7 @@ export const MembersAlumniTemplate = () => {
     }
     
     // Simple position (재학생)
-    return <span className="text-gray-600 text-xs">{position}</span>
+    return <span className="text-gray-600 text-sm">{position}</span>
   }
 
   // Check if alumni has position change (Pre != Post)
@@ -790,7 +790,7 @@ export const MembersAlumniTemplate = () => {
                                       )}
                                     </div>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600">
                                     {alumni.periods?.ur || '-'}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">

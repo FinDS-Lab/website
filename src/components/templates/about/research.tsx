@@ -188,8 +188,8 @@ export const AboutResearchTemplate = () => {
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 데이터를 바탕으로 하는 세 가지 핵심 연구 분야를 통해<br className="hidden md:block" />
-            경영과 산업현장에서의 실질적인 가치를 창출하는 연구를 지향합니다.
+            FINDS Lab은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해<br className="hidden md:block" />
+            경영과 산업현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>

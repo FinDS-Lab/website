@@ -201,7 +201,7 @@ export const AboutIntroductionTemplate = () => {
                 <div className="flex items-center gap-8">
                   <Sparkles size={14} className="text-[#D6B14D]" />
                   <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                    {missionLang === 'ko' ? '우리의 사명' : 'Our Mission'}
+                    {missionLang === 'ko' ? 'FINDS Lab의 사명과 비전' : 'FINDS Lab Mission & Vision'}
                   </span>
                 </div>
                 <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -238,7 +238,7 @@ export const AboutIntroductionTemplate = () => {
                 <div className="max-w-3xl mx-auto space-y-16 text-center">
                   {missionLang === 'ko' ? (
                     <>
-                      <p className="text-base md:text-lg text-gray-600 leading-[2]">
+                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
                         <span className="text-primary font-bold">가천대학교 경영대학 금융·빅데이터학부 금융데이터인텔리전스 연구실 (FINDS Lab)</span>은 
                         데이터 중심으로 급변하는 비즈니스와 금융 환경 속에서 <span className="text-gray-900 font-semibold">실질적인 가치를 창출</span>하는 혁신적인 연구를 수행합니다.
                       </p>
@@ -250,7 +250,7 @@ export const AboutIntroductionTemplate = () => {
                     </>
                   ) : (
                     <>
-                      <p className="text-base md:text-lg text-gray-600 leading-[2]">
+                      <p className="text-sm md:text-base text-gray-600 leading-[2]">
                         <span className="text-primary font-bold">FINDS Lab (Financial Data Intelligence & Solutions Laboratory)</span> at Gachon University 
                         conducts innovative research that creates <span className="text-gray-900 font-semibold">real value</span> in the rapidly evolving data-driven business and financial landscape.
                       </p>
@@ -360,7 +360,7 @@ export const AboutIntroductionTemplate = () => {
                     className="text-[10px] md:text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-500"
                     style={{ color: `rgba(156, 163, 175, ${0.6 + brightness * 0.4})` }}
                   >
-                    {visionLang === 'ko' ? '우리의 비전' : 'Our Vision'}
+                    {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
                   </span>
                 </div>
                 <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -463,7 +463,7 @@ export const AboutIntroductionTemplate = () => {
                 <div className="flex items-center gap-8">
                   <Sparkles size={14} className="text-[#D6B14D]" />
                   <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                    {pillarsLang === 'ko' ? '핵심 가치' : 'Our Pillars'}
+                    {pillarsLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
                   </span>
                 </div>
                 <LangToggle lang={pillarsLang} setLang={setPillarsLang} />
