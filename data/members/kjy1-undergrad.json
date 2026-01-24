@@ -11,31 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "kimjy0010@hanyang.ac.kr",
-    "phone": "010-4173-4289"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Metrology and Inspection Data Analytics",
-      "Data-Driven Process Optimization",
-      "Multimodal Machine Learning",
-      "Reliability Engineering"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial Engineering",
-      "school": "Hanyang University",
-      "start": "2020-03",
-      "expected": "Present",
-      "note": "Specialized coursework in Semiconductor Process and Metrology"
+      "degree": "학부과정",
+      "field": "산업공학과",
+      "field_en": "Department of Industrial Engineering",
+      "school": "한양대학교",
+      "school_en": "Hanyang University",
+      "expected": "Present"
     }
   ]
-,
-  "avatar": "/website/images/members/KJY-1.webp"
 }

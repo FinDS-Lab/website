@@ -11,29 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2025-01",
+    "end": "2025-02"
   },
   "contact": {
-    "email": "kyh050412@hanyang.ac.kr",
-    "phone": "010-6608-0285"
+    "email": ""
   },
   "research": {
     "interests": [
-      "Business Analytics",
-      "Financial Data Analysis",
-      "Risk Analysis"
+      "Financial Data Science",
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial and Management Engineering",
-      "school": "Hanyang University (ERICA Campus)",
-      "start": "2024-03",
+      "degree": "학부과정",
+      "field": "산업경영공학과",
+      "field_en": "Department of Industrial & Management Engineering",
+      "school": "한양대학교 ERICA",
+      "school_en": "Hanyang University ERICA",
       "expected": "Present"
     }
   ]
-,
-  "avatar": "/website/images/members/KYH-1.webp"
 }

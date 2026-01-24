@@ -11,30 +11,26 @@
   "status": "active",
   "cohort": "1st Cohort (2025 Winter)",
   "period": {
-    "start": "2025.12.22.",
-    "end": "2026.03.01."
+    "start": "2024-12",
+    "end": "2025-01"
   },
   "contact": {
-    "email": "cats2969@kaist.ac.kr",
-    "phone": "010-9149-2969"
+    "email": ""
   },
   "research": {
     "interests": [
       "Financial Data Science",
-      "Algorithm Trading",
-      "Data-Inspired Decision Making"
+      "Business Analytics"
     ]
   },
   "education": [
     {
-      "degree": "B.S.",
-      "field": "Industrial & Systems Engineering",
-      "school": "KAIST",
-      "start": "2023-03",
-      "expected": "Present",
-      "note": "Double major in Computer Science"
+      "degree": "학부과정",
+      "field": "산업및시스템공학과",
+      "field_en": "Department of Industrial and Systems Engineering",
+      "school": "한국과학기술원 (KAIST)",
+      "school_en": "KAIST",
+      "expected": "Present"
     }
   ]
-,
-  "avatar": "/website/images/members/LYS-1.webp"
 }
