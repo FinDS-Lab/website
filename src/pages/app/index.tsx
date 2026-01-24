@@ -108,45 +108,49 @@ const GlobalMusicPlayer = memo(() => {
   // Player wrapper 위치 업데이트 - DOM API 직접 사용 (React 렌더링과 분리)
   useEffect(() => {
     const wrapper = playerWrapperRef.current
-    const videoArea = videoAreaRef.current
     if (!wrapper) return
     
     const updatePosition = () => {
+      const videoArea = videoAreaRef.current  // 매번 새로 가져옴
       if (showFullPlayer && videoArea) {
         const rect = videoArea.getBoundingClientRect()
-        wrapper.style.position = 'fixed'
-        wrapper.style.top = rect.top + 'px'
-        wrapper.style.left = rect.left + 'px'
-        wrapper.style.width = rect.width + 'px'
-        wrapper.style.height = rect.height + 'px'
-        wrapper.style.zIndex = '10'
-        wrapper.style.overflow = 'visible'
-      } else {
-        wrapper.style.position = 'fixed'
-        wrapper.style.left = '-9999px'
-        wrapper.style.top = '-9999px'
-        wrapper.style.width = '1px'
-        wrapper.style.height = '1px'
-        wrapper.style.overflow = 'hidden'
-        wrapper.style.zIndex = '-1'
+        if (rect.width > 0 && rect.height > 0) {
+          wrapper.style.position = 'fixed'
+          wrapper.style.top = rect.top + 'px'
+          wrapper.style.left = rect.left + 'px'
+          wrapper.style.width = rect.width + 'px'
+          wrapper.style.height = rect.height + 'px'
+          wrapper.style.zIndex = '10'
+          wrapper.style.overflow = 'visible'
+          return
+        }
       }
+      // Full 모드가 아니거나 videoArea가 없으면 화면 밖으로
+      wrapper.style.position = 'fixed'
+      wrapper.style.left = '-9999px'
+      wrapper.style.top = '-9999px'
+      wrapper.style.width = '1px'
+      wrapper.style.height = '1px'
+      wrapper.style.overflow = 'hidden'
+      wrapper.style.zIndex = '-1'
     }
     
-    updatePosition()
+    // 렌더링 완료 후 위치 업데이트
+    const timerId = setTimeout(updatePosition, 50)
+    
     window.addEventListener('resize', updatePosition)
     window.addEventListener('scroll', updatePosition)
     
-    // RAF for smooth updates
+    // RAF for smooth updates when in full mode
     let rafId: number
     const rafUpdate = () => {
       updatePosition()
       rafId = requestAnimationFrame(rafUpdate)
     }
-    if (showFullPlayer) {
-      rafId = requestAnimationFrame(rafUpdate)
-    }
+    rafId = requestAnimationFrame(rafUpdate)
     
     return () => {
+      clearTimeout(timerId)
       window.removeEventListener('resize', updatePosition)
       window.removeEventListener('scroll', updatePosition)
       if (rafId) cancelAnimationFrame(rafId)
