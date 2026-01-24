@@ -659,31 +659,50 @@ export const PublicationsTemplate = () => {
                   <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                     <button
                       onClick={() => setExpandedYear(expandedYear === year ? null : year)}
-                      className={`w-full flex items-center justify-between px-24 py-20 transition-colors ${
+                      className={`w-full flex items-center justify-between px-20 md:px-24 py-16 md:py-20 transition-colors ${
                         isCurrentYear 
                           ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
                           : 'bg-gray-50 hover:bg-gray-100'
                       }`}
                     >
-                      <div className="flex flex-col items-start gap-4">
-                        <div className="flex items-center gap-12">
-                          <span className={`text-lg font-semibold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
-                          {isCurrentYear && (
-                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
-                          )}
-                        </div>
-                        <span className={`text-base max-md:hidden ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
-                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span> Journals · <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span> Conferences · <span className="font-bold text-[#E8D688]">{stats.books}</span> Books · <span className="font-bold text-[#FFBAC4]">{stats.reports}</span> Reports
+                      <div className="flex items-center gap-12 md:gap-16 flex-wrap">
+                        <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
+                        {isCurrentYear && (
+                          <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                        )}
+                        {/* White badge with counts - desktop */}
+                        <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
+                          <span className="text-gray-500">&nbsp;Journals</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
+                          <span className="text-gray-500">&nbsp;Conferences</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#E8D688]">{stats.books}</span>
+                          <span className="text-gray-500">&nbsp;Books</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
+                          <span className="text-gray-500">&nbsp;Reports</span>
                         </span>
-
-                        <span className={`hidden text-base max-md:block text-start ${isCurrentYear ? 'text-[#B8962D]' : 'text-gray-500'}`}>
-                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span> Journals · <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span> Conferences <br/> <span className="font-bold text-[#E8D688]">{stats.books}</span> Books · <span className="font-bold text-[#FFBAC4]">{stats.reports}</span> Reports
+                        {/* Mobile: shorter version */}
+                        <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm">
+                          <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
+                          <span className="text-gray-400">&nbsp;J</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
+                          <span className="text-gray-400">&nbsp;C</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#E8D688]">{stats.books}</span>
+                          <span className="text-gray-400">&nbsp;B</span>
+                          <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                          <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
+                          <span className="text-gray-400">&nbsp;R</span>
                         </span>
                       </div>
                       {expandedYear === year ? (
-                        <ChevronUp className="size-20 text-gray-500" />
+                        <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                       ) : (
-                        <ChevronDown className="size-20 text-gray-500" />
+                        <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                       )}
                     </button>
                     {expandedYear === year && (
@@ -778,30 +797,33 @@ export const PublicationsTemplate = () => {
                                 <div className="md:hidden h-8" />
                                 
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
-                                  {/* Desktop: Left Type Badge - White background style matching Honors */}
+                                  {/* Desktop: Left Type Badge - Split design (top colored, bottom white) */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
-                                    <div className={`w-full py-8 rounded-lg text-center bg-white border-2 shadow-sm ${
-                                      pub.type === 'journal' ? 'border-[#D6B14D]' :
-                                      pub.type === 'conference' ? 'border-[#AC0E0E]' :
-                                      pub.type === 'book' ? 'border-[#E8D688]' :
-                                      pub.type === 'report' ? 'border-[#FFBAC4]' : 'border-gray-300'
-                                    }`}>
-                                      <span className={`block text-[10px] font-bold uppercase tracking-wide ${
-                                        pub.type === 'journal' ? 'text-[#D6B14D]' :
-                                        pub.type === 'conference' ? 'text-[#AC0E0E]' :
-                                        pub.type === 'book' ? 'text-[#B8962D]' :
-                                        pub.type === 'report' ? 'text-[#E8889C]' : 'text-gray-500'
+                                    <div className="w-full rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                                      {/* Top part - colored background */}
+                                      <div className={`w-full py-6 text-center ${
+                                        pub.type === 'journal' ? 'bg-[#D6B14D]' :
+                                        pub.type === 'conference' ? 'bg-[#AC0E0E]' :
+                                        pub.type === 'book' ? 'bg-[#E8D688]' :
+                                        pub.type === 'report' ? 'bg-[#FFBAC4]' : 'bg-gray-500'
                                       }`}>
-                                        {typeLabel}
-                                      </span>
-                                      <span className={`text-lg font-bold ${
-                                        pub.type === 'journal' ? 'text-[#D6B14D]' :
-                                        pub.type === 'conference' ? 'text-[#AC0E0E]' :
-                                        pub.type === 'book' ? 'text-[#B8962D]' :
-                                        pub.type === 'report' ? 'text-[#E8889C]' : 'text-gray-500'
-                                      }`}>
-                                        {getPublicationNumber(pub)}
-                                      </span>
+                                        <span className={`text-[9px] font-bold uppercase tracking-wide ${
+                                          pub.type === 'book' || pub.type === 'report' ? 'text-gray-800' : 'text-white'
+                                        }`}>
+                                          {typeLabel}
+                                        </span>
+                                      </div>
+                                      {/* Bottom part - white background with number */}
+                                      <div className="w-full py-6 text-center bg-white">
+                                        <span className={`text-lg font-bold ${
+                                          pub.type === 'journal' ? 'text-[#D6B14D]' :
+                                          pub.type === 'conference' ? 'text-[#AC0E0E]' :
+                                          pub.type === 'book' ? 'text-[#B8962D]' :
+                                          pub.type === 'report' ? 'text-[#E8889C]' : 'text-gray-500'
+                                        }`}>
+                                          {getPublicationNumber(pub)}
+                                        </span>
+                                      </div>
                                     </div>
                                     {/* Status badge below */}
                                     {pub.type === 'conference' && pub.presentation_type && (
@@ -903,15 +925,20 @@ export const PublicationsTemplate = () => {
                                   <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
                                     {pub.published_date}
                                   </p>
-                                  {/* DOI below venue/date */}
+                                  {/* DOI below venue/date - refined design */}
                                   {pub.doi && (
                                     <a
                                       href={`https://doi.org/${pub.doi}`}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className="text-[11px] md:text-xs text-primary hover:underline mt-4 inline-block"
+                                      className="inline-flex items-center gap-6 mt-8 group/doi"
                                     >
-                                      DOI: {pub.doi}
+                                      <span className="px-6 py-2 bg-gray-100 rounded text-[9px] font-semibold text-gray-500 uppercase tracking-wide">
+                                        doi
+                                      </span>
+                                      <span className="text-[11px] md:text-xs text-gray-500 group-hover/doi:text-primary transition-colors">
+                                        {pub.doi}
+                                      </span>
                                     </a>
                                   )}
                                 </div>

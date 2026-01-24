@@ -75,51 +75,47 @@ const researchAreas = [
   },
 ]
 
-// Bilingual fade animation hook for title only - with typewriter effect
-const useBilingualFade = () => {
-  const [showKorean, setShowKorean] = useState(false)
-  const [typedText, setTypedText] = useState('')
-  const [isTyping, setIsTyping] = useState(true)
+// 전체 문장이 교체되는 세련된 애니메이션
+const useRotatingText = () => {
+  const phrases = [
+    { en: 'Engineering Decisions through Data', ko: '데이터 기반의 공학적 의사결정' },
+    { en: 'Optimizing Business with Analytics', ko: '분석으로 최적화하는 비즈니스' },
+    { en: 'Transforming Finance via Intelligence', ko: '인공지능으로 혁신하는 금융' },
+  ]
   
-  const englishText = 'Business Innovation'
-  const koreanText = '경영 혁신'
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(true)
+  const [showKorean, setShowKorean] = useState(false)
   
   useEffect(() => {
-    const currentText = showKorean ? koreanText : englishText
+    // 페이드 아웃 -> 언어/문장 변경 -> 페이드 인 사이클
+    const cycleInterval = setInterval(() => {
+      setIsVisible(false) // 페이드 아웃 시작
+      
+      setTimeout(() => {
+        if (showKorean) {
+          // 한글 표시 후 다음 영어 문장으로
+          setShowKorean(false)
+          setCurrentIndex((prev) => (prev + 1) % phrases.length)
+        } else {
+          // 영어 표시 후 한글로
+          setShowKorean(true)
+        }
+        setIsVisible(true) // 페이드 인
+      }, 500) // 페이드 아웃 시간
+    }, 3000) // 각 텍스트 표시 시간
     
-    if (isTyping) {
-      if (typedText.length < currentText.length) {
-        const timeout = setTimeout(() => {
-          setTypedText(currentText.slice(0, typedText.length + 1))
-        }, showKorean ? 150 : 80) // Korean typing slower for effect
-        return () => clearTimeout(timeout)
-      } else {
-        // Finished typing, wait then switch
-        const timeout = setTimeout(() => {
-          setIsTyping(false)
-        }, 2000)
-        return () => clearTimeout(timeout)
-      }
-    } else {
-      // Erasing effect
-      if (typedText.length > 0) {
-        const timeout = setTimeout(() => {
-          setTypedText(typedText.slice(0, -1))
-        }, 40)
-        return () => clearTimeout(timeout)
-      } else {
-        // Finished erasing, switch language
-        setShowKorean(prev => !prev)
-        setIsTyping(true)
-      }
-    }
-  }, [typedText, isTyping, showKorean])
+    return () => clearInterval(cycleInterval)
+  }, [showKorean, phrases.length])
   
-  return { showKorean, typedText, isTyping }
+  const currentPhrase = phrases[currentIndex]
+  const displayText = showKorean ? currentPhrase.ko : currentPhrase.en
+  
+  return { displayText, isVisible, showKorean }
 }
 
 export const AboutResearchTemplate = () => {
-  const { showKorean, typedText, isTyping } = useBilingualFade()
+  const { displayText, isVisible, showKorean } = useRotatingText()
 
   return (
     <div className="flex flex-col bg-white">
@@ -177,56 +173,31 @@ export const AboutResearchTemplate = () => {
         </div>
       </div>
 
-      {/* Hero Section - with typewriter animation on title */}
+      {/* Hero Section - with smooth rotating animation */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title with Typewriter Effect */}
-          <div className="relative h-[80px] md:h-[100px] mb-16 md:mb-24 flex items-center justify-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-[1.3]">
-              {showKorean ? (
-                <>
-                  <span className="relative inline-block">
-                    <span 
-                      className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent"
-                      style={{ fontFamily: '"Nanum Pen Script", cursive' }}
-                    >
-                      데이터
-                    </span>
-                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
-                  </span>
-                  <span className="inline-block">로 이끄는 </span>
-                  <span 
-                    className="relative inline-block"
-                    style={{ fontFamily: '"Nanum Pen Script", cursive', color: 'rgb(172, 14, 14)' }}
-                  >
-                    {typedText}
-                    <span className={`inline-block w-[3px] h-[1.1em] bg-[#AC0E0E] ml-1 align-middle ${isTyping ? 'animate-pulse' : ''}`} />
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="inline-block">Driving</span>
-                  <span className="inline-block mx-2"> </span>
-                  <span 
-                    className="relative inline-block"
-                    style={{ fontFamily: '"Caveat", cursive' }}
-                  >
-                    <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent text-3xl md:text-4xl lg:text-5xl">
-                      {typedText}
-                      <span className={`inline-block w-[3px] h-[1.1em] bg-[#D6B14D] ml-1 align-middle ${isTyping ? 'animate-pulse' : ''}`} />
-                    </span>
-                    <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-[#FFEB99]/60 to-primary/20 -skew-x-6 rounded" />
-                  </span>
-                  <span className="inline-block mx-2"> </span>
-                  <span className="inline-block">via <span style={{color: 'rgb(172, 14, 14)'}}>Data</span></span>
-                </>
-              )}
+          {/* Animated Title with Fade Effect */}
+          <div className="relative h-[60px] md:h-[80px] mb-16 md:mb-24 flex items-center justify-center overflow-hidden">
+            <h2 
+              className={`text-xl md:text-2xl lg:text-3xl font-bold leading-[1.3] transition-all duration-500 ease-in-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
+              <span 
+                className={`relative inline-block ${showKorean ? '' : ''}`}
+                style={{ fontFamily: showKorean ? '"Pretendard Variable", sans-serif' : 'inherit' }}
+              >
+                <span className="relative z-10 bg-gradient-to-r from-primary via-[#D6B14D] to-[#AC0E0E] bg-clip-text text-transparent">
+                  {displayText}
+                </span>
+                <span className="absolute -bottom-1 left-0 right-0 h-2 bg-gradient-to-r from-[#FFEB99]/40 via-primary/20 to-[#AC0E0E]/20 -skew-x-3 rounded" />
+              </span>
             </h2>
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            FINDS Lab은 <b className="text-gray-700">금융데이터사이언스</b>, <b className="text-gray-700">비즈니스 애널리틱스</b>, <b className="text-gray-700">데이터 기반 의사결정</b>의 세 가지 핵심 연구 분야를 통해 
-            실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
+            FINDS Lab은 <b className="text-gray-700">데이터 기반 의사결정</b>의 <br className="md:hidden" />
+            세 가지 핵심 연구 분야를 통해 실질적인 가치를 창출하는 혁신적인 연구를 수행합니다.
           </p>
         </div>
       </div>
