@@ -441,11 +441,12 @@ export const PublicationsTemplate = () => {
     return years.sort((a, b) => b - a)
   }, [publicationsByYear])
 
-  // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관)
+  // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관, 2018년부터)
   const yearlyChartData = useMemo(() => {
     const yearMap: { [year: number]: { journal: number; conference: number; book: number; report: number } } = {}
     
     publications.forEach((pub) => {
+      if (pub.year < 2018) return // 2018년 이전 데이터 제외
       if (!yearMap[pub.year]) {
         yearMap[pub.year] = { journal: 0, conference: 0, book: 0, report: 0 }
       }
@@ -455,11 +456,20 @@ export const PublicationsTemplate = () => {
       else if (pub.type === 'report') yearMap[pub.year].report++
     })
     
-    const years = Object.keys(yearMap).map(Number).sort((a, b) => a - b)
-    return years.map(year => ({
+    // 2018년부터 현재까지 모든 연도 포함 (데이터 없는 연도도 0으로 표시)
+    const currentYear = new Date().getFullYear()
+    const allYears = []
+    for (let y = 2018; y <= Math.max(currentYear, ...Object.keys(yearMap).map(Number)); y++) {
+      allYears.push(y)
+    }
+    
+    return allYears.map(year => ({
       year,
-      ...yearMap[year],
-      total: yearMap[year].journal + yearMap[year].conference + yearMap[year].book + yearMap[year].report
+      journal: yearMap[year]?.journal || 0,
+      conference: yearMap[year]?.conference || 0,
+      book: yearMap[year]?.book || 0,
+      report: yearMap[year]?.report || 0,
+      total: (yearMap[year]?.journal || 0) + (yearMap[year]?.conference || 0) + (yearMap[year]?.book || 0) + (yearMap[year]?.report || 0)
     }))
   }, [publications])
 
@@ -682,7 +692,7 @@ export const PublicationsTemplate = () => {
                             
                             {/* Year Label */}
                             <span className="text-[9px] text-gray-400 mt-8 group-hover:text-primary transition-colors">
-                              {String(data.year).slice(-2)}
+                              {data.year}
                             </span>
                             
                             {/* Tooltip */}
@@ -1069,6 +1079,15 @@ export const PublicationsTemplate = () => {
                                     {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language?.toLowerCase() === 'korean') && pub.venue_ko 
                                       ? pub.venue_ko 
                                       : pub.venue}
+                                    {/* Edition info for books */}
+                                    {pub.type === 'book' && pub.edition && (
+                                      <span className="ml-8 inline-flex items-center px-8 py-2 bg-[#E8D688]/30 rounded-md text-[10px] font-semibold text-[#B8962D]">
+                                        {pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Ed.
+                                        {pub.original_year && (
+                                          <span className="text-[#B8962D]/70 ml-4">(1st: {pub.original_year})</span>
+                                        )}
+                                      </span>
+                                    )}
                                   </p>
                                   {/* Mobile: Date below venue */}
                                   <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">

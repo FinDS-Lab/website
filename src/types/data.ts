@@ -47,6 +47,8 @@ export type Publication = {
   doi?: string
   url?: string
   presentation_type?: 'oral' | 'poster'
+  edition?: number
+  original_year?: number
 }
 
 export type AuthorsData = {
