@@ -125,10 +125,10 @@ export const AboutHonorsTemplate = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* Banner - Introduction과 동일한 스타일 */}
-      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         {/* Background Image with Overlay */}
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
         

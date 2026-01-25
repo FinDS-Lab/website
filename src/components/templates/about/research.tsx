@@ -4,9 +4,9 @@ import { Home } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import icon10 from '@/assets/images/icons/10.png'
-import icon11 from '@/assets/images/icons/11.png'
-import icon12 from '@/assets/images/icons/12.png'
+import fdsImg from '@/assets/images/icons/fds.webp'
+import baImg from '@/assets/images/icons/ba.webp'
+import dimImg from '@/assets/images/icons/dim.webp'
 
 // 연구 분야 데이터
 const researchAreas = [
@@ -15,7 +15,7 @@ const researchAreas = [
     badge: '핀테크 혁신의 핵심 동력',
     titleEn: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
-    image: icon12,
+    image: fdsImg,
     items: [
       {
         en: 'Portfolio Optimization & Algorithmic Trading',
@@ -36,7 +36,7 @@ const researchAreas = [
     badge: '디지털 전환 시대의 경쟁력',
     titleEn: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
-    image: icon11,
+    image: baImg,
     items: [
       {
         en: 'Cross-Industry Data Analytics',
@@ -57,7 +57,7 @@ const researchAreas = [
     badge: '전략적 적응력',
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
-    image: icon10,
+    image: dimImg,
     items: [
       {
         en: 'Trustworthy Decision Systems & Optimization',
@@ -105,10 +105,10 @@ export const AboutResearchTemplate = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* Banner - Introduction과 동일한 스타일 */}
-      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         {/* Background Image with Overlay */}
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
         

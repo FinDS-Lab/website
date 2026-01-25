@@ -3,28 +3,28 @@ import { Search, Zap, Lightbulb, Quote, Sparkles, ChevronLeft, ChevronRight } fr
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import icon10 from '@/assets/images/icons/10.png'
-import icon11 from '@/assets/images/icons/11.png'
-import icon12 from '@/assets/images/icons/12.png'
+import fdsImg from '@/assets/images/icons/fds.webp'
+import baImg from '@/assets/images/icons/ba.webp'
+import dimImg from '@/assets/images/icons/dim.webp'
 
 // Focus Areas Data - 금융 데이터 사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정
 const focusAreas = [
   {
-    image: icon12,
+    image: fdsImg,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     desc: 'We collect and analyze <b>financial market data</b> to uncover hidden <b>patterns</b> and generate actionable <b>insights</b>. Our work supports better <b>investment strategies</b> and more robust <b>risk management</b> practices.',
     descKo: '금융 시장의 <b>복잡한 데이터</b>를 수집·정제하고, <b>통계적 분석</b>을 통해 시장 흐름과 <b>숨겨진 패턴</b>을 발견합니다.<br/>이를 바탕으로 <b>투자 전략</b>과 <b>위험 관리</b>에 필요한 인사이트를 도출합니다.',
   },
   {
-    image: icon11,
+    image: baImg,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b>. By transforming raw data into meaningful patterns, we deliver <b>actionable strategies</b> that drive competitive advantage.',
     descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 경영 및 산업 환경의 복잡한 문제를 분석합니다.<br/><b>실행 가능한 전략</b>과 <b>솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>에 기여합니다.',
   },
   {
-    image: icon10,
+    image: dimImg,
     title: 'Data-Informed Decisions',
     titleKo: '데이터 기반 의사결정',
     desc: 'We support <b>clearer</b> and <b>more rational decisions</b> through <b>objective</b> analysis combined with <b>iridescent view extraction</b> — multi-perspective interpretation and synthesis for informed decisions.',
@@ -204,9 +204,9 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           HERO BANNER
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />

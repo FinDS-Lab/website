@@ -10,9 +10,9 @@ export const LocationTemplate = () => {
   return (
     <div className="flex flex-col bg-white scroll-mt-[80px]">
       {/* Banner */}
-      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
           style={{ backgroundImage: `url(${banner1})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />

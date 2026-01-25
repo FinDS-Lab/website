@@ -164,7 +164,7 @@ export const HomeTemplate = () => {
           <p className="text-sm md:text-xl font-medium max-w-500">
             가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공
             <br />
-            금융데이터인텔리전스 연구실 홈페이지입니다.
+            <span style={{ color: '#D6B14D' }}>금융데이터인텔리전스</span> 연구실 홈페이지입니다.
           </p>
         </div>
       </section>

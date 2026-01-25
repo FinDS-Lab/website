@@ -1184,9 +1184,9 @@ export const MembersDirectorAcademicTemplate = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* Banner */}
-      <div className="relative w-full h-[280px] md:h-[420px] overflow-hidden">
+      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[2000ms]"
+          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
           style={{backgroundImage: `url(${banner2})`}}
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
@@ -1267,7 +1267,7 @@ export const MembersDirectorAcademicTemplate = () => {
         <div className="flex flex-col lg:flex-row lg:items-start gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
           <aside className="lg:w-380 flex flex-col gap-24 md:gap-40 ">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-80">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
