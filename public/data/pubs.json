@@ -3989,7 +3989,7 @@
     "type": "journal",
     "indexing_group": "SCIE",
     "code_label": "J",
-    "published_date": "2022-12-13",
+    "published_date": "2025-09-01",
     "year": 2025,
     "title": "Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering",
     "authors": [
@@ -4004,18 +4004,18 @@
     ],
     "venue": "Annals of Operations Research",
     "volume": 352,
-    "issue": 1,
+    "issue": 3,
     "pages": "745-780",
     "doi": "10.1007/s10479-022-05101-8",
     "language": "English",
     "awards": 0,
     "citations": {
-      "apa": "Choi, I., Yun, W., & Kim, W. C. (2025). Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering. <em>Annals of Operations Research</em>, <em>352</em>(1), 745-780. https://doi.org/10.1007/s10479-022-05101-8",
-      "mla": "Choi, Insu, Wonje Yun, and Woo Chang Kim. \"Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering.\" <em>Annals of Operations Research</em>, vol. 352, no. 1, 2025, pp. 745-780. doi:10.1007/s10479-022-05101-8.",
-      "chicago": "Choi, Insu, Wonje Yun, and Woo Chang Kim. \"Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering.\" <em>Annals of Operations Research</em> 352, no. 1 (2025): 745-780. https://doi.org/10.1007/s10479-022-05101-8.",
-      "harvard": "Choi, I, Yun, W & Kim, WC 2025, 'Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering', <em>Annals of Operations Research</em>, vol. 352, no. 1, pp. 745-780.",
-      "vancouver": "Choi I, Yun W, Kim WC. Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering. Annals of Operations Research. 2025;352(1):745-780.",
-      "bibtex": "@article{choi2025improving,\n  title = {{Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering}},\n  author = {Choi, I., Yun, W., and Kim, W. C.},\n  journal = {Annals of Operations Research},\n  volume = {352},\n  number = {1},\n  pages = {745-780},\n  year = {2025},\n  doi = {10.1007/s10479-022-05101-8},\n}"
+      "apa": "Choi, I., Yun, W., & Kim, W. C. (2025). Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering. <em>Annals of Operations Research</em>, <em>352</em>(3), 745-780. https://doi.org/10.1007/s10479-022-05101-8",
+      "mla": "Choi, Insu, Wonje Yun, and Woo Chang Kim. \"Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering.\" <em>Annals of Operations Research</em>, vol. 352, no. 3, 2025, pp. 745-780. doi:10.1007/s10479-022-05101-8.",
+      "chicago": "Choi, Insu, Wonje Yun, and Woo Chang Kim. \"Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering.\" <em>Annals of Operations Research</em> 352, no. 3 (2025): 745-780. https://doi.org/10.1007/s10479-022-05101-8.",
+      "harvard": "Choi, I, Yun, W & Kim, WC 2025, 'Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering', <em>Annals of Operations Research</em>, vol. 352, no. 3, pp. 745-780.",
+      "vancouver": "Choi I, Yun W, Kim WC. Improving data efficiency for analyzing global exchange rate fluctuations based on nonlinear causal network-based clustering. Annals of Operations Research. 2025;352(3):745-780.",
+      "bibtex": "@article{choi2025improving,\n  title = {{Improving Data Efficiency for Analyzing Global Exchange Rate Fluctuations Based on Nonlinear Causal Network-Based Clustering}},\n  author = {Choi, I., Yun, W., and Kim, W. C.},\n  journal = {Annals of Operations Research},\n  volume = {352},\n  number = {3},\n  pages = {745-780},\n  year = {2025},\n  doi = {10.1007/s10479-022-05101-8},\n}"
     }
   },
   {

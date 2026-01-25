@@ -222,7 +222,7 @@ const CollaborationNetwork = memo(() => {
   const [totalPubsCount, setTotalPubsCount] = useState(0)
   
   // 모바일/데스크탑에 따른 기본 zoom 값
-  const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.3 : 0.83
+  const getDefaultZoom = () => typeof window !== 'undefined' && window.innerWidth < 768 ? 1.5 : 0.92
   const [zoom, setZoom] = useState(getDefaultZoom)
   
   const [pan, setPan] = useState({x: 0, y: 0})
