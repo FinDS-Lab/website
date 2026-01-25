@@ -117,27 +117,27 @@ export const HomeTemplate = () => {
         <div className="max-w-1480 mx-auto">
           <Slider loop autoplay autoplayDelay={5000} arrows dots>
             {heroSlides.map((slide) => (
-              <div key={slide.id} className="relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-32 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
-                <div className="flex flex-col flex-1 gap-16 md:gap-20 lg:gap-24 z-10 max-w-[60%] md:max-w-none">
-                  <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
-                    <span className="text-sm md:text-md font-bold text-primary">{slide.badge}</span>
+              <div key={slide.id} className="relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-24 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
+                <div className="flex flex-col flex-1 gap-12 md:gap-20 lg:gap-24 z-10">
+                  <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-6 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
+                    <span className="text-xs md:text-md font-bold text-primary">{slide.badge}</span>
                   </div>
-                  <h1 className="text-lg md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 whitespace-pre-line leading-tight">
+                  <h1 className="text-base md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 whitespace-pre-line leading-tight">
                     {slide.title}
                   </h1>
-                  <div className="flex flex-wrap gap-8 md:gap-10">
+                  <div className="flex gap-8 md:gap-10">
                     {slide.buttons.map((button, btnIndex) => (
                       <Link
                         key={btnIndex}
                         to={button.path}
-                        className="px-14 md:px-18 lg:px-20 py-10 md:py-14 lg:py-16 bg-primary text-white! text-xs md:text-sm lg:text-md font-medium rounded-xl hover:bg-primary/90 transition-colors"
+                        className="px-12 md:px-18 lg:px-20 py-8 md:py-14 lg:py-16 bg-primary text-white! text-[11px] md:text-sm lg:text-md font-medium rounded-xl hover:bg-primary/90 transition-colors whitespace-nowrap"
                       >
                         {button.label}
                       </Link>
                     ))}
                   </div>
                 </div>
-                <div className="absolute right-0 top-0 bottom-0 w-[45%] md:w-auto md:flex-1 md:max-w-350 lg:max-w-450 xl:max-w-650 md:relative opacity-20 md:opacity-100">
+                <div className="hidden md:block md:flex-1 md:max-w-350 lg:max-w-450 xl:max-w-650">
                   <img loading="eager" src={slide.image} alt="Hero Illustration" className="w-full h-full object-contain object-right md:rounded-r-3xl" />
                 </div>
               </div>

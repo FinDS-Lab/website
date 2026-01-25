@@ -165,10 +165,18 @@ export const AboutResearchTemplate = () => {
       {/* Hero Section */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title - 전체 Dissolve with partial highlighting */}
+          {/* Animated Title - PC only animation, Mobile fixed English */}
           <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8 min-h-[40px] md:min-h-[48px]">
+            {/* Mobile: Fixed English */}
+            <h2 className="md:hidden text-xl font-bold leading-[1.4]">
+              <span className="text-gray-900">Transforming </span>
+              <span style={{ color: '#AC0E0E' }}>Business and Industry Innovation</span>
+              <span className="text-gray-900"> via </span>
+              <span style={{ color: '#D6B14D' }}>Data</span>
+            </h2>
+            {/* PC: Animated */}
             <h2 
-              className={`text-xl md:text-2xl lg:text-3xl font-bold leading-[1.4] transition-all duration-500 ease-in-out ${
+              className={`hidden md:block text-2xl lg:text-3xl font-bold leading-[1.4] transition-all duration-500 ease-in-out ${
                 isVisible ? 'opacity-100' : 'opacity-0'
               }`}
             >

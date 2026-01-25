@@ -1602,7 +1602,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                   {mentoringYears.map((year) => (
                     <button
                       key={year}
-                      onClick={() => setSelectedMentoringYear(year)}
+                      onClick={() => setSelectedMentoringYear(selectedMentoringYear === year ? 'all' : year)}
                       className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
                         selectedMentoringYear === year
                           ? 'bg-primary text-white'
@@ -1624,7 +1624,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                           onClick={() => setSelectedMentoringYear('all')}
                           className="flex items-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium bg-primary text-white hover:bg-primary/90 transition-all"
                         >
-                          Year: {selectedMentoringYear}
+                          {selectedMentoringYear}
                           <X size={12} />
                         </button>
                       )}

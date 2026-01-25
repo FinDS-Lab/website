@@ -19,7 +19,7 @@ import type {MemberData} from '@/types/data'
 import banner2 from '@/assets/images/banner/2.webp'
 
 // Email Popup Component
-const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) => {
+const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => void; degree?: string }) => {
   const [copied, setCopied] = useState(false)
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -39,6 +39,12 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const sendButtonColor = degree === 'undergrad' 
+    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
+    : degree === 'phd' 
+    ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
+    : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
+
   return (
     <div
       ref={popupRef}
@@ -56,7 +62,7 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
         </button>
         <a
           href={`mailto:${email}`}
-          className="flex-1 flex items-center justify-center gap-6 px-10 py-6 bg-primary hover:bg-primary/90 rounded-lg text-xs font-medium text-white transition-colors"
+          className={`flex-1 flex items-center justify-center gap-6 px-10 py-6 ${sendButtonColor} rounded-lg text-xs font-medium text-white transition-colors`}
         >
           <ExternalLink size={12} />
           Send
@@ -179,6 +185,14 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
           <span className="text-[#cdcdcd]">›</span>
           <span className="text-sm md:text-base text-primary font-medium">{member.name.ko}</span>
         </div>
+        {/* Mobile Back Button - Top */}
+        <Link
+          to="/members/current"
+          className="lg:hidden flex items-center gap-8 mt-16 py-10 px-16 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors w-fit"
+        >
+          <ArrowLeft size={16}/>
+          Back to Members
+        </Link>
       </div>
 
       {/* Content */}
@@ -237,6 +251,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                       <EmailPopup
                         email={member.contact.email}
                         onClose={() => setShowEmailPopup(false)}
+                        degree={member.degree}
                       />
                     )}
                   </div>
@@ -289,10 +304,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 )}
               </div>
 
-              {/* Back Button */}
+              {/* Back Button - PC only */}
               <Link
                 to="/members/current"
-                className="flex items-center justify-center gap-8 w-full mt-24 py-12 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors"
+                className="hidden lg:flex items-center justify-center gap-8 w-full mt-24 py-12 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors"
               >
                 <ArrowLeft size={16}/>
                 Back to Members
@@ -309,8 +324,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <h3 className="text-lg md:text-xl font-bold text-gray-900">Current Project</h3>
                 </div>
                 <div className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
-                  <p className="text-base font-semibold text-gray-800 mb-8">{member.research.project.ko}</p>
-                  <p className="text-sm text-gray-500 italic">{member.research.project.en}</p>
+                  <p className="text-base font-semibold text-gray-800 mb-4">{member.research.project.en}</p>
+                  {member.research.project.ko && (
+                    <p className="text-sm text-gray-400">{member.research.project.ko}</p>
+                  )}
                 </div>
               </section>
             )}
