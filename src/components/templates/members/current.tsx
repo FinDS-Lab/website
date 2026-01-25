@@ -4,7 +4,7 @@ import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Gi
 import type { MemberData } from '@/types/data'
 
 // Email Popup Component
-const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) => {
+const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => void; degree?: string }) => {
   const [copied, setCopied] = useState(false)
   const popupRef = useRef<HTMLDivElement>(null)
 
@@ -24,6 +24,12 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
     setTimeout(() => setCopied(false), 2000)
   }
 
+  const sendButtonColor = degree === 'undergrad' 
+    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
+    : degree === 'phd' 
+    ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
+    : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
+
   return (
     <div
       ref={popupRef}
@@ -41,7 +47,7 @@ const EmailPopup = ({ email, onClose }: { email: string; onClose: () => void }) 
         </button>
         <a
           href={`mailto:${email}`}
-          className="flex-1 flex items-center justify-center gap-6 px-10 py-6 bg-primary hover:bg-primary/90 rounded-lg text-xs font-medium text-white transition-colors"
+          className={`flex-1 flex items-center justify-center gap-6 px-10 py-6 ${sendButtonColor} rounded-lg text-xs font-medium text-white transition-colors`}
         >
           <ExternalLink size={12} />
           Send
@@ -380,6 +386,7 @@ export const MembersCurrentTemplate = () => {
                                   <EmailPopup
                                     email={member.contact.email}
                                     onClose={() => setOpenEmailPopup(null)}
+                                    degree={member.degree}
                                   />
                                 )}
                               </div>

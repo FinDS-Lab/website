@@ -83,6 +83,10 @@ export type MemberData = {
       ko: string
       en: string
     }
+    projects?: Array<{
+      ko?: string
+      en: string
+    }>
   }
   education: {
     degree: string

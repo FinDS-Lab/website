@@ -1618,24 +1618,24 @@ export const MembersDirectorActivitiesTemplate = () => {
                 {(selectedMentoringYear !== 'all' || selectedUniversity !== 'all') && (
                   <div className="px-20 md:px-32 py-12 border-b border-gray-100 bg-primary/5">
                     <div className="flex items-center gap-8 flex-wrap">
-                      <span className="text-[10px] font-bold text-gray-500 uppercase">Active Filters:</span>
+                      <span className="text-[10px] font-bold text-gray-500 uppercase leading-none">Active Filters:</span>
                       {selectedMentoringYear !== 'all' && (
                         <button
                           onClick={() => setSelectedMentoringYear('all')}
-                          className="flex items-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium bg-primary text-white hover:bg-primary/90 transition-all"
+                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium bg-primary text-white hover:bg-primary/90 transition-all leading-none"
                         >
-                          {selectedMentoringYear}
-                          <X size={12} />
+                          <span>{selectedMentoringYear}</span>
+                          <X size={10} />
                         </button>
                       )}
                       {selectedUniversity !== 'all' && (
                         <button
                           onClick={() => setSelectedUniversity('all')}
-                          className="flex items-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium text-white hover:opacity-90 transition-all"
+                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium text-white hover:opacity-90 transition-all leading-none"
                           style={{backgroundColor: '#E8889C'}}
                         >
-                          {selectedUniversity}
-                          <X size={12} />
+                          <span>{selectedUniversity}</span>
+                          <X size={10} />
                         </button>
                       )}
                       <button

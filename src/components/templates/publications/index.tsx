@@ -851,7 +851,8 @@ export const PublicationsTemplate = () => {
                                       {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
                                         <span className="relative inline-block mr-6 group">
                                           <span className="cursor-help">🏆</span>
-                                          <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
+                                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
+                                            <span className="absolute left-4 bottom-full border-4 border-transparent border-b-gray-900"></span>
                                             {pub.award_details ? (
                                               <>
                                                 <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
@@ -863,7 +864,6 @@ export const PublicationsTemplate = () => {
                                             ) : (
                                               <span>Award-winning paper</span>
                                             )}
-                                            <span className="absolute left-4 top-full border-4 border-transparent border-t-gray-900"></span>
                                           </span>
                                         </span>
                                       )}
