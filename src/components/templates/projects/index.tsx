@@ -551,22 +551,19 @@ export const ProjectsTemplate = () => {
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
                             <span className="text-gray-500">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
                           </span>
-                          {/* Mobile: 2-line format with abbreviations */}
-                          <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
-                            <span className="flex items-center justify-center">
-                              <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                              <span className="text-gray-500">&nbsp;Gov.</span>
-                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                              <span className="font-bold text-primary">{yearStats.industry}</span>
-                              <span className="text-gray-500">&nbsp;Ind.</span>
-                            </span>
-                            <span className="flex items-center justify-center">
-                              <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                              <span className="text-gray-500">&nbsp;Inst.</span>
-                              <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                              <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                              <span className="text-gray-500">&nbsp;Res.</span>
-                            </span>
+                          {/* Mobile: 1-line format with abbreviations */}
+                          <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm">
+                            <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
+                            <span className="text-gray-500">&nbsp;Gov.</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                            <span className="font-bold text-primary">{yearStats.industry}</span>
+                            <span className="text-gray-500">&nbsp;Ind.</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                            <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
+                            <span className="text-gray-500">&nbsp;Inst.</span>
+                            <span className="text-gray-300">&nbsp;·&nbsp;</span>
+                            <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
+                            <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>
                         {isExpanded ? (

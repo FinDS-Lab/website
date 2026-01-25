@@ -1733,7 +1733,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                     >
                                       {year}
                                       {program && (
-                                        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                                        <span className="absolute top-full left-0 mt-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                                           {program}
                                         </span>
                                       )}
@@ -1761,7 +1761,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 >
                                   {year}
                                   {program && (
-                                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                                    <span className="absolute top-full left-0 mt-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
                                       {program}
                                     </span>
                                   )}

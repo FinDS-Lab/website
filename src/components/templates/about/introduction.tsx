@@ -399,19 +399,19 @@ export const AboutIntroductionTemplate = () => {
                           <div className="max-w-3xl mx-auto text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
-                                <>저희 FINDS Lab은 데이터를 바탕으로 한 다양한 연구를 통해<br />
-                                지식과 정보의 비대칭으로 인한 경영 및 산업 환경의 비효율을 줄이고,<br />
+                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해<br />
+                                <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 및 산업 환경의 비효율을 줄이고,<br />
                                 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
-                                <>Through data-driven research,<br />
-                                our lab aims to reduce inefficiencies in business and industry caused by information asymmetry,<br />
+                                <>Through <span className="font-semibold text-gray-300">data-driven research</span>,<br />
+                                our lab aims to reduce inefficiencies in business and industry caused by <span className="font-semibold text-gray-300">information asymmetry</span>,<br />
                                 and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? '더 나은 데이터 기반의 경영 및 산업 환경의 미래를 밝혀나가는 데 기여하고자 합니다.'
-                                : 'We strive to illuminate a better future for data-driven business and industry.'}
+                                ? <>더 나은 <span className="font-semibold text-gray-300">데이터 기반의 경영 및 산업 환경</span>의 미래를 밝혀나가는 데 기여하고자 합니다.</>
+                                : <>We strive to illuminate a better future for <span className="font-semibold text-gray-300">data-driven business and industry</span>.</>}
                             </p>
                           </div>
                         </div>
@@ -490,10 +490,13 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
                           <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
-                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}
+                            <span className="md:hidden">FINDS Lab Focus Areas</span>
+                            <span className="hidden md:inline">{focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}</span>
                           </span>
                         </div>
-                        <LangToggle lang={focusLang} setLang={setFocusLang} />
+                        <div className="hidden md:block">
+                          <LangToggle lang={focusLang} setLang={setFocusLang} />
+                        </div>
                       </div>
 
                       {/* Card Content */}
@@ -501,11 +504,14 @@ export const AboutIntroductionTemplate = () => {
                         {/* Title */}
                         <div className="text-center mb-28 md:mb-36">
                           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
-                            {focusLang === 'ko' ? (
-                              <><span className="text-[#D6B14D]">핵심 연구 분야</span></>
-                            ) : (
-                              <><span className="text-[#D6B14D]">Core Research Areas</span></>
-                            )}
+                            <span className="md:hidden text-[#D6B14D]">Core Research Areas</span>
+                            <span className="hidden md:inline">
+                              {focusLang === 'ko' ? (
+                                <><span className="text-[#D6B14D]">핵심 연구 분야</span></>
+                              ) : (
+                                <><span className="text-[#D6B14D]">Core Research Areas</span></>
+                              )}
+                            </span>
                           </h2>
                           <div className="flex items-center justify-center gap-8">
                             <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />

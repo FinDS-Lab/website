@@ -322,89 +322,91 @@ const LayoutOrganisms = ({ children }: props) => {
             Contact Us
           </button>
         </div>
+      </header>
 
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 top-[61px] bg-white z-[9998] overflow-y-auto">
-            <nav className="px-16 py-16 max-w-1480 mx-auto">
-              <ul className="flex flex-col gap-8">
-                {navItems.map((item) => (
-                  <li key={item.name}>
-                    {item.children ? (
-                      <div>
-                        <button
-                          onClick={() => toggleMobileSubMenu(item.name)}
-                          className={clsx(
-                            'w-full flex items-center justify-between py-12 text-base transition-colors',
-                            isActive(item)
-                              ? 'font-medium text-primary'
-                              : 'font-normal text-gray-900'
-                          )}
-                        >
-                          {item.name}
-                          <ChevronDown
-                            size={16}
-                            className={clsx(
-                              'transition-transform',
-                              mobileSubMenu === item.name && 'rotate-180'
-                            )}
-                          />
-                        </button>
-                        {mobileSubMenu === item.name && (
-                          <div className="pl-16 pb-8 flex flex-col gap-4">
-                            {item.children.map((child) => (
-                              <Link
-                                key={child.path}
-                                to={child.path}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className={clsx(
-                                  'py-8 text-sm transition-colors',
-                                  location.pathname === child.path
-                                    ? 'text-primary font-medium'
-                                    : 'text-gray-600'
-                                )}
-                              >
-                                {child.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        to={item.path}
-                        onClick={() => setMobileMenuOpen(false)}
+      {/* Mobile Navigation - Outside header for proper z-index */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 top-[61px] bg-white z-[10000] overflow-y-auto">
+          <nav className="px-16 py-16 max-w-1480 mx-auto">
+            <ul className="flex flex-col gap-8">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  {item.children ? (
+                    <div>
+                      <button
+                        onClick={() => toggleMobileSubMenu(item.name)}
                         className={clsx(
-                          'block py-12 text-base transition-colors',
+                          'w-full flex items-center justify-between py-12 text-base transition-colors',
                           isActive(item)
                             ? 'font-medium text-primary'
                             : 'font-normal text-gray-900'
                         )}
                       >
                         {item.name}
-                      </Link>
-                    )}
-                  </li>
-                ))}
+                        <ChevronDown
+                          size={18}
+                          className={clsx(
+                            'transition-transform duration-200',
+                            mobileSubMenu === item.name && 'rotate-180'
+                          )}
+                        />
+                      </button>
 
-                {/* Contact Us Button - Mobile */}
-                <li className="pt-16 mt-8 border-t border-gray-100">
-                  <button
-                    onClick={() => {
-                      handleContactClick()
-                      setMobileMenuOpen(false)
-                    }}
-                    className="w-full flex items-center justify-center gap-8 px-20 py-14 bg-primary text-white text-base font-bold rounded-xl"
-                  >
-                    <Mail size={18} />
-                    Contact Us
-                  </button>
+                      {/* Mobile Submenu */}
+                      {mobileSubMenu === item.name && (
+                        <div className="ml-16 mt-4 flex flex-col gap-4 border-l-2 border-primary/20 pl-12">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.path}
+                              to={child.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className={clsx(
+                                'py-8 text-sm transition-colors',
+                                location.pathname === child.path
+                                  ? 'text-primary font-medium'
+                                  : 'text-gray-600'
+                              )}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={clsx(
+                        'block py-12 text-base transition-colors',
+                        isActive(item)
+                          ? 'font-medium text-primary'
+                          : 'font-normal text-gray-900'
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
                 </li>
-              </ul>
-            </nav>
-          </div>
-        )}
-      </header>
+              ))}
+
+              {/* Contact Us Button - Mobile */}
+              <li className="pt-16 mt-8 border-t border-gray-100">
+                <button
+                  onClick={() => {
+                    handleContactClick()
+                    setMobileMenuOpen(false)
+                  }}
+                  className="w-full flex items-center justify-center gap-8 px-20 py-14 bg-primary text-white text-base font-bold rounded-xl"
+                >
+                  <Mail size={18} />
+                  Contact Us
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="overflow-x-hidden" role="main" aria-label="페이지 콘텐츠">{children}</main>

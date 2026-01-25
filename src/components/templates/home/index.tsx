@@ -190,13 +190,14 @@ export const HomeTemplate = () => {
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
                 {newsItems.length > 0 ? (
                   newsItems.map((item, index) => (
-                    <div
+                    <Link
                       key={index}
-                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0"
+                      to={`/archives/news?id=${item.slug}`}
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
                       <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
-                    </div>
+                    </Link>
                   ))
                 ) : (
                   <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">
@@ -223,13 +224,14 @@ export const HomeTemplate = () => {
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
                 {noticeItems.length > 0 ? (
                   noticeItems.map((item, index) => (
-                    <div
+                    <Link
                       key={index}
-                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0"
+                      to={`/archives/notice?id=${item.slug}`}
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-pointer"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
                       <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
-                    </div>
+                    </Link>
                   ))
                 ) : (
                   <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">

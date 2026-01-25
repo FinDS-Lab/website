@@ -761,9 +761,9 @@ export const MembersAlumniTemplate = () => {
                                         {alumni.cohort || '-'}
                                       </span>
                                       {alumni.cohortName && (
-                                        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 px-12 py-6 bg-gray-900 text-white text-[10px] font-medium rounded-lg whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10 shadow-lg">
+                                        <div className="absolute left-0 top-full mt-6 px-12 py-6 bg-gray-900 text-white text-[10px] font-medium rounded-lg whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10 shadow-lg">
                                           {alumni.cohortName.match(/\(([^)]+)\)/)?.[1] || alumni.cohortName}
-                                          <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-5 border-r-5 border-t-5 border-transparent border-t-gray-900" />
+                                          <div className="absolute left-4 bottom-full w-0 h-0 border-l-5 border-r-5 border-b-5 border-transparent border-b-gray-900" />
                                         </div>
                                       )}
                                     </div>
