@@ -1,4 +1,4 @@
-import {memo, useState, useEffect, useMemo} from 'react'
+import {memo, useState, useEffect, useMemo, useRef, useCallback} from 'react'
 import {Link, useLocation} from 'react-router-dom'
 import {
   Mail,
@@ -203,6 +203,47 @@ export const MembersDirectorTemplate = () => {
     employment: true,
     honorsAwards: true
   })
+  
+  // Sticky profile card refs and state
+  const profileCardRef = useRef<HTMLDivElement>(null)
+  const contentSectionRef = useRef<HTMLElement>(null)
+  const [profileTop, setProfileTop] = useState(0)
+  
+  // Sticky profile card effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!profileCardRef.current || !contentSectionRef.current) return
+      if (window.innerWidth < 1024) return // Only on desktop
+      
+      const section = contentSectionRef.current
+      const card = profileCardRef.current
+      const sectionRect = section.getBoundingClientRect()
+      const cardHeight = card.offsetHeight
+      const navHeight = 80 // Tab navigation sticky height
+      const bottomPadding = 32
+      
+      // Section의 시작이 navHeight 위로 올라가면 sticky 시작
+      if (sectionRect.top <= navHeight) {
+        // Section의 끝이 card + navHeight + padding 보다 작으면 bottom에 고정
+        if (sectionRect.bottom <= cardHeight + navHeight + bottomPadding) {
+          setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
+        } else {
+          setProfileTop(navHeight - sectionRect.top)
+        }
+      } else {
+        setProfileTop(0)
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
+    handleScroll()
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [])
   
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
@@ -518,11 +559,15 @@ export const MembersDirectorTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-60 lg:items-start">
+      <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
+        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-380 shrink-0 lg:sticky lg:top-80">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm">
+          <aside className="lg:w-380 shrink-0">
+            <div 
+              ref={profileCardRef}
+              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
+              style={{ transform: `translateY(${profileTop}px)` }}
+            >
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>

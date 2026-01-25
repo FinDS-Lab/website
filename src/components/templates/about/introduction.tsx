@@ -3,9 +3,9 @@ import { Search, Zap, Lightbulb, Quote, Sparkles, ChevronLeft, ChevronRight } fr
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import fdsImg from '@/assets/images/icons/fds.webp'
-import baImg from '@/assets/images/icons/ba.webp'
-import dimImg from '@/assets/images/icons/dim.webp'
+import fdsImg from '@/assets/images/icons/10.png'
+import baImg from '@/assets/images/icons/11.png'
+import dimImg from '@/assets/images/icons/12.png'
 
 // Focus Areas Data - 금융 데이터 사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정
 const focusAreas = [

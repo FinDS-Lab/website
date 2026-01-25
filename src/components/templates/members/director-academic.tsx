@@ -328,24 +328,24 @@ const CollaborationNetwork = memo(() => {
             const isInnerRing = sortedIdx < innerRingCount
             
             if (isInnerRing && innerRingCount > 0) {
-              // Inner ring - closer to center, evenly spaced
+              // Inner ring - closer to center, evenly spaced (increased from 120 to 160)
               const angle = (2 * Math.PI * sortedIdx) / innerRingCount - Math.PI / 2
-              const radius = 120
+              const radius = 160
               x = centerX + Math.cos(angle) * radius
               y = centerY + Math.sin(angle) * radius
             } else {
-              // Outer ring
+              // Outer ring (increased from 200 to 240)
               const outerIdx = sortedIdx - innerRingCount
               const outerCount = total - innerRingCount
               if (outerCount > 0) {
                 const angle = (2 * Math.PI * outerIdx) / outerCount - Math.PI / 2 + Math.PI / outerCount
-                const radius = 200
+                const radius = 240
                 x = centerX + Math.cos(angle) * radius
                 y = centerY + Math.sin(angle) * radius
               } else {
                 // Fallback - place at random position in outer area
                 const angle = Math.random() * 2 * Math.PI
-                const radius = 200
+                const radius = 240
                 x = centerX + Math.cos(angle) * radius
                 y = centerY + Math.sin(angle) * radius
               }
@@ -438,9 +438,10 @@ const CollaborationNetwork = memo(() => {
             const dx = node.x - other.x
             const dy = node.y - other.y
             const dist = Math.sqrt(dx * dx + dy * dy) || 1
-            const minDist = 70 // 풀네임 표시를 위해 거리 확보
+            // Director 노드와는 더 큰 최소 거리 유지
+            const minDist = (node.isDirector || other.isDirector) ? 100 : 80
             if (dist < minDist) {
-              const force = ((minDist - dist) / dist) * 0.3
+              const force = ((minDist - dist) / dist) * 0.4
               node.vx += dx * force
               node.vy += dy * force
             }
@@ -980,6 +981,45 @@ export const MembersDirectorAcademicTemplate = () => {
     teachingAssistant: false  // Collapsed by default
   })
   
+  // Sticky profile card refs and state
+  const profileCardRef = useRef<HTMLDivElement>(null)
+  const contentSectionRef = useRef<HTMLElement>(null)
+  const [profileTop, setProfileTop] = useState(0)
+  
+  // Sticky profile card effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!profileCardRef.current || !contentSectionRef.current) return
+      if (window.innerWidth < 1024) return
+      
+      const section = contentSectionRef.current
+      const card = profileCardRef.current
+      const sectionRect = section.getBoundingClientRect()
+      const cardHeight = card.offsetHeight
+      const navHeight = 80
+      const bottomPadding = 32
+      
+      if (sectionRect.top <= navHeight) {
+        if (sectionRect.bottom <= cardHeight + navHeight + bottomPadding) {
+          setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
+        } else {
+          setProfileTop(navHeight - sectionRect.top)
+        }
+      } else {
+        setProfileTop(0)
+      }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
+    handleScroll()
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [])
+  
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
   }
@@ -1294,11 +1334,15 @@ export const MembersDirectorAcademicTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-60 lg:items-start">
+      <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
+        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-380 shrink-0 lg:sticky lg:top-80">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm">
+          <aside className="lg:w-380 shrink-0">
+            <div 
+              ref={profileCardRef}
+              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
+              style={{ transform: `translateY(${profileTop}px)` }}
+            >
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
