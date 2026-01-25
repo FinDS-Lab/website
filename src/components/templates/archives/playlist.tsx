@@ -223,15 +223,15 @@ export const ArchivesPlaylistTemplate = () => {
             {/* List Toggle Button */}
             <button
               onClick={() => setShowListPanel(!showListPanel)}
-              className={`flex items-center gap-6 px-10 py-6 rounded-lg transition-all text-[11px] font-semibold ${
+              className={`flex items-center gap-6 px-12 py-6 rounded-lg transition-all text-xs font-semibold border ${
                 showListPanel 
-                  ? 'bg-primary text-white' 
-                  : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                  ? 'bg-primary text-white border-primary' 
+                  : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200 hover:border-primary'
               }`}
               title={showListPanel ? "그리드 보기" : "리스트 보기"}
             >
-              {showListPanel ? <LayoutGrid size={14} /> : <List size={14} />}
-              <span className="hidden sm:inline">{showListPanel ? 'Grid' : 'List'}</span>
+              {showListPanel ? <LayoutGrid size={16} /> : <List size={16} />}
+              <span>{showListPanel ? 'Grid' : 'List'}</span>
             </button>
           </div>
         </div>

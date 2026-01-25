@@ -699,26 +699,31 @@ const CollaborationNetwork = memo(() => {
             </filter>
           </defs>
 
-          {/* Links */}
+          {/* Links - Curved lines with gradient */}
           <g className="links">
             {links.map((link) => {
               const source = nodes.find((n) => n.id === link.source)
               const target = nodes.find((n) => n.id === link.target)
               if (!source || !target) return null
+              
+              // Calculate curved path
+              const dx = target.x - source.x
+              const dy = target.y - source.y
+              const dr = Math.sqrt(dx * dx + dy * dy) * 0.8
+              
+              const isDirectorLink = source.isDirector || target.isDirector
+              const strokeColor = isDirectorLink ? 'rgba(172,14,14,0.6)' : 'rgba(255,186,196,0.5)'
+              const strokeWidth = Math.max(0.8, Math.min(2, link.weight * 0.4))
+              
               return (
-                <line
+                <path
                   key={`${link.source}-${link.target}`}
-                  x1={source.x}
-                  y1={source.y}
-                  x2={target.x}
-                  y2={target.y}
-                  stroke={
-                    source.isDirector || target.isDirector
-                      ? 'rgb(172,14,14)'
-                      : '#FFBAC4'
-                  }
-                  strokeWidth={Math.max(0.5, Math.min(2.5, link.weight * 0.6))}
+                  d={`M${source.x},${source.y} Q${(source.x + target.x) / 2 + (dy * 0.1)},${(source.y + target.y) / 2 - (dx * 0.1)} ${target.x},${target.y}`}
+                  fill="none"
+                  stroke={strokeColor}
+                  strokeWidth={strokeWidth}
                   opacity={getLinkOpacity(link)}
+                  strokeLinecap="round"
                   className="transition-opacity duration-200"
                 />
               )
@@ -778,18 +783,44 @@ const CollaborationNetwork = memo(() => {
                       IC
                     </text>
                   )}
+                </g>
+              )
+            })}
+          </g>
 
-                  {/* Label - Full Name */}
+          {/* Labels - Rendered last to appear on top of everything */}
+          <g className="labels">
+            {[...nodes].sort((a, b) => (a.isDirector ? 1 : 0) - (b.isDirector ? 1 : 0)).map((node) => {
+              const size = getNodeSize(node)
+              return (
+                <g
+                  key={`label-${node.id}`}
+                  transform={`translate(${node.x}, ${node.y})`}
+                  opacity={getNodeOpacity(node)}
+                  className="pointer-events-none"
+                >
+                  {/* Label background for readability */}
+                  <text
+                    y={size + 14}
+                    textAnchor="middle"
+                    fill="white"
+                    stroke="white"
+                    strokeWidth={node.isDirector ? 4 : 3}
+                    strokeLinejoin="round"
+                    fontSize={node.isDirector ? 12 : 8}
+                    fontWeight={node.isDirector ? 700 : 600}
+                    className="select-none"
+                  >
+                    {node.nameKo || node.name}
+                  </text>
+                  {/* Label text */}
                   <text
                     y={size + 14}
                     textAnchor="middle"
                     fill={node.isDirector ? '#D6B14D' : '#374151'}
-                    stroke={node.isDirector ? '#000000' : 'none'}
-                    strokeWidth={node.isDirector ? 0.5 : 0}
-                    paintOrder="stroke"
-                    fontSize={node.isDirector ? 12 : 7}
+                    fontSize={node.isDirector ? 12 : 8}
                     fontWeight={node.isDirector ? 700 : 600}
-                    className="pointer-events-none select-none"
+                    className="select-none"
                   >
                     {node.nameKo || node.name}
                   </text>
@@ -1264,10 +1295,10 @@ export const MembersDirectorAcademicTemplate = () => {
 
       {/* Content */}
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
+        <div className="flex flex-col lg:flex-row gap-32 md:gap-60 lg:items-start">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-380 flex flex-col gap-24 md:gap-40">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-80">
+          <aside className="lg:w-380 shrink-0 lg:sticky lg:top-80">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
