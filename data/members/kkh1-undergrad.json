@@ -22,7 +22,11 @@
     "interests": [
       "Portfolio Optimization",
       "Financial Risk Engineering"
-    ]
+    ],
+    "project": {
+      "ko": "시장 스트레스 국면에서의 리스크 구조화와 포트폴리오 최적화",
+      "en": "Risk Structuring and Portfolio Optimization Under Market Stress Regimes"
+    }
   },
   "education": [
     {

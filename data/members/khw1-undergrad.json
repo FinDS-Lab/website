@@ -22,7 +22,11 @@
     "interests": [
       "Financial Data Science",
       "Business Analytics"
-    ]
+    ],
+    "project": {
+      "ko": "기술적 지표 기반 주가 방향 예측 및 유의미성 분석",
+      "en": "Stock Price Direction Prediction and Significance Analysis Based on Technical Indicators"
+    }
   },
   "education": [
     {

@@ -23,7 +23,11 @@
       "Business Analytics",
       "Management of Technology",
       "Patent Analysis"
-    ]
+    ],
+    "project": {
+      "ko": "IP5 핀테크 특허기반 트렌드 분석: 생성형 AI와 오픈뱅킹 API의 영향력을 중심으로",
+      "en": "IP5 Fintech Patent-Based Trend Analysis: Focusing on the Impact of Generative AI and Open Banking API"
+    }
   },
   "education": [
     {
