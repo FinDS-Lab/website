@@ -524,10 +524,10 @@ export const AboutIntroductionTemplate = () => {
                               className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col"
                             >
                               {/* Icon */}
-                              <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-16 shrink-0">
+                              <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                  <img loading="lazy" src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
+                                <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
+                                  <img loading="lazy" src={area.image} alt={area.title} className="w-100 h-100 md:w-140 md:h-140 object-contain" />
                                 </div>
                               </div>
 
