@@ -441,6 +441,28 @@ export const PublicationsTemplate = () => {
     return years.sort((a, b) => b - a)
   }, [publicationsByYear])
 
+  // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관)
+  const yearlyChartData = useMemo(() => {
+    const yearMap: { [year: number]: { journal: number; conference: number; book: number; report: number } } = {}
+    
+    publications.forEach((pub) => {
+      if (!yearMap[pub.year]) {
+        yearMap[pub.year] = { journal: 0, conference: 0, book: 0, report: 0 }
+      }
+      if (pub.type === 'journal') yearMap[pub.year].journal++
+      else if (pub.type === 'conference') yearMap[pub.year].conference++
+      else if (pub.type === 'book') yearMap[pub.year].book++
+      else if (pub.type === 'report') yearMap[pub.year].report++
+    })
+    
+    const years = Object.keys(yearMap).map(Number).sort((a, b) => a - b)
+    return years.map(year => ({
+      year,
+      ...yearMap[year],
+      total: yearMap[year].journal + yearMap[year].conference + yearMap[year].book + yearMap[year].report
+    }))
+  }, [publications])
+
   // 가장 최신 연도를 기본으로 펼침
   useEffect(() => {
     if (sortedYears.length > 0) {
@@ -568,6 +590,120 @@ export const PublicationsTemplate = () => {
                 </div>
               ))}
             </div>
+
+            {/* Publications Timeline - PC Only */}
+            {yearlyChartData.length > 0 && (
+              <div className="hidden lg:block mt-8">
+                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-20">
+                    <h4 className="text-sm font-bold text-gray-700 flex items-center gap-8">
+                      <Calendar className="size-16 text-primary" />
+                      Publication Timeline
+                    </h4>
+                    <div className="flex items-center gap-16">
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6B14D' }} />
+                        <span className="text-[10px] text-gray-500">Journal</span>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#E8D688' }} />
+                        <span className="text-[10px] text-gray-500">Conference</span>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6A076' }} />
+                        <span className="text-[10px] text-gray-500">Book</span>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#AC0E0E' }} />
+                        <span className="text-[10px] text-gray-500">Report</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Chart Area */}
+                  <div className="relative h-[200px]">
+                    {/* Y-axis labels */}
+                    <div className="absolute left-0 top-0 bottom-24 w-32 flex flex-col justify-between text-[10px] text-gray-400">
+                      <span>{Math.max(...yearlyChartData.map(d => d.total))}</span>
+                      <span>{Math.round(Math.max(...yearlyChartData.map(d => d.total)) / 2)}</span>
+                      <span>0</span>
+                    </div>
+                    
+                    {/* Chart */}
+                    <div className="ml-40 h-full flex items-end gap-2 pb-24 border-l border-b border-gray-100">
+                      {yearlyChartData.map((data, index) => {
+                        const maxTotal = Math.max(...yearlyChartData.map(d => d.total))
+                        const heightScale = 160 / maxTotal
+                        
+                        return (
+                          <div key={data.year} className="flex-1 flex flex-col items-center group relative">
+                            {/* Stacked Bar */}
+                            <div className="w-full max-w-[40px] flex flex-col-reverse">
+                              {data.report > 0 && (
+                                <div 
+                                  className="w-full transition-all duration-300 group-hover:opacity-80"
+                                  style={{ 
+                                    height: data.report * heightScale,
+                                    backgroundColor: '#AC0E0E',
+                                    borderRadius: data.journal + data.conference + data.book === 0 ? '4px 4px 0 0' : '0'
+                                  }} 
+                                />
+                              )}
+                              {data.book > 0 && (
+                                <div 
+                                  className="w-full transition-all duration-300 group-hover:opacity-80"
+                                  style={{ 
+                                    height: data.book * heightScale,
+                                    backgroundColor: '#D6A076',
+                                    borderRadius: data.journal + data.conference === 0 ? '4px 4px 0 0' : '0'
+                                  }} 
+                                />
+                              )}
+                              {data.conference > 0 && (
+                                <div 
+                                  className="w-full transition-all duration-300 group-hover:opacity-80"
+                                  style={{ 
+                                    height: data.conference * heightScale,
+                                    backgroundColor: '#E8D688',
+                                    borderRadius: data.journal === 0 ? '4px 4px 0 0' : '0'
+                                  }} 
+                                />
+                              )}
+                              {data.journal > 0 && (
+                                <div 
+                                  className="w-full rounded-t-[4px] transition-all duration-300 group-hover:opacity-80"
+                                  style={{ 
+                                    height: data.journal * heightScale,
+                                    backgroundColor: '#D6B14D'
+                                  }} 
+                                />
+                              )}
+                            </div>
+                            
+                            {/* Year Label */}
+                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-primary transition-colors">
+                              {String(data.year).slice(-2)}
+                            </span>
+                            
+                            {/* Tooltip */}
+                            <div className="absolute bottom-full mb-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-12 py-8 rounded-lg text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
+                              <div className="font-bold mb-4">{data.year}</div>
+                              <div className="space-y-2">
+                                {data.journal > 0 && <div>Journal: {data.journal}</div>}
+                                {data.conference > 0 && <div>Conference: {data.conference}</div>}
+                                {data.book > 0 && <div>Book: {data.book}</div>}
+                                {data.report > 0 && <div>Report: {data.report}</div>}
+                              </div>
+                              <div className="border-t border-gray-700 mt-4 pt-4 font-semibold">Total: {data.total}</div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Authorship Remarks Section */}
@@ -577,9 +713,9 @@ export const PublicationsTemplate = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
-                // FINDS Lab color palette for icons - 연구책임자, 교신저자 모두 gold
-                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#726A69', '#D6B14D']
-                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(214,176,76,0.15)']
+                // FINDS Lab color palette for icons - 모두 gold 계열로 통일
+                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#D6A076', '#D6B14D']
+                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(214,160,118,0.15)', 'rgba(214,176,76,0.15)']
                 return (
                   <div
                     key={index}
