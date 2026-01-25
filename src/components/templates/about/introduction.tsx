@@ -525,7 +525,7 @@ export const AboutIntroductionTemplate = () => {
                               <div className="relative w-48 h-48 md:w-56 md:h-56 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                                  <img src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
+                                  <img loading="lazy" src={area.image} alt={area.title} className="w-28 h-28 md:w-36 md:h-36 object-contain" />
                                 </div>
                               </div>
 

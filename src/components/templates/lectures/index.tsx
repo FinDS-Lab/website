@@ -393,7 +393,7 @@ export const LecturesTemplate = () => {
                                       )}
                                     >
                                       {schoolLogos[item.school] && (
-                                        <img src={schoolLogos[item.school]} alt={item.school} className="w-14 h-14 md:w-16 md:h-16 object-contain" />
+                                        <img loading="lazy" src={schoolLogos[item.school]} alt={item.school} className="w-14 h-14 md:w-16 md:h-16 object-contain" />
                                       )}
                                       {item.school}
                                     </span>

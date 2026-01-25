@@ -114,6 +114,7 @@ const ContactModalContent = () => {
               <button
                 onClick={() => handleCopyEmail(contact.email)}
                 className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white border border-gray-200 rounded-lg text-[11px] md:text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0"
+                aria-label={copiedEmail === contact.email ? '이메일 복사 완료' : `${contact.email} 복사`}
               >
                 {copiedEmail === contact.email ? (
                   <>
@@ -177,10 +178,10 @@ const LayoutOrganisms = ({ children }: props) => {
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       {/* Header - sticky on home page only */}
-      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`}>
+      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`} role="banner">
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo with animated text - PC only animation, mobile static */}
-          <Link to="/" className="flex items-center gap-12 md:gap-16">
+          <Link to="/" className="flex items-center gap-12 md:gap-16" aria-label="FINDS Lab 홈으로 이동">
             <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
             
             {/* Mobile: Static FINDS Lab */}
@@ -226,12 +227,14 @@ const LayoutOrganisms = ({ children }: props) => {
           <button
             className="lg:hidden p-8 text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:block">
+          <nav className="hidden lg:block" role="navigation" aria-label="메인 네비게이션">
             <ul className="flex items-center gap-40 xl:gap-60">
               {navItems.map((item) => (
                 <li
@@ -386,10 +389,10 @@ const LayoutOrganisms = ({ children }: props) => {
       </header>
 
       {/* Main Content */}
-      <main className="overflow-x-hidden">{children}</main>
+      <main className="overflow-x-hidden" role="main" aria-label="페이지 콘텐츠">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100">
+      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100" role="contentinfo" aria-label="사이트 정보">
         <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
           {/* Links Row - Redesigned with gold hover */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-20 md:mb-24">

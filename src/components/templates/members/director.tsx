@@ -522,7 +522,7 @@ export const MembersDirectorTemplate = () => {
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
-                  <img src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                  <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
                   Insu Choi
@@ -748,7 +748,7 @@ export const MembersDirectorTemplate = () => {
                       {/* Mobile: Stack vertically, Desktop: Horizontal */}
                       <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
                         <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
-                          <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                          <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
@@ -891,7 +891,7 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
+                        <img loading="lazy" src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">

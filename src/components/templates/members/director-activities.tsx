@@ -1486,7 +1486,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                         <div className="text-center">
                           {/* Logo */}
                           <div className="size-100 bg-gray-50 rounded-2xl p-16 flex items-center justify-center mx-auto mb-20">
-                            <img src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
+                            <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
                           </div>
 
                           {/* Name */}
@@ -1535,7 +1535,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-20 hover:shadow-lg hover:border-primary/30 transition-all group text-left"
                   >
                     <div className="size-56 bg-gray-50 rounded-xl p-8 flex items-center justify-center group-hover:bg-primary/5 transition-colors shrink-0">
-                      <img src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
+                      <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{act.name}</h4>

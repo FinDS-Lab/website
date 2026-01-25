@@ -138,7 +138,7 @@ export const HomeTemplate = () => {
                   </div>
                 </div>
                 <div className="hidden md:block flex-1 max-w-400 lg:max-w-650 absolute right-0 top-0 opacity-30 md:opacity-100">
-                  <img src={slide.image} alt="Hero Illustration" className="w-full h-full object-contain rounded-r-3xl" />
+                  <img loading="eager" src={slide.image} alt="Hero Illustration" className="w-full h-full object-contain rounded-r-3xl" />
                 </div>
               </div>
             ))}
@@ -148,10 +148,10 @@ export const HomeTemplate = () => {
 
       {/* Banner Section */}
       <section className="relative h-300 md:h-414 overflow-hidden">
-        <img src={hero4} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img loading="eager" src={hero4} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-16">
-          <img src={logoFinds} alt="FINDS Lab" className="w-80 md:w-112 h-auto mb-16 md:mb-24 brightness-0 invert" />
+          <img loading="eager" src={logoFinds} alt="FINDS Lab" className="w-80 md:w-112 h-auto mb-16 md:mb-24 brightness-0 invert" />
           <h2 className="text-xl md:text-2xl font-semibold text-primary mb-8">FINDS Lab</h2>
           <p className="text-base md:text-xl font-medium mb-12 md:mb-16">
             <span style={{ color: '#E8D688' }}>Fin</span>
@@ -176,7 +176,7 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-24">
                 <div className="flex items-center gap-8">
-                  <img src={icon8} alt="" className="size-22 md:size-26" />
+                  <img loading="lazy" src={icon8} alt="" className="size-22 md:size-26" />
                   <h3 className="text-xl md:text-[26px] font-semibold text-gray-900">News</h3>
                 </div>
                 <Link
@@ -210,7 +210,7 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-24">
                 <div className="flex items-center gap-8">
-                  <img src={icon9} alt="" className="size-22 md:size-26" />
+                  <img loading="lazy" src={icon9} alt="" className="size-22 md:size-26" />
                   <h3 className="text-xl md:text-[26px] font-semibold text-gray-900">Notice</h3>
                 </div>
                 <Link
