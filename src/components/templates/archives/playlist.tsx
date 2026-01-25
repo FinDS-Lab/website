@@ -2,34 +2,21 @@ import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { Home, Music2, X, Minimize2, Maximize2, Play, Pause } from 'lucide-react'
 
-// YouTube IFrame API 타입 선언
-declare global {
-  interface Window {
-    YT: {
-      Player: new (elementId: string, options: {
-        videoId: string;
-        playerVars?: Record<string, number | string>;
-        events?: {
-          onReady?: (event: { target: YTPlayer }) => void;
-          onStateChange?: (event: { data: number; target: YTPlayer }) => void;
-        };
-      }) => YTPlayer;
-      PlayerState: {
-        PLAYING: number;
-        PAUSED: number;
-        ENDED: number;
-        BUFFERING: number;
-      };
-    };
-    onYouTubeIframeAPIReady: () => void;
-  }
+// YouTube Player State Constants
+const YT_STATE = {
+  ENDED: 0,
+  PLAYING: 1,
+  PAUSED: 2,
+  BUFFERING: 3,
 }
 
+// YouTube Player 인터페이스 (로컬)
 interface YTPlayer {
   playVideo: () => void;
   pauseVideo: () => void;
   destroy: () => void;
-  getPlayerState: () => number;
+  loadVideoById?: (videoId: string) => void;
+  cueVideoById?: (videoId: string) => void;
 }
 
 interface PlaylistItem {
@@ -107,11 +94,11 @@ export const ArchivesPlaylistTemplate = () => {
           setIsPlaying(true)
         },
         onStateChange: (event) => {
-          if (event.data === window.YT.PlayerState.PLAYING) {
+          if (event.data === YT_STATE.PLAYING) {
             setIsPlaying(true)
-          } else if (event.data === window.YT.PlayerState.PAUSED) {
+          } else if (event.data === YT_STATE.PAUSED) {
             setIsPlaying(false)
-          } else if (event.data === window.YT.PlayerState.ENDED) {
+          } else if (event.data === YT_STATE.ENDED) {
             setIsPlaying(false)
           }
         },
@@ -135,12 +122,6 @@ export const ArchivesPlaylistTemplate = () => {
       playerRef.current.playVideo()
     }
   }, [isPlaying])
-
-export const ArchivesPlaylistTemplate = () => {
-  const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
-  const [loading, setLoading] = useState(true)
-  const [currentVideo, setCurrentVideo] = useState<PlaylistItem | null>(null)
-  const [isMinimized, setIsMinimized] = useState(false)
 
   useEffect(() => {
     const fetchPlaylists = async () => {

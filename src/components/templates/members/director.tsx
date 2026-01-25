@@ -631,7 +631,7 @@ export const MembersDirectorTemplate = () => {
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an <span className="font-bold text-gray-900">Assistant Professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">Director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
+                  I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
                   <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.
@@ -655,7 +655,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — <span className="font-semibold text-gray-700">iridescent view extraction</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>
