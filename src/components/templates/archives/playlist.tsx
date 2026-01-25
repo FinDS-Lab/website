@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { Home, Music2, X, Minimize2, Maximize2, Play, Pause } from 'lucide-react'
+import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List, LayoutGrid } from 'lucide-react'
 
 // 화면 크기 체크 hook
 const useIsPC = () => {
@@ -53,9 +53,11 @@ export const ArchivesPlaylistTemplate = () => {
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
   const [loading, setLoading] = useState(true)
   const [currentVideo, setCurrentVideo] = useState<PlaylistItem | null>(null)
+  const [currentIndex, setCurrentIndex] = useState<number>(-1)
   const [isMinimized, setIsMinimized] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isApiReady, setIsApiReady] = useState(false)
+  const [showListPanel, setShowListPanel] = useState(false)
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
 
@@ -176,9 +178,10 @@ export const ArchivesPlaylistTemplate = () => {
     fetchPlaylists()
   }, [])
 
-  const handlePlayVideo = (item: PlaylistItem) => {
+  const handlePlayVideo = (item: PlaylistItem, index: number) => {
     if (item.videoId) {
       setCurrentVideo(item)
+      setCurrentIndex(index)
       setIsMinimized(false)
       setIsPlaying(true)
     }
@@ -214,10 +217,22 @@ export const ArchivesPlaylistTemplate = () => {
             <div className="flex items-center gap-4">
               <Music2 size={14} className="text-primary" />
               <span className="text-[11px] md:text-xs font-bold text-gray-900">Playlist</span>
+              <span className="text-[10px] text-gray-400 ml-4">{playlists.length} tracks</span>
             </div>
             
-            {/* Spacer for balance */}
-            <div className="w-60 sm:w-80" />
+            {/* List Toggle Button */}
+            <button
+              onClick={() => setShowListPanel(!showListPanel)}
+              className={`flex items-center gap-6 px-10 py-6 rounded-lg transition-all text-[11px] font-semibold ${
+                showListPanel 
+                  ? 'bg-primary text-white' 
+                  : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+              }`}
+              title={showListPanel ? "그리드 보기" : "리스트 보기"}
+            >
+              {showListPanel ? <LayoutGrid size={14} /> : <List size={14} />}
+              <span className="hidden sm:inline">{showListPanel ? 'Grid' : 'List'}</span>
+            </button>
           </div>
         </div>
       </div>
@@ -229,11 +244,89 @@ export const ArchivesPlaylistTemplate = () => {
             <div className="w-24 h-24 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
           </div>
         ) : playlists.length > 0 ? (
+          showListPanel ? (
+            /* List View - Red Dot Design Quality */
+            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+              {/* List Header */}
+              <div className="grid grid-cols-[40px_1fr_1fr_100px] md:grid-cols-[48px_1fr_1fr_120px] gap-12 md:gap-16 px-16 md:px-24 py-12 md:py-14 bg-gray-50 border-b border-gray-100">
+                <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">#</div>
+                <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">Title</div>
+                <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">Artist</div>
+                <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider text-right">Date</div>
+              </div>
+              
+              {/* List Items */}
+              <div className="divide-y divide-gray-50">
+                {playlists.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handlePlayVideo(item, index)}
+                    className={`grid grid-cols-[40px_1fr_1fr_100px] md:grid-cols-[48px_1fr_1fr_120px] gap-12 md:gap-16 px-16 md:px-24 py-12 md:py-14 cursor-pointer transition-all group ${
+                      currentVideo?.videoId === item.videoId 
+                        ? 'bg-primary/5' 
+                        : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    {/* Number / Now Playing */}
+                    <div className="flex items-center justify-center">
+                      {currentVideo?.videoId === item.videoId ? (
+                        isPlaying ? (
+                          <div className="flex items-center gap-[2px]">
+                            <div className="w-[3px] h-10 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
+                            <div className="w-[3px] h-14 bg-primary rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                            <div className="w-[3px] h-8 bg-primary rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                          </div>
+                        ) : (
+                          <Pause size={14} className="text-primary" />
+                        )
+                      ) : (
+                        <span className="text-xs md:text-sm text-gray-400 group-hover:hidden">{index + 1}</span>
+                      )}
+                      {currentVideo?.videoId !== item.videoId && (
+                        <Play size={14} className="text-primary hidden group-hover:block" />
+                      )}
+                    </div>
+                    
+                    {/* Title with Thumbnail */}
+                    <div className="flex items-center gap-12 min-w-0">
+                      <img 
+                        src={item.thumbnail?.replace('maxresdefault', 'default')} 
+                        alt=""
+                        className="w-36 h-36 md:w-40 md:h-40 object-cover rounded-md flex-shrink-0"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          if (target.src.includes('maxresdefault')) {
+                            target.src = target.src.replace('maxresdefault', 'hqdefault')
+                          }
+                        }}
+                      />
+                      <span className={`text-xs md:text-sm font-semibold truncate ${
+                        currentVideo?.videoId === item.videoId ? 'text-primary' : 'text-gray-900'
+                      }`}>
+                        {item.title}
+                      </span>
+                    </div>
+                    
+                    {/* Artist */}
+                    <div className="flex items-center">
+                      <span className="text-xs md:text-sm text-gray-500 truncate">{item.artist}</span>
+                    </div>
+                    
+                    {/* Date */}
+                    <div className="flex items-center justify-end">
+                      <span className="text-[10px] md:text-xs text-gray-400">{item.date}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+          /* Grid View */
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 md:gap-16">
             {playlists.map((item, index) => (
               <div
                 key={index}
-                onClick={() => handlePlayVideo(item)}
+                onClick={() => handlePlayVideo(item, index)}
                 className={`bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-all group cursor-pointer ${
                   currentVideo?.videoId === item.videoId 
                     ? 'border-primary ring-2 ring-primary/20' 
@@ -290,6 +383,7 @@ export const ArchivesPlaylistTemplate = () => {
               </div>
             ))}
           </div>
+          )
         ) : (
           <div className="bg-white rounded-xl p-32 md:p-48 text-center">
             <div className="w-48 h-48 md:w-56 md:h-56 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-16">

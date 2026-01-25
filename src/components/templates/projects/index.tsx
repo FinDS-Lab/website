@@ -152,13 +152,27 @@ const FilterModal = ({
 export const ProjectsTemplate = () => {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [expandedYear, setExpandedYear] = useState<string | null>(null)
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [filters, setFilters] = useState<{ type: string[]; status: string[] }>({
     type: [],
     status: [],
   })
+
+  const toggleYear = (year: string) => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) {
+      setExpandedYears(prev => prev.has(year) ? new Set() : new Set([year]))
+    } else {
+      setExpandedYears(prev => {
+        const next = new Set(prev)
+        if (next.has(year)) next.delete(year)
+        else next.add(year)
+        return next
+      })
+    }
+  }
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -180,7 +194,7 @@ export const ProjectsTemplate = () => {
         if (filteredProjects.length > 0) {
           const years = [...new Set(filteredProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
           years.sort((a, b) => parseInt(b) - parseInt(a))
-          setExpandedYear(years[0])
+          setExpandedYears(new Set([years[0]]))
         }
       })
       .catch((err) => {
@@ -512,7 +526,7 @@ export const ProjectsTemplate = () => {
                 {years.map((year) => {
                   const yearProjects = projectsByYear[year]
                   const isCurrentYear = year === currentYear
-                  const isExpanded = expandedYear === year
+                  const isExpanded = expandedYears.has(year)
                   
                   // Type별 개수 계산
                   const yearStats = {
@@ -525,7 +539,7 @@ export const ProjectsTemplate = () => {
                   return (
                     <div key={year}>
                       <button
-                        onClick={() => setExpandedYear(isExpanded ? null : year)}
+                        onClick={() => toggleYear(year)}
                         className={`w-full flex items-center justify-between px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 transition-colors ${
                           isCurrentYear
                             ? 'bg-gradient-to-r from-[#FFF9E6] to-[#FFF3CC]/50 hover:from-[#FFF3CC] hover:to-[#FFF3CC]/70'

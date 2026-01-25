@@ -26,8 +26,22 @@ const formatDate = (dateStr: string): string => {
 export const AboutHonorsTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData>({})
   const [filter, setFilter] = useState<FilterType>('all')
-  const [expandedYear, setExpandedYear] = useState<string | null>(null)
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
+
+  const toggleYear = (year: string) => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) {
+      setExpandedYears(prev => prev.has(year) ? new Set() : new Set([year]))
+    } else {
+      setExpandedYears(prev => {
+        const next = new Set(prev)
+        if (next.has(year)) next.delete(year)
+        else next.add(year)
+        return next
+      })
+    }
+  }
 
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
@@ -70,7 +84,7 @@ export const AboutHonorsTemplate = () => {
         setHonorsData(filteredData)
         // 현재 연도를 기본으로 펼침
         const currentYear = new Date().getFullYear()
-        setExpandedYear(String(currentYear))
+        setExpandedYears(new Set([String(currentYear)]))
         setLoading(false)
       })
       .catch((err) => {
@@ -264,7 +278,7 @@ export const AboutHonorsTemplate = () => {
               return (
                 <div key={year} className={`border rounded-xl md:rounded-[20px] overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                   <button
-                    onClick={() => setExpandedYear(expandedYear === year ? null : year)}
+                    onClick={() => toggleYear(year)}
                     className={`w-full flex items-center justify-between px-16 md:px-[24px] py-16 md:py-[20px] transition-colors ${
                       isCurrentYear 
                         ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
@@ -292,13 +306,13 @@ export const AboutHonorsTemplate = () => {
                         })()}
                       </span>
                     </div>
-                    {expandedYear === year ? (
+                    {expandedYears.has(year) ? (
                       <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                     ) : (
                       <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                     )}
                   </button>
-                  {expandedYear === year && (
+                  {expandedYears.has(year) && (
                     <div className="flex flex-col">
                       {(!filteredItems || filteredItems.length === 0) ? (
                         <div className="p-24 md:p-32 text-center bg-white border-t border-gray-100">

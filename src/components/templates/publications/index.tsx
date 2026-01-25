@@ -211,7 +211,7 @@ export const PublicationsTemplate = () => {
   const [searchParams] = useSearchParams()
   const [publications, setPublications] = useState<Publication[]>([])
   const [authors, setAuthors] = useState<AuthorsData>({})
-  const [expandedYear, setExpandedYear] = useState<number | null>(null)
+  const [expandedYears, setExpandedYears] = useState<Set<number>>(new Set())
   const [searchTerm, setSearchTerm] = useState(() => searchParams.get('author') || '')
   const [filters, setFilters] = useState<{
     type: string[];
@@ -227,6 +227,22 @@ export const PublicationsTemplate = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const { showModal } = useStoreModal()
+
+  const toggleYear = (year: number) => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) {
+      // 모바일: 하나만 펼침
+      setExpandedYears(prev => prev.has(year) ? new Set() : new Set([year]))
+    } else {
+      // PC: 다중 펼침
+      setExpandedYears(prev => {
+        const next = new Set(prev)
+        if (next.has(year)) next.delete(year)
+        else next.add(year)
+        return next
+      })
+    }
+  }
 
   const handleFilterChange = useCallback((key: keyof typeof filters, value: string) => {
     setFilters((prev) => {
@@ -428,7 +444,7 @@ export const PublicationsTemplate = () => {
   // 가장 최신 연도를 기본으로 펼침
   useEffect(() => {
     if (sortedYears.length > 0) {
-      setExpandedYear(sortedYears[0])
+      setExpandedYears(new Set([sortedYears[0]]))
     }
   }, [sortedYears])
 
@@ -660,7 +676,7 @@ export const PublicationsTemplate = () => {
                 return (
                   <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                     <button
-                      onClick={() => setExpandedYear(expandedYear === year ? null : year)}
+                      onClick={() => toggleYear(year)}
                       className={`w-full flex items-center justify-between px-20 md:px-24 py-16 md:py-20 transition-colors ${
                         isCurrentYear 
                           ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
@@ -701,13 +717,13 @@ export const PublicationsTemplate = () => {
                           <span className="text-gray-500">&nbsp;Reports</span>
                         </span>
                       </div>
-                      {expandedYear === year ? (
+                      {expandedYears.has(year) ? (
                         <ChevronUp className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                       ) : (
                         <ChevronDown className="w-16 h-16 md:w-[20px] md:h-[20px] text-gray-500 flex-shrink-0" />
                       )}
                     </button>
-                    {expandedYear === year && (
+                    {expandedYears.has(year) && (
                       <div className="flex flex-col">
                         {pubs.length === 0 ? (
                           <div className="p-32 md:p-40 text-center bg-white border-t border-gray-100">
@@ -914,7 +930,7 @@ export const PublicationsTemplate = () => {
                                   </div>
                                   {/* Venue */}
                                   <p className="text-xs md:text-sm text-gray-700 font-bold">
-                                    {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean') && pub.venue_ko 
+                                    {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language?.toLowerCase() === 'korean') && pub.venue_ko 
                                       ? pub.venue_ko 
                                       : pub.venue}
                                   </p>
