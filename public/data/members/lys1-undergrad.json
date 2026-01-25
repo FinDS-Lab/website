@@ -23,7 +23,11 @@
       "Financial Data Science",
       "Algorithm Trading",
       "Data-Inspired Decision Making"
-    ]
+    ],
+    "project": {
+      "ko": "시계열 데이터 증강을 통한 백테스트 과적합 완화 가능성에 대한 실증 분석",
+      "en": "Empirical Analysis on the Potential of Mitigating Backtest Overfitting Through Time Series Data Augmentation"
+    }
   },
   "education": [
     {

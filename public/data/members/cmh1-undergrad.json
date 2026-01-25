@@ -25,7 +25,11 @@
       "Empirical Time-Series Analysis",
       "Business Analytics",
       "Causal Inference"
-    ]
+    ],
+    "project": {
+      "ko": "글로벌 해운지수와 한국 금융시장의 동조성 연구: 선후행 관계, 인과관계, 비대칭 효과 분석",
+      "en": "A Study on the Co-Movement Between Global Shipping Indices and Korean Financial Markets: Analysis of Lead-Lag Relationships, Causality, and Asymmetric Effects"
+    }
   },
   "education": [
     {

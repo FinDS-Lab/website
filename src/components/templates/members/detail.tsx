@@ -302,6 +302,19 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
 
           {/* Right Content */}
           <div className="flex-1 flex flex-col gap-40 md:gap-60">
+            {/* Current Project */}
+            {member.research.project && (
+              <section>
+                <div className="flex items-center gap-12 mb-20 md:mb-24">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Current Project</h3>
+                </div>
+                <div className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
+                  <p className="text-base font-semibold text-gray-800 mb-8">{member.research.project.ko}</p>
+                  <p className="text-sm text-gray-500 italic">{member.research.project.en}</p>
+                </div>
+              </section>
+            )}
+
             {/* Research Interests */}
             <section>
               <div className="flex items-center gap-12 mb-20 md:mb-24">
@@ -329,17 +342,17 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div key={idx} className="flex items-start justify-between gap-16 p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
                       <h4 className="text-base font-bold text-gray-900">
-                        {edu.field_en || edu.field}
+                        {edu.school_en || edu.school}
                       </h4>
-                      <p className="text-sm text-gray-600">{edu.school_en || edu.school}</p>
+                      <p className="text-sm font-semibold text-gray-500">{edu.field_en || edu.field}</p>
                       {edu.doubleMajor && (
-                        <p className="text-xs font-bold text-[#D6B14D] mt-2">
-                          • Double Major in {edu.doubleMajor}
+                        <p className="text-sm font-semibold text-gray-500">
+                          Double Major in {edu.doubleMajor}
                         </p>
                       )}
                       {edu.minor && (
-                        <p className="text-xs font-bold text-[#D6B14D] mt-2">
-                          • Minor in {edu.minor}
+                        <p className="text-sm font-semibold text-gray-500">
+                          Minor in {edu.minor}
                         </p>
                       )}
                     </div>

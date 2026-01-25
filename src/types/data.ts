@@ -79,6 +79,10 @@ export type MemberData = {
   }
   research: {
     interests: string[]
+    project?: {
+      ko: string
+      en: string
+    }
   }
   education: {
     degree: string

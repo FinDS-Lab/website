@@ -24,7 +24,11 @@
       "Quantitative Trading",
       "Explainable Artificial Intelligence (XAI)",
       "Trustworthy Artificial Intelligence (AI)"
-    ]
+    ],
+    "project": {
+      "ko": "신뢰도 지표 기반 거래 필터링 프레임워크 (C-index)",
+      "en": "A Trading Filtering Framework Based on Confidence Index (C-index)"
+    }
   },
   "education": [
     {

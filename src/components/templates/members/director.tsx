@@ -643,19 +643,19 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Financial Data Science</span> — including AI applications in quantitative finance, portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Business Analytics</span> — using various analytical methods from time-series models to graph-based approaches to uncover meaningful insights.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold text-gray-800">Data-Informed Decision Making</span> — <span className="font-semibold" style={{color: '#D6B14D'}}>iridescent view extraction</span> for multi-perspective interpretation and synthesis to support decisions in business and industry.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — <span className="font-semibold" style={{color: '#D6B14D'}}>iridescent view extraction</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>
@@ -686,6 +686,22 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => {
+                        // Special handling for Iridescent View Extraction - make it gold
+                        if (item.includes('Iridescent View Extraction')) {
+                          const highlightedItem = item.replace(
+                            'Iridescent View Extraction',
+                            '<span style="color: #D6B14D; font-weight: 600;">Iridescent View Extraction</span>'
+                          )
+                          return (
+                            <li key={idx} className="flex items-start gap-10">
+                              <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                              <span 
+                                className="text-xs md:text-sm text-gray-600 leading-relaxed"
+                                dangerouslySetInnerHTML={{__html: highlightedItem}}
+                              />
+                            </li>
+                          )
+                        }
                         // Extract key terms for highlighting
                         const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
                         let highlightedItem = item

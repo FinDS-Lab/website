@@ -23,7 +23,11 @@
       "Business Analytics",
       "Consumer and Market Analytics",
       "Data-Driven Behavioral Insights"
-    ]
+    ],
+    "project": {
+      "ko": "서울특별시 카페 상권의 생존 수명 및 폐업 위험 요인에 대한 분석",
+      "en": "Analysis of Survival Duration and Closure Risk Factors in Seoul Metropolitan Area Cafe Business Districts"
+    }
   },
   "education": [
     {

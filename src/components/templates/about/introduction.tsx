@@ -52,7 +52,7 @@ const coreValues = [
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
-    descriptionKo: '저희 연구실의 연구가 실무자들이 <b>금융 시장</b>과 경영 및 산업 환경에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
+    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>금융 시장</b>과 경영 및 산업 환경에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
   },
   {
     icon: Lightbulb,
@@ -311,13 +311,13 @@ export const AboutIntroductionTemplate = () => {
                                 가천대학교 경영대학 금융·빅데이터학부 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 경영 및 금융 분야를 비롯한 산업 환경 속에서 <span className="font-bold" style={{color: '#D6B14D'}}>실질적인 가치를 창출</span>하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                저희 연구실은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
+                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
                               </p>
                             </>
                           ) : (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                <span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab (<span className="font-bold" style={{color: '#AC0E0E'}}>Financial Data Intelligence</span> & Solutions Laboratory) at Gachon University conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span> in the fast-changing, data-driven business and financial landscape.
+                                <span className="font-semibold italic" style={{color: '#D6B14D'}}>Towards Data-Illuminated Financial Innovation</span> — <span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> (<span className="font-bold" style={{color: '#AC0E0E'}}>FInancial Data Intelligence & Solutions</span>) at Gachon University conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span> in the fast-changing, data-driven business and financial landscape.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
                                 Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data and support sharper, data-grounded decision-making.
@@ -399,7 +399,7 @@ export const AboutIntroductionTemplate = () => {
                           <div className="max-w-3xl mx-auto text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
-                                <>저희 연구실은 데이터를 바탕으로 한 다양한 연구를 통해<br />
+                                <>저희 FINDS Lab은 데이터를 바탕으로 한 다양한 연구를 통해<br />
                                 지식과 정보의 비대칭으로 인한 경영 및 산업 환경의 비효율을 줄이고,<br />
                                 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
