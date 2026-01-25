@@ -1266,7 +1266,7 @@ export const MembersDirectorAcademicTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 ">
+          <aside className="lg:w-380 flex flex-col gap-24 md:gap-40 ">
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
@@ -1675,18 +1675,18 @@ export const MembersDirectorAcademicTemplate = () => {
                             <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line abbreviations */}
-                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
+                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[8px] font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
-                            <span className="text-gray-500">&nbsp;G</span>
+                            <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#D6B14D]">{indCount}</span>
-                            <span className="text-gray-500">&nbsp;I</span>
+                            <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{instCount}</span>
-                            <span className="text-gray-500">&nbsp;In</span>
+                            <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-gray-600">{acadCount}</span>
-                            <span className="text-gray-500">&nbsp;R</span>
+                            <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
