@@ -24,10 +24,16 @@
       "Multivariate Time Series Modeling",
       "Anomaly Detection"
     ],
-    "project": {
-      "ko": "",
-      "en": "Fundamental-Driven Sub-Universe Construction for Portfolio Optimization: Evidence from the Korean Equity Market"
-    }
+    "projects": [
+      {
+        "ko": "",
+        "en": "Deciphering the Impact of COVID-19 on Korean Sector ETFs: Insights from an ARIMAX and Granger Causality"
+      },
+      {
+        "ko": "",
+        "en": "Fundamental-Driven Sub-Universe Construction for Portfolio Optimization: Evidence from the Korean Equity Market"
+      }
+    ]
   },
   "education": [
     {
