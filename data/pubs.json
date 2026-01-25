@@ -6287,7 +6287,7 @@
     "code_label": "C",
     "published_date": "2017-11-04",
     "year": 2017,
-    "title": "Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of Aram (All Random All Mid), the Game Mode of the Online Game League of Legends",
+    "title": "Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of ARAM (All Random All Mid), the Game Mode of the Online Game League of Legends",
     "title_ko": "한정된 정보가 주어진 경쟁 환경에서의 승률 예측 및 경쟁 전략 설계: 온라인 게임 ʻ리그 오브 레전드'의 게임 형태 ʻ무작위 총력전ʼ을 예시로",
     "authors": [
       1,
@@ -6311,13 +6311,13 @@
       "organization_ko": "대한산업공학회"
     },
     "citations": {
-      "apa": "Choi, I., & You, J. (2017, November 4). Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of Aram (All Random All Mid), the game mode of the online game League of Legends [Paper presentation]. 2017 Fall Conference of the Korean Institute of Industrial Engineers.",
-      "mla": "Choi, Insu, and Jeongsue You. \"Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of Aram (All Random All Mid), the Game Mode of the Online Game League of Legends.\" 2017 Fall Conference of the Korean Institute of Industrial Engineers, 4 Nov. 2017.",
-      "chicago": "Choi, Insu, and Jeongsue You. \"Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of Aram (All Random All Mid), the Game Mode of the Online Game League of Legends.\" Paper presented at the 2017 Fall Conference of the Korean Institute of Industrial Engineers, November 4, 2017.",
-      "harvard": "Choi, I & You, J 2017, 'Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of Aram (All Random All Mid), the game mode of the online game League of Legends', paper presented at the 2017 Fall Conference of the Korean Institute of Industrial Engineers, 4 November.",
-      "vancouver": "Choi I, You J. Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of Aram (All Random All Mid), the game mode of the online game League of Legends. Paper presented at: 2017 Fall Conference of the Korean Institute of Industrial Engineers; 2017 Nov 4.",
+      "apa": "Choi, I., & You, J. (2017, November 4). Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of ARAM (All Random All Mid), the game mode of the online game League of Legends [Paper presentation]. 2017 Fall Conference of the Korean Institute of Industrial Engineers.",
+      "mla": "Choi, Insu, and Jeongsue You. \"Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of ARAM (All Random All Mid), the Game Mode of the Online Game League of Legends.\" 2017 Fall Conference of the Korean Institute of Industrial Engineers, 4 Nov. 2017.",
+      "chicago": "Choi, Insu, and Jeongsue You. \"Designing a Model for Expecting Winning Rate and Competition Strategies in a Competitive Environment with Limited Information: Focus on the Example of ARAM (All Random All Mid), the Game Mode of the Online Game League of Legends.\" Paper presented at the 2017 Fall Conference of the Korean Institute of Industrial Engineers, November 4, 2017.",
+      "harvard": "Choi, I & You, J 2017, 'Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of ARAM (All Random All Mid), the game mode of the online game League of Legends', paper presented at the 2017 Fall Conference of the Korean Institute of Industrial Engineers, 4 November.",
+      "vancouver": "Choi I, You J. Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of ARAM (All Random All Mid), the game mode of the online game League of Legends. Paper presented at: 2017 Fall Conference of the Korean Institute of Industrial Engineers; 2017 Nov 4.",
       "korean": "최인수, 유정수. (2017). 한정된 정보가 주어진 경쟁 환경에서의 승률 예측 및 경쟁 전략 설계: 온라인 게임 ʻ리그 오브 레전드'의 게임 형태 ʻ무작위 총력전ʼ을 예시로. 2017 대한산업공학회 추계학술대회 발표논문.",
-      "bibtex": "@inproceedings{choi2017designing,\n  title = {{Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of Aram (All Random All Mid), the game mode of the online game League of Legends}},\n  author = {Choi, I., and You, J.},\n  booktitle = {2017 Fall Conference of the Korean Institute of Industrial Engineers (KIIE)},\n  year = {2017},\n}"
+      "bibtex": "@inproceedings{choi2017designing,\n  title = {{Designing a model for expecting winning rate and competition strategies in a competitive environment with limited information: Focus on the example of ARAM (All Random All Mid), the game mode of the online game League of Legends}},\n  author = {Choi, I., and You, J.},\n  booktitle = {2017 Fall Conference of the Korean Institute of Industrial Engineers (KIIE)},\n  year = {2017},\n}"
     }
   }
 ]
