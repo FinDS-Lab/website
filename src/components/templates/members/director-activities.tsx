@@ -1347,7 +1347,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
-          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
+          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 ">
         {/* Profile Card */}
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
@@ -1573,7 +1573,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#AC8D04'}}>
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#AC0E0E'}}>
                         {menteesByYear['2026']?.length || 0}
                       </p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Current Mentees & Tutees (2026)</p>
