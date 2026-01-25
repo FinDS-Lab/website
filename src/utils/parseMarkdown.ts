@@ -103,19 +103,7 @@ export const markdownToHtml = (markdown: string, options?: { basePath?: string }
   // 6. 수평선 --- or *** (단독 줄에만)
   html = html.replace(/^[-*]{3,}\s*$/gm, '<hr />')
 
-  // 7. 굵은 글씨 **text** (기울임보다 먼저, 더 견고한 패턴)
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>')
-
-  // 8. 기울임 *text* (굵은 글씨 처리 후이므로 남은 단일 *만 처리)
-  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
-  html = html.replace(/\b_(.+?)_\b/g, '<em>$1</em>')
-
-  // 9. 인용문 > text
-  html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-  html = html.replace(/<\/blockquote>\n<blockquote>/g, '<br />')
-
-  // 10. 줄 단위로 목록 처리
+  // 7. 줄 단위로 목록 처리 (굵은 글씨 처리 전에 먼저 수행)
   const lines = html.split('\n')
   const result: string[] = []
   let inUl = false
@@ -124,9 +112,9 @@ export const markdownToHtml = (markdown: string, options?: { basePath?: string }
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i]
     
-    // 순서 없는 목록 (- item 형태, 단 HTML 태그 안이 아닌 경우만)
+    // 순서 없는 목록 (- item 형태)
     const ulMatch = line.match(/^- (.+)$/)
-    if (ulMatch && !line.includes('<')) {
+    if (ulMatch) {
       if (!inUl) {
         result.push('<ul>')
         inUl = true
@@ -140,7 +128,7 @@ export const markdownToHtml = (markdown: string, options?: { basePath?: string }
 
     // 순서 있는 목록
     const olMatch = line.match(/^\d+\. (.+)$/)
-    if (olMatch && !line.includes('<')) {
+    if (olMatch) {
       if (!inOl) {
         result.push('<ol>')
         inOl = true
@@ -160,6 +148,18 @@ export const markdownToHtml = (markdown: string, options?: { basePath?: string }
   if (inOl) result.push('</ol>')
 
   html = result.join('\n')
+
+  // 8. 굵은 글씨 **text** (리스트 처리 후)
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>')
+
+  // 9. 기울임 *text* (굵은 글씨 처리 후이므로 남은 단일 *만 처리)
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
+  html = html.replace(/\b_(.+?)_\b/g, '<em>$1</em>')
+
+  // 10. 인용문 > text
+  html = html.replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
+  html = html.replace(/<\/blockquote>\n<blockquote>/g, '<br />')
 
   // 11. 단락 처리 (빈 줄로 구분)
   const paragraphs = html.split(/\n\n+/)

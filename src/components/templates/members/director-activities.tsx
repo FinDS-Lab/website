@@ -1345,7 +1345,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
       {/* Content */}
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
           <aside className="lg:w-380 flex flex-col gap-24 md:gap-40 ">
         {/* Profile Card */}
