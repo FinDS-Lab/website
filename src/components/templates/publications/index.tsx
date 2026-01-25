@@ -456,20 +456,11 @@ export const PublicationsTemplate = () => {
       else if (pub.type === 'report') yearMap[pub.year].report++
     })
     
-    // 2018년부터 현재까지 모든 연도 포함 (데이터 없는 연도도 0으로 표시)
-    const currentYear = new Date().getFullYear()
-    const allYears = []
-    for (let y = 2018; y <= Math.max(currentYear, ...Object.keys(yearMap).map(Number)); y++) {
-      allYears.push(y)
-    }
-    
-    return allYears.map(year => ({
+    const years = Object.keys(yearMap).map(Number).sort((a, b) => a - b)
+    return years.map(year => ({
       year,
-      journal: yearMap[year]?.journal || 0,
-      conference: yearMap[year]?.conference || 0,
-      book: yearMap[year]?.book || 0,
-      report: yearMap[year]?.report || 0,
-      total: (yearMap[year]?.journal || 0) + (yearMap[year]?.conference || 0) + (yearMap[year]?.book || 0) + (yearMap[year]?.report || 0)
+      ...yearMap[year],
+      total: yearMap[year].journal + yearMap[year].conference + yearMap[year].book + yearMap[year].report
     }))
   }, [publications])
 
