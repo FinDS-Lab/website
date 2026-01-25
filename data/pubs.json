@@ -35,6 +35,8 @@
     "year": 2026,
     "title": "대학생을 위한 포트폴리오 가이드",
     "title_ko": "대학생을 위한 포트폴리오 가이드",
+    "edition": 2,
+    "original_year": 2018,
     "authors": [
       1
     ],
@@ -45,14 +47,14 @@
     "language": "Korean",
     "awards": 0,
     "citations": {
-      "apa": "Choi, I. (2026). 대학생을 위한 포트폴리오 가이드. Bookk Publishing.",
-      "mla": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2026.",
-      "chicago": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. Wikidocs, 2026.",
-      "harvard": "Choi, I 2026, <em>How to make your own student portfolio: From concept to competition</em>, Wikidocs.",
-      "vancouver": "Choi I. How to make your own student portfolio: From concept to competition. Wikidocs; 2026.",
-      "korean": "최인수. (2026). 나만의 학생 포트폴리오 만들기: 컨셉부터 대회까지. 위키독스.",
-      "bibtex": "@book{choi2026대학생을,\n  title = {{대학생을 위한 포트폴리오 가이드}},\n  author = {Choi, I.},\n  publisher = {Wikidocs},\n  year = {2026},\n}",
-      "apa_ko": "최인수 (2026). 대학생을 위한 포트폴리오 가이드. 부크크."
+      "apa": "Choi, I. (2026). 대학생을 위한 포트폴리오 가이드 (2nd ed.). Bookk Publishing. (Original work published 2018)",
+      "mla": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. 2nd ed., Wikidocs, 2026.",
+      "chicago": "Choi, Insu. <em>How to Make Your Own Student Portfolio: From Concept to Competition</em>. 2nd ed. Wikidocs, 2026. First published 2018.",
+      "harvard": "Choi, I 2026, <em>How to make your own student portfolio: From concept to competition</em>, 2nd edn, Wikidocs.",
+      "vancouver": "Choi I. How to make your own student portfolio: From concept to competition. 2nd ed. Wikidocs; 2026.",
+      "korean": "최인수. (2026). 나만의 학생 포트폴리오 만들기: 컨셉부터 대회까지 (제2판). 위키독스. (초판 2018)",
+      "bibtex": "@book{choi2026대학생을,\n  title = {{대학생을 위한 포트폴리오 가이드}},\n  author = {Choi, I.},\n  publisher = {Wikidocs},\n  year = {2026},\n  edition = {2},\n  note = {First edition published 2018},\n}",
+      "apa_ko": "최인수 (2026). 대학생을 위한 포트폴리오 가이드 (제2판). 부크크. (초판 2018)"
     }
   },
   {
