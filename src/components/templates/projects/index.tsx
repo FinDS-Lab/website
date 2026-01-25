@@ -603,7 +603,32 @@ export const ProjectsTemplate = () => {
                             ) || []
                             
                             return (
-                              <div key={idx} className="p-16 md:p-24 hover:bg-gray-50/50 transition-all relative">
+                              <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
+                                {/* Mobile: Full-width top bar */}
+                                <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
+                                  background: project.type === 'government' ? 'linear-gradient(135deg, #D6B14D 0%, #E8D688 100%)' :
+                                    project.type === 'industry' ? 'linear-gradient(135deg, #AC0E0E 0%, #D6A076 100%)' :
+                                    project.type === 'institution' ? 'linear-gradient(135deg, #E8D688 0%, #F5EBC7 100%)' :
+                                    project.type === 'academic' ? 'linear-gradient(135deg, #FFBAC4 0%, #FFE4E8 100%)' :
+                                    'linear-gradient(135deg, #6B7280 0%, #9CA3AF 100%)'
+                                }}>
+                                  <div className="flex items-center gap-8">
+                                    {/* Type Label */}
+                                    <span className={`text-[11px] font-bold tracking-wide ${
+                                      project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
+                                    }`}>
+                                      {config?.labelShort || project.type}
+                                    </span>
+                                  </div>
+                                  {/* Right side: Status badge */}
+                                  <span className={`px-8 py-3 rounded text-[9px] font-bold ${
+                                    status === 'ongoing' ? 'bg-white/90 text-[#D6B14D]' : 'bg-white/70 text-gray-500'
+                                  }`}>
+                                    {status === 'ongoing' ? 'Ongoing' : 'Completed'}
+                                  </span>
+                                </div>
+                                
+                                <div className="p-16 md:p-24">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
                                   {/* Left: Type Badge - White background style matching Honors */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
@@ -639,35 +664,7 @@ export const ProjectsTemplate = () => {
                                     </div>
                                   </div>
                                   
-                                  {/* Mobile: Ribbon badge - Publications style */}
-                                  <div className="md:hidden absolute top-0 left-0 flex items-stretch">
-                                    <div className={`px-12 py-6 rounded-br-lg shadow-sm ${
-                                      project.type === 'government' ? 'bg-[#D6B14D]' :
-                                      project.type === 'industry' ? 'bg-primary' :
-                                      project.type === 'institution' ? 'bg-[#E8D688]' :
-                                      project.type === 'academic' ? 'bg-[#FFBAC4]' : 'bg-gray-500'
-                                    }`}>
-                                      <span className={`text-[10px] font-bold tracking-wide ${
-                                        project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
-                                      }`}>
-                                        {config?.labelShort || project.type}
-                                      </span>
-                                    </div>
-                                    <div className={`px-10 py-6 rounded-br-lg -ml-1 border-b border-r ${
-                                      status === 'ongoing' ? 'border-[#FFEB99] bg-[#FFF9E6]' : 'border-gray-200 bg-gray-50'
-                                    }`}>
-                                      <span className={`text-[10px] font-bold ${
-                                        status === 'ongoing' ? 'text-[#D6B14D]' : 'text-gray-500'
-                                      }`}>
-                                        {status === 'ongoing' ? 'Ongoing' : 'Completed'}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="flex-1 min-w-0 md:pt-0 pt-8">
-                                    {/* Mobile content padding */}
-                                    <div className="md:hidden h-16" />
-                                    
+                                  <div className="flex-1 min-w-0">
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
                                       <div className="flex-1 min-w-0">
@@ -735,6 +732,7 @@ export const ProjectsTemplate = () => {
                                       </div>
                                     )}
                                   </div>
+                                </div>
                                 </div>
                               </div>
                             )

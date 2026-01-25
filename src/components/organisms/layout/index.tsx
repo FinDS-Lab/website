@@ -145,6 +145,24 @@ const LayoutOrganisms = ({ children }: props) => {
   const { showAlt: showAltText } = useLogoTextAnimation()
   const isHomePage = location.pathname === '/'
 
+  // 모바일 메뉴 열릴 때 body 스크롤 방지
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [mobileMenuOpen])
+
+  // 페이지 이동 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setMobileMenuOpen(false)
+    setMobileSubMenu(null)
+  }, [location.pathname])
+
   const handleContactClick = () => {
     showModal({
       title: '',
@@ -176,7 +194,7 @@ const LayoutOrganisms = ({ children }: props) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-white">
       {/* Header - sticky on home page only */}
       <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`} role="banner">
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
@@ -225,7 +243,7 @@ const LayoutOrganisms = ({ children }: props) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-8 text-gray-700"
+            className="md:hidden p-8 text-gray-700"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
             aria-expanded={mobileMenuOpen}
@@ -234,7 +252,7 @@ const LayoutOrganisms = ({ children }: props) => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:block" role="navigation" aria-label="메인 네비게이션">
+          <nav className="hidden md:block" role="navigation" aria-label="메인 네비게이션">
             <ul className="flex items-center gap-40 xl:gap-60">
               {navItems.map((item) => (
                 <li
@@ -298,7 +316,7 @@ const LayoutOrganisms = ({ children }: props) => {
           {/* Contact Us Button - Desktop */}
           <button
             onClick={handleContactClick}
-            className="hidden lg:flex items-center gap-8 px-20 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+            className="hidden md:flex items-center gap-8 px-20 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
           >
             <Mail size={16} />
             Contact Us
@@ -307,8 +325,8 @@ const LayoutOrganisms = ({ children }: props) => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100">
-            <nav className="px-16 py-16">
+          <div className="md:hidden fixed inset-0 top-[61px] bg-white z-[9998] overflow-y-auto">
+            <nav className="px-16 py-16 max-w-1480 mx-auto">
               <ul className="flex flex-col gap-8">
                 {navItems.map((item) => (
                   <li key={item.name}>
@@ -376,9 +394,9 @@ const LayoutOrganisms = ({ children }: props) => {
                       handleContactClick()
                       setMobileMenuOpen(false)
                     }}
-                    className="w-full flex items-center justify-center gap-8 px-20 py-12 bg-primary text-white text-sm font-bold rounded-xl"
+                    className="w-full flex items-center justify-center gap-8 px-20 py-14 bg-primary text-white text-base font-bold rounded-xl"
                   >
-                    <Mail size={16} />
+                    <Mail size={18} />
                     Contact Us
                   </button>
                 </li>

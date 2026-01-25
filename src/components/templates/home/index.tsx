@@ -117,12 +117,12 @@ export const HomeTemplate = () => {
         <div className="max-w-1480 mx-auto">
           <Slider loop autoplay autoplayDelay={5000} arrows dots>
             {heroSlides.map((slide) => (
-              <div key={slide.id} className="relative bg-gray-50 h-full rounded-2xl md:rounded-3xl px-20 md:px-60 lg:px-100 py-32 md:py-48 flex items-center justify-between overflow-hidden">
-                <div className="flex flex-col flex-1 gap-16 md:gap-24 z-10">
-                  <div className="inline-flex items-center px-12 md:px-16 py-8 md:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
+              <div key={slide.id} className="relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-32 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
+                <div className="flex flex-col flex-1 gap-16 md:gap-20 lg:gap-24 z-10 max-w-[60%] md:max-w-none">
+                  <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
                     <span className="text-sm md:text-md font-bold text-primary">{slide.badge}</span>
                   </div>
-                  <h1 className="text-xl md:text-2xl lg:text-[36px] font-bold text-gray-900 whitespace-pre-line">
+                  <h1 className="text-lg md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 whitespace-pre-line leading-tight">
                     {slide.title}
                   </h1>
                   <div className="flex flex-wrap gap-8 md:gap-10">
@@ -130,15 +130,15 @@ export const HomeTemplate = () => {
                       <Link
                         key={btnIndex}
                         to={button.path}
-                        className="px-16 md:px-20 py-12 md:py-16 bg-primary text-white! text-sm md:text-md font-medium rounded-xl hover:bg-primary/90 transition-colors"
+                        className="px-14 md:px-18 lg:px-20 py-10 md:py-14 lg:py-16 bg-primary text-white! text-xs md:text-sm lg:text-md font-medium rounded-xl hover:bg-primary/90 transition-colors"
                       >
                         {button.label}
                       </Link>
                     ))}
                   </div>
                 </div>
-                <div className="hidden md:block flex-1 max-w-400 lg:max-w-650 absolute right-0 top-0 opacity-30 md:opacity-100">
-                  <img loading="eager" src={slide.image} alt="Hero Illustration" className="w-full h-full object-contain rounded-r-3xl" />
+                <div className="absolute right-0 top-0 bottom-0 w-[45%] md:w-auto md:flex-1 md:max-w-350 lg:max-w-450 xl:max-w-650 md:relative opacity-20 md:opacity-100">
+                  <img loading="eager" src={slide.image} alt="Hero Illustration" className="w-full h-full object-contain object-right md:rounded-r-3xl" />
                 </div>
               </div>
             ))}
@@ -170,21 +170,20 @@ export const HomeTemplate = () => {
       </section>
 
       {/* News & Notice Section */}
-      <section className="bg-gray-50 py-40 md:py-80 px-16 md:px-20">
+      <section className="bg-gray-50 py-40 md:py-60 lg:py-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto">
-          <div className="flex flex-col md:flex-row gap-32 md:gap-60">
+          <div className="flex flex-col md:flex-row gap-32 md:gap-40 lg:gap-60">
             <div className="flex-1">
-              <div className="flex items-center justify-between mb-16 md:mb-24">
+              <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <img loading="lazy" src={icon8} alt="" className="size-22 md:size-26" />
-                  <h3 className="text-xl md:text-[26px] font-semibold text-gray-900">News</h3>
+                  <img loading="lazy" src={icon8} alt="" className="size-22 md:size-24 lg:size-26" />
+                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">News</h3>
                 </div>
                 <Link
                   to="/archives/news"
-                  className="flex items-center gap-4 md:gap-8 px-12 md:px-16 py-8 md:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
                 >
-                  <span className="hidden sm:inline">자세히 보기</span>
-                  <span className="sm:hidden">더보기</span>
+                  자세히 보기
                   <ChevronRight size={16} className="text-primary" />
                 </Link>
               </div>
@@ -193,14 +192,14 @@ export const HomeTemplate = () => {
                   newsItems.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between px-12 md:px-16 py-12 md:py-16 border-b border-gray-100 last:border-b-0"
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
-                      <span className="text-xs md:text-base text-gray-500 shrink-0">{item.date}</span>
+                      <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
                     </div>
                   ))
                 ) : (
-                  <div className="px-16 py-32 md:py-40 text-center text-sm md:text-base text-gray-500">
+                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">
                     등록된 뉴스가 없습니다.
                   </div>
                 )}
@@ -208,17 +207,16 @@ export const HomeTemplate = () => {
             </div>
 
             <div className="flex-1">
-              <div className="flex items-center justify-between mb-16 md:mb-24">
+              <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <img loading="lazy" src={icon9} alt="" className="size-22 md:size-26" />
-                  <h3 className="text-xl md:text-[26px] font-semibold text-gray-900">Notice</h3>
+                  <img loading="lazy" src={icon9} alt="" className="size-22 md:size-24 lg:size-26" />
+                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">Notice</h3>
                 </div>
                 <Link
                   to="/archives/notice"
-                  className="flex items-center gap-4 md:gap-8 px-12 md:px-16 py-8 md:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
                 >
-                  <span className="hidden sm:inline">자세히 보기</span>
-                  <span className="sm:hidden">더보기</span>
+                  자세히 보기
                   <ChevronRight size={16} className="text-primary" />
                 </Link>
               </div>
@@ -227,14 +225,14 @@ export const HomeTemplate = () => {
                   noticeItems.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between px-12 md:px-16 py-12 md:py-16 border-b border-gray-100 last:border-b-0"
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0"
                     >
                       <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
-                      <span className="text-xs md:text-base text-gray-500 shrink-0">{item.date}</span>
+                      <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
                     </div>
                   ))
                 ) : (
-                  <div className="px-16 py-32 md:py-40 text-center text-sm md:text-base text-gray-500">
+                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">
                     등록된 공지사항이 없습니다.
                   </div>
                 )}

@@ -727,77 +727,48 @@ export const PublicationsTemplate = () => {
                             : 'bg-gray-500'
 
                           return (
-                            <div key={idx} className="relative p-16 md:p-24 pb-24 md:pb-28 bg-white border-t border-gray-100">
-                              {/* Mobile: Ribbon-style badge at top-left corner */}
-                              <div className="md:hidden absolute top-0 left-0 flex items-stretch">
-                                {/* Type Badge - Main ribbon */}
-                                <div className={`${typeColor} px-12 py-6 rounded-br-lg shadow-sm`}>
-                                  <span className="text-[10px] font-bold text-white tracking-wide">
+                            <div key={idx} className="relative bg-white border-t border-gray-100 overflow-hidden">
+                              {/* Mobile: Full-width top bar */}
+                              <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
+                                background: pub.type === 'journal' ? 'linear-gradient(135deg, #D6B14D 0%, #E8D688 100%)' :
+                                  pub.type === 'conference' ? 'linear-gradient(135deg, #AC0E0E 0%, #D6A076 100%)' :
+                                  pub.type === 'book' ? 'linear-gradient(135deg, #E8D688 0%, #F5EBC7 100%)' :
+                                  pub.type === 'report' ? 'linear-gradient(135deg, #FFBAC4 0%, #FFE4E8 100%)' :
+                                  'linear-gradient(135deg, #6B7280 0%, #9CA3AF 100%)'
+                              }}>
+                                <div className="flex items-center gap-8">
+                                  {/* Type Label */}
+                                  <span className={`text-[11px] font-bold tracking-wide ${
+                                    pub.type === 'book' || pub.type === 'report' ? 'text-gray-800' : 'text-white'
+                                  }`}>
                                     {typeLabel}
                                   </span>
-                                </div>
-                                {/* Number Badge */}
-                                <div className="bg-gray-100 px-10 py-6 flex items-center border-b border-r border-gray-200 rounded-br-lg -ml-1">
-                                  <span className="text-[10px] font-bold text-gray-700">
+                                  {/* Divider */}
+                                  <span className={`text-[10px] ${pub.type === 'book' || pub.type === 'report' ? 'text-gray-600' : 'text-white/60'}`}>|</span>
+                                  {/* Number */}
+                                  <span className={`text-[11px] font-bold ${
+                                    pub.type === 'book' || pub.type === 'report' ? 'text-gray-700' : 'text-white/90'
+                                  }`}>
                                     #{getPublicationNumber(pub)}
                                   </span>
                                 </div>
-                                {/* Indexing/Presentation Badge */}
-                                {pub.type === 'journal' && pub.indexing_group && (
-                                  <div 
-                                    className="px-10 py-6 flex items-center rounded-br-lg -ml-1"
-                                    style={{
-                                      backgroundColor: 
-                                        ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.25)' :
-                                        pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.18)' :
-                                        pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.2)' :
-                                        'rgba(100,116,139,0.15)',
-                                      borderBottom: '1px solid',
-                                      borderRight: '1px solid',
-                                      borderColor: 
-                                        ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.4)' :
-                                        pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.3)' :
-                                        pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.3)' :
-                                        'rgba(100,116,139,0.25)'
-                                    }}
-                                  >
-                                    <span 
-                                      className="text-[9px] font-bold tracking-wide"
-                                      style={{
-                                        color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
-                                          pub.indexing_group === 'ESCI' ? '#C9A833' :
-                                          pub.indexing_group === 'Scopus' ? '#D6B14D' :
-                                          '#64748b'
-                                      }}
-                                    >
+                                {/* Right side: Indexing/Presentation badge */}
+                                <div className="flex items-center gap-6">
+                                  {pub.type === 'journal' && pub.indexing_group && (
+                                    <span className="px-8 py-3 bg-white/90 rounded text-[9px] font-bold text-gray-700">
                                       {pub.indexing_group}
                                     </span>
-                                  </div>
-                                )}
-                                {pub.type === 'conference' && pub.presentation_type && (
-                                  <div 
-                                    className="px-10 py-6 flex items-center rounded-br-lg -ml-1"
-                                    style={{
-                                      backgroundColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.25)' : 'rgba(255,183,197,0.25)',
-                                      borderBottom: '1px solid',
-                                      borderRight: '1px solid',
-                                      borderColor: pub.presentation_type === 'oral' ? 'rgba(232,135,155,0.4)' : 'rgba(255,183,197,0.4)'
-                                    }}
-                                  >
-                                    <span 
-                                      className="text-[9px] font-bold tracking-wide"
-                                      style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
-                                    >
+                                  )}
+                                  {pub.type === 'conference' && pub.presentation_type && (
+                                    <span className="px-8 py-3 bg-white/90 rounded text-[9px] font-bold text-gray-700">
                                       {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                     </span>
-                                  </div>
-                                )}
+                                  )}
+                                </div>
                               </div>
                               
-                              <div className="flex flex-col gap-12 md:gap-20">
-                                {/* Mobile content padding to account for ribbon */}
-                                <div className="md:hidden h-20" />
-                                
+                              <div className="p-16 md:p-24 pb-24 md:pb-28">
+                                <div className="flex flex-col gap-12 md:gap-20">
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
                                   {/* Desktop: Left Type Badge - Split design (top colored, bottom white) */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
@@ -960,6 +931,7 @@ export const PublicationsTemplate = () => {
                                 </div>
                               </div>
                             </div>
+                          </div>
                           </div>
                           )
                         })}
