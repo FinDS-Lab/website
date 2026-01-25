@@ -1,6 +1,36 @@
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { Home, Music2, X, Minimize2, Maximize2 } from 'lucide-react'
+import { Home, Music2, X, Minimize2, Maximize2, Play, Pause } from 'lucide-react'
+
+// YouTube IFrame API 타입 선언
+declare global {
+  interface Window {
+    YT: {
+      Player: new (elementId: string, options: {
+        videoId: string;
+        playerVars?: Record<string, number | string>;
+        events?: {
+          onReady?: (event: { target: YTPlayer }) => void;
+          onStateChange?: (event: { data: number; target: YTPlayer }) => void;
+        };
+      }) => YTPlayer;
+      PlayerState: {
+        PLAYING: number;
+        PAUSED: number;
+        ENDED: number;
+        BUFFERING: number;
+      };
+    };
+    onYouTubeIframeAPIReady: () => void;
+  }
+}
+
+interface YTPlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  destroy: () => void;
+  getPlayerState: () => number;
+}
 
 interface PlaylistItem {
   artist: string;
@@ -17,6 +47,94 @@ interface RawPlaylistItem {
   title?: string;
   date?: string;
 }
+
+export const ArchivesPlaylistTemplate = () => {
+  const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [currentVideo, setCurrentVideo] = useState<PlaylistItem | null>(null)
+  const [isMinimized, setIsMinimized] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isApiReady, setIsApiReady] = useState(false)
+  const playerRef = useRef<YTPlayer | null>(null)
+  const playerContainerRef = useRef<HTMLDivElement>(null)
+
+  // YouTube IFrame API 로드
+  useEffect(() => {
+    if (window.YT) {
+      setIsApiReady(true)
+      return
+    }
+
+    const tag = document.createElement('script')
+    tag.src = 'https://www.youtube.com/iframe_api'
+    const firstScriptTag = document.getElementsByTagName('script')[0]
+    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag)
+
+    window.onYouTubeIframeAPIReady = () => {
+      setIsApiReady(true)
+    }
+
+    return () => {
+      window.onYouTubeIframeAPIReady = () => {}
+    }
+  }, [])
+
+  // YouTube Player 초기화
+  useEffect(() => {
+    if (!isApiReady || !currentVideo || !playerContainerRef.current) return
+
+    // 기존 플레이어 정리
+    if (playerRef.current) {
+      playerRef.current.destroy()
+      playerRef.current = null
+    }
+
+    // 플레이어 컨테이너 초기화
+    const container = playerContainerRef.current
+    container.innerHTML = '<div id="youtube-player"></div>'
+
+    // 새 플레이어 생성
+    playerRef.current = new window.YT.Player('youtube-player', {
+      videoId: currentVideo.videoId,
+      playerVars: {
+        autoplay: 1,
+        rel: 0,
+        modestbranding: 1,
+      },
+      events: {
+        onReady: (event) => {
+          event.target.playVideo()
+          setIsPlaying(true)
+        },
+        onStateChange: (event) => {
+          if (event.data === window.YT.PlayerState.PLAYING) {
+            setIsPlaying(true)
+          } else if (event.data === window.YT.PlayerState.PAUSED) {
+            setIsPlaying(false)
+          } else if (event.data === window.YT.PlayerState.ENDED) {
+            setIsPlaying(false)
+          }
+        },
+      },
+    })
+
+    return () => {
+      if (playerRef.current) {
+        playerRef.current.destroy()
+        playerRef.current = null
+      }
+    }
+  }, [isApiReady, currentVideo?.videoId])
+
+  const togglePlayPause = useCallback(() => {
+    if (!playerRef.current) return
+    
+    if (isPlaying) {
+      playerRef.current.pauseVideo()
+    } else {
+      playerRef.current.playVideo()
+    }
+  }, [isPlaying])
 
 export const ArchivesPlaylistTemplate = () => {
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
@@ -62,12 +180,18 @@ export const ArchivesPlaylistTemplate = () => {
     if (item.videoId) {
       setCurrentVideo(item)
       setIsMinimized(false)
+      setIsPlaying(true)
     }
   }
 
   const handleClosePlayer = () => {
+    if (playerRef.current) {
+      playerRef.current.destroy()
+      playerRef.current = null
+    }
     setCurrentVideo(null)
     setIsMinimized(false)
+    setIsPlaying(false)
   }
 
   return (
@@ -138,12 +262,18 @@ export const ArchivesPlaylistTemplate = () => {
                   {/* Now Playing indicator */}
                   {currentVideo?.videoId === item.videoId && (
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
-                        <div className="w-2 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                        <div className="w-2 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                        <div className="w-2 h-10 bg-white rounded-full animate-pulse" style={{ animationDelay: '450ms' }} />
-                      </div>
+                      {isPlaying ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
+                          <div className="w-2 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                          <div className="w-2 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                          <div className="w-2 h-10 bg-white rounded-full animate-pulse" style={{ animationDelay: '450ms' }} />
+                        </div>
+                      ) : (
+                        <div className="w-40 h-40 rounded-full bg-white/20 flex items-center justify-center">
+                          <Pause size={20} className="text-white" />
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -201,6 +331,14 @@ export const ArchivesPlaylistTemplate = () => {
             
             {/* Controls */}
             <div className="flex items-center gap-8">
+              {/* Play/Pause button - especially important in minimized mode */}
+              <button
+                onClick={togglePlayPause}
+                className="p-8 text-gray-400 hover:text-white transition-colors"
+                title={isPlaying ? "일시정지" : "재생"}
+              >
+                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+              </button>
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
                 className="p-8 text-gray-400 hover:text-white transition-colors"
@@ -218,16 +356,11 @@ export const ArchivesPlaylistTemplate = () => {
             </div>
           </div>
           
-          {/* YouTube Embed - Hidden when minimized but keeps playing */}
-          <div className={`${isMinimized ? 'h-0 overflow-hidden' : 'aspect-video max-h-[50vh]'}`}>
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${currentVideo.videoId}?autoplay=1&rel=0&modestbranding=1`}
-              title={currentVideo.title}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            />
-          </div>
+          {/* YouTube Player Container */}
+          <div 
+            ref={playerContainerRef}
+            className={`${isMinimized ? 'h-0 overflow-hidden' : 'aspect-video max-h-[50vh]'} [&>div]:w-full [&>div]:h-full [&_iframe]:w-full [&_iframe]:h-full`}
+          />
         </div>
       )}
     </div>
