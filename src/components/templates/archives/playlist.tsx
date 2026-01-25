@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List } from 'lucide-react'
+import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List, LayoutGrid } from 'lucide-react'
 
 // 화면 크기 체크 hook
 const useIsPC = () => {
@@ -57,7 +57,7 @@ export const ArchivesPlaylistTemplate = () => {
   const [isMinimized, setIsMinimized] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isApiReady, setIsApiReady] = useState(false)
-  const [showListPanel, setShowListPanel] = useState(false)
+  const [showListPanel, setShowListPanel] = useState(true) // 기본값: 리스트 뷰
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
 
@@ -213,18 +213,28 @@ export const ArchivesPlaylistTemplate = () => {
               <span className="hidden sm:inline">FINDS Lab</span>
             </Link>
             
-            {/* Title - 음표 클릭으로 리스트 토글 */}
-            <button 
-              onClick={() => setShowListPanel(!showListPanel)}
-              className="flex items-center gap-6 px-12 py-6 rounded-lg hover:bg-gray-100 transition-all"
-              title={showListPanel ? "그리드 보기로 전환" : "리스트 보기로 전환"}
-            >
-              <div className={`p-4 rounded-full transition-all ${showListPanel ? 'bg-primary text-white' : 'bg-gray-100 text-primary'}`}>
-                {showListPanel ? <List size={14} /> : <Music2 size={14} />}
+            {/* Title + View Toggle */}
+            <div className="flex items-center gap-12">
+              <div className="flex items-center gap-4">
+                <Music2 size={14} className="text-primary" />
+                <span className="text-[11px] md:text-xs font-bold text-gray-900">Playlist</span>
+                <span className="text-[10px] text-gray-400">{playlists.length} tracks</span>
               </div>
-              <span className="text-[11px] md:text-xs font-bold text-gray-900">Playlist</span>
-              <span className="text-[10px] text-gray-400">{playlists.length} tracks</span>
-            </button>
+              
+              {/* View Toggle Button */}
+              <button 
+                onClick={() => setShowListPanel(!showListPanel)}
+                className={`flex items-center gap-4 px-10 py-5 rounded-full transition-all text-[11px] font-semibold border ${
+                  showListPanel 
+                    ? 'bg-primary text-white border-primary' 
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary'
+                }`}
+                title={showListPanel ? "그리드 보기로 전환" : "리스트 보기로 전환"}
+              >
+                {showListPanel ? <LayoutGrid size={12} /> : <List size={12} />}
+                <span>{showListPanel ? 'Grid' : 'List'}</span>
+              </button>
+            </div>
             
             {/* Spacer for balance */}
             <div className="w-60 sm:w-80" />
