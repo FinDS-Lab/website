@@ -193,12 +193,12 @@ const activities = [
     fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리',
     generation: '',
     membership: [
-      {role: 'Member', period: '2013.03. - 2018-02.'},
-      {role: 'Alumni', period: '2018.03. - Present'},
+      {role: 'Member', period: '2013-03 – 2018-02'},
+      {role: 'Alumni', period: '2018-03 – Present'},
     ],
     leadership: [
-      {role: 'President', period: '2015.06. - 2015.12.'},
-      {role: 'Vice President', period: '2013.12. - 2014.08.'},
+      {role: 'President', period: '2015-06 – 2015-12'},
+      {role: 'Vice President', period: '2013-12 – 2014-08'},
     ],
     url: '#'
   },
@@ -209,12 +209,12 @@ const activities = [
     fullNameKo: 'KAIST 금융 분석 동아리',
     generation: '25th Generation',
     membership: [
-      {role: 'Member', period: '2018.03. - 2019.02.'},
-      {role: 'Alumni', period: '2019.03. - Present'},
+      {role: 'Member', period: '2018-03 – 2019-02'},
+      {role: 'Alumni', period: '2019-03 – Present'},
     ],
     leadership: [
-      {role: 'Acting President', period: '2021.03. - 2021.08.'},
-      {role: 'Session Leader', period: '2018.09. - 2019.02.'},
+      {role: 'Acting President', period: '2021-03 – 2021-08'},
+      {role: 'Session Leader', period: '2018-09 – 2019-02'},
     ],
     url: '#'
   },
@@ -225,7 +225,7 @@ const activities = [
     fullNameKo: '멘사코리아',
     generation: '',
     membership: [
-      {role: 'Member', period: '2019.01. - Present'},
+      {role: 'Member', period: '2019-01 – Present'},
     ],
     leadership: [],
     url: '#'
@@ -237,8 +237,8 @@ const activities = [
     fullNameKo: '전국대학생산업공학도 모임',
     generation: '11th - 16th Generation',
     membership: [
-      {role: 'Member', period: '2019.03. - 2024.12.'},
-      {role: 'Alumni', period: '2020.01. - Present'},
+      {role: 'Member', period: '2019-03 – 2024-12'},
+      {role: 'Alumni', period: '2020-01 – Present'},
     ],
     leadership: [],
     url: '#'
@@ -250,8 +250,8 @@ const activities = [
     fullNameKo: '',
     generation: '12th Generation',
     membership: [
-      {role: 'Member', period: '2022.01. - 2022.12.'},
-      {role: 'Alumni', period: '2023.01. - Present'},
+      {role: 'Member', period: '2022-01 – 2022-12'},
+      {role: 'Alumni', period: '2023-01 – Present'},
     ],
     leadership: [],
     url: '#'
@@ -263,8 +263,8 @@ const activities = [
     fullNameKo: '대딩코딩',
     generation: '6th Generation',
     membership: [
-      {role: 'Member', period: '2024.02. - 2024.07.'},
-      {role: 'Alumni', period: '2024-08. - Present'},
+      {role: 'Member', period: '2024-02 – 2024-07'},
+      {role: 'Alumni', period: '2024-08 – Present'},
     ],
     leadership: [],
     url: '#'
@@ -1495,7 +1495,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                             <p className="text-sm text-gray-500 mb-4">{act.fullName}</p>
                           )}
                           {act.fullNameKo && (
-                            <p className="text-sm text-gray-500 mb-8">{act.fullNameKo}</p>
+                            <p className="text-sm text-gray-500 font-bold mb-8">{act.fullNameKo}</p>
                           )}
 
                           {/* Generation */}
@@ -1540,7 +1540,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{act.name}</h4>
                       {act.fullName && <p className="text-xs text-gray-500 mt-2 truncate">{act.fullName}</p>}
-                      {act.fullNameKo && <p className="text-xs text-gray-400 truncate">{act.fullNameKo}</p>}
+                      {act.fullNameKo && <p className="text-xs text-gray-400 font-semibold truncate">{act.fullNameKo}</p>}
                     </div>
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
                   </button>

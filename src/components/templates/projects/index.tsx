@@ -385,10 +385,10 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-300">{stats.completed}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500">{stats.completed}</span>
                   <div className="flex items-center gap-6">
-                    <CheckCircle className="size-14 md:size-16 text-gray-300" />
-                    <span className="text-xs md:text-sm font-medium text-gray-300">Completed</span>
+                    <CheckCircle className="size-14 md:size-16 text-gray-500" />
+                    <span className="text-xs md:text-sm font-medium text-gray-500">Completed</span>
                   </div>
                 </div>
               </div>
@@ -615,7 +615,7 @@ export const ProjectsTemplate = () => {
                                         project.type === 'institution' ? 'text-[#B8962D]' :
                                         project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-500'
                                       }`}>
-                                        {config?.label || project.type}
+                                        {config?.label || project.type} Project
                                       </span>
                                     </div>
                                     <div className={`w-full mt-4 py-4 text-center rounded-md ${
@@ -640,7 +640,7 @@ export const ProjectsTemplate = () => {
                                       <span className={`text-[10px] font-bold tracking-wide ${
                                         project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                       }`}>
-                                        {config?.label || project.type}
+                                        {config?.labelShort || project.type}
                                       </span>
                                     </div>
                                     <div className={`px-10 py-6 rounded-br-lg -ml-1 border-b border-r ${

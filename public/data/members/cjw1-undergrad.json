@@ -23,7 +23,11 @@
       "Financial Data Science",
       "Business Analytics",
       "Data-Inspired Decision Making"
-    ]
+    ],
+    "project": {
+      "ko": "예측 모델이 Buy-and-Hold를 이길 수 있는가? 머신러닝과 LPPL 휴리스틱을 활용한 섹터 ETF 거래 전략의 실증 분석",
+      "en": "Do Forecasting Models Beat Buy-and-Hold? An Empirical Investigation of Sector ETF Trading Strategies Using Machine Learning and LPPL Heuristics"
+    }
   },
   "education": [
     {

@@ -836,7 +836,7 @@ export const MembersDirectorTemplate = () => {
                                         <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                         <div className="flex-1">
                                           <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                          <span className="text-[10px] text-gray-500 block mt-2">{h.org}</span>
+                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
                                         </div>
                                       </div>
                                     ))}
@@ -850,7 +850,7 @@ export const MembersDirectorTemplate = () => {
                                         <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                         <div className="flex-1">
                                           <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                          <span className="text-[10px] text-gray-500 block mt-2">{a.org}</span>
+                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
                                         </div>
                                       </div>
                                     ))}
@@ -905,7 +905,7 @@ export const MembersDirectorTemplate = () => {
                         {emp.department && (
                           <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
-                        <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.organization}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
                       </div>
                     </div>
                   </div>
@@ -1056,7 +1056,7 @@ export const MembersDirectorTemplate = () => {
                                           </span>
                                         </div>
                                         <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                        <p className="text-[11px] text-gray-500">{item.organization}</p>
+                                        <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
                                       </div>
                                     </div>
                                   ))}

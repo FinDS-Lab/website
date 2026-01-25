@@ -50,7 +50,7 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
               ref={isTopModal ? modalRef : undefined}
             >
               <div
-                className="w-full max-h-[85vh] bg-white rounded-xl shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[5vh_auto_auto_auto] animate-slideYMargin"
+                className="w-full max-h-[85vh] bg-white rounded-xl shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[7.5vh_auto_auto_auto] animate-fadeIn"
                 style={{maxWidth: modal.maxWidth || '900px'}}
               >
                 {/* X button inside modal for mobile visibility */}

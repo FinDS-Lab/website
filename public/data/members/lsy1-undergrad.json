@@ -23,7 +23,11 @@
       "Graph-Based Retrieval-Augmented Generation (RAG)",
       "Large Language Models (LLM)",
       "LLM Evaluation"
-    ]
+    ],
+    "project": {
+      "ko": "대규모 언어 모델을 활용한 동적 리스크 버짓팅: 적응형 포트폴리오 배분을 위한 컨텍스트 인식 프레임워크",
+      "en": "Dynamic Risk Budgeting via Large Language Models: A Context-Aware Framework for Adaptive Portfolio Allocation"
+    }
   },
   "education": [
     {
