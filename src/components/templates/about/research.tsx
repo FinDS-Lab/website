@@ -271,7 +271,7 @@ export const AboutResearchTemplate = () => {
                   className={`
                     flex items-center justify-center 
                     bg-gradient-to-br from-[#FFF9E6]/50 via-white to-primary/5
-                    rounded-xl md:rounded-2xl p-16 md:p-32
+                    rounded-xl md:rounded-2xl p-16 md:p-24
                     border border-[#FFF3CC]/30
                     group-hover:border-primary/20 transition-all duration-500
                     ${index % 2 === 1 ? 'md:order-1' : ''}
@@ -280,7 +280,7 @@ export const AboutResearchTemplate = () => {
                   <img
                     src={area.image}
                     alt={area.titleEn}
-                    className="w-200 h-200 md:w-300 md:h-300 object-contain group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-auto max-w-[240px] md:max-w-[360px] object-contain group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               </div>
