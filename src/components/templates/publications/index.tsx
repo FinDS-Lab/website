@@ -476,6 +476,14 @@ export const PublicationsTemplate = () => {
 
         {/* Content */}
         <div className="relative h-full flex flex-col items-center justify-center px-20">
+          <div className="flex items-center gap-8 mb-16 md:mb-20">
+            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
+            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
+              Research
+            </span>
+            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
+          </div>
+          
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
             Publications
           </h1>
@@ -496,6 +504,8 @@ export const PublicationsTemplate = () => {
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-gray-400 font-medium">Research</span>
             <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">Publications</span>
           </div>
