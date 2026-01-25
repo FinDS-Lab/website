@@ -1,6 +1,19 @@
 import { memo, useState, useEffect, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Home, Music2, X, Minimize2, Maximize2, Play, Pause } from 'lucide-react'
+
+// 화면 크기 체크 hook
+const useIsPC = () => {
+  const [isPC, setIsPC] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true)
+  
+  useEffect(() => {
+    const handleResize = () => setIsPC(window.innerWidth >= 1024)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+  
+  return isPC
+}
 
 // YouTube Player State Constants
 const YT_STATE = {
@@ -36,6 +49,7 @@ interface RawPlaylistItem {
 }
 
 export const ArchivesPlaylistTemplate = () => {
+  const isPC = useIsPC()
   const [playlists, setPlaylists] = useState<PlaylistItem[]>([])
   const [loading, setLoading] = useState(true)
   const [currentVideo, setCurrentVideo] = useState<PlaylistItem | null>(null)
@@ -44,6 +58,11 @@ export const ArchivesPlaylistTemplate = () => {
   const [isApiReady, setIsApiReady] = useState(false)
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
+
+  // PC가 아니면 홈으로 리다이렉트
+  if (!isPC) {
+    return <Navigate to="/" replace />
+  }
 
   // YouTube IFrame API 로드
   useEffect(() => {
