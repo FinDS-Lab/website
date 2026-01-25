@@ -655,7 +655,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — <span className="font-semibold" style={{color: '#D6B14D'}}>iridescent view extraction</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — <span className="font-semibold text-gray-700">iridescent view extraction</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>
@@ -686,11 +686,11 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => {
-                        // Special handling for Iridescent View Extraction - make it gold
+                        // Special handling for Iridescent View Extraction - make it bold (not gold)
                         if (item.includes('Iridescent View Extraction')) {
                           const highlightedItem = item.replace(
                             'Iridescent View Extraction',
-                            '<span style="color: #D6B14D; font-weight: 600;">Iridescent View Extraction</span>'
+                            '<span style="font-weight: 600;">Iridescent View Extraction</span>'
                           )
                           return (
                             <li key={idx} className="flex items-start gap-10">

@@ -880,29 +880,18 @@ export const MembersAlumniTemplate = () => {
                                 <span className="text-[10px] text-gray-400 uppercase tracking-wide">Period</span>
                                 <span className="text-xs text-gray-600 text-right">{alumni.periods?.ur || '-'}</span>
                               </div>
-                              {hasChange ? (
-                                <>
-                                  <div className="flex justify-between items-start">
-                                    <span className="text-[10px] text-gray-400 uppercase tracking-wide">Pre</span>
-                                    <div className="text-right">
-                                      {getAffiliation(alumni)}
-                                    </div>
-                                  </div>
-                                  <div className="flex justify-between items-start">
-                                    <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post</span>
-                                    <div className="text-right">
-                                      {renderCurrentPosition(alumni.currentPosition)}
-                                    </div>
-                                  </div>
-                                </>
-                              ) : (
-                                <div className="flex justify-between items-start">
-                                  <span className="text-[10px] text-gray-400 uppercase tracking-wide">Affiliation</span>
-                                  <div className="text-right">
-                                    {getAffiliation(alumni)}
-                                  </div>
+                              <div className="flex justify-between items-start">
+                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Pre-Internship</span>
+                                <div className="text-right">
+                                  {getAffiliation(alumni)}
                                 </div>
-                              )}
+                              </div>
+                              <div className="flex justify-between items-start">
+                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post-Internship</span>
+                                <div className="text-right">
+                                  {hasChange ? renderCurrentPosition(alumni.currentPosition) : getAffiliation(alumni)}
+                                </div>
+                              </div>
                             </div>
 
                             {/* Project Section */}

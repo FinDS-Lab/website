@@ -426,7 +426,7 @@ export const AboutIntroductionTemplate = () => {
               <div className="flex items-center justify-center gap-16 mt-24 md:mt-28">
                 <button 
                   onClick={() => setCarouselIndex(0)} 
-                  className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
+                  className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 0 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
                       : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
@@ -434,19 +434,19 @@ export const AboutIntroductionTemplate = () => {
                   aria-label="Goal slide"
                 >
                   <ChevronLeft size={16} className={carouselIndex === 0 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
-                  <span className="text-xs font-semibold tracking-wide">Goal</span>
+                  <span className="text-xs font-semibold tracking-wide leading-none">Goal</span>
                 </button>
                 <div className="w-px h-16 bg-gray-200" />
                 <button 
                   onClick={() => setCarouselIndex(1)} 
-                  className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
+                  className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 1 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
                       : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Vision slide"
                 >
-                  <span className="text-xs font-semibold tracking-wide">Vision</span>
+                  <span className="text-xs font-semibold tracking-wide leading-none">Vision</span>
                   <ChevronRight size={16} className={carouselIndex === 1 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
                 </button>
               </div>

@@ -1640,19 +1640,19 @@ export const MembersDirectorAcademicTemplate = () => {
                           {isCurrentYear && (
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
                           )}
-                          {/* PC: Full name */}
+                          {/* PC: Full name with Project/Projects */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
-                            <span className="text-gray-500">&nbsp;Government</span>
+                            <span className="text-gray-500">&nbsp;Government {govCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#D6B14D]">{indCount}</span>
-                            <span className="text-gray-500">&nbsp;Industry</span>
+                            <span className="text-gray-500">&nbsp;Industry {indCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{instCount}</span>
-                            <span className="text-gray-500">&nbsp;Institution</span>
+                            <span className="text-gray-500">&nbsp;Institution {instCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-gray-600">{acadCount}</span>
-                            <span className="text-gray-500">&nbsp;Research</span>
+                            <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 2-line abbreviations */}
                           <span className="sm:hidden inline-flex flex-col px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
