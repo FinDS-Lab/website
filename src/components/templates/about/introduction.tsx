@@ -32,12 +32,12 @@ const focusAreas = [
   },
 ]
 
-// Core Values Data - 연구, 영향력, 철학
+// Core Values Data - 통찰, 솔루션, 철학
 const coreValues = [
   {
     icon: Search,
-    label: 'Research',
-    labelKo: '연구',
+    label: 'Insight',
+    labelKo: '통찰',
     number: '01',
     title: 'Multiple perspectives, practical frameworks.',
     titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
@@ -46,8 +46,8 @@ const coreValues = [
   },
   {
     icon: Zap,
-    label: 'Impact',
-    labelKo: '영향력',
+    label: 'Solution',
+    labelKo: '솔루션',
     number: '02',
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',

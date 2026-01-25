@@ -1257,7 +1257,7 @@ export const MembersDirectorAcademicTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
+          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
@@ -1328,7 +1328,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
                   </div>
                 </div>
               </div>
@@ -1491,14 +1491,17 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {committees.map((comm) => (
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                             <div className="flex-1 min-w-0">
                               <p className="text-[11px] font-bold text-gray-900">{comm.name}</p>
                               {comm.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                               )}
+                              {/* Mobile: Date as text */}
+                              <span className="md:hidden block text-[10px] text-gray-500 mt-2">{comm.period || comm.since}</span>
                             </div>
-                            <span className="px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0 self-end md:self-center">{comm.period || comm.since}</span>
+                            {/* PC: Date badge */}
+                            <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0">{comm.period || comm.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1517,14 +1520,17 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="flex flex-col gap-6">
                         {sessionChairs.map((chair) => (
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-6 md:gap-12">
+                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                             <div className="flex-1 min-w-0">
                               <p className="text-[11px] font-bold text-gray-900">{chair.name}</p>
                               {chair.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                               )}
+                              {/* Mobile: Date as text */}
+                              <span className="md:hidden block text-[10px] text-gray-500 mt-2">{chair.period || chair.since}</span>
                             </div>
-                            <span className="px-8 py-2 rounded-full text-[9px] font-bold shrink-0 self-end md:self-center bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
+                            {/* PC: Date badge */}
+                            <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
                           </a>
                         ))}
                       </div>
@@ -1579,9 +1585,14 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col gap-6">
                       {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-6 md:gap-12">
-                          <span className="text-[11px] font-medium text-gray-700 break-words flex-1 min-w-0">{conf.name}</span>
-                          <span className="inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 self-end md:self-center bg-white border border-gray-200 text-gray-600">
+                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
+                          <div className="flex-1 min-w-0">
+                            <span className="text-[11px] font-medium text-gray-700 break-words">{conf.name}</span>
+                            {/* Mobile: Date as text below name */}
+                            <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
+                          </div>
+                          {/* PC: Date badge */}
+                          <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
                             {conf.period || conf.since}
                           </span>
                         </a>

@@ -202,7 +202,7 @@ const authorshipRemarks = [
   { label: '참여 연구원', subLabel: 'Researcher' },
   { label: '지도교수', subLabel: 'Advisor' },
   { label: '제1저자', subLabel: 'First Author' },
-  { label: '제2저자 / 공동저자', subLabel: 'Second / Co-author' },
+  { label: '제2저자', subLabel: 'Second Author' },
   { label: '제3저자', subLabel: 'Third Author' },
   { label: '교신저자', subLabel: 'Corresponding Author' },
 ]
@@ -561,9 +561,9 @@ export const PublicationsTemplate = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
-                // FINDS Lab color palette for icons
-                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#726A69', '#AC0E0E']
-                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(172,14,14,0.15)']
+                // FINDS Lab color palette for icons - 연구책임자, 교신저자 모두 gold
+                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#726A69', '#D6B14D']
+                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(114,106,105,0.15)', 'rgba(214,176,76,0.15)']
                 return (
                   <div
                     key={index}
@@ -728,15 +728,15 @@ export const PublicationsTemplate = () => {
 
                           return (
                             <div key={idx} className="relative bg-white border-t border-gray-100 overflow-hidden">
-                              {/* Mobile: Full-width top bar */}
+                              {/* Mobile: Full-width top bar - solid color */}
                               <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
-                                background: pub.type === 'journal' ? 'linear-gradient(135deg, #D6B14D 0%, #E8D688 100%)' :
-                                  pub.type === 'conference' ? 'linear-gradient(135deg, #AC0E0E 0%, #D6A076 100%)' :
-                                  pub.type === 'book' ? 'linear-gradient(135deg, #E8D688 0%, #F5EBC7 100%)' :
-                                  pub.type === 'report' ? 'linear-gradient(135deg, #FFBAC4 0%, #FFE4E8 100%)' :
-                                  'linear-gradient(135deg, #6B7280 0%, #9CA3AF 100%)'
+                                background: pub.type === 'journal' ? '#D6B14D' :
+                                  pub.type === 'conference' ? '#AC0E0E' :
+                                  pub.type === 'book' ? '#E8D688' :
+                                  pub.type === 'report' ? '#FFBAC4' :
+                                  '#6B7280'
                               }}>
-                                <div className="flex items-center gap-8">
+                                <div className="flex items-center gap-6">
                                   {/* Type Label */}
                                   <span className={`text-[11px] font-bold tracking-wide ${
                                     pub.type === 'book' || pub.type === 'report' ? 'text-gray-800' : 'text-white'
@@ -751,20 +751,35 @@ export const PublicationsTemplate = () => {
                                   }`}>
                                     #{getPublicationNumber(pub)}
                                   </span>
-                                </div>
-                                {/* Right side: Indexing/Presentation badge */}
-                                <div className="flex items-center gap-6">
+                                  {/* Indexing/Presentation next to number */}
                                   {pub.type === 'journal' && pub.indexing_group && (
-                                    <span className="px-8 py-3 bg-white/90 rounded text-[9px] font-bold text-gray-700">
-                                      {pub.indexing_group}
-                                    </span>
+                                    <>
+                                      <span className="text-[10px] text-white/60">|</span>
+                                      <span className="text-[11px] font-bold text-white/90">
+                                        {pub.indexing_group}
+                                      </span>
+                                    </>
                                   )}
                                   {pub.type === 'conference' && pub.presentation_type && (
-                                    <span className="px-8 py-3 bg-white/90 rounded text-[9px] font-bold text-gray-700">
-                                      {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
-                                    </span>
+                                    <>
+                                      <span className="text-[10px] text-white/60">|</span>
+                                      <span className="text-[11px] font-bold text-white/90">
+                                        {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                      </span>
+                                    </>
                                   )}
                                 </div>
+                                {/* Right side: Cite button */}
+                                <button
+                                  onClick={() => showModal({
+                                    title: 'Citation Formats',
+                                    maxWidth: '600px',
+                                    children: <CitationModal citation={pub.citations} />
+                                  })}
+                                  className="px-8 py-3 bg-white/90 rounded text-[10px] font-bold text-gray-700 hover:bg-white transition-colors"
+                                >
+                                  Cite
+                                </button>
                               </div>
                               
                               <div className="p-16 md:p-24 pb-24 md:pb-28">
@@ -846,37 +861,46 @@ export const PublicationsTemplate = () => {
                                   {/* Middle: Content */}
                                   <div className="flex-1 min-w-0">
                                   {/* Title with date at top-right on PC */}
-                                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12 mb-6 md:mb-8">
-                                    <h4 className="text-sm md:text-md font-semibold text-gray-800 leading-relaxed flex-1">
-                                      {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
-                                        <span className="relative inline-block mr-6 group">
-                                          <span className="cursor-help">🏆</span>
-                                          <span className="absolute left-0 top-full mt-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
-                                            <span className="absolute left-4 bottom-full border-4 border-transparent border-b-gray-900"></span>
-                                            {pub.award_details ? (
-                                              <>
-                                                <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
-                                                {pub.award_details.category_ko || pub.award_details.category ? (
-                                                  <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
-                                                ) : null}
-                                                <span className="block text-gray-400 mt-1 text-[10px]">{pub.award_details.organization_ko || pub.award_details.organization}</span>
-                                              </>
-                                            ) : (
-                                              <span>Award-winning paper</span>
+                                  {(() => {
+                                    const isKorean = pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean'
+                                    const mainTitle = isKorean && pub.title_ko ? pub.title_ko : pub.title
+                                    const subTitle = isKorean && pub.title_ko ? pub.title : pub.title_ko
+                                    return (
+                                      <>
+                                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12 mb-6 md:mb-8">
+                                          <h4 className="text-sm md:text-md font-semibold text-gray-800 leading-relaxed flex-1">
+                                            {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
+                                              <span className="relative inline-block mr-6 group">
+                                                <span className="cursor-help">🏆</span>
+                                                <span className="absolute left-0 top-full mt-2 hidden group-hover:block z-50 w-max max-w-[280px] px-12 py-8 bg-gray-900 text-white text-xs rounded-lg shadow-lg whitespace-normal">
+                                                  <span className="absolute left-4 bottom-full border-4 border-transparent border-b-gray-900"></span>
+                                                  {pub.award_details ? (
+                                                    <>
+                                                      <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
+                                                      {pub.award_details.category_ko || pub.award_details.category ? (
+                                                        <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
+                                                      ) : null}
+                                                      <span className="block text-gray-400 mt-1 text-[10px]">{pub.award_details.organization_ko || pub.award_details.organization}</span>
+                                                    </>
+                                                  ) : (
+                                                    <span>Award-winning paper</span>
+                                                  )}
+                                                </span>
+                                              </span>
                                             )}
+                                            {mainTitle}
+                                          </h4>
+                                          {/* Date badge - top right on PC, unified style */}
+                                          <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
+                                            {pub.published_date}
                                           </span>
-                                        </span>
-                                      )}
-                                      {pub.title}
-                                    </h4>
-                                    {/* Date badge - top right on PC, unified style */}
-                                    <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
-                                      {pub.published_date}
-                                    </span>
-                                  </div>
-                                  {pub.title_ko && (
-                                    <p className="text-xs md:text-sm text-gray-600 mb-6 md:mb-8">{pub.title_ko}</p>
-                                  )}
+                                        </div>
+                                        {subTitle && (
+                                          <p className="text-xs md:text-sm text-gray-600 mb-6 md:mb-8">{subTitle}</p>
+                                        )}
+                                      </>
+                                    )
+                                  })()}
                                   <div className="flex flex-wrap gap-2 md:gap-4 mb-6 md:mb-8">
                                     {authorList.map((author, aIdx) => (
                                       <span key={aIdx} className="text-xs md:text-sm text-gray-600">
@@ -916,8 +940,8 @@ export const PublicationsTemplate = () => {
                                   )}
                                 </div>
 
-                                {/* Right: Cite button only */}
-                                <div className="flex flex-col items-start md:items-end gap-8 md:gap-12 shrink-0">
+                                {/* Right: Cite button only - PC only */}
+                                <div className="hidden md:flex flex-col items-start md:items-end gap-8 md:gap-12 shrink-0">
                                   <button
                                     onClick={() => showModal({
                                       title: 'Citation Formats',

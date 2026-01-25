@@ -601,20 +601,20 @@ export const ProjectsTemplate = () => {
                             
                             return (
                               <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
-                                {/* Mobile: Full-width top bar */}
+                                {/* Mobile: Full-width top bar - solid color */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
-                                  background: project.type === 'government' ? 'linear-gradient(135deg, #D6B14D 0%, #E8D688 100%)' :
-                                    project.type === 'industry' ? 'linear-gradient(135deg, #AC0E0E 0%, #D6A076 100%)' :
-                                    project.type === 'institution' ? 'linear-gradient(135deg, #E8D688 0%, #F5EBC7 100%)' :
-                                    project.type === 'academic' ? 'linear-gradient(135deg, #FFBAC4 0%, #FFE4E8 100%)' :
-                                    'linear-gradient(135deg, #6B7280 0%, #9CA3AF 100%)'
+                                  background: project.type === 'government' ? '#D6B14D' :
+                                    project.type === 'industry' ? '#AC0E0E' :
+                                    project.type === 'institution' ? '#E8D688' :
+                                    project.type === 'academic' ? '#FFBAC4' :
+                                    '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
-                                    {/* Type Label */}
+                                    {/* Type Label - Full name */}
                                     <span className={`text-[11px] font-bold tracking-wide ${
                                       project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                     }`}>
-                                      {config?.labelShort || project.type}
+                                      {config?.label || project.type} Project
                                     </span>
                                   </div>
                                   {/* Right side: Status badge */}

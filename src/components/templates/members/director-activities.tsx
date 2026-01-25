@@ -1347,7 +1347,7 @@ export const MembersDirectorActivitiesTemplate = () => {
       <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card & Quick Info */}
-          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0">
+          <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
         {/* Profile Card */}
             <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
@@ -1434,7 +1434,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">02-940-4424</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
                   </div>
                 </div>
               </div>
@@ -1490,7 +1490,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                           </div>
 
                           {/* Name */}
-                          <h3 className="text-2xl font-bold text-gray-900 mb-8">{act.name}</h3>
+                          <h3 className="text-2xl font-bold text-primary mb-8">{act.name}</h3>
                           {act.fullName && (
                             <p className="text-sm text-gray-500 mb-4">{act.fullName}</p>
                           )}
@@ -1500,7 +1500,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
                           {/* Generation */}
                           {act.generation && (
-                            <p className="text-primary font-bold text-sm mb-24">{act.generation}</p>
+                            <p className="text-gray-600 font-bold text-sm mb-24">{act.generation}</p>
                           )}
 
                           {/* Membership */}
@@ -1538,7 +1538,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors">{act.name}</h4>
+                      <h4 className="text-sm font-bold text-primary">{act.name}</h4>
                       {act.fullName && <p className="text-xs text-gray-500 mt-2 truncate">{act.fullName}</p>}
                       {act.fullNameKo && <p className="text-xs text-gray-400 font-semibold truncate">{act.fullNameKo}</p>}
                     </div>
@@ -1563,20 +1563,20 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <div className="border-t border-gray-100">
                 {/* Header with Stats */}
                 <div className="bg-gray-50/50 px-20 md:px-32 py-24 border-b border-gray-100">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-16">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold text-primary">{mentees.length}</p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Total Mentees</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Total Mentees & Tutees</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold text-gray-700">13</p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Years Active</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold" style={{color: '#FFBAC4'}}>
                         {menteesByYear['2026']?.length || 0}
                       </p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2026)</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Current Mentees & Tutees (2026)</p>
                     </div>
                   </div>
                 </div>

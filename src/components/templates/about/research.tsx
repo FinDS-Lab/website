@@ -54,7 +54,7 @@ const researchAreas = [
   },
   {
     id: 'dim',
-    badge: '불확실성을 기회로 바꾸는 방법',
+    badge: '전략적 적응력',
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: icon10,
@@ -224,15 +224,13 @@ export const AboutResearchTemplate = () => {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-xl" />
               
               <div className={`
-                relative grid gap-24 md:gap-40
-                ${index % 2 === 0 ? 'md:grid-cols-[1.2fr_1fr]' : 'md:grid-cols-[0.8fr_1.2fr] md:ml-[10%]'}
+                relative grid gap-24 md:gap-40 md:grid-cols-2
               `}>
                 {/* 텍스트 영역 */}
                 <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>
                   {/* 헤더 */}
                   <div className="mb-20 md:mb-24">
                     <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-[#FFF9E6] to-primary/5 border border-[#FFEB99]/50 rounded-full mb-12 md:mb-16">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
                       <span className="text-[10px] md:text-xs font-bold text-[#B8962D] tracking-wide">
                         {area.badge}
                       </span>
