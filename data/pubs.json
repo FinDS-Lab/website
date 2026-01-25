@@ -31,11 +31,12 @@
     "type": "book",
     "indexing_group": "Book",
     "code_label": "B",
-    "published_date": "2026-06-14",
-    "year": 2026,
-    "title": "대학생을 위한 포트폴리오 가이드",
-    "title_ko": "대학생을 위한 포트폴리오 가이드",
+    "published_date": "2018-03-01",
+    "year": 2018,
+    "title": "대학생을 위한 포트폴리오 가이드 (제2판)",
+    "title_ko": "대학생을 위한 포트폴리오 가이드 (제2판)",
     "edition": 2,
+    "edition_year": 2026,
     "original_year": 2018,
     "authors": [
       1
