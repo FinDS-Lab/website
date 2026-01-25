@@ -438,7 +438,7 @@ export const MembersAlumniTemplate = () => {
                     </div>
 
                     {/* Mobile Card View */}
-                    <div className="md:hidden flex flex-col gap-12">
+                    <div className="md:hidden flex flex-col gap-8">
                       {phdAlumni.map((alumni, idx) => {
                         const isExpanded = expandedAlumni.has(alumni.name)
                         const hasThesis = alumni.thesis && alumni.thesis.phd
@@ -450,44 +450,30 @@ export const MembersAlumniTemplate = () => {
                             className={`rounded-xl border border-gray-100 bg-white overflow-hidden ${hasThesis ? 'cursor-pointer' : ''}`}
                             onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                           >
-                            <div className="p-16 flex items-center gap-12 bg-gradient-to-r from-amber-50/50 to-white">
-                              <div className="size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(214, 176, 76,0.2) 0%, rgba(214, 176, 76,0.1) 100%)'}}>
+                            <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-amber-50/50 to-white">
+                              <div className="size-36 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(214, 176, 76,0.2) 0%, rgba(214, 176, 76,0.1) 100%)'}}>
                                 <span className="text-sm font-bold" style={{color: '#D6B14D'}}>{alumniNumber}</span>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-8">
-                                  <p className="text-base font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                <div className="flex items-center gap-6">
+                                  <p className="text-sm font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(214, 176, 76,0.1)', color: '#D6B14D'}}>
+                                    Ph.D.
+                                  </span>
                                   {hasThesis && (
-                                    <ChevronDown size={14} className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}/>
+                                    <ChevronDown size={14} className={`text-gray-400 transition-transform ml-auto ${isExpanded ? 'rotate-180' : ''}`}/>
                                   )}
                                 </div>
-                                <span className="px-8 py-2 mt-4 text-[10px] font-bold rounded-full inline-block" style={{backgroundColor: 'rgba(214, 176, 76,0.1)', color: '#D6B14D'}}>
-                                  Ph.D.
-                                </span>
-                              </div>
-                            </div>
-                            
-                            <div className="px-16 py-12 space-y-8 border-t border-gray-50">
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Affiliation</span>
-                                <span className="text-xs text-gray-700 font-semibold text-right">{alumni.education[0]?.school || '-'}</span>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Graduated</span>
-                                <span className="text-xs text-gray-600">{getGraduationDate(alumni, 'phd')}</span>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post-Graduation</span>
-                                <span className="text-xs text-gray-600">{alumni.company || '-'}</span>
+                                <p className="text-[11px] text-gray-500 mt-2">{getGraduationDate(alumni, 'phd')}</p>
                               </div>
                             </div>
 
                             {isExpanded && hasThesis && (
-                              <div className="px-16 pb-16">
+                              <div className="px-14 py-12 border-t border-gray-50">
                                 {Object.entries(alumni.thesis!)
                                   .filter(([deg]) => deg === 'phd')
                                   .map(([deg, thesis]) => (
-                                    <div key={deg} className="flex items-start gap-10 p-12 rounded-lg bg-gray-50 border border-gray-100">
+                                    <div key={deg} className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
                                       <FileText size={14} className="shrink-0 mt-1" style={{color: '#D6B14D'}}/>
                                       <div className="flex-1 min-w-0">
                                         <p className="text-[10px] font-bold mb-4" style={{color: '#D6B14D'}}>Ph.D. Dissertation</p>
@@ -646,7 +632,7 @@ export const MembersAlumniTemplate = () => {
                     </div>
 
                     {/* Mobile Card View */}
-                    <div className="md:hidden flex flex-col gap-12">
+                    <div className="md:hidden flex flex-col gap-8">
                       {msAlumni.map((alumni, idx) => {
                         const isExpanded = expandedAlumni.has(alumni.name)
                         const hasThesis = alumni.thesis && alumni.thesis.ms
@@ -658,44 +644,30 @@ export const MembersAlumniTemplate = () => {
                             className={`rounded-xl border border-gray-100 bg-white overflow-hidden ${hasThesis ? 'cursor-pointer' : ''}`}
                             onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                           >
-                            <div className="p-16 flex items-center gap-12 bg-gradient-to-r from-pink-50/50 to-white">
-                              <div className="size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.25) 0%, rgba(232,135,155,0.12) 100%)'}}>
+                            <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
+                              <div className="size-36 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.25) 0%, rgba(232,135,155,0.12) 100%)'}}>
                                 <span className="text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-8">
-                                  <p className="text-base font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                <div className="flex items-center gap-6">
+                                  <p className="text-sm font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                    M.S.
+                                  </span>
                                   {hasThesis && (
-                                    <ChevronDown size={14} className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}/>
+                                    <ChevronDown size={14} className={`text-gray-400 transition-transform ml-auto ${isExpanded ? 'rotate-180' : ''}`}/>
                                   )}
                                 </div>
-                                <span className="px-8 py-2 mt-4 text-[10px] font-bold rounded-full inline-block" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
-                                  M.S.
-                                </span>
-                              </div>
-                            </div>
-                            
-                            <div className="px-16 py-12 space-y-8 border-t border-gray-50">
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Affiliation</span>
-                                <span className="text-xs text-gray-700 font-semibold text-right">{alumni.education[0]?.school || '-'}</span>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Graduated</span>
-                                <span className="text-xs text-gray-600">{getGraduationDate(alumni, 'ms')}</span>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post-Graduation</span>
-                                <span className="text-xs text-gray-600">{alumni.company || '-'}</span>
+                                <p className="text-[11px] text-gray-500 mt-2">{getGraduationDate(alumni, 'ms')}</p>
                               </div>
                             </div>
 
                             {isExpanded && hasThesis && (
-                              <div className="px-16 pb-16">
+                              <div className="px-14 py-12 border-t border-gray-50">
                                 {Object.entries(alumni.thesis!)
                                   .filter(([deg]) => deg === 'ms')
                                   .map(([deg, thesis]) => (
-                                    <div key={deg} className="flex items-start gap-10 p-12 rounded-lg bg-gray-50 border border-gray-100">
+                                    <div key={deg} className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
                                       <FileText size={14} className="shrink-0 mt-1" style={{color: '#E8889C'}}/>
                                       <div className="flex-1 min-w-0">
                                         <p className="text-[10px] font-bold mb-4" style={{color: '#E8889C'}}>M.S. Thesis</p>
@@ -836,11 +808,10 @@ export const MembersAlumniTemplate = () => {
                     </div>
 
                     {/* Mobile Card View */}
-                    <div className="md:hidden flex flex-col gap-12">
+                    <div className="md:hidden flex flex-col gap-8">
                       {sortedUndergradAlumni.map((alumni, idx) => {
                         const isExpanded = expandedAlumni.has(alumni.name)
                         const hasProjects = alumni.projects && alumni.projects.length > 0
-                        const hasChange = hasPositionChange(alumni)
                         
                         return (
                           <div 
@@ -849,55 +820,31 @@ export const MembersAlumniTemplate = () => {
                             onClick={() => hasProjects && toggleAlumniExpand(alumni.name)}
                           >
                             {/* Card Header */}
-                            <div className="p-16 flex items-center gap-12 bg-gradient-to-r from-pink-50/50 to-white">
-                              <div className="size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.3) 0%, rgba(232,135,155,0.2) 100%)'}}>
-                                <GraduationCap size={18} style={{color: '#FFBAC4'}}/>
+                            <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
+                              <div className="size-36 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.3) 0%, rgba(232,135,155,0.2) 100%)'}}>
+                                <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
                               </div>
                               <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-8">
-                                  <p className="text-base font-bold text-gray-900">{alumni.name}</p>
+                                <div className="flex items-center gap-6">
+                                  <p className="text-sm font-bold text-gray-900">{alumni.name}</p>
+                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                    {alumni.cohort || '-'}
+                                  </span>
                                   {hasProjects && (
                                     <ChevronDown 
                                       size={14} 
-                                      className={`text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+                                      className={`text-gray-400 transition-transform ml-auto ${isExpanded ? 'rotate-180' : ''}`}
                                     />
                                   )}
                                 </div>
-                                <span className="group relative px-10 py-3 mt-4 text-[10px] font-bold rounded-full inline-block cursor-default transition-all duration-200 active:scale-95" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
-                                  {alumni.cohort || '-'}
-                                  {alumni.cohortName && (
-                                    <span className="absolute left-full ml-8 top-1/2 -translate-y-1/2 px-10 py-4 bg-gray-900 text-white text-[9px] font-medium rounded-md whitespace-nowrap opacity-0 invisible group-active:opacity-100 group-active:visible transition-all duration-200 z-10 shadow-lg">
-                                      {alumni.cohortName.match(/\(([^)]+)\)/)?.[1] || alumni.cohortName}
-                                    </span>
-                                  )}
-                                </span>
-                              </div>
-                            </div>
-                            
-                            {/* Card Body */}
-                            <div className="px-16 py-12 space-y-10 border-t border-gray-50">
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Period</span>
-                                <span className="text-xs text-gray-600 text-right">{alumni.periods?.ur || '-'}</span>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Pre-Internship</span>
-                                <div className="text-right">
-                                  {getAffiliation(alumni)}
-                                </div>
-                              </div>
-                              <div className="flex justify-between items-start">
-                                <span className="text-[10px] text-gray-400 uppercase tracking-wide">Post-Internship</span>
-                                <div className="text-right">
-                                  {hasChange ? renderCurrentPosition(alumni.currentPosition) : getAffiliation(alumni)}
-                                </div>
+                                <p className="text-[11px] text-gray-500 mt-2">{alumni.periods?.ur || '-'}</p>
                               </div>
                             </div>
 
                             {/* Project Section */}
                             {isExpanded && hasProjects && (
-                              <div className="px-16 pb-16">
-                                <div className="flex items-start gap-10 p-12 rounded-lg bg-gray-50 border border-gray-100">
+                              <div className="px-14 py-12 border-t border-gray-50">
+                                <div className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
                                   <FileText size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
                                   <div className="flex-1 min-w-0">
                                     <p className="text-[10px] font-bold mb-6" style={{color: '#E8889C'}}>Research Projects</p>
