@@ -965,6 +965,15 @@ export const MembersDirectorAcademicTemplate = () => {
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
     
+    // Mobile: collapse sections by default
+    if (window.innerWidth < 768) {
+      setExpandedSections(prev => ({
+        ...prev,
+        academicService: false,
+        projects: false
+      }))
+    }
+    
     // Fetch Publications and calculate stats
     fetch(`${baseUrl}data/pubs.json`)
       .then(res => res.json())
@@ -1258,7 +1267,7 @@ export const MembersDirectorAcademicTemplate = () => {
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
@@ -1770,18 +1779,19 @@ export const MembersDirectorAcademicTemplate = () => {
                                   </div>
                                   
                                   <div className="flex-1 min-w-0">
-                                    {/* Role + Period */}
-                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 md:gap-12 mb-6">
-                                      <span className={`px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
-                                        {directorRole}
-                                      </span>
-                                      <span className="inline-flex items-center px-8 py-3 bg-white border border-gray-200 rounded-full text-[9px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                        {project.period}
-                                      </span>
-                                    </div>
+                                    {/* Role badge */}
+                                    <span className={`inline-flex px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                      {directorRole}
+                                    </span>
                                     <p className="text-[11px] md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
                                     <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
                                     <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
+                                    {/* Mobile: Period as text */}
+                                    <p className="md:hidden text-[9px] text-gray-400 mt-4">{project.period}</p>
+                                    {/* PC: Period badge */}
+                                    <span className="hidden md:inline-flex items-center px-8 py-3 mt-8 bg-white border border-gray-200 rounded-full text-[9px] font-bold text-gray-600 shadow-sm">
+                                      {project.period}
+                                    </span>
                                   </div>
                                 </div>
                               </div>

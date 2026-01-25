@@ -1349,7 +1349,7 @@ export const MembersDirectorActivitiesTemplate = () => {
           {/* Left Column: Profile Card & Quick Info */}
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
         {/* Profile Card */}
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img
@@ -1563,17 +1563,17 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <div className="border-t border-gray-100">
                 {/* Header with Stats */}
                 <div className="bg-gray-50/50 px-20 md:px-32 py-24 border-b border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold text-primary">{mentees.length}</p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Total Mentees & Tutees</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold text-gray-700">13</p>
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#D6A076'}}>13</p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Years Active</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#FFBAC4'}}>
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#AC8D04'}}>
                         {menteesByYear['2026']?.length || 0}
                       </p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Current Mentees & Tutees (2026)</p>
@@ -1649,7 +1649,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 {universityStats.length > 0 && (
                   <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
                     <div className="flex items-center justify-between mb-12">
-                      <p className="text-[10px] font-bold text-gray-400 uppercase">Affiliation Distribution</p>
+                      <p className="text-[10px] font-bold text-gray-400">Affiliation Distribution</p>
                     </div>
                     <div className="grid grid-cols-2 gap-6 md:gap-8">
                       {universityStats.map(([univ, count]) => (

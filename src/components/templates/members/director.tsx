@@ -316,10 +316,13 @@ export const MembersDirectorTemplate = () => {
       .then(res => res.json())
       .then((data: HonorsData) => {
         setHonorsData(data)
-        // Auto-expand only recent years (2018 and later)
-        const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
-        const recentYears = years.filter(year => Number(year) >= 2018)
-        setExpandedYears(new Set(recentYears))
+        // PC only: Auto-expand recent years (2018 and later)
+        if (window.innerWidth >= 768) {
+          const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
+          const recentYears = years.filter(year => Number(year) >= 2018)
+          setExpandedYears(new Set(recentYears))
+        }
+        // Mobile: All collapsed by default (empty Set)
       })
       .catch(console.error)
   }, [])
@@ -519,7 +522,7 @@ export const MembersDirectorTemplate = () => {
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
           <aside className="lg:w-340 xl:w-380 flex flex-col gap-24 md:gap-40 shrink-0 lg:self-start">
-            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-100">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm lg:sticky lg:top-40">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
@@ -1026,13 +1029,13 @@ export const MembersDirectorTemplate = () => {
                                 />
                               </button>
 
-                              {/* Items - About FINDS Style */}
+                              {/* Items */}
                               {isExpanded && (
                                 <div className="flex flex-col">
                                   {items.map((item, idx) => (
                                     <div
                                       key={idx}
-                                      className="flex flex-col sm:flex-row items-start gap-12 p-16 bg-white border-t border-gray-100"
+                                      className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
                                     >
                                       <div
                                         className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 ${
@@ -1046,17 +1049,15 @@ export const MembersDirectorTemplate = () => {
                                         )}
                                       </div>
                                       <div className="flex-1 min-w-0">
-                                        {/* Title + Date Badge (right) */}
-                                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-4">
-                                          <h4 className="text-sm font-semibold text-gray-800 flex-1">
-                                            {item.title}
-                                          </h4>
-                                          <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                            {year}-{formatHonorDate(item.date)}
-                                          </span>
-                                        </div>
+                                        <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
                                         <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                        <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
+                                        <p className="text-[11px] text-gray-500 font-bold mb-4">{item.organization}</p>
+                                        {/* Mobile: Date as text */}
+                                        <p className="md:hidden text-[10px] text-gray-400">{year}-{formatHonorDate(item.date)}</p>
+                                        {/* PC: Date badge */}
+                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm">
+                                          {year}-{formatHonorDate(item.date)}
+                                        </span>
                                       </div>
                                     </div>
                                   ))}
