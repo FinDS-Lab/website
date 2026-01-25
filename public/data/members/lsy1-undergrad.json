@@ -24,10 +24,16 @@
       "Large Language Models (LLM)",
       "LLM Evaluation"
     ],
-    "project": {
-      "ko": "",
-      "en": "Dynamic Risk Budgeting via Large Language Models: A Context-Aware Framework for Adaptive Portfolio Allocation"
-    }
+    "projects": [
+      {
+        "ko": "",
+        "en": "Dynamic Risk Budgeting via Large Language Models: A Context-Aware Framework for Adaptive Portfolio Allocation"
+      },
+      {
+        "ko": "",
+        "en": "Metric-Based Technical Indicators for Yield Forecasting"
+      }
+    ]
   },
   "education": [
     {
