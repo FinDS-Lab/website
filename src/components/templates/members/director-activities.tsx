@@ -1578,12 +1578,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                       </p>
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Current (2026)</p>
                     </div>
-                    <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold text-primary">
-                        {new Set(mentees.map(m => m.university)).size}
-                      </p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">Universities</p>
-                    </div>
                   </div>
                 </div>
 

@@ -225,7 +225,7 @@ export const AboutResearchTemplate = () => {
               
               <div className={`
                 relative grid gap-24 md:gap-40
-                ${index % 2 === 0 ? 'md:grid-cols-[1.2fr_1fr]' : 'md:grid-cols-[1fr_1.2fr]'}
+                ${index % 2 === 0 ? 'md:grid-cols-[1.2fr_1fr]' : 'md:grid-cols-[0.8fr_1.2fr] md:ml-[10%]'}
               `}>
                 {/* 텍스트 영역 */}
                 <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>

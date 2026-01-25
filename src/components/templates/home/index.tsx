@@ -112,8 +112,8 @@ export const HomeTemplate = () => {
 
   return (
     <div className="flex flex-col bg-white">
-      {/* Hero Section */}
-      <section className="relative px-16 md:px-20 py-24 md:py-40">
+      {/* Hero Section - PC only */}
+      <section className="hidden md:block relative px-16 md:px-20 py-24 md:py-40">
         <div className="max-w-1480 mx-auto">
           <Slider loop autoplay autoplayDelay={5000} arrows dots>
             {heroSlides.map((slide) => (

@@ -110,6 +110,12 @@ const seasonToDate = (period: string): Date => {
   return new Date(`${year}-${String(month).padStart(2, '0')}-01`)
 }
 
+// 분반 번호 추출 (Fall-1 -> 1, Fall -> 0)
+const getSectionNumber = (period: string): number => {
+  const match = period.match(/-(\d+)$/)
+  return match ? parseInt(match[1], 10) : 0
+}
+
 export const LecturesTemplate = () => {
   const { showModal } = useStoreModal()
   const [lectures, setLectures] = useState<Lecture[]>([])
@@ -190,9 +196,15 @@ export const LecturesTemplate = () => {
       if (!grouped[year]) grouped[year] = []
       grouped[year].push(item)
     })
-    // 각 연도 내에서 시즌별 정렬
+    // 각 연도 내에서 시즌별 정렬 (같은 시즌이면 분반 번호 순)
     Object.keys(grouped).forEach((year) => {
-      grouped[year].sort((a, b) => seasonToDate(b.period).getTime() - seasonToDate(a.period).getTime())
+      grouped[year].sort((a, b) => {
+        const dateA = seasonToDate(a.period).getTime()
+        const dateB = seasonToDate(b.period).getTime()
+        if (dateA !== dateB) return dateB - dateA // 최신 시즌 먼저
+        // 같은 시즌이면 분반 번호 작은 것 먼저 (1분반 -> 2분반)
+        return getSectionNumber(a.period) - getSectionNumber(b.period)
+      })
     })
     return grouped
   }, [filteredLectures])

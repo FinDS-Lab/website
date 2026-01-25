@@ -1,5 +1,5 @@
 import { memo, useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Calendar, Home } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
@@ -98,6 +98,23 @@ export const ArchivesNoticeTemplate = () => {
   const [noticeItems, setNoticeItems] = useState<NoticeItem[]>([])
   const [loading, setLoading] = useState(true)
   const { showModal } = useStoreModal()
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
+  useEffect(() => {
+    const id = searchParams.get('id')
+    if (id && noticeItems.length > 0) {
+      const item = noticeItems.find(n => n.id === id)
+      if (item) {
+        showModal({
+          title: '',
+          children: <NoticeDetailModal id={item.id} title={item.title} date={item.date} />
+        })
+        // URL에서 id 파라미터 제거
+        setSearchParams({})
+      }
+    }
+  }, [searchParams, noticeItems])
 
   useEffect(() => {
     const noticeFiles = ['2025-10-01-1.md', '2025-09-01-1.md', '2025-06-14-1.md']
