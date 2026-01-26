@@ -457,26 +457,24 @@ export const PublicationsTemplate = () => {
     })
     
     const years = Object.keys(yearMap).map(Number).sort((a, b) => a - b)
-    return years.map(year => ({
+    
+    // 2017년부터 현재 연도까지 모든 연도 포함 (빈 연도도 0으로 표시)
+    const currentYear = new Date().getFullYear()
+    const startYear = 2017
+    const allYears: number[] = []
+    for (let y = startYear; y <= Math.max(currentYear, ...years); y++) {
+      allYears.push(y)
+    }
+    
+    return allYears.map(year => ({
       year,
-      ...yearMap[year],
-      total: yearMap[year].journal + yearMap[year].conference + yearMap[year].book + yearMap[year].report
+      journal: yearMap[year]?.journal || 0,
+      conference: yearMap[year]?.conference || 0,
+      book: yearMap[year]?.book || 0,
+      report: yearMap[year]?.report || 0,
+      total: (yearMap[year]?.journal || 0) + (yearMap[year]?.conference || 0) + (yearMap[year]?.book || 0) + (yearMap[year]?.report || 0)
     }))
   }, [publications])
-
-  // Citation 데이터 (2017-2026)
-  const citationData = useMemo(() => [
-    { year: 2017, citations: 0 },
-    { year: 2018, citations: 0 },
-    { year: 2019, citations: 0 },
-    { year: 2020, citations: 0 },
-    { year: 2021, citations: 3 },
-    { year: 2022, citations: 6 },
-    { year: 2023, citations: 4 },
-    { year: 2024, citations: 50 },
-    { year: 2025, citations: 85 },
-    { year: 2026, citations: 6 },
-  ], [])
 
   // 가장 최신 연도를 기본으로 펼침
   useEffect(() => {
@@ -696,89 +694,63 @@ export const PublicationsTemplate = () => {
                             </div>
                             
                             {/* Year Label */}
-                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-primary transition-colors">
+                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-primary transition-colors font-medium">
                               {data.year}
                             </span>
                             
-                            {/* Tooltip */}
-                            <div className="absolute bottom-full mb-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-12 py-8 rounded-lg text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
-                              <div className="font-bold mb-4">{data.year}</div>
-                              <div className="space-y-2">
-                                {data.journal > 0 && <div>Journal: {data.journal}</div>}
-                                {data.conference > 0 && <div>Conference: {data.conference}</div>}
-                                {data.book > 0 && <div>Book: {data.book}</div>}
-                                {data.report > 0 && <div>Report: {data.report}</div>}
+                            {/* Enhanced Tooltip */}
+                            <div className="absolute bottom-full mb-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10 scale-95 group-hover:scale-100">
+                              <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-16 py-14 rounded-xl shadow-2xl border border-gray-700/50 min-w-[140px]">
+                                {/* Year header */}
+                                <div className="flex items-center justify-between mb-10 pb-8 border-b border-gray-700/50">
+                                  <span className="text-lg font-bold text-primary">{data.year}</span>
+                                  <span className="text-xs bg-primary/20 text-primary px-6 py-2 rounded-full font-semibold">{data.total}</span>
+                                </div>
+                                {/* Stats */}
+                                <div className="space-y-6">
+                                  {data.journal > 0 && (
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex items-center gap-6">
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6B14D'}} />
+                                        <span className="text-[11px] text-gray-300">Journal</span>
+                                      </div>
+                                      <span className="text-[11px] font-bold text-white">{data.journal}</span>
+                                    </div>
+                                  )}
+                                  {data.conference > 0 && (
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex items-center gap-6">
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#E8D688'}} />
+                                        <span className="text-[11px] text-gray-300">Conference</span>
+                                      </div>
+                                      <span className="text-[11px] font-bold text-white">{data.conference}</span>
+                                    </div>
+                                  )}
+                                  {data.book > 0 && (
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex items-center gap-6">
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6A076'}} />
+                                        <span className="text-[11px] text-gray-300">Book</span>
+                                      </div>
+                                      <span className="text-[11px] font-bold text-white">{data.book}</span>
+                                    </div>
+                                  )}
+                                  {data.report > 0 && (
+                                    <div className="flex items-center justify-between">
+                                      <div className="flex items-center gap-6">
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#AC0E0E'}} />
+                                        <span className="text-[11px] text-gray-300">Report</span>
+                                      </div>
+                                      <span className="text-[11px] font-bold text-white">{data.report}</span>
+                                    </div>
+                                  )}
+                                  {data.total === 0 && (
+                                    <div className="text-[11px] text-gray-500 text-center py-4">No publications</div>
+                                  )}
+                                </div>
+                                {/* Arrow */}
+                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-0 h-0 border-l-6 border-r-6 border-t-6 border-l-transparent border-r-transparent border-t-gray-900" />
                               </div>
-                              <div className="border-t border-gray-700 mt-4 pt-4 font-semibold">Total: {data.total}</div>
-                            </div>
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Citations Timeline - PC Only */}
-            {citationData.length > 0 && (
-              <div className="hidden lg:block mt-8">
-                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
-                  <div className="flex items-center justify-between mb-20">
-                    <h4 className="text-sm font-bold text-gray-700 flex items-center gap-8">
-                      <BarChart3 className="size-16 text-[#AC0E0E]" />
-                      Citation Timeline
-                    </h4>
-                    <div className="flex items-center gap-8">
-                      <span className="text-xs text-gray-500">Total Citations:</span>
-                      <span className="text-lg font-bold text-[#AC0E0E]">{citationData.reduce((sum, d) => sum + d.citations, 0)}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Citation Chart Area */}
-                  <div className="relative h-[160px]">
-                    {/* Y-axis labels */}
-                    <div className="absolute left-0 top-0 bottom-24 w-32 flex flex-col justify-between text-[10px] text-gray-400">
-                      <span>{Math.max(...citationData.map(d => d.citations))}</span>
-                      <span>{Math.round(Math.max(...citationData.map(d => d.citations)) / 2)}</span>
-                      <span>0</span>
-                    </div>
-                    
-                    {/* Chart */}
-                    <div className="ml-40 h-full flex items-end gap-2 pb-24 border-l border-b border-gray-100">
-                      {citationData.map((data, index) => {
-                        const maxCitations = Math.max(...citationData.map(d => d.citations))
-                        const heightScale = maxCitations > 0 ? 120 / maxCitations : 0
-                        
-                        return (
-                          <div key={data.year} className="flex-1 flex flex-col items-center group relative">
-                            {/* Bar */}
-                            <div className="w-full max-w-[40px] flex flex-col-reverse">
-                              <div 
-                                className="w-full rounded-t-[4px] transition-all duration-300 group-hover:opacity-80"
-                                style={{ 
-                                  height: Math.max(data.citations * heightScale, data.citations > 0 ? 4 : 0),
-                                  backgroundColor: '#AC0E0E'
-                                }} 
-                              />
-                            </div>
-                            
-                            {/* Citation count on top of bar */}
-                            {data.citations > 0 && (
-                              <span className="text-[9px] font-bold text-[#AC0E0E] mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                {data.citations}
-                              </span>
-                            )}
-                            
-                            {/* Year Label */}
-                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-[#AC0E0E] transition-colors">
-                              {data.year}
-                            </span>
-                            
-                            {/* Tooltip */}
-                            <div className="absolute bottom-full mb-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-12 py-8 rounded-lg text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
-                              <div className="font-bold">{data.year}</div>
-                              <div className="text-[#FFBAC4]">Citations: {data.citations}</div>
                             </div>
                           </div>
                         )
