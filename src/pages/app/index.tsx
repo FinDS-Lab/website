@@ -15,6 +15,9 @@ const AboutResearch = lazy(() => import('../about/research').then((module) => ({
 const AboutHonors = lazy(() => import('../about/honors').then((module) => ({ default: module.AboutHonors })));
 const AboutLocation = lazy(() => import('../about/location').then((module) => ({ default: module.AboutLocation })));
 const MembersDirector = lazy(() => import('../members/director').then((module) => ({ default: module.MembersDirector })));
+const MembersDirectorPortfolio = lazy(() => import('../members/director-portfolio').then((module) => ({ default: module.MembersDirectorPortfolio })));
+const MembersDirectorPortfolioAcademic = lazy(() => import('../members/director-portfolio-academic').then((module) => ({ default: module.MembersDirectorPortfolioAcademic })));
+const MembersDirectorPortfolioActivities = lazy(() => import('../members/director-portfolio-activities').then((module) => ({ default: module.MembersDirectorPortfolioActivities })));
 const MembersDirectorActivities = lazy(() => import('../members/director-activities').then((module) => ({ default: module.default })));
 const MembersDirectorAcademic = lazy(() => import('../members/director-academic').then((module) => ({ default: module.MembersDirectorAcademic })));
 const MembersCurrent = lazy(() => import('../members/current').then((module) => ({ default: module.MembersCurrent })));
@@ -108,7 +111,8 @@ const GlobalMusicPlayer = memo(() => {
   const currentVideoId = playlist[currentIndex]
   const currentTrack = trackInfo[currentIndex]
   const isPlaylistPage = location.pathname === '/archives/playlist'
-  const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage
+  const isPortfolioPage = location.pathname.startsWith('/members/director/portfolio')
+  const showFullPlayer = !isMinimized && !isCompact && !isHidden && playlist.length > 0 && !isPlaylistPage && isPortfolioPage
 
   // Initialize YouTube Player ONCE
   useEffect(() => {
@@ -171,8 +175,8 @@ const GlobalMusicPlayer = memo(() => {
     setIsHidden(true)
   }
 
-  // 플레이어 안 보여줄 조건
-  const hidePlayer = isHidden || playlist.length === 0 || isPlaylistPage
+  // 플레이어 안 보여줄 조건 - portfolio 페이지에서만 표시
+  const hidePlayer = isHidden || playlist.length === 0 || isPlaylistPage || !isPortfolioPage
 
   return (
     <>
@@ -310,6 +314,9 @@ export const App = () => {
           <Route path="/about/honors" element={<AboutHonors />} />
           <Route path="/about/location" element={<AboutLocation />} />
           <Route path="/members/director" element={<MembersDirector />} />
+          <Route path="/members/director/portfolio/profile" element={<MembersDirectorPortfolio />} />
+          <Route path="/members/director/portfolio/academic" element={<MembersDirectorPortfolioAcademic />} />
+          <Route path="/members/director/portfolio/activities" element={<MembersDirectorPortfolioActivities />} />
           <Route path="/members/director/activities" element={<MembersDirectorActivities />} />
           <Route path="/members/director/academic" element={<MembersDirectorAcademic />} />
           <Route path="/members/current" element={<MembersCurrent />} />

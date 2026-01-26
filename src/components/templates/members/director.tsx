@@ -1,5 +1,5 @@
-import {memo, useState, useEffect, useMemo, useRef, useCallback} from 'react'
-import {Link, useLocation} from 'react-router-dom'
+import {memo, useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import {
   Mail,
   Phone,
@@ -8,61 +8,14 @@ import {
   Briefcase,
   Building,
   ChevronRight,
-  ChevronDown,
-  ChevronUp,
-  Home,
   Copy,
   Check,
-  User,
-  Activity,
-  Award,
-  Medal,
-  Trophy,
-  Landmark,
   GraduationCap,
-  Calendar,
+  FileText,
+  BarChart3,
   BookOpen,
-  Search,
+  Award,
 } from 'lucide-react'
-import {useStoreModal} from '@/store/modal'
-import type {HonorsData} from '@/types/data'
-
-// Format date from "Dec 5" to "MM-DD" format
-const formatHonorDate = (dateStr: string): string => {
-  const monthMap: Record<string, string> = {
-    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
-    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
-  }
-  const parts = dateStr.split(' ')
-  if (parts.length === 2) {
-    const month = monthMap[parts[0]] || '00'
-    const day = parts[1].padStart(2, '0')
-    return `${month}-${day}`
-  }
-  return dateStr
-}
-
-// Types
-type Project = {
-  titleEn: string
-  titleKo: string
-  period: string
-  fundingAgency: string
-  fundingAgencyKo: string
-  type: 'government' | 'industry' | 'institution' | 'academic'
-  roles: {
-    principalInvestigator?: string
-    leadResearcher?: string
-    researchers?: string[]
-  }
-}
-
-type Lecture = {
-  role: string
-  periods: string[]
-  school: string
-  courses: { en: string; ko: string }[]
-}
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
@@ -70,1305 +23,343 @@ import directorImg from '@/assets/images/members/director.webp'
 import logoKaist from '@/assets/images/logos/kaist.png'
 import logoKyunghee from '@/assets/images/logos/kyunghee.png'
 import logoGcu from '@/assets/images/logos/gcu.png'
-import logoDwu from '@/assets/images/logos/dwu.png'
-import logoFinds from '@/assets/images/logos/finds.png'
-import logoKangnam from '@/assets/images/logos/kangnam.png'
-import logoKorea from '@/assets/images/logos/korea.png'
-import logoWorldquant from '@/assets/images/logos/worldquant.jpg'
-import logoEy from '@/assets/images/logos/ey.png'
-import logoJl from '@/assets/images/logos/jl.png'
 
-// Static Data - Education
+// Static Data - Education (simplified)
 const education = [
   {
-    school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2025-02',
-    degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
+    school: 'KAIST',
+    degree: 'Ph.D.',
     field: 'Industrial and Systems Engineering',
-    advisors: [
-      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
-    ],
-    leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
-    ],
-    awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
-    honors: [],
+    period: '2021 – 2025',
     logo: logoKaist
   },
   {
-    school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    period: '2021-02',
-    degree: 'Master of Science (M.S.)',
+    school: 'KAIST',
+    degree: 'M.S.',
     field: 'Industrial and Systems Engineering',
-    advisors: [
-      {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
-    ],
-    leadership: [],
-    awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
-    honors: [],
+    period: '2018 – 2021',
     logo: logoKaist
   },
   {
     school: 'Kyung Hee University',
-    period: '2018-02',
-    degree: 'Bachelor of Engineering (B.E.)',
+    degree: 'B.E.',
     field: 'Industrial and Management Systems Engineering',
-    advisors: [
-      {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
-      {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
-    ],
-    leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
-    ],
-    awards: [{title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'}],
-    honors: [{title: 'Valedictorian', org: '1st out of 86 students'}],
+    period: '2013 – 2018',
     logo: logoKyunghee
   },
 ]
 
-// Static Data - Employment (sorted by start date, newest first)
-const employment = [
-  {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance and Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026-03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
-  {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory (FINDS Lab)', departmentKo: '금융데이터인텔리전스연구실 (FINDS Lab)', organization: '', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
-  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
-  {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
-  {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
-  {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
-  {position: 'Intern', positionKo: '인턴', department: 'Data & Analytics Team', departmentKo: '데이터 애널리틱스 팀', organization: 'EY Consulting', organizationKo: 'EY컨설팅', period: '2020-03 – 2020-05', logo: logoEy, isCurrent: false},
-  {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014-06 – Present', logo: logoJl, isCurrent: true},
+// Static Data - Career Highlights (key positions only)
+const careerHighlights = [
+  {position: 'Assistant Professor', organization: 'Gachon University', period: '2026 – Present', isCurrent: true, logo: logoGcu},
+  {position: 'Director', organization: 'FINDS Lab', period: '2025 – Present', isCurrent: true, logo: null},
+  {position: 'Postdoctoral Researcher', organization: 'KAIST · Korea University', period: '2025', isCurrent: false, logo: logoKaist},
 ]
 
-// Static Data - Professional Affiliations
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025-06 – Present'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023-09 – Present'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023-06 – Present'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present'},
-]
-
-// Static Data - Citation Statistics (manually updated)
+// Static Data - Citation Statistics
 const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
 
-// Static Data - Research Interests (aligned with About > Introduction Focus Areas)
-const researchInterests = [
-  {
-    category: 'Financial Data Science',
-    categoryKo: '금융 데이터 사이언스',
-    items: [
-      'Portfolio Optimization & Algorithmic Trading',
-      'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
-    ]
-  },
-  {
-    category: 'Business Analytics',
-    categoryKo: '비즈니스 애널리틱스',
-    items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
-    ]
-  },
-  {
-    category: 'Data-Informed Decision Making',
-    categoryKo: '데이터 기반 의사결정',
-    items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools',
-      'Iridescent View Extraction for Data-Informed Decision'
-    ]
-  },
-]
-
-// Resume Modal Component
-const ResumeModal = () => (
-  <div className="p-16 md:p-24 max-h-[70vh] overflow-y-auto">
-    {/* Header */}
-    <div className="text-center mb-24 pb-20 border-b border-gray-200">
-      <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-6">Insu Choi</h2>
-      <p className="text-sm text-gray-600">Assistant Professor, Gachon University</p>
-      <p className="text-sm text-gray-600">Director, FINDS Lab</p>
-    </div>
-
-    {/* Current Position */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Current Position</h3>
-      <div className="space-y-10">
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Gachon University</p>
-            <p className="text-xs text-gray-500">Big Data Business Management Major, Department of Finance and Big Data</p>
-          </div>
-          <span className="text-xs text-gray-400 shrink-0">Mar 2026 – Present</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
-            <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
-          </div>
-          <span className="text-xs text-gray-400 shrink-0">Sep 2025 – Feb 2026</span>
-        </div>
-      </div>
-    </section>
-
-    {/* Research Interests */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Research Interests</h3>
-      <ul className="text-sm text-gray-700 space-y-4 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Data-Informed Decision Making</li>
-      </ul>
-    </section>
-
-    {/* Education */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Education</h3>
-      <div className="space-y-12">
-        <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
-          </div>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Dissertation Award: 11th Best Doctoral Dissertation, Korean Operations Research and Management Science Society</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
-          </ul>
-        </div>
-        <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0">Feb 2018 – Feb 2021</span>
-          </div>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Thesis Award: 17th Best Master Thesis, Korea Institute of Industrial Engineers</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
-          </ul>
-        </div>
-        <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
-            <span className="text-xs text-gray-400 shrink-0">Mar 2013 – Feb 2018</span>
-          </div>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jangho Kim (Korea University), Prof. Myungjoo Park (Seoul National University)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    {/* Selected Publications */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
-      <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
-      <ul className="text-sm text-gray-600 space-y-6 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Engineering Applications of Artificial Intelligence</strong> <span className="text-gray-400">[SCIE, Top 2.5% as of 2024]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Research in International Business and Finance</strong> <span className="text-gray-400">[SSCI, Top 4.5% as of 2023]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> <span className="text-gray-400">[SSCI, Top 9.6% as of 2024]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> <span className="text-gray-400">[SCIE, Top 13.5% as of 2024]</span></span></li>
-      </ul>
-    </section>
-
-    {/* Selected Research Projects */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Research Projects</h3>
-      <div className="space-y-10">
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
-            <p className="text-xs text-gray-500">Korea Institute of Public Finance</p>
-          </div>
-          <span className="text-xs text-gray-400 shrink-0">May 2025 – Sep 2025</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
-            <p className="text-xs text-gray-500">Bank of Korea</p>
-          </div>
-          <span className="text-xs text-gray-400 shrink-0">Nov 2023 – Jul 2024</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
-          <div>
-            <p className="text-sm font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
-            <p className="text-xs text-gray-500">Shinhan Bank</p>
-          </div>
-          <span className="text-xs text-gray-400 shrink-0">Aug 2021 – Dec 2023</span>
-        </div>
-      </div>
-    </section>
-
-    {/* Professional Service */}
-    <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Professional Service</h3>
-      <p className="text-sm text-gray-600">
-        <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
-      </p>
-    </section>
-
-    {/* Teaching Experience */}
-    <section>
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Teaching Experience</h3>
-      <div className="space-y-12">
-        <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading (DIGB441), 2025–2026</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Kyung Hee University</p>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering (IE329), 2024</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics (IE201), 2024</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Kangnam University</p>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering, 2025–2026</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Applied Statistics, 2025–2026</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant)</span></p>
-          <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence (IE471), 2022–2024</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </div>
-)
+// Email
+const directorEmail = 'ischoi@gachon.ac.kr'
 
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
-  const [projects, setProjects] = useState<Project[]>([])
-  const [lectures, setLectures] = useState<Lecture[]>([])
-  const [projectSearchTerm, setProjectSearchTerm] = useState('')
-  const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
-  const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
-  const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
-  const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set()) // For education awards/honors
-  const [expandedSections, setExpandedSections] = useState({
-    introduction: true,
-    researchInterests: true,
-    researcherIds: false,
-    education: true,
-    employment: true,
-    honorsAwards: true
-  })
-  
-  // Sticky profile card refs and state
-  const profileCardRef = useRef<HTMLDivElement>(null)
-  const contentSectionRef = useRef<HTMLElement>(null)
-  const [profileTop, setProfileTop] = useState(0)
-  
-  // Sticky profile card effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!profileCardRef.current || !contentSectionRef.current) return
-      if (window.innerWidth < 1024) return // Only on desktop
-      
-      const section = contentSectionRef.current
-      const card = profileCardRef.current
-      const sectionRect = section.getBoundingClientRect()
-      const cardHeight = card.offsetHeight
-      const navHeight = 80 // Tab navigation sticky height
-      const bottomPadding = 32
-      
-      // 화면 중앙 위치 계산 (nav bar 아래 영역의 중앙)
-      const availableHeight = window.innerHeight - navHeight
-      const centerOffset = navHeight + (availableHeight - cardHeight) / 2
-      
-      // Section의 시작이 centerOffset 위로 올라가면 sticky 시작
-      if (sectionRect.top <= centerOffset) {
-        // Section의 끝이 card + centerOffset + padding 보다 작으면 bottom에 고정
-        if (sectionRect.bottom <= cardHeight + centerOffset + bottomPadding) {
-          setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
-        } else {
-          // 화면 중앙에 위치
-          setProfileTop(centerOffset - sectionRect.top)
-        }
-      } else {
-        setProfileTop(0)
-      }
-    }
-    
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll, { passive: true })
-    handleScroll()
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
-    }
-  }, [])
-  
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({...prev, [section]: !prev[section as keyof typeof prev]}))
-  }
-  
-  const toggleEduAwards = (idx: number) => {
-    setExpandedEduAwards(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(idx)) {
-        newSet.delete(idx)
-      } else {
-        newSet.add(idx)
-      }
-      return newSet
-    })
-  }
-  
-  const toggleYear = (year: string) => {
-    setExpandedYears(prev => {
-      const newSet = new Set(prev)
-      if (newSet.has(year)) {
-        newSet.delete(year)
-      } else {
-        newSet.add(year)
-      }
-      return newSet
-    })
-  }
-  const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
-    {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
-    {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
-  ])
-  const {showModal} = useStoreModal()
-  const location = useLocation()
-  const directorEmail = 'ischoi@gachon.ac.kr'
+  const [pubStats, setPubStats] = useState({total: 0, scopus: 0, intlConf: 0})
 
-  // Fetch Projects, Lectures, and Publications data
+  // Fetch publication stats
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
-    
-    // Fetch Publications and calculate stats
     fetch(`${baseUrl}data/pubs.json`)
       .then(res => res.json())
-      .then((pubs: any[]) => {
-        const stats = {
-          scie: 0, ssci: 0, ahci: 0, esci: 0, scopus: 0, otherIntl: 0,
-          intlConf: 0, kci: 0, domConf: 0
-        }
-        
-        pubs.forEach(pub => {
-          const indexing = pub.indexing_group || ''
-          const type = pub.type || ''
-          
-          if (type === 'journal') {
-            if (indexing === 'SCIE') stats.scie++
-            else if (indexing === 'SSCI') stats.ssci++
-            else if (indexing === 'A&HCI') stats.ahci++
-            else if (indexing === 'ESCI') stats.esci++
-            else if (indexing === 'Scopus') stats.scopus++
-            else if (indexing === 'Other International') stats.otherIntl++
-            else if (indexing.includes('KCI')) stats.kci++
-          } else if (type === 'conference') {
-            // International conferences include both "International Conference" and "Scopus" indexed ones
-            if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
-            else if (indexing === 'Domestic Conference') stats.domConf++
-          }
+      .then(data => {
+        const allPubs = [...(data.journals || []), ...(data.conferences || [])]
+        const scopusPubs = allPubs.filter((p: {scopus?: boolean}) => p.scopus === true)
+        const intlConf = (data.conferences || []).filter((p: {category?: string}) => p.category === 'International Conference')
+        setPubStats({
+          total: allPubs.length,
+          scopus: scopusPubs.length,
+          intlConf: intlConf.length
         })
-        
-        setPubStats([
-          {label: 'SCIE', count: stats.scie},
-          {label: 'SSCI', count: stats.ssci},
-          {label: 'A&HCI', count: stats.ahci},
-          {label: 'ESCI', count: stats.esci},
-          {label: 'Scopus', count: stats.scopus},
-          {label: 'Other Int\'l', count: stats.otherIntl},
-          {label: 'Int\'l Conf', count: stats.intlConf},
-          {label: 'KCI', count: stats.kci},
-          {label: 'Dom. Conf', count: stats.domConf}
-        ])
       })
-      .catch(console.error)
-    
-    // Fetch Projects - all projects where director is involved
-    fetch(`${baseUrl}data/projects.json`)
-      .then(res => res.json())
-      .then((data: Project[]) => {
-        // Show all projects (no date filter) - most recent first
-        const sortedProjects = [...data].sort((a, b) => {
-          const dateA = new Date(a.period.split('–')[0].trim())
-          const dateB = new Date(b.period.split('–')[0].trim())
-          return dateB.getTime() - dateA.getTime()
-        })
-        setProjects(sortedProjects)
-        // Expand all years by default
-        const years = [...new Set(sortedProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
-        setExpandedProjectYears(years)
-      })
-      .catch(console.error)
-
-    // Fetch Lectures - current semester
-    fetch(`${baseUrl}data/lectures.json`)
-      .then(res => res.json())
-      .then((data: Lecture[]) => {
-        setLectures(data)
-      })
-      .catch(console.error)
-    
-    // Fetch Honors data
-    fetch(`${baseUrl}data/honors.json`)
-      .then(res => res.json())
-      .then((data: HonorsData) => {
-        setHonorsData(data)
-        // PC only: Auto-expand recent years (2018 and later)
-        if (window.innerWidth >= 768) {
-          const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
-          const recentYears = years.filter(year => Number(year) >= 2018)
-          setExpandedYears(new Set(recentYears))
-        }
-        // Mobile: All collapsed by default (empty Set)
-      })
-      .catch(console.error)
+      .catch(err => console.error('Failed to load pubs:', err))
   }, [])
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText(directorEmail)
-    setEmailCopied(true)
-    setTimeout(() => setEmailCopied(false), 2000)
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(directorEmail)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 2000)
+    } catch (err) {
+      console.error('Failed to copy:', err)
+    }
   }
-
-  // Group projects by year
-  const projectsByYear = useMemo(() => {
-    const filtered = projectSearchTerm.trim()
-      ? projects.filter(p => 
-          p.titleEn.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
-          p.titleKo.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
-          p.fundingAgency.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
-          p.fundingAgencyKo.toLowerCase().includes(projectSearchTerm.toLowerCase())
-        )
-      : projects
-
-    const grouped: Record<string, Project[]> = {}
-    filtered.forEach(p => {
-      const year = p.period.split('–')[0].trim().slice(0, 4)
-      if (!grouped[year]) grouped[year] = []
-      grouped[year].push(p)
-    })
-    return grouped
-  }, [projects, projectSearchTerm])
-
-  const projectYears = useMemo(() => {
-    return Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
-  }, [projectsByYear])
-
-  const toggleProjectYear = (year: string) => {
-    setExpandedProjectYears(prev => 
-      prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
-    )
-  }
-
-  // Group lectures by course name and aggregate semesters, with role information
-  const groupedLectures = useMemo(() => {
-    const filtered = teachingSearchTerm.trim()
-      ? lectures.filter(l =>
-          l.courses.some(c => 
-            c.en.toLowerCase().includes(teachingSearchTerm.toLowerCase()) ||
-            c.ko.toLowerCase().includes(teachingSearchTerm.toLowerCase())
-          ) ||
-          l.school.toLowerCase().includes(teachingSearchTerm.toLowerCase())
-        )
-      : lectures
-
-    // Group by course name (en) to aggregate semesters
-    const courseMap: Record<string, {
-      school: string
-      courseName: string
-      courseNameKo: string
-      periods: string[]
-      role: string
-    }> = {}
-
-    filtered.forEach(lecture => {
-      lecture.courses.forEach(course => {
-        const key = `${lecture.school}-${course.en}-${lecture.role}`
-        if (!courseMap[key]) {
-          courseMap[key] = {
-            school: lecture.school,
-            courseName: course.en,
-            courseNameKo: course.ko,
-            periods: [...lecture.periods],
-            role: lecture.role
-          }
-        } else {
-          // Add new periods that are not already in the list
-          lecture.periods.forEach(p => {
-            if (!courseMap[key].periods.includes(p)) {
-              courseMap[key].periods.push(p)
-            }
-          })
-        }
-      })
-    })
-
-    // Sort periods in each course (most recent first)
-    Object.values(courseMap).forEach(course => {
-      course.periods.sort((a, b) => {
-        const [yearA, semA] = a.split(' ')
-        const [yearB, semB] = b.split(' ')
-        if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA)
-        return semB.localeCompare(semA)
-      })
-    })
-
-    return Object.values(courseMap)
-  }, [lectures, teachingSearchTerm])
-
-  // Separate Lecturer and TA courses
-  const lecturerCourses = useMemo(() => 
-    groupedLectures.filter(c => c.role === 'Lecturer'), [groupedLectures])
-  
-  const taCourses = useMemo(() => 
-    groupedLectures.filter(c => c.role === 'Teaching Assistant'), [groupedLectures])
-
-  // Count total semesters (sum of all periods across all courses)
-  const totalSemesters = useMemo(() => 
-    groupedLectures.reduce((sum, course) => sum + course.periods.length, 0), [groupedLectures])
-  
-  const lecturerSemesters = useMemo(() => 
-    lecturerCourses.reduce((sum, course) => sum + course.periods.length, 0), [lecturerCourses])
-  
-  const taSemesters = useMemo(() => 
-    taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
 
   return (
-    <div className="flex flex-col bg-white">
-      {/* Banner */}
-      <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]"
-          style={{backgroundImage: `url(${banner2})`}}
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-[#D6A076]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#D6B14D]/50 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <div className="absolute top-1/4 right-[15%] w-32 h-32 rounded-full bg-[#D6B14D]/10 blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 left-[10%] w-24 h-24 rounded-full bg-primary/10 blur-2xl animate-pulse delay-1000" />
-
-        <div className="relative h-full flex flex-col items-center justify-center px-20">
-          <div className="flex items-center gap-8 mb-16 md:mb-20">
-            <div className="w-8 md:w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/80" />
-            <span className="text-[#D6C360]/90 text-[10px] md:text-xs font-semibold tracking-[0.3em] uppercase">
-              Members
-            </span>
-            <div className="w-8 md:w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/80" />
-          </div>
-          
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center tracking-tight mb-16 md:mb-20">
-            Director
-          </h1>
-          
-          {/* Divider - < . > style */}
-          <div className="flex items-center justify-center gap-8 md:gap-12">
-            <div className="w-16 md:w-24 h-px bg-gradient-to-r from-transparent via-[#D6C360]/50 to-[#D6C360]" />
-            <div className="w-2 h-2 rounded-full bg-primary shadow-sm shadow-primary/50" />
-            <div className="w-16 md:w-24 h-px bg-gradient-to-l from-transparent via-[#D6C360]/50 to-[#D6C360]" />
-          </div>
-        </div>
-      </div>
-
-      {/* Breadcrumb */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
-          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
-              <Home size={16}/>
-            </Link>
-            <span className="text-gray-200">—</span>
-            <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200">—</span>
-            <span className="text-sm text-primary font-semibold">Director</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Tab Navigation - Sticky */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
-            <Link
-              to="/members/director"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-            >
-              <User size={16} />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/academic"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <BookOpen size={16} />
-              Academics
-            </Link>
-            <Link
-              to="/members/director/activities"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <Activity size={16} />
-              Activities
-            </Link>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Hero Banner */}
+      <div className="relative h-200 md:h-280 overflow-hidden">
+        <img src={banner2} alt="Director Banner" className="absolute inset-0 w-full h-full object-cover"/>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent"/>
+        <div className="absolute inset-0 flex flex-col justify-end p-20 md:p-40">
+          <div className="max-w-1480 mx-auto w-full">
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-8">Director</h1>
+            <div className="flex items-center gap-8 text-white/80 text-sm">
+              <Link to="/" className="hover:text-white transition-colors">Home</Link>
+              <ChevronRight size={14}/>
+              <Link to="/members/current" className="hover:text-white transition-colors">Members</Link>
+              <ChevronRight size={14}/>
+              <span className="text-white">Director</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
+      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-380 shrink-0">
-            <div 
-              ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
-              style={{ transform: `translateY(${profileTop}px)` }}
-            >
+          <aside className="lg:w-340 shrink-0">
+            <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm sticky top-100">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-20 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
-                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4">
                   Insu Choi
                   <span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
                 </h2>
-                <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
+                <p className="text-base text-gray-500 font-medium">최인수</p>
               </div>
 
-              <div className="flex flex-col gap-16 md:gap-20">
+              <div className="flex flex-col gap-14 md:gap-16">
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Briefcase size={16}/>
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
+                    <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Building size={16}/>
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
+                    <p className="text-xs font-semibold text-gray-800">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <MapPin size={16}/>
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 614호</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
+                    <p className="text-xs font-semibold text-gray-800">Room 614, Gachon Hall</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Mail size={16}/>
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
-                    <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
+                    <div className="flex items-center gap-6">
+                      <a href={`mailto:${directorEmail}`} className="text-xs font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
                       <button 
                         onClick={handleCopyEmail} 
-                        className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
+                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
                         title="Copy email"
                       >
-                        {emailCopied ? <Check size={12} className="text-green-500"/> : <Copy size={12} className="text-gray-400"/>}
+                        {emailCopied ? <Check size={10} className="text-green-500"/> : <Copy size={10} className="text-gray-400"/>}
                       </button>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Phone size={16}/>
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Phone size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
+                    <p className="text-xs font-semibold text-gray-800">031-750-0614</p>
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
-                <button 
-                  onClick={() => showModal({
-                    title: 'Resume',
-                    maxWidth: '800px',
-                    children: <ResumeModal />
-                  })}
-                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
-                >
-                  View Resume <ExternalLink size={14}/>
-                </button>
+              <div className="grid grid-cols-2 gap-8 mt-20">
                 <a 
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 text-xs md:text-sm font-bold rounded-xl hover:opacity-90 transition-all"
+                  className="flex items-center justify-center gap-4 py-10 text-xs font-bold rounded-xl hover:opacity-90 transition-all"
                   style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
                 >
-                  Scholar <ExternalLink size={14} color="#ffffff"/>
+                  Scholar <ExternalLink size={12}/>
+                </a>
+                <a 
+                  href="https://orcid.org/0000-0003-2596-7368" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center gap-4 py-10 bg-[#A6CE39] text-white text-xs font-bold rounded-xl hover:opacity-90 transition-all"
+                >
+                  ORCID <ExternalLink size={12}/>
                 </a>
               </div>
             </div>
           </aside>
 
           {/* Right Column */}
-          <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Introduction */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('introduction')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Introduction</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.introduction ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.introduction && (
-              <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
-                  <span className="font-bold text-primary">Financial Data Science</span>,{' '}
-                  <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.
-                </p>
-                <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
-                  My research focuses on three main areas:
-                </p>
-                <div className="space-y-16 mb-24">
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
-                    </p>
-                  </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
-                    </p>
-                  </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
-                    </p>
-                  </div>
-                </div>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  My goal is to <span className="font-semibold text-gray-800">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">well-grounded</span> and <span className="font-semibold text-primary">useful</span>.
-                </p>
+          <main className="flex-1 flex flex-col gap-24 md:gap-32 min-w-0">
+            {/* View Full Portfolio CTA */}
+            <Link 
+              to="/members/director/portfolio/profile"
+              className="group flex items-center justify-between p-20 md:p-24 bg-gradient-to-r from-primary to-primary/90 rounded-2xl text-white hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
+            >
+              <div>
+                <p className="text-lg md:text-xl font-bold mb-4">View Full Portfolio</p>
+                <p className="text-sm text-white/80">Detailed CV, Publications, Projects, Teaching & Activities</p>
               </div>
-              )}
-            </section>
-
-            {/* Research Interests */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('researchInterests')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Interests</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researchInterests ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.researchInterests && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
-                    <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
-                      <div className="size-8 rounded-full bg-primary/40"/>
-                      <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
-                    </div>
-                    <ul className="space-y-10">
-                      {area.items.map((item, idx) => {
-                        // Special handling for Iridescent View Extraction - gold on both mobile and PC
-                        if (item.includes('Iridescent View Extraction')) {
-                          const highlightedItem = item.replace(
-                            'Iridescent View Extraction',
-                            '<span class="text-primary font-semibold">Iridescent View Extraction</span>'
-                          )
-                          return (
-                            <li key={idx} className="flex items-start gap-10">
-                              <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                              <span 
-                                className="text-xs md:text-sm text-gray-600 leading-relaxed"
-                                dangerouslySetInnerHTML={{__html: highlightedItem}}
-                              />
-                            </li>
-                          )
-                        }
-                        // Extract key terms for highlighting
-                        const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
-                        let highlightedItem = item
-                        highlightTerms.slice(0, 2).forEach(term => {
-                          highlightedItem = highlightedItem.replace(term, `<mark>${term}</mark>`)
-                        })
-                        return (
-                          <li key={idx} className="flex items-start gap-10">
-                            <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                            <span 
-                              className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
-                              dangerouslySetInnerHTML={{__html: highlightedItem}}
-                            />
-                          </li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                ))}
+              <div className="size-48 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform"/>
               </div>
-            </div>
-              )}
-            </section>
-
-            {/* Researcher IDs */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('researcherIds')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Researcher IDs</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researcherIds ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.researcherIds && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
-                  {/* ORCID */}
-                  <a 
-                    href="https://orcid.org/0000-0003-2596-7368" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">ORCID</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors text-center break-all">0000-0003-2596-7368</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors" />
-                  </a>
-
-                  {/* Scopus */}
-                  <a 
-                    href="https://www.scopus.com/authid/detail.uri?authorId=57224825321" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Scopus</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors" />
-                  </a>
-
-                  {/* Web of Science */}
-                  <a 
-                    href="https://www.webofscience.com/wos/author/record/EQW-9977-2022" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Web of Science</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
-                  </a>
-
-                  {/* IRIS (Korean National Researcher Number) */}
-                  <a 
-                    href="https://www.ntis.go.kr/rndgate/eg/un/ra/mng/researcherInfoV2.do?researcherCode=12405369" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/iris.webp`} alt="IRIS" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center">국가연구자번호</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#003876] transition-colors">12405369</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#003876] transition-colors" />
-                  </a>
-                </div>
-              </div>
-              )}
-            </section>
+            </Link>
 
             {/* Education */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('education')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.education ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.education && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
-              <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
-                {education.map((edu, index) => (
-                  <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
-                    {/* Timeline dot - vertically centered */}
-                    <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
-                      <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
-                    </div>
-                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
-                      {/* Mobile: Stack vertically, Desktop: Horizontal */}
-                      <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
-                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
-                          <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
-                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white w-fit">{edu.period}</span>
-                            <div className="flex flex-wrap items-center gap-6">
-                              {edu.honors && edu.honors.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
-                                  <Medal size={10} />
-                                  Honor
-                                </span>
-                              )}
-                              {edu.awards && edu.awards.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
-                                  <Award size={10} />
-                                  Award
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
-                          <p className="text-xs md:text-sm text-gray-600 break-words">{edu.field}</p>
-                        </div>
-                      </div>
-                      
-                      {/* Content - same indent as degree/field on mobile */}
-                      <div className="pl-0 md:pl-80">
-                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4 break-words">{edu.school}</p>
-                        {edu.advisors && edu.advisors.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
-                            <div className="space-y-6">
-                              {edu.advisors.map((adv, i) => (
-                                <a 
-                                  key={i}
-                                  href={adv.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
-                                >
-                                  <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B14D]" />
-                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                  </div>
-                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {edu.leadership && edu.leadership.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Leadership Roles</p>
-                            <div className="space-y-6">
-                              {edu.leadership.map((l, i) => (
-                                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-8">
-                                  <div>
-                                    <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                    <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
-                                  </div>
-                                  <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Collapsible Honors & Awards */}
-                        {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
-                          <div className="pt-12 border-t border-gray-100">
-                            <button 
-                              onClick={() => toggleEduAwards(index)}
-                              className="flex items-center justify-between w-full group mb-8"
-                            >
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
-                              <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
-                            </button>
-                            
-                            {expandedEduAwards.has(index) && (
-                              <div className="space-y-12">
-                                {edu.honors && edu.honors.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.honors.map((h, i) => (
-                                      <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
-                                        <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                                
-                                {edu.awards && edu.awards.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.awards.map((a, i) => (
-                                      <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                        <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              </div>
-              )}
-            </section>
-
-            {/* Employment */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('employment')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Employment</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.employment ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.employment && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
-              <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
-                {employment.map((emp, index) => (
-                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
-                    {/* Timeline dot - vertically centered */}
-                    <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
-                      <div className={`size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
-                        emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
-                      }`}/>
-                    </div>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img loading="lazy" src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
-                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
-                            emp.isCurrent
-                              ? 'bg-primary text-white'
-                              : 'bg-gray-200 text-gray-700'
-                          }`}>{emp.period}</span>
-                        </div>
-                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
-                        {emp.department && emp.department.includes(',') ? (
-                          <>
-                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
-                            <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
-                          </>
-                        ) : emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              </div>
-              )}
-            </section>
-
-            {/* Honors & Awards */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('honorsAwards')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
-              </button>
-
-              {expandedSections.honorsAwards && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  {!honorsData || Object.keys(honorsData).length === 0 ? (
-                    <div className="py-16 text-center text-sm text-gray-400">
-                      No awards data available
-                    </div>
-                  ) : (
-                    <>
-                      {/* Statistics Section */}
-                      {(() => {
-                        const allItems = Object.values(honorsData).flat()
-                        const totalAwards = allItems.filter(item => item.type === 'award').length
-                        const totalHonors = allItems.filter(item => item.type === 'honor').length
-                        const totalItems = totalAwards + totalHonors
-                        return (
-                          <div className="flex flex-col gap-16 md:gap-24 mb-20">
-                            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                              <span className="w-8 h-8 rounded-full bg-primary" />
-                              Statistics
-                            </h3>
-                            
-                            {/* Total - Full Width */}
-                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="flex flex-col items-center justify-center">
-                                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
-                                <div className="flex items-center gap-6">
-                                  <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Honors & Awards - 2 columns */}
-                            <div className="grid grid-cols-2 gap-8 md:gap-12">
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
-                                  <div className="flex items-center gap-6">
-                                    <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
-                                  <div className="flex items-center gap-6">
-                                    <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )
-                      })()}
-
-                      {/* Timeline by Year */}
-                      <div className="space-y-12">
-                        {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
-                          const items = honorsData[year]
-                          const awards = items.filter((item) => item.type === 'award')
-                          const honors = items.filter((item) => item.type === 'honor')
-                          const isExpanded = expandedYears.has(year)
-                          const currentYear = new Date().getFullYear()
-                          const isCurrentYear = Number(year) === currentYear
-
-                          return (
-                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
-                              {/* Year Header - About FINDS Style */}
-                              <button
-                                onClick={() => toggleYear(year)}
-                                className={`w-full flex items-center justify-between px-16 py-14 transition-colors ${
-                                  isCurrentYear 
-                                    ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
-                                    : 'bg-gray-50 hover:bg-gray-100'
-                                }`}
-                              >
-                                <div className="flex items-center gap-12 flex-wrap">
-                                  <span className={`text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                                  {isCurrentYear && (
-                                    <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
-                                  )}
-                                  {/* White badge with counts */}
-                                  <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
-                                    <span className="font-bold" style={{color: '#D6B14D'}}>{honors.length}</span>
-                                    <span className="text-gray-500"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
-                                    <span className="text-gray-300"> · </span>
-                                    <span className="font-bold" style={{color: '#AC0E0E'}}>{awards.length}</span>
-                                    <span className="text-gray-500"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
-                                  </span>
-                                </div>
-                                <ChevronDown 
-                                  size={18} 
-                                  className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                                />
-                              </button>
-
-                              {/* Items */}
-                              {isExpanded && (
-                                <div className="flex flex-col">
-                                  {items.map((item, idx) => (
-                                    <div
-                                      key={idx}
-                                      className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
-                                    >
-                                      <div
-                                        className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                                          item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
-                                        }`}
-                                      >
-                                        {item.type === 'honor' ? (
-                                          <Medal className="w-18 h-18 text-[#D6B14D]" />
-                                        ) : (
-                                          <Trophy className="w-18 h-18 text-[#AC0E0E]" />
-                                        )}
-                                      </div>
-                                      {/* Content + Date - PC: Date on right */}
-                                      <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
-                                        <div className="flex-1 min-w-0">
-                                          <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
-                                          <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                          <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
-                                          {/* Mobile: Date as text */}
-                                          <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
-                                        </div>
-                                        {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                          {year}-{formatHonorDate(item.date)}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          )
-                        })}
-                      </div>
-                    </>
-                  )}
+            <section className="bg-white border border-gray-100 rounded-2xl p-20 md:p-24">
+              <div className="flex items-center gap-12 mb-20">
+                <div className="size-40 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <GraduationCap size={20} className="text-primary"/>
                 </div>
-              )}
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
+              </div>
+              <div className="space-y-16">
+                {education.map((edu, index) => (
+                  <div key={index} className="flex items-center gap-16 p-16 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                    <div className="size-44 bg-white rounded-lg p-6 flex items-center justify-center shrink-0 border border-gray-100">
+                      <img src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold text-gray-900">{edu.degree}, {edu.field}</p>
+                      <p className="text-xs text-gray-500">{edu.school}</p>
+                    </div>
+                    <span className="text-xs font-medium text-gray-400 shrink-0">{edu.period}</span>
+                  </div>
+                ))}
+              </div>
             </section>
+
+            {/* Career Highlights */}
+            <section className="bg-white border border-gray-100 rounded-2xl p-20 md:p-24">
+              <div className="flex items-center gap-12 mb-20">
+                <div className="size-40 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <Briefcase size={20} className="text-primary"/>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Career Highlights</h3>
+              </div>
+              <div className="space-y-12">
+                {careerHighlights.map((career, index) => (
+                  <div key={index} className="flex items-center gap-16 p-16 bg-gray-50 rounded-xl">
+                    <div className="size-44 bg-white rounded-lg p-6 flex items-center justify-center shrink-0 border border-gray-100">
+                      {career.logo ? (
+                        <img src={career.logo} alt={career.organization} className="w-full h-full object-contain"/>
+                      ) : (
+                        <Building size={20} className="text-gray-400"/>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-8 mb-2">
+                        <p className="text-sm font-bold text-gray-900">{career.position}</p>
+                        {career.isCurrent && (
+                          <span className="px-6 py-1 bg-primary text-white text-[9px] font-bold rounded-full">Current</span>
+                        )}
+                      </div>
+                      <p className="text-xs text-gray-500">{career.organization}</p>
+                    </div>
+                    <span className="text-xs font-medium text-gray-400 shrink-0">{career.period}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Publication Statistics */}
+            <section className="bg-white border border-gray-100 rounded-2xl p-20 md:p-24">
+              <div className="flex items-center gap-12 mb-20">
+                <div className="size-40 bg-primary/10 rounded-xl flex items-center justify-center">
+                  <BarChart3 size={20} className="text-primary"/>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
+              </div>
+              
+              {/* Publication Counts */}
+              <div className="grid grid-cols-3 gap-12 mb-24">
+                <div className="text-center p-16 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
+                  <p className="text-2xl md:text-3xl font-bold text-primary mb-4">{pubStats.total}</p>
+                  <p className="text-xs text-gray-500">Total Publications</p>
+                </div>
+                <div className="text-center p-16 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
+                  <p className="text-2xl md:text-3xl font-bold text-[#E9711C] mb-4">{pubStats.scopus}</p>
+                  <p className="text-xs text-gray-500">Scopus Indexed</p>
+                </div>
+                <div className="text-center p-16 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100">
+                  <p className="text-2xl md:text-3xl font-bold text-[#5E33BF] mb-4">{pubStats.intlConf}</p>
+                  <p className="text-xs text-gray-500">Int'l Conferences</p>
+                </div>
+              </div>
+
+              {/* Citation Stats */}
+              <div className="grid grid-cols-4 gap-8">
+                {citationStats.map((stat, index) => (
+                  <div key={index} className="text-center p-12 bg-gray-50 rounded-lg">
+                    <p className="text-lg md:text-xl font-bold text-gray-800 mb-2">{stat.count}</p>
+                    <p className="text-[10px] text-gray-500 uppercase tracking-wide">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Quick Links */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
+              <Link 
+                to="/publications" 
+                className="group flex items-center gap-12 p-16 bg-white border border-gray-100 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all"
+              >
+                <div className="size-40 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <BookOpen size={18} className="text-primary"/>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900">Publications</p>
+                  <p className="text-xs text-gray-500">View all papers</p>
+                </div>
+              </Link>
+              <Link 
+                to="/projects" 
+                className="group flex items-center gap-12 p-16 bg-white border border-gray-100 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all"
+              >
+                <div className="size-40 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <FileText size={18} className="text-primary"/>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900">Projects</p>
+                  <p className="text-xs text-gray-500">Research projects</p>
+                </div>
+              </Link>
+              <Link 
+                to="/about/honors" 
+                className="group flex items-center gap-12 p-16 bg-white border border-gray-100 rounded-xl hover:border-primary/30 hover:shadow-lg transition-all"
+              >
+                <div className="size-40 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <Award size={18} className="text-primary"/>
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900">Honors</p>
+                  <p className="text-xs text-gray-500">Awards & Recognition</p>
+                </div>
+              </Link>
+            </div>
           </main>
         </div>
       </section>
