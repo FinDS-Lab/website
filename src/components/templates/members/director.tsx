@@ -1131,11 +1131,6 @@ export const MembersDirectorTemplate = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-20 text-center">
-                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                      View All Publications <ChevronRight size={14}/>
-                    </Link>
-                  </div>
                 </div>
               )}
             </section>

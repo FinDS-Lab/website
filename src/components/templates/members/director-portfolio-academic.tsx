@@ -1988,12 +1988,20 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                     project.type === 'academic' ? '#D6B14D' :
                                     '#6B7280'
                                 }}>
-                                  <div className="flex items-center gap-8">
+                                  <div className="flex items-center gap-6">
                                     {/* Type Label */}
                                     <span className={`text-[11px] font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {typeLabels[project.type]} Project
+                                    </span>
+                                    {/* Divider */}
+                                    <span className={`text-[10px] ${project.type === 'institution' ? 'text-gray-600' : 'text-white/60'}`}>|</span>
+                                    {/* Role */}
+                                    <span className={`text-[11px] font-bold ${
+                                      project.type === 'institution' ? 'text-gray-700' : 'text-white/90'
+                                    }`}>
+                                      {directorRole}
                                     </span>
                                   </div>
                                   {/* Right side: Status badge */}
@@ -2026,8 +2034,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   </div>
                                   
                                   <div className="flex-1 min-w-0">
-                                    {/* Role badge */}
-                                    <span className={`inline-flex px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                    {/* Role badge - Desktop only */}
+                                    <span className={`hidden md:inline-flex px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
                                       {directorRole}
                                     </span>
                                     
