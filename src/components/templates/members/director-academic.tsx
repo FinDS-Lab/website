@@ -1036,12 +1036,11 @@ export const MembersDirectorAcademicTemplate = () => {
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
     
-    // Mobile: collapse sections by default
+    // Mobile: collapse some sections by default (but keep projects expanded)
     if (window.innerWidth < 768) {
       setExpandedSections(prev => ({
         ...prev,
-        academicService: false,
-        projects: false
+        academicService: false
       }))
     }
     
