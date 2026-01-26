@@ -642,16 +642,14 @@ export const MembersDirectorTemplate = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
-                <button 
-                  onClick={() => showModal({
-                    title: 'Curriculum Vitae', 
-                    maxWidth: '1000px', 
-                    children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>
-                  })} 
+                <a 
+                  href={`${import.meta.env.BASE_URL}data/director/resume.pdf`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  View CV <ExternalLink size={14}/>
-                </button>
+                  View Resume <ExternalLink size={14}/>
+                </a>
                 <a 
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
