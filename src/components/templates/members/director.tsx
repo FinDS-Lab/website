@@ -787,9 +787,9 @@ export const MembersDirectorTemplate = () => {
               </div>
               <Link 
                 to="/members/director/portfolio/profile"
-                className="flex items-center justify-center gap-4 mt-8 py-10 bg-gray-100 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all"
+                className="flex items-center justify-center gap-4 mt-12 text-gray-400 text-xs hover:text-gray-600 transition-colors"
               >
-                See Full Portfolio <ChevronRight size={12}/>
+                View Full Portfolio <ChevronRight size={12}/>
               </Link>
             </div>
           </aside>
