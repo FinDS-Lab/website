@@ -945,30 +945,6 @@ export const MembersDirectorTemplate = () => {
                           <p className="text-xs md:text-sm text-gray-500 mt-3">{edu.field}</p>
                         </div>
                       </div>
-                      
-                      {/* Advisor Section */}
-                      {edu.advisors && edu.advisors.length > 0 && (
-                        <div className="mt-16 pt-16 border-t border-gray-100">
-                          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Advisor</p>
-                          <div className="space-y-6">
-                            {edu.advisors.map((adv, i) => (
-                              <a 
-                                key={i}
-                                href={adv.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
-                              >
-                                <div className="flex items-center gap-8">
-                                  <GraduationCap className="size-14 text-[#D6B14D]" />
-                                  <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                </div>
-                                <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 ))}
