@@ -1855,15 +1855,21 @@ export const MembersDirectorAcademicTemplate = () => {
                                     <span className={`inline-flex px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
                                       {directorRole}
                                     </span>
-                                    <p className="text-[11px] md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
-                                    <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
-                                    <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
-                                    {/* Mobile: Period as text */}
-                                    <p className="md:hidden text-[9px] text-gray-400 mt-4">{project.period}</p>
-                                    {/* PC: Period badge */}
-                                    <span className="hidden md:inline-flex items-center px-8 py-3 mt-8 bg-white border border-gray-200 rounded-full text-[9px] font-bold text-gray-600 shadow-sm">
-                                      {project.period}
-                                    </span>
+                                    
+                                    {/* Title + Period (Desktop: Period on right) */}
+                                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-16">
+                                      <div className="flex-1 min-w-0">
+                                        <p className="text-[11px] md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
+                                        <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
+                                        <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
+                                        {/* Mobile: Period as text */}
+                                        <p className="md:hidden text-[9px] text-gray-400 mt-4">{project.period}</p>
+                                      </div>
+                                      {/* PC: Period badge - right aligned */}
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                        {project.period}
+                                      </span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>

@@ -1125,13 +1125,32 @@ export const PublicationsTemplate = () => {
                                     {(pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language?.toLowerCase() === 'korean') && pub.venue_ko 
                                       ? pub.venue_ko 
                                       : pub.venue}
-                                    {/* Edition info for books */}
-                                    {pub.type === 'book' && pub.edition && pub.edition_year && (
-                                      <span className="ml-8 text-xs font-semibold text-primary">
-                                        {pub.edition === 1 ? '1st' : pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Ed. {pub.edition_year}
-                                      </span>
-                                    )}
                                   </p>
+                                  {/* Edition info for books - separate line */}
+                                  {pub.type === 'book' && pub.edition && pub.edition_year && (
+                                    <>
+                                      {/* PC: Badge style */}
+                                      <div className="hidden md:flex items-center gap-8 mt-6">
+                                        <span className="inline-flex items-center gap-6 px-10 py-4 bg-[#FFF9E6] border border-[#E8D688] rounded-full">
+                                          <span className="text-[10px] font-bold text-[#9A7D1F]">
+                                            {pub.edition === 1 ? '1st' : pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Edition
+                                          </span>
+                                          <span className="text-[10px] text-[#B8962D]">·</span>
+                                          <span className="text-[10px] font-medium text-[#B8962D]">{pub.edition_year}</span>
+                                        </span>
+                                        {pub.original_year && (
+                                          <span className="text-[10px] text-gray-400 italic">
+                                            First published {pub.original_year}
+                                          </span>
+                                        )}
+                                      </div>
+                                      {/* Mobile: Text style */}
+                                      <p className="md:hidden text-[10px] text-[#9A7D1F] font-medium mt-4">
+                                        {pub.edition === 1 ? '1st' : pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Edition · {pub.edition_year}
+                                        {pub.original_year && <span className="text-gray-400 italic"> (First published {pub.original_year})</span>}
+                                      </p>
+                                    </>
+                                  )}
                                   {/* Mobile: Date below venue */}
                                   <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
                                     {pub.published_date}

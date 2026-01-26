@@ -1093,14 +1093,17 @@ export const MembersDirectorTemplate = () => {
                                           <Trophy className="w-18 h-18 text-[#AC0E0E]" />
                                         )}
                                       </div>
-                                      <div className="flex-1 min-w-0">
-                                        <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
-                                        <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                        <p className="text-[11px] text-gray-500 font-bold mb-4">{item.organization}</p>
-                                        {/* Mobile: Date as text */}
-                                        <p className="md:hidden text-[10px] text-gray-400">{year}-{formatHonorDate(item.date)}</p>
-                                        {/* PC: Date badge */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm">
+                                      {/* Content + Date - PC: Date on right */}
+                                      <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
+                                        <div className="flex-1 min-w-0">
+                                          <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
+                                          <p className="text-xs text-gray-600 mb-4">{item.event}</p>
+                                          <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
+                                          {/* Mobile: Date as text */}
+                                          <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
+                                        </div>
+                                        {/* PC: Date badge - right aligned */}
+                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                           {year}-{formatHonorDate(item.date)}
                                         </span>
                                       </div>
