@@ -275,11 +275,11 @@ const ResumeModal = () => (
       <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
       <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles in SSCI/SCIE indexed journals. Selected highlights:</p>
       <ul className="text-sm text-gray-600 space-y-6 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> (2024) – ETF price forecasting with xAI <span className="text-gray-400">[SCIE, Top 13.5%]</span></span></li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> (2024) – Risk forecasting for metals <span className="text-gray-400">[SSCI, Top 2.4%]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> (2024) – Information transfer networks <span className="text-gray-400">[SSCI, Top 9.6%]</span></span></li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Engineering Applications of Artificial Intelligence</strong> (2024) – Deep clustering <span className="text-gray-400">[SCIE, Top 2.5%]</span></span></li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Research in International Business and Finance</strong> (2023) – Downside risk estimation <span className="text-gray-400">[SSCI, Top 4.5%]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> (2024) – Information transfer networks <span className="text-gray-400">[SSCI, Top 9.6%]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> (2024) – ETF price forecasting with xAI <span className="text-gray-400">[SCIE, Top 13.5%]</span></span></li>
       </ul>
     </section>
 
