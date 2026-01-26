@@ -731,7 +731,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
-          <aside className="lg:w-380 shrink-0">
+          <aside className="lg:w-340 shrink-0">
             <div 
               ref={profileCardRef}
               className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
@@ -835,7 +835,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                 to="/members/director"
                 className="flex items-center justify-center gap-6 mt-12 py-12 bg-gray-100 text-gray-700 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-200 transition-all"
               >
-                <ChevronLeft size={14}/> Back to Director
+                <ChevronLeft size={14}/> Back to Summary
               </Link>
             </div>
           </aside>
