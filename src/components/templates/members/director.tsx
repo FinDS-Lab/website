@@ -209,25 +209,17 @@ export const MembersDirectorTemplate = () => {
                   ORCID <ExternalLink size={12}/>
                 </a>
               </div>
+              <Link 
+                to="/members/director/portfolio/profile"
+                className="flex items-center justify-center gap-6 mt-12 py-12 bg-gray-100 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all"
+              >
+                Full Portfolio <ChevronRight size={14}/>
+              </Link>
             </div>
           </aside>
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-24 md:gap-32 min-w-0">
-            {/* View Full Portfolio CTA */}
-            <Link 
-              to="/members/director/portfolio/profile"
-              className="group flex items-center justify-between p-20 md:p-24 bg-gradient-to-r from-primary to-primary/90 rounded-2xl text-white hover:shadow-xl hover:shadow-primary/20 transition-all duration-300"
-            >
-              <div>
-                <p className="text-lg md:text-xl font-bold mb-4">View Full Portfolio</p>
-                <p className="text-sm text-white/80">Detailed CV, Publications, Projects, Teaching & Activities</p>
-              </div>
-              <div className="size-48 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform"/>
-              </div>
-            </Link>
-
             {/* Education */}
             <section className="bg-white border border-gray-100 rounded-2xl p-20 md:p-24">
               <div className="flex items-center gap-12 mb-20">

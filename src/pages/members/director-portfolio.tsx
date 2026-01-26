@@ -1,10 +1,10 @@
 import LayoutOrganisms from '@/components/organisms/layout'
-import { MembersDirectorPortfolioTemplate } from '@/components/templates/members/director-portfolio'
+import { MembersDirectorPortfolioProfileTemplate } from '@/components/templates/members/director-portfolio-profile'
 
 export const MembersDirectorPortfolio = () => {
   return (
     <LayoutOrganisms>
-      <MembersDirectorPortfolioTemplate />
+      <MembersDirectorPortfolioProfileTemplate />
     </LayoutOrganisms>
   )
 }

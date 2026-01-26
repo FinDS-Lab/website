@@ -10,6 +10,7 @@ import {
   ChevronRight,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
   Home,
   Copy,
   Check,
@@ -348,7 +349,7 @@ const ResumeModal = () => (
   </div>
 )
 
-export const MembersDirectorPortfolioTemplate = () => {
+export const MembersDirectorPortfolioProfileTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
   const [projects, setProjects] = useState<Project[]>([])
   const [lectures, setLectures] = useState<Lecture[]>([])
@@ -830,6 +831,12 @@ export const MembersDirectorPortfolioTemplate = () => {
                   Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
               </div>
+              <Link 
+                to="/members/director"
+                className="flex items-center justify-center gap-6 mt-12 py-12 bg-gray-100 text-gray-700 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-200 transition-all"
+              >
+                <ChevronLeft size={14}/> Back to Director
+              </Link>
             </div>
           </aside>
 
@@ -1376,4 +1383,4 @@ export const MembersDirectorPortfolioTemplate = () => {
   )
 }
 
-export default memo(MembersDirectorPortfolioTemplate)
+export default memo(MembersDirectorPortfolioProfileTemplate)
