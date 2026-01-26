@@ -1606,22 +1606,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Collaboration Network */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('collaborationNetwork')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.collaborationNetwork && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  <CollaborationNetwork />
-                </div>
-              )}
-            </section>
-
             {/* Researcher IDs */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1695,6 +1679,22 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                   </a>
                 </div>
               </div>
+              )}
+            </section>
+
+            {/* Collaboration Network */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('collaborationNetwork')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.collaborationNetwork && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <CollaborationNetwork />
+                </div>
               )}
             </section>
 
