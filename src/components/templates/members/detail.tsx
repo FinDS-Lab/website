@@ -334,43 +334,6 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
 
           {/* Right Content */}
           <div className="flex-1 flex flex-col gap-40 md:gap-60">
-            {/* Projects - 단일 project 또는 여러 projects 모두 지원 */}
-            {(member.research.project || member.research.projects?.length || alumniProjects.length > 0) && (
-              <section>
-                <div className="flex items-center gap-12 mb-20 md:mb-24">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">
-                    {(member.research.projects?.length || 0) + alumniProjects.length > 1 ? 'Projects' : 'Current Project'}
-                  </h3>
-                </div>
-                <div className="flex flex-col gap-12">
-                  {/* 단일 project 객체 */}
-                  {member.research.project && (
-                    <div className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
-                      <p className="text-base font-semibold text-gray-800 mb-4">{member.research.project.en}</p>
-                      {member.research.project.ko && (
-                        <p className="text-sm text-gray-400">{member.research.project.ko}</p>
-                      )}
-                    </div>
-                  )}
-                  {/* projects 배열 */}
-                  {member.research.projects?.map((proj, idx) => (
-                    <div key={idx} className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
-                      <p className="text-base font-semibold text-gray-800 mb-4">{proj.en}</p>
-                      {proj.ko && (
-                        <p className="text-sm text-gray-400">{proj.ko}</p>
-                      )}
-                    </div>
-                  ))}
-                  {/* alumni.json에서 가져온 projects (member JSON에 없는 경우에만) */}
-                  {!member.research.project && !member.research.projects?.length && alumniProjects.map((proj, idx) => (
-                    <div key={idx} className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
-                      <p className="text-base font-semibold text-gray-800">{proj}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
             {/* Research Interests */}
             <section>
               <div className="flex items-center gap-12 mb-20 md:mb-24">
@@ -419,6 +382,43 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 ))}
               </div>
             </section>
+
+            {/* Projects - 단일 project 또는 여러 projects 모두 지원 */}
+            {(member.research.project || member.research.projects?.length || alumniProjects.length > 0) && (
+              <section>
+                <div className="flex items-center gap-12 mb-20 md:mb-24">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">
+                    {(member.research.projects?.length || 0) + alumniProjects.length > 1 ? 'Projects' : 'Current Project'}
+                  </h3>
+                </div>
+                <div className="flex flex-col gap-12">
+                  {/* 단일 project 객체 */}
+                  {member.research.project && (
+                    <div className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
+                      <p className="text-base font-semibold text-gray-800 mb-4">{member.research.project.en}</p>
+                      {member.research.project.ko && (
+                        <p className="text-sm text-gray-400">{member.research.project.ko}</p>
+                      )}
+                    </div>
+                  )}
+                  {/* projects 배열 */}
+                  {member.research.projects?.map((proj, idx) => (
+                    <div key={idx} className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
+                      <p className="text-base font-semibold text-gray-800 mb-4">{proj.en}</p>
+                      {proj.ko && (
+                        <p className="text-sm text-gray-400">{proj.ko}</p>
+                      )}
+                    </div>
+                  ))}
+                  {/* alumni.json에서 가져온 projects (member JSON에 없는 경우에만) */}
+                  {!member.research.project && !member.research.projects?.length && alumniProjects.map((proj, idx) => (
+                    <div key={idx} className="p-20 md:p-24 bg-gradient-to-r from-[#D6B14D]/5 to-[#E8889C]/5 border border-[#D6B14D]/20 rounded-xl">
+                      <p className="text-base font-semibold text-gray-800">{proj}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
           </div>
         </div>

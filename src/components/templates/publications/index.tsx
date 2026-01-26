@@ -770,8 +770,8 @@ export const PublicationsTemplate = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
                 // FINDS Lab color palette for icons - 모두 gold 계열로 통일
-                const colors = ['#D6B14D', '#D6B14D', '#D6C360', '#D6B14D', '#D6B14D', '#E8D688', '#D6A076', '#D6B14D']
-                const bgColors = ['rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,195,96,0.15)', 'rgba(214,176,76,0.15)', 'rgba(214,176,76,0.15)', 'rgba(232,214,136,0.15)', 'rgba(214,160,118,0.15)', 'rgba(214,176,76,0.15)']
+                const color = '#D6B14D'
+                const bgColor = 'rgba(214,177,77,0.15)'
                 return (
                   <div
                     key={index}
@@ -779,13 +779,13 @@ export const PublicationsTemplate = () => {
                   >
                     <div 
                       className="size-32 md:size-46 flex-shrink-0 rounded-lg flex items-center justify-center"
-                      style={{backgroundColor: bgColors[index]}}
+                      style={{backgroundColor: bgColor}}
                     >
                       <img
                         src={pubIcons[index]}
                         alt={item.label}
                         className="w-[70%] h-[70%] object-contain"
-                        style={{filter: `drop-shadow(0 0 0 ${colors[index]})`}}
+                        style={{filter: `drop-shadow(0 0 0 ${color})`}}
                       />
                     </div>
                     <div className="flex flex-col">
