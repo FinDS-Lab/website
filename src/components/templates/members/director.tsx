@@ -698,35 +698,6 @@ export const MembersDirectorTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation - Sticky */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
-            <Link
-              to="/members/director"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-            >
-              <User size={16} />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/portfolio/academic"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <BookOpen size={16} />
-              Academics
-            </Link>
-            <Link
-              to="/members/director/portfolio/activities"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <Activity size={16} />
-              Activities
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
@@ -831,6 +802,12 @@ export const MembersDirectorTemplate = () => {
                   Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
               </div>
+              <Link 
+                to="/members/director/portfolio/profile"
+                className="flex items-center justify-center gap-6 mt-12 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
+              >
+                See Full Portfolio <ChevronRight size={14}/>
+              </Link>
             </div>
           </aside>
 
