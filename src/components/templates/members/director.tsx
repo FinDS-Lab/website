@@ -186,6 +186,148 @@ const researchInterests = [
   },
 ]
 
+// Resume Modal Component
+const ResumeModal = () => (
+  <div className="p-20 md:p-32 max-h-[70vh] overflow-y-auto">
+    {/* Header */}
+    <div className="text-center mb-32 pb-24 border-b border-gray-200">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">INSU CHOI, Ph.D.</h2>
+      <p className="text-sm md:text-base text-gray-600 mb-12">
+        Assistant Professor, Gachon University | Director, FINDS Lab
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-12 text-xs md:text-sm text-gray-500">
+        <span>ischoi@gachon.ac.kr</span>
+        <span className="hidden md:inline">•</span>
+        <a href="https://orcid.org/0000-0003-2596-7368" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+          ORCID: 0000-0003-2596-7368
+        </a>
+      </div>
+    </div>
+
+    {/* Current Position */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Current Position</h3>
+      <div className="space-y-12">
+        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+          <div>
+            <p className="font-semibold text-gray-900">Assistant Professor, Gachon University</p>
+            <p className="text-sm text-gray-500">Big Data Business Management Major, Department of Finance and Big Data</p>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">Mar 2026 – Present</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+          <div>
+            <p className="font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
+            <p className="text-sm text-gray-500">Division of Business Administration, College of Business</p>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">Sep 2025 – Feb 2026</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Research Interests */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Research Interests</h3>
+      <p className="text-gray-700">Financial Data Science | Business Analytics | Data-Informed Decision Making</p>
+    </section>
+
+    {/* Education */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Education</h3>
+      <div className="space-y-16">
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 mb-6">
+            <p className="font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
+            <span className="text-sm text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-4 pl-16">
+            <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Dissertation Award: 11th Best Doctoral Dissertation, Korean OR & MS Society</li>
+            <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Advisor: Prof. Woo Chang Kim</li>
+          </ul>
+        </div>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 mb-6">
+            <p className="font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
+            <span className="text-sm text-gray-400 shrink-0">Feb 2018 – Feb 2021</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-4 pl-16">
+            <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Thesis Award: 17th Best Master Thesis, Korea Institute of Industrial Engineers</li>
+          </ul>
+        </div>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 mb-6">
+            <p className="font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
+            <span className="text-sm text-gray-400 shrink-0">Mar 2013 – Feb 2018</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-4 pl-16">
+            <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {/* Selected Publications */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Selected Publications</h3>
+      <p className="text-sm text-gray-600 mb-12">20+ peer-reviewed journal articles in SSCI/SCIE indexed journals. Selected highlights:</p>
+      <ul className="text-sm text-gray-600 space-y-8 pl-16">
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" /><span><strong>Knowledge-Based Systems</strong> (2024) – ETF price forecasting with xAI <span className="text-gray-400">[SCIE, Top 13.5%]</span></span></li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" /><span><strong>International Review of Financial Analysis</strong> (2024) – Risk forecasting for metals <span className="text-gray-400">[SSCI, Top 2.4%]</span></span></li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" /><span><strong>International Review of Economics & Finance</strong> (2024) – Information transfer networks <span className="text-gray-400">[SSCI, Top 9.6%]</span></span></li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" /><span><strong>Engineering Applications of Artificial Intelligence</strong> (2024) – Deep clustering <span className="text-gray-400">[SCIE, Top 2.5%]</span></span></li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" /><span><strong>Research in International Business and Finance</strong> (2023) – Downside risk estimation <span className="text-gray-400">[SSCI, Top 4.5%]</span></span></li>
+      </ul>
+    </section>
+
+    {/* Selected Research Projects */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Selected Research Projects</h3>
+      <div className="space-y-12">
+        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+          <div>
+            <p className="font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
+            <p className="text-sm text-gray-500">Korea Institute of Public Finance</p>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">May 2025 – Sep 2025</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+          <div>
+            <p className="font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
+            <p className="text-sm text-gray-500">Bank of Korea</p>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">Nov 2023 – Jul 2024</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-4">
+          <div>
+            <p className="font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
+            <p className="text-sm text-gray-500">Shinhan Bank</p>
+          </div>
+          <span className="text-sm text-gray-400 shrink-0">Aug 2021 – Dec 2023</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Professional Service */}
+    <section className="mb-28">
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Professional Service</h3>
+      <p className="text-sm text-gray-600">
+        <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 20+ journals
+      </p>
+    </section>
+
+    {/* Teaching Experience */}
+    <section>
+      <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-16">Teaching Experience</h3>
+      <ul className="text-sm text-gray-600 space-y-8 pl-16">
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Algorithmic Trading (DIGB441) – Korea University Sejong Campus (2025–2026)</li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Financial Engineering (IE329), Engineering Economics (IE201) – Kyung Hee University (2024)</li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Introduction to Financial Engineering, Applied Statistics – Kangnam University (2025–2026)</li>
+        <li className="flex items-start gap-8"><span className="w-4 h-4 rounded-full bg-primary/30 shrink-0 mt-6" />Financial Artificial Intelligence (IE471) – KAIST, Teaching Assistant (2022–2024)</li>
+      </ul>
+    </section>
+  </div>
+)
+
 export const MembersDirectorTemplate = () => {
   const [emailCopied, setEmailCopied] = useState(false)
   const [projects, setProjects] = useState<Project[]>([])
@@ -642,14 +784,16 @@ export const MembersDirectorTemplate = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
-                <a 
-                  href={`${import.meta.env.BASE_URL}data/director/resume.pdf`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button 
+                  onClick={() => showModal({
+                    title: 'Resume',
+                    maxWidth: '800px',
+                    children: <ResumeModal />
+                  })}
                   className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
                   View Resume <ExternalLink size={14}/>
-                </a>
+                </button>
                 <a 
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
