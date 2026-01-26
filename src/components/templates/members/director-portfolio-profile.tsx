@@ -1022,127 +1022,133 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
-                    {/* Timeline dot - vertically centered */}
+                    {/* Timeline dot */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
-                      {/* Mobile: Stack vertically, Desktop: Horizontal */}
-                      <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
-                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
+                      {/* Header: Logo + Degree/School/Field */}
+                      <div className="flex items-start gap-12 md:gap-16">
+                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
                           <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
-                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white w-fit">{edu.period}</span>
-                            <div className="flex flex-wrap items-center gap-6">
-                              {edu.honors && edu.honors.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
-                                  <Medal size={10} />
-                                  Honor
-                                </span>
-                              )}
-                              {edu.awards && edu.awards.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
-                                  <Award size={10} />
-                                  Award
-                                </span>
-                              )}
-                            </div>
+                          {/* Period + Honor/Award Badges */}
+                          <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 md:mb-10">
+                            <span className="px-8 md:px-10 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
+                            {edu.honors && edu.honors.length > 0 && (
+                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
+                                <Medal size={10} />
+                                Honor
+                              </span>
+                            )}
+                            {edu.awards && edu.awards.length > 0 && (
+                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
+                                <Award size={10} />
+                                Award
+                              </span>
+                            )}
                           </div>
-                          <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
-                          <p className="text-xs md:text-sm text-gray-600 break-words">{edu.field}</p>
+                          {/* Degree - Largest */}
+                          <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          {/* School - Medium */}
+                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-4 md:mt-6">{edu.school}</p>
+                          {/* Field - Smallest */}
+                          <p className="text-xs md:text-sm text-gray-500 mt-2 md:mt-3">{edu.field}</p>
                         </div>
                       </div>
                       
-                      {/* Content - same indent as degree/field on mobile */}
-                      <div className="pl-0 md:pl-80">
-                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4 break-words">{edu.school}</p>
-                        {edu.advisors && edu.advisors.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
-                            <div className="space-y-6">
-                              {edu.advisors.map((adv, i) => (
-                                <a 
-                                  key={i}
-                                  href={adv.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
-                                >
-                                  <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B14D]" />
-                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                  </div>
-                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {edu.leadership && edu.leadership.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Leadership Roles</p>
-                            <div className="space-y-6">
-                              {edu.leadership.map((l, i) => (
-                                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-8">
-                                  <div>
-                                    <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                    <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
-                                  </div>
-                                  <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Collapsible Honors & Awards */}
-                        {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
-                          <div className="pt-12 border-t border-gray-100">
-                            <button 
-                              onClick={() => toggleEduAwards(index)}
-                              className="flex items-center justify-between w-full group mb-8"
-                            >
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
-                              <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
-                            </button>
-                            
-                            {expandedEduAwards.has(index) && (
-                              <div className="space-y-12">
-                                {edu.honors && edu.honors.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.honors.map((h, i) => (
-                                      <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
-                                        <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                                
-                                {edu.awards && edu.awards.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.awards.map((a, i) => (
-                                      <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                        <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
+                      {/* Details Section */}
+                      {(edu.advisors?.length > 0 || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
+                        <div className="mt-16 pt-16 border-t border-gray-100 space-y-16">
+                          {/* Advisor */}
+                          {edu.advisors && edu.advisors.length > 0 && (
+                            <div>
+                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Advisor</p>
+                              <div className="space-y-6">
+                                {edu.advisors.map((adv, i) => (
+                                  <a 
+                                    key={i}
+                                    href={adv.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
+                                  >
+                                    <div className="flex items-center gap-8">
+                                      <GraduationCap className="size-14 text-[#D6B14D]" />
+                                      <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                    </div>
+                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                                  </a>
+                                ))}
                               </div>
-                            )}
-                          </div>
-                        )}
-                      </div>
+                            </div>
+                          )}
+                          
+                          {/* Leadership */}
+                          {edu.leadership && edu.leadership.length > 0 && (
+                            <div>
+                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Leadership Roles</p>
+                              <div className="space-y-6">
+                                {edu.leadership.map((l, i) => (
+                                  <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
+                                    <div>
+                                      <span className="text-xs font-semibold text-gray-800">{l.role}</span>
+                                      <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
+                                    </div>
+                                    <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Collapsible Honors & Awards */}
+                          {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
+                            <div className="pt-12 border-t border-gray-100">
+                              <button 
+                                onClick={() => toggleEduAwards(index)}
+                                className="flex items-center justify-between w-full group mb-10"
+                              >
+                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              
+                              {expandedEduAwards.has(index) && (
+                                <div className="space-y-12">
+                                  {edu.honors && edu.honors.length > 0 && (
+                                    <div className="space-y-6">
+                                      {edu.honors.map((h, i) => (
+                                        <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
+                                          <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
+                                          <div className="flex-1">
+                                            <span className="text-xs font-semibold text-gray-800">{h.title}</span>
+                                            <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                  
+                                  {edu.awards && edu.awards.length > 0 && (
+                                    <div className="space-y-6">
+                                      {edu.awards.map((a, i) => (
+                                        <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                          <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
+                                          <div className="flex-1">
+                                            <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                            <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}

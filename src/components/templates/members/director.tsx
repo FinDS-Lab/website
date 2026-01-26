@@ -918,51 +918,57 @@ export const MembersDirectorTemplate = () => {
               <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {education.map((edu, index) => (
                   <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
-                    {/* Timeline dot - vertically centered */}
+                    {/* Timeline dot */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
-                      {/* Mobile: Stack vertically, Desktop: Horizontal */}
-                      <div className="flex flex-col md:flex-row md:items-start gap-12 md:gap-16 mb-16">
-                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
+                      {/* Main Content */}
+                      <div className="flex gap-12 md:gap-16">
+                        {/* Logo */}
+                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
                           <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
+                        
+                        {/* Info */}
                         <div className="flex-1 min-w-0">
-                          <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
-                            <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white w-fit">{edu.period}</span>
-                          </div>
-                          <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
-                          <p className="text-xs md:text-sm text-gray-600 break-words">{edu.field}</p>
+                          {/* Period Badge */}
+                          <span className="inline-block px-10 py-3 text-[10px] md:text-xs font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
+                          
+                          {/* Degree - Largest */}
+                          <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          
+                          {/* School - Medium */}
+                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-6">{edu.school}</p>
+                          
+                          {/* Field - Smallest */}
+                          <p className="text-xs md:text-sm text-gray-500 mt-3">{edu.field}</p>
                         </div>
                       </div>
                       
-                      {/* Content - same indent as degree/field on mobile */}
-                      <div className="pl-0 md:pl-80">
-                        <p className="text-xs md:text-sm font-semibold text-gray-800 mb-4 break-words">{edu.school}</p>
-                        {edu.advisors && edu.advisors.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Advisor</p>
-                            <div className="space-y-6">
-                              {edu.advisors.map((adv, i) => (
-                                <a 
-                                  key={i}
-                                  href={adv.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-8 hover:bg-gray-100 transition-colors group"
-                                >
-                                  <div className="flex items-center gap-8">
-                                    <GraduationCap className="size-14 text-[#D6B14D]" />
-                                    <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                  </div>
-                                  <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                </a>
-                              ))}
-                            </div>
+                      {/* Advisor Section */}
+                      {edu.advisors && edu.advisors.length > 0 && (
+                        <div className="mt-16 pt-16 border-t border-gray-100">
+                          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Advisor</p>
+                          <div className="space-y-6">
+                            {edu.advisors.map((adv, i) => (
+                              <a 
+                                key={i}
+                                href={adv.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
+                              >
+                                <div className="flex items-center gap-8">
+                                  <GraduationCap className="size-14 text-[#D6B14D]" />
+                                  <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                </div>
+                                <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                              </a>
+                            ))}
                           </div>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
