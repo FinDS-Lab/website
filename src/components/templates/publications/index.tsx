@@ -395,6 +395,10 @@ export const PublicationsTemplate = () => {
     if (filters.conference.length > 0) {
       result = result.filter((pub) => {
         if (!pub.indexing_group) return false
+        // International Conference 필터 시 Scopus Conference도 포함
+        if (filters.conference.includes('International Conference') && pub.indexing_group === 'Scopus') {
+          return true
+        }
         return filters.conference.includes(pub.indexing_group)
       })
     }
@@ -1023,19 +1027,22 @@ export const PublicationsTemplate = () => {
                                         </span>
                                       </div>
                                     </div>
-                                    {/* Status badge below */}
-                                    {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group === 'Scopus') && (
+                                    {/* Status badge below - Conference */}
+                                    {pub.type === 'conference' && pub.indexing_group === 'Scopus' && (
+                                      <div className="w-full mt-4 py-4 text-center rounded-md bg-[#D6B14D]/10 border border-[#D6B14D]/30">
+                                        <span className="text-[9px] font-bold" style={{color: '#D6B14D'}}>
+                                          Scopus
+                                        </span>
+                                      </div>
+                                    )}
+                                    {pub.type === 'conference' && pub.presentation_type && (
                                       <div className={`w-full mt-4 py-4 text-center rounded-md ${
-                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 
-                                        pub.presentation_type === 'poster' ? 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30' :
-                                        'bg-[#D6B14D]/10 border border-[#D6B14D]/30'
+                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
                                       }`}>
                                         <span className="text-[9px] font-bold"
-                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : pub.presentation_type === 'poster' ? '#FFBAC4' : '#D6B14D'}}
+                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
                                         >
-                                          {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
-                                          {pub.presentation_type && pub.indexing_group === 'Scopus' && ' · '}
-                                          {pub.indexing_group === 'Scopus' && 'Scopus'}
+                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
                                         </span>
                                       </div>
                                     )}
