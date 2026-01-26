@@ -155,8 +155,13 @@ export const ArchivesPlaylistTemplate = () => {
 
         // 데이터 형식 변환
         const items = data.items.map((item: RawPlaylistItem) => {
-          // YouTube URL에서 비디오 ID 추출
-          const videoId = item.url.split('v=')[1]?.split('&')[0] || ''
+          // YouTube URL에서 비디오 ID 추출 (youtube.com/watch?v= 또는 youtu.be/ 형식 지원)
+          let videoId = ''
+          if (item.url.includes('youtu.be/')) {
+            videoId = item.url.split('youtu.be/')[1]?.split('?')[0] || ''
+          } else if (item.url.includes('v=')) {
+            videoId = item.url.split('v=')[1]?.split('&')[0] || ''
+          }
           return {
             artist: item.artist || 'Unknown Artist',
             title: item.title || 'Unknown Title',

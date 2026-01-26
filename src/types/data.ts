@@ -48,6 +48,7 @@ export type Publication = {
   url?: string
   presentation_type?: 'oral' | 'poster'
   edition?: number
+  edition_year?: number
   original_year?: number
 }
 

@@ -33,8 +33,8 @@
     "code_label": "B",
     "published_date": "2018-03-01",
     "year": 2018,
-    "title": "대학생을 위한 포트폴리오 가이드 (제2판)",
-    "title_ko": "대학생을 위한 포트폴리오 가이드 (제2판)",
+    "title": "대학생을 위한 포트폴리오 가이드",
+    "title_ko": "대학생을 위한 포트폴리오 가이드",
     "edition": 2,
     "edition_year": 2026,
     "original_year": 2018,
@@ -6091,10 +6091,7 @@
     "pages": "179-189",
     "doi": "10.7232/JKIIE.2020.46.3.179",
     "language": "Korean",
-    "awards": 1,
-    "award_details": [
-      "제8회 산업융합 활성화 방안 및 사례연구 논문공모전 우수상"
-    ],
+    "awards": 0,
     "citations": {
       "apa": "Choi, I., Park, S., Cho, Y., Lee, C., Kim, A., & Kim, W. C. (2020). Developing a book recommendation model based on reading level using book information and book review data. <em>Journal of the Korean Institute of Industrial Engineers</em>, <em>46</em>(3), 179-189. https://doi.org/10.7232/JKIIE.2020.46.3.179",
       "mla": "Choi, Insu, et al. \"Developing a Book Recommendation Model Based on Reading Level Using Book Information and Book Review Data.\" <em>Journal of the Korean Institute of Industrial Engineers</em>, vol. 46, no. 3, 2020, pp. 179-189. doi:10.7232/JKIIE.2020.46.3.179.",

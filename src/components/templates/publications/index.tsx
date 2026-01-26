@@ -441,12 +441,12 @@ export const PublicationsTemplate = () => {
     return years.sort((a, b) => b - a)
   }, [publicationsByYear])
 
-  // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관, 2018년부터)
+  // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관, 2017년부터)
   const yearlyChartData = useMemo(() => {
     const yearMap: { [year: number]: { journal: number; conference: number; book: number; report: number } } = {}
     
     publications.forEach((pub) => {
-      if (pub.year < 2018) return // 2018년 이전 데이터 제외
+      if (pub.year < 2017) return // 2017년 이전 데이터 제외
       if (!yearMap[pub.year]) {
         yearMap[pub.year] = { journal: 0, conference: 0, book: 0, report: 0 }
       }
@@ -463,6 +463,20 @@ export const PublicationsTemplate = () => {
       total: yearMap[year].journal + yearMap[year].conference + yearMap[year].book + yearMap[year].report
     }))
   }, [publications])
+
+  // Citation 데이터 (2017-2026)
+  const citationData = useMemo(() => [
+    { year: 2017, citations: 0 },
+    { year: 2018, citations: 0 },
+    { year: 2019, citations: 0 },
+    { year: 2020, citations: 0 },
+    { year: 2021, citations: 3 },
+    { year: 2022, citations: 6 },
+    { year: 2023, citations: 4 },
+    { year: 2024, citations: 50 },
+    { year: 2025, citations: 85 },
+    { year: 2026, citations: 6 },
+  ], [])
 
   // 가장 최신 연도를 기본으로 펼침
   useEffect(() => {
@@ -705,6 +719,75 @@ export const PublicationsTemplate = () => {
                 </div>
               </div>
             )}
+
+            {/* Citations Timeline - PC Only */}
+            {citationData.length > 0 && (
+              <div className="hidden lg:block mt-8">
+                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-20">
+                    <h4 className="text-sm font-bold text-gray-700 flex items-center gap-8">
+                      <BarChart3 className="size-16 text-[#AC0E0E]" />
+                      Citation Timeline
+                    </h4>
+                    <div className="flex items-center gap-8">
+                      <span className="text-xs text-gray-500">Total Citations:</span>
+                      <span className="text-lg font-bold text-[#AC0E0E]">{citationData.reduce((sum, d) => sum + d.citations, 0)}</span>
+                    </div>
+                  </div>
+                  
+                  {/* Citation Chart Area */}
+                  <div className="relative h-[160px]">
+                    {/* Y-axis labels */}
+                    <div className="absolute left-0 top-0 bottom-24 w-32 flex flex-col justify-between text-[10px] text-gray-400">
+                      <span>{Math.max(...citationData.map(d => d.citations))}</span>
+                      <span>{Math.round(Math.max(...citationData.map(d => d.citations)) / 2)}</span>
+                      <span>0</span>
+                    </div>
+                    
+                    {/* Chart */}
+                    <div className="ml-40 h-full flex items-end gap-2 pb-24 border-l border-b border-gray-100">
+                      {citationData.map((data, index) => {
+                        const maxCitations = Math.max(...citationData.map(d => d.citations))
+                        const heightScale = maxCitations > 0 ? 120 / maxCitations : 0
+                        
+                        return (
+                          <div key={data.year} className="flex-1 flex flex-col items-center group relative">
+                            {/* Bar */}
+                            <div className="w-full max-w-[40px] flex flex-col-reverse">
+                              <div 
+                                className="w-full rounded-t-[4px] transition-all duration-300 group-hover:opacity-80"
+                                style={{ 
+                                  height: Math.max(data.citations * heightScale, data.citations > 0 ? 4 : 0),
+                                  backgroundColor: '#AC0E0E'
+                                }} 
+                              />
+                            </div>
+                            
+                            {/* Citation count on top of bar */}
+                            {data.citations > 0 && (
+                              <span className="text-[9px] font-bold text-[#AC0E0E] mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                {data.citations}
+                              </span>
+                            )}
+                            
+                            {/* Year Label */}
+                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-[#AC0E0E] transition-colors">
+                              {data.year}
+                            </span>
+                            
+                            {/* Tooltip */}
+                            <div className="absolute bottom-full mb-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-12 py-8 rounded-lg text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 shadow-lg">
+                              <div className="font-bold">{data.year}</div>
+                              <div className="text-[#FFBAC4]">Citations: {data.citations}</div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Authorship Remarks Section */}
@@ -935,8 +1018,8 @@ export const PublicationsTemplate = () => {
                                 </button>
                               </div>
                               
-                              <div className="p-16 md:p-24 pb-24 md:pb-28">
-                                <div className="flex flex-col gap-12 md:gap-20">
+                              <div className="p-16 md:p-20 pb-20 md:pb-24">
+                                <div className="flex flex-col gap-12 md:gap-16">
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
                                   {/* Desktop: Left Type Badge - Split design (top colored, bottom white) */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
@@ -1071,12 +1154,9 @@ export const PublicationsTemplate = () => {
                                       ? pub.venue_ko 
                                       : pub.venue}
                                     {/* Edition info for books */}
-                                    {pub.type === 'book' && pub.edition && (
-                                      <span className="ml-8 inline-flex items-center px-8 py-2 bg-[#E8D688]/30 rounded-md text-[10px] font-semibold text-[#B8962D]">
-                                        {pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Ed.
-                                        {pub.original_year && (
-                                          <span className="text-[#B8962D]/70 ml-4">(1st: {pub.original_year})</span>
-                                        )}
+                                    {pub.type === 'book' && pub.edition && pub.edition_year && (
+                                      <span className="ml-8 text-xs font-semibold text-primary">
+                                        {pub.edition === 1 ? '1st' : pub.edition === 2 ? '2nd' : pub.edition === 3 ? '3rd' : `${pub.edition}th`} Ed. {pub.edition_year}
                                       </span>
                                     )}
                                   </p>
