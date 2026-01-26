@@ -125,7 +125,16 @@ const GlobalMusicPlayer = memo(() => {
         playerVars: { autoplay: isPlaying ? 1 : 0, controls: 1, modestbranding: 1, rel: 0, playsinline: 1 },
         events: {
           onReady: () => { setPlayerReady(true); lastVideoIdRef.current = currentVideoId },
-          onStateChange: (event) => { if (event.data === 0) nextTrack() },
+          onStateChange: (event) => { 
+            // 1 = playing, 2 = paused, 0 = ended
+            if (event.data === 1) {
+              setIsPlaying(true)
+            } else if (event.data === 2) {
+              setIsPlaying(false)
+            } else if (event.data === 0) {
+              nextTrack()
+            }
+          },
         },
       })
     }
@@ -184,7 +193,7 @@ const GlobalMusicPlayer = memo(() => {
             <button onClick={() => toggleMinimize()} className="group flex items-center gap-14 px-28 py-18 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-full shadow-2xl hover:shadow-[0_8px_30px_rgba(214,177,77,0.25)] transition-all duration-300 border border-gray-700/50 hover:scale-105">
               <div className="relative flex items-center justify-center w-52 h-52 rounded-full" style={{backgroundColor: 'rgba(214,177,77,0.12)', border: '2px solid rgba(214,177,77,0.25)'}}>
                 <Music className="w-22 h-22" style={{color: 'rgb(214,177,77)'}} />
-                {isPlaying && <span className="absolute -top-2 -right-2 w-14 h-14 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-400/50 border-2 border-gray-900" />}
+                {isPlaying && <span className="absolute -top-2 -right-2 w-14 h-14 bg-primary rounded-full animate-pulse shadow-lg shadow-primary/50 border-2 border-gray-900" />}
               </div>
               <div className="flex flex-col">
                 <span className="text-base font-bold tracking-wide" style={{color: 'rgb(214,177,77)'}}>FINDS</span>
@@ -200,7 +209,7 @@ const GlobalMusicPlayer = memo(() => {
             <div className="flex items-center gap-6 flex-1 min-w-0">
               <div className="relative shrink-0">
                 <Music size={16} style={{color: 'rgb(214,177,77)'}} />
-                {isPlaying && <span className="absolute -top-1 -right-1 w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />}
+                {isPlaying && <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-pulse" />}
               </div>
               <div className="min-w-0 flex-1 overflow-hidden">
                 <p className="text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
