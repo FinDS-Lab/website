@@ -693,7 +693,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
             <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
             <span className="text-gray-200">—</span>
-            <span className="text-sm text-primary font-semibold">Director</span>
+            <Link to="/members/director" className="text-sm text-primary font-semibold hover:underline">Director</Link>
           </div>
         </div>
       </div>
@@ -734,108 +734,94 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
           <aside className="lg:w-340 shrink-0">
             <div 
               ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
+              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
-              <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+              <div className="flex flex-col items-center text-center mb-20 md:mb-24">
+                <div className="w-100 h-130 md:w-120 md:h-155 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
-                <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
-                  Insu Choi
-                  <span className="text-sm md:text-base font-medium text-gray-400 ml-4">, Ph.D.</span>
-                </h2>
-                <p className="text-base md:text-lg text-gray-500 font-medium">최인수</p>
+                <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
               </div>
 
-              <div className="flex flex-col gap-16 md:gap-20">
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Briefcase size={16}/>
+              <div className="flex flex-col gap-12 md:gap-16">
+                <div className="flex items-start gap-10 group">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Position</p>
+                    <p className="text-xs font-semibold text-gray-800">Director</p>
+                    <p className="text-[10px] text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Building size={16}/>
+                <div className="flex items-start gap-10 group">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Affiliation</p>
+                    <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
+                    <p className="text-[10px] text-gray-500">Gachon University</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <MapPin size={16}/>
+                <div className="flex items-start gap-10 group">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 614호</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Office</p>
+                    <p className="text-xs font-semibold text-gray-800">Room 614, Gachon Hall</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Mail size={16}/>
+                <div className="flex items-start gap-10 group">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                    <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">E-mail</p>
-                    <div className="flex items-center gap-8">
-                      <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">E-mail</p>
+                    <div className="flex items-center gap-6">
+                      <a href={`mailto:${directorEmail}`} className="select-text text-xs font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
                       <button 
                         onClick={handleCopyEmail} 
-                        className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
+                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
                         title="Copy email"
                       >
-                        {emailCopied ? <Check size={12} className="text-green-500"/> : <Copy size={12} className="text-gray-400"/>}
+                        {emailCopied ? <Check size={10} className="text-green-500"/> : <Copy size={10} className="text-gray-400"/>}
                       </button>
                     </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
-                    <Phone size={16}/>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
-                  </div>
-                </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
+              <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
                     title: 'Resume',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
-                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
+                  className="flex items-center justify-center gap-4 py-10 bg-primary text-white text-xs font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  View Resume <ExternalLink size={14}/>
+                  Resume <ExternalLink size={12}/>
                 </button>
                 <a 
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 text-xs md:text-sm font-bold rounded-xl hover:opacity-90 transition-all"
+                  className="flex items-center justify-center gap-4 py-10 text-xs font-bold rounded-xl hover:opacity-90 transition-all"
                   style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
                 >
-                  Scholar <ExternalLink size={14} color="#ffffff"/>
+                  Scholar <ExternalLink size={12} color="#ffffff"/>
                 </a>
               </div>
               <Link 
                 to="/members/director"
-                className="flex items-center justify-center gap-6 mt-12 py-12 bg-gray-100 text-gray-700 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-200 transition-all"
+                className="flex items-center justify-center gap-4 mt-8 py-10 bg-gray-100 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all"
               >
-                <ChevronLeft size={14}/> Back to Overview
+                <ChevronLeft size={12}/> Back to Overview
               </Link>
             </div>
           </aside>
