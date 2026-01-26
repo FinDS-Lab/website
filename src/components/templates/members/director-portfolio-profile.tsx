@@ -357,7 +357,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set()) // For education awards/honors
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
@@ -976,7 +976,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
 
                   {/* Web of Science */}
                   <a 
-                    href="https://www.webofscience.com/wos/author/record/EQW-9977-2022" 
+                    href="https://www.webofscience.com/wos/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
@@ -991,7 +991,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
 
                   {/* IRIS (Korean National Researcher Number) */}
                   <a 
-                    href="https://www.ntis.go.kr/rndgate/eg/un/ra/mng/researcherInfoV2.do?researcherCode=12405369" 
+                    href="https://www.iris.go.kr/main.do" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"

@@ -362,29 +362,12 @@ export const MembersDirectorTemplate = () => {
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
     researchInterests: true,
-    researcherIds: true,
     education: true,
     employment: true,
     honorsAwards: true,
     publicationStats: true,
     teaching: true
   })
-  
-  // Publication statistics (overview only)
-  const overviewPubStats = [
-    {label: 'Total', count: 16},
-    {label: 'SCIE', count: 12},
-    {label: 'SCOPUS', count: 12},
-    {label: 'KCI', count: 1},
-    {label: 'Intl Conf', count: 3}
-  ]
-  
-  // Teaching data - Lecturer courses only (overview)
-  const overviewLecturerCourses = [
-    {school: 'Korea University', courseName: 'Artificial Intelligence and Big Data', courseNameKo: '인공지능과 빅데이터', periods: ['2025-Fall', '2025-Spring']},
-    {school: 'Kangnam University', courseName: 'AI Business', courseNameKo: '인공지능비즈니스', periods: ['2025-Fall', '2025-Spring']},
-    {school: 'Kyung Hee University', courseName: 'Introduction to Fintech', courseNameKo: '핀테크 개론', periods: ['2024-Spring']},
-  ]
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -920,81 +903,6 @@ export const MembersDirectorTemplate = () => {
               )}
             </section>
 
-            {/* Researcher IDs */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('researcherIds')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Researcher IDs</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researcherIds ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.researcherIds && (
-              <div className="p-20 md:p-24 border-t border-gray-100">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
-                  {/* ORCID */}
-                  <a 
-                    href="https://orcid.org/0000-0003-2596-7368" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">ORCID</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors text-center break-all">0000-0003-2596-7368</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors" />
-                  </a>
-
-                  {/* Scopus */}
-                  <a 
-                    href="https://www.scopus.com/authid/detail.uri?authorId=57224825321" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Scopus</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors" />
-                  </a>
-
-                  {/* Web of Science */}
-                  <a 
-                    href="https://www.webofscience.com/wos/author/record/EQW-9977-2022" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Web of Science</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
-                  </a>
-
-                  {/* IRIS (Korean National Researcher Number) */}
-                  <a 
-                    href="https://www.ntis.go.kr/rndgate/eg/un/ra/mng/researcherInfoV2.do?researcherCode=12405369" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/iris.webp`} alt="IRIS" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center">국가연구자번호</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#003876] transition-colors">12405369</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#003876] transition-colors" />
-                  </a>
-                </div>
-              </div>
-              )}
-            </section>
 
             {/* Education */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
@@ -1207,8 +1115,8 @@ export const MembersDirectorTemplate = () => {
               </button>
               {expandedSections.publicationStats && (
                 <div className="p-20 md:p-24 border-t border-gray-100">
-                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-8 md:gap-12 mb-16 md:mb-24">
-                    {overviewPubStats.map((stat, index) => (
+                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
+                    {pubStats.map((stat, index) => (
                       <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
                         <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
                         <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
@@ -1233,62 +1141,74 @@ export const MembersDirectorTemplate = () => {
             </section>
 
             {/* Teaching */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('teaching')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.teaching && (
-                <div className="p-20 md:p-24 border-t border-gray-100">
-                  <div className="flex items-center gap-8 mb-16">
-                    <p className="text-sm font-bold text-gray-900">Lecturer</p>
-                    <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{overviewLecturerCourses.reduce((sum, c) => sum + c.periods.length, 0)}</span>
-                  </div>
-                  <div className="space-y-12">
-                    {overviewLecturerCourses.map((course, index) => {
-                      const getSchoolLogo = (school: string) => {
-                        if (school.includes('Kyung Hee')) return logoKyunghee
-                        if (school.includes('Kangnam')) return logoKangnam
-                        if (school.includes('Korea University') || school === 'Korea University') return logoKorea
-                        return null
-                      }
-                      const schoolLogo = getSchoolLogo(course.school)
-                      
-                      return (
-                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
-                          <div className="flex items-start gap-12 md:gap-16">
-                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
-                              {schoolLogo ? (
-                                <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
-                              ) : (
-                                <BookOpen size={18} style={{color: '#D6B14D'}} />
-                              )}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex flex-wrap items-center gap-6 mb-8">
-                                {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
-                                    {period}
-                                  </span>
-                                ))}
-                              </div>
-                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
-                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
-                              )}
-                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
-                            </div>
+            {lectures.length > 0 && (
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('teaching')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.teaching && (
+                  <div className="p-20 md:p-24 border-t border-gray-100">
+                    {/* Lecturer Section */}
+                    {lecturerCourses.length > 0 && (
+                      <div className="border border-gray-100 rounded-xl overflow-hidden">
+                        <div className="flex items-center justify-between px-16 py-12 bg-gray-50">
+                          <div className="flex items-center gap-8">
+                            <p className="text-sm font-bold text-gray-900">Lecturer</p>
+                            <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
                           </div>
                         </div>
-                      )
-                    })}
+                        <div className="space-y-12 p-16">
+                          {lecturerCourses.map((course, index) => {
+                            const getSchoolLogo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return logoKaist
+                              if (school.includes('Kyung Hee')) return logoKyunghee
+                              if (school.includes('Gachon')) return logoGcu
+                              if (school.includes('Dongduk')) return logoDwu
+                              if (school.includes('Kangnam')) return logoKangnam
+                              if (school.includes('Korea University') || school === 'Korea University') return logoKorea
+                              return null
+                            }
+                            const schoolLogo = getSchoolLogo(course.school)
+                            
+                            return (
+                              <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                                <div className="flex items-start gap-12 md:gap-16">
+                                  <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
+                                    {schoolLogo ? (
+                                      <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                                    ) : (
+                                      <BookOpen size={18} style={{color: '#D6B14D'}} />
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex flex-wrap items-center gap-6 mb-8">
+                                      {course.periods.map((period, i) => (
+                                        <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                          {period}
+                                        </span>
+                                      ))}
+                                    </div>
+                                    <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                                    {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                      <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                                    )}
+                                    <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-            </section>
+                )}
+              </section>
+            )}
           </main>
         </div>
       </section>
