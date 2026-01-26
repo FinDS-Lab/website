@@ -1654,7 +1654,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
               </div>
               <Link 
                 to="/members/director"
-                className="flex items-center justify-center gap-4 mt-8 py-10 bg-gray-100 text-gray-700 text-xs font-bold rounded-xl hover:bg-gray-200 transition-all"
+                className="flex items-center justify-center gap-4 mt-8 py-10 bg-white border border-gray-200 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-50 hover:text-gray-700 transition-all"
               >
                 <ChevronLeft size={12}/> Back to Overview
               </Link>
