@@ -734,11 +734,11 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => {
-                        // Special handling for Iridescent View Extraction - gold on mobile, bold on PC
+                        // Special handling for Iridescent View Extraction - gold on both mobile and PC
                         if (item.includes('Iridescent View Extraction')) {
                           const highlightedItem = item.replace(
                             'Iridescent View Extraction',
-                            '<span class="text-primary md:text-gray-600 font-semibold">Iridescent View Extraction</span>'
+                            '<span class="text-primary font-semibold">Iridescent View Extraction</span>'
                           )
                           return (
                             <li key={idx} className="flex items-start gap-10">

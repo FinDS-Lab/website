@@ -52,7 +52,7 @@ const coreValues = [
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
-    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>금융 시장</b>과 경영 및 산업 환경에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
+    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
   },
   {
     icon: Lightbulb,
@@ -288,7 +288,7 @@ export const AboutIntroductionTemplate = () => {
                             <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
                             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">데이터로 밝히는</span> 금융 혁신의 미래</>
+                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
                                 <>Towards <span className="text-[#D6B14D]">Data-Driven</span> Financial Innovation</>
                               )}
@@ -308,10 +308,10 @@ export const AboutIntroductionTemplate = () => {
                           {missionLang === 'ko' ? (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                가천대학교 경영대학 금융·빅데이터학부 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 경영 및 금융 분야를 비롯한 산업 환경 속에서 <span className="font-bold" style={{color: '#D6B14D'}}>실질적인 가치를 창출</span>하는 연구를 수행하고자 합니다.
+                                가천대학교 경영대학 금융·빅데이터학부 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 및 산업환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 정교한 의사결정을 돕는 것을 목표로 합니다.
+                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 <span className="font-bold">정교한 의사결정</span>을 돕는 것을 목표로 합니다.
                               </p>
                             </>
                           ) : (
