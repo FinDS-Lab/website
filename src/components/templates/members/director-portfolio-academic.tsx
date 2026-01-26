@@ -1160,20 +1160,17 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
       const sectionRect = section.getBoundingClientRect()
       const cardHeight = card.offsetHeight
       const navHeight = 80
+      const topOffset = navHeight + 16 // Below nav + small padding
       const bottomPadding = 32
       
-      // 화면 중앙 위치 계산 (nav bar 아래 영역의 중앙)
-      const availableHeight = window.innerHeight - navHeight
-      const centerOffset = navHeight + (availableHeight - cardHeight) / 2
-      
-      // Section의 시작이 centerOffset 위로 올라가면 sticky 시작
-      if (sectionRect.top <= centerOffset) {
-        // Section의 끝이 card + centerOffset + padding 보다 작으면 bottom에 고정
-        if (sectionRect.bottom <= cardHeight + centerOffset + bottomPadding) {
+      // Section의 시작이 topOffset 위로 올라가면 sticky 시작
+      if (sectionRect.top <= topOffset) {
+        // Section의 끝이 card + topOffset + padding 보다 작으면 bottom에 고정
+        if (sectionRect.bottom <= cardHeight + topOffset + bottomPadding) {
           setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
         } else {
-          // 화면 중앙에 위치
-          setProfileTop(centerOffset - sectionRect.top)
+          // 위쪽에 고정 (nav bar 바로 아래)
+          setProfileTop(topOffset - sectionRect.top)
         }
       } else {
         setProfileTop(0)

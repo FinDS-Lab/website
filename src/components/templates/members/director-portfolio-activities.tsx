@@ -1224,13 +1224,14 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
       const sectionRect = section.getBoundingClientRect()
       const cardHeight = card.offsetHeight
       const navHeight = 80
+      const topOffset = navHeight + 16 // Below nav + small padding
       const bottomPadding = 32
       
-      if (sectionRect.top <= navHeight) {
-        if (sectionRect.bottom <= cardHeight + navHeight + bottomPadding) {
+      if (sectionRect.top <= topOffset) {
+        if (sectionRect.bottom <= cardHeight + topOffset + bottomPadding) {
           setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
         } else {
-          setProfileTop(navHeight - sectionRect.top)
+          setProfileTop(topOffset - sectionRect.top)
         }
       } else {
         setProfileTop(0)

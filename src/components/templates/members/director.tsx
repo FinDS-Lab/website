@@ -365,8 +365,26 @@ export const MembersDirectorTemplate = () => {
     researcherIds: true,
     education: true,
     employment: true,
-    honorsAwards: true
+    honorsAwards: true,
+    publicationStats: true,
+    teaching: true
   })
+  
+  // Publication statistics (overview only)
+  const overviewPubStats = [
+    {label: 'Total', count: 16},
+    {label: 'SCIE', count: 12},
+    {label: 'SCOPUS', count: 12},
+    {label: 'KCI', count: 1},
+    {label: 'Intl Conf', count: 3}
+  ]
+  
+  // Teaching data - Lecturer courses only (overview)
+  const overviewLecturerCourses = [
+    {school: 'Korea University', courseName: 'Artificial Intelligence and Big Data', courseNameKo: '인공지능과 빅데이터', periods: ['2025-Fall', '2025-Spring']},
+    {school: 'Kangnam University', courseName: 'AI Business', courseNameKo: '인공지능비즈니스', periods: ['2025-Fall', '2025-Spring']},
+    {school: 'Kyung Hee University', courseName: 'Introduction to Fintech', courseNameKo: '핀테크 개론', periods: ['2024-Spring']},
+  ]
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -383,21 +401,17 @@ export const MembersDirectorTemplate = () => {
       const card = profileCardRef.current
       const sectionRect = section.getBoundingClientRect()
       const cardHeight = card.offsetHeight
-      const navHeight = 80 // Tab navigation sticky height
+      const topOffset = 32 // Top padding from viewport top
       const bottomPadding = 32
       
-      // 화면 중앙 위치 계산 (nav bar 아래 영역의 중앙)
-      const availableHeight = window.innerHeight - navHeight
-      const centerOffset = navHeight + (availableHeight - cardHeight) / 2
-      
-      // Section의 시작이 centerOffset 위로 올라가면 sticky 시작
-      if (sectionRect.top <= centerOffset) {
-        // Section의 끝이 card + centerOffset + padding 보다 작으면 bottom에 고정
-        if (sectionRect.bottom <= cardHeight + centerOffset + bottomPadding) {
+      // Section의 시작이 topOffset 위로 올라가면 sticky 시작
+      if (sectionRect.top <= topOffset) {
+        // Section의 끝이 card + topOffset + padding 보다 작으면 bottom에 고정
+        if (sectionRect.bottom <= cardHeight + topOffset + bottomPadding) {
           setProfileTop(sectionRect.bottom - cardHeight - bottomPadding - sectionRect.top)
         } else {
-          // 화면 중앙에 위치
-          setProfileTop(centerOffset - sectionRect.top)
+          // 위쪽에 고정
+          setProfileTop(topOffset - sectionRect.top)
         }
       } else {
         setProfileTop(0)
@@ -1009,20 +1023,6 @@ export const MembersDirectorTemplate = () => {
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-6 md:gap-8 mb-8">
                             <span className="px-12 py-4 text-xs font-bold rounded-full bg-primary text-white w-fit">{edu.period}</span>
-                            <div className="flex flex-wrap items-center gap-6">
-                              {edu.honors && edu.honors.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
-                                  <Medal size={10} />
-                                  Honor
-                                </span>
-                              )}
-                              {edu.awards && edu.awards.length > 0 && (
-                                <span className="flex items-center gap-4 px-8 py-4 text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
-                                  <Award size={10} />
-                                  Award
-                                </span>
-                              )}
-                            </div>
                           </div>
                           <p className="text-sm md:text-base font-bold text-gray-900 mb-4">{edu.degree}</p>
                           <p className="text-xs md:text-sm text-gray-600 break-words">{edu.field}</p>
@@ -1054,68 +1054,6 @@ export const MembersDirectorTemplate = () => {
                             </div>
                           </div>
                         )}
-                        
-                        {edu.leadership && edu.leadership.length > 0 && (
-                          <div className="mb-12">
-                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-8">Leadership Roles</p>
-                            <div className="space-y-6">
-                              {edu.leadership.map((l, i) => (
-                                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-8">
-                                  <div>
-                                    <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                    <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
-                                  </div>
-                                  <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        
-                        {/* Collapsible Honors & Awards */}
-                        {((edu.awards && edu.awards.length > 0) || (edu.honors && edu.honors.length > 0)) && (
-                          <div className="pt-12 border-t border-gray-100">
-                            <button 
-                              onClick={() => toggleEduAwards(index)}
-                              className="flex items-center justify-between w-full group mb-8"
-                            >
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
-                              <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
-                            </button>
-                            
-                            {expandedEduAwards.has(index) && (
-                              <div className="space-y-12">
-                                {edu.honors && edu.honors.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.honors.map((h, i) => (
-                                      <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-8">
-                                        <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                                
-                                {edu.awards && edu.awards.length > 0 && (
-                                  <div className="space-y-6">
-                                    {edu.awards.map((a, i) => (
-                                      <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-8" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                        <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
-                                        <div className="flex-1">
-                                          <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                          <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -1137,7 +1075,13 @@ export const MembersDirectorTemplate = () => {
               {expandedSections.employment && (
               <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
-                {employment.map((emp, index) => (
+                {employment.filter((emp) => 
+                  emp.organization === 'Gachon University' ||
+                  emp.organization === 'Dongduk Women\'s University' ||
+                  emp.position === 'Director' ||
+                  (emp.position === 'Lecturer' && (emp.organization === 'Kangnam University' || emp.organization === 'Korea University')) ||
+                  emp.organization === 'EY Consulting'
+                ).map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
                     {/* Timeline dot - vertically centered */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
@@ -1246,90 +1190,102 @@ export const MembersDirectorTemplate = () => {
                         )
                       })()}
 
-                      {/* Timeline by Year */}
-                      <div className="space-y-12">
-                        {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
-                          const items = honorsData[year]
-                          const awards = items.filter((item) => item.type === 'award')
-                          const honors = items.filter((item) => item.type === 'honor')
-                          const isExpanded = expandedYears.has(year)
-                          const currentYear = new Date().getFullYear()
-                          const isCurrentYear = Number(year) === currentYear
-
-                          return (
-                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
-                              {/* Year Header - About FINDS Style */}
-                              <button
-                                onClick={() => toggleYear(year)}
-                                className={`w-full flex items-center justify-between px-16 py-14 transition-colors ${
-                                  isCurrentYear 
-                                    ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
-                                    : 'bg-gray-50 hover:bg-gray-100'
-                                }`}
-                              >
-                                <div className="flex items-center gap-12 flex-wrap">
-                                  <span className={`text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                                  {isCurrentYear && (
-                                    <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
-                                  )}
-                                  {/* White badge with counts */}
-                                  <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
-                                    <span className="font-bold" style={{color: '#D6B14D'}}>{honors.length}</span>
-                                    <span className="text-gray-500"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
-                                    <span className="text-gray-300"> · </span>
-                                    <span className="font-bold" style={{color: '#AC0E0E'}}>{awards.length}</span>
-                                    <span className="text-gray-500"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
-                                  </span>
-                                </div>
-                                <ChevronDown 
-                                  size={18} 
-                                  className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                                />
-                              </button>
-
-                              {/* Items */}
-                              {isExpanded && (
-                                <div className="flex flex-col">
-                                  {items.map((item, idx) => (
-                                    <div
-                                      key={idx}
-                                      className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
-                                    >
-                                      <div
-                                        className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                                          item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
-                                        }`}
-                                      >
-                                        {item.type === 'honor' ? (
-                                          <Medal className="w-18 h-18 text-[#D6B14D]" />
-                                        ) : (
-                                          <Trophy className="w-18 h-18 text-[#AC0E0E]" />
-                                        )}
-                                      </div>
-                                      {/* Content + Date - PC: Date on right */}
-                                      <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
-                                        <div className="flex-1 min-w-0">
-                                          <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
-                                          <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                          <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
-                                          {/* Mobile: Date as text */}
-                                          <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
-                                        </div>
-                                        {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                          {year}-{formatHonorDate(item.date)}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          )
-                        })}
-                      </div>
                     </>
                   )}
+                </div>
+              )}
+            </section>
+
+            {/* Publication Statistics */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('publicationStats')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.publicationStats && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-8 md:gap-12 mb-16 md:mb-24">
+                    {overviewPubStats.map((stat, index) => (
+                      <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
+                        <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
+                        <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
+                    {citationStats.map((stat, index) => (
+                      <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                        <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
+                        <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-20 text-center">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                      View All Publications <ChevronRight size={14}/>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Teaching */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('teaching')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.teaching && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="flex items-center gap-8 mb-16">
+                    <p className="text-sm font-bold text-gray-900">Lecturer</p>
+                    <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{overviewLecturerCourses.reduce((sum, c) => sum + c.periods.length, 0)}</span>
+                  </div>
+                  <div className="space-y-12">
+                    {overviewLecturerCourses.map((course, index) => {
+                      const getSchoolLogo = (school: string) => {
+                        if (school.includes('Kyung Hee')) return logoKyunghee
+                        if (school.includes('Kangnam')) return logoKangnam
+                        if (school.includes('Korea University') || school === 'Korea University') return logoKorea
+                        return null
+                      }
+                      const schoolLogo = getSchoolLogo(course.school)
+                      
+                      return (
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                          <div className="flex items-start gap-12 md:gap-16">
+                            <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
+                              {schoolLogo ? (
+                                <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                              ) : (
+                                <BookOpen size={18} style={{color: '#D6B14D'}} />
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex flex-wrap items-center gap-6 mb-8">
+                                {course.periods.map((period, i) => (
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                    {period}
+                                  </span>
+                                ))}
+                              </div>
+                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                              )}
+                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               )}
             </section>
