@@ -79,8 +79,15 @@ const GlobalMusicPlayer = memo(() => {
         .then(res => res.json())
         .then(data => {
           const items = data.items.map((item: { url: string; artist?: string; title?: string }) => {
-            const match = item.url.match(/[?&]v=([^&]+)/)
-            return { videoId: match ? match[1] : null, artist: item.artist || 'Unknown Artist', title: item.title || 'Unknown Title' }
+            // youtu.be/VIDEO_ID 또는 youtube.com/watch?v=VIDEO_ID 형식 모두 지원
+            let videoId = null
+            if (item.url.includes('youtu.be/')) {
+              videoId = item.url.split('youtu.be/')[1]?.split('?')[0] || null
+            } else {
+              const match = item.url.match(/[?&]v=([^&]+)/)
+              videoId = match ? match[1] : null
+            }
+            return { videoId, artist: item.artist || 'Unknown Artist', title: item.title || 'Unknown Title' }
           }).filter((item: { videoId: string | null }) => item.videoId)
           
           if (data.shuffle) {
