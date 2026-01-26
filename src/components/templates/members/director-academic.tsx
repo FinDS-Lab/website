@@ -1215,9 +1215,14 @@ export const MembersDirectorAcademicTemplate = () => {
             else if (indexing === 'Other International') stats.otherIntl++
             else if (indexing.includes('KCI')) stats.kci++
           } else if (type === 'conference') {
-            // International conferences include both "International Conference" and "Scopus" indexed ones
-            if (indexing === 'International Conference' || indexing === 'Scopus') stats.intlConf++
-            else if (indexing === 'Domestic Conference') stats.domConf++
+            if (indexing === 'Scopus') {
+              stats.scopus++  // Scopus Conference → Scopus에 카운트
+              stats.intlConf++  // Scopus Conference → Int'l Conf에도 카운트 (중복 OK)
+            } else if (indexing === 'International Conference') {
+              stats.intlConf++
+            } else if (indexing === 'Domestic Conference') {
+              stats.domConf++
+            }
           }
         })
         

@@ -2011,9 +2011,9 @@
     }
   },
   {
-    "type": "journal",
+    "type": "conference",
     "indexing_group": "Scopus",
-    "code_label": "J",
+    "code_label": "C",
     "published_date": "2024-02-28",
     "year": 2024,
     "title": "A Transparent Single Financial Asset Trading Framework via Reinforcement Learning",
@@ -2036,7 +2036,8 @@
       "harvard": "Choi, I & Kim, WC 2024, 'A transparent single financial asset trading framework via reinforcement learning', in <em>Springer Proceedings in Business and Economics</em>, Springer, pp. 73-82.",
       "vancouver": "Choi I, Kim WC. A transparent single financial asset trading framework via reinforcement learning. In: Springer Proceedings in Business and Economics. Springer; 2024. p. 73-82.",
       "bibtex": "@article{choi2024a,\n  title = {{A Transparent Single Financial Asset Trading Framework via Reinforcement Learning}},\n  author = {Choi, I., and Kim, W. C.},\n  journal = {Springer Proceedings in Business and Economics},\n  year = {2024},\n  doi = {10.1007/978-981-97-3409-2_7},\n}"
-    }
+    },
+    "presentation_type": "oral"
   },
   {
     "type": "conference",

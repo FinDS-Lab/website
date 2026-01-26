@@ -968,11 +968,13 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     </>
                                   )}
-                                  {pub.type === 'conference' && pub.presentation_type && (
+                                  {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group === 'Scopus') && (
                                     <>
                                       <span className="text-[10px] text-white/60">|</span>
                                       <span className="text-[11px] font-bold text-white/90">
-                                        {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                        {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
+                                        {pub.presentation_type && pub.indexing_group === 'Scopus' && ' · '}
+                                        {pub.indexing_group === 'Scopus' && 'Scopus'}
                                       </span>
                                     </>
                                   )}
@@ -1022,14 +1024,18 @@ export const PublicationsTemplate = () => {
                                       </div>
                                     </div>
                                     {/* Status badge below */}
-                                    {pub.type === 'conference' && pub.presentation_type && (
+                                    {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group === 'Scopus') && (
                                       <div className={`w-full mt-4 py-4 text-center rounded-md ${
-                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
+                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 
+                                        pub.presentation_type === 'poster' ? 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30' :
+                                        'bg-[#D6B14D]/10 border border-[#D6B14D]/30'
                                       }`}>
                                         <span className="text-[9px] font-bold"
-                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
+                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : pub.presentation_type === 'poster' ? '#FFBAC4' : '#D6B14D'}}
                                         >
-                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                          {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
+                                          {pub.presentation_type && pub.indexing_group === 'Scopus' && ' · '}
+                                          {pub.indexing_group === 'Scopus' && 'Scopus'}
                                         </span>
                                       </div>
                                     )}
