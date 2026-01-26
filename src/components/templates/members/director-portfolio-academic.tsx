@@ -1136,6 +1136,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
   const [showAllConferences, setShowAllConferences] = useState(false)
   const [expandedSections, setExpandedSections] = useState({
     collaborationNetwork: true,
+    researcherIds: true,
     publicationStats: true,
     academicService: true,
     projects: true,
@@ -1618,6 +1619,82 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                 <div className="border-t border-gray-100 p-20 md:p-24">
                   <CollaborationNetwork />
                 </div>
+              )}
+            </section>
+
+            {/* Researcher IDs */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('researcherIds')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Researcher IDs</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researcherIds ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.researcherIds && (
+              <div className="p-20 md:p-24 border-t border-gray-100">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
+                  {/* ORCID */}
+                  <a 
+                    href="https://orcid.org/0000-0003-2596-7368" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">ORCID</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors text-center break-all">0000-0003-2596-7368</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors" />
+                  </a>
+
+                  {/* Scopus */}
+                  <a 
+                    href="https://www.scopus.com/authid/detail.uri?authorId=57224825321" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Scopus</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors" />
+                  </a>
+
+                  {/* Web of Science */}
+                  <a 
+                    href="https://www.webofscience.com/wos/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Web of Science</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
+                  </a>
+
+                  {/* IRIS (Korean National Researcher Number) */}
+                  <a 
+                    href="https://www.iris.go.kr/main.do" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/iris.webp`} alt="IRIS" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center">국가연구자번호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#003876] transition-colors">12405369</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#003876] transition-colors" />
+                  </a>
+                </div>
+              </div>
               )}
             </section>
 
