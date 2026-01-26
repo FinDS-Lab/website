@@ -1,105 +1,160 @@
 {
-  "shuffle": true,
+  "shuffle": false,
   "items": [
     {
-      "url": "https://www.youtube.com/watch?v=6ZUIwj3FgUY",
+      "url": "https://youtu.be/6ZUIwj3FgUY",
       "artist": "IVE",
       "title": "I AM"
     },
     {
-      "url": "https://www.youtube.com/watch?v=SX_ViT4Ra7k",
-      "artist": "米津玄師",
-      "title": "Lemon"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=Wy9CrMPn90s",
-      "artist": "BUMP OF CHICKEN",
-      "title": "Acacia"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=pfGI91CFtRg",
-      "artist": "Aimyon",
-      "title": "ハルノヒ"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=POe9SOEKotk",
-      "artist": "BLACKPINK",
-      "title": "Shut Down"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=dmSUBdk4SY4",
-      "artist": "Maktub",
-      "title": "오늘도 빛나는 너에게"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=D1PvIWdJ8xo",
-      "artist": "IU",
-      "title": "Blueming"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=Dx_fKPBPYUI",
-      "artist": "米津玄師",
-      "title": "LOSER"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=Uw5qnh0bDWg",
-      "artist": "Mrs. GREEN APPLE",
-      "title": "インフェルノ"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=vb3yMhTMS6A",
-      "artist": "Aimer",
-      "title": "LAST STARDUST"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=7sJES_4FiAs",
-      "artist": "IVE",
-      "title": "ATTITUDE"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=bMviw4mXEDg",
-      "artist": "Mrs. GREEN APPLE",
-      "title": "僕のこと"
-    },
-    {
-      "url": "https://www.youtube.com/watch?v=lIaGs-bWxEk",
+      "url": "https://youtu.be/kIjUfXfJjGU",
       "artist": "Sia",
       "title": "Unstoppable"
     },
     {
-      "url": "https://www.youtube.com/watch?v=EmeW6li6bbo",
-      "artist": "NMIXX (엔믹스)",
-      "title": "Blue Valentine (Official M/V)"
+      "url": "https://youtu.be/0Oi8jDMvd_w",
+      "artist": "AKMU",
+      "title": "200%"
     },
     {
-      "url": "https://www.youtube.com/watch?v=bnVUHWCynig",
+      "url": "https://youtu.be/m3DZsBw5bnE",
+      "artist": "AKMU",
+      "title": "어떻게 이별까지 사랑하겠어, 널 사랑하는 거지"
+    },
+    {
+      "url": "https://youtu.be/Dx_fKPBPYUI",
+      "artist": "米津玄師",
+      "title": "LOSER"
+    },
+    {
+      "url": "https://youtu.be/D1PvIWdJ8xo",
+      "artist": "IU",
+      "title": "Blueming"
+    },
+    {
+      "url": "https://youtu.be/SX_ViT4Ra7k",
+      "artist": "米津玄師",
+      "title": "Lemon"
+    },
+    {
+      "url": "https://youtu.be/pfGI91CFtRg",
+      "artist": "あいみょん",
+      "title": "ハルノヒ"
+    },
+    {
+      "url": "https://youtu.be/bnVUHWCynig",
       "artist": "Beyoncé",
       "title": "Halo"
     },
     {
-      "url": "https://www.youtube.com/watch?v=uJSla1jyI_Y",
-      "artist": "IVE",
-      "title": "ELEVEN"
+      "url": "https://youtu.be/a2GujJZfXpg",
+      "artist": "RADWIMPS",
+      "title": "Sparkle"
     },
     {
-      "url": "https://www.youtube.com/watch?v=pG6iaOMV46I",
+      "url": "https://youtu.be/wfCcs0vLysk",
+      "artist": "Mrs. GREEN APPLE",
+      "title": "Inferno"
+    },
+    {
+      "url": "https://youtu.be/bMviw4mXEDg",
+      "artist": "Mrs. GREEN APPLE",
+      "title": "僕のこと"
+    },
+    {
+      "url": "https://youtu.be/dAcDmbKXw_0",
+      "artist": "MAKTUB, 박다혜",
+      "title": "시작의 아이"
+    },
+    {
+      "url": "https://youtu.be/pG6iaOMV46I",
       "artist": "IVE",
       "title": "Kitsch"
     },
     {
-      "url": "https://www.youtube.com/watch?v=alVxuz0Tqx4",
-      "artist": "HUNTR/X",
-      "title": "Golden"
+      "url": "https://youtu.be/POe9SOEKotk",
+      "artist": "BLACKPINK",
+      "title": "Shut Down"
     },
     {
-      "url": "https://www.youtube.com/watch?v=UM9XNpgrqVk",
+      "url": "https://youtu.be/UM9XNpgrqVk",
       "artist": "Vaundy",
       "title": "怪獣の花唄"
     },
     {
-      "url": "https://www.youtube.com/watch?v=a2GujJZfXpg",
-      "artist": "RADWIMPS",
-      "title": "Sparkle (スパークル)"
+      "url": "https://youtu.be/EmeW6li6bbo",
+      "artist": "NMIXX",
+      "title": "Blue Valentine"
+    },
+    {
+      "url": "https://youtu.be/5a-tqIQc8RM",
+      "artist": "Sondia",
+      "title": "어른 (Grown Ups)"
+    },
+    {
+      "url": "https://youtu.be/M6gcoDN9jBc",
+      "artist": "King Gnu",
+      "title": "逆夢"
+    },
+    {
+      "url": "https://youtu.be/KQIsk0ba5q0",
+      "artist": "Loren Allred",
+      "title": "Never Enough"
+    },
+    {
+      "url": "https://youtu.be/rYEDA3JcQqw",
+      "artist": "Adele",
+      "title": "Rolling in the Deep"
+    },
+    {
+      "url": "https://youtu.be/yebNIHKAC4A",
+      "artist": "HUNTR/X",
+      "title": "Golden"
+    },
+    {
+      "url": "https://youtu.be/aRDURmIYBZ4",
+      "artist": "緑黄色社会",
+      "title": "Mela!"
+    },
+    {
+      "url": "https://youtu.be/pcKR0LPwoYs",
+      "artist": "찬열, 펀치",
+      "title": "Stay With Me"
+    },
+    {
+      "url": "https://youtu.be/fmI_Ndrxy14",
+      "artist": "Imagine Dragons",
+      "title": "Warriors"
+    },
+    {
+      "url": "https://youtu.be/fKopy74weus",
+      "artist": "Imagine Dragons",
+      "title": "Thunder"
+    },
+    {
+      "url": "https://youtu.be/QwVjTlTdIDQ",
+      "artist": "Billy Joel",
+      "title": "Piano Man"
+    },
+    {
+      "url": "https://youtu.be/jhOVibLEDhA",
+      "artist": "星野源",
+      "title": "恋"
+    },
+    {
+      "url": "https://youtu.be/9kaCAbIXuyg",
+      "artist": "G-DRAGON",
+      "title": "무제"
+    },
+    {
+      "url": "https://youtu.be/TgOu00Mf3kI",
+      "artist": "IU",
+      "title": "Eight (Prod. & Feat. SUGA of BTS)"
+    },
+    {
+      "url": "https://youtu.be/ZjIPFe0hE4Y",
+      "artist": "조유진, 박기영",
+      "title": "나에게로의 초대"
     }
   ]
 }
