@@ -191,17 +191,9 @@ const ResumeModal = () => (
   <div className="p-16 md:p-24 max-h-[70vh] overflow-y-auto">
     {/* Header */}
     <div className="text-center mb-24 pb-20 border-b border-gray-200">
-      <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-6">INSU CHOI, Ph.D.</h2>
-      <p className="text-sm text-gray-600 mb-8">
-        Assistant Professor, Gachon University | Director, FINDS Lab
-      </p>
-      <div className="flex flex-wrap items-center justify-center gap-8 text-xs text-gray-500">
-        <span>ischoi@gachon.ac.kr</span>
-        <span className="hidden md:inline">•</span>
-        <a href="https://orcid.org/0000-0003-2596-7368" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-          ORCID: 0000-0003-2596-7368
-        </a>
-      </div>
+      <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-6">Insu Choi</h2>
+      <p className="text-sm text-gray-600">Assistant Professor, Gachon University</p>
+      <p className="text-sm text-gray-600">Director, FINDS Lab</p>
     </div>
 
     {/* Current Position */}
@@ -245,7 +237,7 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Dissertation Award: 11th Best Doctoral Dissertation, Korean OR & MS Society</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Dissertation Award: 11th Best Doctoral Dissertation, Korean Operations Research and Management Science Society</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
           </ul>
         </div>
@@ -256,6 +248,7 @@ const ResumeModal = () => (
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Thesis Award: 17th Best Master Thesis, Korea Institute of Industrial Engineers</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
           </ul>
         </div>
         <div>
@@ -265,6 +258,7 @@ const ResumeModal = () => (
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jangho Kim (Korea University), Prof. Myungjoo Park (Seoul National University)</li>
           </ul>
         </div>
       </div>
@@ -273,13 +267,13 @@ const ResumeModal = () => (
     {/* Selected Publications */}
     <section className="mb-20">
       <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
-      <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles in SSCI/SCIE indexed journals. Selected highlights:</p>
+      <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
       <ul className="text-sm text-gray-600 space-y-6 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> (2024) – Risk forecasting for metals <span className="text-gray-400">[SSCI, Top 2.4%]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Engineering Applications of Artificial Intelligence</strong> (2024) – Deep clustering <span className="text-gray-400">[SCIE, Top 2.5%]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Research in International Business and Finance</strong> (2023) – Downside risk estimation <span className="text-gray-400">[SSCI, Top 4.5%]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> (2024) – Information transfer networks <span className="text-gray-400">[SSCI, Top 9.6%]</span></span></li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> (2024) – ETF price forecasting with xAI <span className="text-gray-400">[SCIE, Top 13.5%]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Engineering Applications of Artificial Intelligence</strong> <span className="text-gray-400">[SCIE, Top 2.5% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Research in International Business and Finance</strong> <span className="text-gray-400">[SSCI, Top 4.5% as of 2023]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> <span className="text-gray-400">[SSCI, Top 9.6% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> <span className="text-gray-400">[SCIE, Top 13.5% as of 2024]</span></span></li>
       </ul>
     </section>
 
@@ -315,19 +309,41 @@ const ResumeModal = () => (
     <section className="mb-20">
       <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Professional Service</h3>
       <p className="text-sm text-gray-600">
-        <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 20+ journals
+        <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
       </p>
     </section>
 
     {/* Teaching Experience */}
     <section>
       <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Teaching Experience</h3>
-      <ul className="text-sm text-gray-600 space-y-6 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading (DIGB441) – Korea University Sejong Campus (2025–2026)</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering (IE329), Engineering Economics (IE201) – Kyung Hee University (2024)</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering, Applied Statistics – Kangnam University (2025–2026)</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence (IE471) – KAIST, Teaching Assistant (2022–2024)</li>
-      </ul>
+      <div className="space-y-12">
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading (DIGB441), 2025–2026</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kyung Hee University</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering (IE329), 2024</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics (IE201), 2024</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kangnam University</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering, 2025–2026</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Applied Statistics, 2025–2026</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant)</span></p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence (IE471), 2022–2024</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </div>
 )
@@ -345,6 +361,7 @@ export const MembersDirectorTemplate = () => {
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
     researchInterests: true,
+    researcherIds: false,
     education: true,
     employment: true,
     honorsAwards: true
@@ -925,6 +942,82 @@ export const MembersDirectorTemplate = () => {
               )}
             </section>
 
+            {/* Researcher IDs */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('researcherIds')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Researcher IDs</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researcherIds ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.researcherIds && (
+              <div className="p-20 md:p-24 border-t border-gray-100">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
+                  {/* ORCID */}
+                  <a 
+                    href="https://orcid.org/0000-0003-2596-7368" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">ORCID</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors text-center break-all">0000-0003-2596-7368</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors" />
+                  </a>
+
+                  {/* Scopus */}
+                  <a 
+                    href="https://www.scopus.com/authid/detail.uri?authorId=57224825321" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Scopus</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors" />
+                  </a>
+
+                  {/* Web of Science */}
+                  <a 
+                    href="https://www.webofscience.com/wos/author/record/EQW-9977-2022" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Web of Science</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
+                  </a>
+
+                  {/* IRIS (Korean National Researcher Number) */}
+                  <a 
+                    href="https://www.ntis.go.kr/rndgate/eg/un/ra/mng/researcherInfoV2.do?researcherCode=12405369" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"
+                  >
+                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/iris.webp`} alt="IRIS" className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center">국가연구자번호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#003876] transition-colors">12405369</p>
+                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#003876] transition-colors" />
+                  </a>
+                </div>
+              </div>
+              )}
+            </section>
+
             {/* Education */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1101,10 +1194,15 @@ export const MembersDirectorTemplate = () => {
                           }`}>{emp.period}</span>
                         </div>
                         <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
-                        {emp.department && (
+                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
+                        {emp.department && emp.department.includes(',') ? (
+                          <>
+                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
+                            <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
+                          </>
+                        ) : emp.department && (
                           <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
-                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
                       </div>
                     </div>
                   </div>

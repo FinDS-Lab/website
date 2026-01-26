@@ -976,9 +976,9 @@ export const PublicationsTemplate = () => {
                                     <>
                                       <span className="text-[10px] text-white/60">|</span>
                                       <span className="text-[11px] font-bold text-white/90">
-                                        {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
-                                        {pub.presentation_type && pub.indexing_group === 'Scopus' && ' · '}
                                         {pub.indexing_group === 'Scopus' && 'Scopus'}
+                                        {pub.indexing_group === 'Scopus' && pub.presentation_type && ' | '}
+                                        {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
                                       </span>
                                     </>
                                   )}

@@ -624,10 +624,14 @@ export const ProjectsTemplate = () => {
                                     '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
-                                    {/* Type Label - Full name */}
+                                    {/* Role | Type Label */}
                                     <span className={`text-[11px] font-bold tracking-wide ${
                                       project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                     }`}>
+                                      {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 
+                                       project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 
+                                       project.roles.researchers?.includes('최인수') ? 'Researcher' : ''}
+                                      {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && ' | '}
                                       {config?.label || project.type} Project
                                     </span>
                                   </div>

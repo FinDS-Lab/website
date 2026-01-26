@@ -233,15 +233,14 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{member.name.ko}</h2>
                 <p className="text-sm md:text-base text-gray-500 mb-12">{member.name.en}</p>
-                <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full ${degreeColors[member.degree] || 'bg-gray-100 text-gray-700'}`}>
+                <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'bg-gray-100 text-gray-700'}`}>
                   {member.role.en}
                 </span>
-              </div>
-
-              {/* Period */}
-              <div className="flex items-center gap-8 text-sm text-gray-600 mb-20 justify-center">
-                <Calendar size={14} className="text-gray-400"/>
-                <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
+                {/* Period - moved under role badge */}
+                <div className="flex items-center gap-8 text-xs text-gray-500">
+                  <Calendar size={12} className="text-gray-400"/>
+                  <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
+                </div>
               </div>
 
               {/* Divider */}
@@ -358,12 +357,15 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
               </div>
               <div className="flex flex-col gap-16">
                 {member.education.map((edu, idx) => (
-                  <div key={idx} className="flex items-start justify-between gap-16 p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
+                  <div key={idx} className="p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
                       <h4 className="text-base font-bold text-gray-900">
                         {edu.school_en || edu.school}
                       </h4>
                       <p className="text-sm font-semibold text-gray-500">{edu.field_en || edu.field}</p>
+                      <span className="text-xs font-medium mt-4" style={{ color: '#E8889C' }}>
+                        {edu.start} - {edu.end || edu.expected || 'Present'}
+                      </span>
                       {(edu.doubleMajor || edu.minor) && (
                         <div className="flex flex-col gap-6 mt-8 pl-2 border-l-2 border-gray-200">
                           {edu.doubleMajor && (
@@ -379,9 +381,6 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                         </div>
                       )}
                     </div>
-                    <span className="text-xs md:text-sm font-semibold whitespace-nowrap" style={{ color: '#E8889C' }}>
-                      {edu.start} - {edu.end || edu.expected || 'Present'}
-                    </span>
                   </div>
                 ))}
               </div>

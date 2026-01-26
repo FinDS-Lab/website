@@ -1024,6 +1024,168 @@ type MenteesByYear = {
   [year: string]: MenteeWithId[]
 }
 
+// Resume Modal Component
+const ResumeModal = () => (
+  <div className="p-16 md:p-24 max-h-[70vh] overflow-y-auto">
+    {/* Header */}
+    <div className="text-center mb-24 pb-20 border-b border-gray-200">
+      <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-6">Insu Choi</h2>
+      <p className="text-sm text-gray-600">Assistant Professor, Gachon University</p>
+      <p className="text-sm text-gray-600">Director, FINDS Lab</p>
+    </div>
+
+    {/* Current Position */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Current Position</h3>
+      <div className="space-y-10">
+        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Gachon University</p>
+            <p className="text-xs text-gray-500">Big Data Business Management Major, Department of Finance and Big Data</p>
+          </div>
+          <span className="text-xs text-gray-400 shrink-0">Mar 2026 – Present</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
+            <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
+          </div>
+          <span className="text-xs text-gray-400 shrink-0">Sep 2025 – Feb 2026</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Research Interests */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Research Interests</h3>
+      <ul className="text-sm text-gray-700 space-y-4 ml-12">
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Data-Informed Decision Making</li>
+      </ul>
+    </section>
+
+    {/* Education */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Education</h3>
+      <div className="space-y-12">
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+            <p className="text-sm font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
+            <span className="text-xs text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Dissertation Award: 11th Best Doctoral Dissertation, Korean Operations Research and Management Science Society</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
+          </ul>
+        </div>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+            <p className="text-sm font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
+            <span className="text-xs text-gray-400 shrink-0">Feb 2018 – Feb 2021</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Thesis Award: 17th Best Master Thesis, Korea Institute of Industrial Engineers</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
+          </ul>
+        </div>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+            <p className="text-sm font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
+            <span className="text-xs text-gray-400 shrink-0">Mar 2013 – Feb 2018</span>
+          </div>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jangho Kim (Korea University), Prof. Myungjoo Park (Seoul National University)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {/* Selected Publications */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
+      <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
+      <ul className="text-sm text-gray-600 space-y-6 ml-12">
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Engineering Applications of Artificial Intelligence</strong> <span className="text-gray-400">[SCIE, Top 2.5% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Research in International Business and Finance</strong> <span className="text-gray-400">[SSCI, Top 4.5% as of 2023]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Economics & Finance</strong> <span className="text-gray-400">[SSCI, Top 9.6% as of 2024]</span></span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>Knowledge-Based Systems</strong> <span className="text-gray-400">[SCIE, Top 13.5% as of 2024]</span></span></li>
+      </ul>
+    </section>
+
+    {/* Selected Research Projects */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Research Projects</h3>
+      <div className="space-y-10">
+        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
+            <p className="text-xs text-gray-500">Korea Institute of Public Finance</p>
+          </div>
+          <span className="text-xs text-gray-400 shrink-0">May 2025 – Sep 2025</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
+            <p className="text-xs text-gray-500">Bank of Korea</p>
+          </div>
+          <span className="text-xs text-gray-400 shrink-0">Nov 2023 – Jul 2024</span>
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+          <div>
+            <p className="text-sm font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
+            <p className="text-xs text-gray-500">Shinhan Bank</p>
+          </div>
+          <span className="text-xs text-gray-400 shrink-0">Aug 2021 – Dec 2023</span>
+        </div>
+      </div>
+    </section>
+
+    {/* Professional Service */}
+    <section className="mb-20">
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Professional Service</h3>
+      <p className="text-sm text-gray-600">
+        <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
+      </p>
+    </section>
+
+    {/* Teaching Experience */}
+    <section>
+      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Teaching Experience</h3>
+      <div className="space-y-12">
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading (DIGB441), 2025–2026</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kyung Hee University</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering (IE329), 2024</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics (IE201), 2024</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kangnam University</p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering, 2025–2026</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Applied Statistics, 2025–2026</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant)</span></p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence (IE471), 2022–2024</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+)
+
 export const MembersDirectorActivitiesTemplate = () => {
   const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
   const [showAllJournals, setShowAllJournals] = useState(false)
@@ -1431,7 +1593,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Department of Big Data Business Management</p>
                   </div>
                 </div>
 
@@ -1441,8 +1602,8 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 706, Humanities Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">인문관 706호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 614호</p>
                   </div>
                 </div>
 
@@ -1485,20 +1646,20 @@ export const MembersDirectorActivitiesTemplate = () => {
               <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
                 <button
                   onClick={() => showModal({
-                    title: 'Curriculum Vitae',
-                    maxWidth: '1000px',
-                    children: <div className="p-40 text-center text-gray-500">CV content goes here...</div>
+                    title: 'Resume',
+                    maxWidth: '800px',
+                    children: <ResumeModal />
                   })}
                   className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  View CV <ExternalLink size={14}/>
+                  View Resume <ExternalLink size={14}/>
                 </button>
                 <a
-                  href="https://scholar.google.com"
+                  href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-6 py-12 bg-gray-900 text-xs md:text-sm font-bold rounded-xl hover:bg-gray-800 transition-all"
-                  style={{color: '#ffffff'}}
+                  className="flex items-center justify-center gap-6 py-12 text-xs md:text-sm font-bold rounded-xl hover:opacity-90 transition-all"
+                  style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
                 >
                   Scholar <ExternalLink size={14} color="#ffffff"/>
                 </a>
@@ -1732,7 +1893,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 </div>
 
                 {/* Mentee List */}
-                <div className="max-h-400 overflow-y-auto">
+                <div className="max-h-400 overflow-y-auto overflow-x-hidden">
                   {filteredMentees.length > 0 ? (
                     <div className="divide-y divide-gray-50">
                       {filteredMentees.map((mentee) => (
