@@ -1817,19 +1817,32 @@ export const MembersDirectorAcademicTemplate = () => {
                             }
                             const directorRole = getDirectorRole()
                             return (
-                              <div key={index} className="p-12 md:p-16 hover:bg-gray-50/50 transition-all relative">
-                                {/* Mobile: Top ribbon badges */}
-                                <div className="md:hidden flex items-center gap-4 mb-10">
-                                  <span className={`px-8 py-4 rounded-md text-[8px] font-bold ${typeBgColors[project.type]} text-white`}>
-                                    {typeLabels[project.type]}
-                                  </span>
-                                  <span className={`px-6 py-3 rounded text-[8px] font-bold ${
-                                    isOngoing ? 'bg-[#FFF9E6] text-[#D6B14D] border border-[#FFEB99]' : 'bg-gray-100 text-gray-400 border border-gray-200'
+                              <div key={index} className="hover:bg-gray-50/50 transition-all relative overflow-hidden">
+                                {/* Mobile: Full-width top bar - solid color (same as Projects page) */}
+                                <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
+                                  background: project.type === 'government' ? '#AC0E0E' :
+                                    project.type === 'industry' ? '#D6B14D' :
+                                    project.type === 'institution' ? '#FFBAC4' :
+                                    project.type === 'academic' ? '#D6B14D' :
+                                    '#6B7280'
+                                }}>
+                                  <div className="flex items-center gap-8">
+                                    {/* Type Label */}
+                                    <span className={`text-[11px] font-bold tracking-wide ${
+                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                    }`}>
+                                      {typeLabels[project.type]} Project
+                                    </span>
+                                  </div>
+                                  {/* Right side: Status badge */}
+                                  <span className={`px-8 py-3 rounded text-[9px] font-bold ${
+                                    isOngoing ? 'bg-white/90 text-[#D6B14D]' : 'bg-white/70 text-gray-500'
                                   }`}>
                                     {isOngoing ? 'Ongoing' : 'Completed'}
                                   </span>
                                 </div>
                                 
+                                <div className="p-12 md:p-16">
                                 <div className="flex items-start gap-10 md:gap-14">
                                   {/* Left badge - Type + Status - Desktop only */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-60">
@@ -1871,6 +1884,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                       </span>
                                     </div>
                                   </div>
+                                </div>
                                 </div>
                               </div>
                             )
