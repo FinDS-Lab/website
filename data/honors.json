@@ -28,6 +28,18 @@
   
   "2024": [
     {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Dec 31",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
+    {
       "type": "award",
       "icon": "🏆",
       "title": "우수상",
@@ -50,6 +62,18 @@
       ]
     },
     {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Jun 30",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
+    {
       "type": "award",
       "icon": "🏆",
       "title": "장려상",
@@ -62,6 +86,18 @@
     }
   ],
   "2023": [
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Dec 31",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
     {
       "type": "award",
       "icon": "🏆",
@@ -118,6 +154,18 @@
       ]
     },
     {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Jun 30",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
+    {
       "type": "award",
       "icon": "🏆",
       "title": "우수상",
@@ -141,6 +189,18 @@
     }
   ],
   "2022": [
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Dec 31",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
     {
       "type": "award",
       "icon": "🏆",
@@ -236,6 +296,18 @@
       "event": "김영한글로벌리더장학금",
       "organization": "한국과학기술원 (KAIST)",
       "date": "Aug 5",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "학생자치단체간부장학금",
+      "title_en": "Leadership Scholarship",
+      "event": "학생자치단체간부장학금",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Jun 30",
       "winners": [
         {"name": "최인수", "level": "phd"}
       ]
@@ -364,17 +436,6 @@
       ]
     },
     {
-      "type": "honor",
-      "icon": "🎓",
-      "title": "국가우수장학금(이공계)",
-      "event": "국가우수장학금(이공계) 대학원과정 장학생",
-      "organization": "한국장학재단",
-      "date": "Aug 14",
-      "winners": [
-        {"name": "최인수", "level": "phd"}
-      ]
-    },
-    {
       "type": "award",
       "icon": "🏆",
       "title": "입선",
@@ -392,6 +453,18 @@
       "event": "제35회 매일경제신문 대학(원)생 경제논문 공모전",
       "organization": "매일경제신문",
       "date": "Apr 19",
+      "winners": [
+        {"name": "최인수", "level": "phd"}
+      ]
+    },
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "KAIST 박사 국비장학생",
+      "title_en": "KAIST Ph.D. Government Scholarship",
+      "event": "KAIST 박사과정 국비장학생",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Mar 1",
       "winners": [
         {"name": "최인수", "level": "phd"}
       ]
@@ -446,6 +519,18 @@
     }
   ],
   "2018": [
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "KAIST 석사 국비장학생",
+      "title_en": "KAIST M.S. Government Scholarship",
+      "event": "KAIST 석사과정 국비장학생",
+      "organization": "한국과학기술원 (KAIST)",
+      "date": "Feb 26",
+      "winners": [
+        {"name": "최인수", "level": "ms"}
+      ]
+    },
     {
       "type": "honor",
       "icon": "🎓",
@@ -635,6 +720,18 @@
       "event": "제2회 경희대학교 산업경영공학과 추계학술제",
       "organization": "경희대학교 공과대학",
       "date": "Dec 11",
+      "winners": [
+        {"name": "최인수", "level": "bs"}
+      ]
+    },
+    {
+      "type": "honor",
+      "icon": "🎓",
+      "title": "해외연수 장학금",
+      "title_en": "International Training Program Scholarship",
+      "event": "해외연수 장학금",
+      "organization": "경희대학교; 노스캐롤라이나대학교 윌밍턴 캠퍼스 (UNCW)",
+      "date": "Dec 7",
       "winners": [
         {"name": "최인수", "level": "bs"}
       ]
