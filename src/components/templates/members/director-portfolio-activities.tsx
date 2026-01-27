@@ -137,7 +137,7 @@ const employment = [
     position: 'Assistant Professor',
     organization: 'Gachon University',
     period: '2026-03 – Present',
-    location: 'Department of Big Data Business Management, Gachon Business School',
+    location: 'Department of Big Data Business Management, Division of Finance & Big Data, College of Business',
     krOrg: '조교수 / 가천대학교 경영대학 금융·빅데이터학부',
     logo: logoGcu
   },
@@ -1042,7 +1042,7 @@ const ResumeModal = () => (
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
             <p className="text-sm font-semibold text-gray-900">Assistant Professor, Gachon University</p>
-            <p className="text-xs text-gray-500">Big Data Business Management Major, Department of Finance and Big Data</p>
+            <p className="text-xs text-gray-500">Department of Big Data Business Management</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Mar 2026 – Present</span>
         </div>
