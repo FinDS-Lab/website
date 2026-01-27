@@ -2136,8 +2136,6 @@ export const MembersDirectorAcademicTemplate = () => {
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              {/* School Name - Emphasized */}
-                              <p className="text-xs md:text-sm font-bold text-gray-900 mb-6">{course.school}</p>
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
                                   <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
@@ -2145,10 +2143,11 @@ export const MembersDirectorAcademicTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-[11px] md:text-xs font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                <p className="text-[10px] md:text-[11px] text-gray-500 mt-2">{course.courseName}</p>
+                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
+                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>
@@ -2205,7 +2204,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-bold text-gray-900">
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">
                                 {(course.courseNameKo || course.courseName).split('<').map((part, i) => (
                                   i === 0 ? part : <span key={i} className="inline-block">&lt;{part}</span>
                                 ))}
@@ -2213,7 +2212,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>
