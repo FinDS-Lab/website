@@ -1115,7 +1115,7 @@ export const MembersDirectorTemplate = () => {
                               return null
                             }
                             const getSchoolKo = (school: string) => {
-                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원'
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원 (KAIST)'
                               if (school.includes('Kyung Hee')) return '경희대학교'
                               if (school.includes('Gachon')) return '가천대학교'
                               if (school.includes('Dongduk')) return '동덕여자대학교'

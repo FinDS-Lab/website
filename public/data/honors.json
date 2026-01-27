@@ -460,11 +460,11 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "KAIST 박사과정 국비장학생",
+      "title": "교비 장학금",
       "title_en": "KAIST Ph.D. Government Scholarship",
       "event": "KAIST 박사과정 국비장학생",
       "organization": "한국과학기술원 (KAIST)",
-      "date": "Mar 1",
+      "date": "2021-03-01 - 2025-02-14",
       "winners": [
         {"name": "최인수", "level": "phd"}
       ]
@@ -522,11 +522,11 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "KAIST 석사과정 국비장학생",
+      "title": "교비 장학금",
       "title_en": "KAIST M.S. Government Scholarship",
       "event": "KAIST 석사과정 국비장학생",
       "organization": "한국과학기술원 (KAIST)",
-      "date": "Feb 26",
+      "date": "2018-02-26 - 2020-02-28",
       "winners": [
         {"name": "최인수", "level": "ms"}
       ]
