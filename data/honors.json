@@ -460,7 +460,7 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "KAIST 박사 국비장학생",
+      "title": "KAIST 박사과정 국비장학생",
       "title_en": "KAIST Ph.D. Government Scholarship",
       "event": "KAIST 박사과정 국비장학생",
       "organization": "한국과학기술원 (KAIST)",
@@ -522,7 +522,7 @@
     {
       "type": "honor",
       "icon": "🎓",
-      "title": "KAIST 석사 국비장학생",
+      "title": "KAIST 석사과정 국비장학생",
       "title_en": "KAIST M.S. Government Scholarship",
       "event": "KAIST 석사과정 국비장학생",
       "organization": "한국과학기술원 (KAIST)",
