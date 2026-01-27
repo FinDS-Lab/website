@@ -18,7 +18,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["신뢰도 지표 기반 거래 필터링 프레임워크 (C-index)"]
+      "projects": ["Confidence Index-Based Trading Filter Framework (C-index)"]
     },
     {
       "name": "고현우",
@@ -37,7 +37,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["기술적 지표 기반 주가 방향 예측 및 유의미성 분석"]
+      "projects": ["Technical Indicator-Based Stock Price Direction Prediction and Significance Analysis"]
     },
     {
       "name": "김강현",
@@ -56,7 +56,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["시장 스트레스 국면에서의 리스크 구조화와 포트폴리오 최적화"]
+      "projects": ["Risk Structuring and Portfolio Optimization in Market Stress Regimes"]
     },
     {
       "name": "김다인",
@@ -75,7 +75,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["멀티모달 RSW 데이터를 활용한 품질 기반 확률적 공정시간 및 생산 비용을 고려한 스케줄링 프레임워크"]
+      "projects": ["Quality-Based Scheduling Framework with Stochastic Processing Time and Production Cost Using Multimodal RSW Data"]
     },
     {
       "name": "김연후",
@@ -94,7 +94,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["시변 글로벌 주식시장 리스크 전이 네트워크의 분석"]
+      "projects": ["Analysis of Time-Varying Global Equity Market Risk Transmission Networks"]
     },
     {
       "name": "김재엽",
@@ -113,7 +113,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["멀티모달 RSW 데이터를 활용한 품질 기반 확률적 공정시간 및 생산 비용을 고려한 스케줄링 프레임워크"]
+      "projects": ["Quality-Based Scheduling Framework with Stochastic Processing Time and Production Cost Using Multimodal RSW Data"]
     },
     {
       "name": "박성수",
@@ -176,7 +176,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["IP5 핀테크 특허기반 트렌드 분석: 생성형 AI와 오픈뱅킹 API의 영향력을 중심으로"]
+      "projects": ["IP5 Fintech Patent-Based Trend Analysis: Focusing on the Impact of Generative AI and Open Banking APIs"]
     },
     {
       "name": "심은",
@@ -196,7 +196,7 @@
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
       "projects": [
-        "Housing–fertility interdependencies in South Korea: A dynamic analysis across regional disparities and temporal shifts"
+        "Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis Across Regional Disparities and Temporal Shifts"
       ]
     },
     {
@@ -216,7 +216,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["멀티모달 RSW 데이터를 활용한 품질 기반 확률적 공정시간 및 생산 비용을 고려한 스케줄링 프레임워크"]
+      "projects": ["Quality-Based Scheduling Framework with Stochastic Processing Time and Production Cost Using Multimodal RSW Data"]
     },
     {
       "name": "이성준",
@@ -235,7 +235,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["빅데이터 기반 뉴스 심리지수(NSI)와 검색량지수(SVI)의 산업별 경기 및 주가 예측력 분석: 거시 및 금융 경제변수 통제와 경기심리지수(ESI)와의 비교를 중심으로"]
+      "projects": ["Big Data-Based News Sentiment Index (NSI) and Search Volume Index (SVI) for Industry-Specific Business Cycle and Stock Price Forecasting: A Comparative Analysis with Economic Sentiment Index (ESI) Controlling for Macroeconomic and Financial Variables"]
     },
     {
       "name": "이수인",
@@ -276,7 +276,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["시계열 데이터 증강을 통한 백테스트 과적합 완화 가능성에 대한 실증 분석"]
+      "projects": ["Empirical Analysis of Backtest Overfitting Mitigation Through Time Series Data Augmentation"]
     },
     {
       "name": "이채은",
@@ -295,7 +295,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["서울특별시 카페 상권의 생존 수명 및 폐업 위험 요인에 대한 분석"]
+      "projects": ["Analysis of Survival Duration and Business Closure Risk Factors in Seoul Cafe Market"]
     },
     {
       "name": "이태경",
@@ -384,7 +384,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["IP5 핀테크 특허기반 트렌드 분석: 생성형 AI와 오픈뱅킹 API의 영향력을 중심으로"]
+      "projects": ["IP5 Fintech Patent-Based Trend Analysis: Focusing on the Impact of Generative AI and Open Banking APIs"]
     },
     {
       "name": "최문혁",
@@ -403,7 +403,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["글로벌 해운지수와 한국 금융시장의 동조성 연구: 선후행 관계, 인과관계, 비대칭 효과 분석"]
+      "projects": ["Co-Movement Analysis Between Global Shipping Indices and Korean Financial Markets: Lead-Lag Relationships, Causality, and Asymmetric Effects"]
     },
     {
       "name": "최진우",
@@ -443,7 +443,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["K-방산 산업의 주가 동조성 네트워크 분석: 상관관계 기반 네트워크를 활용한 산업 구조 및 리스크 연결성 탐색"]
+      "projects": ["Stock Price Co-Movement Network Analysis of the Korean Defense Industry: Exploring Industrial Structure and Risk Connectivity Through Correlation-Based Networks"]
     }
   ],
   "sinceDate": "2025-06-14"
