@@ -486,11 +486,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
       .then(res => res.json())
       .then((data: HonorsData) => {
         setHonorsData(data)
-        // PC only: Auto-expand recent years (2018 and later)
+        // PC: Auto-expand all years
         if (window.innerWidth >= 768) {
           const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
-          const recentYears = years.filter(year => Number(year) >= 2018)
-          setExpandedYears(new Set(recentYears))
+          setExpandedYears(new Set(years))
         }
         // Mobile: All collapsed by default (empty Set)
       })

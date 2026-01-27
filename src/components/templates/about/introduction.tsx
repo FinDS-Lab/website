@@ -52,7 +52,7 @@ const coreValues = [
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
-    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
+    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
   },
   {
     icon: Lightbulb,
@@ -308,7 +308,7 @@ export const AboutIntroductionTemplate = () => {
                           {missionLang === 'ko' ? (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                가천대학교 경영대학 금융·빅데이터학부 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 및 산업환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
+                                가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
                                 저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 <span className="font-bold">정교한 의사결정</span>을 돕는 것을 목표로 합니다.
@@ -406,7 +406,7 @@ export const AboutIntroductionTemplate = () => {
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? <>더 나은 <span className="font-semibold text-gray-300">데이터 기반의 경영 및 산업 환경</span>의 미래를 밝혀나가는 데 기여하고자 합니다.</>
+                                ? <>이러한 노력을 바탕으로 더 나은 <span className="font-semibold text-gray-300">데이터 기반의 경영 및 산업 환경</span>의 미래를 밝혀나가는 데 기여하고자 합니다.</>
                                 : <>We strive to illuminate a better future for <span className="font-semibold text-gray-300">data-driven business and industry</span>.</>}
                             </p>
                           </div>

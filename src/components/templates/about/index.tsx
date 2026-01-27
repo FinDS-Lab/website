@@ -61,9 +61,9 @@ export const LocationTemplate = () => {
 
       {/* Content Section */}
       <section className="pb-60 md:pb-80 px-16 md:px-20">
-        <div className="max-w-1480 mx-auto flex flex-col lg:flex-row gap-20 md:gap-32">
+        <div className="max-w-1480 mx-auto flex flex-col lg:flex-row lg:items-stretch gap-20 md:gap-32">
           {/* Map Section */}
-          <div className="h-[280px] md:h-[400px] lg:h-[520px] lg:flex-1 rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50 relative">
+          <div className="h-[280px] md:h-[400px] lg:h-auto lg:flex-1 rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50 relative">
             <iframe
               src="https://maps.google.com/maps?q=가천대학교+가천관&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"

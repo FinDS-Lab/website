@@ -79,7 +79,7 @@ const researchAreas = [
 const useTitleFade = () => {
   const titles = [
     { text: 'Innovation in Business & Industry through Data', lang: 'en' },
-    { text: '데이터를 통한 경영 및 산업 환경의 혁신', lang: 'ko' }
+    { text: '데이터 기반의 경영 및 산업 환경의 혁신', lang: 'ko' }
   ]
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
