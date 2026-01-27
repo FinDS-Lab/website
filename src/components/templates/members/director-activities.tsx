@@ -1425,7 +1425,7 @@ export const MembersDirectorActivitiesTemplate = () => {
 
   const citationStats = [
     {label: 'Citations', count: 127},
-    {label: 'g-index', count: 10},
+    {label: 'g-index', count: 12},
     {label: 'h-index', count: 7},
     {label: 'i10-index', count: 5},
   ]

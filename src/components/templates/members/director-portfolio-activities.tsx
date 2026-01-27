@@ -1427,7 +1427,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
   const citationStats = [
     {label: 'Citations', count: 127},
-    {label: 'g-index', count: 10},
+    {label: 'g-index', count: 12},
     {label: 'h-index', count: 7},
     {label: 'i10-index', count: 5},
   ]
@@ -1503,19 +1503,18 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-6 py-10 md:py-12 text-xs md:text-sm">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-4">
-              <Home size={14} />
-              Home
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="py-20 md:py-32 border-b border-gray-100">
+          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16}/>
             </Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members" className="text-gray-400 hover:text-primary transition-colors">Members</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members/director" className="text-gray-400 hover:text-primary transition-colors">Director</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <span className="text-gray-700 font-semibold">Activities</span>
+            <span className="text-gray-200">—</span>
+            <Link to="/members" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Members</Link>
+            <span className="text-gray-200">—</span>
+            <Link to="/members/director" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Director</Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Activities</span>
           </div>
         </div>
       </div>

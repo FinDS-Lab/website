@@ -140,7 +140,7 @@ const affiliations = [
 ]
 
 // Static Data - Citation Statistics (manually updated)
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
+const citationStats = [{label: 'Citations', count: 160}, {label: 'g-index', count: 12}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 7}]
 
 // Static Data - Research Interests
 const researchInterests = [
@@ -1462,19 +1462,18 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-6 py-10 md:py-12 text-xs md:text-sm">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-4">
-              <Home size={14} />
-              Home
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="py-20 md:py-32 border-b border-gray-100">
+          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16}/>
             </Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members" className="text-gray-400 hover:text-primary transition-colors">Members</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members/director" className="text-gray-400 hover:text-primary transition-colors">Director</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <span className="text-gray-700 font-semibold">Academics</span>
+            <span className="text-gray-200">—</span>
+            <Link to="/members" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Members</Link>
+            <span className="text-gray-200">—</span>
+            <Link to="/members/director" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Director</Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Academics</span>
           </div>
         </div>
       </div>
@@ -2214,6 +2213,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
+                              {/* School Name - Emphasized */}
+                              <p className="text-xs md:text-sm font-bold text-gray-900 mb-6">{course.school}</p>
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
                                   <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
@@ -2221,11 +2222,10 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                              <p className="text-[11px] md:text-xs font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                                <p className="text-[10px] md:text-[11px] text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs text-gray-400 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>

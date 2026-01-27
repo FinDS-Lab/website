@@ -154,7 +154,7 @@ const affiliations = [
 ]
 
 // Static Data - Citation Statistics (manually updated)
-const citationStats = [{label: 'Citations', count: 154}, {label: 'g-index', count: 11}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 6}]
+const citationStats = [{label: 'Citations', count: 160}, {label: 'g-index', count: 12}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 7}]
 
 // Static Data - Research Interests (aligned with About > Introduction Focus Areas)
 const researchInterests = [
@@ -687,27 +687,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               <Home size={16}/>
             </Link>
             <span className="text-gray-200">—</span>
-            <span className="text-sm text-gray-400 font-medium">Members</span>
+            <Link to="/members" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Members</Link>
             <span className="text-gray-200">—</span>
-            <Link to="/members/director" className="text-sm text-primary font-semibold hover:underline">Director</Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b border-gray-100">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-6 py-10 md:py-12 text-xs md:text-sm">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-4">
-              <Home size={14} />
-              Home
-            </Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members" className="text-gray-400 hover:text-primary transition-colors">Members</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <Link to="/members/director" className="text-gray-400 hover:text-primary transition-colors">Director</Link>
-            <ChevronRight size={12} className="text-gray-300" />
-            <span className="text-gray-700 font-semibold">Profile</span>
+            <Link to="/members/director" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Director</Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Profile</span>
           </div>
         </div>
       </div>
