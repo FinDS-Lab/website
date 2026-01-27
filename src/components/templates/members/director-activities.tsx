@@ -1424,10 +1424,10 @@ export const MembersDirectorActivitiesTemplate = () => {
   }, [])
 
   const citationStats = [
-    {label: 'Citations', count: 127},
+    {label: 'Citations', count: 160},
     {label: 'g-index', count: 12},
-    {label: 'h-index', count: 7},
-    {label: 'i10-index', count: 5},
+    {label: 'h-index', count: 8},
+    {label: 'i10-index', count: 7},
   ]
 
   const journals = useMemo(() => {

@@ -1370,13 +1370,20 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
       })
     })
 
-    // Sort periods in each course (most recent first)
+    // Sort periods in each course (most recent first, but within same semester: 1 before 2)
     Object.values(courseMap).forEach(course => {
       course.periods.sort((a, b) => {
         const [yearA, semA] = a.split(' ')
         const [yearB, semB] = b.split(' ')
         if (yearA !== yearB) return parseInt(yearB) - parseInt(yearA)
-        return semB.localeCompare(semA)
+        // Extract base semester (Fall, Spring) and number suffix (-1, -2)
+        const baseA = semA.replace(/-\d+$/, '')
+        const baseB = semB.replace(/-\d+$/, '')
+        if (baseA !== baseB) return baseB.localeCompare(baseA) // Fall > Spring in same year
+        // Same base semester, sort by number suffix ascending (1 before 2)
+        const numA = parseInt(semA.match(/-(\d+)$/)?.[1] || '0')
+        const numB = parseInt(semB.match(/-(\d+)$/)?.[1] || '0')
+        return numA - numB
       })
     })
 
