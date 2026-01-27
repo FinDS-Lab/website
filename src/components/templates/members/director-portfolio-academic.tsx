@@ -1619,7 +1619,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               </button>
               {expandedSections.researcherIds && (
               <div className="p-20 md:p-24 border-t border-gray-100">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16">
+                <div className="grid grid-cols-3 gap-12 md:gap-16">
                   {/* ORCID */}
                   <a 
                     href="https://orcid.org/0000-0003-2596-7368" 
@@ -1663,21 +1663,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Web of Science</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
                     <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
-                  </a>
-
-                  {/* IRIS (Korean National Researcher Number) */}
-                  <a 
-                    href="https://www.iris.go.kr/main.do" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#003876]/50 hover:shadow-lg hover:shadow-[#003876]/10 transition-all duration-300"
-                  >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/iris.webp`} alt="IRIS" className="w-full h-full object-contain" />
-                    </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 text-center">국가연구자번호</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#003876] transition-colors">12405369</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#003876] transition-colors" />
                   </a>
                 </div>
               </div>
