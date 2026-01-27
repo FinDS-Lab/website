@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {HonorsData} from '@/types/data'
+import {citationStats, affiliations, researchInterests} from '@/data/director-common'
 
 // Format date from "Dec 5" to "MM-DD" format
 const formatHonorDate = (dateStr: string): string => {
@@ -147,47 +148,8 @@ const employment = [
   {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014-06 – Present', logo: logoJl, isCurrent: true},
 ]
 
-// Static Data - Professional Affiliations
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025-06 – Present'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023-09 – Present'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023-06 – Present'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present'},
-]
-
-// Static Data - Citation Statistics (manually updated)
-const citationStats = [{label: 'Citations', count: 160}, {label: 'g-index', count: 12}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 7}]
-
-// Static Data - Research Interests (aligned with About > Introduction Focus Areas)
-const researchInterests = [
-  {
-    category: 'Financial Data Science',
-    categoryKo: '금융 데이터 사이언스',
-    items: [
-      'Portfolio Optimization & Algorithmic Trading',
-      'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
-    ]
-  },
-  {
-    category: 'Business Analytics',
-    categoryKo: '비즈니스 애널리틱스',
-    items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
-    ]
-  },
-  {
-    category: 'Data-Informed Decision Making',
-    categoryKo: '데이터 기반 의사결정',
-    items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools',
-      'Iridescent View Extraction for Data-Informed Decision'
-    ]
-  },
-]
+// Static Data - Professional Affiliations, Citation Statistics, Research Interests
+// Now imported from @/data/director-common.ts
 
 // Resume Modal Component
 const ResumeModal = () => (

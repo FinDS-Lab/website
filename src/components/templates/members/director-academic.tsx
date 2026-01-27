@@ -30,6 +30,7 @@ import {
 import {useStoreModal} from '@/store/modal'
 import type {AcademicActivitiesData, Publication} from '@/types/data'
 import type {AuthorsData} from '@/types/data'
+import {citationStats, affiliations, researchInterests} from '@/data/director-common'
 
 // Types
 type Project = {
@@ -130,44 +131,8 @@ const employment = [
   {position: 'Founder', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014-06 – Present', logo: logoJl, isCurrent: true},
 ]
 
-// Static Data - Professional Affiliations
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025-06 – Present'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023-09 – Present'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023-06 – Present'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present'},
-]
-
-// Static Data - Citation Statistics (manually updated)
-const citationStats = [{label: 'Citations', count: 160}, {label: 'g-index', count: 12}, {label: 'h-index', count: 8}, {label: 'i10-index', count: 7}]
-
-// Static Data - Research Interests
-const researchInterests = [
-  {
-    category: 'Financial Data Science',
-    items: [
-      'AI in Quantitative Finance & Asset Management',
-      'Financial Time-Series Modeling & Forecasting',
-      'Household Finance & Behavioral Decision Modeling'
-    ]
-  },
-  {
-    category: 'Business Analytics',
-    items: [
-      'Data Analytics for Cross-Industry & Cross-Domain Convergences',
-      'Data Visualization & Transparency in Business Analytics',
-      'Business Insights from Data Science Techniques'
-    ]
-  },
-  {
-    category: 'Data-Informed Decision Making',
-    items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware & User-Friendly Decision Tools',
-      'Decision Analytics for Complex Business Problems'
-    ]
-  },
-]
+// Static Data - Professional Affiliations, Citation Statistics, Research Interests
+// Now imported from @/data/director-common.ts
 
 
 // Collaboration Network Types

@@ -29,6 +29,7 @@ import {
 } from 'lucide-react'
 import type {AcademicActivitiesData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
+import {citationStats, affiliations} from '@/data/director-common'
 
 // Types for collaboration network
 type CollabPublication = {
@@ -179,12 +180,7 @@ const employment = [
   {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014-06 – Present', location: 'JL C&C', krOrg: '대표 / JL C&C', logo: logoJl},
 ]
 
-const affiliations = [
-  {organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', period: '2025-06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', period: '2023-09 – Present', role: 'Lifetime Member'},
-  {organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', period: '2023-06 – Present', role: 'Lifetime Member'},
-  {organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', period: '2022-06 – Present', role: 'Lifetime Member'},
-]
+// affiliations imported from @/data/director-common.ts
 
 const activities = [
   {
@@ -1425,12 +1421,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
     ]
   }, [])
 
-  const citationStats = [
-    {label: 'Citations', count: 160},
-    {label: 'g-index', count: 12},
-    {label: 'h-index', count: 8},
-    {label: 'i10-index', count: 7},
-  ]
+  // citationStats imported from @/data/director-common.ts
 
   const journals = useMemo(() => {
     if (!activitiesData) return []
