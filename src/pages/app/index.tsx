@@ -218,8 +218,8 @@ const GlobalMusicPlayer = memo(() => {
               <div className="min-w-0 flex-1 overflow-hidden">
                 <p className="text-[10px] font-semibold truncate" style={{color: 'rgb(214,177,77)'}}>{currentTrack?.artist}</p>
                 <div className="overflow-hidden">
-                  <p className={`text-xs text-white font-medium whitespace-nowrap ${(currentTrack?.title?.length || 0) > 18 ? 'animate-marquee' : ''}`}>
-                    {currentTrack?.title}{(currentTrack?.title?.length || 0) > 18 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack?.title}` : ''}
+                  <p className={`text-xs text-white font-medium ${(currentTrack?.title?.length || 0) > 40 ? 'whitespace-nowrap animate-marquee' : 'truncate'}`}>
+                    {currentTrack?.title}{(currentTrack?.title?.length || 0) > 40 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack?.title}` : ''}
                   </p>
                 </div>
               </div>
@@ -267,8 +267,8 @@ const GlobalMusicPlayer = memo(() => {
             <div className="px-16 py-12 border-b border-gray-800/50 overflow-hidden">
               <p className="text-xs font-bold tracking-wider mb-1" style={{color: 'rgb(214,177,77)'}}>{currentTrack.artist}</p>
               <div className="overflow-hidden">
-                <p className={`text-white text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}>
-                  {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
+                <p className={`text-white text-[15px] font-semibold ${currentTrack.title.length > 35 ? 'whitespace-nowrap animate-marquee' : 'truncate'}`}>
+                  {currentTrack.title}{currentTrack.title.length > 35 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}
                 </p>
               </div>
             </div>
