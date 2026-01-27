@@ -464,7 +464,7 @@ export const MembersAlumniTemplate = () => {
                                     <ChevronDown size={14} className={`text-gray-400 transition-transform ml-auto ${isExpanded ? 'rotate-180' : ''}`}/>
                                   )}
                                 </div>
-                                <p className="text-[11px] text-gray-500 mt-2">{getGraduationDate(alumni, 'phd')}</p>
+                                <p className="text-xs text-gray-500 mt-2">{getGraduationDate(alumni, 'phd')}</p>
                               </div>
                             </div>
 
@@ -658,7 +658,7 @@ export const MembersAlumniTemplate = () => {
                                     <ChevronDown size={14} className={`text-gray-400 transition-transform ml-auto ${isExpanded ? 'rotate-180' : ''}`}/>
                                   )}
                                 </div>
-                                <p className="text-[11px] text-gray-500 mt-2">{getGraduationDate(alumni, 'ms')}</p>
+                                <p className="text-xs text-gray-500 mt-2">{getGraduationDate(alumni, 'ms')}</p>
                               </div>
                             </div>
 
@@ -837,7 +837,7 @@ export const MembersAlumniTemplate = () => {
                                     />
                                   )}
                                 </div>
-                                <p className="text-[11px] text-gray-500 mt-2">{alumni.periods?.ur || '-'}</p>
+                                <p className="text-xs text-gray-500 mt-2">{alumni.periods?.ur || '-'}</p>
                               </div>
                             </div>
 

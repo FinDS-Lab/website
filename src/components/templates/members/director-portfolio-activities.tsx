@@ -998,7 +998,7 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[9px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
@@ -1785,7 +1785,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
                   <button
                     onClick={() => setSelectedMentoringYear('all')}
-                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
+                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 ${
                       selectedMentoringYear === 'all'
                         ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -1797,7 +1797,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <button
                       key={year}
                       onClick={() => setSelectedMentoringYear(selectedMentoringYear === year ? 'all' : year)}
-                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-[11px] md:text-xs font-bold transition-all shrink-0 ${
+                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 ${
                         selectedMentoringYear === year
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -1816,7 +1816,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       {selectedMentoringYear !== 'all' && (
                         <button
                           onClick={() => setSelectedMentoringYear('all')}
-                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium bg-primary text-white hover:bg-primary/90 transition-all leading-none"
+                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-xs font-medium bg-primary text-white hover:bg-primary/90 transition-all leading-none"
                         >
                           <span>{selectedMentoringYear}</span>
                           <X size={10} />
@@ -1825,7 +1825,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       {selectedUniversity !== 'all' && (
                         <button
                           onClick={() => setSelectedUniversity('all')}
-                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-[11px] font-medium text-white hover:opacity-90 transition-all leading-none"
+                          className="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full text-xs font-medium text-white hover:opacity-90 transition-all leading-none"
                           style={{backgroundColor: '#E8889C'}}
                         >
                           <span>{selectedUniversity}</span>
@@ -1837,7 +1837,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           setSelectedMentoringYear('all')
                           setSelectedUniversity('all')
                         }}
-                        className="text-[11px] font-medium text-gray-500 hover:text-gray-700 underline ml-auto"
+                        className="text-xs font-medium text-gray-500 hover:text-gray-700 underline ml-auto"
                       >
                         Reset All
                       </button>
@@ -1856,7 +1856,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                         <button
                           key={univ}
                           onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
-                          className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-[11px] md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
+                          className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
                             selectedUniversity === univ
                               ? 'text-white'
                               : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
@@ -1904,7 +1904,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               </div>
                               <div className="min-w-0">
                                 <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
-                                <p className="text-[11px] md:text-xs text-gray-500 truncate">
+                                <p className="text-xs md:text-xs text-gray-500 truncate">
                                   {mentee.university} · {mentee.department} · {mentee.entryYear}학번
                                 </p>
                               </div>
@@ -1987,7 +1987,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
                 {/* Footer */}
                 <div className="px-20 md:px-32 py-12 md:py-16 bg-gray-50/50 border-t border-gray-100">
-                  <p className="text-[11px] md:text-xs text-gray-500">
+                  <p className="text-xs md:text-xs text-gray-500">
                     Showing <span className="font-bold text-gray-700">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
                     {selectedMentoringYear !== 'all' && <span className="text-primary"> in {selectedMentoringYear}</span>}
                     {selectedUniversity !== 'all' && <span className="text-primary"> from {selectedUniversity}</span>}

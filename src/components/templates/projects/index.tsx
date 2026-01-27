@@ -625,7 +625,7 @@ export const ProjectsTemplate = () => {
                                 }}>
                                   <div className="flex items-center gap-8">
                                     {/* Role | Type Label */}
-                                    <span className={`text-[11px] font-bold tracking-wide ${
+                                    <span className={`text-xs font-bold tracking-wide ${
                                       project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 
@@ -700,7 +700,7 @@ export const ProjectsTemplate = () => {
                                     </div>
                                     
                                     {/* Mobile: Date below FundingAgency - same as Publications */}
-                                    <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
+                                    <p className="md:hidden text-xs text-gray-400 font-medium mt-4">
                                       {project.period}
                                     </p>
                                     

@@ -265,7 +265,7 @@ const GlobalMusicPlayer = memo(() => {
 
           {currentTrack && (
             <div className="px-16 py-12 border-b border-gray-800/50 overflow-hidden">
-              <p className="text-[11px] font-bold tracking-wider mb-1" style={{color: 'rgb(214,177,77)'}}>{currentTrack.artist}</p>
+              <p className="text-xs font-bold tracking-wider mb-1" style={{color: 'rgb(214,177,77)'}}>{currentTrack.artist}</p>
               <div className="overflow-hidden">
                 <p className={`text-white text-[15px] font-semibold whitespace-nowrap ${currentTrack.title.length > 20 ? 'animate-marquee' : ''}`}>
                   {currentTrack.title}{currentTrack.title.length > 20 ? `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0${currentTrack.title}` : ''}

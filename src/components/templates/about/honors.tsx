@@ -341,13 +341,13 @@ export const AboutHonorsTemplate = () => {
                                 {item.title}
                               </h4>
                               {/* Date badge - top right on PC, same style as Publications */}
-                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
                                 {year}-{formatDate(item.date)}
                               </span>
                             </div>
                             <p className="text-xs md:text-[14px] text-gray-600 mb-4 md:mb-[4px]">{item.event}</p>
                             {/* Organization */}
-                            <p className="text-[11px] md:text-[13px] text-gray-500 font-bold mb-4">{item.organization}</p>
+                            <p className="text-xs md:text-[13px] text-gray-500 font-bold mb-4">{item.organization}</p>
                             {/* Mobile: Date below organization */}
                             <p className="md:hidden text-[10px] text-gray-400 font-medium mb-4">
                               {year}-{formatDate(item.date)}

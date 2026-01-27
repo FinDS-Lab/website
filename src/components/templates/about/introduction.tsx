@@ -130,7 +130,7 @@ const LangToggle = ({ lang, setLang, variant = 'light' }: { lang: 'ko' | 'en', s
   <div className={`inline-flex items-center rounded-full p-1 ${variant === 'dark' ? 'bg-white/10' : 'bg-gray-100'}`}>
     <button
       onClick={() => setLang('ko')}
-      className={`px-10 py-5 text-[10px] md:text-[11px] font-bold rounded-full transition-all duration-300 ${
+      className={`px-10 py-5 text-[10px] md:text-xs font-bold rounded-full transition-all duration-300 ${
         lang === 'ko' 
           ? variant === 'dark' ? 'bg-[#D6B14D] text-gray-900' : 'bg-gray-900 text-white'
           : variant === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-400 hover:text-gray-600'
@@ -140,7 +140,7 @@ const LangToggle = ({ lang, setLang, variant = 'light' }: { lang: 'ko' | 'en', s
     </button>
     <button
       onClick={() => setLang('en')}
-      className={`px-10 py-5 text-[10px] md:text-[11px] font-bold rounded-full transition-all duration-300 ${
+      className={`px-10 py-5 text-[10px] md:text-xs font-bold rounded-full transition-all duration-300 ${
         lang === 'en' 
           ? variant === 'dark' ? 'bg-[#D6B14D] text-gray-900' : 'bg-gray-900 text-white'
           : variant === 'dark' ? 'text-gray-400 hover:text-white' : 'text-gray-400 hover:text-gray-600'
@@ -272,7 +272,7 @@ export const AboutIntroductionTemplate = () => {
                       <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
-                          <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                          <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
                             {missionLang === 'ko' ? 'FINDS Lab의 목표' : 'FINDS Lab Goal'}
                           </span>
                         </div>
@@ -345,7 +345,7 @@ export const AboutIntroductionTemplate = () => {
                       >
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
                             {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
                           </span>
                         </div>
@@ -485,7 +485,7 @@ export const AboutIntroductionTemplate = () => {
                       <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
-                          <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-[0.15em]">
+                          <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
                             <span className="md:hidden">FINDS Lab Focus Areas</span>
                             <span className="hidden md:inline">{focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}</span>
                           </span>
@@ -564,7 +564,7 @@ export const AboutIntroductionTemplate = () => {
                       >
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] text-gray-400">
+                          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
                             {valuesLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
                           </span>
                         </div>

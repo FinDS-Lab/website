@@ -1289,7 +1289,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div className="flex-1 min-w-0">
                                           <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
                                           <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                          <p className="text-[11px] text-gray-500 font-bold">{item.organization}</p>
+                                          <p className="text-xs text-gray-500 font-bold">{item.organization}</p>
                                           {/* Mobile: Date as text */}
                                           <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
                                         </div>

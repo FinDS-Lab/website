@@ -344,13 +344,13 @@ export const MembersCurrentTemplate = () => {
                                   {member.name.ko}
                                 </h4>
                                 <span 
-                                  className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-[11px] font-bold ${degreeColors[groupKey]}`}
+                                  className={`px-6 md:px-[8px] py-[2px] rounded-full text-[10px] md:text-xs font-bold ${degreeColors[groupKey]}`}
                                   style={degreeBgStyles[groupKey]}
                                 >
                                   {member.role.en}
                                 </span>
                               </div>
-                              <p className="text-[11px] md:text-[13px] text-gray-500">
+                              <p className="text-xs md:text-[13px] text-gray-500">
                                 {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
                               </p>
                             </div>
@@ -363,7 +363,7 @@ export const MembersCurrentTemplate = () => {
                                 {member.research.interests.slice(0, 4).map((interest, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[11px] text-gray-600"
+                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-xs text-gray-600"
                                   >
                                     {interest}
                                   </span>

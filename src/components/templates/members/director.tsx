@@ -933,7 +933,7 @@ export const MembersDirectorTemplate = () => {
                         {/* Info */}
                         <div className="flex-1 min-w-0">
                           {/* Period Badge */}
-                          <span className="inline-block px-10 py-3 text-[10px] md:text-xs font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
+                          <span className="inline-block px-10 py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
                           
                           {/* Degree - Largest */}
                           <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
@@ -1101,7 +1101,7 @@ export const MembersDirectorTemplate = () => {
                     {pubStats.map((stat, index) => (
                       <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
                         <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
-                        <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -1109,7 +1109,7 @@ export const MembersDirectorTemplate = () => {
                     {citationStats.map((stat, index) => (
                       <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
                         <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                        <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                       </div>
                     ))}
                   </div>

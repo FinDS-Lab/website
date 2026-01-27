@@ -941,7 +941,7 @@ const CollaborationNetwork = memo(() => {
         {/* Legend */}
         <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[6px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
+            <div className="size-10 rounded-full bg-white flex items-center justify-center text-[9px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
@@ -1646,7 +1646,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     {pubStats.map((stat, index) => (
                       <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
                         <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
-                        <div className="text-[8px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -1654,7 +1654,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     {citationStats.map((stat, index) => (
                       <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
                         <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                        <div className="text-[9px] md:text-[11px] font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                       </div>
                     ))}
                   </div>
@@ -1684,7 +1684,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
                       <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
                     </div>
-                    <div className="py-16 text-center text-[11px] text-gray-400">Coming soon...</div>
+                    <div className="py-16 text-center text-xs text-gray-400">Coming soon...</div>
                   </div>
 
                   {/* Academic Memberships */}
@@ -1696,7 +1696,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="space-y-8">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                          <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 shrink-0">
@@ -1706,7 +1706,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                          <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 shrink-0">
@@ -1716,7 +1716,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                          <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 shrink-0">
@@ -1726,7 +1726,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       </div>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                          <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 shrink-0">
@@ -1749,7 +1749,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
                             className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                             <div className="flex-1 min-w-0">
-                              <p className="text-[11px] font-bold text-gray-900">{comm.name}</p>
+                              <p className="text-xs font-bold text-gray-900">{comm.name}</p>
                               {comm.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                               )}
@@ -1762,7 +1762,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         ))}
                       </div>
                     ) : (
-                      <div className="py-8 text-[11px] text-gray-400">Coming soon...</div>
+                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
                     )}
                   </div>
 
@@ -1778,7 +1778,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
                             className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                             <div className="flex-1 min-w-0">
-                              <p className="text-[11px] font-bold text-gray-900">{chair.name}</p>
+                              <p className="text-xs font-bold text-gray-900">{chair.name}</p>
                               {chair.name_ko && (
                                 <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                               )}
@@ -1791,7 +1791,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         ))}
                       </div>
                     ) : (
-                      <div className="py-8 text-[11px] text-gray-400">Coming soon...</div>
+                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
                     )}
                   </div>
 
@@ -1803,7 +1803,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
                       </div>
                       {journals.length > 15 && (
-                        <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-[11px] text-primary font-medium hover:underline">
+                        <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-xs text-primary font-medium hover:underline">
                           {showAllJournals ? 'Show Less' : 'Show All'}
                         </button>
                       )}
@@ -1812,7 +1812,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       {displayedJournals.map((journal) => (
                         <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
                           className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                          <span className="text-[11px] font-medium text-gray-700 flex-1">{journal.name}</span>
+                          <span className="text-xs font-medium text-gray-700 flex-1">{journal.name}</span>
                           <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                             journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                             journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
@@ -1833,7 +1833,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                       </div>
                       {conferenceReviewers.length > 20 && (
-                        <button onClick={() => setShowAllConferences(!showAllConferences)} className="text-[11px] text-primary font-medium hover:underline">
+                        <button onClick={() => setShowAllConferences(!showAllConferences)} className="text-xs text-primary font-medium hover:underline">
                           {showAllConferences ? 'Show Less' : 'Show All'}
                         </button>
                       )}
@@ -1843,7 +1843,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
                           className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
                           <div className="flex-1 min-w-0">
-                            <span className="text-[11px] font-medium text-gray-700 break-words">{conf.name}</span>
+                            <span className="text-xs font-medium text-gray-700 break-words">{conf.name}</span>
                             {/* Mobile: Date as text below name */}
                             <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
                           </div>
@@ -1922,7 +1922,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line abbreviations */}
-                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[8px] font-medium shadow-sm">
+                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
                             <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
@@ -2000,7 +2000,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 }}>
                                   <div className="flex items-center gap-8">
                                     {/* Type Label */}
-                                    <span className={`text-[11px] font-bold tracking-wide ${
+                                    <span className={`text-xs font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {typeLabels[project.type]} Project
@@ -2020,14 +2020,14 @@ export const MembersDirectorAcademicTemplate = () => {
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-60">
                                     <div className={`w-full py-5 rounded-lg text-center ${typeBgColors[project.type]} shadow-sm`}>
                                       <Icon size={12} className="inline mb-1 text-white" />
-                                      <span className="block text-[8px] font-bold tracking-wide text-white">
+                                      <span className="block text-[9px] font-bold tracking-wide text-white">
                                         {typeLabels[project.type]}
                                       </span>
                                     </div>
                                     <div className={`w-full mt-3 py-3 text-center rounded-md ${
                                       isOngoing ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
                                     }`}>
-                                      <span className={`text-[7px] font-bold ${
+                                      <span className={`text-[9px] font-bold ${
                                         isOngoing ? 'text-[#D6B14D]' : 'text-gray-400'
                                       }`}>
                                         {isOngoing ? 'Ongoing' : 'Completed'}
@@ -2037,14 +2037,14 @@ export const MembersDirectorAcademicTemplate = () => {
                                   
                                   <div className="flex-1 min-w-0">
                                     {/* Role badge */}
-                                    <span className={`inline-flex px-6 py-2 text-[8px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                    <span className={`inline-flex px-6 py-2 text-[9px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
                                       {directorRole}
                                     </span>
                                     
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-16">
                                       <div className="flex-1 min-w-0">
-                                        <p className="text-[11px] md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
+                                        <p className="text-xs md:text-xs font-bold text-gray-900 line-clamp-2">{project.titleKo}</p>
                                         <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
                                         <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
                                         {/* Mobile: Period as text */}

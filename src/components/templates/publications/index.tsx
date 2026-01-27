@@ -716,40 +716,40 @@ export const PublicationsTemplate = () => {
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
                                         <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6B14D'}} />
-                                        <span className="text-[11px] text-gray-300">Journal</span>
+                                        <span className="text-xs text-gray-300">Journal</span>
                                       </div>
-                                      <span className="text-[11px] font-bold text-white">{data.journal}</span>
+                                      <span className="text-xs font-bold text-white">{data.journal}</span>
                                     </div>
                                   )}
                                   {data.conference > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
                                         <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#E8D688'}} />
-                                        <span className="text-[11px] text-gray-300">Conference</span>
+                                        <span className="text-xs text-gray-300">Conference</span>
                                       </div>
-                                      <span className="text-[11px] font-bold text-white">{data.conference}</span>
+                                      <span className="text-xs font-bold text-white">{data.conference}</span>
                                     </div>
                                   )}
                                   {data.book > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
                                         <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6A076'}} />
-                                        <span className="text-[11px] text-gray-300">Book</span>
+                                        <span className="text-xs text-gray-300">Book</span>
                                       </div>
-                                      <span className="text-[11px] font-bold text-white">{data.book}</span>
+                                      <span className="text-xs font-bold text-white">{data.book}</span>
                                     </div>
                                   )}
                                   {data.report > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
                                         <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#AC0E0E'}} />
-                                        <span className="text-[11px] text-gray-300">Report</span>
+                                        <span className="text-xs text-gray-300">Report</span>
                                       </div>
-                                      <span className="text-[11px] font-bold text-white">{data.report}</span>
+                                      <span className="text-xs font-bold text-white">{data.report}</span>
                                     </div>
                                   )}
                                   {data.total === 0 && (
-                                    <div className="text-[11px] text-gray-500 text-center py-4">No publications</div>
+                                    <div className="text-xs text-gray-500 text-center py-4">No publications</div>
                                   )}
                                 </div>
                                 {/* Arrow */}
@@ -950,7 +950,7 @@ export const PublicationsTemplate = () => {
                               }}>
                                 <div className="flex items-center gap-6">
                                   {/* Type Label */}
-                                  <span className={`text-[11px] font-bold tracking-wide ${
+                                  <span className={`text-xs font-bold tracking-wide ${
                                     pub.type === 'book' || pub.type === 'report' ? 'text-gray-800' : 'text-white'
                                   }`}>
                                     {typeLabel}
@@ -958,7 +958,7 @@ export const PublicationsTemplate = () => {
                                   {/* Divider */}
                                   <span className={`text-[10px] ${pub.type === 'book' || pub.type === 'report' ? 'text-gray-600' : 'text-white/60'}`}>|</span>
                                   {/* Number */}
-                                  <span className={`text-[11px] font-bold ${
+                                  <span className={`text-xs font-bold ${
                                     pub.type === 'book' || pub.type === 'report' ? 'text-gray-700' : 'text-white/90'
                                   }`}>
                                     #{getPublicationNumber(pub)}
@@ -967,7 +967,7 @@ export const PublicationsTemplate = () => {
                                   {pub.type === 'journal' && pub.indexing_group && (
                                     <>
                                       <span className="text-[10px] text-white/60">|</span>
-                                      <span className="text-[11px] font-bold text-white/90">
+                                      <span className="text-xs font-bold text-white/90">
                                         {pub.indexing_group}
                                       </span>
                                     </>
@@ -975,7 +975,7 @@ export const PublicationsTemplate = () => {
                                   {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group === 'Scopus') && (
                                     <>
                                       <span className="text-[10px] text-white/60">|</span>
-                                      <span className="text-[11px] font-bold text-white/90">
+                                      <span className="text-xs font-bold text-white/90">
                                         {pub.indexing_group === 'Scopus' && 'Scopus'}
                                         {pub.indexing_group === 'Scopus' && pub.presentation_type && ' | '}
                                         {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
@@ -1112,7 +1112,7 @@ export const PublicationsTemplate = () => {
                                             {mainTitle}
                                           </h4>
                                           {/* Date badge - top right on PC, unified style */}
-                                          <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-[11px] font-medium text-gray-500 shrink-0 shadow-sm">
+                                          <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
                                             {pub.published_date}
                                           </span>
                                         </div>
@@ -1165,7 +1165,7 @@ export const PublicationsTemplate = () => {
                                     </>
                                   )}
                                   {/* Mobile: Date below venue */}
-                                  <p className="md:hidden text-[11px] text-gray-400 font-medium mt-4">
+                                  <p className="md:hidden text-xs text-gray-400 font-medium mt-4">
                                     {pub.published_date}
                                   </p>
                                   {/* DOI below venue/date - refined design */}
@@ -1179,7 +1179,7 @@ export const PublicationsTemplate = () => {
                                       <span className="px-6 py-2 bg-gray-100 rounded text-[9px] font-semibold text-gray-500 uppercase tracking-wide">
                                         doi
                                       </span>
-                                      <span className="text-[11px] md:text-xs text-gray-500 group-hover/doi:text-primary transition-colors">
+                                      <span className="text-xs md:text-xs text-gray-500 group-hover/doi:text-primary transition-colors">
                                         {pub.doi}
                                       </span>
                                     </a>

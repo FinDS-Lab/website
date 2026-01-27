@@ -211,7 +211,7 @@ export const ArchivesPlaylistTemplate = () => {
             {/* Home Button */}
             <Link 
               to="/" 
-              className="flex items-center gap-6 px-10 py-6 bg-gray-100 hover:bg-primary hover:text-white text-gray-600 rounded-lg transition-all text-[11px] font-semibold"
+              className="flex items-center gap-6 px-10 py-6 bg-gray-100 hover:bg-primary hover:text-white text-gray-600 rounded-lg transition-all text-xs font-semibold"
               title="FINDS Lab 홈으로"
             >
               <Home size={14} />
@@ -222,14 +222,14 @@ export const ArchivesPlaylistTemplate = () => {
             <div className="flex items-center gap-12">
               <div className="flex items-center gap-4">
                 <Music2 size={14} className="text-primary" />
-                <span className="text-[11px] md:text-xs font-bold text-gray-900">Playlist</span>
+                <span className="text-xs md:text-xs font-bold text-gray-900">Playlist</span>
                 <span className="text-[10px] text-gray-400">{playlists.length} tracks</span>
               </div>
               
               {/* View Toggle Button */}
               <button 
                 onClick={() => setShowListPanel(!showListPanel)}
-                className={`flex items-center gap-4 px-10 py-5 rounded-full transition-all text-[11px] font-semibold border ${
+                className={`flex items-center gap-4 px-10 py-5 rounded-full transition-all text-xs font-semibold border ${
                   showListPanel 
                     ? 'bg-primary text-white border-primary' 
                     : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary'
@@ -383,10 +383,10 @@ export const ArchivesPlaylistTemplate = () => {
                 
                 {/* Info - 아티스트 먼저, 제목 아래 */}
                 <div className="p-12 md:p-14">
-                  <p className="text-[11px] md:text-xs text-gray-500 mb-4 truncate font-bold">
+                  <p className="text-xs md:text-xs text-gray-500 mb-4 truncate font-bold">
                     {item.artist}
                   </p>
-                  <h3 className="text-[11px] md:text-xs font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">
+                  <h3 className="text-xs md:text-xs font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">
                     {item.title}
                   </h3>
                 </div>

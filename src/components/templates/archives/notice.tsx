@@ -230,7 +230,7 @@ export const ArchivesNoticeTemplate = () => {
                   <span className="text-gray-300">|</span>
                   <span>{item.author}</span>
                   {item.isPinned && (
-                    <span className="px-6 md:px-8 py-2 bg-primary text-white text-[10px] md:text-[11px] font-semibold rounded-md">
+                    <span className="px-6 md:px-8 py-2 bg-primary text-white text-[10px] md:text-xs font-semibold rounded-md">
                       PINNED
                     </span>
                   )}

@@ -102,7 +102,7 @@ const ContactModalContent = () => {
           <div key={index} className="bg-gray-50 rounded-xl p-14 md:p-16">
             <div className="flex flex-col gap-2 mb-10">
               <span className="text-sm md:text-base font-bold text-primary">{contact.role}</span>
-              <span className="text-[11px] md:text-xs text-gray-400 leading-relaxed">{contact.description}</span>
+              <span className="text-xs md:text-xs text-gray-400 leading-relaxed">{contact.description}</span>
             </div>
             <div className="flex items-center justify-between gap-8 md:gap-12">
               <a
@@ -113,7 +113,7 @@ const ContactModalContent = () => {
               </a>
               <button
                 onClick={() => handleCopyEmail(contact.email)}
-                className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white border border-gray-200 rounded-lg text-[11px] md:text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0"
+                className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white border border-gray-200 rounded-lg text-xs md:text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0"
                 aria-label={copiedEmail === contact.email ? '이메일 복사 완료' : `${contact.email} 복사`}
               >
                 {copiedEmail === contact.email ? (
@@ -422,7 +422,7 @@ const LayoutOrganisms = ({ children }: props) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative px-12 py-6 text-[10px] md:text-[11px] text-gray-500 transition-all duration-300 font-medium tracking-wide"
+                className="group relative px-12 py-6 text-[10px] md:text-xs text-gray-500 transition-all duration-300 font-medium tracking-wide"
                 style={{ color: undefined }}
               >
                 <span className="relative z-10 group-hover:text-[#D6B14D] transition-colors duration-300">{link.name}</span>
@@ -435,7 +435,7 @@ const LayoutOrganisms = ({ children }: props) => {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
 
           {/* Copyright - simplified */}
-          <p className="text-[10px] md:text-[11px] text-gray-400 text-center tracking-wide">
+          <p className="text-[10px] md:text-xs text-gray-400 text-center tracking-wide">
             © 2026 FINDS Lab. All Rights Reserved.
           </p>
         </div>
