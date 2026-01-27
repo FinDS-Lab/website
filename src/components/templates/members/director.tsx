@@ -1173,7 +1173,7 @@ export const MembersDirectorTemplate = () => {
                                     {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                       <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                                     )}
-                                    <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
+                                    <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
                                   </div>
                                 </div>
                               </div>

@@ -1140,7 +1140,7 @@ export const MembersDirectorAcademicTemplate = () => {
     projects: true,
     teaching: true,
     lecturer: true,
-    teachingAssistant: false  // Collapsed by default
+    teachingAssistant: true
   })
   
   // Sticky profile card refs and state
@@ -2147,7 +2147,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>
@@ -2212,7 +2212,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>

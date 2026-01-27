@@ -1608,13 +1608,13 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Researcher IDs */}
+            {/* Research Identifications */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('researcherIds')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Researcher IDs</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Identifications</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researcherIds ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.researcherIds && (
@@ -1669,22 +1669,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               )}
             </section>
 
-            {/* Collaboration Network */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('collaborationNetwork')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.collaborationNetwork && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  <CollaborationNetwork />
-                </div>
-              )}
-            </section>
-
             {/* Publication Statistics */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1717,6 +1701,22 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                       View All Publications <ChevronRight size={14}/>
                     </Link>
                   </div>
+                </div>
+              )}
+            </section>
+
+            {/* Collaboration Network */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('collaborationNetwork')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.collaborationNetwork && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <CollaborationNetwork />
                 </div>
               )}
             </section>
@@ -2209,7 +2209,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>
@@ -2274,7 +2274,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-900 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
                             </div>
                           </div>
                         </div>

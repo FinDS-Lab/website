@@ -1199,10 +1199,10 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025']))
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
-    awardsHonors: false,
-    academicService: false,
+    awardsHonors: true,
+    academicService: true,
     activities: true,
-    collaborationNetwork: false,
+    collaborationNetwork: true,
     mentoringProgram: true,
   })
   const {showModal} = useStoreModal()
