@@ -1789,25 +1789,35 @@ export const MembersDirectorActivitiesTemplate = () => {
                 <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
                   <button
                     onClick={() => setSelectedMentoringYear('all')}
-                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 ${
+                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex items-center gap-6 ${
                       selectedMentoringYear === 'all'
                         ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
-                    All ({mentees.length})
+                    All
+                    <span className={`inline-flex items-center justify-center min-w-[20px] h-[18px] px-5 rounded-full text-[10px] font-bold ${
+                      selectedMentoringYear === 'all'
+                        ? 'bg-white/20 text-white'
+                        : 'bg-gray-200 text-gray-500'
+                    }`}>{mentees.length}</span>
                   </button>
                   {mentoringYears.map((year) => (
                     <button
                       key={year}
                       onClick={() => setSelectedMentoringYear(selectedMentoringYear === year ? 'all' : year)}
-                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 ${
+                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex items-center gap-6 ${
                         selectedMentoringYear === year
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
-                      {year} ({getMenteeCountByYear(year)})
+                      {year}
+                      <span className={`inline-flex items-center justify-center min-w-[20px] h-[18px] px-5 rounded-full text-[10px] font-bold ${
+                        selectedMentoringYear === year
+                          ? 'bg-white/20 text-white'
+                          : 'bg-gray-200 text-gray-500'
+                      }`}>{getMenteeCountByYear(year)}</span>
                     </button>
                   ))}
                 </div>

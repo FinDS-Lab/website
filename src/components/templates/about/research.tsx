@@ -170,12 +170,12 @@ export const AboutResearchTemplate = () => {
             {/* Mobile: Fixed Korean */}
             <h2 className="md:hidden text-xl font-bold leading-[1.4]">
               <span style={{ color: '#D6B14D' }}>데이터</span>
-              <span className="text-gray-900">를 통한 </span>
+              <span className="text-gray-900"> 기반의 </span>
               <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
-              <span className="text-gray-900">의 </span>
+              <span className="text-gray-900"> </span>
               <span style={{ color: '#AC0E0E' }}>혁신</span>
             </h2>
-            {/* PC: Animated */}
+            {/* PC: Animated English <-> Korean */}
             <h2 
               className={`hidden md:block text-2xl lg:text-3xl font-bold leading-[1.4] transition-all duration-500 ease-in-out ${
                 isVisible ? 'opacity-100' : 'opacity-0'
@@ -183,18 +183,17 @@ export const AboutResearchTemplate = () => {
             >
               {currentTitle.lang === 'en' ? (
                 <>
-                  <span style={{ color: '#D6B14D' }}>데이터</span>
-                  <span className="text-gray-900">를 통한 </span>
-                  <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
-                  <span className="text-gray-900">의 </span>
-                  <span style={{ color: '#AC0E0E' }}>혁신</span>
+                  <span className="text-gray-900">Transforming </span>
+                  <span style={{ color: '#AC0E0E' }}>Business and Industry</span>
+                  <span className="text-gray-900"> via </span>
+                  <span style={{ color: '#D6B14D' }}>Data</span>
                 </>
               ) : (
                 <>
                   <span style={{ color: '#D6B14D' }}>데이터</span>
-                  <span className="text-gray-900">를 통한 </span>
+                  <span className="text-gray-900"> 기반의 </span>
                   <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
-                  <span className="text-gray-900">의 </span>
+                  <span className="text-gray-900"> </span>
                   <span style={{ color: '#AC0E0E' }}>혁신</span>
                 </>
               )}

@@ -357,7 +357,7 @@ export const MembersDirectorTemplate = () => {
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
