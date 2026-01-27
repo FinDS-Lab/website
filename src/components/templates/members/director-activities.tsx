@@ -1197,7 +1197,7 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [menteeSearchTerm, setMenteeSearchTerm] = useState('')
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
-  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025']))
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
     awardsHonors: true,
     academicService: true,

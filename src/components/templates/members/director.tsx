@@ -358,7 +358,7 @@ export const MembersDirectorTemplate = () => {
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
-  const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set()) // For education awards/honors
+  const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
     researchInterests: true,
@@ -523,13 +523,9 @@ export const MembersDirectorTemplate = () => {
       .then(res => res.json())
       .then((data: HonorsData) => {
         setHonorsData(data)
-        // PC only: Auto-expand recent years (2018 and later)
-        if (window.innerWidth >= 768) {
-          const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
-          const recentYears = years.filter(year => Number(year) >= 2018)
-          setExpandedYears(new Set(recentYears))
-        }
-        // Mobile: All collapsed by default (empty Set)
+        // All years expanded by default
+        const years = Object.keys(data).sort((a, b) => Number(b) - Number(a))
+        setExpandedYears(new Set(years))
       })
       .catch(console.error)
   }, [])
@@ -1149,6 +1145,15 @@ export const MembersDirectorTemplate = () => {
                               if (school.includes('Korea University') || school === 'Korea University') return logoKorea
                               return null
                             }
+                            const getSchoolKo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원'
+                              if (school.includes('Kyung Hee')) return '경희대학교'
+                              if (school.includes('Gachon')) return '가천대학교'
+                              if (school.includes('Dongduk')) return '동덕여자대학교'
+                              if (school.includes('Kangnam')) return '강남대학교'
+                              if (school.includes('Korea University') || school === 'Korea University') return '고려대학교'
+                              return school
+                            }
                             const schoolLogo = getSchoolLogo(course.school)
                             
                             return (
@@ -1173,7 +1178,7 @@ export const MembersDirectorTemplate = () => {
                                     {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                       <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                                     )}
-                                    <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
+                                    <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                                   </div>
                                 </div>
                               </div>

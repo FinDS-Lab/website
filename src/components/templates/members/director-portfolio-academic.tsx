@@ -2185,7 +2185,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           if (school.includes('Korea University') || school === 'Korea University') return logoKorea
                           return null
                         }
-                        const schoolLogo = getSchoolLogo(course.school)
+                        const getSchoolKo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원'
+                              if (school.includes('Kyung Hee')) return '경희대학교'
+                              if (school.includes('Gachon')) return '가천대학교'
+                              if (school.includes('Dongduk')) return '동덕여자대학교'
+                              if (school.includes('Kangnam')) return '강남대학교'
+                              if (school.includes('Korea University') || school === 'Korea University') return '고려대학교'
+                              return school
+                            }
+                            const schoolLogo = getSchoolLogo(course.school)
                         
                         return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
@@ -2209,7 +2218,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                             </div>
                           </div>
                         </div>
@@ -2246,7 +2255,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           if (school.includes('Korea University') || school === 'Korea University') return logoKorea
                           return null
                         }
-                        const schoolLogo = getSchoolLogo(course.school)
+                        const getSchoolKo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원'
+                              if (school.includes('Kyung Hee')) return '경희대학교'
+                              if (school.includes('Gachon')) return '가천대학교'
+                              if (school.includes('Dongduk')) return '동덕여자대학교'
+                              if (school.includes('Kangnam')) return '강남대학교'
+                              if (school.includes('Korea University') || school === 'Korea University') return '고려대학교'
+                              return school
+                            }
+                            const schoolLogo = getSchoolLogo(course.school)
                         
                         return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
@@ -2274,7 +2292,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{course.school}</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                             </div>
                           </div>
                         </div>
