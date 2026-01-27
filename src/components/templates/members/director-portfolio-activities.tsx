@@ -1037,7 +1037,7 @@ const ResumeModal = () => (
 
     {/* Current Position */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Current Position</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Current Position</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
@@ -1058,7 +1058,7 @@ const ResumeModal = () => (
 
     {/* Research Interests */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Research Interests</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Research Interests</h3>
       <ul className="text-sm text-gray-700 space-y-4 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
@@ -1068,7 +1068,7 @@ const ResumeModal = () => (
 
     {/* Education */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Education</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Education</h3>
       <div className="space-y-12">
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
@@ -1105,7 +1105,7 @@ const ResumeModal = () => (
 
     {/* Selected Publications */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Selected Publications</h3>
       <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
       <ul className="text-sm text-gray-600 space-y-6 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
@@ -1118,7 +1118,7 @@ const ResumeModal = () => (
 
     {/* Selected Research Projects */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Research Projects</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Selected Research Projects</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
@@ -1146,7 +1146,7 @@ const ResumeModal = () => (
 
     {/* Professional Service */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Professional Service</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Professional Service</h3>
       <p className="text-sm text-gray-600">
         <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
       </p>
@@ -1154,7 +1154,7 @@ const ResumeModal = () => (
 
     {/* Teaching Experience */}
     <section>
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Teaching Experience</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Teaching Experience</h3>
       <div className="space-y-12">
         <div>
           <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
@@ -1580,7 +1580,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Position</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs font-semibold text-gray-800">Director</p>
                     <p className="text-[10px] text-gray-500">FINDS Lab</p>
                   </div>
@@ -1591,7 +1591,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Affiliation</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] text-gray-500">Gachon University</p>
                   </div>
@@ -1602,7 +1602,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Office</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs font-semibold text-gray-800">Room 614, Gachon Hall</p>
                   </div>
                 </div>
@@ -1612,7 +1612,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">E-mail</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs font-semibold text-primary hover:underline break-all">
                         {directorEmail}

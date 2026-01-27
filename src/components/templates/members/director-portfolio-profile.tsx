@@ -89,6 +89,7 @@ const education = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
+    researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
     leadership: [
       {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
       {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
@@ -105,6 +106,7 @@ const education = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
+    researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
     awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     honors: [],
@@ -199,7 +201,7 @@ const ResumeModal = () => (
 
     {/* Current Position */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Current Position</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Current Position</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
@@ -220,7 +222,7 @@ const ResumeModal = () => (
 
     {/* Research Interests */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Research Interests</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Research Interests</h3>
       <ul className="text-sm text-gray-700 space-y-4 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
@@ -230,7 +232,7 @@ const ResumeModal = () => (
 
     {/* Education */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Education</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Education</h3>
       <div className="space-y-12">
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
@@ -267,7 +269,7 @@ const ResumeModal = () => (
 
     {/* Selected Publications */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Publications</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Selected Publications</h3>
       <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
       <ul className="text-sm text-gray-600 space-y-6 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
@@ -280,7 +282,7 @@ const ResumeModal = () => (
 
     {/* Selected Research Projects */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Selected Research Projects</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Selected Research Projects</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
@@ -308,7 +310,7 @@ const ResumeModal = () => (
 
     {/* Professional Service */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Professional Service</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Professional Service</h3>
       <p className="text-sm text-gray-600">
         <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
       </p>
@@ -316,7 +318,7 @@ const ResumeModal = () => (
 
     {/* Teaching Experience */}
     <section>
-      <h3 className="text-xs font-bold text-primary uppercase tracking-wider mb-12">Teaching Experience</h3>
+      <h3 className="text-xs font-bold text-primary mb-12">Teaching Experience</h3>
       <div className="space-y-12">
         <div>
           <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
@@ -748,7 +750,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Position</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs font-semibold text-gray-800">Director</p>
                     <p className="text-[10px] text-gray-500">FINDS Lab</p>
                   </div>
@@ -758,7 +760,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Affiliation</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] text-gray-500">Gachon University</p>
                   </div>
@@ -768,7 +770,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Office</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs font-semibold text-gray-800">Room 614, Gachon Hall</p>
                   </div>
                 </div>
@@ -777,7 +779,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">E-mail</p>
+                    <p className="text-[10px] font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs font-semibold text-primary hover:underline break-all">
                         {directorEmail}
@@ -984,12 +986,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       </div>
                       
                       {/* Details Section */}
-                      {(edu.advisors?.length > 0 || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
+                      {(edu.advisors?.length > 0 || edu.researchGroup || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
                         <div className="mt-16 pt-16 border-t border-gray-100 space-y-16">
                           {/* Advisor */}
                           {edu.advisors && edu.advisors.length > 0 && (
                             <div>
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Advisor</p>
+                              <p className="text-[10px] font-bold text-gray-400 mb-10">Advisor</p>
                               <div className="space-y-6">
                                 {edu.advisors.map((adv, i) => (
                                   <a 
@@ -1010,10 +1012,29 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             </div>
                           )}
                           
+                          {/* Research Group */}
+                          {edu.researchGroup && (
+                            <div>
+                              <p className="text-[10px] font-bold text-gray-400 mb-10">Research Group</p>
+                              <a 
+                                href={edu.researchGroup.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
+                              >
+                                <div className="flex items-center gap-8">
+                                  <Building className="size-14 text-[#D6B14D]" />
+                                  <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                </div>
+                                <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                              </a>
+                            </div>
+                          )}
+                          
                           {/* Leadership */}
                           {edu.leadership && edu.leadership.length > 0 && (
                             <div>
-                              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-10">Leadership Roles</p>
+                              <p className="text-[10px] font-bold text-gray-400 mb-10">Leadership Roles</p>
                               <div className="space-y-6">
                                 {edu.leadership.map((l, i) => (
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
@@ -1035,7 +1056,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduAwards(index)}
                                 className="flex items-center justify-between w-full group mb-10"
                               >
-                                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Honors & Awards</p>
+                                <p className="text-[10px] font-bold text-gray-400">Honors & Awards</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
                               </button>
                               

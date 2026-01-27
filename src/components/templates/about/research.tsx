@@ -165,14 +165,15 @@ export const AboutResearchTemplate = () => {
       {/* Hero Section */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title - PC only animation, Mobile fixed English */}
+          {/* Animated Title - PC only animation, Mobile fixed Korean */}
           <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8 min-h-[40px] md:min-h-[48px]">
-            {/* Mobile: Fixed English */}
+            {/* Mobile: Fixed Korean */}
             <h2 className="md:hidden text-xl font-bold leading-[1.4]">
-              <span className="text-gray-900">Transforming </span>
-              <span style={{ color: '#AC0E0E' }}>Business and Industry Innovation</span>
-              <span className="text-gray-900"> via </span>
-              <span style={{ color: '#D6B14D' }}>Data</span>
+              <span style={{ color: '#D6B14D' }}>데이터</span>
+              <span className="text-gray-900">를 통한 </span>
+              <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
+              <span className="text-gray-900">의 </span>
+              <span style={{ color: '#AC0E0E' }}>혁신</span>
             </h2>
             {/* PC: Animated */}
             <h2 
@@ -182,18 +183,19 @@ export const AboutResearchTemplate = () => {
             >
               {currentTitle.lang === 'en' ? (
                 <>
-                  <span className="text-gray-900">Transforming </span>
-                  <span style={{ color: '#AC0E0E' }}>Business and Industry Innovation</span>
-                  <span className="text-gray-900"> via </span>
-                  <span style={{ color: '#D6B14D' }}>Data</span>
+                  <span style={{ color: '#D6B14D' }}>데이터</span>
+                  <span className="text-gray-900">를 통한 </span>
+                  <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
+                  <span className="text-gray-900">의 </span>
+                  <span style={{ color: '#AC0E0E' }}>혁신</span>
                 </>
               ) : (
                 <>
                   <span style={{ color: '#D6B14D' }}>데이터</span>
                   <span className="text-gray-900">를 통한 </span>
-                  <span style={{ color: '#AC0E0E' }}>비즈니스</span>
-                  <span className="text-gray-900">와 </span>
-                  <span style={{ color: '#AC0E0E' }}>산업 혁신</span>
+                  <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
+                  <span className="text-gray-900">의 </span>
+                  <span style={{ color: '#AC0E0E' }}>혁신</span>
                 </>
               )}
             </h2>
