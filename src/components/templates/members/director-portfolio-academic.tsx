@@ -1462,22 +1462,25 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
       </div>
 
       {/* Breadcrumb */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
-          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
-            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
-              <Home size={16}/>
+      <div className="bg-gray-50 border-b border-gray-100">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+          <div className="flex items-center gap-6 py-10 md:py-12 text-xs md:text-sm">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-colors flex items-center gap-4">
+              <Home size={14} />
+              Home
             </Link>
-            <span className="text-gray-200">—</span>
-            <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200">—</span>
-            <Link to="/members/director" className="text-sm text-primary font-semibold hover:underline">Director</Link>
+            <ChevronRight size={12} className="text-gray-300" />
+            <Link to="/members" className="text-gray-400 hover:text-primary transition-colors">Members</Link>
+            <ChevronRight size={12} className="text-gray-300" />
+            <Link to="/members/director" className="text-gray-400 hover:text-primary transition-colors">Director</Link>
+            <ChevronRight size={12} className="text-gray-300" />
+            <span className="text-gray-700 font-semibold">Academics</span>
           </div>
         </div>
       </div>
 
-      {/* Tab Navigation - Sticky */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+      {/* Tab Navigation - Sticky on Desktop only */}
+      <div className="lg:sticky lg:top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
           <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
             <Link
