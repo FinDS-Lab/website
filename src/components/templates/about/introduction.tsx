@@ -245,7 +245,7 @@ export const AboutIntroductionTemplate = () => {
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section
             ref={heroAnimation.ref}
-            className={`transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+            className={`transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
             {/* Carousel Container */}
             <div className="relative">
@@ -458,7 +458,7 @@ export const AboutIntroductionTemplate = () => {
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section
             ref={focusAnimation.ref}
-            className={`transition-all duration-1000 ${focusAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+            className={`transition-all duration-700 ${focusAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
           >
             {/* Carousel Container */}
             <div className="relative">

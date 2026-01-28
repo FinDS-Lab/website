@@ -320,7 +320,7 @@ export const LecturesTemplate = () => {
       {/* Content */}
       <section 
         ref={contentAnimation.ref}
-        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
       >
         {/* Search & Filter */}
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-24 md:mb-32">

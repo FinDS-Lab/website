@@ -89,7 +89,7 @@ export const LocationTemplate = () => {
       {/* Content Section */}
       <section 
         ref={contentAnimation.ref}
-        className={`pb-60 md:pb-80 px-16 md:px-20 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        className={`pb-60 md:pb-80 px-16 md:px-20 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
       >
         <div className="max-w-1480 mx-auto flex flex-col lg:flex-row lg:items-stretch gap-20 md:gap-32">
           {/* Map Section */}

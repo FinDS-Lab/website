@@ -225,7 +225,7 @@ export const AboutHonorsTemplate = () => {
       {/* Content */}
       <section 
         ref={contentAnimation.ref}
-        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px] transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px] transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
       >
         {/* Statistics Section */}
         <div className="flex flex-col gap-16 md:gap-24 mb-24 md:mb-[40px]">

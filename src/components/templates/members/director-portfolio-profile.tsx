@@ -29,6 +29,31 @@ import {useStoreModal} from '@/store/modal'
 import type {HonorsData} from '@/types/data'
 import {citationStats, affiliations, researchInterests} from '@/data/director-common'
 
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
 // Format date from "Dec 5" to "MM-DD" format
 const formatHonorDate = (dateStr: string): string => {
   const monthMap: Record<string, string> = {
@@ -163,18 +188,18 @@ const ResumeModal = () => (
 
     {/* Current Position */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Current Position</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Current Position</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Gachon University</p>
+            <p className="text-xs font-semibold text-gray-900">Assistant Professor, Gachon University</p>
             <p className="text-xs text-gray-500">Department of Big Data Business Management</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Mar 2026 – Present</span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
+            <p className="text-xs font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
             <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Sep 2025 – Feb 2026</span>
@@ -184,7 +209,7 @@ const ResumeModal = () => (
 
     {/* Research Interests */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Research Interests</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Research Interests</h3>
       <ul className="text-sm text-gray-700 space-y-4 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
@@ -194,11 +219,11 @@ const ResumeModal = () => (
 
     {/* Education */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Education</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Education</h3>
       <div className="space-y-12">
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
+            <p className="text-xs font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
             <span className="text-xs text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
@@ -208,7 +233,7 @@ const ResumeModal = () => (
         </div>
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
+            <p className="text-xs font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
             <span className="text-xs text-gray-400 shrink-0">Feb 2018 – Feb 2021</span>
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
@@ -218,7 +243,7 @@ const ResumeModal = () => (
         </div>
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
-            <p className="text-sm font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
+            <p className="text-xs font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
             <span className="text-xs text-gray-400 shrink-0">Mar 2013 – Feb 2018</span>
           </div>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
@@ -231,7 +256,7 @@ const ResumeModal = () => (
 
     {/* Selected Publications */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Selected Publications</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Selected Publications</h3>
       <p className="text-sm text-gray-600 mb-8">20+ peer-reviewed journal articles published in SSCI/SCIE indexed journals. Representative journals include:</p>
       <ul className="text-sm text-gray-600 space-y-6 ml-12">
         <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span><strong>International Review of Financial Analysis</strong> <span className="text-gray-400">[SSCI, Top 2.4% as of 2024]</span></span></li>
@@ -244,25 +269,25 @@ const ResumeModal = () => (
 
     {/* Selected Research Projects */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Selected Research Projects</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Selected Research Projects</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
+            <p className="text-xs font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
             <p className="text-xs text-gray-500">Korea Institute of Public Finance</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">May 2025 – Sep 2025</span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
+            <p className="text-xs font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
             <p className="text-xs text-gray-500">Bank of Korea</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Nov 2023 – Jul 2024</span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-2">
           <div>
-            <p className="text-sm font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
+            <p className="text-xs font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
             <p className="text-xs text-gray-500">Shinhan Bank</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Aug 2021 – Dec 2023</span>
@@ -272,7 +297,7 @@ const ResumeModal = () => (
 
     {/* Professional Service */}
     <section className="mb-20">
-      <h3 className="text-xs font-bold text-primary mb-12">Professional Service</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Professional Service</h3>
       <p className="text-sm text-gray-600">
         <strong>Reviewer:</strong> International Review of Financial Analysis, Finance Research Letters, Knowledge-Based Systems, Machine Learning with Applications, Annals of Operations Research, and 40+ journals
       </p>
@@ -280,32 +305,39 @@ const ResumeModal = () => (
 
     {/* Teaching Experience */}
     <section>
-      <h3 className="text-xs font-bold text-primary mb-12">Teaching Experience</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Teaching Experience</h3>
       <div className="space-y-12">
         <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus</p>
+          <p className="text-sm font-bold text-gray-900 mb-6">Dongduk Women's University <span className="font-normal text-gray-500">(2025-09 – 2026-02)</span></p>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading (DIGB441), 2025–2026</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Decision Making and Data Analysis</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Python Programming</li>
           </ul>
         </div>
         <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Kyung Hee University</p>
+          <p className="text-sm font-bold text-gray-900 mb-6">Korea University Sejong Campus <span className="font-normal text-gray-500">(2025-03 – 2026-02)</span></p>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering (IE329), 2024</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics (IE201), 2024</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Algorithmic Trading</li>
           </ul>
         </div>
         <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">Kangnam University</p>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kangnam University <span className="font-normal text-gray-500">(2025-03 – 2026-02)</span></p>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering, 2025–2026</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Applied Statistics, 2025–2026</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Introduction to Financial Engineering</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Applied Statistics</li>
           </ul>
         </div>
         <div>
-          <p className="text-sm font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant)</span></p>
+          <p className="text-sm font-bold text-gray-900 mb-6">Kyung Hee University <span className="font-normal text-gray-500">(2024-03 – 2024-08)</span></p>
           <ul className="text-sm text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence (IE471), 2022–2024</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics</li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant, 2018-03 – 2025-02)</span></p>
+          <ul className="text-sm text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence</li>
           </ul>
         </div>
       </div>
@@ -330,6 +362,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
     employment: true,
     honorsAwards: true
   })
+  const contentAnimation = useScrollAnimation()
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -697,7 +730,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
 
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
+        <div 
+          ref={contentAnimation.ref}
+          className={`flex flex-col lg:flex-row gap-32 md:gap-60 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        >
           {/* Left Column: Profile Card */}
           <aside className="lg:w-340 shrink-0">
             <div 

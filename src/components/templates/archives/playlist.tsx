@@ -276,7 +276,7 @@ export const ArchivesPlaylistTemplate = () => {
       {/* Content */}
       <div 
         ref={contentAnimation.ref}
-        className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'} ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}
+        className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'} ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}
       >
         {loading ? (
           <div className="flex items-center justify-center py-48">
