@@ -135,8 +135,8 @@ const education = [
     degree: 'Master of Science (M.S.)',
     field: 'Industrial and Systems Engineering',
     thesis: {
-      en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics – Focus on the Republic of Korea\'s Case',
-      ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 – 한국의 사례를 중심으로'
+      en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics — Focus on the Republic of Korea\'s Case',
+      ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 — 한국의 사례를 중심으로'
     },
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
@@ -856,15 +856,15 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Thesis</p>
                               <div className="bg-gray-50 rounded-lg px-12 py-10">
                                 <p className="text-xs font-semibold text-gray-800 leading-relaxed">
-                                  {edu.thesis.en.split(' – ')[0]}
-                                  {edu.thesis.en.includes(' – ') && (
-                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">– {edu.thesis.en.split(' – ')[1]}</span>
+                                  {edu.thesis.en.split(' — ')[0]}
+                                  {edu.thesis.en.includes(' — ') && (
+                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">– {edu.thesis.en.split(' — ')[1]}</span>
                                   )}
                                 </p>
                                 <p className="text-[10px] mt-8 leading-relaxed">
-                                  <span className="font-medium text-gray-600">{edu.thesis.ko.split(' – ')[0]}</span>
-                                  {edu.thesis.ko.includes(' – ') && (
-                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">– {edu.thesis.ko.split(' – ')[1]}</span>
+                                  <span className="font-medium text-gray-600">{edu.thesis.ko.split(' — ')[0]}</span>
+                                  {edu.thesis.ko.includes(' — ') && (
+                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">– {edu.thesis.ko.split(' — ')[1]}</span>
                                   )}
                                 </p>
                               </div>
