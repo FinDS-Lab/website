@@ -834,8 +834,18 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Dissertation</p>
                               <div className="bg-gray-50 rounded-lg px-12 py-10">
-                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">{edu.dissertation.en}</p>
-                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">{edu.dissertation.ko}</p>
+                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">
+                                  {edu.dissertation.en.split(' — ')[0]}
+                                  {edu.dissertation.en.includes(' — ') && (
+                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">— {edu.dissertation.en.split(' — ')[1]}</span>
+                                  )}
+                                </p>
+                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">
+                                  {edu.dissertation.ko.split(' — ')[0]}
+                                  {edu.dissertation.ko.includes(' — ') && (
+                                    <span className="block mt-4">— {edu.dissertation.ko.split(' — ')[1]}</span>
+                                  )}
+                                </p>
                               </div>
                             </div>
                           )}
@@ -845,8 +855,18 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Thesis</p>
                               <div className="bg-gray-50 rounded-lg px-12 py-10">
-                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">{edu.thesis.en}</p>
-                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">{edu.thesis.ko}</p>
+                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">
+                                  {edu.thesis.en.split(' – ')[0]}
+                                  {edu.thesis.en.includes(' – ') && (
+                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">– {edu.thesis.en.split(' – ')[1]}</span>
+                                  )}
+                                </p>
+                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">
+                                  {edu.thesis.ko.split(' – ')[0]}
+                                  {edu.thesis.ko.includes(' – ') && (
+                                    <span className="block mt-4">– {edu.thesis.ko.split(' – ')[1]}</span>
+                                  )}
+                                </p>
                               </div>
                             </div>
                           )}
