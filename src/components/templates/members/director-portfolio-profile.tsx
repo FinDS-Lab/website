@@ -157,14 +157,18 @@ const education: any[] = [
         number: '1st',
         en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
         ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
-        advisor: {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
+        advisorName: 'Myoung-Ju Park'
       },
       {
         number: '2nd',
         en: 'Designing a Prescription Data-Based Mobile Healthcare Information Management System Using Data Mining Techniques',
         ko: '처방전을 활용한 개인 건강관리 어플리케이션 제안',
-        advisor: {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'}
+        advisorName: 'Jang Ho Kim'
       }
+    ],
+    advisors: [
+      {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
+      {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
     ],
     leadership: [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
@@ -210,6 +214,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
+  const [expandedEduSections, setExpandedEduSections] = useState<Set<string>>(new Set([
+    '0-dissertation', '0-advisor', '1-thesis', '1-advisor', '2-graduationPaper', '2-advisor'
+  ])) // For education sub-sections - all expanded by default
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
     researchInterests: true,
@@ -272,6 +279,18 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
         newSet.delete(idx)
       } else {
         newSet.add(idx)
+      }
+      return newSet
+    })
+  }
+  
+  const toggleEduSection = (key: string) => {
+    setExpandedEduSections(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(key)) {
+        newSet.delete(key)
+      } else {
+        newSet.add(key)
       }
       return newSet
     })
@@ -842,121 +861,147 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       
                       {/* Details Section */}
                       {(edu.dissertation || edu.thesis || edu.undergraduateTheses || edu.advisors?.length > 0 || edu.researchGroup || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
-                        <div className="mt-16 pt-16 border-t border-gray-100 space-y-16">
+                        <div className="mt-16 pt-16 border-t border-gray-100 space-y-12">
                           {/* Dissertation (Ph.D.) */}
                           {edu.dissertation && (
-                            <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Dissertation</p>
-                              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
-                                {/* English Title */}
-                                <div className="mb-12">
-                                  <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
-                                    {edu.dissertation.en.split(' — ')[0]}
-                                  </p>
-                                  {edu.dissertation.en.includes(' — ') && (
-                                    <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
-                                  )}
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-dissertation`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <p className="text-[10px] font-bold text-gray-500">Dissertation</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-dissertation`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-dissertation`) && (
+                                <div className="bg-gradient-to-br from-gray-50 to-white p-16">
+                                  {/* English Title */}
+                                  <div className="mb-12">
+                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                      {edu.dissertation.en.split(' — ')[0]}
+                                    </p>
+                                    {edu.dissertation.en.includes(' — ') && (
+                                      <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
+                                    )}
+                                  </div>
+                                  {/* Korean Title */}
+                                  <div className="pt-10 border-t border-gray-100">
+                                    <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                      {edu.dissertation.ko.split(' — ')[0]}
+                                    </p>
+                                    {edu.dissertation.ko.includes(' — ') && (
+                                      <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
+                                    )}
+                                  </div>
                                 </div>
-                                {/* Korean Title */}
-                                <div className="pt-10 border-t border-gray-100">
-                                  <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
-                                    {edu.dissertation.ko.split(' — ')[0]}
-                                  </p>
-                                  {edu.dissertation.ko.includes(' — ') && (
-                                    <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
-                                  )}
-                                </div>
-                              </div>
+                              )}
                             </div>
                           )}
                           
                           {/* Thesis (M.S.) */}
                           {edu.thesis && (
-                            <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Thesis</p>
-                              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
-                                {/* English Title */}
-                                <div className="mb-12">
-                                  <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
-                                    {edu.thesis.en.split(' — ')[0]}
-                                  </p>
-                                  {edu.thesis.en.includes(' — ') && (
-                                    <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
-                                  )}
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-thesis`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <p className="text-[10px] font-bold text-gray-500">Thesis</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-thesis`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-thesis`) && (
+                                <div className="bg-gradient-to-br from-gray-50 to-white p-16">
+                                  {/* English Title */}
+                                  <div className="mb-12">
+                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                      {edu.thesis.en.split(' — ')[0]}
+                                    </p>
+                                    {edu.thesis.en.includes(' — ') && (
+                                      <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
+                                    )}
+                                  </div>
+                                  {/* Korean Title */}
+                                  <div className="pt-10 border-t border-gray-100">
+                                    <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                      {edu.thesis.ko.split(' — ')[0]}
+                                    </p>
+                                    {edu.thesis.ko.includes(' — ') && (
+                                      <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
+                                    )}
+                                  </div>
                                 </div>
-                                {/* Korean Title */}
-                                <div className="pt-10 border-t border-gray-100">
-                                  <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
-                                    {edu.thesis.ko.split(' — ')[0]}
-                                  </p>
-                                  {edu.thesis.ko.includes(' — ') && (
-                                    <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
-                                  )}
-                                </div>
-                              </div>
+                              )}
                             </div>
                           )}
                           
                           {/* Undergraduate Theses (B.E.) */}
                           {edu.undergraduateTheses && edu.undergraduateTheses.length > 0 && (
-                            <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Graduation Paper</p>
-                              <div className="space-y-12">
-                                {edu.undergraduateTheses.map((thesis: any, idx: number) => (
-                                  <div key={idx} className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
-                                    {/* Header: Number Badge & Advisor */}
-                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
-                                      <span className="px-10 py-4 bg-primary text-white text-[9px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
-                                      <a 
-                                        href={thesis.advisor.url} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-6 px-10 py-4 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors group"
-                                      >
-                                        <GraduationCap size={12} className="text-[#D6B14D]" />
-                                        <span className="text-[9px] font-semibold text-gray-600 group-hover:text-primary transition-colors">{thesis.advisor.name}</span>
-                                        <ExternalLink size={10} className="text-gray-400 group-hover:text-primary transition-colors" />
-                                      </a>
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-graduationPaper`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <p className="text-[10px] font-bold text-gray-500">Graduation Paper</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-graduationPaper`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-graduationPaper`) && (
+                                <div className="p-12 space-y-12">
+                                  {edu.undergraduateTheses.map((thesis: any, idx: number) => (
+                                    <div key={idx} className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-16 border border-gray-100">
+                                      {/* Header: Number Badge & Advisor Name */}
+                                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
+                                        <span className="px-10 py-4 bg-primary text-white text-[9px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
+                                        <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
+                                          <GraduationCap size={12} className="text-[#D6B14D]" />
+                                          <span className="text-[9px] font-semibold text-gray-600">{thesis.advisorName}</span>
+                                        </div>
+                                      </div>
+                                      {/* English Title */}
+                                      <div className="mb-12">
+                                        <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                          {thesis.en}
+                                        </p>
+                                      </div>
+                                      {/* Korean Title */}
+                                      <div className="pt-10 border-t border-gray-100">
+                                        <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                          {thesis.ko}
+                                        </p>
+                                      </div>
                                     </div>
-                                    {/* English Title */}
-                                    <div className="mb-12">
-                                      <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
-                                        {thesis.en}
-                                      </p>
-                                    </div>
-                                    {/* Korean Title */}
-                                    <div className="pt-10 border-t border-gray-100">
-                                      <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
-                                        {thesis.ko}
-                                      </p>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )}
                           
                           {/* Advisor */}
                           {edu.advisors && edu.advisors.length > 0 && (
-                            <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Advisor</p>
-                              <div className="space-y-6">
-                                {edu.advisors.map((adv: any, i: number) => (
-                                  <a 
-                                    key={i}
-                                    href={adv.url} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
-                                  >
-                                    <div className="flex items-center gap-8">
-                                      <GraduationCap className="size-14 text-[#D6B14D]" />
-                                      <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
-                                    </div>
-                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
-                                  </a>
-                                ))}
-                              </div>
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-advisor`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <p className="text-[10px] font-bold text-gray-500">Advisor</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-advisor`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-advisor`) && (
+                                <div className="p-12 space-y-6">
+                                  {edu.advisors.map((adv: any, i: number) => (
+                                    <a 
+                                      key={i}
+                                      href={adv.url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="flex items-center justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
+                                    >
+                                      <div className="flex items-center gap-8">
+                                        <GraduationCap className="size-14 text-[#D6B14D]" />
+                                        <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                      </div>
+                                      <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
+                                    </a>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )}
                           
