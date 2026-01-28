@@ -191,8 +191,8 @@ export const AboutResearchTemplate = () => {
 
       {/* Hero Section */}
       <div 
-        ref={heroAnimation.ref}
-        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        
+        className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32"
       >
         <div className="relative text-center max-w-4xl mx-auto">
           {/* Animated Title - PC only animation, Mobile fixed Korean */}
@@ -239,8 +239,8 @@ export const AboutResearchTemplate = () => {
 
       {/* Content */}
       <div 
-        ref={contentAnimation.ref}
-        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        
+        className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100"
       >
         <div className="flex flex-col gap-20 md:gap-32">
           {researchAreas.map((area, index) => (

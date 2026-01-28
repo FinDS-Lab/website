@@ -274,10 +274,7 @@ export const ArchivesPlaylistTemplate = () => {
       </div>
 
       {/* Content */}
-      <div 
-        ref={contentAnimation.ref}
-        className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'} ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}
-      >
+      <div className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}>
         {loading ? (
           <div className="flex items-center justify-center py-48">
             <div className="w-24 h-24 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />

@@ -362,7 +362,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
     employment: true,
     honorsAwards: true
   })
-  const contentAnimation = useScrollAnimation()
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -730,10 +729,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
 
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
-        <div 
-          ref={contentAnimation.ref}
-          className={`flex flex-col lg:flex-row gap-32 md:gap-60 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-        >
+        <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Column: Profile Card */}
           <aside className="lg:w-340 shrink-0">
             <div 

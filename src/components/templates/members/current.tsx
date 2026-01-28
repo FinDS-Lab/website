@@ -279,8 +279,8 @@ export const MembersCurrentTemplate = () => {
 
       {/* Content */}
       <section 
-        ref={contentAnimation.ref}
-        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        
+        className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80"
       >
         {/* Statistics Section - Red Dot Style */}
         <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">

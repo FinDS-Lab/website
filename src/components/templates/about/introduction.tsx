@@ -243,10 +243,7 @@ export const AboutIntroductionTemplate = () => {
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-gradient-to-b from-[#FFFDF5] to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
-          <section
-            ref={heroAnimation.ref}
-            className={`transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-          >
+          <section>
             {/* Carousel Container */}
             <div className="relative">
               {/* Carousel Content */}
@@ -456,10 +453,7 @@ export const AboutIntroductionTemplate = () => {
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
-          <section
-            ref={focusAnimation.ref}
-            className={`transition-all duration-700 ${focusAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
-          >
+          <section>
             {/* Carousel Container */}
             <div className="relative">
               {/* Carousel Content */}

@@ -595,8 +595,8 @@ export const PublicationsTemplate = () => {
 
       {/* Content Section */}
       <section 
-        ref={contentAnimation.ref}
-        className={`py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20 transition-all duration-700 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+        
+        className="py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20"
       >
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           {/* Statistics Section - Red Dot Style */}
