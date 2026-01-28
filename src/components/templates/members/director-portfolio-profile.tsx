@@ -157,28 +157,24 @@ const education: any[] = [
         number: '1st',
         en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
         ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
-        advisor: {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'},
-        award: {
-          en: '3rd Research Symposium, Dept. of Industrial and Management Engineering, College of Engineering, Kyung Hee University',
-          ko: '제3회 경희대학교 산업경영공학과 추계학술제'
-        }
+        advisor: {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
       },
       {
         number: '2nd',
         en: 'Designing a Prescription Data-Based Mobile Healthcare Information Management System Using Data Mining Techniques',
         ko: '처방전을 활용한 개인 건강관리 어플리케이션 제안',
-        advisor: {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
-        award: {
-          en: '4th Research Symposium, Dept. of Industrial and Management Engineering, College of Engineering, Kyung Hee University',
-          ko: '제4회 경희대학교 산업경영공학과 추계학술제'
-        }
+        advisor: {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'}
       }
     ],
     leadership: [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
     ],
-    awards: [{title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'}],
+    awards: [
+      {title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'},
+      {title: '2nd Award, 4th Research Symposium', org: 'Dept. of Industrial and Management Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
+      {title: '3rd Award, 3rd Research Symposium', org: 'Dept. of Industrial and Management Engineering, Kyung Hee University', note: '1st Graduation Paper'}
+    ],
     honors: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
   },
@@ -904,37 +900,35 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           {/* Undergraduate Theses (B.E.) */}
                           {edu.undergraduateTheses && edu.undergraduateTheses.length > 0 && (
                             <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Graduation Research</p>
+                              <p className="text-[10px] font-bold text-gray-400 mb-10">Graduation Paper</p>
                               <div className="space-y-12">
                                 {edu.undergraduateTheses.map((thesis: any, idx: number) => (
                                   <div key={idx} className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
-                                    {/* Number Badge & Advisor */}
-                                    <div className="flex items-center justify-between mb-10">
-                                      <span className="px-8 py-3 bg-primary text-white text-[9px] font-bold rounded-full">{thesis.number} Thesis</span>
+                                    {/* Header: Number Badge & Advisor */}
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
+                                      <span className="px-10 py-4 bg-primary text-white text-[9px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
                                       <a 
                                         href={thesis.advisor.url} 
                                         target="_blank" 
                                         rel="noopener noreferrer"
-                                        className="text-[9px] font-medium text-gray-500 hover:text-primary transition-colors"
+                                        className="flex items-center gap-6 px-10 py-4 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors group"
                                       >
-                                        Advisor: {thesis.advisor.name}
+                                        <GraduationCap size={12} className="text-[#D6B14D]" />
+                                        <span className="text-[9px] font-semibold text-gray-600 group-hover:text-primary transition-colors">{thesis.advisor.name}</span>
+                                        <ExternalLink size={10} className="text-gray-400 group-hover:text-primary transition-colors" />
                                       </a>
                                     </div>
                                     {/* English Title */}
-                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed mb-6">
-                                      {thesis.en}
-                                    </p>
+                                    <div className="mb-12">
+                                      <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                        {thesis.en}
+                                      </p>
+                                    </div>
                                     {/* Korean Title */}
-                                    <p className="text-[10px] font-bold text-gray-600 leading-relaxed mb-10">
-                                      {thesis.ko}
-                                    </p>
-                                    {/* Award */}
-                                    <div className="pt-10 border-t border-gray-100 flex items-start gap-6">
-                                      <span className="px-6 py-2 bg-[#FFF9E6] text-[#B8962D] text-[8px] font-bold rounded shrink-0">AWARD</span>
-                                      <div>
-                                        <p className="text-[9px] text-gray-600 leading-relaxed">{thesis.award.en}</p>
-                                        <p className="text-[8px] text-gray-400 mt-2">{thesis.award.ko}</p>
-                                      </div>
+                                    <div className="pt-10 border-t border-gray-100">
+                                      <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                        {thesis.ko}
+                                      </p>
                                     </div>
                                   </div>
                                 ))}
@@ -1037,6 +1031,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1">
                                             <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                            {a.note && <span className="text-[10px] text-primary font-medium ml-6">({a.note})</span>}
                                             <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
                                           </div>
                                         </div>
