@@ -169,6 +169,14 @@ const GlobalMusicPlayer = memo(() => {
     }
   }, [isPlaying, playerReady])
 
+  // Portfolio 페이지를 벗어나면 플레이어 정지
+  useEffect(() => {
+    if (!isPortfolioPage && isPlaying && playerRef.current) {
+      playerRef.current.pauseVideo()
+      setIsPlaying(false)
+    }
+  }, [isPortfolioPage, isPlaying, setIsPlaying])
+
   const handleHidePlayer = () => {
     if (playerRef.current) playerRef.current.pauseVideo()
     setIsPlaying(false)

@@ -39,6 +39,7 @@ type Project = {
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
+    visitingResearcher?: string
     researchers?: string[]
   }
 }
@@ -639,7 +640,7 @@ export const ProjectsTemplate = () => {
                             
                             // Filter out empty researchers
                             const filteredResearchers = project.roles.researchers?.filter(
-                              r => r && r !== project.roles.principalInvestigator && r !== project.roles.leadResearcher
+                              r => r && r !== project.roles.principalInvestigator && r !== project.roles.leadResearcher && r !== project.roles.visitingResearcher
                             ) || []
                             
                             return (
@@ -659,8 +660,9 @@ export const ProjectsTemplate = () => {
                                     }`}>
                                       {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 
                                        project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 
+                                       project.roles.visitingResearcher === '최인수' ? 'Visiting Researcher' :
                                        project.roles.researchers?.includes('최인수') ? 'Researcher' : ''}
-                                      {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && ' | '}
+                                      {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && ' | '}
                                       {config?.label || project.type} Project
                                     </span>
                                   </div>
@@ -734,7 +736,7 @@ export const ProjectsTemplate = () => {
                                     </p>
                                     
                                     {/* Roles - only show non-empty roles */}
-                                    {(project.roles.principalInvestigator || project.roles.leadResearcher || filteredResearchers.length > 0) && (
+                                    {(project.roles.principalInvestigator || project.roles.leadResearcher || project.roles.visitingResearcher || filteredResearchers.length > 0) && (
                                       <div className="mt-12 pt-12 border-t border-gray-100">
                                         <div className="flex flex-col gap-6">
                                           {/* Principal Investigator - only show if exists */}
@@ -757,6 +759,18 @@ export const ProjectsTemplate = () => {
                                               </span>
                                               <span className="text-[10px] md:text-xs text-gray-700 font-medium">
                                                 {project.roles.leadResearcher}
+                                              </span>
+                                            </div>
+                                          )}
+
+                                          {/* Visiting Researcher - only show if exists */}
+                                          {project.roles.visitingResearcher && (
+                                            <div className="flex items-center gap-8">
+                                              <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-500 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                                Visiting Researcher
+                                              </span>
+                                              <span className="text-[10px] md:text-xs text-gray-700 font-medium">
+                                                {project.roles.visitingResearcher}
                                               </span>
                                             </div>
                                           )}
