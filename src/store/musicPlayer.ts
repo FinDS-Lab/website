@@ -30,11 +30,11 @@ export const useMusicPlayerStore = create<MusicPlayerState>((set, get) => ({
   setIsLoaded: (isLoaded) => set({ isLoaded }),
   nextTrack: () => {
     const { playlist, currentIndex } = get()
-    set({ currentIndex: (currentIndex + 1) % playlist.length })
+    set({ currentIndex: (currentIndex + 1) % playlist.length, isPlaying: true })
   },
   prevTrack: () => {
     const { playlist, currentIndex } = get()
-    set({ currentIndex: currentIndex === 0 ? playlist.length - 1 : currentIndex - 1 })
+    set({ currentIndex: currentIndex === 0 ? playlist.length - 1 : currentIndex - 1, isPlaying: true })
   },
   togglePlay: () => {
     const { isPlaying, isMinimized } = get()

@@ -107,7 +107,7 @@ import logoEy from '@/assets/images/logos/ey.png'
 import logoJl from '@/assets/images/logos/jl.png'
 
 // Static Data - Education
-const education = [
+const education: any[] = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025-02',
@@ -152,9 +152,27 @@ const education = [
     period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
     field: 'Industrial and Management Systems Engineering',
-    advisors: [
-      {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
-      {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
+    undergraduateTheses: [
+      {
+        number: '1st',
+        en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
+        ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
+        advisor: {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'},
+        award: {
+          en: '3rd Research Symposium, Dept. of Industrial and Management Engineering, College of Engineering, Kyung Hee University',
+          ko: '제3회 경희대학교 산업경영공학과 추계학술제'
+        }
+      },
+      {
+        number: '2nd',
+        en: 'Designing a Prescription Data-Based Mobile Healthcare Information Management System Using Data Mining Techniques',
+        ko: '처방전을 활용한 개인 건강관리 어플리케이션 제안',
+        advisor: {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
+        award: {
+          en: '4th Research Symposium, Dept. of Industrial and Management Engineering, College of Engineering, Kyung Hee University',
+          ko: '제4회 경희대학교 산업경영공학과 추계학술제'
+        }
+      }
     ],
     leadership: [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
@@ -827,25 +845,31 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       </div>
                       
                       {/* Details Section */}
-                      {(edu.dissertation || edu.thesis || edu.advisors?.length > 0 || edu.researchGroup || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
+                      {(edu.dissertation || edu.thesis || edu.undergraduateTheses || edu.advisors?.length > 0 || edu.researchGroup || edu.leadership?.length > 0 || edu.awards?.length > 0 || edu.honors?.length > 0) && (
                         <div className="mt-16 pt-16 border-t border-gray-100 space-y-16">
                           {/* Dissertation (Ph.D.) */}
                           {edu.dissertation && (
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Dissertation</p>
-                              <div className="bg-gray-50 rounded-lg px-12 py-10">
-                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">
-                                  {edu.dissertation.en.split(' — ')[0]}
+                              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
+                                {/* English Title */}
+                                <div className="mb-12">
+                                  <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                    {edu.dissertation.en.split(' — ')[0]}
+                                  </p>
                                   {edu.dissertation.en.includes(' — ') && (
-                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">— {edu.dissertation.en.split(' — ')[1]}</span>
+                                    <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
                                   )}
-                                </p>
-                                <p className="text-[10px] mt-8 leading-relaxed">
-                                  <span className="font-medium text-gray-600">{edu.dissertation.ko.split(' — ')[0]}</span>
+                                </div>
+                                {/* Korean Title */}
+                                <div className="pt-10 border-t border-gray-100">
+                                  <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                    {edu.dissertation.ko.split(' — ')[0]}
+                                  </p>
                                   {edu.dissertation.ko.includes(' — ') && (
-                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">— {edu.dissertation.ko.split(' — ')[1]}</span>
+                                    <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
                                   )}
-                                </p>
+                                </div>
                               </div>
                             </div>
                           )}
@@ -854,19 +878,66 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           {edu.thesis && (
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Thesis</p>
-                              <div className="bg-gray-50 rounded-lg px-12 py-10">
-                                <p className="text-xs font-semibold text-gray-800 leading-relaxed">
-                                  {edu.thesis.en.split(' — ')[0]}
+                              <div className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
+                                {/* English Title */}
+                                <div className="mb-12">
+                                  <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                    {edu.thesis.en.split(' — ')[0]}
+                                  </p>
                                   {edu.thesis.en.includes(' — ') && (
-                                    <span className="block text-[11px] font-medium text-gray-600 mt-6">— {edu.thesis.en.split(' — ')[1]}</span>
+                                    <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
                                   )}
-                                </p>
-                                <p className="text-[10px] mt-8 leading-relaxed">
-                                  <span className="font-medium text-gray-600">{edu.thesis.ko.split(' — ')[0]}</span>
+                                </div>
+                                {/* Korean Title */}
+                                <div className="pt-10 border-t border-gray-100">
+                                  <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                    {edu.thesis.ko.split(' — ')[0]}
+                                  </p>
                                   {edu.thesis.ko.includes(' — ') && (
-                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">— {edu.thesis.ko.split(' — ')[1]}</span>
+                                    <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
                                   )}
-                                </p>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          
+                          {/* Undergraduate Theses (B.E.) */}
+                          {edu.undergraduateTheses && edu.undergraduateTheses.length > 0 && (
+                            <div>
+                              <p className="text-[10px] font-bold text-gray-400 mb-10">Graduation Research</p>
+                              <div className="space-y-12">
+                                {edu.undergraduateTheses.map((thesis: any, idx: number) => (
+                                  <div key={idx} className="bg-gradient-to-br from-gray-50 to-white rounded-lg p-16 border border-gray-100">
+                                    {/* Number Badge & Advisor */}
+                                    <div className="flex items-center justify-between mb-10">
+                                      <span className="px-8 py-3 bg-primary text-white text-[9px] font-bold rounded-full">{thesis.number} Thesis</span>
+                                      <a 
+                                        href={thesis.advisor.url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-[9px] font-medium text-gray-500 hover:text-primary transition-colors"
+                                      >
+                                        Advisor: {thesis.advisor.name}
+                                      </a>
+                                    </div>
+                                    {/* English Title */}
+                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed mb-6">
+                                      {thesis.en}
+                                    </p>
+                                    {/* Korean Title */}
+                                    <p className="text-[10px] font-bold text-gray-600 leading-relaxed mb-10">
+                                      {thesis.ko}
+                                    </p>
+                                    {/* Award */}
+                                    <div className="pt-10 border-t border-gray-100 flex items-start gap-6">
+                                      <span className="px-6 py-2 bg-[#FFF9E6] text-[#B8962D] text-[8px] font-bold rounded shrink-0">AWARD</span>
+                                      <div>
+                                        <p className="text-[9px] text-gray-600 leading-relaxed">{thesis.award.en}</p>
+                                        <p className="text-[8px] text-gray-400 mt-2">{thesis.award.ko}</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
                             </div>
                           )}
@@ -876,7 +947,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Advisor</p>
                               <div className="space-y-6">
-                                {edu.advisors.map((adv, i) => (
+                                {edu.advisors.map((adv: any, i: number) => (
                                   <a 
                                     key={i}
                                     href={adv.url} 
@@ -919,7 +990,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div>
                               <p className="text-[10px] font-bold text-gray-400 mb-10">Leadership Roles</p>
                               <div className="space-y-6">
-                                {edu.leadership.map((l, i) => (
+                                {edu.leadership.map((l: any, i: number) => (
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
                                     <div>
                                       <span className="text-xs font-semibold text-gray-800">{l.role}</span>
@@ -947,7 +1018,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <div className="space-y-12">
                                   {edu.honors && edu.honors.length > 0 && (
                                     <div className="space-y-6">
-                                      {edu.honors.map((h, i) => (
+                                      {edu.honors.map((h: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
                                           <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1">
@@ -961,7 +1032,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   
                                   {edu.awards && edu.awards.length > 0 && (
                                     <div className="space-y-6">
-                                      {edu.awards.map((a, i) => (
+                                      {edu.awards.map((a: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
                                           <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1">
