@@ -138,7 +138,7 @@
     }
   },
   {
-    "titleEn": "Diabetes and Dyslipidemia Prediction Models via Natural Language Processing Techniques",
+    "titleEn": "Effect of Plant-Based Dietary Pattern on the Prevention of Chronic Diseases and Health Outcome",
     "titleKo": "식물성 기반 식사패턴의 만성질환 예방 및 건강영향 효과 연구",
     "period": "2021-03-01 – 2023-12-31",
     "fundingAgency": "National Research Foundation of Korea",
@@ -147,8 +147,7 @@
     "type": "government",
     "roles": {
       "principalInvestigator": "김지혜",
-      "leadResearcher": "최인수",
-      "researchers": ["최인수"]
+      "visitingResearcher": "최인수"
     }
   },
   {
