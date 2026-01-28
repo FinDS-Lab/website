@@ -12,14 +12,14 @@ const ResumeModal = () => (
     <section className="mb-20">
       <h3 className="text-sm font-bold text-primary mb-12">Current Position</h3>
       <div className="space-y-10">
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold text-gray-900">Assistant Professor, Gachon University</p>
             <p className="text-xs text-gray-500">Department of Big Data Business Management</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Mar 2026 – Present</span>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
             <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
@@ -44,7 +44,7 @@ const ResumeModal = () => (
       <h3 className="text-sm font-bold text-primary mb-12">Education</h3>
       <div className="space-y-12">
         <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+          <div className="flex flex-col md:flex-row md:justify-between gap-8 mb-4">
             <p className="text-xs font-semibold text-gray-900">Ph.D., Industrial and Systems Engineering, KAIST</p>
             <span className="text-xs text-gray-400 shrink-0">Mar 2021 – Feb 2025</span>
           </div>
@@ -54,7 +54,7 @@ const ResumeModal = () => (
           </ul>
         </div>
         <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+          <div className="flex flex-col md:flex-row md:justify-between gap-8 mb-4">
             <p className="text-xs font-semibold text-gray-900">M.S., Industrial and Systems Engineering, KAIST</p>
             <span className="text-xs text-gray-400 shrink-0">Feb 2018 – Feb 2021</span>
           </div>
@@ -64,7 +64,7 @@ const ResumeModal = () => (
           </ul>
         </div>
         <div>
-          <div className="flex flex-col md:flex-row md:justify-between gap-2 mb-4">
+          <div className="flex flex-col md:flex-row md:justify-between gap-8 mb-4">
             <p className="text-xs font-semibold text-gray-900">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
             <span className="text-xs text-gray-400 shrink-0">Mar 2013 – Feb 2018</span>
           </div>
@@ -93,21 +93,21 @@ const ResumeModal = () => (
     <section className="mb-20">
       <h3 className="text-sm font-bold text-primary mb-12">Selected Research Projects</h3>
       <div className="space-y-10">
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
             <p className="text-xs text-gray-500">Korea Institute of Public Finance</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">May 2025 – Sep 2025</span>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
             <p className="text-xs text-gray-500">Bank of Korea</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0">Nov 2023 – Jul 2024</span>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-2">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
             <p className="text-xs text-gray-500">Shinhan Bank</p>
