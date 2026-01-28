@@ -840,10 +840,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <span className="block text-[11px] font-medium text-gray-600 mt-6">— {edu.dissertation.en.split(' — ')[1]}</span>
                                   )}
                                 </p>
-                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">
-                                  {edu.dissertation.ko.split(' — ')[0]}
+                                <p className="text-[10px] mt-8 leading-relaxed">
+                                  <span className="font-medium text-gray-600">{edu.dissertation.ko.split(' — ')[0]}</span>
                                   {edu.dissertation.ko.includes(' — ') && (
-                                    <span className="block mt-4">— {edu.dissertation.ko.split(' — ')[1]}</span>
+                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">— {edu.dissertation.ko.split(' — ')[1]}</span>
                                   )}
                                 </p>
                               </div>
@@ -861,10 +861,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <span className="block text-[11px] font-medium text-gray-600 mt-6">– {edu.thesis.en.split(' – ')[1]}</span>
                                   )}
                                 </p>
-                                <p className="text-[10px] text-gray-500 mt-8 leading-relaxed">
-                                  {edu.thesis.ko.split(' – ')[0]}
+                                <p className="text-[10px] mt-8 leading-relaxed">
+                                  <span className="font-medium text-gray-600">{edu.thesis.ko.split(' – ')[0]}</span>
                                   {edu.thesis.ko.includes(' – ') && (
-                                    <span className="block mt-4">– {edu.thesis.ko.split(' – ')[1]}</span>
+                                    <span className="block text-[9px] font-normal text-gray-400 mt-4">– {edu.thesis.ko.split(' – ')[1]}</span>
                                   )}
                                 </p>
                               </div>
