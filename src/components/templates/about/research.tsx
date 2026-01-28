@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Home } from 'lucide-react'
 
@@ -7,6 +7,31 @@ import banner1 from '@/assets/images/banner/1.webp'
 import fdsImg from '@/assets/images/icons/fds.webp'
 import baImg from '@/assets/images/icons/ba.webp'
 import dimImg from '@/assets/images/icons/dim.webp'
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 // 연구 분야 데이터
 const researchAreas = [
@@ -101,6 +126,8 @@ const useTitleFade = () => {
 
 export const AboutResearchTemplate = () => {
   const { currentTitle, isVisible } = useTitleFade()
+  const heroAnimation = useScrollAnimation()
+  const contentAnimation = useScrollAnimation()
 
   return (
     <div className="flex flex-col bg-white">
@@ -163,7 +190,10 @@ export const AboutResearchTemplate = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
+      <div 
+        ref={heroAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32 transition-all duration-1000 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         <div className="relative text-center max-w-4xl mx-auto">
           {/* Animated Title - PC only animation, Mobile fixed Korean */}
           <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8 min-h-[40px] md:min-h-[48px]">
@@ -208,7 +238,10 @@ export const AboutResearchTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+      <div 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         <div className="flex flex-col gap-20 md:gap-32">
           {researchAreas.map((area, index) => (
             <article

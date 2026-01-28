@@ -3,6 +3,31 @@ import { Link } from 'react-router-dom'
 import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles } from 'lucide-react'
 import type { MemberData } from '@/types/data'
 
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
 // Email Popup Component
 const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => void; degree?: string }) => {
   const [copied, setCopied] = useState(false)
@@ -102,6 +127,7 @@ export const MembersCurrentTemplate = () => {
   const [openEmailPopup, setOpenEmailPopup] = useState<string | null>(null)
   const [hoveredMember, setHoveredMember] = useState<string | null>(null)
   const baseUrl = import.meta.env.BASE_URL || '/'
+  const contentAnimation = useScrollAnimation()
 
   useEffect(() => {
     const safeJsonFetch = async (url: string) => {
@@ -252,7 +278,10 @@ export const MembersCurrentTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80">
+      <section 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         {/* Statistics Section - Red Dot Style */}
         <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">
           <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">

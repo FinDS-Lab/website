@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useMemo } from 'react'
+import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp } from 'lucide-react'
 import type { HonorsData, HonorItem } from '@/types/data'
@@ -7,6 +7,31 @@ import type { HonorsData, HonorItem } from '@/types/data'
 import banner1 from '@/assets/images/banner/1.webp'
 
 type FilterType = 'all' | 'honor' | 'award'
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 // Format date from "Dec 5" to "MM-DD" format
 const formatDate = (dateStr: string): string => {
@@ -28,6 +53,7 @@ export const AboutHonorsTemplate = () => {
   const [filter, setFilter] = useState<FilterType>('all')
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
+  const contentAnimation = useScrollAnimation()
 
   const toggleYear = (year: string) => {
     const isMobile = window.innerWidth < 768
@@ -197,7 +223,10 @@ export const AboutHonorsTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px]">
+      <section 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-[80px] transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         {/* Statistics Section */}
         <div className="flex flex-col gap-16 md:gap-24 mb-24 md:mb-[40px]">
           <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">

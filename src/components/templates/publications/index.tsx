@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useMemo, useCallback } from 'react'
+import { memo, useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import {
   ChevronDown,
@@ -30,6 +30,31 @@ import pubIcon7 from '@/assets/images/icons/publications/7.png'
 import pubIcon8 from '@/assets/images/icons/publications/8.png'
 
 const pubIcons = [pubIcon1, pubIcon2, pubIcon3, pubIcon4, pubIcon5, pubIcon6, pubIcon7, pubIcon8]
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 // 필터 모달 컴포넌트
 const FilterModal = ({
@@ -227,6 +252,7 @@ export const PublicationsTemplate = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const { showModal } = useStoreModal()
+  const contentAnimation = useScrollAnimation()
 
   const toggleYear = (year: number) => {
     const isMobile = window.innerWidth < 768
@@ -568,7 +594,10 @@ export const PublicationsTemplate = () => {
       </div>
 
       {/* Content Section */}
-      <section className="py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20">
+      <section 
+        ref={contentAnimation.ref}
+        className={`py-40 md:py-60 pb-60 md:pb-80 px-16 md:px-20 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           {/* Statistics Section - Red Dot Style */}
           <div className="flex flex-col gap-16 md:gap-24">

@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Home, MapPin } from 'lucide-react'
 
@@ -6,7 +6,34 @@ import { Home, MapPin } from 'lucide-react'
 import banner1 from '@/assets/images/banner/1.webp'
 import locationImg from '@/assets/images/location/1.webp'
 
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
 export const LocationTemplate = () => {
+  const contentAnimation = useScrollAnimation()
+
   return (
     <div className="flex flex-col bg-white scroll-mt-[80px]">
       {/* Banner */}
@@ -60,7 +87,10 @@ export const LocationTemplate = () => {
       </div>
 
       {/* Content Section */}
-      <section className="pb-60 md:pb-80 px-16 md:px-20">
+      <section 
+        ref={contentAnimation.ref}
+        className={`pb-60 md:pb-80 px-16 md:px-20 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         <div className="max-w-1480 mx-auto flex flex-col lg:flex-row lg:items-stretch gap-20 md:gap-32">
           {/* Map Section */}
           <div className="h-[280px] md:h-[400px] lg:h-auto lg:flex-1 rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50 relative">

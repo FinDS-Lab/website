@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useMemo } from 'react'
+import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Home, Search, SlidersHorizontal, ChevronDown, ChevronUp } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
@@ -12,6 +12,31 @@ import logoGcu from '@/assets/images/logos/gcu.png'
 import logoDwu from '@/assets/images/logos/dwu.png'
 import logoKangnam from '@/assets/images/logos/kangnam.png'
 import logoKorea from '@/assets/images/logos/korea.png'
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 // School logo mapping
 const schoolLogos: Record<string, string> = {
@@ -127,6 +152,7 @@ export const LecturesTemplate = () => {
     year: [],
   })
   const [expandedYear, setExpandedYear] = useState<string | null>(null)
+  const contentAnimation = useScrollAnimation()
 
   // 데이터 로드
   useEffect(() => {
@@ -292,7 +318,10 @@ export const LecturesTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120">
+      <section 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         {/* Search & Filter */}
         <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-24 md:mb-32">
           <div className="relative flex-1">

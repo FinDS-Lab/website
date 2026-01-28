@@ -1,7 +1,32 @@
-import React, {memo, useState, useEffect} from 'react'
+import React, {memo, useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
 import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, UserCheck, Users} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 type Education = {
   degree: string
@@ -58,6 +83,7 @@ export const MembersAlumniTemplate = () => {
   const [msExpanded, setMsExpanded] = useState(true)
   const [undergradExpanded, setUndergradExpanded] = useState(true)
   const [expandedAlumni, setExpandedAlumni] = useState<Set<string>>(new Set())
+  const contentAnimation = useScrollAnimation()
 
   const toggleAlumniExpand = (name: string) => {
     setExpandedAlumni(prev => {
@@ -238,7 +264,10 @@ export const MembersAlumniTemplate = () => {
       </div>
 
       {/* Content */}
-      <section className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100">
+      <section 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         {loading ? (
           <div className="text-center py-40">
             <p className="text-gray-400 animate-pulse">Loading alumni...</p>

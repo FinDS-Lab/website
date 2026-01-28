@@ -2,6 +2,31 @@ import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List, LayoutGrid } from 'lucide-react'
 
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
 // 화면 크기 체크 hook
 const useIsPC = () => {
   const [isPC, setIsPC] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1024 : true)
@@ -60,6 +85,7 @@ export const ArchivesPlaylistTemplate = () => {
   const [showListPanel, setShowListPanel] = useState(true) // 기본값: 리스트 뷰
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
+  const contentAnimation = useScrollAnimation()
 
   // PC가 아니면 홈으로 리다이렉트
   if (!isPC) {
@@ -248,7 +274,10 @@ export const ArchivesPlaylistTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}>
+      <div 
+        ref={contentAnimation.ref}
+        className={`flex-1 max-w-1480 mx-auto w-full px-12 md:px-16 py-16 md:py-24 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'} ${currentVideo ? 'pb-[200px] md:pb-[240px]' : ''}`}
+      >
         {loading ? (
           <div className="flex items-center justify-center py-48">
             <div className="w-24 h-24 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />

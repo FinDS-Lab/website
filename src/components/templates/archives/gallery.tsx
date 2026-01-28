@@ -1,4 +1,4 @@
-import { memo, useState, useEffect } from 'react'
+import { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Image as ImageIcon, Calendar, Home } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
@@ -6,6 +6,31 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
 // Image Imports
 import banner5 from '@/assets/images/banner/5.webp'
+
+// Scroll animation hook
+const useScrollAnimation = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
 
 interface GalleryItem {
   id: string;
@@ -102,6 +127,7 @@ export const ArchivesGalleryTemplate = () => {
   const [loading, setLoading] = useState(true)
   const { showModal } = useStoreModal()
   const baseUrl = import.meta.env.BASE_URL || '/'
+  const contentAnimation = useScrollAnimation()
 
   useEffect(() => {
     const fetchAllGalleries = async () => {
@@ -188,7 +214,10 @@ export const ArchivesGalleryTemplate = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100">
+      <div 
+        ref={contentAnimation.ref}
+        className={`max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100 transition-all duration-1000 ${contentAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+      >
         {loading ? (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
             Loading galleries...
