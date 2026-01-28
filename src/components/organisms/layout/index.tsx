@@ -338,8 +338,8 @@ const LayoutOrganisms = ({ children }: props) => {
                         className={clsx(
                           'w-full flex items-center justify-between py-12 text-base transition-colors',
                           isActive(item)
-                            ? 'font-medium text-primary'
-                            : 'font-normal text-gray-900'
+                            ? 'font-bold text-primary'
+                            : 'font-semibold text-gray-900'
                         )}
                       >
                         {item.name}
@@ -364,7 +364,7 @@ const LayoutOrganisms = ({ children }: props) => {
                                 'py-8 text-sm transition-colors',
                                 location.pathname === child.path
                                   ? 'text-primary font-medium'
-                                  : 'text-gray-600'
+                                  : 'text-gray-500 font-normal'
                               )}
                             >
                               {child.name}
@@ -380,8 +380,8 @@ const LayoutOrganisms = ({ children }: props) => {
                       className={clsx(
                         'block py-12 text-base transition-colors',
                         isActive(item)
-                          ? 'font-medium text-primary'
-                          : 'font-normal text-gray-900'
+                          ? 'font-bold text-primary'
+                          : 'font-semibold text-gray-900'
                       )}
                     >
                       {item.name}
