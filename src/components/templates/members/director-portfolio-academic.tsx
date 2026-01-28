@@ -1009,11 +1009,11 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL || '/'
     
-    // Mobile: collapse some sections by default (but keep projects expanded)
+    // Mobile: collapse some sections by default (but keep projects and academicService expanded)
     if (window.innerWidth < 768) {
       setExpandedSections(prev => ({
         ...prev,
-        academicService: false
+        academicService: true
       }))
     }
     
@@ -1431,20 +1431,22 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               </button>
               {expandedSections.researcherIds && (
               <div className="p-20 md:p-24 border-t border-gray-100">
-                <div className="grid grid-cols-3 gap-12 md:gap-16">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
                   {/* ORCID */}
                   <a 
                     href="https://orcid.org/0000-0003-2596-7368" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
+                    className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
                   >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                    <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
                       <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
                     </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-4">ORCID</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors text-center break-all">0000-0003-2596-7368</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors" />
+                    <div className="flex-1 md:text-center">
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">ORCID</p>
+                      <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#A6CE39] transition-colors">0000-0003-2596-7368</p>
+                    </div>
+                    <ExternalLink size={12} className="ml-8 md:ml-0 md:mt-8 text-gray-300 group-hover:text-[#A6CE39] transition-colors shrink-0" />
                   </a>
 
                   {/* Scopus */}
@@ -1452,14 +1454,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     href="https://www.scopus.com/authid/detail.uri?authorId=57224825321" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
+                    className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
                   >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                    <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
                       <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
                     </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-4">Scopus</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors" />
+                    <div className="flex-1 md:text-center">
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">Scopus</p>
+                      <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#E9711C] transition-colors">57224825321</p>
+                    </div>
+                    <ExternalLink size={12} className="ml-8 md:ml-0 md:mt-8 text-gray-300 group-hover:text-[#E9711C] transition-colors shrink-0" />
                   </a>
 
                   {/* Web of Science */}
@@ -1467,14 +1471,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     href="https://www.webofscience.com/wos/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="group flex flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
+                    className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
                   >
-                    <div className="size-48 md:size-56 mb-12 flex items-center justify-center">
+                    <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
                       <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
                     </div>
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-4">Web of Science</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
-                    <ExternalLink size={12} className="mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors" />
+                    <div className="flex-1 md:text-center">
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">Web of Science</p>
+                      <p className="text-xs md:text-sm font-semibold text-gray-700 group-hover:text-[#5E33BF] transition-colors">EQW-9977-2022</p>
+                    </div>
+                    <ExternalLink size={12} className="ml-8 md:ml-0 md:mt-8 text-gray-300 group-hover:text-[#5E33BF] transition-colors shrink-0" />
                   </a>
                 </div>
               </div>

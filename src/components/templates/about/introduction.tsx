@@ -480,13 +480,10 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-8">
                           <Sparkles size={14} className="text-[#D6B14D]" />
                           <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
-                            <span className="md:hidden">FINDS Lab Focus Areas</span>
-                            <span className="hidden md:inline">{focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}</span>
+                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}
                           </span>
                         </div>
-                        <div className="hidden md:block">
-                          <LangToggle lang={focusLang} setLang={setFocusLang} />
-                        </div>
+                        <LangToggle lang={focusLang} setLang={setFocusLang} />
                       </div>
 
                       {/* Card Content */}
@@ -494,14 +491,11 @@ export const AboutIntroductionTemplate = () => {
                         {/* Title */}
                         <div className="text-center mb-28 md:mb-36">
                           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
-                            <span className="md:hidden text-[#D6B14D]">Core Research Areas</span>
-                            <span className="hidden md:inline">
-                              {focusLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">핵심 연구 분야</span></>
-                              ) : (
-                                <><span className="text-[#D6B14D]">Core Research Areas</span></>
-                              )}
-                            </span>
+                            {focusLang === 'ko' ? (
+                              <span className="text-[#D6B14D]">핵심 연구 분야</span>
+                            ) : (
+                              <span className="text-[#D6B14D]">Core Research Areas</span>
+                            )}
                           </h2>
                           <div className="flex items-center justify-center gap-8">
                             <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
@@ -515,7 +509,7 @@ export const AboutIntroductionTemplate = () => {
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
                             >
                               {/* Icon */}
                               <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
@@ -609,7 +603,7 @@ export const AboutIntroductionTemplate = () => {
                               return (
                                 <div 
                                   key={index} 
-                                  className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col"
+                                  className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
                                   style={{ 
                                     background: 'rgba(255, 255, 255, 0.03)', 
                                     borderColor: 'rgba(214, 177, 77, 0.15)',

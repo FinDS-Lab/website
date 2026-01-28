@@ -108,9 +108,9 @@ export const AboutHonorsTemplate = () => {
         })
         
         setHonorsData(filteredData)
-        // 현재 연도를 기본으로 펼침
+        // 최근 3개년을 기본으로 펼침
         const currentYear = new Date().getFullYear()
-        setExpandedYears(new Set([String(currentYear)]))
+        setExpandedYears(new Set([String(currentYear), String(currentYear - 1), String(currentYear - 2)]))
         setLoading(false)
       })
       .catch((err) => {

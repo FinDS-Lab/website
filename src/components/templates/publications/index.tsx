@@ -506,10 +506,11 @@ export const PublicationsTemplate = () => {
     }))
   }, [publications])
 
-  // 가장 최신 연도를 기본으로 펼침
+  // 최근 3개년을 기본으로 펼침
   useEffect(() => {
     if (sortedYears.length > 0) {
-      setExpandedYears(new Set([sortedYears[0]]))
+      const currentYear = new Date().getFullYear()
+      setExpandedYears(new Set([currentYear, currentYear - 1, currentYear - 2]))
     }
   }, [sortedYears])
 

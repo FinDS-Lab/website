@@ -1,6 +1,15 @@
 {
   "activities": [
     {
+      "id": 0,
+      "category": "journal",
+      "name": "Networks and Heterogeneous Media",
+      "publisher": "American Institute of Mathematical Sciences Press",
+      "type": "SCIE",
+      "since": "2026-01-28",
+      "url": "https://www.aimspress.com/journal/nhm"
+    },
+    {
       "id": 1,
       "category": "journal",
       "name": "Measurement",

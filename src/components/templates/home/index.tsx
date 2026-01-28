@@ -176,7 +176,7 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <img loading="lazy" src={icon8} alt="" className="size-22 md:size-24 lg:size-26" />
+                  <span className="text-xl md:text-2xl lg:text-[26px]">📰</span>
                   <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">News</h3>
                 </div>
                 <Link
@@ -210,7 +210,7 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <img loading="lazy" src={icon9} alt="" className="size-22 md:size-24 lg:size-26" />
+                  <span className="text-xl md:text-2xl lg:text-[26px]">📢</span>
                   <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">Notice</h3>
                 </div>
                 <Link

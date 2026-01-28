@@ -244,7 +244,7 @@ export const ArchivesNewsTemplate = () => {
                   maxWidth: '800px',
                   children: <NewsDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group"
+                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group min-h-[120px] md:min-h-[140px]"
               >
                 <div className="flex items-center gap-16 mb-8 md:mb-12 text-xs md:text-sm text-gray-500">
                   <div className="flex items-center gap-6">

@@ -247,7 +247,7 @@ export const ArchivesNoticeTemplate = () => {
                   maxWidth: '800px',
                   children: <NoticeDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className={`bg-white border rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group ${
+                className={`bg-white border rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group min-h-[120px] md:min-h-[140px] ${
                   item.isPinned ? 'border-primary bg-primary/5' : 'border-[#f0f0f0]'
                 }`}
               >

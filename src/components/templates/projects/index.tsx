@@ -219,9 +219,8 @@ export const ProjectsTemplate = () => {
         setLoading(false)
         
         if (filteredProjects.length > 0) {
-          const years = [...new Set(filteredProjects.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
-          years.sort((a, b) => parseInt(b) - parseInt(a))
-          setExpandedYears(new Set([years[0]]))
+          const currentYear = new Date().getFullYear()
+          setExpandedYears(new Set([String(currentYear), String(currentYear - 1), String(currentYear - 2)]))
         }
       })
       .catch((err) => {
@@ -645,18 +644,18 @@ export const ProjectsTemplate = () => {
                             
                             return (
                               <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
-                                {/* Mobile: Full-width top bar - solid color */}
+                                {/* Mobile: Full-width top bar - solid color (same as Director Portfolio Academic) */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
-                                  background: project.type === 'government' ? '#D6B14D' :
-                                    project.type === 'industry' ? '#AC0E0E' :
-                                    project.type === 'institution' ? '#E8D688' :
-                                    project.type === 'academic' ? '#FFBAC4' :
+                                  background: project.type === 'government' ? '#AC0E0E' :
+                                    project.type === 'industry' ? '#D6B14D' :
+                                    project.type === 'institution' ? '#FFBAC4' :
+                                    project.type === 'academic' ? '#D6B14D' :
                                     '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
                                     {/* Role | Type Label */}
                                     <span className={`text-xs font-bold tracking-wide ${
-                                      project.type === 'institution' || project.type === 'academic' ? 'text-gray-800' : 'text-white'
+                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 
                                        project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 

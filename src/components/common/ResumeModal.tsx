@@ -49,8 +49,8 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Mar 2021 – Feb 2025</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12 pr-8">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span>11th Best Doctoral Dissertation, Korean Operations Research and Management Science Society</span></li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span>11th Best Doctoral Dissertation Award, Korean Operations Research and Management Science Society</span></li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim (KAIST)</li>
           </ul>
         </div>
         <div>
@@ -59,8 +59,8 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Feb 2018 – Feb 2021</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />17th Best Master Thesis, Korea Institute of Industrial Engineers</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />17th Best Master Thesis Award, Korea Institute of Industrial Engineers</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim (KAIST)</li>
           </ul>
         </div>
         <div>
@@ -70,7 +70,6 @@ const ResumeModal = () => (
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jang Ho Kim (Korea University), Prof. Myoung-Ju Park (Seoul National University)</li>
           </ul>
         </div>
       </div>
