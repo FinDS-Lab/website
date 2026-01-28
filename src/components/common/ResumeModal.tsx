@@ -70,7 +70,7 @@ const ResumeModal = () => (
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jangho Kim (Korea University), Prof. Myungjoo Park (Seoul National University)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisors: Prof. Jang Ho Kim (Korea University), Prof. Myoung-Ju Park (Seoul National University)</li>
           </ul>
         </div>
       </div>
