@@ -154,16 +154,16 @@ const education: any[] = [
     field: 'Industrial and Management Systems Engineering',
     undergraduateTheses: [
       {
-        number: '1st',
-        en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
-        ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
-        advisorName: 'Myoung-Ju Park'
-      },
-      {
         number: '2nd',
         en: 'Designing a Prescription Data-Based Mobile Healthcare Information Management System Using Data Mining Techniques',
         ko: '처방전을 활용한 개인 건강관리 어플리케이션 제안',
         advisorName: 'Jang Ho Kim'
+      },
+      {
+        number: '1st',
+        en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
+        ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
+        advisorName: 'Myoung-Ju Park'
       }
     ],
     advisors: [
@@ -176,8 +176,8 @@ const education: any[] = [
     ],
     awards: [
       {title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'},
-      {title: '2nd Award, 4th Research Symposium', org: 'Dept. of Industrial and Management Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
-      {title: '3rd Award, 3rd Research Symposium', org: 'Dept. of Industrial and Management Engineering, Kyung Hee University', note: '1st Graduation Paper'}
+      {title: '2nd Award', org: '4th Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
+      {title: '3rd Award', org: '3rd Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
     ],
     honors: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
@@ -1075,9 +1075,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
                                           <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1">
-                                            <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                            {a.note && <span className="text-[10px] text-primary font-medium ml-6">({a.note})</span>}
-                                            <span className="text-[10px] text-gray-500 font-bold block mt-2">{a.org}</span>
+                                            <div>
+                                              <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                              {a.note && <span className="text-[10px] text-primary font-medium ml-4">({a.note})</span>}
+                                            </div>
+                                            <span className="text-[10px] text-gray-500 font-medium block mt-3">{a.org}</span>
                                           </div>
                                         </div>
                                       ))}
