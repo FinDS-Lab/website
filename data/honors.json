@@ -103,7 +103,7 @@
       "icon": "🏆",
       "title": "특별상",
       "event": "제1회 S&P Global Market Intelligence–KAIST–UNIST–경희대학교 퀀트 투자 경진대회",
-      "organization": "S&P Market Intelligence, KAIST, UNIST, 경희대학교",
+      "organization": "S&P Market Intelligence · KAIST · UNIST · 경희대학교",
       "date": "Dec 4",
       "winners": [
         {"name": "최인수", "level": "phd"}
@@ -250,7 +250,7 @@
       "icon": "🏆",
       "title": "대상",
       "event": "제2회 디지털산업혁신 빅데이터 플랫폼 활용 금융 아이디어 경진대회",
-      "organization": "에프앤가이드, 한국지능정보사회진흥원",
+      "organization": "에프앤가이드 · 한국지능정보사회진흥원",
       "date": "Nov 24",
       "winners": [
         {"name": "최인수", "level": "phd"}
@@ -489,7 +489,7 @@
       "icon": "🏆",
       "title": "우수상",
       "event": "제8회 산업융합 활성화 방안 및 사례연구 논문공모전",
-      "organization": "국가산업융합지원센터, 대한산업공학회",
+      "organization": "국가산업융합지원센터 · 대한산업공학회",
       "date": "Nov 8",
       "winners": [
         {"name": "최인수", "level": "ms"}
@@ -500,7 +500,7 @@
       "icon": "🏆",
       "title": "국토교통부장관상",
       "event": "제1회 대학생 스마트시티 아이디어 경진대회",
-      "organization": "한국토지주택공사, 대한산업공학회",
+      "organization": "한국토지주택공사 · 대한산업공학회",
       "date": "Sep 6",
       "winners": [
         {"name": "최인수", "level": "ms"}
@@ -593,7 +593,7 @@
       "icon": "🏆",
       "title": "동상",
       "event": "제11회 전국학생포트폴리오경진대회",
-      "organization": "교육부, 한국공학교육인증원",
+      "organization": "교육부 · 한국공학교육인증원",
       "date": "Nov 9",
       "winners": [
         {"name": "최인수", "level": "bs"}
@@ -672,7 +672,7 @@
       "icon": "🏆",
       "title": "열정상",
       "event": "제10회 공학교육혁신센터 우수성과발표대회",
-      "organization": "교육부, 한국공학교육인증원",
+      "organization": "교육부 · 한국공학교육인증원",
       "date": "Nov 11",
       "winners": [
         {"name": "최인수", "level": "bs"}
@@ -683,7 +683,7 @@
       "icon": "🏆",
       "title": "동상",
       "event": "제10회 전국학생포트폴리오경진대회",
-      "organization": "교육부, 한국공학교육인증원",
+      "organization": "교육부 · 한국공학교육인증원",
       "date": "Nov 10",
       "winners": [
         {"name": "최인수", "level": "bs"}
@@ -730,7 +730,7 @@
       "title": "해외연수 장학금",
       "title_en": "International Training Program Scholarship",
       "event": "해외연수 장학금",
-      "organization": "경희대학교; 노스캐롤라이나대학교 윌밍턴 캠퍼스 (UNCW)",
+      "organization": "경희대학교 · 노스캐롤라이나대학교 윌밍턴 캠퍼스 (UNCW)",
       "date": "Dec 7",
       "winners": [
         {"name": "최인수", "level": "bs"}
