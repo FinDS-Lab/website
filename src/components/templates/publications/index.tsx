@@ -506,13 +506,21 @@ export const PublicationsTemplate = () => {
     }))
   }, [publications])
 
-  // 최근 3개년을 기본으로 펼침
+  // 현재 연도만 기본으로 펼침
   useEffect(() => {
     if (sortedYears.length > 0) {
       const currentYear = new Date().getFullYear()
-      setExpandedYears(new Set([currentYear, currentYear - 1, currentYear - 2]))
+      setExpandedYears(new Set([currentYear]))
     }
   }, [sortedYears])
+
+  // 검색어가 있을 때 검색 결과가 있는 모든 연도 펼침
+  useEffect(() => {
+    if (searchTerm.trim()) {
+      const yearsWithResults = Object.keys(publicationsByYear).map(Number)
+      setExpandedYears(new Set(yearsWithResults))
+    }
+  }, [searchTerm, publicationsByYear])
 
   const getYearStats = useCallback(
     (year: number) => {

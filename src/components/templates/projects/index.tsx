@@ -229,6 +229,29 @@ export const ProjectsTemplate = () => {
       })
   }, [])
 
+  // 검색어나 필터가 있을 때 검색 결과가 있는 모든 연도 펼침
+  useEffect(() => {
+    if (searchQuery.trim() || filters.type.length > 0 || filters.status.length > 0) {
+      const filteredProjs = projects.filter((p) => {
+        if (filters.type.length > 0 && !filters.type.includes(p.type)) return false
+        if (filters.status.length > 0) {
+          const status = getProjectStatus(p.period)
+          if (!filters.status.includes(status)) return false
+        }
+        if (searchQuery.trim()) {
+          const query = searchQuery.toLowerCase()
+          const matchesTitle = p.titleEn.toLowerCase().includes(query) || p.titleKo.toLowerCase().includes(query)
+          const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || p.fundingAgencyKo.toLowerCase().includes(query)
+          const matchesPeriod = p.period.includes(query)
+          if (!matchesTitle && !matchesFunding && !matchesPeriod) return false
+        }
+        return true
+      })
+      const yearsWithResults = [...new Set(filteredProjs.map(p => p.period.split('–')[0].trim().slice(0, 4)))]
+      setExpandedYears(new Set(yearsWithResults))
+    }
+  }, [searchQuery, filters, projects])
+
   const handleFilterChange = (key: 'type' | 'status', value: string) => {
     setFilters((prev) => {
       const current = prev[key]
