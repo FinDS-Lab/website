@@ -276,7 +276,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["Empirical Analysis of Backtest Overfitting Mitigation Through Time Series Data Augmentation"]
+      "projects": ["Mitigating Backtest Overfitting via Time-Series Data Augmentation"]
     },
     {
       "name": "이채은",
