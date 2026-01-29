@@ -1045,9 +1045,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
                                     <div>
                                       <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                      {l.roleKo && <span className="text-[10px] text-gray-500 ml-4">({l.roleKo})</span>}
-                                      <span className="text-[10px] text-gray-500 block mt-2">{l.context}</span>
-                                      {l.contextKo && <span className="text-[9px] text-gray-400 block">{l.contextKo}</span>}
+                                      <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
                                     </div>
                                     <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
                                   </div>
@@ -1076,7 +1074,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1">
                                             <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                            {h.titleKo && <span className="text-[10px] text-gray-500 ml-4">({h.titleKo})</span>}
                                             <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
                                           </div>
                                         </div>
@@ -1092,7 +1089,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <div className="flex-1">
                                             <div>
                                               <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                              {a.titleKo && <span className="text-[10px] text-gray-500 ml-4">({a.titleKo})</span>}
                                               {a.note && <span className="text-[10px] text-primary font-medium ml-4">({a.note})</span>}
                                             </div>
                                             <span className="text-[10px] text-gray-500 font-medium block mt-3">{a.org}</span>
