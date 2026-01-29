@@ -136,7 +136,7 @@ const education = [
 
 const employment = [
   {
-    position: 'Assistant Professor',
+    position: 'Assistant Professor (Tenure-Track)',
     organization: 'Gachon University',
     period: '2026-03 – Present',
     location: 'Big Data Business Management Major, Department of Finance & Big Data, College of Business',
@@ -144,7 +144,7 @@ const employment = [
     logo: logoGcu
   },
   {
-    position: 'Assistant Professor',
+    position: 'Assistant Professor (Tenure-Track)',
     organization: "Dongduk Women's University",
     period: '2025-09 – 2026-02',
     location: 'Division of Business Administration, College of Business',
