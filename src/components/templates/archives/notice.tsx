@@ -157,11 +157,20 @@ export const ArchivesNoticeTemplate = () => {
   }, [searchParams, noticeItems])
 
   useEffect(() => {
-    const noticeFiles = ['2025-10-01-1.md', '2025-09-01-1.md', '2025-06-14-1.md']
     const baseUrl = import.meta.env.BASE_URL || '/'
 
     const fetchAllNotices = async () => {
       try {
+        // Fetch index.json to get the list of notice files
+        const indexResponse = await fetch(`${baseUrl}data/notice/index.json`)
+        if (!indexResponse.ok) {
+          console.error('Failed to load notice index')
+          setLoading(false)
+          return
+        }
+        const indexData = await indexResponse.json()
+        const noticeFiles: string[] = indexData.files || []
+
         const results = await Promise.all(
           noticeFiles.map(async (file) => {
             try {

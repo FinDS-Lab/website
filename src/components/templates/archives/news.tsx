@@ -159,11 +159,20 @@ export const ArchivesNewsTemplate = () => {
   }, [searchParams, newsItems])
 
   useEffect(() => {
-    const newsFiles = ['2026-03-01-1.md', '2025-09-01-2.md', '2025-09-01-1.md', '2025-06-14-1.md']
     const baseUrl = import.meta.env.BASE_URL || '/'
 
     const fetchAllNews = async () => {
       try {
+        // Fetch index.json to get the list of news files
+        const indexResponse = await fetch(`${baseUrl}data/news/index.json`)
+        if (!indexResponse.ok) {
+          console.error('Failed to load news index')
+          setLoading(false)
+          return
+        }
+        const indexData = await indexResponse.json()
+        const newsFiles: string[] = indexData.files || []
+
         const results = await Promise.all(
           newsFiles.map(async (file) => {
             try {
