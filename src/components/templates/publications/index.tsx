@@ -213,7 +213,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
 // 저자 역할 데이터
 const authorshipRemarks = [
   { symbol: 'P', label: '연구 책임자', subLabel: 'Principal Investigator' },
-  { symbol: 'L', label: '책임 연구원', subLabel: 'Leading Researcher' },
+  { symbol: 'L', label: '총괄 연구원', subLabel: 'Lead Researcher' },
   { symbol: 'R', label: '참여 연구원', subLabel: 'Researcher' },
   { symbol: 'A', label: '지도교수', subLabel: 'Advisor' },
   { symbol: '1', label: '제1저자', subLabel: 'First Author' },
