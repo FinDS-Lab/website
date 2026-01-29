@@ -20,16 +20,6 @@ import type { Publication, AuthorsData } from '@/types/data'
 
 // Image Imports
 import banner3 from '@/assets/images/banner/3.webp'
-import pubIcon1 from '@/assets/images/icons/publications/1.png'
-import pubIcon2 from '@/assets/images/icons/publications/2.png'
-import pubIcon3 from '@/assets/images/icons/publications/3.png'
-import pubIcon4 from '@/assets/images/icons/publications/4.png'
-import pubIcon5 from '@/assets/images/icons/publications/5.png'
-import pubIcon6 from '@/assets/images/icons/publications/6.png'
-import pubIcon7 from '@/assets/images/icons/publications/7.png'
-import pubIcon8 from '@/assets/images/icons/publications/8.png'
-
-const pubIcons = [pubIcon1, pubIcon2, pubIcon3, pubIcon4, pubIcon5, pubIcon6, pubIcon7, pubIcon8]
 
 // Scroll animation hook
 const useScrollAnimation = () => {
@@ -222,14 +212,14 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
 
 // 저자 역할 데이터
 const authorshipRemarks = [
-  { label: '연구 책임자', subLabel: 'Principal Investigator' },
-  { label: '책임 연구원', subLabel: 'Leading Researcher' },
-  { label: '참여 연구원', subLabel: 'Researcher' },
-  { label: '지도교수', subLabel: 'Advisor' },
-  { label: '제1저자', subLabel: 'First Author' },
-  { label: '제2저자', subLabel: 'Second Author' },
-  { label: '제3저자', subLabel: 'Third Author' },
-  { label: '교신저자', subLabel: 'Corresponding Author' },
+  { symbol: 'P', label: '연구 책임자', subLabel: 'Principal Investigator' },
+  { symbol: 'L', label: '책임 연구원', subLabel: 'Leading Researcher' },
+  { symbol: 'R', label: '참여 연구원', subLabel: 'Researcher' },
+  { symbol: 'A', label: '지도교수', subLabel: 'Advisor' },
+  { symbol: '1', label: '제1저자', subLabel: 'First Author' },
+  { symbol: '2', label: '제2저자', subLabel: 'Second Author' },
+  { symbol: '3', label: '제3저자', subLabel: 'Third Author' },
+  { symbol: '*', label: '교신저자', subLabel: 'Corresponding Author' },
 ]
 
 export const PublicationsTemplate = () => {
@@ -823,12 +813,12 @@ export const PublicationsTemplate = () => {
                       className="size-32 md:size-46 flex-shrink-0 rounded-lg flex items-center justify-center"
                       style={{backgroundColor: bgColor}}
                     >
-                      <img
-                        src={pubIcons[index]}
-                        alt={item.label}
-                        className="w-[70%] h-[70%] object-contain"
-                        style={{filter: `drop-shadow(0 0 0 ${color})`}}
-                      />
+                      <span 
+                        className="text-lg md:text-2xl font-bold"
+                        style={{color: color}}
+                      >
+                        {item.symbol}
+                      </span>
                     </div>
                     <div className="flex flex-col">
                       <span className="text-xs md:text-base font-bold text-gray-900">{item.label}</span>
