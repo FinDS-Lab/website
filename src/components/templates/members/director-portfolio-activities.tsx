@@ -1391,7 +1391,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-100 h-130 md:w-120 md:h-155 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
+                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
                   <img
                     src={directorImg}
                 alt="Prof. Insu Choi"

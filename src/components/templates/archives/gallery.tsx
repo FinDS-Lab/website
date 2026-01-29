@@ -7,6 +7,17 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 // Image Imports
 import banner5 from '@/assets/images/banner/5.webp'
 
+// Category types and colors based on FINDS Lab Color Palette
+type GalleryCategory = 'Conferences' | 'Social Events' | 'Celebrations' | 'Design Materials' | 'General';
+
+const categoryColors: Record<GalleryCategory, { bg: string; text: string; border: string }> = {
+  'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
+  'Social Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
+  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#C41E3A]', border: 'border-[#E8889C]/30' },
+  'Design Materials': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
+  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
+};
+
 // Scroll animation hook
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -38,6 +49,7 @@ interface GalleryItem {
   date: string;
   thumb: string;
   author?: string;
+  category?: GalleryCategory;
 }
 
 // 상세 모달
@@ -125,9 +137,12 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
 export const ArchivesGalleryTemplate = () => {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState<GalleryCategory | 'All'>('All')
   const { showModal } = useStoreModal()
   const baseUrl = import.meta.env.BASE_URL || '/'
   const contentAnimation = useScrollAnimation()
+
+  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Social Events', 'Celebrations', 'Design Materials', 'General']
 
   useEffect(() => {
     const fetchAllGalleries = async () => {
@@ -148,7 +163,8 @@ export const ArchivesGalleryTemplate = () => {
               title: (data.title as string) || 'No Title',
               date: dateStr,
               thumb: (data.thumb as string) || '',
-              author: (data.author as string) || 'FINDS Lab'
+              author: (data.author as string) || 'FINDS Lab',
+              category: (data.category as GalleryCategory) || 'General'
             }
           })
         )
@@ -167,6 +183,10 @@ export const ArchivesGalleryTemplate = () => {
 
     fetchAllGalleries()
   }, [])
+
+  const filteredItems = selectedCategory === 'All' 
+    ? galleryItems 
+    : galleryItems.filter(item => item.category === selectedCategory)
 
   return (
     <div className="flex flex-col bg-white">
@@ -218,13 +238,35 @@ export const ArchivesGalleryTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
+        {/* Category Filter */}
+        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
+          {allCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`
+                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
+                transition-all duration-200 border
+                ${selectedCategory === category 
+                  ? category === 'All'
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : `${categoryColors[category as GalleryCategory].bg} ${categoryColors[category as GalleryCategory].text} ${categoryColors[category as GalleryCategory].border}`
+                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }
+              `}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
         {loading ? (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
             Loading galleries...
           </div>
-        ) : galleryItems.length > 0 ? (
+        ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
-            {galleryItems.map((item) => (
+            {filteredItems.map((item) => (
               <div
                 key={item.id}
                 onClick={() => showModal({
@@ -245,9 +287,16 @@ export const ArchivesGalleryTemplate = () => {
                   )}
                 </div>
                 <div className="p-16 md:p-20">
-                  <div className="flex items-center gap-6 mb-8 text-xs text-gray-500">
-                    <Calendar className="size-12 text-gray-400" />
-                    <span className="font-medium">{item.date}</span>
+                  <div className="flex items-center justify-between gap-6 mb-8">
+                    <div className="flex items-center gap-6 text-xs text-gray-500">
+                      <Calendar className="size-12 text-gray-400" />
+                      <span className="font-medium">{item.date}</span>
+                    </div>
+                    {item.category && (
+                      <span className={`px-6 py-2 rounded-full text-[9px] md:text-[10px] font-medium border ${categoryColors[item.category].bg} ${categoryColors[item.category].text} ${categoryColors[item.category].border}`}>
+                        {item.category}
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
                     {item.title}
@@ -258,7 +307,7 @@ export const ArchivesGalleryTemplate = () => {
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-[20px] p-60 text-center text-gray-500">
-            No gallery items found.
+            No gallery items found for selected category.
           </div>
         )}
       </div>

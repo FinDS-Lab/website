@@ -110,9 +110,12 @@ import logoJl from '@/assets/images/logos/jl.png'
 const education: any[] = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
+    schoolKo: '한국과학기술원',
     period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
+    degreeKo: '공학박사',
     field: 'Industrial and Systems Engineering',
+    fieldKo: '산업및시스템공학',
     dissertation: {
       en: 'LUCIDE: A Lucid, User-Centric, Intelligent, Data-Inspired, End-to-End System Framework for Illustrative Decision-Making in Financial Asset Management Services — Orchestrating Transparency-Oriented Financial Investment Solutions via Empirical Evidence and Clairvoyant-Guided Approaches from Iridescent and Analytical Perspectives',
       ko: 'LUCIDE: 금융 자산 운용 서비스에서의 설명적 의사결정 지원을 위한 고객 중심의 데이터 기반 지능형 시스템 통합 프레임워크 — 입체적 관점에서의 경험적 증거와 예측 분석 기반 접근을 통한 운용 투명성 지향적 통합형 금융 투자 방법론'
@@ -122,18 +125,21 @@ const education: any[] = [
     ],
     researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
     leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
+      {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 - 2025-01'},
+      {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 - 2025-01'},
     ],
-    awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
+    awards: [{title: 'Best Doctoral Dissertation Award', titleKo: '우수박사학위논문상', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
     honors: [],
     logo: logoKaist
   },
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
+    schoolKo: '한국과학기술원',
     period: '2021-02',
     degree: 'Master of Science (M.S.)',
+    degreeKo: '공학석사',
     field: 'Industrial and Systems Engineering',
+    fieldKo: '산업및시스템공학',
     thesis: {
       en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics — Focus on the Republic of Korea\'s Case',
       ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 — 한국의 사례를 중심으로'
@@ -143,15 +149,18 @@ const education: any[] = [
     ],
     researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
-    awards: [{title: 'Best Master\'s Thesis Award', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    awards: [{title: 'Best Master\'s Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     honors: [],
     logo: logoKaist
   },
   {
     school: 'Kyung Hee University',
+    schoolKo: '경희대학교',
     period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
+    degreeKo: '공학사',
     field: 'Industrial and Management Systems Engineering',
+    fieldKo: '산업경영공학',
     undergraduateTheses: [
       {
         number: '2nd',
@@ -171,15 +180,15 @@ const education: any[] = [
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
     ],
     leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
+      {role: 'Head of Culture & Public Relations', roleKo: '문화홍보국장', context: '41st Student Council, College of Engineering', contextKo: '제41대 공과대학 학생회', period: '2017-01 - 2017-11'},
+      {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 - 2016-12'},
     ],
     awards: [
-      {title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'},
-      {title: '2nd Award', org: '4th Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
-      {title: '3rd Award', org: '3rd Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
+      {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'},
+      {title: '2nd Award', titleKo: '은상', org: '4th Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
+      {title: '3rd Award', titleKo: '동상', org: '3rd Research Symposium of Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
     ],
-    honors: [{title: 'Valedictorian', org: '1st out of 86 students'}],
+    honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students'}],
     logo: logoKyunghee
   },
 ]
@@ -612,7 +621,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-100 h-130 md:w-120 md:h-155 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
+                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
@@ -852,10 +861,13 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           </div>
                           {/* Degree - Largest */}
                           <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          {edu.degreeKo && <p className="text-xs md:text-sm font-medium text-gray-500 mt-1">{edu.degreeKo}</p>}
                           {/* School - Medium */}
-                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-4 md:mt-6">{edu.school}</p>
+                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-6 md:mt-8">{edu.school}</p>
+                          {edu.schoolKo && <p className="text-xs md:text-sm font-medium text-gray-500 mt-1">{edu.schoolKo}</p>}
                           {/* Field - Smallest */}
-                          <p className="text-xs md:text-sm text-gray-500 mt-2 md:mt-3">{edu.field}</p>
+                          <p className="text-xs md:text-sm text-gray-600 mt-4 md:mt-5">{edu.field}</p>
+                          {edu.fieldKo && <p className="text-[10px] md:text-xs text-gray-400 mt-1">{edu.fieldKo}</p>}
                         </div>
                       </div>
                       
@@ -1033,7 +1045,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
                                     <div>
                                       <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                      <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
+                                      {l.roleKo && <span className="text-[10px] text-gray-500 ml-4">({l.roleKo})</span>}
+                                      <span className="text-[10px] text-gray-500 block mt-2">{l.context}</span>
+                                      {l.contextKo && <span className="text-[9px] text-gray-400 block">{l.contextKo}</span>}
                                     </div>
                                     <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
                                   </div>
@@ -1062,6 +1076,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1">
                                             <span className="text-xs font-semibold text-gray-800">{h.title}</span>
+                                            {h.titleKo && <span className="text-[10px] text-gray-500 ml-4">({h.titleKo})</span>}
                                             <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
                                           </div>
                                         </div>
@@ -1077,6 +1092,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <div className="flex-1">
                                             <div>
                                               <span className="text-xs font-semibold text-gray-800">{a.title}</span>
+                                              {a.titleKo && <span className="text-[10px] text-gray-500 ml-4">({a.titleKo})</span>}
                                               {a.note && <span className="text-[10px] text-primary font-medium ml-4">({a.note})</span>}
                                             </div>
                                             <span className="text-[10px] text-gray-500 font-medium block mt-3">{a.org}</span>

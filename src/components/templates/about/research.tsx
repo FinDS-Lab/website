@@ -79,7 +79,7 @@ const researchAreas = [
   },
   {
     id: 'dim',
-    badge: '전략적 적응력',
+    badge: '전략을 완성하는 설득력',
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: dimImg,

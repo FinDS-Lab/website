@@ -121,27 +121,36 @@ const ResumeModal = () => (
     {/* Selected Research Projects */}
     <section className="mb-20">
       <h3 className="text-sm font-bold text-primary mb-12">Selected Research Projects</h3>
-      <div className="space-y-10">
-        <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
-          <div className="min-w-0 flex-1 md:pr-12">
-            <p className="text-xs font-semibold text-gray-900">Principal Investigator – Portfolio Risk Assessment with Explainable AI</p>
-            <p className="text-xs text-gray-500">Korea Institute of Public Finance</p>
+      <div className="space-y-12">
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
+            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Portfolio Risk Assessment with Explainable AI</p>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">May 2025 – Sep 2025</span>
           </div>
-          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">May 2025 – Sep 2025</span>
+          <ul className="text-xs text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Principal Investigator</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by Korea Institute of Public Finance</li>
+          </ul>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
-          <div className="min-w-0 flex-1 md:pr-12">
-            <p className="text-xs font-semibold text-gray-900">Project Leader – Foreign Currency Asset Management Impact Analysis</p>
-            <p className="text-xs text-gray-500">Bank of Korea</p>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
+            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Foreign Currency Asset Management Impact Analysis</p>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Nov 2023 – Jul 2024</span>
           </div>
-          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Nov 2023 – Jul 2024</span>
+          <ul className="text-xs text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (PI: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by Bank of Korea</li>
+          </ul>
         </div>
-        <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
-          <div className="min-w-0 flex-1 md:pr-12">
-            <p className="text-xs font-semibold text-gray-900">Project Leader – Financial Data-Driven Market Valuation Model</p>
-            <p className="text-xs text-gray-500">Shinhan Bank</p>
+        <div>
+          <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
+            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Financial Data-Driven Market Valuation Model</p>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Aug 2021 – Dec 2023</span>
           </div>
-          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Aug 2021 – Dec 2023</span>
+          <ul className="text-xs text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (PI: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by Shinhan Bank</li>
+          </ul>
         </div>
       </div>
     </section>

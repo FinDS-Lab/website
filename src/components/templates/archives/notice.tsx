@@ -7,6 +7,16 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 // Image Imports
 import banner5 from '@/assets/images/banner/5.webp'
 
+// Tag types and colors based on FINDS Lab Color Palette
+type NoticeTag = 'Awards' | 'Achievements' | 'Events' | 'General';
+
+const tagColors: Record<NoticeTag, { bg: string; text: string; border: string }> = {
+  'Awards': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
+  'Achievements': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
+  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
+  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
+};
+
 // Scroll animation hook
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -39,6 +49,7 @@ interface NoticeItem {
   description: string;
   isPinned?: boolean;
   author?: string;
+  tag?: NoticeTag;
 }
 
 // 상세 모달
@@ -122,9 +133,12 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
 export const ArchivesNoticeTemplate = () => {
   const [noticeItems, setNoticeItems] = useState<NoticeItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [selectedTag, setSelectedTag] = useState<NoticeTag | 'All'>('All')
   const { showModal } = useStoreModal()
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
+
+  const allTags: (NoticeTag | 'All')[] = ['All', 'Awards', 'Achievements', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -161,7 +175,8 @@ export const ArchivesNoticeTemplate = () => {
                 date: data.date || '',
                 description: data.excerpt || '',
                 isPinned: data.isPinned === 'true',
-                author: data.author || 'FINDS Lab'
+                author: data.author || 'FINDS Lab',
+                tag: (data.tag as NoticeTag) || 'General'
               }
             } catch (err) {
               return null
@@ -183,6 +198,10 @@ export const ArchivesNoticeTemplate = () => {
 
     fetchAllNotices()
   }, [])
+
+  const filteredItems = selectedTag === 'All' 
+    ? noticeItems 
+    : noticeItems.filter(item => item.tag === selectedTag)
 
   return (
     <div className="flex flex-col bg-white">
@@ -234,13 +253,35 @@ export const ArchivesNoticeTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
+        {/* Tag Filter */}
+        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`
+                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
+                transition-all duration-200 border
+                ${selectedTag === tag 
+                  ? tag === 'All'
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : `${tagColors[tag as NoticeTag].bg} ${tagColors[tag as NoticeTag].text} ${tagColors[tag as NoticeTag].border}`
+                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }
+              `}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
         {loading ? (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
             Loading notices...
           </div>
-        ) : noticeItems.length > 0 ? (
+        ) : filteredItems.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-20">
-            {noticeItems.map((item) => (
+            {filteredItems.map((item) => (
               <div
                 key={item.id}
                 onClick={() => showModal({
@@ -251,17 +292,25 @@ export const ArchivesNoticeTemplate = () => {
                   item.isPinned ? 'border-primary bg-primary/5' : 'border-[#f0f0f0]'
                 }`}
               >
-                <div className="flex items-center gap-16 mb-8 md:mb-12 text-xs md:text-sm text-gray-500">
+                <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12 text-xs md:text-sm text-gray-500 flex-wrap">
                   <div className="flex items-center gap-6">
                     <Calendar className="size-12 md:size-14 text-gray-400" />
                     <span className="font-medium">{item.date}</span>
                   </div>
-                  <span className="text-gray-300">|</span>
+                  <span className="text-gray-300 hidden md:inline">|</span>
                   <span>{item.author}</span>
                   {item.isPinned && (
                     <span className="px-6 md:px-8 py-2 bg-primary text-white text-[10px] md:text-xs font-semibold rounded-md">
                       PINNED
                     </span>
+                  )}
+                  {item.tag && (
+                    <>
+                      <span className="text-gray-300 hidden md:inline">|</span>
+                      <span className={`px-8 py-2 rounded-full text-[10px] md:text-xs font-medium border ${tagColors[item.tag].bg} ${tagColors[item.tag].text} ${tagColors[item.tag].border}`}>
+                        {item.tag}
+                      </span>
+                    </>
                   )}
                 </div>
                 <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8 group-hover:text-primary transition-colors">
@@ -275,7 +324,7 @@ export const ArchivesNoticeTemplate = () => {
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-40 md:p-60 text-center">
-            <p className="text-xs md:text-[14px] text-[#7f8894]">No items</p>
+            <p className="text-xs md:text-[14px] text-[#7f8894]">No items found for selected filter</p>
           </div>
         )}
       </div>
