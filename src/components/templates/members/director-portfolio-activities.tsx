@@ -139,7 +139,7 @@ const employment = [
     position: 'Assistant Professor',
     organization: 'Gachon University',
     period: '2026-03 – Present',
-    location: 'Department of Big Data Business Management, Division of Finance & Big Data, College of Business',
+    location: 'Big Data Business Management Major, Department of Finance & Big Data, College of Business',
     krOrg: '조교수 / 가천대학교 경영대학 금융·빅데이터학부',
     logo: logoGcu
   },
