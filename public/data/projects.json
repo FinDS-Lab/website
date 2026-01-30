@@ -103,7 +103,7 @@
     "fundingAgency": "Korea Credit Information Services",
     "fundingAgencyKo": "한국신용정보원",
     "amount": "N/A",
-    "type": "government",
+    "type": "industry",
     "roles": {
       "principalInvestigator": "김우창",
       "leadResearcher": "최인수",

@@ -126,7 +126,7 @@ export const ArchivesPlaylistTemplate = () => {
     }
   }, [])
   
-  // Play next track function - destroy player and let useEffect create new one
+  // Play next track function - use loadVideoById for smoother transition
   const playNextTrack = useCallback(() => {
     const currentPlaylists = playlistsRef.current
     const currentIdx = currentIndexRef.current
@@ -137,18 +137,20 @@ export const ArchivesPlaylistTemplate = () => {
     const nextVideo = currentPlaylists[nextIndex]
     
     if (nextVideo?.videoId) {
-      // Destroy existing player so useEffect creates new one with autoplay
+      // If player exists, use loadVideoById for smoother transition with autoplay
       if (playerRef.current) {
-        playerRef.current.destroy()
-        playerRef.current = null
+        playerRef.current.loadVideoById(nextVideo.videoId)
+        setIsPlaying(true)
+      } else {
+        // No player exists, destroy and let useEffect create new one
+        setIsPlaying(true)
       }
       setCurrentVideo(nextVideo)
       setCurrentIndex(nextIndex)
-      setIsPlaying(true)
     }
   }, [])
   
-  // Play previous track function - destroy player and let useEffect create new one
+  // Play previous track function - use loadVideoById for smoother transition
   const playPrevTrack = useCallback(() => {
     const currentPlaylists = playlistsRef.current
     const currentIdx = currentIndexRef.current
@@ -159,23 +161,34 @@ export const ArchivesPlaylistTemplate = () => {
     const prevVideo = currentPlaylists[prevIndex]
     
     if (prevVideo?.videoId) {
-      // Destroy existing player so useEffect creates new one with autoplay
+      // If player exists, use loadVideoById for smoother transition with autoplay
       if (playerRef.current) {
-        playerRef.current.destroy()
-        playerRef.current = null
+        playerRef.current.loadVideoById(prevVideo.videoId)
+        setIsPlaying(true)
+      } else {
+        // No player exists, let useEffect create new one
+        setIsPlaying(true)
       }
       setCurrentVideo(prevVideo)
       setCurrentIndex(prevIndex)
-      setIsPlaying(true)
     }
   }, [])
 
-  // YouTube Player 초기화
+  // YouTube Player 초기화 - only creates player once
+  const playerInitializedRef = useRef<boolean>(false)
+  
   useEffect(() => {
-    if (!isApiReady || !currentVideo || !playerContainerRef.current) return
+    // Only run when API is ready
+    if (!isApiReady) return
     
-    // If player already exists, skip (player is managed by prev/next functions)
-    if (playerRef.current) return
+    // Skip if player is already initialized
+    if (playerInitializedRef.current) return
+    
+    // Skip if no video selected yet or no container
+    if (!currentVideo || !playerContainerRef.current) return
+    
+    // Mark as initialized to prevent recreation
+    playerInitializedRef.current = true
 
     const currentVideoId = currentVideo.videoId
     
@@ -209,15 +222,18 @@ export const ArchivesPlaylistTemplate = () => {
         },
       },
     })
-
+  }, [isApiReady, currentVideo, playNextTrack])
+  
+  // Separate cleanup effect for unmount only
+  useEffect(() => {
     return () => {
-      // Cleanup only on unmount or when currentVideo changes
       if (playerRef.current) {
         playerRef.current.destroy()
         playerRef.current = null
       }
+      playerInitializedRef.current = false
     }
-  }, [isApiReady, currentVideo, playNextTrack])
+  }, [])
 
   const togglePlayPause = useCallback(() => {
     if (!playerRef.current) return
@@ -270,6 +286,10 @@ export const ArchivesPlaylistTemplate = () => {
 
   const handlePlayVideo = (item: PlaylistItem, index: number) => {
     if (item.videoId) {
+      // If player exists, use loadVideoById for smoother transition with autoplay
+      if (playerRef.current && playerInitializedRef.current) {
+        playerRef.current.loadVideoById(item.videoId)
+      }
       setCurrentVideo(item)
       setCurrentIndex(index)
       setIsMinimized(false)
@@ -282,6 +302,7 @@ export const ArchivesPlaylistTemplate = () => {
       playerRef.current.destroy()
       playerRef.current = null
     }
+    playerInitializedRef.current = false
     setCurrentVideo(null)
     setIsMinimized(false)
     setIsPlaying(false)

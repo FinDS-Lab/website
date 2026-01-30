@@ -3,9 +3,9 @@ import { Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import fdsImg from '@/assets/images/icons/10.png'
-import baImg from '@/assets/images/icons/11.png'
-import dimImg from '@/assets/images/icons/12.png'
+import fdsImg from '@/assets/images/icons/fds.webp'
+import baImg from '@/assets/images/icons/ba.webp'
+import dimImg from '@/assets/images/icons/dim.webp'
 // Core Values Images (gold-colored illustrations)
 import insightImg from '@/assets/images/icons/insight.webp'
 import solutionImg from '@/assets/images/icons/solution.webp'
@@ -29,7 +29,7 @@ const focusAreas = [
     ]
   },
   {
-    image: dimImg,
+    image: baImg,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     items: [
@@ -44,7 +44,7 @@ const focusAreas = [
     ]
   },
   {
-    image: baImg,
+    image: dimImg,
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [

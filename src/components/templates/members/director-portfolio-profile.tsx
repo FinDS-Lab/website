@@ -128,7 +128,7 @@ const education: any[] = [
       {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 - 2025-01'},
       {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 - 2025-01'},
     ],
-    awards: [{title: 'Best Doctoral Dissertation Award', titleKo: '우수박사학위논문상', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
+    awards: [{title: 'Best Doctoral Dissertation Award', titleKo: '우수박사학위논문상', org: 'Korean Operations Research and Management Science Society (KORMS)'}],
     honors: [],
     logo: logoKaist
   },
@@ -149,7 +149,7 @@ const education: any[] = [
     ],
     researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
-    awards: [{title: 'Best Master Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    awards: [{title: 'Best Master Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE)'}],
     honors: [],
     logo: logoKaist
   },
@@ -682,7 +682,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
@@ -993,25 +993,35 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Research Group */}
                           {edu.researchGroup && (
-                            <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Research Group</p>
-                              <a 
-                                href={edu.researchGroup.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-researchGroup`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <div className="flex items-center gap-8">
-                                  <Building className="size-14 text-[#D6B14D] shrink-0" />
-                                  <div className="flex flex-col">
-                                    <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
-                                    {edu.researchGroup.department && (
-                                      <span className="text-[10px] text-gray-500">{edu.researchGroup.department}</span>
-                                    )}
-                                  </div>
+                                <p className="text-[10px] font-bold text-gray-500">Research Group</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-researchGroup`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-researchGroup`) && (
+                                <div className="p-12">
+                                  <a 
+                                    href={edu.researchGroup.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
+                                  >
+                                    <div className="flex items-center gap-8">
+                                      <Building className="size-14 text-[#D6B14D] shrink-0" />
+                                      <div className="flex flex-col">
+                                        <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                        {edu.researchGroup.department && (
+                                          <span className="text-[10px] text-gray-500">{edu.researchGroup.department}</span>
+                                        )}
+                                      </div>
+                                    </div>
+                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0" />
+                                  </a>
                                 </div>
-                                <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0" />
-                              </a>
+                              )}
                             </div>
                           )}
                           
