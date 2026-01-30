@@ -123,7 +123,7 @@
         "nameKo": "(Jung Ph.D.)",
         "degrees": ["phd"],
         "periods": {
-          "phd": "2019.09 – 2025.02"
+          "phd": "2019-09 – 2025-02"
         },
         "education": [
           {
@@ -153,8 +153,8 @@
         "nameKo": "(Kang Ph.D.)",
         "degrees": ["ms", "phd"],
         "periods": {
-          "ms": "2018.03 – 2020.02",
-          "phd": "2020.03 – 2024.08"
+          "ms": "2018-03 – 2020-02",
+          "phd": "2020-03 – 2024-08"
         },
         "education": [
           {
@@ -194,7 +194,7 @@
         "nameKo": "(Yoon M.S.)",
         "degrees": ["ms"],
         "periods": {
-          "ms": "2023.03 – 2025.02"
+          "ms": "2023-03 – 2025-02"
         },
         "education": [
           {
@@ -228,7 +228,7 @@
         "degrees": ["ur"],
         "cohort": "1기",
         "periods": {
-          "ur": "2022.09 – 2024.08"
+          "ur": "2022-09 – 2024-08"
         },
         "education": [
           {
@@ -253,7 +253,7 @@
         "degrees": ["ur"],
         "cohort": "1기",
         "periods": {
-          "ur": "2021.03 – 2023.02"
+          "ur": "2021-03 – 2023-02"
         },
         "education": [
           {
