@@ -1,0 +1,43 @@
+{
+  "lastUpdated": "2026-01-30T00:00:00Z",
+  "scholarId": "eVd5dzMAAAAJ",
+  "scholarUrl": "https://scholar.google.com/citations?user=eVd5dzMAAAAJ&hl=en",
+  "name": "Insu Choi",
+  "affiliation": "Gachon University",
+  "interests": ["Financial Data Science", "Business Analytics", "Machine Learning"],
+  "metrics": {
+    "totalCitations": 160,
+    "citations5y": 160,
+    "hIndex": 8,
+    "hIndex5y": 8,
+    "i10Index": 7,
+    "i10Index5y": 7,
+    "i5Index": 10,
+    "gIndex": 12,
+    "eIndex": 3.46,
+    "mQuotient": 1.6
+  },
+  "citationsByYear": {},
+  "pubStats": {
+    "totalPublications": 0,
+    "journals": 0,
+    "conferences": 0,
+    "books": 0,
+    "indexing": {
+      "scie": 0,
+      "ssci": 0,
+      "ahci": 0,
+      "esci": 0,
+      "scopus": 0,
+      "kci": 0,
+      "webOfScience": 0
+    },
+    "authorship": {
+      "firstAuthor": 0,
+      "corresponding": 0
+    },
+    "firstPubYear": 2021,
+    "publicationsByYear": {}
+  },
+  "note": "Auto-updated daily via GitHub Actions. Run 'python scripts/fetch_scholar.py' to update manually."
+}
