@@ -667,7 +667,7 @@ export const ProjectsTemplate = () => {
                             
                             return (
                               <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
-                                {/* Mobile: Full-width top bar - solid color (same as Director Portfolio Academic) */}
+                                {/* Mobile: Full-width top bar - solid color with Type | Role format */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
                                   background: project.type === 'government' ? '#AC0E0E' :
                                     project.type === 'industry' ? '#D6B14D' :
@@ -676,7 +676,15 @@ export const ProjectsTemplate = () => {
                                     '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
-                                    {/* Role | Type Label */}
+                                    {/* Type | Role Label */}
+                                    <span className={`text-xs font-bold tracking-wide ${
+                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                    }`}>
+                                      {config?.label || project.type} Project
+                                    </span>
+                                    {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && (
+                                      <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
+                                    )}
                                     <span className={`text-xs font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
@@ -684,14 +692,6 @@ export const ProjectsTemplate = () => {
                                        project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 
                                        project.roles.visitingResearcher === '최인수' ? 'Visiting Researcher' :
                                        project.roles.researchers?.includes('최인수') ? 'Researcher' : ''}
-                                    </span>
-                                    {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && (
-                                      <span className={`w-px h-12 mx-4 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
-                                    )}
-                                    <span className={`text-xs font-bold tracking-wide ${
-                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
-                                    }`}>
-                                      {config?.label || project.type} Project
                                     </span>
                                   </div>
                                   {/* Right side: Status badge */}

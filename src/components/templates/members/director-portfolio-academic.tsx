@@ -1618,7 +1618,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
-                        <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
+                        <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">0</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1637,7 +1637,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
-                        <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
+                        <span className="px-8 py-2 bg-[#E8C95F] text-white text-[10px] font-bold rounded-full">4</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1695,7 +1695,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Program Committee</p>
-                        <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
+                        <span className="px-8 py-2 bg-[#F5DFA0] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1732,7 +1732,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Session Chair</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{sessionChairs.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{sessionChairs.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.sessionChair ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1769,7 +1769,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D64545'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1802,7 +1802,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E88A8A'}}>{conferenceReviewers.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.conferenceReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1960,7 +1960,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             const directorRole = getDirectorRole()
                             return (
                               <div key={index} className="hover:bg-gray-50/50 transition-all relative overflow-hidden">
-                                {/* Mobile: Full-width top bar - solid color (same as Projects page) */}
+                                {/* Mobile: Full-width top bar - solid color with Type | Role format */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
                                   background: project.type === 'government' ? '#AC0E0E' :
                                     project.type === 'industry' ? '#D6B14D' :
@@ -1968,18 +1968,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                     project.type === 'academic' ? '#D6B14D' :
                                     '#6B7280'
                                 }}>
-                                  <div className="flex items-center gap-6">
-                                    {/* Type Label */}
+                                  <div className="flex items-center gap-8">
+                                    {/* Type | Role Label */}
                                     <span className={`text-xs font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {typeLabels[project.type]} Project
                                     </span>
-                                    {/* Divider */}
-                                    <span className={`text-[10px] ${project.type === 'institution' ? 'text-gray-600' : 'text-white/60'}`}>|</span>
-                                    {/* Role */}
-                                    <span className={`text-xs font-bold ${
-                                      project.type === 'institution' ? 'text-gray-700' : 'text-white/90'
+                                    <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
+                                    <span className={`text-xs font-bold tracking-wide ${
+                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {directorRole}
                                     </span>
