@@ -134,7 +134,7 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      가천대학교 가천관 614호
+                      가천대학교 가천관 304호
                     </p>
                     <p className="text-xs text-gray-400 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
@@ -148,7 +148,7 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-gray-600 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      Room 614, Gachon Hall, Gachon University
+                      Room 304, Gachon Hall, Gachon University
                     </p>
                     <p className="text-xs text-gray-400 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
@@ -185,7 +185,7 @@ export const LocationTemplate = () => {
                       <div className="w-16 h-px bg-gradient-to-r from-primary/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      가천대학교 가천관 614호
+                      가천대학교 가천관 304호
                     </p>
                     <p className="text-xs text-gray-500 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
@@ -199,7 +199,7 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      Room 614, Gachon Hall, Gachon University
+                      Room 304, Gachon Hall, Gachon University
                     </p>
                     <p className="text-xs text-gray-500 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,

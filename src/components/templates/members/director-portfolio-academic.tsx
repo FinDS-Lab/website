@@ -1363,7 +1363,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
-                    <p className="text-xs font-semibold text-gray-800">Room 614, Gachon Hall</p>
+                    <p className="text-xs font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">

@@ -1433,8 +1433,8 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 614, Gachon Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 614호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 304호</p>
                   </div>
                 </div>
 
