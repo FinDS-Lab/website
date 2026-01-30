@@ -86,6 +86,19 @@ export const ArchivesPlaylistTemplate = () => {
   const playerRef = useRef<YTPlayer | null>(null)
   const playerContainerRef = useRef<HTMLDivElement>(null)
   const contentAnimation = useScrollAnimation()
+  
+  // Refs for accessing current state in callbacks
+  const playlistsRef = useRef<PlaylistItem[]>([])
+  const currentIndexRef = useRef<number>(-1)
+  
+  // Keep refs in sync with state
+  useEffect(() => {
+    playlistsRef.current = playlists
+  }, [playlists])
+  
+  useEffect(() => {
+    currentIndexRef.current = currentIndex
+  }, [currentIndex])
 
   // PC가 아니면 홈으로 리다이렉트
   if (!isPC) {
@@ -110,6 +123,23 @@ export const ArchivesPlaylistTemplate = () => {
 
     return () => {
       window.onYouTubeIframeAPIReady = () => {}
+    }
+  }, [])
+  
+  // Play next track function
+  const playNextTrack = useCallback(() => {
+    const currentPlaylists = playlistsRef.current
+    const currentIdx = currentIndexRef.current
+    
+    if (currentPlaylists.length === 0) return
+    
+    const nextIndex = (currentIdx + 1) % currentPlaylists.length
+    const nextVideo = currentPlaylists[nextIndex]
+    
+    if (nextVideo?.videoId) {
+      setCurrentVideo(nextVideo)
+      setCurrentIndex(nextIndex)
+      setIsPlaying(true)
     }
   }, [])
 
@@ -147,6 +177,8 @@ export const ArchivesPlaylistTemplate = () => {
             setIsPlaying(false)
           } else if (event.data === YT_STATE.ENDED) {
             setIsPlaying(false)
+            // Auto-play next track
+            playNextTrack()
           }
         },
       },
@@ -158,7 +190,7 @@ export const ArchivesPlaylistTemplate = () => {
         playerRef.current = null
       }
     }
-  }, [isApiReady, currentVideo?.videoId])
+  }, [isApiReady, currentVideo?.videoId, playNextTrack])
 
   const togglePlayPause = useCallback(() => {
     if (!playerRef.current) return

@@ -773,13 +773,13 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
                     <div className="mb-16 pb-12 border-b border-gray-100">
-                      <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
+                      <h4 className="text-sm md:text-base font-bold text-primary">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
                           <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                          <span className="text-xs md:text-sm text-primary font-medium leading-relaxed">
+                          <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>
                         </li>

@@ -50,7 +50,7 @@ export const researchInterests = [
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Evidence-Based Decision Support Systems',
+      'Empirical Evidence-Based Decision Support Systems',
       'Human-Centered Analytics & AI Augmentation',
       'Iridescent View Extraction for Advanced Decision Making'
     ]

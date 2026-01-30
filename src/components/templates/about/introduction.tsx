@@ -48,12 +48,12 @@ const focusAreas = [
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [
-      'Evidence-Based Decision Support Systems',
+      'Empirical Evidence-Based Decision Support Systems',
       'Human-Centered Analytics & AI Augmentation',
       'Iridescent View Extraction for Advanced Decision Making'
     ],
     itemsKo: [
-      '증거 기반 의사결정 지원 시스템',
+      '경험적 증거 기반 의사결정 지원 시스템',
       '인간 중심 분석 및 AI 증강',
       '고급 의사결정을 위한 다각적 관점 추출'
     ]
@@ -551,7 +551,7 @@ export const AboutIntroductionTemplate = () => {
                                   {(focusLang === 'ko' ? area.itemsKo : area.items).map((item, idx) => (
                                     <li key={idx} className="flex items-start gap-8">
                                       <span className="size-5 rounded-full shrink-0 mt-6 bg-[#D6B14D]/40"/>
-                                      <span className="text-xs md:text-sm text-[#D6B14D] font-medium leading-relaxed">
+                                      <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                                         {item}
                                       </span>
                                     </li>
