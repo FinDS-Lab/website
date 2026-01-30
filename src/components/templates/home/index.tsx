@@ -176,7 +176,20 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <span className="text-xl md:text-2xl lg:text-[26px]">📰</span>
+                  <svg 
+                    className="w-[22px] h-[22px] md:w-[26px] md:h-[26px] lg:w-[28px] lg:h-[28px]" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="#D6B14D" 
+                    strokeWidth="1.8" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                    <path d="M18 14h-8" />
+                    <path d="M15 18h-5" />
+                    <path d="M10 6h8v4h-8V6Z" />
+                  </svg>
                   <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">News</h3>
                 </div>
                 <Link
@@ -210,7 +223,18 @@ export const HomeTemplate = () => {
             <div className="flex-1">
               <div className="flex items-center justify-between mb-16 md:mb-20 lg:mb-24">
                 <div className="flex items-center gap-8">
-                  <span className="text-xl md:text-2xl lg:text-[26px]">📢</span>
+                  <svg 
+                    className="w-[22px] h-[22px] md:w-[26px] md:h-[26px] lg:w-[28px] lg:h-[28px]" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="#D6B14D" 
+                    strokeWidth="1.8" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="m3 11 18-5v12L3 13v-2z" />
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
+                  </svg>
                   <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">Notice</h3>
                 </div>
                 <Link
