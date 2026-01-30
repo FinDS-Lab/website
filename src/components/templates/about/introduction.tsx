@@ -17,31 +17,31 @@ const focusAreas = [
     image: fdsImg,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
-    desc: 'We collect and analyze <b>financial market data</b> to uncover hidden <b>patterns</b> and generate actionable <b>insights</b>. Our work supports better <b>investment strategies</b> and more robust <b>risk management</b> practices.',
-    descKo: '금융 시장의 <b>복잡한 데이터</b>를 수집·정제하고, <b>통계적 분석</b>을 통해 시장 흐름과 <b>숨겨진 패턴</b>을 발견합니다.<br/>이를 바탕으로 <b>투자 전략</b>과 <b>위험 관리</b>에 필요한 인사이트를 도출합니다.',
+    desc: 'We analyze <b>financial market data</b> to uncover <b>hidden patterns</b> and generate actionable <b>insights</b> for better <b>investment strategies</b> and <b>risk management</b>.',
+    descKo: '금융 시장 <b>데이터 분석</b>을 통해 <b>숨겨진 패턴</b>을 발견하고, <b>투자 전략</b> 및 <b>위험 관리</b>를 위한 인사이트를 도출합니다.',
   },
   {
     image: baImg,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
-    desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b>. By transforming raw data into meaningful patterns, we deliver <b>actionable strategies</b> that drive competitive advantage.',
-    descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 경영 및 산업 환경의 복잡한 문제를 분석합니다.<br/><b>실행 가능한 전략</b>과 <b>솔루션</b>을 제안하여 기업의 <b>경쟁력 강화</b>에 기여합니다.',
+    desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b> to deliver <b>actionable strategies</b> for <b>competitive advantage</b>.',
+    descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 복잡한 문제를 분석하고, <b>경쟁력 강화</b>를 위한 <b>실행 전략</b>을 제시합니다.',
   },
   {
     image: dimImg,
-    title: 'Data-Informed Decisions',
+    title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
-    desc: 'We support <b>clearer</b> and <b>more rational decisions</b> through <b>objective</b> analysis combined with <b>iridescent view extraction</b> — multi-perspective interpretation and synthesis for informed decisions.',
-    descKo: '<b>객관적</b>이면서도 <b>다양한 관점에서의 해석과 종합</b>을 바탕으로 <b>명확하고 합리적인 의사결정</b>을 지원합니다.<br/><b>데이터 기반 판단</b>으로 <b>경영 및 산업 환경의 불확실성</b>을 줄이고 <b>성공 가능성</b>을 높입니다.',
+    desc: 'We support <b>rational decisions</b> through <b>objective analysis</b> and <b>iridescent view extraction</b> — multi-perspective interpretation for <b>reducing uncertainty</b>.',
+    descKo: '<b>객관적 분석</b>과 <b>다각적 관점의 해석</b>을 통해 <b>합리적 의사결정</b>을 지원하고, <b>불확실성</b>을 줄입니다.',
   },
 ]
 
-// Core Values Data - 통찰, 솔루션, 철학
+// Core Values Data - 관점, 방향성, 철학
 const coreValues = [
   {
     image: insightImg,
-    label: 'Insight',
-    labelKo: '통찰',
+    label: 'Perspective',
+    labelKo: '관점',
     title: 'Multiple perspectives, practical frameworks.',
     titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
     description: 'We draw on <b>data science</b> and <b>business analytics</b> to develop <b>frameworks</b> that support <b>real-world applications</b> and <b>sound decision-making</b>.',
@@ -49,12 +49,12 @@ const coreValues = [
   },
   {
     image: solutionImg,
-    label: 'Solution',
-    labelKo: '솔루션',
+    label: 'Direction',
+    labelKo: '방향성',
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
-    description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
-    descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
+    description: 'Our research aims to be a <b>solution</b> that helps practitioners <b>navigate uncertainty</b> in <b>business and industrial environments</b>.',
+    descriptionKo: '저희 FINDS Lab의 연구는 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 <b>솔루션</b>이 되기를 바랍니다.',
   },
   {
     image: philosophyImg,
@@ -616,8 +616,8 @@ export const AboutIntroductionTemplate = () => {
                               >
                                 {/* Icon - Matching Research Areas Layout */}
                                 <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
-                                  <div className="absolute inset-0 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" style={{ background: 'rgba(214, 177, 77, 0.15)' }} />
-                                  <div className="absolute inset-0 rounded-xl shadow-sm flex items-center justify-center overflow-hidden" style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
+                                  <div className="absolute inset-0 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" style={{ background: 'rgba(214, 177, 77, 0.2)' }} />
+                                  <div className="absolute inset-0 rounded-xl shadow-sm flex items-center justify-center overflow-hidden" style={{ background: '#FFF9E6' }}>
                                     <img loading="lazy" src={value.image} alt={value.label} className="w-100 h-100 md:w-140 md:h-140 object-contain" />
                                   </div>
                                 </div>

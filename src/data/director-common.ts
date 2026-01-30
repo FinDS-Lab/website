@@ -4,7 +4,7 @@
 // Citation Statistics (Google Scholar) - Fallback values
 // Real data is fetched from /data/scholar.json (auto-updated daily)
 export const citationStats = [
-  { label: 'Citations', count: 160, key: 'totalCitations' },
+  { label: 'Citations', count: 161, key: 'totalCitations' },
   { label: 'h-index', count: 8, key: 'hIndex' },
   { label: 'g-index', count: 12, key: 'gIndex' },
   { label: 'i10-index', count: 7, key: 'i10Index' },
@@ -50,9 +50,9 @@ export const researchInterests = [
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Iridescent View Extraction for Multi-Perspective Interpretation',
       'Evidence-Based Decision Support Systems',
-      'Human-Centered Analytics & AI Augmentation'
+      'Human-Centered Analytics & AI Augmentation',
+      'Iridescent View Extraction'
     ]
   },
 ]

@@ -23,9 +23,11 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install scholarly
+          pip install scholarly fake-useragent
       
       - name: Fetch Google Scholar data
+        env:
+          SCRAPER_API_KEY: ${{ secrets.SCRAPER_API_KEY }}
         run: |
           python scripts/fetch_scholar.py
         continue-on-error: true  # Don't fail the whole workflow if scraping fails

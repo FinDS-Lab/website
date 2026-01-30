@@ -2,26 +2,65 @@
 """
 Google Scholar Citation Fetcher
 Fetches citation data and calculates various bibliometric indices.
-Run daily via GitHub Actions.
+Run daily via GitHub Actions at 3:00 PM KST (6:00 AM UTC).
 
 Indices calculated:
 - h-index: Author has h papers with at least h citations each
 - g-index: Largest g where top g papers have ≥ g² total citations
 - i10-index: Number of publications with 10+ citations
+- i5-index: Number of publications with 5+ citations
 - e-index: Excess citations beyond h² in h-core
 - m-quotient: h-index / years since first publication
+
+Proxy Support:
+- Uses scholarly's built-in free proxy (FreeProxies)
+- Retries with different proxies on failure
+- Falls back to existing data if all attempts fail
 """
 
 import json
 import os
-from datetime import datetime
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 try:
-    from scholarly import scholarly
+    from scholarly import scholarly, ProxyGenerator
 except ImportError:
     print("scholarly not installed. Run: pip install scholarly")
     exit(1)
+
+# Proxy setup for bypassing Google Scholar blocks
+def setup_proxy():
+    """Setup free proxy to bypass Google Scholar blocking."""
+    pg = ProxyGenerator()
+    
+    # Try FreeProxies first (most reliable free option)
+    try:
+        print("Setting up free proxy...")
+        success = pg.FreeProxies()
+        if success:
+            scholarly.use_proxy(pg)
+            print("✓ Free proxy configured successfully")
+            return True
+    except Exception as e:
+        print(f"Free proxy setup failed: {e}")
+    
+    # Try ScraperAPI if environment variable is set
+    scraper_api_key = os.environ.get('SCRAPER_API_KEY')
+    if scraper_api_key:
+        try:
+            print("Setting up ScraperAPI proxy...")
+            success = pg.ScraperAPI(scraper_api_key)
+            if success:
+                scholarly.use_proxy(pg)
+                print("✓ ScraperAPI proxy configured successfully")
+                return True
+        except Exception as e:
+            print(f"ScraperAPI setup failed: {e}")
+    
+    print("⚠ No proxy configured, attempting direct connection...")
+    return False
 
 # Configuration
 SCHOLAR_ID = "p9JwRLwAAAAJ"  # Google Scholar ID for Insu Choi
@@ -185,7 +224,7 @@ def fetch_scholar_data() -> dict:
         m_quotient = calculate_m_quotient(h_index, first_year)
         
         return {
-            'lastUpdated': datetime.utcnow().isoformat() + 'Z',
+            'lastUpdated': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
             'scholarId': SCHOLAR_ID,
             'scholarUrl': f'https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en',
             'name': name,
@@ -219,8 +258,30 @@ def main():
     print("Google Scholar Citation Fetcher")
     print("=" * 50)
     
-    # Fetch Scholar data
-    scholar_data = fetch_scholar_data()
+    # Setup proxy before fetching
+    MAX_RETRIES = 3
+    scholar_data = None
+    
+    for attempt in range(MAX_RETRIES):
+        print(f"\nAttempt {attempt + 1}/{MAX_RETRIES}")
+        
+        # Setup proxy (will try different proxies on each attempt)
+        setup_proxy()
+        
+        # Add delay between attempts
+        if attempt > 0:
+            delay = 5 * attempt  # 5s, 10s
+            print(f"Waiting {delay}s before retry...")
+            time.sleep(delay)
+        
+        # Fetch Scholar data
+        scholar_data = fetch_scholar_data()
+        
+        if scholar_data is not None:
+            print("✓ Data fetched successfully!")
+            break
+        else:
+            print(f"⚠ Attempt {attempt + 1} failed")
     
     # Load existing data if fetch failed
     if scholar_data is None and OUTPUT_PATH.exists():
@@ -228,11 +289,11 @@ def main():
         with open(OUTPUT_PATH, 'r', encoding='utf-8') as f:
             scholar_data = json.load(f)
         scholar_data['fetchError'] = True
-        scholar_data['lastAttempt'] = datetime.utcnow().isoformat() + 'Z'
+        scholar_data['lastAttempt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
     elif scholar_data is None:
         print("No existing data and fetch failed")
         scholar_data = {
-            'lastUpdated': datetime.utcnow().isoformat() + 'Z',
+            'lastUpdated': datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
             'scholarId': SCHOLAR_ID,
             'scholarUrl': f'https://scholar.google.com/citations?user={SCHOLAR_ID}&hl=en',
             'fetchError': True,
