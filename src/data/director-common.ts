@@ -13,8 +13,8 @@ export const citationStats = [
 
 // Google Scholar configuration
 export const scholarConfig = {
-  id: 'eVd5dzMAAAAJ',
-  url: 'https://scholar.google.com/citations?user=eVd5dzMAAAAJ&hl=en',
+  id: 'p9JwRLwAAAAJ',
+  url: 'https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en',
   dataPath: '/data/scholar.json'
 }
 

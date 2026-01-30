@@ -1,11 +1,15 @@
 import { memo, useEffect, useRef, useState } from 'react'
-import { Search, Zap, Lightbulb, Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
 import fdsImg from '@/assets/images/icons/10.png'
 import baImg from '@/assets/images/icons/11.png'
 import dimImg from '@/assets/images/icons/12.png'
+// Core Values Images (gold-colored illustrations)
+import insightImg from '@/assets/images/icons/insight.webp'
+import solutionImg from '@/assets/images/icons/solution.webp'
+import philosophyImg from '@/assets/images/icons/philosophy.webp'
 
 // Focus Areas Data - 금융 데이터 사이언스, 비즈니스 애널리틱스, 데이터 기반 의사결정
 const focusAreas = [
@@ -35,34 +39,29 @@ const focusAreas = [
 // Core Values Data - 통찰, 솔루션, 철학
 const coreValues = [
   {
-    icon: Search,
+    image: insightImg,
     label: 'Insight',
     labelKo: '통찰',
-    number: '01',
     title: 'Multiple perspectives, practical frameworks.',
     titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
     description: 'We draw on <b>data science</b> and <b>business analytics</b> to develop <b>frameworks</b> that support <b>real-world applications</b> and <b>sound decision-making</b>.',
     descriptionKo: '<b>데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 방법론으로 인사이트를 도출하고,<br/><b>실용적 적용</b>과 <b>합리적 의사결정</b>을 지원하는 프레임워크를 개발합니다.',
   },
   {
-    icon: Zap,
+    image: solutionImg,
     label: 'Solution',
     labelKo: '솔루션',
-    number: '02',
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our work helps practitioners <b>navigate uncertainty</b> in <b>financial markets</b> and <b>business operations</b>.',
     descriptionKo: '저희 FINDS Lab의 연구가 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 데 도움이 되기를 바랍니다.',
   },
   {
-    icon: Lightbulb,
+    image: philosophyImg,
     label: 'Philosophy',
     labelKo: '철학',
-    number: '03',
     title: 'des avenirs lucides — lucid futures',
     titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
-    subtitle: '',
-    subtitleKo: '',
     description: 'Through <b>data science</b>, we strive to bring <b>clarity</b> to complex problems and contribute to a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future.',
     descriptionKo: '<b>데이터 사이언스</b>로 복잡한 현실 문제에 <b>명확한 해답</b>을 제시하고,<br/>더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래에 기여하고자 합니다.',
   },
@@ -598,61 +597,43 @@ export const AboutIntroductionTemplate = () => {
 
                           {/* 3 Cards Grid */}
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
-                            {coreValues.map((value, index) => {
-                              const Icon = value.icon
-                              return (
-                                <div 
-                                  key={index} 
-                                  className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
-                                  style={{ 
-                                    background: 'rgba(255, 255, 255, 0.03)', 
-                                    borderColor: 'rgba(214, 177, 77, 0.15)',
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'rgba(214, 177, 77, 0.08)'
-                                    e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.3)'
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
-                                    e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.15)'
-                                  }}
-                                >
-                                  {/* Icon & Number */}
-                                  <div className="flex items-center justify-between mb-12">
-                                    <div className="size-44 md:size-48 rounded-xl flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.15)' }}>
-                                      <Icon size={22} style={{ color: '#D6B14D' }} />
-                                    </div>
-                                    <span className="text-2xl md:text-3xl font-black" style={{ color: 'rgba(214, 177, 77, 0.2)' }}>
-                                      {value.number}
-                                    </span>
+                            {coreValues.map((value, index) => (
+                              <div 
+                                key={index} 
+                                className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
+                                style={{ 
+                                  background: 'rgba(255, 255, 255, 0.03)', 
+                                  borderColor: 'rgba(214, 177, 77, 0.15)',
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.background = 'rgba(214, 177, 77, 0.08)'
+                                  e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.3)'
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+                                  e.currentTarget.style.borderColor = 'rgba(214, 177, 77, 0.15)'
+                                }}
+                              >
+                                {/* Icon - Matching Research Areas Layout */}
+                                <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
+                                  <div className="absolute inset-0 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" style={{ background: 'rgba(214, 177, 77, 0.15)' }} />
+                                  <div className="absolute inset-0 rounded-xl shadow-sm flex items-center justify-center overflow-hidden" style={{ background: 'rgba(30, 30, 30, 0.8)' }}>
+                                    <img loading="lazy" src={value.image} alt={value.label} className="w-100 h-100 md:w-140 md:h-140 object-contain" />
                                   </div>
+                                </div>
 
-                                  {/* Label */}
-                                  <h3 className="text-base md:text-lg font-bold mb-6" style={{ color: '#D6B14D' }}>
+                                {/* Text - Matching Research Areas Layout */}
+                                <div className="text-center flex-1 flex flex-col">
+                                  <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
                                     {valuesLang === 'ko' ? value.labelKo : value.label}
                                   </h3>
-
-                                  {/* Title */}
-                                  <h4 
-                                    className="text-sm font-semibold text-white mb-6 leading-[1.5] [&>b]:font-semibold"
-                                    dangerouslySetInnerHTML={{ __html: valuesLang === 'ko' ? value.titleKo : value.title }}
-                                  />
-                                  
-                                  {/* Subtitle */}
-                                  {value.subtitle && (
-                                    <p className="text-xs font-medium italic mb-8" style={{ color: 'rgba(214, 177, 77, 0.7)' }}>
-                                      {valuesLang === 'ko' ? value.subtitleKo : value.subtitle}
-                                    </p>
-                                  )}
-
-                                  {/* Description */}
                                   <p 
                                     className="text-xs md:text-sm text-gray-400 leading-[1.8] [&>b]:text-gray-300 [&>b]:font-semibold"
                                     dangerouslySetInnerHTML={{ __html: valuesLang === 'ko' ? value.descriptionKo : value.description }}
                                   />
                                 </div>
-                              )
-                            })}
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>

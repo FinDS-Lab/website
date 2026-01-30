@@ -24,7 +24,7 @@ except ImportError:
     exit(1)
 
 # Configuration
-SCHOLAR_ID = "eVd5dzMAAAAJ"  # Google Scholar ID for Insu Choi
+SCHOLAR_ID = "p9JwRLwAAAAJ"  # Google Scholar ID for Insu Choi
 SCRIPT_DIR = Path(__file__).parent
 OUTPUT_PATH = SCRIPT_DIR.parent / "public" / "data" / "scholar.json"
 PUBS_PATH = SCRIPT_DIR.parent / "public" / "data" / "pubs.json"
