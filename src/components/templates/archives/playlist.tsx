@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef, useCallback } from 'react'
 import { Link, Navigate } from 'react-router-dom'
-import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List, LayoutGrid } from 'lucide-react'
+import { Home, Music2, X, Minimize2, Maximize2, Play, Pause, List, LayoutGrid, SkipBack, SkipForward } from 'lucide-react'
 
 // Scroll animation hook
 const useScrollAnimation = () => {
@@ -139,6 +139,23 @@ export const ArchivesPlaylistTemplate = () => {
     if (nextVideo?.videoId) {
       setCurrentVideo(nextVideo)
       setCurrentIndex(nextIndex)
+      setIsPlaying(true)
+    }
+  }, [])
+  
+  // Play previous track function
+  const playPrevTrack = useCallback(() => {
+    const currentPlaylists = playlistsRef.current
+    const currentIdx = currentIndexRef.current
+    
+    if (currentPlaylists.length === 0) return
+    
+    const prevIndex = currentIdx <= 0 ? currentPlaylists.length - 1 : currentIdx - 1
+    const prevVideo = currentPlaylists[prevIndex]
+    
+    if (prevVideo?.videoId) {
+      setCurrentVideo(prevVideo)
+      setCurrentIndex(prevIndex)
       setIsPlaying(true)
     }
   }, [])
@@ -493,6 +510,14 @@ export const ArchivesPlaylistTemplate = () => {
             
             {/* Controls */}
             <div className="flex items-center gap-8">
+              {/* Previous track button */}
+              <button
+                onClick={playPrevTrack}
+                className="p-8 text-gray-400 hover:text-white transition-colors"
+                title="이전 곡"
+              >
+                <SkipBack size={18} />
+              </button>
               {/* Play/Pause button - especially important in minimized mode */}
               <button
                 onClick={togglePlayPause}
@@ -500,6 +525,14 @@ export const ArchivesPlaylistTemplate = () => {
                 title={isPlaying ? "일시정지" : "재생"}
               >
                 {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+              </button>
+              {/* Next track button */}
+              <button
+                onClick={playNextTrack}
+                className="p-8 text-gray-400 hover:text-white transition-colors"
+                title="다음 곡"
+              >
+                <SkipForward size={18} />
               </button>
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
