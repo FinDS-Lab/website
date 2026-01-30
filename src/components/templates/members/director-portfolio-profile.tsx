@@ -224,7 +224,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
   const [expandedEduSections, setExpandedEduSections] = useState<Set<string>>(new Set([
-    '0-dissertation', '0-advisor', '1-thesis', '1-advisor', '2-graduationPaper', '2-advisor'
+    '0-dissertation', '0-advisor', '0-researchGroup', '1-thesis', '1-advisor', '1-researchGroup', '2-graduationPaper', '2-advisor'
   ])) // For education sub-sections - all expanded by default
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,

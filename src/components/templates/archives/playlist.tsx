@@ -140,6 +140,12 @@ export const ArchivesPlaylistTemplate = () => {
       // If player exists, use loadVideoById for smoother transition with autoplay
       if (playerRef.current) {
         playerRef.current.loadVideoById(nextVideo.videoId)
+        // Explicitly call playVideo after a short delay to ensure autoplay
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+          }
+        }, 200)
         setIsPlaying(true)
       } else {
         // No player exists, destroy and let useEffect create new one
@@ -164,6 +170,12 @@ export const ArchivesPlaylistTemplate = () => {
       // If player exists, use loadVideoById for smoother transition with autoplay
       if (playerRef.current) {
         playerRef.current.loadVideoById(prevVideo.videoId)
+        // Explicitly call playVideo after a short delay to ensure autoplay
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+          }
+        }, 200)
         setIsPlaying(true)
       } else {
         // No player exists, let useEffect create new one
@@ -289,6 +301,12 @@ export const ArchivesPlaylistTemplate = () => {
       // If player exists, use loadVideoById for smoother transition with autoplay
       if (playerRef.current && playerInitializedRef.current) {
         playerRef.current.loadVideoById(item.videoId)
+        // Explicitly call playVideo after a short delay to ensure autoplay
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+          }
+        }, 200)
       }
       setCurrentVideo(item)
       setCurrentIndex(index)

@@ -3,9 +3,9 @@ import { Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import fdsImg from '@/assets/images/icons/fds.webp'
-import baImg from '@/assets/images/icons/ba.webp'
-import dimImg from '@/assets/images/icons/dim.webp'
+import fdsImg from '@/assets/images/icons/fds_intro.webp'
+import baImg from '@/assets/images/icons/ba_intro.webp'
+import dimImg from '@/assets/images/icons/dim_intro.webp'
 // Core Values Images (gold-colored illustrations)
 import insightImg from '@/assets/images/icons/insight.webp'
 import solutionImg from '@/assets/images/icons/solution.webp'
