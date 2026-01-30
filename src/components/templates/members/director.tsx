@@ -703,8 +703,7 @@ export const MembersDirectorTemplate = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
                   <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
-                    <div className="flex items-center gap-10 mb-16 pb-12 border-b border-gray-100">
-                      <div className="size-8 rounded-full bg-primary/40"/>
+                    <div className="mb-16 pb-12 border-b border-gray-100">
                       <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
