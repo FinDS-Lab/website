@@ -499,46 +499,30 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
-                        <div className="flex items-center gap-8">
-                          <Sparkles size={14} className="text-[#D6B14D]" />
-                          <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
-                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Focus Areas'}
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
+                        <div className="flex items-center gap-10">
+                          <Sparkles size={18} className="text-[#D6B14D]" />
+                          <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
+                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Research Areas'}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
                       </div>
 
                       {/* Card Content */}
-                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center">
-                        {/* Title */}
-                        <div className="text-center mb-28 md:mb-36">
-                          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-16">
-                            {focusLang === 'ko' ? (
-                              <span className="text-[#D6B14D]">핵심 연구 분야</span>
-                            ) : (
-                              <span className="text-[#D6B14D]">Core Research Areas</span>
-                            )}
-                          </h2>
-                          <div className="flex items-center justify-center gap-8">
-                            <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                            <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6C360]" />
-                          </div>
-                        </div>
-
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center">
                         {/* 3 Cards Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
                             >
                               {/* Icon */}
-                              <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
+                              <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
-                                  <img loading="lazy" src={area.image} alt={area.title} className="w-100 h-100 md:w-140 md:h-140 object-contain" />
+                                  <img loading="lazy" src={area.image} alt={area.title} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                 </div>
                               </div>
 
@@ -576,12 +560,12 @@ export const AboutIntroductionTemplate = () => {
                     >
                       {/* Card Header */}
                       <div 
-                        className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b"
+                        className="flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b"
                         style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
                       >
-                        <div className="flex items-center gap-8">
-                          <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
+                        <div className="flex items-center gap-10">
+                          <Sparkles size={18} style={{ color: '#D6B14D' }} />
+                          <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
                             {valuesLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
                           </span>
                         </div>
@@ -589,7 +573,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[550px] md:min-h-[600px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
                           className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
@@ -609,28 +593,12 @@ export const AboutIntroductionTemplate = () => {
                         <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 20px rgba(214, 177, 77, 0.4)' }} />
 
                         <div className="relative z-10">
-                          {/* Title */}
-                          <div className="text-center mb-28 md:mb-36">
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-16" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
-                              {valuesLang === 'ko' ? (
-                                <><span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>핵심 가치</span></>
-                              ) : (
-                                <><span style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.5)' }}>Core Values</span></>
-                              )}
-                            </h2>
-                            <div className="flex items-center justify-center gap-8">
-                              <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
-                              <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D]" />
-                              <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D6B14D]/60" />
-                            </div>
-                          </div>
-
                           {/* 3 Cards Grid */}
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                             {coreValues.map((value, index) => (
                               <div 
                                 key={index} 
-                                className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[320px] md:min-h-[380px]"
+                                className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
                                 style={{ 
                                   background: 'rgba(255, 255, 255, 0.03)', 
                                   borderColor: 'rgba(214, 177, 77, 0.15)',
@@ -645,10 +613,10 @@ export const AboutIntroductionTemplate = () => {
                                 }}
                               >
                                 {/* Icon - Matching Research Areas Layout */}
-                                <div className="relative w-120 h-120 md:w-160 md:h-160 mx-auto mb-16 shrink-0">
+                                <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                   <div className="absolute inset-0 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" style={{ background: 'rgba(214, 177, 77, 0.2)' }} />
                                   <div className="absolute inset-0 rounded-xl shadow-sm flex items-center justify-center overflow-hidden" style={{ background: '#FFF9E6' }}>
-                                    <img loading="lazy" src={value.image} alt={value.label} className="w-100 h-100 md:w-140 md:h-140 object-contain" />
+                                    <img loading="lazy" src={value.image} alt={value.label} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                   </div>
                                 </div>
 
