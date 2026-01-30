@@ -31,7 +31,19 @@ import {
 import {useStoreModal} from '@/store/modal'
 import type {AcademicActivitiesData, Publication} from '@/types/data'
 import type {AuthorsData} from '@/types/data'
-import {citationStats, affiliations, researchInterests} from '@/data/director-common'
+import {citationStats, affiliations, researchInterests, scholarConfig} from '@/data/director-common'
+
+// Scholar data type
+type ScholarData = {
+  lastUpdated: string
+  metrics: {
+    totalCitations: number
+    hIndex: number
+    i10Index: number
+    i5Index: number
+    gIndex: number
+  }
+}
 
 // Types
 type Project = {
@@ -1002,6 +1014,21 @@ export const MembersDirectorAcademicTemplate = () => {
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
     {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
   ])
+  const [scholarData, setScholarData] = useState<ScholarData | null>(null)
+  
+  // Live citation stats (from Google Scholar or fallback)
+  const liveCitationStats = useMemo(() => {
+    if (!scholarData?.metrics) return citationStats
+    return citationStats.map(stat => ({
+      ...stat,
+      count: stat.key === 'totalCitations' ? scholarData.metrics.totalCitations :
+             stat.key === 'hIndex' ? scholarData.metrics.hIndex :
+             stat.key === 'i10Index' ? scholarData.metrics.i10Index :
+             stat.key === 'i5Index' ? scholarData.metrics.i5Index :
+             stat.key === 'gIndex' ? scholarData.metrics.gIndex :
+             stat.count
+    }))
+  }, [scholarData])
   const {showModal} = useStoreModal()
   const location = useLocation()
   const directorEmail = 'ischoi@gachon.ac.kr'
@@ -1017,6 +1044,12 @@ export const MembersDirectorAcademicTemplate = () => {
         academicService: false
       }))
     }
+    
+    // Fetch Google Scholar data
+    fetch(`${baseUrl}data/scholar.json`)
+      .then(res => res.json())
+      .then((data: ScholarData) => setScholarData(data))
+      .catch(() => {}) // Silently fail, use fallback values
     
     // Fetch Publications and calculate stats
     fetch(`${baseUrl}data/pubs.json`)
@@ -1463,12 +1496,28 @@ export const MembersDirectorAcademicTemplate = () => {
                     ))}
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 pt-16 border-t border-gray-100">
-                    {citationStats.map((stat, index) => (
+                    {liveCitationStats.map((stat, index) => (
                       <div key={index} className="text-center p-16 md:p-24 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
                         <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
                         <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                       </div>
                     ))}
+                  </div>
+                  <div className="flex items-center justify-between pt-12 mt-12 border-t border-gray-100">
+                    <a 
+                      href={scholarConfig.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[10px] text-gray-400 hover:text-primary transition-colors flex items-center gap-4"
+                    >
+                      <span>Google Scholar</span>
+                      <ExternalLink size={10} />
+                    </a>
+                    {scholarData?.lastUpdated && (
+                      <span className="text-[9px] text-gray-400">
+                        Updated: {new Date(scholarData.lastUpdated).toLocaleDateString()}
+                      </span>
+                    )}
                   </div>
                   <div className="mt-20 text-center">
                     <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">

@@ -1516,31 +1516,31 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       children: (
                         <div className="text-center">
                           {/* Logo */}
-                          <div className="size-100 bg-gray-50 rounded-2xl p-16 flex items-center justify-center mx-auto mb-20">
+                          <div className="size-80 bg-gray-50 rounded-xl p-12 flex items-center justify-center mx-auto mb-16">
                             <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
                           </div>
 
                           {/* Name */}
-                          <h3 className="text-2xl font-bold text-primary mb-8">{act.name}</h3>
+                          <h3 className="text-base font-bold text-primary mb-6">{act.name}</h3>
                           {act.fullName && (
-                            <p className="text-sm text-gray-500 mb-4">{act.fullName}</p>
+                            <p className="text-xs text-gray-500 mb-2">{act.fullName}</p>
                           )}
                           {act.fullNameKo && (
-                            <p className="text-sm text-gray-500 font-bold mb-8">{act.fullNameKo}</p>
+                            <p className="text-xs text-gray-500 font-bold mb-6">{act.fullNameKo}</p>
                           )}
 
                           {/* Generation */}
                           {act.generation && (
-                            <p className="text-gray-600 font-bold text-sm mb-24">{act.generation}</p>
+                            <p className="text-gray-600 font-bold text-xs mb-16">{act.generation}</p>
                           )}
 
                           {/* Membership */}
                           {act.membership.length > 0 && (
-                            <div className="border-t border-gray-100 pt-20 space-y-8">
+                            <div className="border-t border-gray-100 pt-16 space-y-6">
                               {act.membership.map((r, idx) => (
-                                <div key={idx} className="flex items-center justify-between px-16 py-12 bg-gray-50 rounded-xl">
-                                  <span className="font-bold text-gray-700">{r.role}</span>
-                                  <span className="text-sm text-gray-500">{r.period}</span>
+                                <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 rounded-lg">
+                                  <span className="text-xs font-bold text-gray-700">{r.role}</span>
+                                  <span className="text-[10px] text-gray-500">{r.period}</span>
                                 </div>
                               ))}
                             </div>
@@ -1548,13 +1548,13 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
                           {/* Leadership */}
                           {act.leadership.length > 0 && (
-                            <div className="mt-20 pt-20 border-t border-gray-100">
-                              <h4 className="text-xs font-bold text-primary uppercase tracking-widest mb-12">Leadership</h4>
-                              <div className="space-y-8">
+                            <div className="mt-16 pt-16 border-t border-gray-100">
+                              <h4 className="text-[10px] font-bold text-primary uppercase tracking-widest mb-10">Leadership</h4>
+                              <div className="space-y-6">
                                 {act.leadership.map((r, idx) => (
-                                  <div key={idx} className="flex items-center justify-between px-16 py-12 bg-primary/5 rounded-xl border border-primary/10">
-                                    <span className="font-bold text-primary">{r.role}</span>
-                                    <span className="text-sm text-gray-500">{r.period}</span>
+                                  <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
+                                    <span className="text-xs font-bold text-primary">{r.role}</span>
+                                    <span className="text-[10px] text-gray-500">{r.period}</span>
                                   </div>
                                 ))}
                               </div>

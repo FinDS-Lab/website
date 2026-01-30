@@ -684,7 +684,13 @@ export const ProjectsTemplate = () => {
                                        project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 
                                        project.roles.visitingResearcher === '최인수' ? 'Visiting Researcher' :
                                        project.roles.researchers?.includes('최인수') ? 'Researcher' : ''}
-                                      {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && ' | '}
+                                    </span>
+                                    {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && (
+                                      <span className={`w-px h-12 mx-4 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
+                                    )}
+                                    <span className={`text-xs font-bold tracking-wide ${
+                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                    }`}>
                                       {config?.label || project.type} Project
                                     </span>
                                   </div>

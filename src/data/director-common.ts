@@ -1,13 +1,22 @@
 // Common Director Data - Single source of truth
 // Update here and all director pages will reflect the changes
 
-// Citation Statistics (Google Scholar)
+// Citation Statistics (Google Scholar) - Fallback values
+// Real data is fetched from /data/scholar.json (auto-updated daily)
 export const citationStats = [
-  { label: 'Citations', count: 160 },
-  { label: 'g-index', count: 12 },
-  { label: 'h-index', count: 8 },
-  { label: 'i10-index', count: 7 },
+  { label: 'Citations', count: 160, key: 'totalCitations' },
+  { label: 'h-index', count: 8, key: 'hIndex' },
+  { label: 'g-index', count: 12, key: 'gIndex' },
+  { label: 'i10-index', count: 7, key: 'i10Index' },
+  { label: 'i5-index', count: 10, key: 'i5Index' },
 ]
+
+// Google Scholar configuration
+export const scholarConfig = {
+  id: 'eVd5dzMAAAAJ',
+  url: 'https://scholar.google.com/citations?user=eVd5dzMAAAAJ&hl=en',
+  dataPath: '/data/scholar.json'
+}
 
 // Professional Affiliations
 export const affiliations = [
@@ -25,25 +34,25 @@ export const researchInterests = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
+      'AI-Driven Quantitative Finance'
     ]
   },
   {
     category: 'Business Analytics',
     categoryKo: '비즈니스 애널리틱스',
     items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
+      'Cross-Industry Data Analytics & Visualization',
+      'Graph-Based Network Analysis',
+      'Statistical Modeling for Business Insights'
     ]
   },
   {
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Evidence-Based Policy Support',
-      'AI-Augmented Decision Systems',
-      'Human-Centered Decision Analytics'
+      'Iridescent View Extraction for Multi-Perspective Interpretation',
+      'Evidence-Based Decision Support Systems',
+      'Human-Centered Analytics & AI Augmentation'
     ]
   },
 ]
