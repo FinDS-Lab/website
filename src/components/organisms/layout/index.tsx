@@ -436,7 +436,7 @@ const LayoutOrganisms = ({ children }: props) => {
 
           {/* Copyright - simplified */}
           <p className="text-[10px] md:text-xs text-gray-400 text-center tracking-wide">
-            © 2026 FINDS Lab. All Rights Reserved.
+            © 2026 FINDS Lab All Rights Reserved.
           </p>
         </div>
       </footer>

@@ -289,11 +289,11 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b border-gray-100 bg-gray-50/50">
-                        <div className="flex items-center gap-8">
-                          <Sparkles size={14} className="text-[#D6B14D]" />
-                          <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-[0.15em]">
-                            {missionLang === 'ko' ? 'FINDS Lab의 목표' : 'FINDS Lab Goal'}
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
+                        <div className="flex items-center gap-10">
+                          <Sparkles size={18} className="text-[#D6B14D]" />
+                          <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
+                            {missionLang === 'ko' ? "FINDS Lab's 목표" : "FINDS Lab's Goal"}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -360,13 +360,13 @@ export const AboutIntroductionTemplate = () => {
                     >
                       {/* Card Header */}
                       <div 
-                        className="flex items-center justify-between px-20 md:px-32 py-14 md:py-18 border-b"
+                        className="flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b"
                         style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
                       >
-                        <div className="flex items-center gap-8">
-                          <Sparkles size={14} style={{ color: '#D6B14D' }} />
-                          <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-gray-400">
-                            {visionLang === 'ko' ? 'FINDS Lab의 비전' : 'FINDS Lab Vision'}
+                        <div className="flex items-center gap-10">
+                          <Sparkles size={18} style={{ color: '#D6B14D' }} />
+                          <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
+                            {visionLang === 'ko' ? "FINDS Lab's 비전" : "FINDS Lab's Vision"}
                           </span>
                         </div>
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -503,7 +503,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {focusLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Research Areas'}
+                            {focusLang === 'ko' ? "FINDS Lab's 연구 분야" : "FINDS Lab's Research Areas"}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
@@ -566,7 +566,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {valuesLang === 'ko' ? 'FINDS Lab의 핵심 가치' : 'FINDS Lab Core Values'}
+                            {valuesLang === 'ko' ? "FINDS Lab's 핵심 가치" : "FINDS Lab's Core Values"}
                           </span>
                         </div>
                         <LangToggle lang={valuesLang} setLang={setValuesLang} variant="dark" />
