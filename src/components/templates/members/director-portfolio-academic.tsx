@@ -949,8 +949,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
-  const [showAllJournals, setShowAllJournals] = useState(false)
-  const [showAllConferences, setShowAllConferences] = useState(false)
+  const [showAllJournals, setShowAllJournals] = useState(true)
+  const [showAllConferences, setShowAllConferences] = useState(true)
   const [expandedSections, setExpandedSections] = useState({
     collaborationNetwork: true,
     researcherIds: true,
@@ -1735,8 +1735,12 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
                       </div>
                       {journals.length > 15 && (
-                        <button onClick={() => setShowAllJournals(!showAllJournals)} className="text-xs text-primary font-medium hover:underline">
+                        <button 
+                          onClick={() => setShowAllJournals(!showAllJournals)} 
+                          className="flex items-center gap-4 text-xs text-gray-500 hover:text-primary font-medium transition-colors"
+                        >
                           {showAllJournals ? 'Show Less' : 'Show All'}
+                          <ChevronDown size={14} className={`transition-transform duration-300 ${showAllJournals ? 'rotate-180' : ''}`}/>
                         </button>
                       )}
                     </div>
@@ -1765,8 +1769,12 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                       </div>
                       {conferenceReviewers.length > 20 && (
-                        <button onClick={() => setShowAllConferences(!showAllConferences)} className="text-xs text-primary font-medium hover:underline">
+                        <button 
+                          onClick={() => setShowAllConferences(!showAllConferences)} 
+                          className="flex items-center gap-4 text-xs text-gray-500 hover:text-primary font-medium transition-colors"
+                        >
                           {showAllConferences ? 'Show Less' : 'Show All'}
+                          <ChevronDown size={14} className={`transition-transform duration-300 ${showAllConferences ? 'rotate-180' : ''}`}/>
                         </button>
                       )}
                     </div>

@@ -137,17 +137,19 @@ export const ArchivesPlaylistTemplate = () => {
     const nextVideo = currentPlaylists[nextIndex]
     
     if (nextVideo?.videoId) {
-      // Use loadVideoById if player exists, otherwise set state to create new player
+      setCurrentVideo(nextVideo)
+      setCurrentIndex(nextIndex)
+      // Use loadVideoById if player exists
       if (playerRef.current) {
         playerRef.current.loadVideoById(nextVideo.videoId)
-        setCurrentVideo(nextVideo)
-        setCurrentIndex(nextIndex)
-        setIsPlaying(true)
-      } else {
-        setCurrentVideo(nextVideo)
-        setCurrentIndex(nextIndex)
-        setIsPlaying(true)
+        // Explicitly play after loading
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+          }
+        }, 100)
       }
+      setIsPlaying(true)
     }
   }, [])
   
@@ -162,17 +164,19 @@ export const ArchivesPlaylistTemplate = () => {
     const prevVideo = currentPlaylists[prevIndex]
     
     if (prevVideo?.videoId) {
-      // Use loadVideoById if player exists, otherwise set state to create new player
+      setCurrentVideo(prevVideo)
+      setCurrentIndex(prevIndex)
+      // Use loadVideoById if player exists
       if (playerRef.current) {
         playerRef.current.loadVideoById(prevVideo.videoId)
-        setCurrentVideo(prevVideo)
-        setCurrentIndex(prevIndex)
-        setIsPlaying(true)
-      } else {
-        setCurrentVideo(prevVideo)
-        setCurrentIndex(prevIndex)
-        setIsPlaying(true)
+        // Explicitly play after loading
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+          }
+        }, 100)
       }
+      setIsPlaying(true)
     }
   }, [])
   
@@ -185,13 +189,19 @@ export const ArchivesPlaylistTemplate = () => {
     
     const currentVideoId = currentVideo.videoId
     
-    // If player exists and video changed, use loadVideoById (handled in playNextTrack/playPrevTrack)
+    // If player exists and video changed, use loadVideoById
     // Only create new player if it doesn't exist
     if (playerRef.current) {
-      // Player already exists, video switching is handled by loadVideoById in track functions
-      // But if this is triggered by clicking on a track directly, we need to load it
+      // Player already exists, load new video and play
       if (prevVideoIdRef.current !== currentVideoId) {
         playerRef.current.loadVideoById(currentVideoId)
+        // Explicitly play after loading
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.playVideo()
+            setIsPlaying(true)
+          }
+        }, 100)
         prevVideoIdRef.current = currentVideoId
       }
       return
