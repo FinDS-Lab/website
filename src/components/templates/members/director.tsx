@@ -944,21 +944,10 @@ export const MembersDirectorTemplate = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between pt-12 mt-12 border-t border-gray-100">
-                    <a 
-                      href={scholarConfig.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[10px] text-gray-400 hover:text-primary transition-colors flex items-center gap-4"
-                    >
-                      <span>Google Scholar</span>
-                      <ExternalLink size={10} />
-                    </a>
-                    {scholarData?.lastUpdated && (
-                      <span className="text-[9px] text-gray-400">
-                        Updated: {new Date(scholarData.lastUpdated).toISOString().split('T')[0]}
-                      </span>
-                    )}
+                  <div className="mt-20 text-center">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                      View All Publications <ChevronRight size={14}/>
+                    </Link>
                   </div>
                 </div>
               )}
