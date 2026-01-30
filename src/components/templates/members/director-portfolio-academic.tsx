@@ -1779,7 +1779,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           {journals.map((journal) => (
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
                               className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                              <span className="text-xs font-medium text-gray-700 flex-1">{journal.name}</span>
+                              <span className="text-xs font-bold text-gray-700 flex-1">{journal.name}</span>
                               <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
@@ -1813,7 +1813,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
                               className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
                               <div className="flex-1 min-w-0">
-                                <span className="text-xs font-medium text-gray-700 break-words">{conf.name}</span>
+                                <span className="text-xs font-bold text-gray-700 break-words">{conf.name}</span>
                                 <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
                               </div>
                               <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
@@ -1970,13 +1970,13 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                 }}>
                                   <div className="flex items-center gap-8">
                                     {/* Type | Role Label */}
-                                    <span className={`text-xs font-bold tracking-wide ${
+                                    <span className={`text-[9px] font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {typeLabels[project.type]} Project
                                     </span>
                                     <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
-                                    <span className={`text-xs font-bold tracking-wide ${
+                                    <span className={`text-[9px] font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {directorRole}

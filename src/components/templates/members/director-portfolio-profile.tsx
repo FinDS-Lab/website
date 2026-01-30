@@ -123,7 +123,7 @@ const education: any[] = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
-    researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
+    researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
     leadership: [
       {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 - 2025-01'},
       {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 - 2025-01'},
@@ -147,7 +147,7 @@ const education: any[] = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
-    researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
+    researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
     awards: [{title: 'Best Master Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     honors: [],
@@ -1002,10 +1002,15 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 className="flex items-center justify-between gap-8 bg-gray-50 rounded-lg px-12 py-10 hover:bg-gray-100 transition-colors group"
                               >
                                 <div className="flex items-center gap-8">
-                                  <Building className="size-14 text-[#D6B14D]" />
-                                  <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                  <Building className="size-14 text-[#D6B14D] shrink-0" />
+                                  <div className="flex flex-col">
+                                    <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                    {edu.researchGroup.department && (
+                                      <span className="text-[10px] text-gray-500">{edu.researchGroup.department}</span>
+                                    )}
+                                  </div>
                                 </div>
-                                <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
+                                <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0" />
                               </a>
                             </div>
                           )}

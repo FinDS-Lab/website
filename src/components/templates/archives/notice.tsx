@@ -8,11 +8,11 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NoticeTag = 'Awards' | 'Achievements' | 'Events' | 'General';
+type NoticeTag = 'Announcements' | 'Awards' | 'Events' | 'General';
 
 const tagColors: Record<NoticeTag, { bg: string; text: string; border: string }> = {
-  'Awards': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Achievements': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
+  'Announcements': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
+  'Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
   'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
@@ -138,7 +138,7 @@ export const ArchivesNoticeTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NoticeTag | 'All')[] = ['All', 'Awards', 'Achievements', 'Events', 'General']
+  const allTags: (NoticeTag | 'All')[] = ['All', 'Announcements', 'Awards', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {

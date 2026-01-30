@@ -29,7 +29,7 @@ const focusAreas = [
     ]
   },
   {
-    image: baImg,
+    image: dimImg,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     items: [
@@ -44,7 +44,7 @@ const focusAreas = [
     ]
   },
   {
-    image: dimImg,
+    image: baImg,
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [
@@ -293,7 +293,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {missionLang === 'ko' ? "FINDS Lab's 목표" : "FINDS Lab's Goal"}
+                            {missionLang === 'ko' ? "FINDS Lab의 목표" : "FINDS Lab's Goal"}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -366,7 +366,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {visionLang === 'ko' ? "FINDS Lab's 비전" : "FINDS Lab's Vision"}
+                            {visionLang === 'ko' ? "FINDS Lab의 비전" : "FINDS Lab's Vision"}
                           </span>
                         </div>
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -503,7 +503,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {focusLang === 'ko' ? "FINDS Lab's 연구 분야" : "FINDS Lab's Research Areas"}
+                            {focusLang === 'ko' ? "FINDS Lab의 연구 분야" : "FINDS Lab's Research Areas"}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
@@ -566,7 +566,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {valuesLang === 'ko' ? "FINDS Lab's 핵심 가치" : "FINDS Lab's Core Values"}
+                            {valuesLang === 'ko' ? "FINDS Lab의 핵심 가치" : "FINDS Lab's Core Values"}
                           </span>
                         </div>
                         <LangToggle lang={valuesLang} setLang={setValuesLang} variant="dark" />

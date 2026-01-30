@@ -4,24 +4,24 @@ const ResumeModal = () => (
     {/* Header */}
     <div className="text-center mb-24 pb-20 border-b border-gray-200">
       <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-6">Insu Choi</h2>
-      <p className="text-sm text-gray-600">Assistant Professor, Gachon University</p>
-      <p className="text-sm text-gray-600">Director, FINDS Lab</p>
+      <p className="text-sm text-gray-600"><span className="font-bold">Assistant Professor</span>, Gachon University</p>
+      <p className="text-sm text-gray-600"><span className="font-bold">Director</span>, FINDS Lab</p>
     </div>
 
-    {/* Current Position */}
+    {/* Academic Positions */}
     <section className="mb-20">
-      <h3 className="text-sm font-bold text-primary mb-12">Current Position</h3>
+      <h3 className="text-sm font-bold text-primary mb-12">Academic Positions</h3>
       <div className="space-y-10">
         <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
           <div className="min-w-0 flex-1 md:pr-12">
-            <p className="text-xs font-semibold text-gray-900">Assistant Professor, Gachon University</p>
+            <p className="text-xs font-semibold text-gray-900"><span className="font-bold">Assistant Professor</span>, Gachon University</p>
             <p className="text-xs text-gray-500">Big Data Business Management Major, Department of Finance & Big Data, College of Business</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2026-03 – Present</span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
           <div className="min-w-0 flex-1 md:pr-12">
-            <p className="text-xs font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
+            <p className="text-xs font-semibold text-gray-900"><span className="font-bold">Assistant Professor</span>, Dongduk Women's University</p>
             <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
           </div>
           <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2025-09 – 2026-02</span>
@@ -33,9 +33,9 @@ const ResumeModal = () => (
     <section className="mb-20">
       <h3 className="text-sm font-bold text-primary mb-12">Research Interests</h3>
       <ul className="text-xs text-gray-700 space-y-4 ml-12">
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Data Science</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Analytics</li>
-        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Data-Informed Decision Making</li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span className="font-bold">Financial Data Science</span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span className="font-bold">Business Analytics</span></li>
+        <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span className="font-bold">Data-Informed Decision Making</span></li>
       </ul>
     </section>
 

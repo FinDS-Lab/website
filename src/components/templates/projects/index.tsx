@@ -677,7 +677,7 @@ export const ProjectsTemplate = () => {
                                 }}>
                                   <div className="flex items-center gap-8">
                                     {/* Type | Role Label */}
-                                    <span className={`text-xs font-bold tracking-wide ${
+                                    <span className={`text-[9px] font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {config?.label || project.type} Project
@@ -685,7 +685,7 @@ export const ProjectsTemplate = () => {
                                     {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && (
                                       <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
                                     )}
-                                    <span className={`text-xs font-bold tracking-wide ${
+                                    <span className={`text-[9px] font-bold tracking-wide ${
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 

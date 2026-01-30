@@ -306,14 +306,15 @@ export const MembersCurrentTemplate = () => {
             {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
-                  <div className="flex items-center gap-6">
-                    <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                <div className="flex flex-col items-center md:items-start">
+                  <stat.icon className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
+                  <span className="text-lg md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
+                  <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                    <stat.icon className="hidden md:block size-16" style={{color: stat.color, opacity: 0.7}} />
+                    <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
                   </div>
                 </div>
               </div>
