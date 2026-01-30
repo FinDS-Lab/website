@@ -949,13 +949,17 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
-  const [showAllJournals, setShowAllJournals] = useState(true)
-  const [showAllConferences, setShowAllConferences] = useState(true)
   const [expandedSections, setExpandedSections] = useState({
     collaborationNetwork: true,
     researcherIds: true,
     publicationStats: true,
     academicService: true,
+    editorialBoard: true,
+    academicMemberships: true,
+    programCommittee: true,
+    sessionChair: true,
+    journalReviewer: true,
+    conferenceReviewer: true,
     projects: true,
     teaching: true,
     lecturer: true,
@@ -1264,10 +1268,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
     if (!activitiesData) return []
     return activitiesData.activities.filter(a => a.category === 'conference')
   }, [activitiesData])
-
-  const displayedJournals = useMemo(() => {
-    return showAllJournals ? journals : journals.slice(0, 15)
-  }, [journals, showAllJournals])
 
   return (
     <div className="flex flex-col bg-white">
@@ -1611,189 +1611,219 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               {expandedSections.academicService && (
                 <div className="border-t border-gray-100">
                   {/* Editorial Board Memberships */}
-                  <div className="p-20 md:p-24">
-                    <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
-                      <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
-                    </div>
-                    <div className="py-16 text-center text-xs text-gray-400">Coming soon...</div>
+                  <div className="border-b border-gray-100">
+                    <button
+                      onClick={() => toggleSection('editorialBoard')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
+                        <span className="px-8 py-2 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-full">0</span>
+                      </div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.editorialBoard && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20">
+                        <div className="py-16 text-center text-xs text-gray-400">Coming soon...</div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Academic Memberships */}
-                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
-                    <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
-                      <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
-                    </div>
-                    <div className="space-y-8">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
-                          <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
+                  <div className="bg-gray-50/50 border-b border-gray-100">
+                    <button
+                      onClick={() => toggleSection('academicMemberships')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
+                        <span className="px-8 py-2 bg-primary text-white text-[10px] font-bold rounded-full">4</span>
+                      </div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.academicMemberships && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                            <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
+                          </div>
                         </div>
-                        <div className="flex flex-wrap items-center gap-4 shrink-0">
-                          <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                            <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                            <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                            <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
-                          <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-4 shrink-0">
-                          <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
-                        </div>
-                      </div>
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
-                          <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-4 shrink-0">
-                          <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
-                        </div>
-                      </div>
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
-                          <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
-                        </div>
-                        <div className="flex flex-wrap items-center gap-4 shrink-0">
-                          <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                          <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
-                        </div>
-                      </div>
-                    </div>
+                    )}
                   </div>
 
                   {/* Program Committee */}
-                  <div className="p-20 md:p-24 border-t border-gray-100">
-                    <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Program Committee</p>
-                      <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
-                    </div>
-                    {committees.length > 0 ? (
-                      <div className="flex flex-col gap-6">
-                        {committees.map((comm) => (
-                          <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
-                            <div className="flex-1 min-w-0">
-                              <p className="text-xs font-bold text-gray-900">{comm.name}</p>
-                              {comm.name_ko && (
-                                <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
-                              )}
-                              {/* Mobile: Date as text */}
-                              <span className="md:hidden block text-[10px] text-gray-500 mt-2">{comm.period || comm.since}</span>
-                            </div>
-                            {/* PC: Date badge */}
-                            <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0">{comm.period || comm.since}</span>
-                          </a>
-                        ))}
+                  <div className="border-b border-gray-100">
+                    <button
+                      onClick={() => toggleSection('programCommittee')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                        <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
-                    ) : (
-                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.programCommittee && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20">
+                        {committees.length > 0 ? (
+                          <div className="flex flex-col gap-6">
+                            {committees.map((comm) => (
+                              <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
+                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-xs font-bold text-gray-900">{comm.name}</p>
+                                  {comm.name_ko && (
+                                    <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
+                                  )}
+                                  <span className="md:hidden block text-[10px] text-gray-500 mt-2">{comm.period || comm.since}</span>
+                                </div>
+                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0">{comm.period || comm.since}</span>
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                        )}
+                      </div>
                     )}
                   </div>
 
                   {/* Session Chair */}
-                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
-                    <div className="flex items-center gap-8 mb-16">
-                      <p className="text-sm font-bold text-gray-900">Session Chair</p>
-                      <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{sessionChairs.length}</span>
-                    </div>
-                    {sessionChairs.length > 0 ? (
-                      <div className="flex flex-col gap-6">
-                        {sessionChairs.map((chair) => (
-                          <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                            className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
-                            <div className="flex-1 min-w-0">
-                              <p className="text-xs font-bold text-gray-900">{chair.name}</p>
-                              {chair.name_ko && (
-                                <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
-                              )}
-                              {/* Mobile: Date as text */}
-                              <span className="md:hidden block text-[10px] text-gray-500 mt-2">{chair.period || chair.since}</span>
-                            </div>
-                            {/* PC: Date badge */}
-                            <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
-                          </a>
-                        ))}
+                  <div className="bg-gray-50/50 border-b border-gray-100">
+                    <button
+                      onClick={() => toggleSection('sessionChair')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
+                    >
+                      <div className="flex items-center gap-8">
+                        <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{sessionChairs.length}</span>
                       </div>
-                    ) : (
-                      <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.sessionChair ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.sessionChair && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20">
+                        {sessionChairs.length > 0 ? (
+                          <div className="flex flex-col gap-6">
+                            {sessionChairs.map((chair) => (
+                              <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
+                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-xs font-bold text-gray-900">{chair.name}</p>
+                                  {chair.name_ko && (
+                                    <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
+                                  )}
+                                  <span className="md:hidden block text-[10px] text-gray-500 mt-2">{chair.period || chair.since}</span>
+                                </div>
+                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
+                              </a>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="py-8 text-xs text-gray-400">Coming soon...</div>
+                        )}
+                      </div>
                     )}
                   </div>
 
                   {/* Journal Reviewer */}
-                  <div className="p-20 md:p-24 border-t border-gray-100">
-                    <div className="flex items-center justify-between mb-16">
+                  <div className="border-b border-gray-100">
+                    <button
+                      onClick={() => toggleSection('journalReviewer')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
+                    >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{journals.length}</span>
                       </div>
-                      {journals.length > 15 && (
-                        <button 
-                          onClick={() => setShowAllJournals(!showAllJournals)} 
-                          className="flex items-center gap-4 text-xs text-gray-500 hover:text-primary font-medium transition-colors"
-                        >
-                          {showAllJournals ? 'Show Less' : 'Show All'}
-                          <ChevronDown size={14} className={`transition-transform duration-300 ${showAllJournals ? 'rotate-180' : ''}`}/>
-                        </button>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-6">
-                      {displayedJournals.map((journal) => (
-                        <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                          <span className="text-xs font-medium text-gray-700 flex-1">{journal.name}</span>
-                          <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
-                            journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                            journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
-                            journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
-                            journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                            'bg-[#FFD6DD] text-gray-700'
-                          }`}>{journal.type}</span>
-                        </a>
-                      ))}
-                    </div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.journalReviewer && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20">
+                        <div className="flex flex-col gap-6">
+                          {journals.map((journal) => (
+                            <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
+                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                              <span className="text-xs font-medium text-gray-700 flex-1">{journal.name}</span>
+                              <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
+                                journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
+                                journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
+                                journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
+                                journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
+                                'bg-[#FFD6DD] text-gray-700'
+                              }`}>{journal.type}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Conference Reviewer */}
-                  <div className="p-20 md:p-24 bg-gray-50/50 border-t border-gray-100">
-                    <div className="flex items-center justify-between mb-16">
+                  <div className="bg-gray-50/50">
+                    <button
+                      onClick={() => toggleSection('conferenceReviewer')}
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
+                    >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFBAC4'}}>{conferenceReviewers.length}</span>
                       </div>
-                      {conferenceReviewers.length > 20 && (
-                        <button 
-                          onClick={() => setShowAllConferences(!showAllConferences)} 
-                          className="flex items-center gap-4 text-xs text-gray-500 hover:text-primary font-medium transition-colors"
-                        >
-                          {showAllConferences ? 'Show Less' : 'Show All'}
-                          <ChevronDown size={14} className={`transition-transform duration-300 ${showAllConferences ? 'rotate-180' : ''}`}/>
-                        </button>
-                      )}
-                    </div>
-                    <div className="flex flex-col gap-6">
-                      {(showAllConferences ? conferenceReviewers : conferenceReviewers.slice(0, 20)).map((conf) => (
-                        <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                          className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
-                          <div className="flex-1 min-w-0">
-                            <span className="text-xs font-medium text-gray-700 break-words">{conf.name}</span>
-                            {/* Mobile: Date as text below name */}
-                            <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
-                          </div>
-                          {/* PC: Date badge */}
-                          <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
-                            {conf.period || conf.since}
-                          </span>
-                        </a>
-                      ))}
-                    </div>
+                      <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.conferenceReviewer ? 'rotate-180' : ''}`}/>
+                    </button>
+                    {expandedSections.conferenceReviewer && (
+                      <div className="px-16 md:px-20 pb-16 md:pb-20">
+                        <div className="flex flex-col gap-6">
+                          {conferenceReviewers.map((conf) => (
+                            <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
+                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
+                              <div className="flex-1 min-w-0">
+                                <span className="text-xs font-medium text-gray-700 break-words">{conf.name}</span>
+                                <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
+                              </div>
+                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
+                                {conf.period || conf.since}
+                              </span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
