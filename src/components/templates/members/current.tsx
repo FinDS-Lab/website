@@ -53,6 +53,8 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
     ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
     : degree === 'phd' 
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
+    : degree === 'ms'
+    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90'
     : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
 
   return (
@@ -103,7 +105,7 @@ const degreeColors = {
 const degreeBgStyles = {
   phd: {backgroundColor: '#D6B14D'},          // Gold
   combined: {backgroundColor: '#FF6B6B'},      // Coral (석박사통합)
-  ms: {backgroundColor: '#FF6B6B'},            // Coral
+  ms: {backgroundColor: '#E8889C'},            // Pink (M.S.)
   undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
 }
 
@@ -111,7 +113,7 @@ const degreeBgStyles = {
 const degreeHoverColors = {
   phd: '#D6B14D',
   combined: '#FF6B6B',
-  ms: '#FF6B6B',
+  ms: '#E8889C',
   undergrad: '#E8889C',
 }
 
@@ -189,7 +191,7 @@ export const MembersCurrentTemplate = () => {
     return {
       phd: { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       combined: { label: combinedCount === 1 ? 'Ph.D. - M.S. Combined Student' : 'Ph.D. - M.S. Combined Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      ms: { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#FF6B6B' },
+      ms: { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#E8889C' },
       undergrad: { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
@@ -327,11 +329,40 @@ export const MembersCurrentTemplate = () => {
           <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
             <p className="text-sm md:text-md text-gray-500">Loading members...</p>
           </div>
-        ) : members.length > 0 ? (
+        ) : (
           <div className="flex flex-col gap-32 md:gap-[40px]">
             {(['phd', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
               const degreeMembers = groupedMembers[groupKey]
-              if (degreeMembers.length === 0) return null
+              const sectionColor = degreeHoverColors[groupKey]
+              const bgStyle = degreeBgStyles[groupKey]
+
+              // Show placeholder for empty PhD, Combined, MS sections
+              if (degreeMembers.length === 0) {
+                // Skip undergrad placeholder - only show grad student placeholders
+                if (groupKey === 'undergrad') return null
+                
+                return (
+                  <div key={groupKey}>
+                    <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
+                      {degreeLabels[groupKey]}
+                    </h3>
+                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-xl md:rounded-[20px] p-24 md:p-[40px] text-center">
+                      <div 
+                        className="w-48 h-48 md:w-[64px] md:h-[64px] rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]"
+                        style={{background: `linear-gradient(135deg, ${sectionColor}15 0%, ${sectionColor}08 100%)`}}
+                      >
+                        <GraduationCap className="w-24 h-24 md:w-[32px] md:h-[32px]" style={{color: sectionColor}} />
+                      </div>
+                      <p className="text-sm md:text-base font-semibold text-gray-700 mb-6 md:mb-[8px]">
+                        We're looking forward to your application!
+                      </p>
+                      <p className="text-xs md:text-sm text-gray-500">
+                        Join FINDS Lab as a {degreeLabels[groupKey]} student
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
 
               return (
                 <div key={groupKey}>
@@ -469,14 +500,6 @@ export const MembersCurrentTemplate = () => {
                 </div>
               )
             })}
-          </div>
-        ) : (
-          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
-            <div className="w-60 h-60 md:w-[80px] md:h-[80px] bg-white rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]">
-              <Users className="w-28 h-28 md:w-[40px] md:h-[40px] text-gray-300" />
-            </div>
-            <p className="text-base md:text-[18px] font-medium text-gray-800 mb-8 md:mb-[8px]">No members found</p>
-            <p className="text-xs md:text-[14px] text-gray-500">현재 등록된 멤버가 없습니다.</p>
           </div>
         )}
       </section>

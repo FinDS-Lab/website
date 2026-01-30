@@ -338,7 +338,7 @@ export const MembersAlumniTemplate = () => {
             </div>
 
             {/* Ph.D. Section */}
-            {phdAlumni.length > 0 && (
+            {phdAlumni.length > 0 ? (
               <div className="flex flex-col gap-16 md:gap-24">
                 <button
                   onClick={() => setPhdExpanded(!phdExpanded)}
@@ -529,10 +529,31 @@ export const MembersAlumniTemplate = () => {
                   </>
                 )}
               </div>
+            ) : (
+              <div className="flex flex-col gap-16 md:gap-24">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B14D'}} />
+                  Ph.D. Graduates
+                </h2>
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40 text-center">
+                  <div 
+                    className="w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center mx-auto mb-16 md:mb-20"
+                    style={{background: 'linear-gradient(135deg, rgba(214, 177, 77, 0.15) 0%, rgba(214, 177, 77, 0.08) 100%)'}}
+                  >
+                    <GraduationCap className="w-24 h-24 md:w-32 md:h-32" style={{color: '#D6B14D'}} />
+                  </div>
+                  <p className="text-sm md:text-base font-semibold text-gray-700 mb-6 md:mb-8">
+                    We're looking forward to your application!
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-500">
+                    Join FINDS Lab as a Ph.D. student
+                  </p>
+                </div>
+              </div>
             )}
 
             {/* M.S. Section */}
-            {msAlumni.length > 0 && (
+            {msAlumni.length > 0 ? (
               <div className="flex flex-col gap-16 md:gap-24">
                 <button
                   onClick={() => setMsExpanded(!msExpanded)}
@@ -722,6 +743,27 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </>
                 )}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-16 md:gap-24">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
+                  M.S. Graduates
+                </h2>
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40 text-center">
+                  <div 
+                    className="w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center mx-auto mb-16 md:mb-20"
+                    style={{background: 'linear-gradient(135deg, rgba(232, 136, 156, 0.15) 0%, rgba(232, 136, 156, 0.08) 100%)'}}
+                  >
+                    <GraduationCap className="w-24 h-24 md:w-32 md:h-32" style={{color: '#E8889C'}} />
+                  </div>
+                  <p className="text-sm md:text-base font-semibold text-gray-700 mb-6 md:mb-8">
+                    We're looking forward to your application!
+                  </p>
+                  <p className="text-xs md:text-sm text-gray-500">
+                    Join FINDS Lab as an M.S. student
+                  </p>
+                </div>
               </div>
             )}
 
