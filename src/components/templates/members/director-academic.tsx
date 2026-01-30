@@ -1526,7 +1526,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     </a>
                     {scholarData?.lastUpdated && (
                       <span className="text-[9px] text-gray-400">
-                        Updated: {new Date(scholarData.lastUpdated).toLocaleDateString()}
+                        Updated: {new Date(scholarData.lastUpdated).toISOString().split('T')[0]}
                       </span>
                     )}
                   </div>

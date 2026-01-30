@@ -17,22 +17,46 @@ const focusAreas = [
     image: fdsImg,
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
-    desc: 'We analyze <b>financial market data</b> to uncover <b>hidden patterns</b> and generate actionable <b>insights</b> for better <b>investment strategies</b> and <b>risk management</b>.',
-    descKo: '금융 시장 <b>데이터 분석</b>을 통해 <b>숨겨진 패턴</b>을 발견하고, <b>투자 전략</b> 및 <b>위험 관리</b>를 위한 인사이트를 도출합니다.',
+    items: [
+      'Portfolio Optimization & Algorithmic Trading',
+      'Financial Time-Series Modeling & Forecasting',
+      'AI-Driven Quantitative Finance'
+    ],
+    itemsKo: [
+      '포트폴리오 최적화 및 알고리즘 트레이딩',
+      '금융 시계열 모델링 및 예측',
+      'AI 기반 퀀트 금융'
+    ]
   },
   {
     image: baImg,
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
-    desc: 'We tackle complex business challenges using <b>statistical methods</b> and <b>analytics techniques</b> to deliver <b>actionable strategies</b> for <b>competitive advantage</b>.',
-    descKo: '<b>통계적 방법론</b>과 <b>비즈니스 애널리틱스 기법</b>으로 복잡한 문제를 분석하고, <b>경쟁력 강화</b>를 위한 <b>실행 전략</b>을 제시합니다.',
+    items: [
+      'Cross-Industry Data Analytics & Visualization',
+      'Graph-Based Network Analysis',
+      'Statistical Modeling for Business Insights'
+    ],
+    itemsKo: [
+      '산업 간 데이터 분석 및 시각화',
+      '그래프 기반 네트워크 분석',
+      '비즈니스 인사이트를 위한 통계 모델링'
+    ]
   },
   {
     image: dimImg,
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
-    desc: 'We support <b>rational decisions</b> through <b>objective analysis</b> and <b>iridescent view extraction</b> — multi-perspective interpretation for <b>reducing uncertainty</b>.',
-    descKo: '<b>객관적 분석</b>과 <b>다각적 관점의 해석</b>을 통해 <b>합리적 의사결정</b>을 지원하고, <b>불확실성</b>을 줄입니다.',
+    items: [
+      'Evidence-Based Decision Support Systems',
+      'Human-Centered Analytics & AI Augmentation',
+      'Iridescent View Extraction for Advanced Decision Making'
+    ],
+    itemsKo: [
+      '증거 기반 의사결정 지원 시스템',
+      '인간 중심 분석 및 AI 증강',
+      '고급 의사결정을 위한 다각적 관점 추출'
+    ]
   },
 ]
 
@@ -520,13 +544,19 @@ export const AboutIntroductionTemplate = () => {
 
                               {/* Text */}
                               <div className="text-center flex-1 flex flex-col">
-                                <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
+                                <h3 className="text-base md:text-lg font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
                                   {focusLang === 'ko' ? area.titleKo : area.title}
                                 </h3>
-                                <p 
-                                  className="text-xs md:text-sm text-gray-500 leading-[1.8] [&>b]:text-gray-700 [&>b]:font-semibold"
-                                  dangerouslySetInnerHTML={{ __html: focusLang === 'ko' ? area.descKo : area.desc }}
-                                />
+                                <ul className="space-y-8 text-left">
+                                  {(focusLang === 'ko' ? area.itemsKo : area.items).map((item, idx) => (
+                                    <li key={idx} className="flex items-start gap-8">
+                                      <span className="size-5 rounded-full shrink-0 mt-6 bg-[#D6B14D]/40"/>
+                                      <span className="text-xs md:text-sm text-[#D6B14D] font-medium leading-relaxed">
+                                        {item}
+                                      </span>
+                                    </li>
+                                  ))}
+                                </ul>
                               </div>
                             </div>
                           ))}

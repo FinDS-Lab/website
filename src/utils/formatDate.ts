@@ -4,19 +4,17 @@ type props = {
   locale?: string
 }
 
-export const formatDateWithLocale = ({source, showTime, locale}: props) => {
-  const formattedDate = new Intl.DateTimeFormat(locale, {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(source);
+export const formatDateWithLocale = ({source, showTime}: props) => {
+  const year = source.getFullYear();
+  const month = (source.getMonth() + 1).toString().padStart(2, '0');
+  const day = source.getDate().toString().padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
 
-  const formattedTime = source.toLocaleTimeString(locale, {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hourCycle: 'h23',
-  });
+  const formattedTime = [
+    source.getHours().toString().padStart(2, '0'),
+    source.getMinutes().toString().padStart(2, '0'),
+    source.getSeconds().toString().padStart(2, '0'),
+  ].join(':');
 
   return showTime ? `${formattedDate} ${formattedTime}` : formattedDate;
 }

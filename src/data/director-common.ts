@@ -5,10 +5,10 @@
 // Real data is fetched from /data/scholar.json (auto-updated daily)
 export const citationStats = [
   { label: 'Citations', count: 161, key: 'totalCitations' },
-  { label: 'h-index', count: 8, key: 'hIndex' },
   { label: 'g-index', count: 12, key: 'gIndex' },
-  { label: 'i10-index', count: 7, key: 'i10Index' },
+  { label: 'h-index', count: 8, key: 'hIndex' },
   { label: 'i5-index', count: 10, key: 'i5Index' },
+  { label: 'i10-index', count: 7, key: 'i10Index' },
 ]
 
 // Google Scholar configuration
@@ -26,7 +26,7 @@ export const affiliations = [
   { organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present' },
 ]
 
-// Research Interests
+// Research Interests - Must match focusAreas in introduction.tsx
 export const researchInterests = [
   {
     category: 'Financial Data Science',
@@ -52,7 +52,7 @@ export const researchInterests = [
     items: [
       'Evidence-Based Decision Support Systems',
       'Human-Centered Analytics & AI Augmentation',
-      'Iridescent View Extraction'
+      'Iridescent View Extraction for Advanced Decision Making'
     ]
   },
 ]

@@ -777,39 +777,14 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       <h4 className="text-sm md:text-base font-bold text-gray-900 group-hover:text-primary transition-colors">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
-                      {area.items.map((item, idx) => {
-                        // Special handling for Iridescent View Extraction - gold on both mobile and PC
-                        if (item.includes('Iridescent View Extraction')) {
-                          const highlightedItem = item.replace(
-                            'Iridescent View Extraction',
-                            '<span class="text-primary font-semibold">Iridescent View Extraction</span>'
-                          )
-                          return (
-                            <li key={idx} className="flex items-start gap-10">
-                              <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                              <span 
-                                className="text-xs md:text-sm text-gray-600 leading-relaxed"
-                                dangerouslySetInnerHTML={{__html: highlightedItem}}
-                              />
-                            </li>
-                          )
-                        }
-                        // Extract key terms for highlighting
-                        const highlightTerms = item.match(/[A-Z][a-zA-Z-]+(?:\s+[&]\s+[A-Z][a-zA-Z-]+)?|AI|Decision|Data|Business|Financial|Risk/g) || []
-                        let highlightedItem = item
-                        highlightTerms.slice(0, 2).forEach(term => {
-                          highlightedItem = highlightedItem.replace(term, `<mark>${term}</mark>`)
-                        })
-                        return (
-                          <li key={idx} className="flex items-start gap-10">
-                            <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
-                            <span 
-                              className="text-xs md:text-sm text-gray-600 leading-relaxed [&>mark]:bg-transparent [&>mark]:text-primary [&>mark]:font-semibold"
-                              dangerouslySetInnerHTML={{__html: highlightedItem}}
-                            />
-                          </li>
-                        )
-                      })}
+                      {area.items.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-10">
+                          <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                          <span className="text-xs md:text-sm text-primary font-medium leading-relaxed">
+                            {item}
+                          </span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 ))}
