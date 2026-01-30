@@ -1005,7 +1005,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   <Building className="size-14 text-[#D6B14D]" />
                                   <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
                                 </div>
-                                <ExternalLink className="size-12 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                                <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
                               </a>
                             </div>
                           )}

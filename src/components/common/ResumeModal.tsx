@@ -17,14 +17,14 @@ const ResumeModal = () => (
             <p className="text-xs font-semibold text-gray-900">Assistant Professor, Gachon University</p>
             <p className="text-xs text-gray-500">Big Data Business Management Major, Department of Finance & Big Data, College of Business</p>
           </div>
-          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Mar 2026 – Present</span>
+          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2026-03 – Present</span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16">
           <div className="min-w-0 flex-1 md:pr-12">
             <p className="text-xs font-semibold text-gray-900">Assistant Professor, Dongduk Women's University</p>
             <p className="text-xs text-gray-500">Division of Business Administration, College of Business</p>
           </div>
-          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Sep 2025 – Feb 2026</span>
+          <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2025-09 – 2026-02</span>
         </div>
       </div>
     </section>
@@ -46,27 +46,27 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Ph.D., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Mar 2021 – Feb 2025</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2021-03 – 2025-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12 pr-8">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span>11th Best Doctoral Dissertation Award, Korean Operations Research and Management Science Society</span></li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim (KAIST)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span>Best Doctoral Dissertation Award, Korean Operations Research and Management Science Society (KORMS)</span></li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
           </ul>
         </div>
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">M.S., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Feb 2018 – Feb 2021</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2018-02 – 2021-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />17th Best Master Thesis Award, Korea Institute of Industrial Engineers</li>
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim (KAIST)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Best Master's Thesis Award, Korean Institute of Industrial Engineers (KIIE)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Advisor: Prof. Woo Chang Kim</li>
           </ul>
         </div>
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Mar 2013 – Feb 2018</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2013-03 – 2018-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
@@ -125,7 +125,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Portfolio Risk Assessment with Explainable AI</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">May 2025 – Sep 2025</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2025-05 – 2025-09</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Principal Investigator</li>
@@ -135,7 +135,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Foreign Currency Asset Management Impact Analysis</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Nov 2023 – Jul 2024</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2023-11 – 2024-07</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
@@ -145,7 +145,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Financial Data-Driven Market Valuation Model</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Aug 2021 – Dec 2023</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2021-08 – 2023-12</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
