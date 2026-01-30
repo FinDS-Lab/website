@@ -8,12 +8,12 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NoticeTag = 'Announcements' | 'Awards' | 'Events' | 'General';
+type NoticeTag = 'Announcements' | 'Recruitment' | 'Schedule' | 'General';
 
 const tagColors: Record<NoticeTag, { bg: string; text: string; border: string }> = {
   'Announcements': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
-  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
+  'Recruitment': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30' },
+  'Schedule': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 

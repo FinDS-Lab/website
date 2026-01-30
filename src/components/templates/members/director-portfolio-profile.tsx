@@ -179,6 +179,13 @@ const education: any[] = [
       {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
     ],
+    researchGroup: {
+      name: 'Financial Engineering Lab', 
+      department: 'Department of Industrial and Management Systems Engineering, Kyung Hee University', 
+      url: 'http://imse.khu.ac.kr/',
+      role: 'Undergraduate Researcher',
+      period: '2017-01 - 2018-02'
+    },
     leadership: [
       {role: 'Head of Culture & Public Relations', roleKo: '문화홍보국장', context: '41st Student Council, College of Engineering', contextKo: '제41대 공과대학 학생회', period: '2017-01 - 2017-11'},
       {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 - 2016-12'},
@@ -224,7 +231,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
   const [expandedEduSections, setExpandedEduSections] = useState<Set<string>>(new Set([
-    '0-dissertation', '0-advisor', '0-researchGroup', '1-thesis', '1-advisor', '1-researchGroup', '2-graduationPaper', '2-advisor'
+    '0-dissertation', '0-advisor', '0-researchGroup', '1-thesis', '1-advisor', '1-researchGroup', '2-graduationPaper', '2-advisor', '2-researchGroup'
   ])) // For education sub-sections - all expanded by default
   const [expandedSections, setExpandedSections] = useState({
     introduction: true,
@@ -1015,6 +1022,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <span className="text-xs md:text-sm font-semibold text-gray-800">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
                                           <span className="text-[10px] md:text-xs text-gray-500">{edu.researchGroup.department}</span>
+                                        )}
+                                        {edu.researchGroup.role && (
+                                          <span className="text-[10px] md:text-xs text-gray-600 mt-4 flex items-center gap-4">
+                                            <span className="size-4 rounded-full bg-[#D6B14D]/60 shrink-0" />
+                                            {edu.researchGroup.role}{edu.researchGroup.period && `, ${edu.researchGroup.period}`}
+                                          </span>
                                         )}
                                       </div>
                                     </div>

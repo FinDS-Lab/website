@@ -8,13 +8,13 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Category types and colors based on FINDS Lab Color Palette
-type GalleryCategory = 'Conferences' | 'Social Events' | 'Celebrations' | 'Design Materials' | 'General';
+type GalleryCategory = 'Conferences' | 'Lab Events' | 'Celebrations' | 'Design' | 'General';
 
 const categoryColors: Record<GalleryCategory, { bg: string; text: string; border: string }> = {
   'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Social Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
-  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#C41E3A]', border: 'border-[#E8889C]/30' },
-  'Design Materials': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
+  'Lab Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30' },
+  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#E8889C]', border: 'border-[#E8889C]/30' },
+  'Design': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 
