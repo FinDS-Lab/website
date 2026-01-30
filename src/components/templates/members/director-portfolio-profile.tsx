@@ -149,7 +149,7 @@ const education: any[] = [
     ],
     researchGroup: {name: 'Financial Engineering Lab', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
-    awards: [{title: 'Best Master\'s Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    awards: [{title: 'Best Master Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     honors: [],
     logo: logoKaist
   },

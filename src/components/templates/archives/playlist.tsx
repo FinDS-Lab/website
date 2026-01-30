@@ -137,9 +137,17 @@ export const ArchivesPlaylistTemplate = () => {
     const nextVideo = currentPlaylists[nextIndex]
     
     if (nextVideo?.videoId) {
-      setCurrentVideo(nextVideo)
-      setCurrentIndex(nextIndex)
-      setIsPlaying(true)
+      // Use loadVideoById if player exists, otherwise set state to create new player
+      if (playerRef.current && playerRef.current.loadVideoById) {
+        playerRef.current.loadVideoById(nextVideo.videoId)
+        setCurrentVideo(nextVideo)
+        setCurrentIndex(nextIndex)
+        setIsPlaying(true)
+      } else {
+        setCurrentVideo(nextVideo)
+        setCurrentIndex(nextIndex)
+        setIsPlaying(true)
+      }
     }
   }, [])
   
@@ -154,29 +162,48 @@ export const ArchivesPlaylistTemplate = () => {
     const prevVideo = currentPlaylists[prevIndex]
     
     if (prevVideo?.videoId) {
-      setCurrentVideo(prevVideo)
-      setCurrentIndex(prevIndex)
-      setIsPlaying(true)
+      // Use loadVideoById if player exists, otherwise set state to create new player
+      if (playerRef.current && playerRef.current.loadVideoById) {
+        playerRef.current.loadVideoById(prevVideo.videoId)
+        setCurrentVideo(prevVideo)
+        setCurrentIndex(prevIndex)
+        setIsPlaying(true)
+      } else {
+        setCurrentVideo(prevVideo)
+        setCurrentIndex(prevIndex)
+        setIsPlaying(true)
+      }
     }
   }, [])
+  
+  // Track videoId for detecting changes
+  const prevVideoIdRef = useRef<string | null>(null)
 
   // YouTube Player 초기화
   useEffect(() => {
     if (!isApiReady || !currentVideo || !playerContainerRef.current) return
-
-    // 기존 플레이어 정리
+    
+    const currentVideoId = currentVideo.videoId
+    
+    // If player exists and video changed, use loadVideoById (handled in playNextTrack/playPrevTrack)
+    // Only create new player if it doesn't exist
     if (playerRef.current) {
-      playerRef.current.destroy()
-      playerRef.current = null
+      // Player already exists, video switching is handled by loadVideoById in track functions
+      // But if this is triggered by clicking on a track directly, we need to load it
+      if (prevVideoIdRef.current !== currentVideoId) {
+        playerRef.current.loadVideoById(currentVideoId)
+        prevVideoIdRef.current = currentVideoId
+      }
+      return
     }
 
     // 플레이어 컨테이너 초기화
     const container = playerContainerRef.current
     container.innerHTML = '<div id="youtube-player"></div>'
 
-    // 새 플레이어 생성
+    // 새 플레이어 생성 (only when no player exists)
     playerRef.current = new window.YT.Player('youtube-player', {
-      videoId: currentVideo.videoId,
+      videoId: currentVideoId,
       playerVars: {
         autoplay: 1,
         rel: 0,
@@ -186,6 +213,7 @@ export const ArchivesPlaylistTemplate = () => {
         onReady: (event) => {
           event.target.playVideo()
           setIsPlaying(true)
+          prevVideoIdRef.current = currentVideoId
         },
         onStateChange: (event) => {
           if (event.data === YT_STATE.PLAYING) {
@@ -202,12 +230,19 @@ export const ArchivesPlaylistTemplate = () => {
     })
 
     return () => {
+      // Only cleanup on unmount, not on video change
+    }
+  }, [isApiReady, currentVideo?.videoId, playNextTrack])
+  
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
       if (playerRef.current) {
         playerRef.current.destroy()
         playerRef.current = null
       }
     }
-  }, [isApiReady, currentVideo?.videoId, playNextTrack])
+  }, [])
 
   const togglePlayPause = useCallback(() => {
     if (!playerRef.current) return
@@ -272,6 +307,7 @@ export const ArchivesPlaylistTemplate = () => {
       playerRef.current.destroy()
       playerRef.current = null
     }
+    prevVideoIdRef.current = null
     setCurrentVideo(null)
     setIsMinimized(false)
     setIsPlaying(false)

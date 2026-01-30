@@ -113,7 +113,7 @@ const education = [
     location: 'Korea Advanced Institute of Science and Technology (KAIST)',
     krName: '한국과학기술원 (KAIST) 산업및시스템공학 공학석사',
     advisor: 'Woo Chang Kim',
-    awards: [{title: "Best Master's Thesis Award", org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
+    awards: [{title: "Best Master Thesis Award", org: 'Korean Institute of Industrial Engineers (KIIE, 대한산업공학회)'}],
     logo: logoKaist
   },
   {
