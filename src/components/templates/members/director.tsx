@@ -749,13 +749,13 @@ export const MembersDirectorTemplate = () => {
                           <span className="inline-block px-10 py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
                           
                           {/* Degree - Largest */}
-                          <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
                           
                           {/* School - Medium */}
-                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-6">{edu.school}</p>
+                          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-6">{edu.school}</p>
                           
                           {/* Field - Smallest */}
-                          <p className="text-xs md:text-sm text-gray-500 mt-3">{edu.field}</p>
+                          <p className="text-[10px] md:text-xs text-gray-500 mt-3">{edu.field}</p>
                         </div>
                       </div>
                     </div>
@@ -804,8 +804,8 @@ export const MembersDirectorTemplate = () => {
                               : 'bg-gray-200 text-gray-700'
                           }`}>{emp.period}</span>
                         </div>
-                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
+                        <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
+                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>
                         {emp.department && emp.department.includes(',') ? (
                           <>
                             <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
