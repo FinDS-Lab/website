@@ -860,14 +860,14 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             )}
                           </div>
                           {/* Degree - Largest */}
-                          <p className="text-base md:text-lg font-bold text-gray-900 leading-tight">{edu.degree}</p>
-                          {edu.degreeKo && <p className="text-xs md:text-sm font-medium text-gray-500 mt-1">{edu.degreeKo}</p>}
+                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          {edu.degreeKo && <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-1">{edu.degreeKo}</p>}
                           {/* School - Medium */}
-                          <p className="text-sm md:text-base font-semibold text-gray-700 mt-6 md:mt-8">{edu.school}</p>
-                          {edu.schoolKo && <p className="text-xs md:text-sm font-medium text-gray-500 mt-1">{edu.schoolKo}</p>}
+                          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-6 md:mt-8">{edu.school}</p>
+                          {edu.schoolKo && <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-1">{edu.schoolKo}</p>}
                           {/* Field - Smallest */}
-                          <p className="text-xs md:text-sm text-gray-600 mt-4 md:mt-5">{edu.field}</p>
-                          {edu.fieldKo && <p className="text-[10px] md:text-xs text-gray-400 mt-1">{edu.fieldKo}</p>}
+                          <p className="text-[10px] md:text-xs text-gray-600 mt-4 md:mt-5">{edu.field}</p>
+                          {edu.fieldKo && <p className="text-[9px] md:text-[10px] text-gray-400 mt-1">{edu.fieldKo}</p>}
                         </div>
                       </div>
                       
@@ -1143,8 +1143,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               : 'bg-gray-200 text-gray-700'
                           }`}>{emp.period}</span>
                         </div>
-                        <h4 className="text-xs md:text-sm font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-[10px] md:text-xs text-gray-500 font-bold break-words">{emp.organization}</p>
+                        <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
+                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>
                         {emp.department && emp.department.includes(',') ? (
                           <>
                             <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>

@@ -138,7 +138,7 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Nov 2023 – Jul 2024</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (PI: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by Bank of Korea</li>
           </ul>
         </div>
@@ -148,7 +148,7 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">Aug 2021 – Dec 2023</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (PI: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by Shinhan Bank</li>
           </ul>
         </div>
