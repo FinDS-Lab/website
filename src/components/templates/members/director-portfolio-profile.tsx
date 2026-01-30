@@ -855,27 +855,27 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduSection(`${index}-dissertation`)}
                                 className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <p className="text-[10px] font-bold text-gray-500">Dissertation</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Dissertation</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-dissertation`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-dissertation`) && (
                                 <div className="bg-gradient-to-br from-gray-50 to-white p-16">
                                   {/* English Title */}
                                   <div className="mb-12">
-                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                    <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.dissertation.en.split(' — ')[0]}
                                     </p>
                                     {edu.dissertation.en.includes(' — ') && (
-                                      <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
+                                      <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                   {/* Korean Title */}
                                   <div className="pt-10 border-t border-gray-100">
-                                    <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                    <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
                                       {edu.dissertation.ko.split(' — ')[0]}
                                     </p>
                                     {edu.dissertation.ko.includes(' — ') && (
-                                      <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
+                                      <p className="text-[9px] md:text-[11px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -890,27 +890,27 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduSection(`${index}-thesis`)}
                                 className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <p className="text-[10px] font-bold text-gray-500">Thesis</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Thesis</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-thesis`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-thesis`) && (
                                 <div className="bg-gradient-to-br from-gray-50 to-white p-16">
                                   {/* English Title */}
                                   <div className="mb-12">
-                                    <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                    <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.thesis.en.split(' — ')[0]}
                                     </p>
                                     {edu.thesis.en.includes(' — ') && (
-                                      <p className="text-[10px] font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
+                                      <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                   {/* Korean Title */}
                                   <div className="pt-10 border-t border-gray-100">
-                                    <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                    <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
                                       {edu.thesis.ko.split(' — ')[0]}
                                     </p>
                                     {edu.thesis.ko.includes(' — ') && (
-                                      <p className="text-[9px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
+                                      <p className="text-[9px] md:text-[11px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -925,7 +925,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduSection(`${index}-graduationPaper`)}
                                 className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <p className="text-[10px] font-bold text-gray-500">Graduation Paper</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Graduation Paper</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-graduationPaper`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-graduationPaper`) && (
@@ -934,21 +934,21 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div key={idx} className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-16 border border-gray-100">
                                       {/* Header: Number Badge & Advisor Name */}
                                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
-                                        <span className="px-10 py-4 bg-primary text-white text-[9px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
+                                        <span className="px-10 py-4 bg-primary text-white text-[9px] md:text-[11px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
                                         <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
                                           <GraduationCap size={12} className="text-[#D6B14D]" />
-                                          <span className="text-[9px] font-semibold text-gray-600">{thesis.advisorName}</span>
+                                          <span className="text-[9px] md:text-xs font-semibold text-gray-600">{thesis.advisorName}</span>
                                         </div>
                                       </div>
                                       {/* English Title */}
                                       <div className="mb-12">
-                                        <p className="text-[11px] font-bold text-gray-800 leading-relaxed">
+                                        <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                           {thesis.en}
                                         </p>
                                       </div>
                                       {/* Korean Title */}
                                       <div className="pt-10 border-t border-gray-100">
-                                        <p className="text-[10px] font-bold text-gray-700 leading-relaxed">
+                                        <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
                                           {thesis.ko}
                                         </p>
                                       </div>
@@ -966,7 +966,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduSection(`${index}-advisor`)}
                                 className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <p className="text-[10px] font-bold text-gray-500">Advisor</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Advisor</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-advisor`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-advisor`) && (
@@ -981,7 +981,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     >
                                       <div className="flex items-center gap-8">
                                         <GraduationCap className="size-14 text-[#D6B14D]" />
-                                        <span className="text-xs font-semibold text-gray-800">{adv.name}</span>
+                                        <span className="text-xs md:text-sm font-semibold text-gray-800">{adv.name}</span>
                                       </div>
                                       <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
                                     </a>
@@ -998,7 +998,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduSection(`${index}-researchGroup`)}
                                 className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
                               >
-                                <p className="text-[10px] font-bold text-gray-500">Research Group</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Research Group</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-researchGroup`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-researchGroup`) && (
@@ -1012,9 +1012,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="flex items-center gap-8">
                                       <Building className="size-14 text-[#D6B14D] shrink-0" />
                                       <div className="flex flex-col">
-                                        <span className="text-xs font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                        <span className="text-xs md:text-sm font-semibold text-gray-800">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
-                                          <span className="text-[10px] text-gray-500">{edu.researchGroup.department}</span>
+                                          <span className="text-[10px] md:text-xs text-gray-500">{edu.researchGroup.department}</span>
                                         )}
                                       </div>
                                     </div>
@@ -1028,15 +1028,15 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           {/* Leadership */}
                           {edu.leadership && edu.leadership.length > 0 && (
                             <div>
-                              <p className="text-[10px] font-bold text-gray-400 mb-10">Leadership Roles</p>
+                              <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-10">Leadership Roles</p>
                               <div className="space-y-6">
                                 {edu.leadership.map((l: any, i: number) => (
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
                                     <div>
-                                      <span className="text-xs font-semibold text-gray-800">{l.role}</span>
-                                      <span className="text-[10px] text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
+                                      <span className="text-xs md:text-sm font-semibold text-gray-800">{l.role}</span>
+                                      <span className="text-[10px] md:text-xs text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
                                     </div>
-                                    <span className="text-[10px] text-gray-600 font-medium shrink-0">{l.period}</span>
+                                    <span className="text-[10px] md:text-xs text-gray-600 font-medium shrink-0">{l.period}</span>
                                   </div>
                                 ))}
                               </div>
@@ -1050,7 +1050,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 onClick={() => toggleEduAwards(index)}
                                 className="flex items-center justify-between w-full group mb-10"
                               >
-                                <p className="text-[10px] font-bold text-gray-400">Honors & Awards</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-400">Honors & Awards</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduAwards.has(index) ? 'rotate-180' : ''}`}/>
                               </button>
                               
@@ -1062,8 +1062,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
                                           <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1">
-                                            <span className="text-xs font-semibold text-gray-800">{h.title}</span>
-                                            <span className="text-[10px] text-gray-500 font-bold block mt-2">{h.org}</span>
+                                            <span className="text-xs md:text-sm font-semibold text-gray-800">{h.title}</span>
+                                            <span className="text-[10px] md:text-xs text-gray-500 font-bold block mt-2">{h.org}</span>
                                           </div>
                                         </div>
                                       ))}
@@ -1077,10 +1077,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1">
                                             <div>
-                                              <span className="text-xs font-semibold text-gray-800">{a.title}</span>
-                                              {a.note && <span className="text-[10px] text-primary font-medium ml-4">({a.note})</span>}
+                                              <span className="text-xs md:text-sm font-semibold text-gray-800">{a.title}</span>
+                                              {a.note && <span className="text-[10px] md:text-xs text-primary font-medium ml-4">({a.note})</span>}
                                             </div>
-                                            <span className="text-[10px] text-gray-500 font-medium block mt-3">{a.org}</span>
+                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium block mt-3">{a.org}</span>
                                           </div>
                                         </div>
                                       ))}
@@ -1245,7 +1245,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <div className="flex items-center gap-12 flex-wrap">
                                   <span className={`text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
                                   {isCurrentYear && (
-                                    <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
+                                    <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                                   )}
                                   {/* White badge with counts */}
                                   <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
@@ -1284,14 +1284,14 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       {/* Content + Date - PC: Date on right */}
                                       <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
                                         <div className="flex-1 min-w-0">
-                                          <h4 className="text-sm font-semibold text-gray-800 mb-4">{item.title}</h4>
-                                          <p className="text-xs text-gray-600 mb-4">{item.event}</p>
-                                          <p className="text-xs text-gray-500 font-bold">{item.organization}</p>
+                                          <h4 className="text-sm md:text-base font-semibold text-gray-800 mb-4">{item.title}</h4>
+                                          <p className="text-xs md:text-sm text-gray-600 mb-4">{item.event}</p>
+                                          <p className="text-xs md:text-sm text-gray-500 font-bold">{item.organization}</p>
                                           {/* Mobile: Date as text */}
                                           <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
                                         </div>
                                         {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                           {year}-{formatHonorDate(item.date)}
                                         </span>
                                       </div>

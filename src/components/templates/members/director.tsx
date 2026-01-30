@@ -613,7 +613,7 @@ export const MembersDirectorTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}

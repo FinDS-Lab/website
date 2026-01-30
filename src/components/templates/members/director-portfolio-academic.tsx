@@ -857,7 +857,7 @@ const CollaborationNetwork = memo(() => {
                     <div className="grid grid-cols-2 gap-8">
                       <div className="bg-primary/5 rounded-lg p-12 text-center border border-primary/10">
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Total Works</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Total Works</p>
                         </div>
                         <p className="text-2xl font-bold text-primary">
                           {node.publications}
@@ -865,7 +865,7 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
                         <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
                           {node.coworkRate}%
@@ -876,7 +876,7 @@ const CollaborationNetwork = memo(() => {
                     {/* Breakdown */}
                     <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">Breakdown</p>
+                        <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
@@ -1424,7 +1424,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
