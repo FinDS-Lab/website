@@ -126,7 +126,7 @@ export const ArchivesPlaylistTemplate = () => {
     }
   }, [])
   
-  // Play next track function
+  // Play next track function - destroy player and let useEffect create new one
   const playNextTrack = useCallback(() => {
     const currentPlaylists = playlistsRef.current
     const currentIdx = currentIndexRef.current
@@ -137,23 +137,18 @@ export const ArchivesPlaylistTemplate = () => {
     const nextVideo = currentPlaylists[nextIndex]
     
     if (nextVideo?.videoId) {
+      // Destroy existing player so useEffect creates new one with autoplay
+      if (playerRef.current) {
+        playerRef.current.destroy()
+        playerRef.current = null
+      }
       setCurrentVideo(nextVideo)
       setCurrentIndex(nextIndex)
-      // Use loadVideoById if player exists
-      if (playerRef.current) {
-        playerRef.current.loadVideoById(nextVideo.videoId)
-        // Explicitly play after loading
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.playVideo()
-          }
-        }, 100)
-      }
       setIsPlaying(true)
     }
   }, [])
   
-  // Play previous track function
+  // Play previous track function - destroy player and let useEffect create new one
   const playPrevTrack = useCallback(() => {
     const currentPlaylists = playlistsRef.current
     const currentIdx = currentIndexRef.current
@@ -164,54 +159,31 @@ export const ArchivesPlaylistTemplate = () => {
     const prevVideo = currentPlaylists[prevIndex]
     
     if (prevVideo?.videoId) {
+      // Destroy existing player so useEffect creates new one with autoplay
+      if (playerRef.current) {
+        playerRef.current.destroy()
+        playerRef.current = null
+      }
       setCurrentVideo(prevVideo)
       setCurrentIndex(prevIndex)
-      // Use loadVideoById if player exists
-      if (playerRef.current) {
-        playerRef.current.loadVideoById(prevVideo.videoId)
-        // Explicitly play after loading
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.playVideo()
-          }
-        }, 100)
-      }
       setIsPlaying(true)
     }
   }, [])
-  
-  // Track videoId for detecting changes
-  const prevVideoIdRef = useRef<string | null>(null)
 
   // YouTube Player 초기화
   useEffect(() => {
     if (!isApiReady || !currentVideo || !playerContainerRef.current) return
     
+    // If player already exists, skip (player is managed by prev/next functions)
+    if (playerRef.current) return
+
     const currentVideoId = currentVideo.videoId
     
-    // If player exists and video changed, use loadVideoById
-    // Only create new player if it doesn't exist
-    if (playerRef.current) {
-      // Player already exists, load new video and play
-      if (prevVideoIdRef.current !== currentVideoId) {
-        playerRef.current.loadVideoById(currentVideoId)
-        // Explicitly play after loading
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.playVideo()
-            setIsPlaying(true)
-          }
-        }, 100)
-        prevVideoIdRef.current = currentVideoId
-      }
-      return
-    }
-
     // 플레이어 컨테이너 초기화
     const container = playerContainerRef.current
     container.innerHTML = '<div id="youtube-player"></div>'
 
-    // 새 플레이어 생성 (only when no player exists)
+    // 새 플레이어 생성 with autoplay
     playerRef.current = new window.YT.Player('youtube-player', {
       videoId: currentVideoId,
       playerVars: {
@@ -223,7 +195,6 @@ export const ArchivesPlaylistTemplate = () => {
         onReady: (event) => {
           event.target.playVideo()
           setIsPlaying(true)
-          prevVideoIdRef.current = currentVideoId
         },
         onStateChange: (event) => {
           if (event.data === YT_STATE.PLAYING) {
@@ -240,19 +211,13 @@ export const ArchivesPlaylistTemplate = () => {
     })
 
     return () => {
-      // Only cleanup on unmount, not on video change
-    }
-  }, [isApiReady, currentVideo?.videoId, playNextTrack])
-  
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
+      // Cleanup only on unmount or when currentVideo changes
       if (playerRef.current) {
         playerRef.current.destroy()
         playerRef.current = null
       }
     }
-  }, [])
+  }, [isApiReady, currentVideo, playNextTrack])
 
   const togglePlayPause = useCallback(() => {
     if (!playerRef.current) return
@@ -317,7 +282,6 @@ export const ArchivesPlaylistTemplate = () => {
       playerRef.current.destroy()
       playerRef.current = null
     }
-    prevVideoIdRef.current = null
     setCurrentVideo(null)
     setIsMinimized(false)
     setIsPlaying(false)
