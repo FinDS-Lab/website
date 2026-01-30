@@ -53,8 +53,8 @@ interface YTPlayer {
   playVideo: () => void;
   pauseVideo: () => void;
   destroy: () => void;
-  loadVideoById?: (videoId: string) => void;
-  cueVideoById?: (videoId: string) => void;
+  loadVideoById: (videoId: string) => void;
+  cueVideoById: (videoId: string) => void;
 }
 
 interface PlaylistItem {
@@ -138,7 +138,7 @@ export const ArchivesPlaylistTemplate = () => {
     
     if (nextVideo?.videoId) {
       // Use loadVideoById if player exists, otherwise set state to create new player
-      if (playerRef.current && playerRef.current.loadVideoById) {
+      if (playerRef.current) {
         playerRef.current.loadVideoById(nextVideo.videoId)
         setCurrentVideo(nextVideo)
         setCurrentIndex(nextIndex)
@@ -163,7 +163,7 @@ export const ArchivesPlaylistTemplate = () => {
     
     if (prevVideo?.videoId) {
       // Use loadVideoById if player exists, otherwise set state to create new player
-      if (playerRef.current && playerRef.current.loadVideoById) {
+      if (playerRef.current) {
         playerRef.current.loadVideoById(prevVideo.videoId)
         setCurrentVideo(prevVideo)
         setCurrentIndex(prevIndex)
