@@ -20,12 +20,12 @@ const focusAreas = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'AI-Driven Quantitative Finance'
+      'Personalized Finance & Behavioral Decision Modeling'
     ],
     itemsKo: [
-      '포트폴리오 최적화 및 알고리즘 트레이딩',
-      '금융 시계열 모델링 및 예측',
-      'AI 기반 퀀트 금융'
+      '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
+      '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
+      '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정'
     ]
   },
   {
@@ -33,14 +33,14 @@ const focusAreas = [
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     items: [
-      'Cross-Industry Data Analytics & Visualization',
-      'Graph-Based Network Analysis',
-      'Statistical Modeling for Business Insights'
+      'Cross-Industry Data Analytics',
+      'Data Visualization & Transparency',
+      'Business Insights from Statistical Methods'
     ],
     itemsKo: [
-      '산업 간 데이터 분석 및 시각화',
-      '그래프 기반 네트워크 분석',
-      '비즈니스 인사이트를 위한 통계 모델링'
+      '다양한 산업 간 융합을 위한 데이터 분석',
+      '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
+      '통계적 방법론을 활용한 비즈니스 인사이트 도출'
     ]
   },
   {
@@ -48,14 +48,14 @@ const focusAreas = [
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [
-      'Empirical Evidence-Based Decision Support Systems',
-      'Human-Centered Analytics & AI Augmentation',
-      'Iridescent View Extraction for Advanced Decision Making'
+      'Trustworthy Decision Systems & Optimization',
+      'Risk-Aware Decision Support Tools',
+      'Iridescent View Extraction for Data-Informed Decision'
     ],
     itemsKo: [
-      '경험적 증거 기반 의사결정 지원 시스템',
-      '인간 중심 분석 및 AI 증강',
-      '고급 의사결정을 위한 다각적 관점 추출'
+      '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
+      '경영 및 산업 환경의 위험을 고려한 의사결정 지원 도구',
+      '데이터 기반 의사결정을 위한 다양한 관점에서의 해석과 종합'
     ]
   },
 ]
