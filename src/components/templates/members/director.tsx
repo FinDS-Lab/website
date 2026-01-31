@@ -99,7 +99,8 @@ const education = [
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
-    field: 'Industrial and Systems Engineering',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     dissertation: {
       en: 'LUCIDE: A Lucid, User-Centric, Intelligent, Data-Inspired, End-to-End System Framework for Illustrative Decision-Making in Financial Asset Management Services — Orchestrating Transparency-Oriented Financial Investment Solutions via Empirical Evidence and Clairvoyant-Guided Approaches from Iridescent and Analytical Perspectives',
       ko: 'LUCIDE: 금융 자산 운용 서비스에서의 설명적 의사결정 지원을 위한 고객 중심의 데이터 기반 지능형 시스템 통합 프레임워크 — 입체적 관점에서의 경험적 증거와 예측 분석 기반 접근을 통한 운용 투명성 지향적 통합형 금융 투자 방법론'
@@ -119,7 +120,8 @@ const education = [
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2021-02',
     degree: 'Master of Science (M.S.)',
-    field: 'Industrial and Systems Engineering',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     thesis: {
       en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics — Focus on the Republic of Korea\'s Case',
       ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 — 한국의 사례를 중심으로'
@@ -136,7 +138,8 @@ const education = [
     school: 'Kyung Hee University',
     period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
-    field: 'Industrial and Management Systems Engineering',
+    field: 'Department of Industrial and Management Systems Engineering',
+    college: 'College of Engineering',
     advisors: [
       {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
@@ -737,33 +740,23 @@ export const MembersDirectorTemplate = () => {
               <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {education.map((edu, index) => (
-                  <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
                     {/* Timeline dot */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
-                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
-                      {/* Main Content */}
-                      <div className="flex gap-12 md:gap-16">
-                        {/* Logo */}
-                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
-                          <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
+                        <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
+                          <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
                         </div>
-                        
-                        {/* Info */}
-                        <div className="flex-1 min-w-0">
-                          {/* Period Badge */}
-                          <span className="inline-block px-10 py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
-                          
-                          {/* Degree - Largest */}
-                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
-                          
-                          {/* School - Medium */}
-                          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-6">{edu.school}</p>
-                          
-                          {/* Field - Smallest */}
-                          <p className="text-[10px] md:text-xs text-gray-500 mt-3">{edu.field}</p>
-                        </div>
+                        <h4 className="text-sm md:text-base font-bold text-gray-900">{edu.degree}</h4>
+                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{edu.school}</p>
+                        <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{edu.field}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 break-words">{edu.college}</p>
                       </div>
                     </div>
                   </div>

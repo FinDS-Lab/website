@@ -110,12 +110,10 @@ import logoJl from '@/assets/images/logos/jl.png'
 const education: any[] = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    schoolKo: '한국과학기술원',
     period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
-    degreeKo: '공학박사',
-    field: 'Industrial and Systems Engineering',
-    fieldKo: '산업및시스템공학',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     dissertation: {
       en: 'LUCIDE: A Lucid, User-Centric, Intelligent, Data-Inspired, End-to-End System Framework for Illustrative Decision-Making in Financial Asset Management Services — Orchestrating Transparency-Oriented Financial Investment Solutions via Empirical Evidence and Clairvoyant-Guided Approaches from Iridescent and Analytical Perspectives',
       ko: 'LUCIDE: 금융 자산 운용 서비스에서의 설명적 의사결정 지원을 위한 고객 중심의 데이터 기반 지능형 시스템 통합 프레임워크 — 입체적 관점에서의 경험적 증거와 예측 분석 기반 접근을 통한 운용 투명성 지향적 통합형 금융 투자 방법론'
@@ -134,12 +132,10 @@ const education: any[] = [
   },
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
-    schoolKo: '한국과학기술원',
     period: '2021-02',
     degree: 'Master of Science (M.S.)',
-    degreeKo: '공학석사',
-    field: 'Industrial and Systems Engineering',
-    fieldKo: '산업및시스템공학',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     thesis: {
       en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics — Focus on the Republic of Korea\'s Case',
       ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 — 한국의 사례를 중심으로'
@@ -155,12 +151,10 @@ const education: any[] = [
   },
   {
     school: 'Kyung Hee University',
-    schoolKo: '경희대학교',
     period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
-    degreeKo: '공학사',
-    field: 'Industrial and Management Systems Engineering',
-    fieldKo: '산업경영공학',
+    field: 'Department of Industrial and Management Systems Engineering',
+    college: 'College of Engineering',
     undergraduateTheses: [
       {
         number: '2nd',
@@ -842,13 +836,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           </div>
                           {/* Degree - Largest */}
                           <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
-                          {edu.degreeKo && <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-1">{edu.degreeKo}</p>}
                           {/* School - Medium */}
-                          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-6 md:mt-8">{edu.school}</p>
-                          {edu.schoolKo && <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-1">{edu.schoolKo}</p>}
-                          {/* Field - Smallest */}
-                          <p className="text-[10px] md:text-xs text-gray-600 mt-4 md:mt-5">{edu.field}</p>
-                          {edu.fieldKo && <p className="text-[9px] md:text-[10px] text-gray-400 mt-1">{edu.fieldKo}</p>}
+                          <p className="text-xs md:text-sm text-gray-500 font-bold mt-2">{edu.school}</p>
+                          {/* Field - Department */}
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{edu.field}</p>
+                          {/* College */}
+                          {edu.college && <p className="text-[10px] md:text-xs text-gray-500">{edu.college}</p>}
                         </div>
                       </div>
                       

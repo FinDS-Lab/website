@@ -293,7 +293,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {missionLang === 'ko' ? "FINDS Lab의 목표" : "FINDS Lab's Goal"}
+                            {missionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>목표</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Goal</span></>}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -302,7 +302,7 @@ export const AboutIntroductionTemplate = () => {
                       {/* Card Content */}
                       <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
                         {/* Title with Quote Icon */}
-                        <div className="text-center mb-32 md:mb-40">
+                        <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
                           <div className="flex items-center justify-center gap-16 mb-16">
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                             <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
@@ -366,7 +366,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {visionLang === 'ko' ? "FINDS Lab의 비전" : "FINDS Lab's Vision"}
+                            {visionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>비전</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Vision</span></>}
                           </span>
                         </div>
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -394,7 +394,7 @@ export const AboutIntroductionTemplate = () => {
 
                         <div className="relative z-10">
                           {/* Title with Quote Icon */}
-                          <div className="text-center mb-32 md:mb-40">
+                          <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
                             <div className="flex items-center justify-center gap-16 mb-16">
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
@@ -503,7 +503,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {focusLang === 'ko' ? "FINDS Lab의 연구 분야" : "FINDS Lab's Research Areas"}
+                            {focusLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Research Areas</span></>}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
@@ -566,7 +566,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {valuesLang === 'ko' ? "FINDS Lab의 핵심 가치" : "FINDS Lab's Core Values"}
+                            {valuesLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>핵심 가치</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Core Values</span></>}
                           </span>
                         </div>
                         <LangToggle lang={valuesLang} setLang={setValuesLang} variant="dark" />
