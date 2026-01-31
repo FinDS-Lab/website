@@ -179,13 +179,15 @@ export const ArchivesNewsTemplate = () => {
               if (!response.ok) return null
               const text = await response.text()
               const { data } = parseMarkdown(text)
+              const validTags: NewsTag[] = ['Honors & Awards', 'Events', 'General']
+              const parsedTag = validTags.includes(data.tag as NewsTag) ? (data.tag as NewsTag) : 'General'
               return {
                 id: file.replace('.md', ''),
                 title: data.title || 'No Title',
                 date: data.date || '',
                 excerpt: data.excerpt || '',
                 author: data.author || 'FINDS Lab',
-                tag: (data.tag as NewsTag) || 'General'
+                tag: parsedTag
               }
             } catch (err) {
               return null
@@ -271,7 +273,9 @@ export const ArchivesNewsTemplate = () => {
                   ${selectedTag === tag 
                     ? tag === 'All'
                       ? 'bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/20'
-                      : `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border} shadow-sm`
+                      : tagColors[tag as NewsTag]
+                        ? `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border} shadow-sm`
+                        : 'bg-gray-100 text-gray-600 border-gray-200 shadow-sm'
                     : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                   }
                 `}
@@ -321,7 +325,7 @@ export const ArchivesNewsTemplate = () => {
                   </div>
                   <span className="text-gray-300 hidden md:inline">|</span>
                   <span>{item.author}</span>
-                  {item.tag && (
+                  {item.tag && tagColors[item.tag] && (
                     <>
                       <span className="text-gray-300 hidden md:inline">|</span>
                       <span className={`px-8 py-2 rounded-full text-[10px] md:text-xs font-medium border ${tagColors[item.tag].bg} ${tagColors[item.tag].text} ${tagColors[item.tag].border}`}>
