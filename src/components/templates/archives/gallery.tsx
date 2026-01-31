@@ -142,7 +142,7 @@ export const ArchivesGalleryTemplate = () => {
   const baseUrl = import.meta.env.BASE_URL || '/'
   const contentAnimation = useScrollAnimation()
 
-  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Social Events', 'Celebrations', 'Design Materials', 'General']
+  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Lab Events', 'Celebrations', 'Design', 'General']
 
   useEffect(() => {
     const fetchAllGalleries = async () => {

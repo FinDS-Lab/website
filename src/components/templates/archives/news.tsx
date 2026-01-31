@@ -141,7 +141,7 @@ export const ArchivesNewsTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NewsTag | 'All')[] = ['All', 'Awards', 'Achievements', 'Events', 'General']
+  const allTags: (NewsTag | 'All')[] = ['All', 'Awards', 'Publications', 'Media', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
