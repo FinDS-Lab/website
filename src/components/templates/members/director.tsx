@@ -99,7 +99,8 @@ const education = [
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025-02',
     degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
-    field: 'Industrial and Systems Engineering',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     dissertation: {
       en: 'LUCIDE: A Lucid, User-Centric, Intelligent, Data-Inspired, End-to-End System Framework for Illustrative Decision-Making in Financial Asset Management Services — Orchestrating Transparency-Oriented Financial Investment Solutions via Empirical Evidence and Clairvoyant-Guided Approaches from Iridescent and Analytical Perspectives',
       ko: 'LUCIDE: 금융 자산 운용 서비스에서의 설명적 의사결정 지원을 위한 고객 중심의 데이터 기반 지능형 시스템 통합 프레임워크 — 입체적 관점에서의 경험적 증거와 예측 분석 기반 접근을 통한 운용 투명성 지향적 통합형 금융 투자 방법론'
@@ -119,7 +120,8 @@ const education = [
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2021-02',
     degree: 'Master of Science (M.S.)',
-    field: 'Industrial and Systems Engineering',
+    field: 'Department of Industrial and Systems Engineering',
+    college: 'College of Engineering',
     thesis: {
       en: 'Empirical Analysis of Politically-Themed Stocks Using Text Mining Techniques and Entropy-Based Network Dynamics — Focus on the Republic of Korea\'s Case',
       ko: '텍스트 마이닝 기법과 엔트로피 기반의 네트워크 분석을 활용한 정치 테마주에 대한 실증적 분석 — 한국의 사례를 중심으로'
@@ -136,7 +138,8 @@ const education = [
     school: 'Kyung Hee University',
     period: '2018-02',
     degree: 'Bachelor of Engineering (B.E.)',
-    field: 'Industrial and Management Systems Engineering',
+    field: 'Department of Industrial and Management Systems Engineering',
+    college: 'College of Engineering',
     advisors: [
       {name: 'Jang Ho Kim', url: 'https://scholar.google.com/citations?user=uTiqWBMAAAAJ&hl=en'},
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
@@ -159,7 +162,7 @@ const employment = [
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University Sejong Campus', organizationKo: '고려대학교 세종캠퍼스', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
   {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
@@ -613,7 +616,7 @@ export const MembersDirectorTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
@@ -709,7 +712,7 @@ export const MembersDirectorTemplate = () => {
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
-                          <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                          <span className="size-5 rounded-full shrink-0 mt-[6px] bg-primary/40"/>
                           <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>
@@ -737,33 +740,23 @@ export const MembersDirectorTemplate = () => {
               <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="relative border-l-2 border-primary/20 ml-6 md:ml-8">
                 {education.map((edu, index) => (
-                  <div key={index} className="relative pb-32 last:pb-0 group pl-24 md:pl-32">
+                  <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
                     {/* Timeline dot */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
-                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
-                      {/* Main Content */}
-                      <div className="flex gap-12 md:gap-16">
-                        {/* Logo */}
-                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
-                          <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
+                        <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                      </div>
+                      <div className="flex-1 min-w-0 flex flex-col justify-center">
+                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
+                          <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
                         </div>
-                        
-                        {/* Info */}
-                        <div className="flex-1 min-w-0">
-                          {/* Period Badge */}
-                          <span className="inline-block px-10 py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white mb-10">{edu.period}</span>
-                          
-                          {/* Degree - Largest */}
-                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
-                          
-                          {/* School - Medium */}
-                          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-6">{edu.school}</p>
-                          
-                          {/* Field - Smallest */}
-                          <p className="text-[10px] md:text-xs text-gray-500 mt-3">{edu.field}</p>
-                        </div>
+                        <h4 className="text-sm md:text-base font-bold text-gray-900">{edu.degree}</h4>
+                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{edu.school}</p>
+                        <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{edu.field}</p>
+                        <p className="text-[10px] md:text-xs text-gray-500 break-words">{edu.college}</p>
                       </div>
                     </div>
                   </div>
@@ -789,7 +782,7 @@ export const MembersDirectorTemplate = () => {
                   emp.organization === 'Gachon University' ||
                   emp.organization === 'Dongduk Women\'s University' ||
                   emp.position === 'Director' ||
-                  (emp.position === 'Lecturer' && (emp.organization === 'Kangnam University' || emp.organization === 'Korea University')) ||
+                  (emp.position === 'Lecturer' && (emp.organization === 'Kangnam University' || emp.organization === 'Korea University Sejong Campus')) ||
                   emp.organization === 'EY Consulting'
                 ).map((emp, index) => (
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
@@ -799,11 +792,11 @@ export const MembersDirectorTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img loading="lazy" src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
+                        <img loading="lazy" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
                           <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
                             emp.isCurrent
@@ -812,7 +805,7 @@ export const MembersDirectorTemplate = () => {
                           }`}>{emp.period}</span>
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>
+                        {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
                             <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
@@ -855,7 +848,7 @@ export const MembersDirectorTemplate = () => {
                         const totalHonors = allItems.filter(item => item.type === 'honor').length
                         const totalItems = totalAwards + totalHonors
                         return (
-                          <div className="flex flex-col gap-16 md:gap-24 mb-20">
+                          <div className="flex flex-col gap-16 md:gap-24 mb-20 transition-opacity duration-500">
                             <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                               <span className="w-8 h-8 rounded-full bg-primary" />
                               Statistics
@@ -865,7 +858,7 @@ export const MembersDirectorTemplate = () => {
                             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="flex flex-col items-center justify-center">
-                                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
+                                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalItems}</span>
                                 <div className="flex items-center gap-6">
                                   <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                   <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -878,7 +871,7 @@ export const MembersDirectorTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
                                     <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
@@ -888,7 +881,7 @@ export const MembersDirectorTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
@@ -944,21 +937,10 @@ export const MembersDirectorTemplate = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="flex items-center justify-between pt-12 mt-12 border-t border-gray-100">
-                    <a 
-                      href={scholarConfig.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[10px] text-gray-400 hover:text-primary transition-colors flex items-center gap-4"
-                    >
-                      <span>Google Scholar</span>
-                      <ExternalLink size={10} />
-                    </a>
-                    {scholarData?.lastUpdated && (
-                      <span className="text-[9px] text-gray-400">
-                        Updated: {new Date(scholarData.lastUpdated).toISOString().split('T')[0]}
-                      </span>
-                    )}
+                  <div className="mt-20 text-center">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                      View All Publications <ChevronRight size={14}/>
+                    </Link>
                   </div>
                 </div>
               )}

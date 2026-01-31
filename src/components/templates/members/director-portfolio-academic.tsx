@@ -137,7 +137,7 @@ const employment = [
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University Sejong Campus', organizationKo: '고려대학교 세종캠퍼스', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
   {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
@@ -857,7 +857,7 @@ const CollaborationNetwork = memo(() => {
                     <div className="grid grid-cols-2 gap-8">
                       <div className="bg-primary/5 rounded-lg p-12 text-center border border-primary/10">
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Total Works</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Total Works</p>
                         </div>
                         <p className="text-2xl font-bold text-primary">
                           {node.publications}
@@ -865,7 +865,7 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
                         <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
                           {node.coworkRate}%
@@ -876,7 +876,7 @@ const CollaborationNetwork = memo(() => {
                     {/* Breakdown */}
                     <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">Breakdown</p>
+                        <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
@@ -1424,7 +1424,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button 
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
@@ -1557,22 +1557,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         </div>
                       ))}
                     </div>
-                  </div>
-                  <div className="flex items-center justify-between pt-12 mt-12 border-t border-gray-100">
-                    <a 
-                      href={scholarConfig.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-[10px] text-gray-400 hover:text-primary transition-colors flex items-center gap-4"
-                    >
-                      <span>Google Scholar</span>
-                      <ExternalLink size={10} />
-                    </a>
-                    {scholarData?.lastUpdated && (
-                      <span className="text-[9px] text-gray-400">
-                        Updated: {new Date(scholarData.lastUpdated).toISOString().split('T')[0]}
-                      </span>
-                    )}
                   </div>
                   <div className="mt-20 text-center">
                     <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">

@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Image as ImageIcon, Calendar, Home } from 'lucide-react'
+import { Image as ImageIcon, Calendar, Home} from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -8,13 +8,13 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Category types and colors based on FINDS Lab Color Palette
-type GalleryCategory = 'Conferences' | 'Social Events' | 'Celebrations' | 'Design Materials' | 'General';
+type GalleryCategory = 'Conferences' | 'Events' | 'Celebrations' | 'Design' | 'General';
 
 const categoryColors: Record<GalleryCategory, { bg: string; text: string; border: string }> = {
   'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Social Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
-  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#C41E3A]', border: 'border-[#E8889C]/30' },
-  'Design Materials': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
+  'Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30' },
+  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#E8889C]', border: 'border-[#E8889C]/30' },
+  'Design': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 
@@ -142,7 +142,7 @@ export const ArchivesGalleryTemplate = () => {
   const baseUrl = import.meta.env.BASE_URL || '/'
   const contentAnimation = useScrollAnimation()
 
-  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Social Events', 'Celebrations', 'Design Materials', 'General']
+  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Events', 'Celebrations', 'Design', 'General']
 
   useEffect(() => {
     const fetchAllGalleries = async () => {
@@ -158,13 +158,21 @@ export const ArchivesGalleryTemplate = () => {
             const { data } = parseMarkdown(text)
             // date를 문자열로 확실히 변환
             const dateStr = data.date ? String(data.date).slice(0, 10) : ''
+            // Validate category (map 'Lab Events' to 'Events' for backward compatibility)
+            const validCategories: GalleryCategory[] = ['Conferences', 'Events', 'Celebrations', 'Design', 'General']
+            let parsedCategory: GalleryCategory = 'General'
+            if (data.category === 'Lab Events') {
+              parsedCategory = 'Events'
+            } else if (validCategories.includes(data.category as GalleryCategory)) {
+              parsedCategory = data.category as GalleryCategory
+            }
             return {
               id: folder,
               title: (data.title as string) || 'No Title',
               date: dateStr,
               thumb: (data.thumb as string) || '',
               author: (data.author as string) || 'FINDS Lab',
-              category: (data.category as GalleryCategory) || 'General'
+              category: parsedCategory
             }
           })
         )
@@ -250,7 +258,9 @@ export const ArchivesGalleryTemplate = () => {
                 ${selectedCategory === category 
                   ? category === 'All'
                     ? 'bg-gray-900 text-white border-gray-900'
-                    : `${categoryColors[category as GalleryCategory].bg} ${categoryColors[category as GalleryCategory].text} ${categoryColors[category as GalleryCategory].border}`
+                    : categoryColors[category as GalleryCategory]
+                      ? `${categoryColors[category as GalleryCategory].bg} ${categoryColors[category as GalleryCategory].text} ${categoryColors[category as GalleryCategory].border}`
+                      : 'bg-gray-100 text-gray-600 border-gray-200'
                   : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                 }
               `}
@@ -261,8 +271,30 @@ export const ArchivesGalleryTemplate = () => {
         </div>
 
         {loading ? (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
-            Loading galleries...
+          <div className="flex flex-col gap-16 md:gap-20">
+            {/* Centered Spinner */}
+            <div className="flex items-center justify-center py-32">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
+                <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
+              {/* Skeleton Loading - 4 gallery cards */}
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden animate-pulse">
+                  <div className="aspect-[4/3] bg-gray-200" />
+                  <div className="p-16 md:p-20">
+                    <div className="flex items-center justify-between gap-6 mb-8">
+                      <div className="h-4 w-20 bg-gray-200 rounded" />
+                      <div className="h-5 w-14 bg-gray-200 rounded-full" />
+                    </div>
+                    <div className="h-5 w-full bg-gray-200 rounded mb-4" />
+                    <div className="h-4 w-2/3 bg-gray-100 rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
@@ -292,7 +324,7 @@ export const ArchivesGalleryTemplate = () => {
                       <Calendar className="size-12 text-gray-400" />
                       <span className="font-medium">{item.date}</span>
                     </div>
-                    {item.category && (
+                    {item.category && categoryColors[item.category] && (
                       <span className={`px-6 py-2 rounded-full text-[9px] md:text-[10px] font-medium border ${categoryColors[item.category].bg} ${categoryColors[item.category].text} ${categoryColors[item.category].border}`}>
                         {item.category}
                       </span>

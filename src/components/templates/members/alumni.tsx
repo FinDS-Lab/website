@@ -269,8 +269,47 @@ export const MembersAlumniTemplate = () => {
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
         {loading ? (
-          <div className="text-center py-40">
-            <p className="text-gray-400 animate-pulse">Loading alumni...</p>
+          <div className="space-y-48">
+            {/* Centered Spinner */}
+            <div className="flex items-center justify-center py-32">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
+                <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
+              </div>
+            </div>
+            {/* Skeleton Statistics */}
+            <div className="flex flex-col gap-16 md:gap-24 animate-pulse">
+              <div className="flex items-center gap-12">
+                <div className="w-8 h-8 rounded-full bg-gray-200" />
+                <div className="h-6 w-24 bg-gray-200 rounded" />
+              </div>
+              <div className="bg-gray-100 rounded-2xl p-16 md:p-20 h-[80px]" />
+              <div className="grid grid-cols-3 gap-6 md:gap-12">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-gray-100 rounded-2xl p-10 md:p-20 h-[100px]" />
+                ))}
+              </div>
+            </div>
+            {/* Skeleton Member Section */}
+            <div className="flex flex-col gap-16 md:gap-24 animate-pulse">
+              <div className="flex items-center gap-12">
+                <div className="w-8 h-8 rounded-full bg-gray-200" />
+                <div className="h-6 w-32 bg-gray-200 rounded" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-20">
+                {[1, 2, 3].map((card) => (
+                  <div key={card} className="bg-gray-50 border border-gray-100 rounded-xl p-20">
+                    <div className="flex items-start gap-16">
+                      <div className="w-[60px] h-[60px] rounded-full bg-gray-200 shrink-0" />
+                      <div className="flex-1 space-y-8">
+                        <div className="h-5 w-24 bg-gray-200 rounded" />
+                        <div className="h-4 w-32 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : !data || totalCount === 0 ? (
           <div className="text-center py-60">
@@ -281,7 +320,7 @@ export const MembersAlumniTemplate = () => {
         ) : (
           <div className="space-y-48">
             {/* Stats Summary - Total on top, 3 categories below */}
-            <div className="flex flex-col gap-16 md:gap-24">
+            <div className="flex flex-col gap-16 md:gap-24 transition-opacity duration-500">
               <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                 <span className="w-8 h-8 rounded-full bg-primary" />
                 Statistics
@@ -291,7 +330,7 @@ export const MembersAlumniTemplate = () => {
               <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center justify-center">
-                  <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalCount}</span>
+                  <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalCount}</span>
                   <div className="flex items-center gap-6">
                     <Users className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Total Alumni</span>
@@ -299,38 +338,38 @@ export const MembersAlumniTemplate = () => {
                 </div>
               </div>
               
-              {/* 3 Categories - 3 columns */}
-              <div className="grid grid-cols-3 gap-8 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              {/* 3 Categories - 3 columns on desktop, stacked on mobile */}
+              <div className="grid grid-cols-3 gap-6 md:gap-12">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <GraduationCap className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <GraduationCap className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{phdCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <GraduationCap className="hidden md:block size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left">Ph.D. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Ph.D. Graduates</span>
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <BookOpen className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#E8889C'}}>{msCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{msCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <BookOpen className="hidden md:block size-16" style={{color: '#E8889C', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left">M.S. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">M.S. Graduates</span>
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <UserCheck className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <UserCheck className="hidden md:block size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former Undergraduate Researchers</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former Undergrad Researchers</span>
                     </div>
                   </div>
                 </div>
@@ -338,7 +377,7 @@ export const MembersAlumniTemplate = () => {
             </div>
 
             {/* Ph.D. Section */}
-            {phdAlumni.length > 0 && (
+            {phdAlumni.length > 0 ? (
               <div className="flex flex-col gap-16 md:gap-24">
                 <button
                   onClick={() => setPhdExpanded(!phdExpanded)}
@@ -529,10 +568,19 @@ export const MembersAlumniTemplate = () => {
                   </>
                 )}
               </div>
+            ) : (
+              <div className="flex flex-col gap-16 md:gap-24">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B14D'}} />
+                  Ph.D. Graduates
+                </h2>
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40">
+                </div>
+              </div>
             )}
 
             {/* M.S. Section */}
-            {msAlumni.length > 0 && (
+            {msAlumni.length > 0 ? (
               <div className="flex flex-col gap-16 md:gap-24">
                 <button
                   onClick={() => setMsExpanded(!msExpanded)}
@@ -722,6 +770,15 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </>
                 )}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-16 md:gap-24">
+                <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
+                  M.S. Graduates
+                </h2>
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40">
+                </div>
               </div>
             )}
 

@@ -130,11 +130,10 @@ export const LocationTemplate = () => {
                 <div className="flex-1 flex flex-col gap-12">
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-white/10">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KOR</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+                      <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/60 via-[#D6B14D]/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      가천대학교 가천관 304호
+                      가천대학교 글로벌캠퍼스 가천관 304호
                     </p>
                     <p className="text-xs text-gray-400 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
@@ -144,11 +143,10 @@ export const LocationTemplate = () => {
                   {/* Address - ENG */}
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-white/10">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">ENG</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-gray-600 to-transparent" />
+                      <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/40 via-[#D6B14D]/20 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      Room 304, Gachon Hall, Gachon University
+                      Room 304, Gachon Hall, Gachon University Global Campus
                     </p>
                     <p className="text-xs text-gray-400 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
@@ -181,11 +179,10 @@ export const LocationTemplate = () => {
                 <div className="flex-1 flex flex-col gap-12">
                   <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-primary uppercase tracking-wider">KOR</span>
-                      <div className="w-16 h-px bg-gradient-to-r from-primary/30 to-transparent" />
+                      <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/50 via-[#D6B14D]/25 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      가천대학교 가천관 304호
+                      가천대학교 글로벌캠퍼스 가천관 304호
                     </p>
                     <p className="text-xs text-gray-500 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
@@ -195,11 +192,10 @@ export const LocationTemplate = () => {
                   {/* Address - ENG */}
                   <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
                     <div className="flex items-center gap-6 mb-8">
-                      <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">ENG</span>
-                      <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent" />
+                      <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/30 via-[#D6B14D]/15 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      Room 304, Gachon Hall, Gachon University
+                      Room 304, Gachon Hall, Gachon University Global Campus
                     </p>
                     <p className="text-xs text-gray-500 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,

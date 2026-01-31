@@ -26,7 +26,7 @@ export const affiliations = [
   { organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present' },
 ]
 
-// Research Interests - Must match focusAreas in introduction.tsx
+// Research Interests - Must match focusAreas in introduction.tsx and researchAreas in research.tsx
 export const researchInterests = [
   {
     category: 'Financial Data Science',
@@ -34,25 +34,40 @@ export const researchInterests = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'AI-Driven Quantitative Finance'
+      'Personalized Finance & Behavioral Decision Modeling'
+    ],
+    itemsKo: [
+      '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
+      '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
+      '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정'
     ]
   },
   {
     category: 'Business Analytics',
     categoryKo: '비즈니스 애널리틱스',
     items: [
-      'Cross-Industry Data Analytics & Visualization',
-      'Graph-Based Network Analysis',
-      'Statistical Modeling for Business Insights'
+      'Cross-Industry Data Analytics',
+      'Data Visualization & Transparency',
+      'Business Insights from Statistical Methods'
+    ],
+    itemsKo: [
+      '다양한 산업 간 융합을 위한 데이터 분석',
+      '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
+      '통계적 방법론을 활용한 비즈니스 인사이트 도출'
     ]
   },
   {
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Empirical Evidence-Based Decision Support Systems',
-      'Human-Centered Analytics & AI Augmentation',
-      'Iridescent View Extraction for Advanced Decision Making'
+      'Trustworthy Decision Systems & Optimization',
+      'Risk-Aware Decision Support Tools',
+      'Iridescent View Extraction for Data-Informed Decision'
+    ],
+    itemsKo: [
+      '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
+      '경영 및 산업 환경의 위험을 고려한 의사결정 지원 도구',
+      '데이터 기반 의사결정을 위한 다양한 관점에서의 해석과 종합'
     ]
   },
 ]

@@ -67,7 +67,7 @@ const GlobalMusicPlayer = memo(() => {
   const [isHidden, setIsHidden] = useState(false)
   const location = useLocation()
 
-  // Helper function to change track and auto-play
+  // Helper functions for prev/next with auto-play
   const handlePrevTrack = () => {
     shouldAutoPlayRef.current = true
     prevTrack()
@@ -150,14 +150,10 @@ const GlobalMusicPlayer = memo(() => {
             } else if (event.data === 2) {
               setIsPlaying(false)
             } else if (event.data === 0) {
+              // Track ended - auto-play next
+              shouldAutoPlayRef.current = true
               nextTrack()
-              // Auto-play next track after short delay
-              setTimeout(() => {
-                if (playerRef.current) {
-                  playerRef.current.playVideo()
-                  setIsPlaying(true)
-                }
-              }, 100)
+              setIsPlaying(true)
             }
           },
         },
@@ -167,7 +163,7 @@ const GlobalMusicPlayer = memo(() => {
     initPlayer()
   }, [currentVideoId])
 
-  // Handle track changes - always loadVideoById and auto-play if requested
+  // Handle track changes - auto-play when using prev/next buttons
   useEffect(() => {
     if (!playerRef.current || !playerReady || !currentVideoId) return
     if (lastVideoIdRef.current === currentVideoId) return

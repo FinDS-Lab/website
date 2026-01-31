@@ -47,114 +47,11 @@ const heroSlides = [
   },
 ]
 
-// Scientific Loading Screen Component
-const ScienceLoadingScreen = () => {
-  return (
-    <div className="fixed inset-0 z-[99999] bg-white flex items-center justify-center">
-      {/* Background Pattern - Subtle Grid */}
-      <div className="absolute inset-0 opacity-[0.03]" 
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #D6B14D 1px, transparent 1px),
-            linear-gradient(to bottom, #D6B14D 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}
-      />
-      
-      {/* Central Animation Container */}
-      <div className="relative flex flex-col items-center">
-        {/* Hexagon Network Animation */}
-        <div className="relative w-[120px] h-[120px] mb-24">
-          {/* Rotating outer ring */}
-          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '8s' }} viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="8 4" opacity="0.4" />
-          </svg>
-          
-          {/* Counter-rotating middle ring */}
-          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="35" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.3" />
-          </svg>
-          
-          {/* Central hexagon */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-            {/* Hexagon path */}
-            <polygon 
-              points="50,20 76,35 76,65 50,80 24,65 24,35" 
-              fill="none" 
-              stroke="#D6B14D" 
-              strokeWidth="1.5"
-              className="animate-pulse"
-              style={{ animationDuration: '2s' }}
-            />
-            {/* Inner hexagon */}
-            <polygon 
-              points="50,30 66,40 66,60 50,70 34,60 34,40" 
-              fill="rgba(214,177,77,0.1)" 
-              stroke="#D6B14D" 
-              strokeWidth="0.8"
-              opacity="0.6"
-            />
-            {/* Center dot */}
-            <circle cx="50" cy="50" r="4" fill="#D6B14D" className="animate-pulse" />
-            
-            {/* Node points on hexagon vertices */}
-            {[
-              [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
-            ].map(([x, y], i) => (
-              <g key={i}>
-                <circle cx={x} cy={y} r="3" fill="#D6B14D" opacity="0.8">
-                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
-                </circle>
-                <circle cx={x} cy={y} r="6" fill="none" stroke="#D6B14D" strokeWidth="0.5" opacity="0.4">
-                  <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
-                  <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
-                </circle>
-              </g>
-            ))}
-            
-            {/* Connection lines from center to vertices */}
-            {[
-              [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
-            ].map(([x, y], i) => (
-              <line key={`line-${i}`} x1="50" y1="50" x2={x} y2={y} stroke="#D6B14D" strokeWidth="0.5" opacity="0.3" />
-            ))}
-          </svg>
-        </div>
-        
-        {/* Text */}
-        <div className="text-center">
-          <h1 className="text-xl font-bold tracking-wider mb-8" style={{ color: '#D6B14D' }}>
-            FINDS Lab
-          </h1>
-          <p className="text-xs text-gray-400 tracking-widest uppercase">
-            Loading
-            <span className="inline-flex ml-4">
-              <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
-              <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
-              <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
-            </span>
-          </p>
-        </div>
-        
-        {/* Bottom decorative line */}
-        <div className="absolute -bottom-16 w-48 h-px bg-gradient-to-r from-transparent via-[#D6B14D]/30 to-transparent" />
-      </div>
-      
-      {/* Corner decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#D6B14D]/20" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#D6B14D]/20" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#D6B14D]/20" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#D6B14D]/20" />
-    </div>
-  )
-}
-
 export const HomeTemplate = () => {
   const [newsItems, setNewsItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [noticeItems, setNoticeItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
-  const [showLoading, setShowLoading] = useState(true)
+  const [showWelcome, setShowWelcome] = useState(true)
   const [loadStartTime] = useState(Date.now())
 
   useEffect(() => {
@@ -213,24 +110,123 @@ export const HomeTemplate = () => {
       } finally {
         setIsLoaded(true)
         const loadTime = Date.now() - loadStartTime
-        // 로딩이 300ms 이내면 바로 숨김, 아니면 살짝 보여주고 페이드아웃
-        if (loadTime < 300) {
-          setShowLoading(false)
+        // 로딩이 200ms 이내면 바로 넘어감, 아니면 잠시 보여주고 페이드아웃
+        if (loadTime < 200) {
+          setShowWelcome(false)
         } else {
-          setTimeout(() => setShowLoading(false), 500)
+          setTimeout(() => setShowWelcome(false), 400)
         }
       }
     }
 
     fetchLatest()
-  }, [])
+  }, [loadStartTime])
+
+  // Welcome Loading Screen - Clean Engineering Style (White Background)
+  if (showWelcome) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
+        {/* Background Pattern - Subtle Grid */}
+        <div className="absolute inset-0 opacity-[0.03]" 
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #D6B14D 1px, transparent 1px),
+              linear-gradient(to bottom, #D6B14D 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}
+        />
+        
+        {/* Central Animation Container */}
+        <div className="relative flex flex-col items-center">
+          {/* Hexagon Network Animation */}
+          <div className="relative w-[120px] h-[120px] mb-24">
+            {/* Rotating outer ring */}
+            <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '8s' }} viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="8 4" opacity="0.4" />
+            </svg>
+            
+            {/* Counter-rotating middle ring */}
+            <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="35" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.3" />
+            </svg>
+            
+            {/* Central hexagon */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+              {/* Hexagon path */}
+              <polygon 
+                points="50,20 76,35 76,65 50,80 24,65 24,35" 
+                fill="none" 
+                stroke="#D6B14D" 
+                strokeWidth="1.5"
+                className="animate-pulse"
+                style={{ animationDuration: '2s' }}
+              />
+              {/* Inner hexagon */}
+              <polygon 
+                points="50,30 66,40 66,60 50,70 34,60 34,40" 
+                fill="rgba(214,177,77,0.1)" 
+                stroke="#D6B14D" 
+                strokeWidth="0.8"
+                opacity="0.6"
+              />
+              {/* Center dot */}
+              <circle cx="50" cy="50" r="4" fill="#D6B14D" className="animate-pulse" />
+              
+              {/* Node points on hexagon vertices */}
+              {[
+                [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
+              ].map(([x, y], i) => (
+                <g key={i}>
+                  <circle cx={x} cy={y} r="3" fill="#D6B14D" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                  </circle>
+                  <circle cx={x} cy={y} r="6" fill="none" stroke="#D6B14D" strokeWidth="0.5" opacity="0.4">
+                    <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                    <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                  </circle>
+                </g>
+              ))}
+              
+              {/* Connection lines from center to vertices */}
+              {[
+                [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
+              ].map(([x, y], i) => (
+                <line key={`line-${i}`} x1="50" y1="50" x2={x} y2={y} stroke="#D6B14D" strokeWidth="0.5" opacity="0.3" />
+              ))}
+            </svg>
+          </div>
+          
+          {/* Text */}
+          <div className="text-center">
+            <h1 className="text-xl font-bold tracking-wider mb-8" style={{ color: '#D6B14D' }}>
+              FINDS Lab
+            </h1>
+            <p className="text-xs text-gray-400 tracking-widest uppercase">
+              Loading
+              <span className="inline-flex ml-4">
+                <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
+                <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
+                <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
+              </span>
+            </p>
+          </div>
+          
+          {/* Bottom decorative line */}
+          <div className="absolute -bottom-16 w-48 h-px bg-gradient-to-r from-transparent via-[#D6B14D]/30 to-transparent" />
+        </div>
+        
+        {/* Corner decorations */}
+        <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#D6B14D]/20" />
+        <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#D6B14D]/20" />
+        <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#D6B14D]/20" />
+        <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#D6B14D]/20" />
+      </div>
+    )
+  }
 
   return (
-    <>
-      {/* Loading Screen */}
-      {showLoading && <ScienceLoadingScreen />}
-      
-      <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white">
       {/* Hero Section - PC only */}
       <section className="hidden md:block relative px-16 md:px-20 py-24 md:py-40">
         <div className="max-w-1480 mx-auto">
@@ -320,7 +316,17 @@ export const HomeTemplate = () => {
                 </Link>
               </div>
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
-                {newsItems.length > 0 ? (
+                {!isLoaded ? (
+                  // Skeleton placeholder - looks like content
+                  <>
+                    {[0, 1].map((i) => (
+                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
+                        <div className="h-4 md:h-5 bg-gray-100 rounded w-3/4" />
+                        <div className="h-3 md:h-4 bg-gray-100 rounded w-20 shrink-0" />
+                      </div>
+                    ))}
+                  </>
+                ) : newsItems.length > 0 ? (
                   newsItems.map((item, index) => (
                     <Link
                       key={index}
@@ -365,7 +371,17 @@ export const HomeTemplate = () => {
                 </Link>
               </div>
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
-                {noticeItems.length > 0 ? (
+                {!isLoaded ? (
+                  // Skeleton placeholder - looks like content
+                  <>
+                    {[0, 1].map((i) => (
+                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
+                        <div className="h-4 md:h-5 bg-gray-100 rounded w-3/4" />
+                        <div className="h-3 md:h-4 bg-gray-100 rounded w-20 shrink-0" />
+                      </div>
+                    ))}
+                  </>
+                ) : noticeItems.length > 0 ? (
                   noticeItems.map((item, index) => (
                     <Link
                       key={index}
@@ -387,7 +403,6 @@ export const HomeTemplate = () => {
         </div>
       </section>
     </div>
-    </>
   )
 }
 

@@ -372,7 +372,7 @@ export const ProjectsTemplate = () => {
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           
           {/* Statistics Section - Publications Style */}
-          <div className="flex flex-col gap-16 md:gap-24">
+          <div className={`flex flex-col gap-16 md:gap-24 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
             <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
@@ -382,7 +382,7 @@ export const ProjectsTemplate = () => {
             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
-                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.total}</span>
+                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.total}</span>
                 <div className="flex items-center gap-6">
                   <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                   <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -395,7 +395,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.government}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -408,7 +408,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.industry}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary transition-all duration-300">{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -421,7 +421,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{stats.institution}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -434,7 +434,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{stats.academic}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -451,7 +451,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{stats.ongoing}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{stats.ongoing}</span>
                   <div className="flex items-center gap-6">
                     <TrendingUp className="size-14 md:size-16 text-gray-600" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Ongoing</span>
@@ -461,7 +461,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500">{stats.completed}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{stats.completed}</span>
                   <div className="flex items-center gap-6">
                     <CheckCircle className="size-14 md:size-16 text-gray-500" />
                     <span className="text-xs md:text-sm font-medium text-gray-500">Completed</span>
@@ -566,8 +566,32 @@ export const ProjectsTemplate = () => {
           {/* Projects by Year */}
           <div className="flex flex-col gap-12 md:gap-20">
             {loading ? (
-              <div className="text-center py-40">
-                <p className="text-gray-400 animate-pulse">Loading projects...</p>
+              <div className="flex flex-col gap-16">
+                {/* Centered Spinner */}
+                <div className="flex items-center justify-center py-32">
+                  <div className="relative">
+                    <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
+                    <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
+                  </div>
+                </div>
+                <div className="border border-gray-100 rounded-2xl overflow-hidden">
+                  {/* Skeleton Loading - 3 year rows */}
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="bg-gray-50 px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 animate-pulse">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-12 md:gap-16">
+                          <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
+                          <div className="flex gap-6">
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                          </div>
+                        </div>
+                        <div className="h-5 w-5 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : years.length === 0 ? (
               <div className="text-center py-40 bg-gray-50 rounded-2xl">

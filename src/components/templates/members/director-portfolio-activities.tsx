@@ -162,10 +162,10 @@ const employment = [
   },
   {
     position: 'Lecturer',
-    organization: 'Korea University',
+    organization: 'Korea University Sejong Campus',
     period: '2025-03 – 2026-02',
     location: 'Digital Business Major, Division of Convergence Business',
-    krOrg: '강사 / 고려대학교 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공',
+    krOrg: '강사 / 고려대학교 세종캠퍼스 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공',
     logo: logoKorea
   },
   {
@@ -932,7 +932,7 @@ const CollaborationNetwork = memo(() => {
                     <div className="grid grid-cols-2 gap-8">
                       <div className="bg-primary/5 rounded-lg p-12 text-center border border-primary/10">
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Total Works</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Total Works</p>
                         </div>
                         <p className="text-2xl font-bold text-primary">
                           {node.publications}
@@ -940,7 +940,7 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] font-bold text-gray-500 uppercase">Co-work Rate</p>
+                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
                         <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
                           {node.coworkRate}%
@@ -951,7 +951,7 @@ const CollaborationNetwork = memo(() => {
                     {/* Breakdown */}
                     <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
-                        <p className="text-[10px] font-bold text-gray-500 uppercase">Breakdown</p>
+                        <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
@@ -1467,7 +1467,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
               <div className="grid grid-cols-2 gap-6 md:gap-8 mt-16 md:mt-20">
                 <button
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
@@ -1540,7 +1540,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               {act.membership.map((r, idx) => (
                                 <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 rounded-lg">
                                   <span className="text-xs font-bold text-gray-700">{r.role}</span>
-                                  <span className="text-[10px] text-gray-500">{r.period}</span>
+                                  <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
                                 </div>
                               ))}
                             </div>
@@ -1549,12 +1549,12 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           {/* Leadership */}
                           {act.leadership.length > 0 && (
                             <div className="mt-16 pt-16 border-t border-gray-100">
-                              <h4 className="text-[10px] font-bold text-primary uppercase tracking-widest mb-10">Leadership</h4>
+                              <h4 className="text-[10px] md:text-xs font-bold text-primary uppercase tracking-widest mb-10">Leadership</h4>
                               <div className="space-y-6">
                                 {act.leadership.map((r, idx) => (
                                   <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
                                     <span className="text-xs font-bold text-primary">{r.role}</span>
-                                    <span className="text-[10px] text-gray-500">{r.period}</span>
+                                    <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
                                   </div>
                                 ))}
                               </div>
@@ -1653,7 +1653,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 {(selectedMentoringYear !== 'all' || selectedUniversity !== 'all') && (
                   <div className="px-20 md:px-32 py-12 border-b border-gray-100 bg-primary/5">
                     <div className="flex items-center gap-8 flex-wrap">
-                      <span className="text-[10px] font-bold text-gray-500 uppercase leading-none">Active Filters:</span>
+                      <span className="text-[10px] md:text-xs font-bold text-gray-500 uppercase leading-none">Active Filters:</span>
                       {selectedMentoringYear !== 'all' && (
                         <button
                           onClick={() => setSelectedMentoringYear('all')}

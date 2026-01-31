@@ -161,10 +161,10 @@ const employment = [
   },
   {
     position: 'Lecturer',
-    organization: 'Korea University',
+    organization: 'Korea University Sejong Campus',
     period: '2025-03 – 2026-02',
     location: 'Digital Business Major, Division of Convergence Business',
-    krOrg: '강사 / 고려대학교 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공',
+    krOrg: '강사 / 고려대학교 세종캠퍼스 글로벌비즈니스대학 융합경영학부 디지털비즈니스전공',
     logo: logoKorea
   },
   {
@@ -1477,7 +1477,7 @@ export const MembersDirectorActivitiesTemplate = () => {
               <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
                 <button
                   onClick={() => showModal({
-                    title: 'Resume',
+                    title: '',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
