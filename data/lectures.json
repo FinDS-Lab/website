@@ -57,7 +57,7 @@
   {
     "role": "Lecturer",
     "periods": ["2025 Spring"],
-    "school": "Korea University Sejong Campus",
+    "school": "Korea University",
     "courses": [
       {
         "en": "Algorithmic Trading (DIGB441)",

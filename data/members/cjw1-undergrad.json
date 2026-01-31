@@ -25,8 +25,8 @@
       "Data-Inspired Decision Making"
     ],
     "project": {
-      "ko": "섹터 ETF 시장에서의 예측 기반 거래 전략 평가: 머신러닝 및 시계열 모델의 비교 분석",
-      "en": "Assessing Prediction-Based Trading Strategies in Sector ETF Markets: A Comparative Study of Machine Learning and Time-Series Models"
+      "ko": "",
+      "en": "Do Forecasting Models Beat Buy-and-Hold? An Empirical Investigation of Sector ETF Trading Strategies Using Machine Learning and LPPL Heuristics"
     }
   },
   "education": [
