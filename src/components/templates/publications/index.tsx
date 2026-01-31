@@ -989,7 +989,7 @@ export const PublicationsTemplate = () => {
                                   <span className={`text-xs font-bold ${
                                     pub.type === 'book' || pub.type === 'report' ? 'text-gray-700' : 'text-white/90'
                                   }`}>
-                                    #{getPublicationNumber(pub)}
+                                    {getPublicationNumber(pub)}
                                   </span>
                                   {/* Indexing/Presentation next to number */}
                                   {pub.type === 'journal' && pub.indexing_group && (

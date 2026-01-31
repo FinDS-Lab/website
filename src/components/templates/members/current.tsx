@@ -88,14 +88,18 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
 import banner2 from '@/assets/images/banner/2.webp'
 
 const degreeLabels = {
-  phd: 'Ph.D.',
-  combined: 'Ph.D.-M.S. Combined',
-  ms: 'M.S.',
+  phd: 'Ph.D. Students',
+  'phd-candidate': 'Ph.D. Candidates',
+  'phd-student': 'Ph.D. Students',
+  combined: 'Ph.D.-M.S. Combined Students',
+  ms: 'M.S. Students',
   undergrad: 'Undergraduate Researchers',
 }
 
 const degreeColors = {
   phd: 'text-white',
+  'phd-candidate': 'text-white',
+  'phd-student': 'text-white',
   combined: 'text-white',
   ms: 'text-white',
   undergrad: 'text-white',
@@ -104,6 +108,8 @@ const degreeColors = {
 // Gold for PhD, Coral for combined, MS, Deep pink for undergrad
 const degreeBgStyles = {
   phd: {backgroundColor: '#D6B14D'},          // Gold
+  'phd-candidate': {backgroundColor: '#D6B14D'},  // Gold
+  'phd-student': {backgroundColor: '#D6B14D'},    // Gold
   combined: {backgroundColor: '#FF6B6B'},      // Coral (석박사통합)
   ms: {backgroundColor: '#E8889C'},            // Pink (M.S.)
   undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
@@ -112,6 +118,8 @@ const degreeBgStyles = {
 // Hover colors matching Alumni style
 const degreeHoverColors = {
   phd: '#D6B14D',
+  'phd-candidate': '#D6B14D',
+  'phd-student': '#D6B14D',
   combined: '#FF6B6B',
   ms: '#E8889C',
   undergrad: '#E8889C',
@@ -183,30 +191,37 @@ export const MembersCurrentTemplate = () => {
   }, [])
 
   const stats = useMemo(() => {
-    const phdCount = members.filter((m) => m.degree === 'phd').length
+    const phdCandidateCount = members.filter((m) => m.degree === 'phd' && m.candidacy === true).length
+    const phdStudentCount = members.filter((m) => m.degree === 'phd' && m.candidacy !== true).length
+    const phdCount = phdCandidateCount + phdStudentCount
     const combinedCount = members.filter((m) => m.degree === 'combined').length
     const msCount = members.filter((m) => m.degree === 'ms').length
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return {
-      phd: { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      combined: { label: combinedCount === 1 ? 'Ph.D. - M.S. Combined Student' : 'Ph.D. - M.S. Combined Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      ms: { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#E8889C' },
-      undergrad: { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
+      combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
+      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#E8889C' },
+      undergrad: { label: 'Undergraduate Program', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
   }, [members])
 
   const groupedMembers = useMemo(() => {
     const grouped: { [key: string]: MemberData[] } = {
-      phd: [],
+      'phd-candidate': [],
+      'phd-student': [],
       combined: [],
       ms: [],
       undergrad: [],
     }
     members.forEach((m) => {
       if (m.degree === 'phd') {
-        grouped.phd.push(m)
+        if (m.candidacy === true) {
+          grouped['phd-candidate'].push(m)
+        } else {
+          grouped['phd-student'].push(m)
+        }
       } else if (m.degree === 'combined') {
         grouped.combined.push(m)
       } else if (m.degree === 'ms') {
@@ -331,34 +346,22 @@ export const MembersCurrentTemplate = () => {
           </div>
         ) : (
           <div className="flex flex-col gap-32 md:gap-[40px]">
-            {(['phd', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
+            {(['phd-candidate', 'phd-student', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
               const degreeMembers = groupedMembers[groupKey]
-              const sectionColor = degreeHoverColors[groupKey]
-              const bgStyle = degreeBgStyles[groupKey]
+              const baseKey = groupKey.startsWith('phd') ? 'phd' : groupKey
+              const sectionColor = degreeHoverColors[groupKey as keyof typeof degreeHoverColors]
+              const bgStyle = degreeBgStyles[groupKey as keyof typeof degreeBgStyles]
 
-              // Show placeholder for empty PhD, Combined, MS sections
+              // Show placeholder for empty sections (except undergrad)
               if (degreeMembers.length === 0) {
-                // Skip undergrad placeholder - only show grad student placeholders
                 if (groupKey === 'undergrad') return null
                 
                 return (
                   <div key={groupKey}>
                     <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
-                      {degreeLabels[groupKey]}
+                      {degreeLabels[groupKey as keyof typeof degreeLabels]}
                     </h3>
-                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-xl md:rounded-[20px] p-24 md:p-[40px] text-center">
-                      <div 
-                        className="w-48 h-48 md:w-[64px] md:h-[64px] rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]"
-                        style={{background: `linear-gradient(135deg, ${sectionColor}15 0%, ${sectionColor}08 100%)`}}
-                      >
-                        <GraduationCap className="w-24 h-24 md:w-[32px] md:h-[32px]" style={{color: sectionColor}} />
-                      </div>
-                      <p className="text-sm md:text-base font-semibold text-gray-700 mb-6 md:mb-[8px]">
-                        We're looking forward to your application!
-                      </p>
-                      <p className="text-xs md:text-sm text-gray-500">
-                        Join FINDS Lab as a {degreeLabels[groupKey]} student
-                      </p>
+                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-xl md:rounded-[20px] p-24 md:p-[40px]">
                     </div>
                   </div>
                 )
@@ -367,7 +370,7 @@ export const MembersCurrentTemplate = () => {
               return (
                 <div key={groupKey}>
                   <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
-                    {degreeLabels[groupKey]}
+                    {degreeLabels[groupKey as keyof typeof degreeLabels]}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
                     {degreeMembers.map((member) => {

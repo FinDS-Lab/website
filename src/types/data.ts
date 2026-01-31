@@ -67,6 +67,7 @@ export type MemberData = {
     en: string
   }
   degree: 'phd' | 'combined' | 'ms' | 'undergrad'
+  candidacy?: boolean // For Ph.D.: true = candidate (passed quals), false/undefined = student
   role: {
     ko: string
     en: string

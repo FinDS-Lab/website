@@ -33,13 +33,11 @@ const useScrollAnimation = () => {
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NewsTag = 'Awards' | 'Publications' | 'Media' | 'Events' | 'General';
+type NewsTag = 'Honors & Awards' | 'Events' | 'General';
 
 const tagColors: Record<NewsTag, { bg: string; text: string; border: string }> = {
-  'Awards': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Publications': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30' },
-  'Media': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30' },
-  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#D6A076]', border: 'border-[#D6A076]/30' },
+  'Honors & Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
+  'Events': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 
@@ -141,7 +139,7 @@ export const ArchivesNewsTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NewsTag | 'All')[] = ['All', 'Awards', 'Publications', 'Media', 'Events', 'General']
+  const allTags: (NewsTag | 'All')[] = ['All', 'Honors & Awards', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -260,26 +258,28 @@ export const ArchivesNewsTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
-        {/* Tag Filter */}
-        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
-              className={`
-                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
-                transition-all duration-200 border
-                ${selectedTag === tag 
-                  ? tag === 'All'
-                    ? 'bg-gray-900 text-white border-gray-900'
-                    : `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border}`
-                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                }
-              `}
-            >
-              {tag}
-            </button>
-          ))}
+        {/* Tag Filter - Refined Design */}
+        <div className="mb-32 md:mb-40">
+          <div className="flex items-center gap-8 md:gap-12 overflow-x-auto pb-4 scrollbar-hide">
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedTag(tag)}
+                className={`
+                  px-14 md:px-20 py-8 md:py-10 rounded-full text-xs md:text-sm font-semibold
+                  transition-all duration-200 border whitespace-nowrap
+                  ${selectedTag === tag 
+                    ? tag === 'All'
+                      ? 'bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/20'
+                      : `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border} shadow-sm`
+                    : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                  }
+                `}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
 
         {loading ? (
