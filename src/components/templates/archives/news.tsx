@@ -33,10 +33,11 @@ const useScrollAnimation = () => {
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NewsTag = 'Honors & Awards' | 'Events' | 'General';
+type NewsTag = 'Honors' | 'Awards' | 'Events' | 'General';
 
 const tagColors: Record<NewsTag, { bg: string; text: string; border: string }> = {
-  'Honors & Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
+  'Honors': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
+  'Awards': { bg: 'bg-[#D6A076]/10', text: 'text-[#B8762D]', border: 'border-[#D6A076]/30' },
   'Events': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
@@ -139,7 +140,7 @@ export const ArchivesNewsTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NewsTag | 'All')[] = ['All', 'Honors & Awards', 'Events', 'General']
+  const allTags: (NewsTag | 'All')[] = ['All', 'Honors', 'Awards', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -179,7 +180,7 @@ export const ArchivesNewsTemplate = () => {
               if (!response.ok) return null
               const text = await response.text()
               const { data } = parseMarkdown(text)
-              const validTags: NewsTag[] = ['Honors & Awards', 'Events', 'General']
+              const validTags: NewsTag[] = ['Honors', 'Awards', 'Events', 'General']
               const parsedTag = validTags.includes(data.tag as NewsTag) ? (data.tag as NewsTag) : 'General'
               return {
                 id: file.replace('.md', ''),
