@@ -16,6 +16,7 @@ import {
   Copy,
   Check,
   User,
+  Users,
   Activity,
   Award,
   Medal,
@@ -197,8 +198,8 @@ const education: any[] = [
 // Static Data - Employment (sorted by start date, newest first)
 const employment = [
   {position: 'Assistant Professor (Tenure-Track)', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance & Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026-03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory (FINDS Lab)', departmentKo: '금융데이터인텔리전스연구실 (FINDS Lab)', organization: '', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
   {position: 'Assistant Professor (Tenure-Track)', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
+  {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory (FINDS Lab)', departmentKo: '금융데이터인텔리전스연구실 (FINDS Lab)', organization: '', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
@@ -916,10 +917,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div key={idx} className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-16 border border-gray-100">
                                       {/* Header: Number Badge & Advisor Name */}
                                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
-                                        <span className="px-10 py-4 bg-primary text-white text-[9px] md:text-[11px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
+                                        <span className="px-10 py-4 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full w-fit">{thesis.number} Paper</span>
                                         <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
                                           <GraduationCap size={12} className="text-[#D6B14D]" />
-                                          <span className="text-[9px] md:text-xs font-bold text-gray-600">{thesis.advisorName}</span>
+                                          <span className="text-[10px] md:text-xs font-bold text-gray-600">{thesis.advisorName}</span>
                                         </div>
                                       </div>
                                       {/* English Title */}
@@ -995,12 +996,17 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         {edu.researchGroup.role && (
                                           <span className="text-[10px] md:text-xs text-gray-600 font-medium mt-4 flex items-center gap-4">
                                             <span className="size-4 rounded-full bg-[#D6B14D]/60 shrink-0" />
-                                            {edu.researchGroup.role}{edu.researchGroup.period && `, ${edu.researchGroup.period}`}
+                                            {edu.researchGroup.role}
                                           </span>
                                         )}
                                       </div>
                                     </div>
-                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0 mt-1" />
+                                    <div className="flex flex-col items-end gap-4 shrink-0">
+                                      {edu.researchGroup.period && (
+                                        <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 whitespace-nowrap">{edu.researchGroup.period}</span>
+                                      )}
+                                      <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
+                                    </div>
                                   </a>
                                 </div>
                               )}
@@ -1009,19 +1015,30 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Leadership */}
                           {edu.leadership && edu.leadership.length > 0 && (
-                            <div>
-                              <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-10">Leadership Roles</p>
-                              <div className="space-y-6">
-                                {edu.leadership.map((l: any, i: number) => (
-                                  <div key={i} className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
-                                    <div className="flex flex-col">
-                                      <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
-                                      <span className="text-[10px] md:text-xs text-gray-500 font-medium">{l.context}</span>
+                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                              <button
+                                onClick={() => toggleEduSection(`${index}-leadership`)}
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                              >
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Leadership Roles</p>
+                                <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-leadership`) ? 'rotate-180' : ''}`}/>
+                              </button>
+                              {expandedEduSections.has(`${index}-leadership`) && (
+                                <div className="p-12 space-y-8">
+                                  {edu.leadership.map((l: any, i: number) => (
+                                    <div key={i} className="flex items-start justify-between gap-8 bg-white rounded-lg px-12 py-10 border border-gray-100">
+                                      <div className="flex items-start gap-8">
+                                        <Users className="size-14 text-[#D6B14D] shrink-0 mt-1" />
+                                        <div className="flex flex-col">
+                                          <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
+                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium">{l.context}</span>
+                                        </div>
+                                      </div>
+                                      <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
                                     </div>
-                                    <span className="text-[10px] md:text-xs text-gray-600 font-medium shrink-0">{l.period}</span>
-                                  </div>
-                                ))}
-                              </div>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           )}
                           
