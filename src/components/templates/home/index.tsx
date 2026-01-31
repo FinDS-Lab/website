@@ -51,6 +51,8 @@ export const HomeTemplate = () => {
   const [newsItems, setNewsItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [noticeItems, setNoticeItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
+  const [loadStartTime] = useState(Date.now())
 
   useEffect(() => {
     const fetchLatest = async () => {
@@ -107,11 +109,43 @@ export const HomeTemplate = () => {
         console.error('Failed to load home data:', err)
       } finally {
         setIsLoaded(true)
+        const loadTime = Date.now() - loadStartTime
+        // 로딩이 200ms 이내면 바로 넘어감, 아니면 잠시 보여주고 페이드아웃
+        if (loadTime < 200) {
+          setShowWelcome(false)
+        } else {
+          setTimeout(() => setShowWelcome(false), 400)
+        }
       }
     }
 
     fetchLatest()
-  }, [])
+  }, [loadStartTime])
+
+  // Welcome Loading Screen - Developer Style
+  if (showWelcome) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a]">
+        {/* Terminal-style container */}
+        <div className="flex flex-col items-center gap-16">
+          {/* Welcome text with typing cursor effect */}
+          <div className="font-mono text-center">
+            <span className="text-gray-500 text-xs md:text-sm">$ </span>
+            <span className="text-gray-300 text-sm md:text-base">Welcome to </span>
+            <span className="text-[#D6B14D] text-sm md:text-base font-semibold">FINDS Lab</span>
+            <span className="inline-block w-2 h-4 md:h-5 bg-[#D6B14D] ml-1 animate-pulse" />
+          </div>
+          
+          {/* Loading dots */}
+          <div className="flex items-center gap-4">
+            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '0ms' }} />
+            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '150ms' }} />
+            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '300ms' }} />
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col bg-white">

@@ -66,34 +66,34 @@ const coreValues = [
     image: insightImg,
     label: 'Perspective',
     labelKo: '관점',
-    title: 'Multiple perspectives, practical frameworks.',
-    titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
+    title: 'See the essence through data.',
+    titleKo: '데이터를 통해 문제의 본질을 바라봅니다.',
     items: [
-      'Integrating Data Science & Business Analytics',
-      'Developing Practical Application Frameworks',
-      'Supporting Sound Decision-Making'
+      'Understanding Problems Through Data-Driven Analysis',
+      'Integrating Finance & Business with Analytical Methods',
+      'Illuminating Complex Phenomena from Multiple Angles'
     ],
     itemsKo: [
-      '데이터 사이언스와 비즈니스 애널리틱스의 융합',
-      '실용적 적용을 위한 프레임워크 개발',
-      '합리적 의사결정 지원'
+      '데이터 분석을 통한 문제의 본질 파악',
+      '금융·비즈니스 영역과 분석 기법의 융합',
+      '복잡한 현상을 다양한 각도에서 조명하는 접근'
     ],
   },
   {
     image: philosophyImg,
     label: 'Direction',
     labelKo: '방향성',
-    title: 'From theory to practice.',
-    titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
+    title: 'Balance rigor with applicability.',
+    titleKo: '학술적 엄밀함과 실용성의 균형을 추구합니다.',
     items: [
-      'Bridging Academic Research & Practice',
-      'Navigating Uncertainty in Business',
-      'Creating Actionable Solutions'
+      'Bridging Academic Rigor & Practical Applicability',
+      'Building Data-Informed Decision Frameworks',
+      'Creating Sustainable Value Through Research'
     ],
     itemsKo: [
-      '학술 연구와 실무의 연결',
-      '비즈니스 불확실성 관리',
-      '실행 가능한 솔루션 창출'
+      '학술적 엄밀함과 실무 적용 가능성의 균형',
+      '데이터 기반 의사결정 체계 구축',
+      '지속 가능한 가치 창출을 위한 연구'
     ],
   },
   {
@@ -101,16 +101,16 @@ const coreValues = [
     label: 'Philosophy',
     labelKo: '철학',
     title: 'des avenirs lucides — lucid futures',
-    titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
+    titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
     items: [
-      'Bringing Clarity to Complex Problems',
-      'Pursuing Fairness & Creativity',
-      'Contributing to Meaningful Impact'
+      'Illuminating Insights Hidden Within Data',
+      'Reducing Inefficiency Through Information Transparency',
+      'Designing Better Futures with Technology & Analytics'
     ],
     itemsKo: [
-      '복잡한 문제에 명확한 해답 제시',
-      '공정성과 창의성 추구',
-      '의미 있는 기여 실현'
+      '데이터 속에 숨겨진 인사이트를 밝혀내는 연구',
+      '정보 비대칭 해소를 통한 효율적 의사결정 지원',
+      '기술과 분석을 통한 더 나은 미래 설계'
     ],
   },
 ]
