@@ -529,7 +529,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
     taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -567,16 +567,16 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16}/>
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <Link to="/members" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Members</Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <Link to="/members/director" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Director</Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Profile</span>
           </div>
         </div>
@@ -618,48 +618,48 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
           <aside className="lg:w-340 shrink-0">
             <div 
               ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
+              className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
+                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 dark:bg-[#242424] rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
-                <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
+                <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">Insu Choi</h2>
               </div>
 
               <div className="flex flex-col gap-12 md:gap-16">
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Position</p>
-                    <p className="text-xs font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] text-gray-500">FINDS Lab</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Director</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400">FINDS Lab</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Affiliation</p>
-                    <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] text-gray-500">Gachon University</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Assistant Professor</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
-                    <p className="text-xs font-semibold text-gray-800">Room 304, Gachon Hall</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Room 304, Gachon Hall</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -670,7 +670,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       </a>
                       <button 
                         onClick={handleCopyEmail} 
-                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
+                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shrink-0" 
                         title="Copy email"
                       >
                         {emailCopied ? <Check size={10} className="text-green-500"/> : <Copy size={10} className="text-gray-400"/>}
@@ -703,7 +703,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               </div>
               <Link 
                 to="/members/director"
-                className="flex items-center justify-center gap-4 mt-8 py-10 bg-white border border-gray-200 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-50 hover:text-gray-700 transition-all"
+                className="flex items-center justify-center gap-4 mt-8 py-10 bg-white border border-gray-200 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 hover:text-gray-700 transition-all"
               >
                 <ChevronLeft size={12}/> Back to Overview
               </Link>
@@ -713,18 +713,18 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Introduction */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('introduction')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Introduction</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Introduction</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.introduction ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
-                  I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
+                  I am an <span className="font-bold text-gray-900 dark:text-white">assistant professor</span> at <span className="font-bold text-gray-900 dark:text-white">Gachon University</span> and the <span className="font-bold text-gray-900 dark:text-white">director</span> of <span className="font-bold text-gray-900 dark:text-white">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
                   <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.
@@ -736,44 +736,44 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700 dark:text-gray-300">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700 dark:text-gray-300">portfolio optimization</span>, <span className="font-semibold text-gray-700 dark:text-gray-300">algorithmic trading</span>, and financial time-series forecasting.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700 dark:text-gray-300">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700 dark:text-gray-300">meaningful insights</span>.
                     </p>
                   </div>
                   <div className="flex gap-16">
                     <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
+                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700 dark:text-gray-300">iridescent views</span> for <span className="font-semibold text-gray-700 dark:text-gray-300">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
-                  My goal is to <span className="font-semibold text-gray-800">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">well-grounded</span> and <span className="font-semibold text-primary">useful</span>.
+                  My goal is to <span className="font-semibold text-gray-800 dark:text-gray-100">connect academic research with practical applications</span>, developing ideas that are both <span className="font-semibold text-primary">well-grounded</span> and <span className="font-semibold text-primary">useful</span>.
                 </p>
               </div>
               )}
             </section>
 
             {/* Research Interests */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('researchInterests')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Interests</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Research Interests</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.researchInterests ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.researchInterests && (
               <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
-                    <div className="mb-16 pb-12 border-b border-gray-100">
+                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 dark:border-gray-800 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
+                    <div className="mb-16 pb-12 border-b border-gray-100 dark:border-gray-800">
                       <h4 className="text-sm md:text-base font-bold text-primary">{area.category}</h4>
                     </div>
                     <ul className="space-y-10">
@@ -794,12 +794,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
             </section>
 
             {/* Education */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('education')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Education</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.education ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.education && (
@@ -811,10 +811,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
-                    <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
+                    <div className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
                       {/* Header: Logo + Degree/School/Field */}
                       <div className="flex items-start gap-12 md:gap-16">
-                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
+                        <div className="size-48 md:size-56 bg-gray-50 dark:bg-[#1a1a1a] rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
                           <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0">
@@ -839,9 +839,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           {/* School - Medium */}
                           <p className="text-xs md:text-sm text-gray-500 font-bold mt-2">{edu.school}</p>
                           {/* Field - Department */}
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{edu.field}</p>
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400">{edu.field}</p>
                           {/* College */}
-                          {edu.college && <p className="text-[10px] md:text-xs text-gray-500">{edu.college}</p>}
+                          {edu.college && <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">{edu.college}</p>}
                         </div>
                       </div>
                       
@@ -850,12 +850,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         <div className="mt-16 pt-16 border-t border-gray-100 space-y-12">
                           {/* Dissertation (Ph.D.) */}
                           {edu.dissertation && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-dissertation`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Dissertation</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Dissertation</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-dissertation`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-dissertation`) && (
@@ -876,12 +876,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Thesis (M.S.) */}
                           {edu.thesis && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-thesis`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Thesis</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Thesis</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-thesis`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-thesis`) && (
@@ -902,12 +902,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Undergraduate Theses (B.E.) */}
                           {edu.undergraduateTheses && edu.undergraduateTheses.length > 0 && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-graduationPaper`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Graduation Paper</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Graduation Paper</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-graduationPaper`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-graduationPaper`) && (
@@ -915,11 +915,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.undergraduateTheses.map((thesis: any, idx: number) => (
                                     <div key={idx} className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-16 border border-gray-100">
                                       {/* Header: Number Badge & Advisor Name */}
-                                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
+                                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100 dark:border-gray-800">
                                         <span className="px-10 py-4 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full w-fit">{thesis.number} Paper</span>
-                                        <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
+                                        <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 dark:bg-[#242424] rounded-full">
                                           <GraduationCap size={12} className="text-[#D6B14D]" />
-                                          <span className="text-[10px] md:text-xs font-bold text-gray-600">{thesis.advisorName}</span>
+                                          <span className="text-[10px] md:text-xs font-bold text-gray-600 dark:text-gray-400">{thesis.advisorName}</span>
                                         </div>
                                       </div>
                                       {/* English Title */}
@@ -937,12 +937,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Advisor */}
                           {edu.advisors && edu.advisors.length > 0 && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-advisor`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Advisor</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Advisor</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-advisor`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-advisor`) && (
@@ -953,11 +953,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       href={adv.url} 
                                       target="_blank" 
                                       rel="noopener noreferrer"
-                                      className="flex items-center justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
+                                      className="flex items-center justify-between gap-8 bg-white dark:bg-[#1a1a1a] rounded-lg px-12 py-10 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors group border border-gray-100"
                                     >
                                       <div className="flex items-center gap-8">
                                         <GraduationCap className="size-14 text-[#D6B14D]" />
-                                        <span className="text-xs md:text-sm font-bold text-gray-800">{adv.name}</span>
+                                        <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-100">{adv.name}</span>
                                       </div>
                                       <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
                                     </a>
@@ -969,12 +969,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Research Group */}
                           {edu.researchGroup && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-researchGroup`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Research Group</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Research Group</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-researchGroup`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-researchGroup`) && (
@@ -983,12 +983,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     href={edu.researchGroup.url} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="flex items-start justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
+                                    className="flex items-start justify-between gap-8 bg-white dark:bg-[#1a1a1a] rounded-lg px-12 py-10 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors group border border-gray-100"
                                   >
                                     <div className="flex items-start gap-8">
                                       <Building className="size-14 text-[#D6B14D] shrink-0 mt-1" />
                                       <div className="flex flex-col">
-                                        <span className="text-xs md:text-sm font-bold text-gray-800">{edu.researchGroup.name}</span>
+                                        <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-100">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
                                           <span className="text-[10px] md:text-xs text-gray-500 font-medium">{edu.researchGroup.department}</span>
                                         )}
@@ -1002,7 +1002,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     </div>
                                     <div className="flex flex-col items-end gap-4 shrink-0">
                                       {edu.researchGroup.period && (
-                                        <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 whitespace-nowrap">{edu.researchGroup.period}</span>
+                                        <span className="px-8 py-3 bg-gray-100 dark:bg-[#242424] rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 whitespace-nowrap">{edu.researchGroup.period}</span>
                                       )}
                                       <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
                                     </div>
@@ -1014,26 +1014,26 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           
                           {/* Leadership */}
                           {edu.leadership && edu.leadership.length > 0 && (
-                            <div className="border border-gray-100 rounded-lg overflow-hidden">
+                            <div className="border border-gray-100 dark:border-gray-800 rounded-lg overflow-hidden">
                               <button
                                 onClick={() => toggleEduSection(`${index}-leadership`)}
-                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 transition-colors"
+                                className="w-full flex items-center justify-between px-12 py-10 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                               >
-                                <p className="text-[10px] md:text-xs font-bold text-gray-500">Leadership Roles</p>
+                                <p className="text-[10px] md:text-xs font-bold text-gray-500 dark:text-gray-400">Leadership Roles</p>
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-leadership`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-leadership`) && (
                                 <div className="p-12 space-y-8">
                                   {edu.leadership.map((l: any, i: number) => (
-                                    <div key={i} className="flex items-start justify-between gap-8 bg-white rounded-lg px-12 py-10 border border-gray-100">
+                                    <div key={i} className="flex items-start justify-between gap-8 bg-white dark:bg-[#1a1a1a] rounded-lg px-12 py-10 border border-gray-100">
                                       <div className="flex items-start gap-8">
                                         <Users className="size-14 text-[#D6B14D] shrink-0 mt-1" />
                                         <div className="flex flex-col">
-                                          <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
+                                          <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-100">{l.role}</span>
                                           <span className="text-[10px] md:text-xs text-gray-500 font-medium">{l.context}</span>
                                         </div>
                                       </div>
-                                      <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
+                                      <span className="px-8 py-3 bg-gray-100 dark:bg-[#242424] rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
                                     </div>
                                   ))}
                                 </div>
@@ -1060,7 +1060,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
                                           <span className="shrink-0 mt-1" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1 flex flex-col">
-                                            <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
+                                            <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-100">{h.title}</span>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
                                           </div>
                                         </div>
@@ -1075,7 +1075,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0 mt-1" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1 flex flex-col">
                                             <div>
-                                              <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
+                                              <span className="text-xs md:text-sm font-bold text-gray-800 dark:text-gray-100">{a.title}</span>
                                               {a.note && <span className="text-[10px] md:text-xs text-primary font-medium ml-4">({a.note})</span>}
                                             </div>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{a.org}</span>
@@ -1099,12 +1099,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
             </section>
 
             {/* Employment */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('employment')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Employment</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Employment</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.employment ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.employment && (
@@ -1118,8 +1118,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
+                    <div className="flex gap-12 md:gap-16 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                      <div className="size-36 md:size-44 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
                         <img loading="lazy" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
@@ -1130,7 +1130,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               : 'bg-gray-200 text-gray-700'
                           }`}>{emp.period}</span>
                         </div>
-                        <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
+                        <h4 className="text-sm md:text-base font-bold text-gray-900 dark:text-white">{emp.position}</h4>
                         {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
@@ -1150,12 +1150,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
             </section>
 
             {/* Honors & Awards */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('honorsAwards')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Honors & Awards</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
               </button>
 
@@ -1187,30 +1187,30 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalItems}</span>
                                 <div className="flex items-center gap-6">
                                   <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                  <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
                                 </div>
                               </div>
                             </div>
 
                             {/* Honors & Awards - 2 columns */}
                             <div className="grid grid-cols-2 gap-8 md:gap-12">
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
                                     <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
+                                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Honors</span>
                                   </div>
                                 </div>
                               </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
+                                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Awards</span>
                                   </div>
                                 </div>
                               </div>
@@ -1230,7 +1230,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           const isCurrentYear = Number(year) === currentYear
 
                           return (
-                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
+                            <div key={year} className="border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
                               {/* Year Header - About FINDS Style */}
                               <button
                                 onClick={() => toggleYear(year)}
@@ -1246,12 +1246,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                                   )}
                                   {/* White badge with counts */}
-                                  <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
+                                  <span className="px-10 py-4 bg-white dark:bg-[#1a1a1a] rounded-full text-[10px] font-medium shadow-sm">
                                     <span className="font-bold" style={{color: '#D6B14D'}}>{honors.length}</span>
-                                    <span className="text-gray-500"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
+                                    <span className="text-gray-500 dark:text-gray-400"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
                                     <span className="text-gray-300"> · </span>
                                     <span className="font-bold" style={{color: '#AC0E0E'}}>{awards.length}</span>
-                                    <span className="text-gray-500"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
+                                    <span className="text-gray-500 dark:text-gray-400"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
                                   </span>
                                 </div>
                                 <ChevronDown 
@@ -1289,7 +1289,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
                                         </div>
                                         {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 dark:border-gray-700 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                           {year}-{formatHonorDate(item.date)}
                                         </span>
                                       </div>

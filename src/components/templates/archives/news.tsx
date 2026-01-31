@@ -91,7 +91,7 @@ const NewsDetailModal = ({ id, title, date }: { id: string; title?: string; date
         <h1 className="text-lg md:text-xl font-bold text-gray-900 leading-snug tracking-[-0.02em] mb-12 md:mb-16">
           {metadata.title}
         </h1>
-        <div className="flex items-center gap-8 text-[12px] text-gray-500">
+        <div className="flex items-center gap-8 text-[12px] text-gray-500 dark:text-gray-400">
           <span className="font-medium">{metadata.author}</span>
           <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
           <span>{metadata.date}</span>
@@ -244,12 +244,12 @@ export const ArchivesNewsTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">Archives</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">News</span>
           </div>
         </div>
@@ -304,8 +304,8 @@ export const ArchivesNewsTemplate = () => {
                   <div className="h-5 w-16 bg-gray-200 rounded-full" />
                 </div>
                 <div className="h-5 md:h-6 w-3/4 bg-gray-200 rounded mb-8" />
-                <div className="h-4 w-full bg-gray-100 rounded mb-4" />
-                <div className="h-4 w-2/3 bg-gray-100 rounded" />
+                <div className="h-4 w-full bg-gray-100 dark:bg-[#242424] rounded mb-4" />
+                <div className="h-4 w-2/3 bg-gray-100 dark:bg-[#242424] rounded" />
               </div>
             ))}
           </div>
@@ -346,7 +346,7 @@ export const ArchivesNewsTemplate = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500">
+          <div className="bg-[#f9fafb] dark:bg-[#1a1a1a] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 dark:text-gray-400">
             No items found for selected filter
           </div>
         )}

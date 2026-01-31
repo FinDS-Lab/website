@@ -329,7 +329,7 @@ export const ArchivesPlaylistTemplate = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* Minimal Compact Header */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-1480 mx-auto px-12 md:px-20">
           <div className="flex items-center justify-between h-40 md:h-48">
             {/* Home Button */}
@@ -346,7 +346,7 @@ export const ArchivesPlaylistTemplate = () => {
             <div className="flex items-center gap-12">
               <div className="flex items-center gap-4">
                 <Music2 size={14} className="text-primary" />
-                <span className="text-xs md:text-xs font-bold text-gray-900">Playlist</span>
+                <span className="text-xs md:text-xs font-bold text-gray-900 dark:text-white">Playlist</span>
                 <span className="text-[10px] text-gray-400">{playlists.length} tracks</span>
               </div>
               
@@ -380,9 +380,9 @@ export const ArchivesPlaylistTemplate = () => {
         ) : playlists.length > 0 ? (
           showListPanel ? (
             /* List View - Red Dot Design Quality */
-            <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
+            <div className="bg-white dark:bg-[#1a1a1a] rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
               {/* List Header */}
-              <div className="grid grid-cols-[40px_1fr_1fr_100px] md:grid-cols-[48px_1fr_1fr_120px] gap-12 md:gap-16 px-16 md:px-24 py-12 md:py-14 bg-gray-50 border-b border-gray-100">
+              <div className="grid grid-cols-[40px_1fr_1fr_100px] md:grid-cols-[48px_1fr_1fr_120px] gap-12 md:gap-16 px-16 md:px-24 py-12 md:py-14 bg-gray-50 border-b border-gray-100 dark:border-gray-800">
                 <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">#</div>
                 <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">Title</div>
                 <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-wider">Artist</div>
@@ -491,10 +491,10 @@ export const ArchivesPlaylistTemplate = () => {
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                       {isPlaying ? (
                         <div className="flex items-center gap-2">
-                          <div className="w-2 h-8 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
-                          <div className="w-2 h-12 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                          <div className="w-2 h-6 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                          <div className="w-2 h-10 bg-white rounded-full animate-pulse" style={{ animationDelay: '450ms' }} />
+                          <div className="w-2 h-8 bg-white dark:bg-[#1a1a1a] rounded-full animate-pulse" style={{ animationDelay: '0ms' }} />
+                          <div className="w-2 h-12 bg-white dark:bg-[#1a1a1a] rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                          <div className="w-2 h-6 bg-white dark:bg-[#1a1a1a] rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                          <div className="w-2 h-10 bg-white dark:bg-[#1a1a1a] rounded-full animate-pulse" style={{ animationDelay: '450ms' }} />
                         </div>
                       ) : (
                         <div className="w-40 h-40 rounded-full bg-white/20 flex items-center justify-center">
@@ -519,14 +519,14 @@ export const ArchivesPlaylistTemplate = () => {
           </div>
           )
         ) : (
-          <div className="bg-white rounded-xl p-32 md:p-48 text-center">
-            <div className="w-48 h-48 md:w-56 md:h-56 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-16">
+          <div className="bg-white dark:bg-[#1a1a1a] rounded-xl p-32 md:p-48 text-center">
+            <div className="w-48 h-48 md:w-56 md:h-56 bg-gray-50 dark:bg-[#1a1a1a] rounded-full flex items-center justify-center mx-auto mb-16">
               <Music2 className="w-24 h-24 md:w-28 md:h-28 text-gray-300" />
             </div>
             <p className="text-sm md:text-base font-semibold text-gray-900 mb-6">
               플레이리스트 준비 중
             </p>
-            <p className="text-xs md:text-sm text-gray-500">
+            <p className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
               아직 등록된 영상이 없습니다.
             </p>
           </div>

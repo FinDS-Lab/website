@@ -153,9 +153,9 @@ export const MembersAlumniTemplate = () => {
     
     return (
       <span className="text-sm">
-        <span className="font-bold text-gray-900">{edu.school}</span>
+        <span className="font-bold text-gray-900 dark:text-white">{edu.school}</span>
         {' '}
-        <span className="font-semibold text-gray-700">{edu.dept}</span>
+        <span className="font-semibold text-gray-700 dark:text-gray-300">{edu.dept}</span>
       </span>
     )
   }
@@ -173,11 +173,11 @@ export const MembersAlumniTemplate = () => {
       const school = parts[2] || ''
       return (
         <span className="text-sm">
-          <span className="font-bold text-gray-900">{school}</span>
+          <span className="font-bold text-gray-900 dark:text-white">{school}</span>
           {' '}
-          <span className="font-semibold text-gray-700">{dept}</span>
+          <span className="font-semibold text-gray-700 dark:text-gray-300">{dept}</span>
           {' '}
-          <span className="text-gray-600">{degree}</span>
+          <span className="text-gray-600 dark:text-gray-400">{degree}</span>
         </span>
       )
     }
@@ -212,7 +212,7 @@ export const MembersAlumniTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -250,14 +250,14 @@ export const MembersAlumniTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16}/>
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Alumni</span>
           </div>
         </div>
@@ -283,10 +283,10 @@ export const MembersAlumniTemplate = () => {
                 <div className="w-8 h-8 rounded-full bg-gray-200" />
                 <div className="h-6 w-24 bg-gray-200 rounded" />
               </div>
-              <div className="bg-gray-100 rounded-2xl p-16 md:p-20 h-[80px]" />
+              <div className="bg-gray-100 dark:bg-[#242424] rounded-2xl p-16 md:p-20 h-[80px]" />
               <div className="grid grid-cols-3 gap-6 md:gap-12">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-gray-100 rounded-2xl p-10 md:p-20 h-[100px]" />
+                  <div key={i} className="bg-gray-100 dark:bg-[#242424] rounded-2xl p-10 md:p-20 h-[100px]" />
                 ))}
               </div>
             </div>
@@ -298,7 +298,7 @@ export const MembersAlumniTemplate = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-20">
                 {[1, 2, 3].map((card) => (
-                  <div key={card} className="bg-gray-50 border border-gray-100 rounded-xl p-20">
+                  <div key={card} className="bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl p-20">
                     <div className="flex items-start gap-16">
                       <div className="w-[60px] h-[60px] rounded-full bg-gray-200 shrink-0" />
                       <div className="flex-1 space-y-8">
@@ -333,14 +333,14 @@ export const MembersAlumniTemplate = () => {
                   <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalCount}</span>
                   <div className="flex items-center gap-6">
                     <Users className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Total Alumni</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Total Alumni</span>
                   </div>
                 </div>
               </div>
               
               {/* 3 Categories - 3 columns on desktop, stacked on mobile */}
               <div className="grid grid-cols-3 gap-6 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <GraduationCap className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
@@ -351,7 +351,7 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
@@ -362,7 +362,7 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
@@ -449,15 +449,15 @@ export const MembersAlumniTemplate = () => {
                                       Ph.D.
                                     </span>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     {getAffiliation(alumni)}
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     {getGraduationDate(alumni, 'phd')}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {alumni.company ? (
-                                      <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
+                                      <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                         <Building2 size={14} style={{color: '#D6B14D'}}/>
                                         <span>{alumni.company}</span>
                                       </div>
@@ -473,7 +473,7 @@ export const MembersAlumniTemplate = () => {
                                         {Object.entries(alumni.thesis!)
                                           .filter(([deg]) => deg === 'phd')
                                           .map(([deg, thesis]) => (
-                                            <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
+                                            <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800">
                                               <FileText size={16} className="shrink-0 mt-2" style={{color: '#D6B14D'}}/>
                                               <div className="flex-1 min-w-0">
                                                 <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#D6B14D'}}>
@@ -527,7 +527,7 @@ export const MembersAlumniTemplate = () => {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
-                                  <p className="text-sm font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                  <p className="text-sm font-bold text-gray-900 dark:text-white">{alumni.nameKo || alumni.name}</p>
                                   <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(214, 176, 76,0.1)', color: '#D6B14D'}}>
                                     Ph.D.
                                   </span>
@@ -574,7 +574,7 @@ export const MembersAlumniTemplate = () => {
                   <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#D6B14D'}} />
                   Ph.D. Graduates
                 </h2>
-                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40">
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-24 md:p-40">
                 </div>
               </div>
             )}
@@ -652,15 +652,15 @@ export const MembersAlumniTemplate = () => {
                                       M.S.
                                     </span>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     {getAffiliation(alumni)}
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     {getGraduationDate(alumni, 'ms')}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {alumni.company ? (
-                                      <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
+                                      <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                         <Building2 size={14} style={{color: '#E8889C'}}/>
                                         <span>{alumni.company}</span>
                                       </div>
@@ -676,7 +676,7 @@ export const MembersAlumniTemplate = () => {
                                         {Object.entries(alumni.thesis!)
                                           .filter(([deg]) => deg === 'ms')
                                           .map(([deg, thesis]) => (
-                                            <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
+                                            <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800">
                                               <FileText size={16} className="shrink-0 mt-2" style={{color: '#E8889C'}}/>
                                               <div className="flex-1 min-w-0">
                                                 <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#E8889C'}}>
@@ -730,7 +730,7 @@ export const MembersAlumniTemplate = () => {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
-                                  <p className="text-sm font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
+                                  <p className="text-sm font-bold text-gray-900 dark:text-white">{alumni.nameKo || alumni.name}</p>
                                   <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     M.S.
                                   </span>
@@ -777,7 +777,7 @@ export const MembersAlumniTemplate = () => {
                   <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
                   M.S. Graduates
                 </h2>
-                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40">
+                <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 dark:border-gray-700 rounded-2xl p-24 md:p-40">
                 </div>
               </div>
             )}
@@ -857,7 +857,7 @@ export const MembersAlumniTemplate = () => {
                                       )}
                                     </div>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600">
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600 dark:text-gray-400">
                                     {alumni.periods?.ur || '-'}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
@@ -870,7 +870,7 @@ export const MembersAlumniTemplate = () => {
                                 {isExpanded && hasProjects && (
                                   <tr className="bg-gray-50/50">
                                     <td colSpan={5} className="py-16 px-16">
-                                      <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
+                                      <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800">
                                         <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
                                         <div className="flex-1 min-w-0">
                                           <p className="text-[10px] md:text-xs font-bold mb-8" style={{color: '#E8889C'}}>
@@ -915,7 +915,7 @@ export const MembersAlumniTemplate = () => {
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
-                                  <p className="text-sm font-bold text-gray-900">{alumni.name}</p>
+                                  <p className="text-sm font-bold text-gray-900 dark:text-white">{alumni.name}</p>
                                   <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
                                     {alumni.cohort || '-'}
                                   </span>

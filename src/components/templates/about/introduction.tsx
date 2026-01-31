@@ -247,7 +247,7 @@ export const AboutIntroductionTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* ═══════════════════════════════════════════════════════════════
           HERO BANNER
       ═══════════════════════════════════════════════════════════════ */}
@@ -302,7 +302,7 @@ export const AboutIntroductionTemplate = () => {
                   {/* Slide 1: Goal (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
-                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
+                      className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden relative"
                       onMouseMove={handleMouseMoveLight1}
                     >
                       {/* Mouse-following light effect for light background */}
@@ -313,7 +313,7 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50 dark:bg-gray-800/20">
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
@@ -329,7 +329,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
                           <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
-                            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
@@ -465,7 +465,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 0 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Goal slide"
                 >
@@ -478,7 +478,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 1 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Vision slide"
                 >
@@ -508,7 +508,7 @@ export const AboutIntroductionTemplate = () => {
                   {/* Slide 1: Focus Areas (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
-                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
+                      className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden relative"
                       onMouseMove={handleMouseMoveLight2}
                     >
                       {/* Mouse-following light effect for light background */}
@@ -519,7 +519,7 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50 dark:bg-gray-800/20">
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
@@ -536,12 +536,12 @@ export const AboutIntroductionTemplate = () => {
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white dark:from-gray-800/50 dark:to-[#1a1a1a] rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
                             >
                               {/* Icon */}
                               <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
+                                <div className="absolute inset-0 bg-white dark:bg-[#1a1a1a] rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
                                   <img loading="lazy" src={area.image} alt={area.title} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                 </div>
                               </div>
@@ -673,7 +673,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carousel2Index === 0 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Focus Areas slide"
                 >
@@ -686,7 +686,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carousel2Index === 1 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Values slide"
                 >

@@ -1,9 +1,10 @@
 import React, { memo, ReactNode, useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ChevronDown, Menu, X, Mail, Copy, Check } from 'lucide-react'
+import { ChevronDown, Menu, X, Mail, Copy, Check, Sun, Moon } from 'lucide-react'
 import clsx from 'clsx'
 import logoFinds from '@/assets/images/brand/logo-finds.png'
 import { useStoreModal } from '@/store/modal'
+import { useThemeStore } from '@/store/theme'
 
 type props = {
   children?: ReactNode
@@ -93,27 +94,27 @@ const ContactModalContent = () => {
           <Mail size={28} className="text-primary md:hidden" />
           <Mail size={36} className="text-primary hidden md:block" />
         </div>
-        <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">Contact Us</h2>
-        <p className="text-sm md:text-base text-gray-500">Feel free to reach out to us!</p>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6">Contact Us</h2>
+        <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">Feel free to reach out to us!</p>
       </div>
 
       <div className="flex flex-col gap-12 md:gap-16">
         {contacts.map((contact, index) => (
-          <div key={index} className="bg-gray-50 rounded-xl p-14 md:p-16">
+          <div key={index} className="bg-gray-50 dark:bg-[#242424] rounded-xl p-14 md:p-16">
             <div className="flex flex-col gap-2 mb-10">
               <span className="text-sm md:text-base font-bold text-primary">{contact.role}</span>
-              <span className="text-xs md:text-xs text-gray-400 leading-relaxed">{contact.description}</span>
+              <span className="text-xs md:text-xs text-gray-400 dark:text-gray-500 leading-relaxed">{contact.description}</span>
             </div>
             <div className="flex items-center justify-between gap-8 md:gap-12">
               <a
                 href={`mailto:${contact.email}`}
-                className="text-sm md:text-base font-semibold text-gray-700 hover:text-primary hover:underline transition-colors truncate"
+                className="text-sm md:text-base font-semibold text-gray-700 dark:text-gray-300 hover:text-primary hover:underline transition-colors truncate"
               >
                 {contact.email}
               </a>
               <button
                 onClick={() => handleCopyEmail(contact.email)}
-                className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white border border-gray-200 rounded-lg text-xs md:text-xs font-medium text-gray-600 hover:bg-gray-50 transition-colors shrink-0"
+                className="flex items-center gap-4 px-8 md:px-10 py-5 md:py-6 bg-white dark:bg-[#1a1a1a] border border-gray-200 dark:border-gray-700 rounded-lg text-xs md:text-xs font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors shrink-0"
                 aria-label={copiedEmail === contact.email ? '이메일 복사 완료' : `${contact.email} 복사`}
               >
                 {copiedEmail === contact.email ? (
@@ -143,6 +144,7 @@ const LayoutOrganisms = ({ children }: props) => {
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null)
   const { showModal } = useStoreModal()
   const { showAlt: showAltText } = useLogoTextAnimation()
+  const { isDark, toggleTheme } = useThemeStore()
   const isHomePage = location.pathname === '/'
 
   // 모바일 메뉴 열릴 때 body 스크롤 방지
@@ -194,18 +196,18 @@ const LayoutOrganisms = ({ children }: props) => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Header - sticky on home page only */}
-      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`} role="banner">
+      <header className={`w-full bg-white/95 dark:bg-[#0f0f0f]/95 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800 z-[9999] transition-colors duration-300 ${isHomePage ? 'sticky top-0' : ''}`} role="banner">
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo with animated text - PC only animation, mobile static */}
           <Link to="/" className="flex items-center gap-12 md:gap-16" aria-label="FINDS Lab 홈으로 이동">
-            <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
+            <img src={logoFinds} alt="FINDS Lab" className={`h-40 md:max-h-59 ${isDark ? 'brightness-0 invert' : ''}`} />
             
             {/* Mobile: Static FINDS Lab */}
-            <span className="md:hidden text-lg font-bold">
+            <span className="md:hidden text-lg font-bold dark:text-white">
               <span style={{ color: '#D6B14D' }}>FINDS </span>
-              <span className="text-gray-900">Lab</span>
+              <span className="text-gray-900 dark:text-white">Lab</span>
             </span>
             
             {/* PC: Animated text with simple dissolve */}
@@ -217,7 +219,7 @@ const LayoutOrganisms = ({ children }: props) => {
                 }`}
               >
                 <span style={{ color: '#D6B14D' }}>FINDS </span>
-                <span className="text-gray-900">Lab</span>
+                <span className="text-gray-900 dark:text-white">Lab</span>
               </span>
               {/* Financial Data Intelligence & Solutions Laboratory */}
               <span 
@@ -235,21 +237,31 @@ const LayoutOrganisms = ({ children }: props) => {
                   <span style={{ color: '#E8D688' }}>&amp; </span>
                   <span style={{ color: '#D6B14D' }}>S</span>
                   <span style={{ color: '#E8D688' }}>olutions </span>
-                  <span className="text-gray-900">Laboratory</span>
+                  <span className="text-gray-900 dark:text-white">Laboratory</span>
                 </span>
               </span>
             </div>
           </Link>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-8 text-gray-700"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
-            aria-expanded={mobileMenuOpen}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-8">
+            {/* Theme Toggle - Mobile */}
+            <button
+              onClick={toggleTheme}
+              className="p-8 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+              aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              className="p-8 text-gray-700 dark:text-gray-300"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:block" role="navigation" aria-label="메인 네비게이션">
@@ -267,7 +279,7 @@ const LayoutOrganisms = ({ children }: props) => {
                       'relative flex items-center gap-4 text-md transition-all duration-300 pt-8 pb-4',
                       isActive(item)
                         ? 'font-semibold text-primary'
-                        : 'font-medium text-gray-900 hover:text-primary'
+                        : 'font-medium text-gray-900 dark:text-gray-100 hover:text-primary'
                     )}
                   >
                     {item.name}
@@ -290,16 +302,16 @@ const LayoutOrganisms = ({ children }: props) => {
                   {/* Dropdown Menu */}
                   {item.children && openMenu === item.name && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-12 animate-in fade-in slide-in-from-top-2 duration-200">
-                      <div className="bg-white rounded-xl border border-gray-100 shadow-lg py-8 min-w-160">
+                      <div className="bg-white dark:bg-[#1a1a1a] rounded-xl border border-gray-100 dark:border-gray-800 shadow-lg py-8 min-w-160">
                         {item.children.map((child) => (
                           <Link
                             key={child.path}
                             to={child.path}
                             className={clsx(
-                              'block px-20 py-12 text-base transition-all duration-200 hover:bg-gray-50 hover:pl-24 whitespace-nowrap',
+                              'block px-20 py-12 text-base transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:pl-24 whitespace-nowrap',
                               location.pathname === child.path
-                                ? 'text-primary font-medium bg-primary/5'
-                                : 'text-gray-700'
+                                ? 'text-primary font-medium bg-primary/5 dark:bg-primary/10'
+                                : 'text-gray-700 dark:text-gray-300'
                             )}
                           >
                             {child.name}
@@ -313,20 +325,32 @@ const LayoutOrganisms = ({ children }: props) => {
             </ul>
           </nav>
 
-          {/* Contact Us Button - Desktop */}
-          <button
-            onClick={handleContactClick}
-            className="hidden md:flex items-center gap-8 px-20 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
-          >
-            <Mail size={16} />
-            Contact Us
-          </button>
+          {/* Right Side Buttons - Desktop */}
+          <div className="hidden md:flex items-center gap-12">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-10 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300"
+              aria-label={isDark ? '라이트 모드로 전환' : '다크 모드로 전환'}
+            >
+              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            
+            {/* Contact Us Button */}
+            <button
+              onClick={handleContactClick}
+              className="flex items-center gap-8 px-20 py-12 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+            >
+              <Mail size={16} />
+              Contact Us
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Mobile Navigation - Outside header for proper z-index */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[61px] bg-white z-[10000] overflow-y-auto">
+        <div className="md:hidden fixed inset-0 top-[61px] bg-white dark:bg-[#0f0f0f] z-[10000] overflow-y-auto transition-colors duration-300">
           <nav className="px-16 py-16 max-w-1480 mx-auto">
             <ul className="flex flex-col gap-8">
               {navItems.map((item) => (
@@ -339,7 +363,7 @@ const LayoutOrganisms = ({ children }: props) => {
                           'w-full flex items-center justify-between py-12 text-base transition-colors',
                           isActive(item)
                             ? 'font-bold text-primary'
-                            : 'font-semibold text-gray-900'
+                            : 'font-semibold text-gray-900 dark:text-gray-100'
                         )}
                       >
                         {item.name}
@@ -364,7 +388,7 @@ const LayoutOrganisms = ({ children }: props) => {
                                 'py-8 text-sm transition-colors',
                                 location.pathname === child.path
                                   ? 'text-primary font-medium'
-                                  : 'text-gray-500 font-normal'
+                                  : 'text-gray-500 dark:text-gray-400 font-normal'
                               )}
                             >
                               {child.name}
@@ -381,7 +405,7 @@ const LayoutOrganisms = ({ children }: props) => {
                         'block py-12 text-base transition-colors',
                         isActive(item)
                           ? 'font-bold text-primary'
-                          : 'font-semibold text-gray-900'
+                          : 'font-semibold text-gray-900 dark:text-gray-100'
                       )}
                     >
                       {item.name}
@@ -391,7 +415,7 @@ const LayoutOrganisms = ({ children }: props) => {
               ))}
 
               {/* Contact Us Button - Mobile */}
-              <li className="pt-16 mt-8 border-t border-gray-100">
+              <li className="pt-16 mt-8 border-t border-gray-100 dark:border-gray-800">
                 <button
                   onClick={() => {
                     handleContactClick()
@@ -412,7 +436,7 @@ const LayoutOrganisms = ({ children }: props) => {
       <main className="overflow-x-hidden" role="main" aria-label="페이지 콘텐츠">{children}</main>
 
       {/* Footer */}
-      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100" role="contentinfo" aria-label="사이트 정보">
+      <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 dark:from-[#0f0f0f] dark:to-[#1a1a1a]/80 border-t border-gray-100 dark:border-gray-800 transition-colors duration-300" role="contentinfo" aria-label="사이트 정보">
         <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
           {/* Links Row - Redesigned with gold hover */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-20 md:mb-24">
@@ -422,20 +446,19 @@ const LayoutOrganisms = ({ children }: props) => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative px-12 py-6 text-[10px] md:text-xs text-gray-500 transition-all duration-300 font-medium tracking-wide"
-                style={{ color: undefined }}
+                className="group relative px-12 py-6 text-[10px] md:text-xs text-gray-500 dark:text-gray-400 transition-all duration-300 font-medium tracking-wide"
               >
                 <span className="relative z-10 group-hover:text-[#D6B14D] transition-colors duration-300">{link.name}</span>
-                <span className="absolute inset-0 bg-transparent group-hover:bg-[#FFF9E6] rounded-full transition-all duration-300" />
+                <span className="absolute inset-0 bg-transparent group-hover:bg-[#FFF9E6] dark:group-hover:bg-[#D6B14D]/10 rounded-full transition-all duration-300" />
               </a>
             ))}
           </div>
 
           {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-700 to-transparent mb-16 md:mb-20" />
 
           {/* Copyright - simplified */}
-          <p className="text-[10px] md:text-xs text-gray-400 text-center tracking-wide">
+          <p className="text-[10px] md:text-xs text-gray-400 dark:text-gray-500 text-center tracking-wide">
             © 2026 FINDS Lab All Rights Reserved.
           </p>
         </div>

@@ -690,18 +690,18 @@ const CollaborationNetwork = memo(() => {
 
   if (loading) {
     return (
-      <div className="bg-gray-50 rounded-3xl p-60 text-center border border-gray-100">
+      <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-3xl p-60 text-center border border-gray-100">
         <div className="size-64 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-16 mx-auto animate-pulse">
           <Network size={32}/>
         </div>
         <p className="text-lg font-bold text-gray-900 mb-8">Loading Network Data...</p>
-        <p className="text-sm text-gray-500">Analyzing collaboration patterns</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">Analyzing collaboration patterns</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+    <div className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-3xl overflow-hidden shadow-sm">
       {/* Header */}
       <div className="bg-gray-50/50 px-16 md:px-32 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 gap-12 md:gap-0">
         {/* Co-work Rate Threshold Slider */}
@@ -723,21 +723,21 @@ const CollaborationNetwork = memo(() => {
           </span>
           <button
             onClick={handleZoomIn}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom In"
           >
             <ZoomIn size={14}/>
           </button>
           <button
             onClick={handleZoomOut}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom Out"
           >
             <ZoomOut size={14}/>
           </button>
           <button
             onClick={handleReset}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Reset View"
           >
             <Maximize2 size={14}/>
@@ -888,7 +888,7 @@ const CollaborationNetwork = memo(() => {
         {/* Tooltip / Popup */}
         {(hoveredNode || selectedNode) && (
           <div
-            className={`absolute bg-white/98 max-md:w-[calc(100%-40px)] backdrop-blur-sm border border-gray-200 rounded-2xl shadow-xl overflow-hidden ${
+            className={`absolute bg-white/98 max-md:w-[calc(100%-40px)] backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden ${
               selectedNode
                 ? 'bottom-20 left-20 w-340 max-h-500 overflow-y-auto pointer-events-auto'
                 : 'bottom-20 left-20 w-300 pointer-events-none'
@@ -903,14 +903,14 @@ const CollaborationNetwork = memo(() => {
               return (
                 <>
                   {/* Header */}
-                  <div className="bg-gray-50 px-20 py-16 border-b border-gray-100">
+                  <div className="bg-gray-50 px-20 py-16 border-b border-gray-100 dark:border-gray-800">
                     <div className="flex items-center justify-between gap-12">
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-gray-900 truncate">
                           {node.nameKo || node.name}
                         </p>
                         {node.nameKo && (
-                          <p className="text-xs text-gray-500">{node.name}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{node.name}</p>
                         )}
                       </div>
                       {selectedNode && (
@@ -949,7 +949,7 @@ const CollaborationNetwork = memo(() => {
                     </div>
 
                     {/* Breakdown */}
-                    <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
+                    <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
                         <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
@@ -957,22 +957,22 @@ const CollaborationNetwork = memo(() => {
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full bg-blue-500"/>
                           <span className="text-xs text-gray-600 flex-1">journal paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
+                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.journal}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full bg-purple-500"/>
                           <span className="text-xs text-gray-600 flex-1">conference proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
+                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.conference}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full bg-orange-500"/>
                           <span className="text-xs text-gray-600 flex-1">book{node.breakdown.book !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800">{node.breakdown.book}</span>
+                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.book}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full bg-gray-400"/>
                           <span className="text-xs text-gray-600 flex-1">report{node.breakdown.report !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800">{node.breakdown.report}</span>
+                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.report}</span>
                         </div>
                       </div>
                     </div>
@@ -993,7 +993,7 @@ const CollaborationNetwork = memo(() => {
         )}
 
         {/* Legend */}
-        <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
+        <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 dark:border-gray-800 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
             <div className="size-10 rounded-full bg-white flex items-center justify-center text-[9px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
@@ -1297,7 +1297,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
   }, [conferences, showAllConferences])
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner - 통일된 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -1335,16 +1335,16 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16}/>
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <Link to="/members" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Members</Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <Link to="/members/director" className="text-sm text-gray-400 font-medium hover:text-primary transition-colors">Director</Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Activities</span>
           </div>
         </div>
@@ -1387,11 +1387,11 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
         {/* Profile Card */}
             <div 
               ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
+              className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
+                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 dark:bg-[#242424] rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
                   <img
                     src={directorImg}
                 alt="Prof. Insu Choi"
@@ -1402,44 +1402,44 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 }}
               />
             </div>
-                <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
+                <h2 className="text-base md:text-lg font-bold text-gray-900 dark:text-white">Insu Choi</h2>
               </div>
 
               <div className="flex flex-col gap-12 md:gap-16">
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Position</p>
-                    <p className="text-xs font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] text-gray-500">FINDS Lab</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Director</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400">FINDS Lab</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Affiliation</p>
-                    <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] text-gray-500">Gachon University</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Assistant Professor</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400">Gachon University</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
-                    <p className="text-xs font-semibold text-gray-800">Room 304, Gachon Hall</p>
+                    <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">Room 304, Gachon Hall</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -1450,7 +1450,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       </a>
                       <button
                         onClick={handleCopyEmail}
-                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0"
+                        className="size-20 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shrink-0"
                         title="Copy email"
                       >
                         {emailCopied ? (
@@ -1487,7 +1487,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
               </div>
               <Link 
                 to="/members/director"
-                className="flex items-center justify-center gap-4 mt-8 py-10 bg-white border border-gray-200 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-50 hover:text-gray-700 transition-all"
+                className="flex items-center justify-center gap-4 mt-8 py-10 bg-white border border-gray-200 text-gray-500 text-xs font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 hover:text-gray-700 transition-all"
               >
                 <ChevronLeft size={12}/> Back to Overview
               </Link>
@@ -1497,12 +1497,12 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
           {/* Right Column: Activities Only */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Activities */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('activities')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Activities</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Activities</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.activities ? 'rotate-180' : ''}`}/>
               </button>
 
@@ -1516,7 +1516,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       children: (
                         <div className="text-center">
                           {/* Logo */}
-                          <div className="size-80 bg-gray-50 rounded-xl p-12 flex items-center justify-center mx-auto mb-16">
+                          <div className="size-80 bg-gray-50 dark:bg-[#1a1a1a] rounded-xl p-12 flex items-center justify-center mx-auto mb-16">
                             <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
                           </div>
 
@@ -1538,9 +1538,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           {act.membership.length > 0 && (
                             <div className="border-t border-gray-100 pt-16 space-y-6">
                               {act.membership.map((r, idx) => (
-                                <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 rounded-lg">
-                                  <span className="text-xs font-bold text-gray-700">{r.role}</span>
-                                  <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
+                                <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg">
+                                  <span className="text-xs font-bold text-gray-700 dark:text-gray-300">{r.role}</span>
+                                  <span className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">{r.period}</span>
                                 </div>
                               ))}
                             </div>
@@ -1554,7 +1554,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                 {act.leadership.map((r, idx) => (
                                   <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
                                     <span className="text-xs font-bold text-primary">{r.role}</span>
-                                    <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
+                                    <span className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">{r.period}</span>
                                   </div>
                                 ))}
                               </div>
@@ -1563,9 +1563,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                         </div>
                       )
                     })}
-                    className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-20 hover:shadow-lg hover:border-primary/30 transition-all group text-left"
+                    className="flex items-center gap-16 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl p-20 hover:shadow-lg hover:border-primary/30 transition-all group text-left"
                   >
-                    <div className="size-56 bg-gray-50 rounded-xl p-8 flex items-center justify-center group-hover:bg-primary/5 transition-colors shrink-0">
+                    <div className="size-56 bg-gray-50 dark:bg-[#1a1a1a] rounded-xl p-8 flex items-center justify-center group-hover:bg-primary/5 transition-colors shrink-0">
                       <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
                     </div>
                     <div className="flex-1 min-w-0">
@@ -1581,19 +1581,19 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
             </section>
 
             {/* Mentoring Program */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('mentoringProgram')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Mentoring & Tutoring Program</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Mentoring & Tutoring Program</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.mentoringProgram ? 'rotate-180' : ''}`}/>
               </button>
 
               {expandedSections.mentoringProgram && (
                 <div className="border-t border-gray-100">
                 {/* Header with Stats */}
-                <div className="bg-gray-50/50 px-20 md:px-32 py-24 border-b border-gray-100">
+                <div className="bg-gray-50/50 px-20 md:px-32 py-24 border-b border-gray-100 dark:border-gray-800">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                     <div className="text-center">
                       <p className="text-2xl md:text-3xl font-bold text-primary">{mentees.length}</p>
@@ -1716,7 +1716,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 )}
 
                 {/* Mentee Search */}
-                <div className="px-20 md:px-32 py-16 border-b border-gray-100">
+                <div className="px-20 md:px-32 py-16 border-b border-gray-100 dark:border-gray-800">
                   <div className="relative">
                     <Search size={16} className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
@@ -1724,7 +1724,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       placeholder="Search mentees by name, university, or department..."
                       value={menteeSearchTerm}
                       onChange={(e) => setMenteeSearchTerm(e.target.value)}
-                      className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                      className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
                     />
                   </div>
                 </div>
@@ -1744,7 +1744,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                 <span className="text-sm md:text-base font-bold" style={{color: 'rgb(172,14,14)'}}>{mentee.participationYears.length}</span>
                               </div>
                               <div className="min-w-0">
-                                <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
+                                <p className="text-sm font-bold text-gray-900 dark:text-white">{mentee.name}</p>
                                 <p className="text-xs md:text-xs text-gray-500 truncate">
                                   {mentee.university} · {mentee.department} · {mentee.entryYear}학번
                                 </p>
@@ -1828,8 +1828,8 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
                 {/* Footer */}
                 <div className="px-20 md:px-32 py-12 md:py-16 bg-gray-50/50 border-t border-gray-100">
-                  <p className="text-xs md:text-xs text-gray-500">
-                    Showing <span className="font-bold text-gray-700">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
+                  <p className="text-xs md:text-xs text-gray-500 dark:text-gray-400">
+                    Showing <span className="font-bold text-gray-700 dark:text-gray-300">{filteredMentees.length}</span> mentee{filteredMentees.length !== 1 ? 's' : ''}
                     {selectedMentoringYear !== 'all' && <span className="text-primary"> in {selectedMentoringYear}</span>}
                     {selectedUniversity !== 'all' && <span className="text-primary"> from {selectedUniversity}</span>}
                   </p>

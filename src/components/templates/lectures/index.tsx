@@ -93,7 +93,7 @@ const FilterModal = ({
     <div className="flex flex-col gap-20 p-20">
       {sections.map((section) => (
         <div key={section.key} className="flex flex-col gap-16">
-          <h4 className="text-base font-bold text-gray-900">{section.label}</h4>
+          <h4 className="text-base font-bold text-gray-900 dark:text-white">{section.label}</h4>
           <div className="flex flex-wrap gap-8">
             {section.items.map((item) => {
               const isActive = filters[section.key].includes(item)
@@ -268,7 +268,7 @@ export const LecturesTemplate = () => {
   }, [sortedYears, expandedYear])
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
       {/* Banner - 통일된 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -306,12 +306,12 @@ export const LecturesTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Lectures</span>
           </div>
         </div>
@@ -350,7 +350,7 @@ export const LecturesTemplate = () => {
                 ),
               })
             }
-            className="flex items-center justify-center gap-8 px-20 py-14 bg-gray-50 border border-gray-200 rounded-xl text-sm md:text-base font-medium text-gray-700 hover:bg-gray-100 transition-colors shrink-0"
+            className="flex items-center justify-center gap-8 px-20 py-14 bg-gray-50 border border-gray-200 rounded-xl text-sm md:text-base font-medium text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shrink-0"
           >
             <SlidersHorizontal size={18} />
             Filters
@@ -367,8 +367,8 @@ export const LecturesTemplate = () => {
 
         {/* Year List */}
         {loading ? (
-          <div className="bg-gray-50 rounded-2xl p-60 text-center">
-            <p className="text-md text-gray-500">Loading lectures...</p>
+          <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl p-60 text-center">
+            <p className="text-md text-gray-500 dark:text-gray-400">Loading lectures...</p>
           </div>
         ) : sortedYears.length > 0 ? (
           <div className="flex flex-col gap-16">
@@ -403,7 +403,7 @@ export const LecturesTemplate = () => {
                     <div className="flex flex-col">
                       {items.length === 0 ? (
                         <div className="p-32 md:p-40 text-center bg-white border-t border-gray-100">
-                          <p className="text-sm md:text-base text-gray-500">등록된 강의가 없습니다.</p>
+                          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">등록된 강의가 없습니다.</p>
                         </div>
                       ) : (
                         items.map((item, idx) => {
@@ -451,7 +451,7 @@ export const LecturesTemplate = () => {
                                   {/* Periods */}
                                   <div className="flex flex-wrap gap-4 mb-10">
                                     {item.periods.map((period, pIdx) => (
-                                      <span key={pIdx} className="px-8 py-4 bg-gray-100 border border-gray-200 rounded-md text-[10px] md:text-xs font-medium text-gray-600">
+                                      <span key={pIdx} className="px-8 py-4 bg-gray-100 border border-gray-200 rounded-md text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400">
                                         {period}
                                       </span>
                                     ))}
@@ -473,8 +473,8 @@ export const LecturesTemplate = () => {
             })}
           </div>
         ) : (
-          <div className="bg-gray-50 rounded-2xl p-60 text-center">
-            <p className="text-md text-gray-500">검색 결과가 없습니다.</p>
+          <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl p-60 text-center">
+            <p className="text-md text-gray-500 dark:text-gray-400">검색 결과가 없습니다.</p>
           </div>
         )}
       </section>

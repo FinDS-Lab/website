@@ -48,7 +48,7 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   return (
     <div
       ref={popupRef}
-      className="absolute top-full left-0 mt-8 bg-white border border-gray-200 rounded-xl shadow-lg p-12 z-50 min-w-220"
+      className="absolute top-full left-0 mt-8 bg-white border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg p-12 z-50 min-w-220"
     >
       <p className="text-xs text-gray-500 mb-8">Email Address</p>
       <p className="text-sm font-medium text-gray-900 mb-12 break-all">{email}</p>
@@ -131,7 +131,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
           <div className="absolute inset-0 bg-black/40"/>
         </div>
         <div className="flex-1 flex items-center justify-center">
-          <div className="text-gray-500">Loading member profile...</div>
+          <div className="text-gray-500 dark:text-gray-400">Loading member profile...</div>
         </div>
       </div>
     )
@@ -174,7 +174,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
   }
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner */}
       <div className="relative w-full h-200 md:h-332 overflow-hidden">
         <div
@@ -205,7 +205,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
         {/* Mobile Back Button - Top */}
         <Link
           to="/members/current"
-          className="lg:hidden flex items-center gap-8 mt-16 py-10 px-16 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors w-fit"
+          className="lg:hidden flex items-center gap-8 mt-16 py-10 px-16 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors w-fit"
         >
           <ArrowLeft size={16}/>
           Back to Members
@@ -217,10 +217,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
           {/* Left Sidebar - Profile Card */}
           <div className="w-full lg:w-320 shrink-0">
-            <div className="bg-white border border-gray-100 rounded-2xl p-24 md:p-32 sticky top-100">
+            <div className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-24 md:p-32 sticky top-100">
               {/* Avatar */}
               <div className="flex flex-col items-center text-center mb-24">
-                <div className="w-[140px] h-[180px] md:w-[154px] md:h-[198px] bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg">
+                <div className="w-[140px] h-[180px] md:w-[154px] md:h-[198px] bg-gray-100 dark:bg-[#242424] rounded-xl flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg">
                   {member.avatar ? (
                     <img
                       src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
@@ -233,11 +233,11 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{member.name.ko}</h2>
                 <p className="text-sm md:text-base text-gray-500 mb-12">{member.name.en}</p>
-                <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'bg-gray-100 text-gray-700'}`}>
+                <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'}`}>
                   {member.role.en}
                 </span>
                 {/* Period - moved under role badge */}
-                <div className="flex items-center gap-8 text-xs text-gray-500">
+                <div className="flex items-center gap-8 text-xs text-gray-500 dark:text-gray-400">
                   <Calendar size={12} className="text-gray-400"/>
                   <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
                 </div>
@@ -292,7 +292,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                     href={member.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-36 h-36 flex items-center justify-center bg-gray-50 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
+                    className="w-36 h-36 flex items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
                   >
                     <Github size={18}/>
                   </a>
@@ -302,7 +302,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                     href={member.social.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-36 h-36 flex items-center justify-center bg-gray-50 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
+                    className="w-36 h-36 flex items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
                   >
                     <Linkedin size={18}/>
                   </a>
@@ -312,7 +312,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                     href={member.social.google_scholar}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-36 h-36 flex items-center justify-center bg-gray-50 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
+                    className="w-36 h-36 flex items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] rounded-full text-gray-400 hover:bg-primary hover:text-white transition-all"
                     title="Google Scholar"
                   >
                     <GraduationCap size={18}/>
@@ -323,7 +323,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
               {/* Back Button - PC only */}
               <Link
                 to="/members/current"
-                className="hidden lg:flex items-center justify-center gap-8 w-full mt-24 py-12 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors"
+                className="hidden lg:flex items-center justify-center gap-8 w-full mt-24 py-12 bg-gray-50 text-gray-600 text-sm font-medium rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <ArrowLeft size={16}/>
                 Back to Members
@@ -336,13 +336,13 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
             {/* Research Interests */}
             <section>
               <div className="flex items-center gap-12 mb-20 md:mb-24">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Research Interests</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Research Interests</h3>
               </div>
               <div className="flex flex-wrap gap-10">
                 {member.research.interests.map((interest, idx) => (
                   <span
                     key={idx}
-                    className="px-16 py-10 bg-gray-50 border border-gray-100 rounded-xl text-sm text-gray-700 font-medium hover:border-primary/30 transition-colors"
+                    className="px-16 py-10 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl text-sm text-gray-700 font-medium hover:border-primary/30 transition-colors"
                   >
                     {interest}
                   </span>
@@ -353,16 +353,16 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
             {/* Education */}
             <section>
               <div className="flex items-center gap-12 mb-20 md:mb-24">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Education</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Education</h3>
               </div>
               <div className="flex flex-col gap-16">
                 {member.education.map((edu, idx) => (
-                  <div key={idx} className="p-16 md:p-20 bg-gray-50 rounded-xl border border-gray-100">
+                  <div key={idx} className="p-16 md:p-20 bg-gray-50 dark:bg-[#1a1a1a] rounded-xl border border-gray-100">
                     <div className="flex flex-col gap-4">
-                      <h4 className="text-base font-bold text-gray-900">
+                      <h4 className="text-base font-bold text-gray-900 dark:text-white">
                         {edu.school_en || edu.school}
                       </h4>
-                      <p className="text-sm font-semibold text-gray-500">{edu.field_en || edu.field}</p>
+                      <p className="text-sm font-semibold text-gray-500 dark:text-gray-400">{edu.field_en || edu.field}</p>
                       <span className="text-xs font-medium mt-4" style={{ color: '#E8889C' }}>
                         {edu.start} - {edu.end || edu.expected || 'Present'}
                       </span>
@@ -370,7 +370,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                         <div className="flex flex-col gap-6 mt-8 pl-2 border-l-2 border-gray-200">
                           {edu.doubleMajor && (
                             <p className="text-sm font-medium text-gray-600 pl-10">
-                              Double Major in <span className="font-semibold text-gray-700">{edu.doubleMajor}</span>
+                              Double Major in <span className="font-semibold text-gray-700 dark:text-gray-300">{edu.doubleMajor}</span>
                             </p>
                           )}
                           {edu.minor && (
@@ -390,14 +390,14 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
             {(member.research.project || member.research.projects?.length || alumniProjects.length > 0) && (
               <section>
                 <div className="flex items-center gap-12 mb-20 md:mb-24">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                     {(member.research.projects?.length || 0) + alumniProjects.length > 1 ? 'Projects' : 'Current Project'}
                   </h3>
                 </div>
                 <div className="flex flex-col gap-12">
                   {/* 단일 project 객체 */}
                   {member.research.project && (
-                    <div className="p-20 md:p-24 bg-gray-50 border border-gray-100 rounded-xl">
+                    <div className="p-20 md:p-24 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl">
                       <p className="text-base font-semibold text-gray-800 mb-4">{member.research.project.en}</p>
                       {member.research.project.ko && (
                         <p className="text-sm text-gray-400">{member.research.project.ko}</p>
@@ -406,7 +406,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   )}
                   {/* projects 배열 */}
                   {member.research.projects?.map((proj, idx) => (
-                    <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 rounded-xl">
+                    <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl">
                       <p className="text-base font-semibold text-gray-800 mb-4">{proj.en}</p>
                       {proj.ko && (
                         <p className="text-sm text-gray-400">{proj.ko}</p>
@@ -415,8 +415,8 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   ))}
                   {/* alumni.json에서 가져온 projects (member JSON에 없는 경우에만) */}
                   {!member.research.project && !member.research.projects?.length && alumniProjects.map((proj, idx) => (
-                    <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 rounded-xl">
-                      <p className="text-base font-semibold text-gray-800">{proj}</p>
+                    <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl">
+                      <p className="text-base font-semibold text-gray-800 dark:text-gray-100">{proj}</p>
                     </div>
                   ))}
                 </div>

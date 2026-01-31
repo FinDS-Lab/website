@@ -130,7 +130,7 @@ export const AboutResearchTemplate = () => {
   const contentAnimation = useScrollAnimation()
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner - Introduction과 동일한 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         {/* Background Image with Overlay */}
@@ -176,14 +176,14 @@ export const AboutResearchTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">About FINDS</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Research Areas</span>
           </div>
         </div>
@@ -200,9 +200,9 @@ export const AboutResearchTemplate = () => {
             {/* Mobile: Fixed Korean */}
             <h2 className="md:hidden text-xl font-bold leading-[1.4]">
               <span style={{ color: '#D6B14D' }}>데이터</span>
-              <span className="text-gray-900"> 기반의 </span>
+              <span className="text-gray-900 dark:text-white"> 기반의 </span>
               <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
-              <span className="text-gray-900"> </span>
+              <span className="text-gray-900 dark:text-white"> </span>
               <span style={{ color: '#AC0E0E' }}>혁신</span>
             </h2>
             {/* PC: Animated English <-> Korean */}
@@ -213,17 +213,17 @@ export const AboutResearchTemplate = () => {
             >
               {currentTitle.lang === 'en' ? (
                 <>
-                  <span className="text-gray-900">Transforming </span>
+                  <span className="text-gray-900 dark:text-white">Transforming </span>
                   <span style={{ color: '#AC0E0E' }}>Business and Industry</span>
-                  <span className="text-gray-900"> via </span>
+                  <span className="text-gray-900 dark:text-white"> via </span>
                   <span style={{ color: '#D6B14D' }}>Data</span>
                 </>
               ) : (
                 <>
                   <span style={{ color: '#D6B14D' }}>데이터</span>
-                  <span className="text-gray-900"> 기반의 </span>
+                  <span className="text-gray-900 dark:text-white"> 기반의 </span>
                   <span style={{ color: '#AC0E0E' }}>경영 및 산업 환경</span>
-                  <span className="text-gray-900"> </span>
+                  <span className="text-gray-900 dark:text-white"> </span>
                   <span style={{ color: '#AC0E0E' }}>혁신</span>
                 </>
               )}
@@ -231,7 +231,7 @@ export const AboutResearchTemplate = () => {
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해 경영 및 산업 현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
+            <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700 dark:text-gray-300">세 가지 핵심 연구 분야</span>를 통해 경영 및 산업 현장에서의 <span className="font-semibold text-gray-700 dark:text-gray-300">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>
@@ -272,7 +272,7 @@ export const AboutResearchTemplate = () => {
                       <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent mb-6">
                         {area.titleEn}
                       </span>
-                      <span className="text-base md:text-lg font-semibold text-gray-600">
+                      <span className="text-base md:text-lg font-semibold text-gray-600 dark:text-gray-400">
                         {area.titleKo}
                       </span>
                     </h2>

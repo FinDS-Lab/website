@@ -95,7 +95,7 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
         <h1 className="text-lg md:text-xl font-bold text-gray-900 leading-snug tracking-[-0.02em] mb-12 md:mb-16">
           {metadata.title}
         </h1>
-        <div className="flex items-center gap-8 text-[12px] text-gray-500">
+        <div className="flex items-center gap-8 text-[12px] text-gray-500 dark:text-gray-400">
           <span className="font-medium">{metadata.author}</span>
           <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
           <span>{metadata.date}</span>
@@ -197,7 +197,7 @@ export const ArchivesGalleryTemplate = () => {
     : galleryItems.filter(item => item.category === selectedCategory)
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]" style={{ backgroundImage: `url(${banner5})` }} />
@@ -230,12 +230,12 @@ export const ArchivesGalleryTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">Archives</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Gallery</span>
           </div>
         </div>
@@ -290,7 +290,7 @@ export const ArchivesGalleryTemplate = () => {
                       <div className="h-5 w-14 bg-gray-200 rounded-full" />
                     </div>
                     <div className="h-5 w-full bg-gray-200 rounded mb-4" />
-                    <div className="h-4 w-2/3 bg-gray-100 rounded" />
+                    <div className="h-4 w-2/3 bg-gray-100 dark:bg-[#242424] rounded" />
                   </div>
                 </div>
               ))}
@@ -307,7 +307,7 @@ export const ArchivesGalleryTemplate = () => {
                 })}
                 className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
               >
-                <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
+                <div className="aspect-[4/3] bg-[#f9fafb] dark:bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (
                     <img
                       src={`${baseUrl}data/gallery/${item.id}/${item.thumb}`}
@@ -320,7 +320,7 @@ export const ArchivesGalleryTemplate = () => {
                 </div>
                 <div className="p-16 md:p-20">
                   <div className="flex items-center justify-between gap-6 mb-8">
-                    <div className="flex items-center gap-6 text-xs text-gray-500">
+                    <div className="flex items-center gap-6 text-xs text-gray-500 dark:text-gray-400">
                       <Calendar className="size-12 text-gray-400" />
                       <span className="font-medium">{item.date}</span>
                     </div>
@@ -338,7 +338,7 @@ export const ArchivesGalleryTemplate = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#f9fafb] rounded-[20px] p-60 text-center text-gray-500">
+          <div className="bg-[#f9fafb] dark:bg-[#1a1a1a] rounded-[20px] p-60 text-center text-gray-500 dark:text-gray-400">
             No gallery items found for selected category.
           </div>
         )}

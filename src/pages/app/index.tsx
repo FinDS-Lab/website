@@ -312,7 +312,7 @@ export const App = () => {
   return (
     <>
       <GlobalMusicPlayer />
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-pulse text-primary">Loading...</div></div>}>
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#0f0f0f]"><div className="animate-pulse text-primary">Loading...</div></div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/publications" element={<Publications />} />

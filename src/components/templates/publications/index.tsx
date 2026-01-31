@@ -90,7 +90,7 @@ const FilterModal = ({
     <div className="flex flex-col gap-20 p-20">
       {sections.map((section) => (
         <div key={section.key} className="flex flex-col gap-16">
-          <h4 className="text-base font-bold text-gray-900">{section.label}</h4>
+          <h4 className="text-base font-bold text-gray-900 dark:text-white">{section.label}</h4>
           <div className="flex flex-wrap gap-8">
             {section.options.map((option) => {
               const isActive = filters[section.key].includes(option)
@@ -104,7 +104,7 @@ const FilterModal = ({
                   className={`px-16 py-8 rounded-lg text-sm font-medium transition-all border ${
                     isActive
                       ? 'bg-primary text-white border-primary shadow-sm'
-                      : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
+                      : 'bg-white dark:bg-[#242424] text-[#7f8894] dark:text-gray-400 border-[#f0f0f0] dark:border-gray-700 hover:border-primary/30 hover:bg-gray-50 dark:hover:bg-gray-700'
                   }`}
                 >
                   {option}
@@ -114,7 +114,7 @@ const FilterModal = ({
           </div>
         </div>
       ))}
-      <div className="flex justify-end pt-16 border-t border-gray-100">
+      <div className="flex justify-end pt-16 border-t border-gray-100 dark:border-gray-800">
         <button
           onClick={onReset}
           className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors"
@@ -175,7 +175,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
         return (
           <div key={format.key} className="flex flex-col gap-8">
             <div className="flex items-center justify-between">
-              <span className={`text-sm font-bold uppercase tracking-wider ${format.key === 'bibtex' ? 'text-primary' : 'text-gray-900'}`}>{format.label}</span>
+              <span className={`text-sm font-bold uppercase tracking-wider ${format.key === 'bibtex' ? 'text-primary' : 'text-gray-900 dark:text-white'}`}>{format.label}</span>
               <button
                 onClick={() => handleCopy(text, format.key)}
                 className="flex items-center gap-4 text-xs font-medium text-primary hover:underline"
@@ -196,7 +196,7 @@ const CitationModal = ({ citation }: { citation: Publication['citations'] }) => 
             <div className={`p-16 rounded-xl border text-sm leading-relaxed break-words ${
               format.key === 'bibtex' 
                 ? 'bg-gray-900 font-mono text-xs border-gray-700 whitespace-pre-wrap'
-                : 'bg-gray-50 text-gray-600 border-gray-100'
+                : 'bg-gray-50 dark:bg-[#1a1a1a] text-gray-600 dark:text-gray-300 border-gray-100 dark:border-gray-800'
             }`}
               style={format.key === 'bibtex' ? {color: '#D6B14D'} : undefined}
               dangerouslySetInnerHTML={format.key !== 'bibtex' ? {__html: text} : undefined}
@@ -533,7 +533,7 @@ export const PublicationsTemplate = () => {
   )
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner - About FINDS 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         {/* Background Image with Overlay */}
@@ -579,14 +579,14 @@ export const PublicationsTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">Research</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Publications</span>
           </div>
         </div>
@@ -600,19 +600,19 @@ export const PublicationsTemplate = () => {
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           {/* Statistics Section - Red Dot Style */}
           <div className={`flex flex-col gap-16 md:gap-24 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
-            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-12">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
             </h3>
             
             {/* Total - Full Width */}
-            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+            <div className="group relative bg-[#FFF9E6] dark:bg-[#D6B14D]/10 border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: statistics.total.color}}>{statistics.total.count}</span>
                 <div className="flex items-center gap-6">
                   <statistics.total.icon className="size-14 md:size-16" style={{color: statistics.total.color, opacity: 0.7}} />
-                  <span className="text-xs md:text-sm font-medium text-gray-600">{statistics.total.label}</span>
+                  <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">{statistics.total.label}</span>
                 </div>
               </div>
             </div>
@@ -622,14 +622,14 @@ export const PublicationsTemplate = () => {
               {statistics.items.map((stat, index) => (
                 <div
                   key={index}
-                  className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                  className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                 >
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col">
                     <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                     <div className="flex items-center gap-6">
                       <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
-                      <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                      <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</span>
                     </div>
                   </div>
                 </div>
@@ -639,7 +639,7 @@ export const PublicationsTemplate = () => {
             {/* Publications Timeline - PC Only */}
             {yearlyChartData.length > 0 && (
               <div className="hidden lg:block mt-8">
-                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
+                <div className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
                   <div className="flex items-center justify-between mb-20">
                     <h4 className="text-sm font-bold text-gray-700 flex items-center gap-8">
                       <Calendar className="size-16 text-primary" />
@@ -648,19 +648,19 @@ export const PublicationsTemplate = () => {
                     <div className="flex items-center gap-16">
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6B14D' }} />
-                        <span className="text-[10px] text-gray-500">Journal</span>
+                        <span className="text-[10px] text-gray-500 dark:text-gray-400">Journal</span>
                       </div>
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#E8D688' }} />
-                        <span className="text-[10px] text-gray-500">Conference</span>
+                        <span className="text-[10px] text-gray-500 dark:text-gray-400">Conference</span>
                       </div>
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6A076' }} />
-                        <span className="text-[10px] text-gray-500">Book</span>
+                        <span className="text-[10px] text-gray-500 dark:text-gray-400">Book</span>
                       </div>
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#AC0E0E' }} />
-                        <span className="text-[10px] text-gray-500">Report</span>
+                        <span className="text-[10px] text-gray-500 dark:text-gray-400">Report</span>
                       </div>
                     </div>
                   </div>
@@ -675,7 +675,7 @@ export const PublicationsTemplate = () => {
                     </div>
                     
                     {/* Chart */}
-                    <div className="ml-40 h-full flex items-end gap-2 pb-24 border-l border-b border-gray-100">
+                    <div className="ml-40 h-full flex items-end gap-2 pb-24 border-l border-b border-gray-100 dark:border-gray-800">
                       {yearlyChartData.map((data, index) => {
                         const maxTotal = Math.max(...yearlyChartData.map(d => d.total))
                         const heightScale = 160 / maxTotal
@@ -797,7 +797,7 @@ export const PublicationsTemplate = () => {
           {/* Authorship Remarks Section */}
           <div className="flex flex-col gap-12 md:gap-20">
             <div className="flex items-center gap-8">
-              <h2 className="text-xl md:text-[26px] font-bold text-gray-900">Authorship Remarks</h2>
+              <h2 className="text-xl md:text-[26px] font-bold text-gray-900 dark:text-white">Authorship Remarks</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-20">
               {authorshipRemarks.map((item, index) => {
@@ -807,7 +807,7 @@ export const PublicationsTemplate = () => {
                 return (
                   <div
                     key={index}
-                    className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
+                    className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
                   >
                     <div 
                       className="size-32 md:size-46 flex-shrink-0 rounded-lg flex items-center justify-center"
@@ -821,7 +821,7 @@ export const PublicationsTemplate = () => {
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs md:text-base font-bold text-gray-900">{item.label}</span>
+                      <span className="text-xs md:text-base font-bold text-gray-900 dark:text-white">{item.label}</span>
                       <span className="text-[10px] md:text-xs text-gray-500 hidden sm:block">{item.subLabel}</span>
                     </div>
                   </div>
@@ -837,8 +837,8 @@ export const PublicationsTemplate = () => {
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
                   isFilterOpen || filters.type.length > 0 || filters.indexing.length > 0 || filters.conference.length > 0 || filters.presentation.length > 0
-                    ? 'bg-primary/5 border-primary text-primary font-medium'
-                    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                    ? 'bg-primary/5 dark:bg-primary/10 border-primary text-primary font-medium'
+                    : 'bg-white dark:bg-[#1a1a1a] border-gray-100 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
                 }`}
               >
                 Filters
@@ -852,7 +852,7 @@ export const PublicationsTemplate = () => {
                     className="fixed inset-0 z-10"
                     onClick={() => setIsFilterOpen(false)}
                   />
-                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[600px] lg:w-[1000px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[600px] lg:w-[1000px] max-w-[calc(100vw-32px)] bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     <FilterModal
                       filters={filters}
                       onChange={handleFilterChange}
@@ -864,11 +864,11 @@ export const PublicationsTemplate = () => {
               )}
             </div>
 
-            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl focus-within:border-primary transition-colors">
               <input
                 type="text"
                 placeholder="Search by title, author, venue..."
-                className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0"
+                className="flex-1 text-sm md:text-base text-gray-700 dark:text-gray-200 bg-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none min-w-0"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={(e) => {
@@ -879,7 +879,7 @@ export const PublicationsTemplate = () => {
               />
               <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
             </div>
-            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl text-sm md:text-base font-medium text-gray-500 dark:text-gray-400 text-center shrink-0">
               {filteredPublications.length} of {publications.length}
             </div>
           </div>
@@ -890,23 +890,23 @@ export const PublicationsTemplate = () => {
               {/* Centered Spinner */}
               <div className="flex items-center justify-center py-32">
                 <div className="relative">
-                  <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
+                  <div className="w-12 h-12 rounded-full border-3 border-gray-200 dark:border-gray-700" />
                   <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
                 </div>
               </div>
               {/* Skeleton Loading - 3 year cards */}
               {[1, 2, 3].map((i) => (
-                <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm animate-pulse">
-                  <div className="bg-gray-50 px-20 md:px-24 py-16 md:py-20">
+                <div key={i} className="border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm animate-pulse">
+                  <div className="bg-gray-50 dark:bg-[#1a1a1a] px-20 md:px-24 py-16 md:py-20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-12 md:gap-16">
-                        <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
+                        <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 dark:bg-gray-700 rounded" />
                         <div className="flex gap-6">
-                          <div className="h-5 w-12 bg-gray-200 rounded-full" />
-                          <div className="h-5 w-12 bg-gray-200 rounded-full" />
+                          <div className="h-5 w-12 bg-gray-200 dark:bg-gray-700 rounded-full" />
+                          <div className="h-5 w-12 bg-gray-200 dark:bg-gray-700 rounded-full" />
                         </div>
                       </div>
-                      <div className="h-5 w-5 bg-gray-200 rounded" />
+                      <div className="h-5 w-5 bg-gray-200 dark:bg-gray-700 rounded" />
                     </div>
                   </div>
                 </div>
@@ -921,47 +921,47 @@ export const PublicationsTemplate = () => {
                 const isCurrentYear = year === currentYear
 
                 return (
-                  <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
+                  <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100 dark:border-gray-800'}`}>
                     <button
                       onClick={() => toggleYear(year)}
                       className={`w-full flex items-center justify-between px-20 md:px-24 py-16 md:py-20 transition-colors ${
                         isCurrentYear 
-                          ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
-                          : 'bg-gray-50 hover:bg-gray-100'
+                          ? 'bg-[#FFF3CC] dark:bg-[#D6B14D]/20 hover:bg-[#FFEB99] dark:hover:bg-[#D6B14D]/30' 
+                          : 'bg-gray-50 dark:bg-[#1a1a1a] hover:bg-gray-100 dark:hover:bg-[#242424]'
                       }`}
                     >
                       <div className="flex items-center gap-12 md:gap-16 flex-wrap">
-                        <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
+                        <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F] dark:text-[#D6B14D]' : 'text-gray-800 dark:text-white'}`}>{year}</span>
                         {isCurrentYear && (
                           <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                         )}
                         {/* White badge with counts - desktop */}
-                        <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                        <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white dark:bg-[#1a1a1a] rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;Journals</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Journals</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;Conferences</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Conferences</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-500">&nbsp;Books</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Books</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-500">&nbsp;Reports</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Reports</span>
                         </span>
                         {/* Mobile: same as desktop */}
-                        <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
+                        <span className="sm:hidden inline-flex px-8 py-4 bg-white dark:bg-[#1a1a1a] rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;Journals</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Journals</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;Conferences</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Conferences</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-500">&nbsp;Books</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Books</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-500">&nbsp;Reports</span>
+                          <span className="text-gray-500 dark:text-gray-400">&nbsp;Reports</span>
                         </span>
                       </div>
                       {expandedYears.has(year) ? (
@@ -973,8 +973,8 @@ export const PublicationsTemplate = () => {
                     {expandedYears.has(year) && (
                       <div className="flex flex-col">
                         {pubs.length === 0 ? (
-                          <div className="p-32 md:p-40 text-center bg-white border-t border-gray-100">
-                            <p className="text-sm md:text-base text-gray-500">아직 등록된 논문이 없습니다.</p>
+                          <div className="p-32 md:p-40 text-center bg-white dark:bg-[#111111] border-t border-gray-100 dark:border-gray-800">
+                            <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">아직 등록된 논문이 없습니다.</p>
                           </div>
                         ) : pubs.map((pub, idx) => {
                           const authorList = getAuthorNames(pub.authors, pub.author_marks, pub.language)
@@ -990,7 +990,7 @@ export const PublicationsTemplate = () => {
                             : 'bg-gray-500'
 
                           return (
-                            <div key={idx} className="relative bg-white border-t border-gray-100 overflow-hidden">
+                            <div key={idx} className="relative bg-white dark:bg-[#111111] border-t border-gray-100 dark:border-gray-800 overflow-hidden">
                               {/* Mobile: Full-width top bar - solid color */}
                               <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
                                 background: pub.type === 'journal' ? '#D6B14D' :
@@ -1052,7 +1052,7 @@ export const PublicationsTemplate = () => {
                                 <div className="flex flex-row items-start gap-16 md:gap-20">
                                   {/* Desktop: Left Type Badge - Split design (top colored, bottom white) */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
-                                    <div className="w-full rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                                    <div className="w-full rounded-lg overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700">
                                       {/* Top part - colored background */}
                                       <div className={`w-full py-6 text-center ${
                                         pub.type === 'journal' ? 'bg-[#D6B14D]' :
@@ -1067,7 +1067,7 @@ export const PublicationsTemplate = () => {
                                         </span>
                                       </div>
                                       {/* Bottom part - white background with number */}
-                                      <div className="w-full py-6 text-center bg-white">
+                                      <div className="w-full py-6 text-center bg-white dark:bg-[#1a1a1a]">
                                         <span className={`text-lg font-bold ${
                                           pub.type === 'journal' ? 'text-[#D6B14D]' :
                                           pub.type === 'conference' ? 'text-[#AC0E0E]' :
@@ -1140,7 +1140,7 @@ export const PublicationsTemplate = () => {
                                     return (
                                       <>
                                         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-12 mb-6 md:mb-8">
-                                          <h4 className="text-sm md:text-md font-semibold text-gray-800 leading-relaxed flex-1">
+                                          <h4 className="text-sm md:text-md font-semibold text-gray-800 dark:text-gray-100 leading-relaxed flex-1">
                                             {pub.awards !== undefined && pub.awards !== null && pub.awards > 0 && (
                                               <span className="relative inline-block mr-6 group">
                                                 <span className="cursor-help">🏆</span>
@@ -1163,7 +1163,7 @@ export const PublicationsTemplate = () => {
                                             {mainTitle}
                                           </h4>
                                           {/* Date badge - top right on PC, unified style */}
-                                          <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
+                                          <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
                                             {pub.published_date}
                                           </span>
                                         </div>
@@ -1175,7 +1175,7 @@ export const PublicationsTemplate = () => {
                                   })()}
                                   <div className="flex flex-wrap gap-2 md:gap-4 mb-6 md:mb-8">
                                     {authorList.map((author, aIdx) => (
-                                      <span key={aIdx} className="text-xs md:text-sm text-gray-600">
+                                      <span key={aIdx} className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                         {author.name}
                                         {author.mark && (
                                           <sup className="text-primary ml-1">{author.mark}</sup>
@@ -1221,7 +1221,7 @@ export const PublicationsTemplate = () => {
                                       rel="noopener noreferrer"
                                       className="inline-flex items-center gap-6 mt-8 group/doi"
                                     >
-                                      <span className="px-6 py-2 bg-gray-100 rounded text-[9px] font-semibold text-gray-500 uppercase tracking-wide">
+                                      <span className="px-6 py-2 bg-gray-100 dark:bg-[#242424] rounded text-[9px] font-semibold text-gray-500 uppercase tracking-wide">
                                         doi
                                       </span>
                                       <span className="text-xs md:text-xs text-gray-500 group-hover/doi:text-primary transition-colors">
@@ -1239,7 +1239,7 @@ export const PublicationsTemplate = () => {
                                       maxWidth: '600px',
                                       children: <CitationModal citation={pub.citations} />
                                     })}
-                                    className="flex items-center gap-4 md:gap-6 px-10 md:px-12 py-4 md:py-6 bg-gray-50 border border-gray-100 rounded-lg text-[10px] md:text-xs font-medium text-gray-600 hover:bg-primary/10 hover:text-primary transition-colors"
+                                    className="flex items-center gap-4 md:gap-6 px-10 md:px-12 py-4 md:py-6 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-lg text-[10px] md:text-xs font-medium text-gray-600 hover:bg-primary/10 hover:text-primary transition-colors"
                                   >
                                     Cite
                                   </button>
@@ -1257,8 +1257,8 @@ export const PublicationsTemplate = () => {
               })}
             </div>
           ) : (
-            <div className="bg-gray-50 rounded-2xl p-60 text-center">
-              <p className="text-md text-gray-500">검색 결과가 없습니다.</p>
+            <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl p-60 text-center">
+              <p className="text-md text-gray-500 dark:text-gray-400">검색 결과가 없습니다.</p>
             </div>
           )}
 

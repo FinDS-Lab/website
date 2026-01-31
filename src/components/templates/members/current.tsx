@@ -60,7 +60,7 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   return (
     <div
       ref={popupRef}
-      className="absolute bottom-full left-0 mb-8 bg-white border border-gray-200 rounded-xl shadow-lg p-12 z-50 min-w-200"
+      className="absolute bottom-full left-0 mb-8 bg-white border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg p-12 z-50 min-w-200"
     >
       <p className="text-xs text-gray-500 mb-8">Email Address</p>
       <p className="text-sm font-medium text-gray-900 mb-12 break-all">{email}</p>
@@ -243,7 +243,7 @@ export const MembersCurrentTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner - 통일된 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -281,14 +281,14 @@ export const MembersCurrentTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Current Members</span>
           </div>
         </div>
@@ -313,7 +313,7 @@ export const MembersCurrentTemplate = () => {
               <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
               </div>
             </div>
           </div>
@@ -323,7 +323,7 @@ export const MembersCurrentTemplate = () => {
             {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 min-h-[100px] md:min-h-0"
+                className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 min-h-[100px] md:min-h-0"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center h-full justify-center">
@@ -355,13 +355,13 @@ export const MembersCurrentTemplate = () => {
                 <div className="h-6 md:h-7 w-32 bg-gray-200 rounded mb-16 md:mb-[20px] animate-pulse" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
                   {[1, 2, 3].map((card) => (
-                    <div key={card} className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-20 md:p-[24px] animate-pulse">
+                    <div key={card} className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-[20px] p-20 md:p-[24px] animate-pulse">
                       <div className="flex items-start gap-16">
                         <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-full bg-gray-200 shrink-0" />
                         <div className="flex-1 min-w-0 space-y-8">
                           <div className="h-5 w-24 bg-gray-200 rounded" />
                           <div className="h-4 w-32 bg-gray-200 rounded" />
-                          <div className="h-3 w-full bg-gray-100 rounded" />
+                          <div className="h-3 w-full bg-gray-100 dark:bg-[#242424] rounded" />
                         </div>
                       </div>
                     </div>
@@ -387,7 +387,7 @@ export const MembersCurrentTemplate = () => {
                     <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
                       {degreeLabels[groupKey as keyof typeof degreeLabels]}
                     </h3>
-                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-xl md:rounded-[20px] p-24 md:p-[40px]">
+                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 dark:border-gray-700 rounded-xl md:rounded-[20px] p-24 md:p-[40px]">
                     </div>
                   </div>
                 )
@@ -406,7 +406,7 @@ export const MembersCurrentTemplate = () => {
                       return (
                         <div
                           key={member.id}
-                          className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
+                          className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
                           onMouseEnter={() => setHoveredMember(member.id)}
                           onMouseLeave={() => setHoveredMember(null)}
                         >
@@ -440,7 +440,7 @@ export const MembersCurrentTemplate = () => {
                                   {member.role.en}
                                 </span>
                               </div>
-                              <p className="text-xs md:text-[13px] text-gray-500">
+                              <p className="text-xs md:text-[13px] text-gray-500 dark:text-gray-400">
                                 {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
                               </p>
                             </div>
@@ -453,7 +453,7 @@ export const MembersCurrentTemplate = () => {
                                 {member.research.interests.slice(0, 4).map((interest, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-xs text-gray-600"
+                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 dark:bg-[#242424] rounded-full text-[10px] md:text-xs text-gray-600"
                                   >
                                     {interest}
                                   </span>

@@ -35,7 +35,7 @@ export const LocationTemplate = () => {
   const contentAnimation = useScrollAnimation()
 
   return (
-    <div className="flex flex-col bg-white scroll-mt-[80px]">
+    <div className="flex flex-col bg-white dark:bg-[#0a0a0a] scroll-mt-[80px] transition-colors duration-300">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -73,14 +73,14 @@ export const LocationTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700 dark:text-gray-300">—</span>
             <span className="text-sm text-gray-400 font-medium">About FINDS</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700 dark:text-gray-300">—</span>
             <span className="text-sm text-primary font-semibold">Location</span>
           </div>
         </div>
@@ -93,7 +93,7 @@ export const LocationTemplate = () => {
       >
         <div className="max-w-1480 mx-auto flex flex-col lg:flex-row lg:items-stretch gap-20 md:gap-32">
           {/* Map Section */}
-          <div className="h-[280px] md:h-[400px] lg:h-auto lg:flex-1 rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-lg shadow-gray-100/50 relative">
+          <div className="h-[280px] md:h-[400px] lg:h-auto lg:flex-1 rounded-2xl md:rounded-3xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-lg shadow-gray-100/50 dark:shadow-black/20 relative">
             <iframe
               src="https://maps.google.com/maps?q=가천대학교+가천관&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -159,45 +159,45 @@ export const LocationTemplate = () => {
             </div>
 
             {/* Director's Office Card - Light Theme with Image */}
-            <div className="relative bg-white rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex-1">
+            <div className="relative bg-white dark:bg-[#1a1a1a] rounded-2xl md:rounded-3xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-xl shadow-gray-100/50 dark:shadow-black/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex-1">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#AC0E0E] via-primary to-[#AC0E0E]" />
               
               {/* Background Image */}
               <div 
-                className="absolute inset-0 opacity-5"
+                className="absolute inset-0 opacity-5 dark:opacity-10"
                 style={{ backgroundImage: `url(${locationImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
               />
               
               <div className="relative p-20 md:p-28 h-full flex flex-col">
                 {/* Title */}
                 <div className="mb-16 md:mb-20">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Director's Office</h3>
-                  <p className="text-xs text-gray-500 mt-2">최인수 교수 연구실</p>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Director's Office</h3>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">최인수 교수 연구실</p>
                 </div>
                 
                 {/* Address - KOR */}
                 <div className="flex-1 flex flex-col gap-12">
-                  <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
+                  <div className="bg-gray-50/80 dark:bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-gray-100 dark:border-gray-700">
                     <div className="flex items-center gap-6 mb-8">
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/50 via-[#D6B14D]/25 to-transparent" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900 leading-relaxed">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white leading-relaxed">
                       가천대학교 글로벌캠퍼스 가천관 304호
                     </p>
-                    <p className="text-xs text-gray-500 mt-4">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
                     </p>
                   </div>
 
                   {/* Address - ENG */}
-                  <div className="bg-gray-50/80 backdrop-blur-sm rounded-xl p-14 border border-gray-100">
+                  <div className="bg-gray-50/80 dark:bg-white/5 backdrop-blur-sm rounded-xl p-14 border border-gray-100 dark:border-gray-700">
                     <div className="flex items-center gap-6 mb-8">
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/30 via-[#D6B14D]/15 to-transparent" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900 leading-relaxed">
+                    <p className="text-sm font-medium text-gray-900 dark:text-white leading-relaxed">
                       Room 304, Gachon Hall, Gachon University Global Campus
                     </p>
-                    <p className="text-xs text-gray-500 leading-relaxed mt-4">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
                       <br />
                       Seongnam-si, Gyeonggi-do 13120, Korea

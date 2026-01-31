@@ -163,7 +163,7 @@ export const AboutHonorsTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
       {/* Banner - Introduction과 동일한 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         {/* Background Image with Overlay */}
@@ -209,14 +209,14 @@ export const AboutHonorsTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100">
+        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-gray-400 font-medium">About FINDS</span>
-            <span className="text-gray-200">—</span>
+            <span className="text-gray-200 dark:text-gray-700">—</span>
             <span className="text-sm text-primary font-semibold">Honors & Awards</span>
           </div>
         </div>
@@ -241,7 +241,7 @@ export const AboutHonorsTemplate = () => {
               <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600">{stats.total.label}</span>
+                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">{stats.total.label}</span>
               </div>
             </div>
           </div>
@@ -251,14 +251,14 @@ export const AboutHonorsTemplate = () => {
             {stats.items.map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                   <div className="flex items-center gap-6">
                     <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">{stat.label}</span>
                   </div>
                 </div>
               </div>
@@ -300,7 +300,7 @@ export const AboutHonorsTemplate = () => {
             </div>
             {/* Skeleton Loading - 3 year cards */}
             {[1, 2, 3].map((i) => (
-              <div key={i} className="border border-gray-100 rounded-xl md:rounded-[20px] overflow-hidden shadow-sm animate-pulse">
+              <div key={i} className="border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-[20px] overflow-hidden shadow-sm animate-pulse">
                 <div className="bg-gray-50 px-16 md:px-[24px] py-16 md:py-[20px]">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-12 md:gap-[16px]">
@@ -343,16 +343,16 @@ export const AboutHonorsTemplate = () => {
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                       )}
                       {/* White badge with counts - always show both */}
-                      <span className="px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                      <span className="px-10 md:px-12 py-4 md:py-5 bg-white dark:bg-[#1a1a1a] rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                         {(() => {
                           const yearStats = getYearStats(year)
                           return (
                             <>
                               <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.honors}</span>
-                              <span className="text-gray-500"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>
+                              <span className="text-gray-500 dark:text-gray-400"> {yearStats.honors === 1 ? 'Honor' : 'Honors'}</span>
                               <span className="text-gray-300"> · </span>
                               <span className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.awards}</span>
-                              <span className="text-gray-500"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>
+                              <span className="text-gray-500 dark:text-gray-400"> {yearStats.awards === 1 ? 'Award' : 'Awards'}</span>
                             </>
                           )
                         })()}
@@ -368,7 +368,7 @@ export const AboutHonorsTemplate = () => {
                     <div className="flex flex-col">
                       {(!filteredItems || filteredItems.length === 0) ? (
                         <div className="p-24 md:p-32 text-center bg-white border-t border-gray-100">
-                          <p className="text-sm md:text-base text-gray-500">아직 등록된 데이터가 없습니다.</p>
+                          <p className="text-sm md:text-base text-gray-500 dark:text-gray-400">아직 등록된 데이터가 없습니다.</p>
                         </div>
                       ) : filteredItems.map((item, index) => (
                         <div
@@ -393,7 +393,7 @@ export const AboutHonorsTemplate = () => {
                                 {item.title}
                               </h4>
                               {/* Date badge - top right on PC, same style as Publications */}
-                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 dark:border-gray-700 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
                                 {year}-{formatDate(item.date)}
                               </span>
                             </div>
@@ -409,7 +409,7 @@ export const AboutHonorsTemplate = () => {
                                 {item.winners.map((winner, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-8 md:px-[10px] py-3 md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-[12px] text-gray-700 font-semibold"
+                                    className="px-8 md:px-[10px] py-3 md:py-[4px] bg-gray-100 dark:bg-[#242424] rounded-full text-[10px] md:text-[12px] text-gray-700 font-semibold"
                                   >
                                     {winner.name}
                                   </span>
@@ -426,11 +426,11 @@ export const AboutHonorsTemplate = () => {
             })}
           </div>
         ) : (
-          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
-            <div className="w-60 h-60 md:w-[80px] md:h-[80px] bg-white rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]">
+          <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
+            <div className="w-60 h-60 md:w-[80px] md:h-[80px] bg-white dark:bg-[#1a1a1a] rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]">
               <Award className="w-28 h-28 md:w-[40px] md:h-[40px] text-gray-300" />
             </div>
-            <p className="text-sm md:text-md text-gray-500">아직 등록된 수상 내역이 없습니다.</p>
+            <p className="text-sm md:text-md text-gray-500 dark:text-gray-400">아직 등록된 수상 내역이 없습니다.</p>
           </div>
         )}
       </section>
