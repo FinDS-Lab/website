@@ -1126,11 +1126,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300">
+                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 h-[100px] md:h-[110px]">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
                         <img loading="lazy" src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
                           <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
                             emp.isCurrent
@@ -1139,14 +1139,17 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           }`}>{emp.period}</span>
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>
+                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization || <span className="invisible">-</span>}</p>
                         {emp.department && emp.department.includes(',') ? (
                           <>
                             <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
                             <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
                           </>
-                        ) : emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
+                        ) : (
+                          <>
+                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department || <span className="invisible">-</span>}</p>
+                            <p className="text-[10px] md:text-xs text-gray-500 break-words invisible">-</p>
+                          </>
                         )}
                       </div>
                     </div>
