@@ -307,8 +307,8 @@ export const ArchivesGalleryTemplate = () => {
                   maxWidth: '800px',
                   children: <GalleryDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
-                style={{ '--tag-hover-color': hoverColor } as React.CSSProperties}
+                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden transition-all duration-300 cursor-pointer group hover:shadow-lg hover:[border-color:var(--tag-hover-color)] hover:[box-shadow:0_10px_15px_-3px_var(--tag-hover-shadow)]"
+                style={{ '--tag-hover-color': hoverColor, '--tag-hover-shadow': `${hoverColor}15` } as React.CSSProperties}
               >
                 <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (

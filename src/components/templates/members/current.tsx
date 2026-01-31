@@ -307,8 +307,8 @@ export const MembersCurrentTemplate = () => {
           </h2>
           
           {/* Total - Full Width */}
-          <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-            <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+            <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex flex-col items-center justify-center">
               <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
@@ -323,9 +323,12 @@ export const MembersCurrentTemplate = () => {
             {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 min-h-[100px] md:min-h-0"
+                className="group relative bg-white border rounded-2xl p-10 md:p-20 transition-all duration-300 min-h-[100px] md:min-h-0 hover:shadow-lg"
+                style={{ borderColor: '#f3f4f6', '--stat-color': stat.color } as React.CSSProperties}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = stat.color + '50'; e.currentTarget.style.boxShadow = `0 10px 15px -3px ${stat.color}15` }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f3f4f6'; e.currentTarget.style.boxShadow = 'none' }}
               >
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
                 <div className="flex flex-col items-center h-full justify-center">
                   <stat.icon className="size-20 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
                   <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
@@ -406,7 +409,11 @@ export const MembersCurrentTemplate = () => {
                       return (
                         <div
                           key={member.id}
-                          className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
+                          className="bg-white border rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm transition-all duration-300 group"
+                          style={{ 
+                            borderColor: isHovered ? hoverColor : '#f3f4f6',
+                            boxShadow: isHovered ? `0 10px 15px -3px ${hoverColor}15, 0 4px 6px -4px ${hoverColor}10` : '0 1px 2px 0 rgb(0 0 0 / 0.05)'
+                          }}
                           onMouseEnter={() => setHoveredMember(member.id)}
                           onMouseLeave={() => setHoveredMember(null)}
                         >

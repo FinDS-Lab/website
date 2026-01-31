@@ -356,7 +356,7 @@ export const ArchivesPlaylistTemplate = () => {
                 className={`flex items-center gap-4 px-10 py-5 rounded-full transition-all text-xs font-semibold border ${
                   showListPanel 
                     ? 'bg-primary text-white border-primary' 
-                    : 'bg-white text-gray-600 border-gray-200 hover:border-primary hover:text-primary'
+                    : 'bg-white text-gray-600 border-gray-200 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                 }`}
                 title={showListPanel ? "그리드 보기로 전환" : "리스트 보기로 전환"}
               >
@@ -463,8 +463,8 @@ export const ArchivesPlaylistTemplate = () => {
                 onClick={() => handlePlayVideo(item, index)}
                 className={`bg-white border rounded-xl overflow-hidden hover:shadow-lg transition-all group cursor-pointer ${
                   currentVideo?.videoId === item.videoId 
-                    ? 'border-primary ring-2 ring-primary/20' 
-                    : 'border-gray-100 hover:border-primary/20'
+                    ? 'border-[#D6B14D] ring-2 ring-[#D6B14D]/20' 
+                    : 'border-gray-100 hover:border-[#D6B14D]/30'
                 }`}
               >
                 {/* Thumbnail */}
@@ -510,7 +510,7 @@ export const ArchivesPlaylistTemplate = () => {
                   <p className="text-xs md:text-xs text-gray-500 mb-4 truncate font-bold">
                     {item.artist}
                   </p>
-                  <h3 className="text-xs md:text-xs font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">
+                  <h3 className="text-xs md:text-xs font-bold text-gray-900 group-hover:text-[#D6B14D] transition-colors line-clamp-2 leading-relaxed">
                     {item.title}
                   </h3>
                 </div>

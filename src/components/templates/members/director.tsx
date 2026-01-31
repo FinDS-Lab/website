@@ -563,7 +563,7 @@ export const MembersDirectorTemplate = () => {
 
               <div className="flex flex-col gap-12 md:gap-16">
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -573,7 +573,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -583,7 +583,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -592,7 +592,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -705,7 +705,7 @@ export const MembersDirectorTemplate = () => {
               <div className="p-20 md:p-24 border-t border-gray-100">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
                 {researchInterests.map((area, index) => (
-                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-primary/30 transition-all group">
+                  <div key={index} className="bg-gradient-to-br from-white to-gray-50/50 border border-gray-100 rounded-xl p-20 md:p-24 hover:shadow-lg hover:border-[#D6B14D]/30 transition-all group">
                     <div className="mb-16 pb-12 border-b border-gray-100">
                       <h4 className="text-sm md:text-base font-bold text-primary">{area.category}</h4>
                     </div>
@@ -743,9 +743,9 @@ export const MembersDirectorTemplate = () => {
                   <div key={index} className="relative pb-16 md:pb-24 last:pb-0 group pl-24 md:pl-32">
                     {/* Timeline dot */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
-                      <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
+                      <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#D6B14D]/30"/>
                     </div>
-                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
                         <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                       </div>
@@ -789,10 +789,10 @@ export const MembersDirectorTemplate = () => {
                     {/* Timeline dot - vertically centered */}
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className={`size-12 md:size-16 rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ${
-                        emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
+                        emp.isCurrent ? 'bg-primary group-hover:shadow-[#D6B14D]/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
                         <img loading="lazy" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
@@ -855,7 +855,7 @@ export const MembersDirectorTemplate = () => {
                             </h3>
                             
                             {/* Total - Full Width */}
-                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="flex flex-col items-center justify-center">
                                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalItems}</span>
@@ -868,7 +868,7 @@ export const MembersDirectorTemplate = () => {
 
                             {/* Honors & Awards - 2 columns */}
                             <div className="grid grid-cols-2 gap-8 md:gap-12">
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
@@ -878,7 +878,7 @@ export const MembersDirectorTemplate = () => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
@@ -990,7 +990,7 @@ export const MembersDirectorTemplate = () => {
                             const schoolLogo = getSchoolLogo(course.school)
                             
                             return (
-                              <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                              <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
                                 <div className="flex items-start gap-12 md:gap-16">
                                   <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
                                     {schoolLogo ? (

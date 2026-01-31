@@ -723,21 +723,21 @@ const CollaborationNetwork = memo(() => {
           </span>
           <button
             onClick={handleZoomIn}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-[#D6B14D] hover:border-[#D6B14D]/30 transition-all"
             title="Zoom In"
           >
             <ZoomIn size={14}/>
           </button>
           <button
             onClick={handleZoomOut}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-[#D6B14D] hover:border-[#D6B14D]/30 transition-all"
             title="Zoom Out"
           >
             <ZoomOut size={14}/>
           </button>
           <button
             onClick={handleReset}
-            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-[#D6B14D] hover:border-[#D6B14D]/30 transition-all"
             title="Reset View"
           >
             <Maximize2 size={14}/>
@@ -1407,7 +1407,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
               <div className="flex flex-col gap-12 md:gap-16">
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -1418,7 +1418,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -1429,7 +1429,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
@@ -1439,7 +1439,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 </div>
 
                 <div className="flex items-start gap-10 group">
-                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-32 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-[#D6B14D]/10 group-hover:text-[#D6B14D] transition-colors shrink-0">
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -1563,7 +1563,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                         </div>
                       )
                     })}
-                    className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-20 hover:shadow-lg hover:border-primary/30 transition-all group text-left"
+                    className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-20 hover:shadow-lg hover:border-[#D6B14D]/30 transition-all group text-left"
                   >
                     <div className="size-56 bg-gray-50 rounded-xl p-8 flex items-center justify-center group-hover:bg-primary/5 transition-colors shrink-0">
                       <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
@@ -1573,7 +1573,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       {act.fullName && <p className="text-xs text-gray-500 mt-2 truncate">{act.fullName}</p>}
                       {act.fullNameKo && <p className="text-xs text-gray-400 font-semibold truncate">{act.fullNameKo}</p>}
                     </div>
-                    <ChevronRight size={16} className="text-gray-300 group-hover:text-primary transition-colors shrink-0"/>
+                    <ChevronRight size={16} className="text-gray-300 group-hover:text-[#D6B14D] transition-colors shrink-0"/>
                   </button>
                 ))}
                 </div>
@@ -1700,7 +1700,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
                             selectedUniversity === univ
                               ? 'text-white'
-                              : 'bg-white border border-gray-200 text-gray-700 hover:border-primary/50 hover:bg-primary/5'
+                              : 'bg-white border border-gray-200 text-gray-700 hover:border-[#D6B14D]/50 hover:bg-[#D6B14D]/5'
                           }`}
                           style={selectedUniversity === univ ? {backgroundColor: '#E8889C'} : {}}
                         >

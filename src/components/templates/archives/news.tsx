@@ -321,8 +321,8 @@ export const ArchivesNewsTemplate = () => {
                   maxWidth: '800px',
                   children: <NewsDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
-                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group min-h-[120px] md:min-h-[140px]"
-                style={{ '--tag-hover-color': hoverColor } as React.CSSProperties}
+                className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 transition-all duration-300 cursor-pointer group min-h-[120px] md:min-h-[140px] hover:shadow-lg hover:[border-color:var(--tag-hover-color)] hover:[box-shadow:0_10px_15px_-3px_var(--tag-hover-shadow)]"
+                style={{ '--tag-hover-color': hoverColor, '--tag-hover-shadow': `${hoverColor}15` } as React.CSSProperties}
               >
                 <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12 text-xs md:text-sm text-gray-500 flex-wrap">
                   <div className="flex items-center gap-6">

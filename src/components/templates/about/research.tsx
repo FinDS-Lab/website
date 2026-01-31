@@ -248,7 +248,7 @@ export const AboutResearchTemplate = () => {
               className={`
                 relative bg-gradient-to-br from-white via-white to-[#FFF9E6]/30
                 border border-[#FFF3CC]/50 rounded-2xl md:rounded-3xl p-24 md:p-48 
-                shadow-sm hover:shadow-xl hover:border-primary/30 
+                shadow-sm hover:shadow-xl hover:border-[#D6B14D]/30 
                 transition-all duration-500 group overflow-hidden
               `}
             >
@@ -306,7 +306,7 @@ export const AboutResearchTemplate = () => {
                     bg-gradient-to-br from-[#FFF9E6]/50 via-white to-primary/5
                     rounded-xl md:rounded-2xl p-16 md:p-24
                     border border-[#FFF3CC]/30
-                    group-hover:border-primary/20 transition-all duration-500
+                    group-hover:border-[#D6B14D]/20 transition-all duration-500
                     ${index % 2 === 1 ? 'md:order-1' : ''}
                   `}
                 >

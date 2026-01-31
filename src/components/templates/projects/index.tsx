@@ -122,7 +122,7 @@ const FilterModal = ({
                 className={`flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
                   isActive
                     ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
+                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
                 }`}
               >
                 <config.icon size={14} />
@@ -146,7 +146,7 @@ const FilterModal = ({
                 className={`px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
                   isActive
                     ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
+                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
                 }`}
               >
                 {status === 'ongoing' ? 'Ongoing' : 'Completed'}
@@ -379,8 +379,8 @@ export const ProjectsTemplate = () => {
             </h3>
             
             {/* Total - Full Width */}
-            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.total}</span>
                 <div className="flex items-center gap-6">
@@ -392,8 +392,8 @@ export const ProjectsTemplate = () => {
 
             {/* Type Stats - 2x2 Grid */}
             <div className="grid grid-cols-2 gap-8 md:gap-12">
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
@@ -405,8 +405,8 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-primary transition-all duration-300">{stats.industry}</span>
                   <div className="flex items-center gap-6">
@@ -418,8 +418,8 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
@@ -431,8 +431,8 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#FFBAC4]/50 hover:shadow-lg hover:shadow-[#FFBAC4]/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFBAC4]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
@@ -448,8 +448,8 @@ export const ProjectsTemplate = () => {
 
             {/* Status Stats - 2 columns (ON/OFF style) */}
             <div className="grid grid-cols-2 gap-8 md:gap-12">
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/40 hover:shadow-lg hover:shadow-gray-400/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{stats.ongoing}</span>
                   <div className="flex items-center gap-6">
@@ -458,8 +458,8 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-300/50 hover:shadow-lg hover:shadow-gray-300/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-300/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{stats.completed}</span>
                   <div className="flex items-center gap-6">

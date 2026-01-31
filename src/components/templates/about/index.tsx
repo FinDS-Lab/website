@@ -159,7 +159,7 @@ export const LocationTemplate = () => {
             </div>
 
             {/* Director's Office Card - Light Theme with Image */}
-            <div className="relative bg-white rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex-1">
+            <div className="relative bg-white rounded-2xl md:rounded-3xl border border-gray-100 overflow-hidden shadow-xl shadow-gray-100/50 hover:shadow-2xl hover:shadow-[#D6B14D]/10 transition-all duration-300 flex-1">
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#AC0E0E] via-primary to-[#AC0E0E]" />
               
               {/* Background Image */}

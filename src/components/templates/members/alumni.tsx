@@ -327,7 +327,7 @@ export const MembersAlumniTemplate = () => {
               </h2>
               
               {/* Total - Full width, centered */}
-              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center justify-center">
                   <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalCount}</span>
@@ -340,8 +340,8 @@ export const MembersAlumniTemplate = () => {
               
               {/* 3 Categories - 3 columns on desktop, stacked on mobile */}
               <div className="grid grid-cols-3 gap-6 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <GraduationCap className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{phdCount}</span>
@@ -351,8 +351,8 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#E8889C]/40 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{msCount}</span>
@@ -362,8 +362,8 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#FFBAC4]/50 hover:shadow-lg hover:shadow-[#FFBAC4]/10 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFBAC4]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
                     <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
@@ -389,9 +389,9 @@ export const MembersAlumniTemplate = () => {
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {phdExpanded ? (
-                      <ChevronUp size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronUp size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     ) : (
-                      <ChevronDown size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronDown size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     )}
                   </div>
                 </button>
@@ -592,9 +592,9 @@ export const MembersAlumniTemplate = () => {
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {msExpanded ? (
-                      <ChevronUp size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronUp size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     ) : (
-                      <ChevronDown size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronDown size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     )}
                   </div>
                 </button>
@@ -795,9 +795,9 @@ export const MembersAlumniTemplate = () => {
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
                     {undergradExpanded ? (
-                      <ChevronUp size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronUp size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     ) : (
-                      <ChevronDown size={18} className="text-gray-400 group-hover:text-primary" />
+                      <ChevronDown size={18} className="text-gray-400 group-hover:text-[#D6B14D]" />
                     )}
                   </div>
                 </button>

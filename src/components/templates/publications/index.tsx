@@ -104,7 +104,7 @@ const FilterModal = ({
                   className={`px-16 py-8 rounded-lg text-sm font-medium transition-all border ${
                     isActive
                       ? 'bg-primary text-white border-primary shadow-sm'
-                      : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-primary/30 hover:bg-gray-50'
+                      : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
                   }`}
                 >
                   {option}
@@ -606,8 +606,8 @@ export const PublicationsTemplate = () => {
             </h3>
             
             {/* Total - Full Width */}
-            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: statistics.total.color}}>{statistics.total.count}</span>
                 <div className="flex items-center gap-6">
@@ -622,9 +622,12 @@ export const PublicationsTemplate = () => {
               {statistics.items.map((stat, index) => (
                 <div
                   key={index}
-                  className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                  className="group relative bg-white border rounded-2xl p-16 md:p-20 transition-all duration-300 hover:shadow-lg"
+                  style={{ borderColor: '#f3f4f6' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = stat.color + '50'; e.currentTarget.style.boxShadow = `0 10px 15px -3px ${stat.color}15` }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f3f4f6'; e.currentTarget.style.boxShadow = 'none' }}
                 >
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
                   <div className="flex flex-col">
                     <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                     <div className="flex items-center gap-6">
@@ -639,7 +642,7 @@ export const PublicationsTemplate = () => {
             {/* Publications Timeline - PC Only */}
             {yearlyChartData.length > 0 && (
               <div className="hidden lg:block mt-8">
-                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-primary/20 transition-all duration-300">
+                <div className="bg-white border border-gray-100 rounded-2xl p-24 hover:border-[#D6B14D]/30 transition-all duration-300">
                   <div className="flex items-center justify-between mb-20">
                     <h4 className="text-sm font-bold text-gray-700 flex items-center gap-8">
                       <Calendar className="size-16 text-primary" />
@@ -726,7 +729,7 @@ export const PublicationsTemplate = () => {
                             </div>
                             
                             {/* Year Label */}
-                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-primary transition-colors font-medium">
+                            <span className="text-[9px] text-gray-400 mt-8 group-hover:text-[#D6B14D] transition-colors font-medium">
                               {data.year}
                             </span>
                             
@@ -807,7 +810,7 @@ export const PublicationsTemplate = () => {
                 return (
                   <div
                     key={index}
-                    className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm hover:border-primary/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
+                    className="flex items-center gap-8 md:gap-16 px-12 md:px-20 py-12 md:py-20 bg-white border border-gray-100 rounded-xl md:rounded-2xl shadow-sm hover:border-[#D6B14D]/30 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
                   >
                     <div 
                       className="size-32 md:size-46 flex-shrink-0 rounded-lg flex items-center justify-center"

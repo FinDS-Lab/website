@@ -342,7 +342,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 {member.research.interests.map((interest, idx) => (
                   <span
                     key={idx}
-                    className="px-16 py-10 bg-gray-50 border border-gray-100 rounded-xl text-sm text-gray-700 font-medium hover:border-primary/30 transition-colors"
+                    className="px-16 py-10 bg-gray-50 border border-gray-100 rounded-xl text-sm text-gray-700 font-medium hover:border-[#D6B14D]/30 transition-colors"
                   >
                     {interest}
                   </span>
