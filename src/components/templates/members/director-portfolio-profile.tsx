@@ -178,8 +178,7 @@ const education: any[] = [
       name: 'Financial Engineering Lab', 
       department: 'Department of Industrial and Management Systems Engineering, Kyung Hee University', 
       url: 'https://fintech.korea.ac.kr/members',
-      role: 'Undergraduate Researcher',
-      period: '2017-01 - 2018-02'
+      role: 'Undergraduate Researcher'
     },
     leadership: [
       {role: 'Head of Culture & Public Relations', roleKo: '문화홍보국장', context: '41st Student Council, College of Engineering', contextKo: '제41대 공과대학 학생회', period: '2017-01 - 2017-11'},
