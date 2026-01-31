@@ -14,6 +14,7 @@ import {
   Copy,
   Check,
   Calendar,
+  Loader2,
 } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import type { Publication, AuthorsData } from '@/types/data'
@@ -887,6 +888,11 @@ export const PublicationsTemplate = () => {
           {/* Year List */}
           {loading ? (
             <div className="flex flex-col gap-16">
+              {/* Loading Header with Spinner */}
+              <div className="flex items-center justify-center gap-8 py-8">
+                <Loader2 className="size-16 text-[#D6B14D] animate-spin" />
+                <span className="text-sm text-gray-400 font-medium">Loading publications...</span>
+              </div>
               {/* Skeleton Loading - 3 year cards */}
               {[1, 2, 3].map((i) => (
                 <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm animate-pulse">

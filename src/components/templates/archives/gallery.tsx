@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Image as ImageIcon, Calendar, Home } from 'lucide-react'
+import { Image as ImageIcon, Calendar, Home, Loader2 } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -261,21 +261,28 @@ export const ArchivesGalleryTemplate = () => {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
-            {/* Skeleton Loading - 4 gallery cards */}
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden animate-pulse">
-                <div className="aspect-[4/3] bg-gray-200" />
-                <div className="p-16 md:p-20">
-                  <div className="flex items-center justify-between gap-6 mb-8">
-                    <div className="h-4 w-20 bg-gray-200 rounded" />
-                    <div className="h-5 w-14 bg-gray-200 rounded-full" />
+          <div className="flex flex-col gap-16 md:gap-20">
+            {/* Loading Header with Spinner */}
+            <div className="flex items-center justify-center gap-8 py-8">
+              <Loader2 className="size-16 text-[#D6B14D] animate-spin" />
+              <span className="text-sm text-gray-400 font-medium">Loading galleries...</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
+              {/* Skeleton Loading - 4 gallery cards */}
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden animate-pulse">
+                  <div className="aspect-[4/3] bg-gray-200" />
+                  <div className="p-16 md:p-20">
+                    <div className="flex items-center justify-between gap-6 mb-8">
+                      <div className="h-4 w-20 bg-gray-200 rounded" />
+                      <div className="h-5 w-14 bg-gray-200 rounded-full" />
+                    </div>
+                    <div className="h-5 w-full bg-gray-200 rounded mb-4" />
+                    <div className="h-4 w-2/3 bg-gray-100 rounded" />
                   </div>
-                  <div className="h-5 w-full bg-gray-200 rounded mb-4" />
-                  <div className="h-4 w-2/3 bg-gray-100 rounded" />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">

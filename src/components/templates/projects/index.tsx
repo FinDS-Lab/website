@@ -1,6 +1,6 @@
 import {memo, useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search, CheckCircle, Factory} from 'lucide-react'
+import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search, CheckCircle, Factory, Loader2} from 'lucide-react'
 import banner4 from '@/assets/images/banner/4.webp'
 
 // Scroll animation hook
@@ -566,23 +566,30 @@ export const ProjectsTemplate = () => {
           {/* Projects by Year */}
           <div className="flex flex-col gap-12 md:gap-20">
             {loading ? (
-              <div className="border border-gray-100 rounded-2xl overflow-hidden">
-                {/* Skeleton Loading - 3 year rows */}
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-gray-50 px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 animate-pulse">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-12 md:gap-16">
-                        <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
-                        <div className="flex gap-6">
-                          <div className="h-5 w-8 bg-gray-200 rounded-full" />
-                          <div className="h-5 w-8 bg-gray-200 rounded-full" />
-                          <div className="h-5 w-8 bg-gray-200 rounded-full" />
+              <div className="flex flex-col gap-16">
+                {/* Loading Header with Spinner */}
+                <div className="flex items-center justify-center gap-8 py-8">
+                  <Loader2 className="size-16 text-[#D6B14D] animate-spin" />
+                  <span className="text-sm text-gray-400 font-medium">Loading projects...</span>
+                </div>
+                <div className="border border-gray-100 rounded-2xl overflow-hidden">
+                  {/* Skeleton Loading - 3 year rows */}
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="bg-gray-50 px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 animate-pulse">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-12 md:gap-16">
+                          <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
+                          <div className="flex gap-6">
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
+                          </div>
                         </div>
+                        <div className="h-5 w-5 bg-gray-200 rounded" />
                       </div>
-                      <div className="h-5 w-5 bg-gray-200 rounded" />
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             ) : years.length === 0 ? (
               <div className="text-center py-40 bg-gray-50 rounded-2xl">

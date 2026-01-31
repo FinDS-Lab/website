@@ -1,6 +1,6 @@
 import React, {memo, useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, UserCheck, Users} from 'lucide-react'
+import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, UserCheck, Users, Loader2} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 // Scroll animation hook
@@ -270,6 +270,11 @@ export const MembersAlumniTemplate = () => {
       >
         {loading ? (
           <div className="space-y-48">
+            {/* Loading Header with Spinner */}
+            <div className="flex items-center justify-center gap-8 py-8">
+              <Loader2 className="size-16 text-[#D6B14D] animate-spin" />
+              <span className="text-sm text-gray-400 font-medium">Loading alumni...</span>
+            </div>
             {/* Skeleton Statistics */}
             <div className="flex flex-col gap-16 md:gap-24 animate-pulse">
               <div className="flex items-center gap-12">

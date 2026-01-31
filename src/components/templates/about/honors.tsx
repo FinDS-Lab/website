@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp } from 'lucide-react'
+import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp, Loader2 } from 'lucide-react'
 import type { HonorsData, HonorItem } from '@/types/data'
 
 // Image Imports
@@ -291,6 +291,11 @@ export const AboutHonorsTemplate = () => {
         {/* List by Year */}
         {loading ? (
           <div className="flex flex-col gap-12 md:gap-[16px]">
+            {/* Loading Header with Spinner */}
+            <div className="flex items-center justify-center gap-8 py-8">
+              <Loader2 className="size-16 text-[#D6B14D] animate-spin" />
+              <span className="text-sm text-gray-400 font-medium">Loading honors & awards...</span>
+            </div>
             {/* Skeleton Loading - 3 year cards */}
             {[1, 2, 3].map((i) => (
               <div key={i} className="border border-gray-100 rounded-xl md:rounded-[20px] overflow-hidden shadow-sm animate-pulse">
