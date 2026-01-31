@@ -886,8 +886,24 @@ export const PublicationsTemplate = () => {
 
           {/* Year List */}
           {loading ? (
-            <div className="bg-gray-50 rounded-2xl p-60 text-center">
-              <p className="text-md text-gray-500">Loading publications...</p>
+            <div className="flex flex-col gap-16">
+              {/* Skeleton Loading - 3 year cards */}
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm animate-pulse">
+                  <div className="bg-gray-50 px-20 md:px-24 py-16 md:py-20">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-12 md:gap-16">
+                        <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
+                        <div className="flex gap-6">
+                          <div className="h-5 w-12 bg-gray-200 rounded-full" />
+                          <div className="h-5 w-12 bg-gray-200 rounded-full" />
+                        </div>
+                      </div>
+                      <div className="h-5 w-5 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : sortedYears.length > 0 ? (
             <div className="flex flex-col gap-16">

@@ -341,8 +341,27 @@ export const MembersCurrentTemplate = () => {
 
         {/* Members List */}
         {loading ? (
-          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
-            <p className="text-sm md:text-md text-gray-500">Loading members...</p>
+          <div className="flex flex-col gap-32 md:gap-[40px]">
+            {/* Skeleton Loading - Member cards */}
+            {[1, 2].map((section) => (
+              <div key={section}>
+                <div className="h-6 md:h-7 w-32 bg-gray-200 rounded mb-16 md:mb-[20px] animate-pulse" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
+                  {[1, 2, 3].map((card) => (
+                    <div key={card} className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-20 md:p-[24px] animate-pulse">
+                      <div className="flex items-start gap-16">
+                        <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-full bg-gray-200 shrink-0" />
+                        <div className="flex-1 min-w-0 space-y-8">
+                          <div className="h-5 w-24 bg-gray-200 rounded" />
+                          <div className="h-4 w-32 bg-gray-200 rounded" />
+                          <div className="h-3 w-full bg-gray-100 rounded" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="flex flex-col gap-32 md:gap-[40px]">

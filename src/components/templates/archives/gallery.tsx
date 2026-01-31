@@ -261,8 +261,21 @@ export const ArchivesGalleryTemplate = () => {
         </div>
 
         {loading ? (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
-            Loading galleries...
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
+            {/* Skeleton Loading - 4 gallery cards */}
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden animate-pulse">
+                <div className="aspect-[4/3] bg-gray-200" />
+                <div className="p-16 md:p-20">
+                  <div className="flex items-center justify-between gap-6 mb-8">
+                    <div className="h-4 w-20 bg-gray-200 rounded" />
+                    <div className="h-5 w-14 bg-gray-200 rounded-full" />
+                  </div>
+                  <div className="h-5 w-full bg-gray-200 rounded mb-4" />
+                  <div className="h-4 w-2/3 bg-gray-100 rounded" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">

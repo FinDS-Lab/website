@@ -286,8 +286,20 @@ export const ArchivesNoticeTemplate = () => {
         </div>
 
         {loading ? (
-          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
-            Loading notices...
+          <div className="flex flex-col gap-12 md:gap-20">
+            {/* Skeleton Loading - 3 notice cards */}
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 min-h-[120px] md:min-h-[140px] animate-pulse">
+                <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12">
+                  <div className="h-4 w-24 bg-gray-200 rounded" />
+                  <div className="h-4 w-16 bg-gray-200 rounded hidden md:block" />
+                  <div className="h-5 w-20 bg-gray-200 rounded-full" />
+                </div>
+                <div className="h-5 md:h-6 w-3/4 bg-gray-200 rounded mb-8" />
+                <div className="h-4 w-full bg-gray-100 rounded mb-4" />
+                <div className="h-4 w-2/3 bg-gray-100 rounded" />
+              </div>
+            ))}
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-20">

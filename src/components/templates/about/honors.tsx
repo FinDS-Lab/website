@@ -290,8 +290,24 @@ export const AboutHonorsTemplate = () => {
 
         {/* List by Year */}
         {loading ? (
-          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-32 md:p-[60px] text-center">
-            <p className="text-sm md:text-md text-gray-500">Loading...</p>
+          <div className="flex flex-col gap-12 md:gap-[16px]">
+            {/* Skeleton Loading - 3 year cards */}
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="border border-gray-100 rounded-xl md:rounded-[20px] overflow-hidden shadow-sm animate-pulse">
+                <div className="bg-gray-50 px-16 md:px-[24px] py-16 md:py-[20px]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-12 md:gap-[16px]">
+                      <div className="h-6 md:h-7 w-14 md:w-16 bg-gray-200 rounded" />
+                      <div className="flex gap-4">
+                        <div className="h-5 w-10 bg-gray-200 rounded-full" />
+                        <div className="h-5 w-10 bg-gray-200 rounded-full" />
+                      </div>
+                    </div>
+                    <div className="h-5 w-5 bg-gray-200 rounded" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : sortedYears.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-[16px]">

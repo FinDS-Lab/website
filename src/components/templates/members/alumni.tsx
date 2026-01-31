@@ -269,8 +269,40 @@ export const MembersAlumniTemplate = () => {
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
         {loading ? (
-          <div className="text-center py-40">
-            <p className="text-gray-400 animate-pulse">Loading alumni...</p>
+          <div className="space-y-48">
+            {/* Skeleton Statistics */}
+            <div className="flex flex-col gap-16 md:gap-24 animate-pulse">
+              <div className="flex items-center gap-12">
+                <div className="w-8 h-8 rounded-full bg-gray-200" />
+                <div className="h-6 w-24 bg-gray-200 rounded" />
+              </div>
+              <div className="bg-gray-100 rounded-2xl p-16 md:p-20 h-[80px]" />
+              <div className="grid grid-cols-3 gap-6 md:gap-12">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-gray-100 rounded-2xl p-10 md:p-20 h-[100px]" />
+                ))}
+              </div>
+            </div>
+            {/* Skeleton Member Section */}
+            <div className="flex flex-col gap-16 md:gap-24 animate-pulse">
+              <div className="flex items-center gap-12">
+                <div className="w-8 h-8 rounded-full bg-gray-200" />
+                <div className="h-6 w-32 bg-gray-200 rounded" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-20">
+                {[1, 2, 3].map((card) => (
+                  <div key={card} className="bg-gray-50 border border-gray-100 rounded-xl p-20">
+                    <div className="flex items-start gap-16">
+                      <div className="w-[60px] h-[60px] rounded-full bg-gray-200 shrink-0" />
+                      <div className="flex-1 space-y-8">
+                        <div className="h-5 w-24 bg-gray-200 rounded" />
+                        <div className="h-4 w-32 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : !data || totalCount === 0 ? (
           <div className="text-center py-60">
