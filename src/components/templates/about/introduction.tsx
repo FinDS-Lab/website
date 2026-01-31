@@ -69,25 +69,25 @@ const coreValues = [
     title: 'Multiple perspectives, practical frameworks.',
     titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
     description: 'We draw on <b>data science</b> and <b>business analytics</b> to develop <b>frameworks</b> that support <b>real-world applications</b> and <b>sound decision-making</b>.',
-    descriptionKo: '<b>데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 방법론으로 인사이트를 도출하고,<br/><b>실용적 적용</b>과 <b>합리적 의사결정</b>을 지원하는 프레임워크를 개발합니다.',
+    descriptionKo: '<b>데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 방법론으로 인사이트를 도출하고, <b>실용적 적용</b>과 <b>합리적 의사결정</b>을 지원하는 프레임워크를 개발합니다.',
   },
   {
-    image: solutionImg,
+    image: philosophyImg,
     label: 'Direction',
     labelKo: '방향성',
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
     description: 'Our research aims to be a <b>solution</b> that helps practitioners <b>navigate uncertainty</b> in <b>business and industrial environments</b>.',
-    descriptionKo: '저희 FINDS Lab의 연구는 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 <b>솔루션</b>이 되기를 바랍니다.',
+    descriptionKo: '저희 FINDS Lab의 연구는 실무자들이 <b>경영 및 산업 환경</b>에서 <b>불확실성을 관리</b>하는 <b>솔루션</b>이 되기를 바랍니다.',
   },
   {
-    image: philosophyImg,
+    image: solutionImg,
     label: 'Philosophy',
     labelKo: '철학',
     title: 'des avenirs lucides — lucid futures',
     titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
     description: 'Through <b>data science</b>, we strive to bring <b>clarity</b> to complex problems and contribute to a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future.',
-    descriptionKo: '<b>데이터 사이언스</b>로 복잡한 현실 문제에 <b>명확한 해답</b>을 제시하고,<br/>더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래에 기여하고자 합니다.',
+    descriptionKo: '<b>데이터 사이언스</b>로 복잡한 현실 문제에 <b>명확한 해답</b>을 제시하고, 더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래에 기여하고자 합니다.',
   },
 ]
 
@@ -310,7 +310,7 @@ export const AboutIntroductionTemplate = () => {
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Driven</span> Financial Innovation</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span> Financial Innovation</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
