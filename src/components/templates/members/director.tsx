@@ -157,8 +157,8 @@ const education = [
 // Static Data - Employment (sorted by start date, newest first)
 const employment = [
   {position: 'Assistant Professor', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance & Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026-03 – Present', logo: logoGcu, isCurrent: true},
-  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
   {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory (FINDS Lab)', departmentKo: '금융데이터인텔리전스연구실 (FINDS Lab)', organization: '', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
+  {position: 'Assistant Professor', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
@@ -745,8 +745,8 @@ export const MembersDirectorTemplate = () => {
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/30"/>
                     </div>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 h-[100px] md:h-[110px]">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 h-[100px] md:h-[110px]">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
                         <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
@@ -792,9 +792,9 @@ export const MembersDirectorTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-primary/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex items-center gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 h-[100px] md:h-[110px]">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0">
-                        <img loading="lazy" src={emp.logo} alt={emp.organization} className="w-full h-full object-contain"/>
+                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 h-[100px] md:h-[110px]">
+                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
+                        <img loading="lazy" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
@@ -805,17 +805,14 @@ export const MembersDirectorTemplate = () => {
                           }`}>{emp.period}</span>
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{emp.position}</h4>
-                        <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization || <span className="invisible">-</span>}</p>
+                        {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
                             <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
                             <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
                           </>
-                        ) : (
-                          <>
-                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department || <span className="invisible">-</span>}</p>
-                            <p className="text-[10px] md:text-xs text-gray-500 break-words invisible">-</p>
-                          </>
+                        ) : emp.department && (
+                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
                       </div>
                     </div>
