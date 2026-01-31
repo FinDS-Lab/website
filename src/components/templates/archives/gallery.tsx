@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useRef } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Image as ImageIcon, Calendar, Home} from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
@@ -10,12 +10,12 @@ import banner5 from '@/assets/images/banner/5.webp'
 // Category types and colors based on FINDS Lab Color Palette
 type GalleryCategory = 'Conferences' | 'Events' | 'Celebrations' | 'Design' | 'General';
 
-const categoryColors: Record<GalleryCategory, { bg: string; text: string; border: string }> = {
-  'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30' },
-  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#E8889C]', border: 'border-[#E8889C]/30' },
-  'Design': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30' },
-  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
+const categoryColors: Record<GalleryCategory, { bg: string; text: string; border: string; hoverText: string }> = {
+  'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30', hoverText: '#AC0E0E' },
+  'Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30', hoverText: '#D6B14D' },
+  'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#E8889C]', border: 'border-[#E8889C]/30', hoverText: '#E8889C' },
+  'Design': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30', hoverText: '#9A7D1F' },
+  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200', hoverText: '#4B5563' }
 };
 
 // Scroll animation hook
@@ -298,7 +298,9 @@ export const ArchivesGalleryTemplate = () => {
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
-            {filteredItems.map((item) => (
+            {filteredItems.map((item) => {
+              const hoverColor = item.category && categoryColors[item.category] ? categoryColors[item.category].hoverText : '#D6B14D'
+              return (
               <div
                 key={item.id}
                 onClick={() => showModal({
@@ -306,6 +308,7 @@ export const ArchivesGalleryTemplate = () => {
                   children: <GalleryDetailModal id={item.id} title={item.title} date={item.date} />
                 })}
                 className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                style={{ '--tag-hover-color': hoverColor } as React.CSSProperties}
               >
                 <div className="aspect-[4/3] bg-[#f9fafb] flex items-center justify-center overflow-hidden">
                   {item.thumb ? (
@@ -330,12 +333,13 @@ export const ArchivesGalleryTemplate = () => {
                       </span>
                     )}
                   </div>
-                  <h3 className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                  <h3 className="text-sm md:text-base font-semibold text-gray-900 transition-colors group-hover:[color:var(--tag-hover-color)]">
                     {item.title}
                   </h3>
                 </div>
               </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-[20px] p-60 text-center text-gray-500">

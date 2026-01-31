@@ -1,4 +1,4 @@
-import { memo, useState, useEffect, useRef } from 'react'
+import React, { memo, useState, useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Calendar, Home} from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
@@ -10,10 +10,10 @@ import banner5 from '@/assets/images/banner/5.webp'
 // Tag types and colors based on FINDS Lab Color Palette
 type NoticeTag = 'Announcements' | 'Recruitment' | 'General';
 
-const tagColors: Record<NoticeTag, { bg: string; text: string; border: string }> = {
-  'Announcements': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Recruitment': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
-  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
+const tagColors: Record<NoticeTag, { bg: string; text: string; border: string; hoverText: string }> = {
+  'Announcements': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30', hoverText: '#AC0E0E' },
+  'Recruitment': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30', hoverText: '#9A7D1F' },
+  'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200', hoverText: '#4B5563' }
 };
 
 // Scroll animation hook
@@ -310,7 +310,9 @@ export const ArchivesNoticeTemplate = () => {
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-20">
-            {filteredItems.map((item) => (
+            {filteredItems.map((item) => {
+              const hoverColor = item.tag && tagColors[item.tag] ? tagColors[item.tag].hoverText : '#D6B14D'
+              return (
               <div
                 key={item.id}
                 onClick={() => showModal({
@@ -320,6 +322,7 @@ export const ArchivesNoticeTemplate = () => {
                 className={`bg-white border rounded-xl md:rounded-[20px] p-16 md:p-30 hover:shadow-lg transition-shadow cursor-pointer group min-h-[120px] md:min-h-[140px] ${
                   item.isPinned ? 'border-primary bg-primary/5' : 'border-[#f0f0f0]'
                 }`}
+                style={{ '--tag-hover-color': hoverColor } as React.CSSProperties}
               >
                 <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12 text-xs md:text-sm text-gray-500 flex-wrap">
                   <div className="flex items-center gap-6">
@@ -342,14 +345,15 @@ export const ArchivesNoticeTemplate = () => {
                     </>
                   )}
                 </div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8 group-hover:text-primary transition-colors">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8 transition-colors group-hover:[color:var(--tag-hover-color)]">
                   {item.title}
                 </h3>
                 <p className="text-xs md:text-sm text-gray-500 leading-relaxed line-clamp-2">
                   {item.description}
                 </p>
               </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-40 md:p-60 text-center">
