@@ -300,7 +300,7 @@ export const MembersCurrentTemplate = () => {
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80"
       >
         {/* Statistics Section - Red Dot Style */}
-        <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">
+        <div className={`flex flex-col gap-16 md:gap-24 mb-40 md:mb-60 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
           <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
             <span className="w-8 h-8 rounded-full bg-primary" />
             Statistics
@@ -310,7 +310,7 @@ export const MembersCurrentTemplate = () => {
           <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
             <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex flex-col items-center justify-center">
-              <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: stats.total.color}}>{stats.total.count}</span>
+              <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
                 <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -328,7 +328,7 @@ export const MembersCurrentTemplate = () => {
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center h-full justify-center">
                   <stat.icon className="size-20 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
-                  <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6" style={{color: stat.color}}>{stat.count}</span>
+                  <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                   <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                     <stat.icon className="hidden md:block size-16" style={{color: stat.color, opacity: 0.7}} />
                     <span className="text-[9px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>

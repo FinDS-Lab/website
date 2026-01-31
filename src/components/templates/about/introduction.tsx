@@ -68,8 +68,16 @@ const coreValues = [
     labelKo: '관점',
     title: 'Multiple perspectives, practical frameworks.',
     titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
-    description: 'We draw on <b>data science</b> and <b>business analytics</b> to develop <b>frameworks</b> that support <b>real-world applications</b> and <b>sound decision-making</b>.',
-    descriptionKo: '<b>데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 방법론으로 인사이트를 도출하고, <b>실용적 적용</b>과 <b>합리적 의사결정</b>을 지원하는 프레임워크를 개발합니다.',
+    items: [
+      'Integrating Data Science & Business Analytics',
+      'Developing Practical Application Frameworks',
+      'Supporting Sound Decision-Making'
+    ],
+    itemsKo: [
+      '데이터 사이언스와 비즈니스 애널리틱스의 융합',
+      '실용적 적용을 위한 프레임워크 개발',
+      '합리적 의사결정 지원'
+    ],
   },
   {
     image: philosophyImg,
@@ -77,8 +85,16 @@ const coreValues = [
     labelKo: '방향성',
     title: 'From theory to practice.',
     titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
-    description: 'Our research aims to be a <b>solution</b> that helps practitioners <b>navigate uncertainty</b> in <b>business and industrial environments</b>.',
-    descriptionKo: '저희 FINDS Lab의 연구는 실무자들이 <b>경영 및 산업 환경</b>에서 <b>불확실성을 관리</b>하는 <b>솔루션</b>이 되기를 바랍니다.',
+    items: [
+      'Bridging Academic Research & Practice',
+      'Navigating Uncertainty in Business',
+      'Creating Actionable Solutions'
+    ],
+    itemsKo: [
+      '학술 연구와 실무의 연결',
+      '비즈니스 불확실성 관리',
+      '실행 가능한 솔루션 창출'
+    ],
   },
   {
     image: solutionImg,
@@ -86,8 +102,16 @@ const coreValues = [
     labelKo: '철학',
     title: 'des avenirs lucides — lucid futures',
     titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
-    description: 'Through <b>data science</b>, we strive to bring <b>clarity</b> to complex problems and contribute to a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future.',
-    descriptionKo: '<b>데이터 사이언스</b>로 복잡한 현실 문제에 <b>명확한 해답</b>을 제시하고, 더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래에 기여하고자 합니다.',
+    items: [
+      'Bringing Clarity to Complex Problems',
+      'Pursuing Fairness & Creativity',
+      'Contributing to Meaningful Impact'
+    ],
+    itemsKo: [
+      '복잡한 문제에 명확한 해답 제시',
+      '공정성과 창의성 추구',
+      '의미 있는 기여 실현'
+    ],
   },
 ]
 
@@ -303,10 +327,9 @@ export const AboutIntroductionTemplate = () => {
                       <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
                         {/* Title with Quote Icon */}
                         <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
-                          <div className="flex items-center justify-center gap-16 mb-16">
+                          <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
-                            <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
-                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
+                            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
@@ -314,7 +337,6 @@ export const AboutIntroductionTemplate = () => {
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
-                            <Quote size={24} className="text-[#D6B14D]/50 md:hidden" />
                           </div>
                           <div className="flex items-center justify-center gap-8">
                             <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
@@ -395,10 +417,9 @@ export const AboutIntroductionTemplate = () => {
                         <div className="relative z-10">
                           {/* Title with Quote Icon */}
                           <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
-                            <div className="flex items-center justify-center gap-16 mb-16">
+                            <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
-                              <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
-                              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
+                              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
                                   <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의<br className="md:hidden" /> 미래를 위하여</>
                                 ) : (
@@ -406,7 +427,6 @@ export const AboutIntroductionTemplate = () => {
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
-                              <Quote size={24} className="text-[#D6B14D]/50 md:hidden" />
                             </div>
                             <div className="flex items-center justify-center gap-8">
                               <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
@@ -622,13 +642,19 @@ export const AboutIntroductionTemplate = () => {
 
                                 {/* Text - Matching Research Areas Layout */}
                                 <div className="text-center flex-1 flex flex-col">
-                                  <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
+                                  <h3 className="text-base md:text-lg font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
                                     {valuesLang === 'ko' ? value.labelKo : value.label}
                                   </h3>
-                                  <p 
-                                    className="text-xs md:text-sm text-gray-400 leading-[1.8] [&>b]:text-gray-300 [&>b]:font-semibold"
-                                    dangerouslySetInnerHTML={{ __html: valuesLang === 'ko' ? value.descriptionKo : value.description }}
-                                  />
+                                  <ul className="space-y-8 text-left">
+                                    {(valuesLang === 'ko' ? value.itemsKo : value.items).map((item, idx) => (
+                                      <li key={idx} className="flex items-start gap-8">
+                                        <span className="size-5 rounded-full shrink-0 mt-[6px]" style={{ background: 'rgba(214, 177, 77, 0.5)' }}/>
+                                        <span className="text-xs md:text-sm text-gray-400 font-medium leading-relaxed">
+                                          {item}
+                                        </span>
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
                               </div>
                             ))}

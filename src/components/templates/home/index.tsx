@@ -50,6 +50,7 @@ const heroSlides = [
 export const HomeTemplate = () => {
   const [newsItems, setNewsItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [noticeItems, setNoticeItems] = useState<{ title: string; date: string; slug: string }[]>([])
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     const fetchLatest = async () => {
@@ -104,6 +105,8 @@ export const HomeTemplate = () => {
         }
       } catch (err) {
         console.error('Failed to load home data:', err)
+      } finally {
+        setIsLoaded(true)
       }
     }
 
@@ -201,7 +204,17 @@ export const HomeTemplate = () => {
                 </Link>
               </div>
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
-                {newsItems.length > 0 ? (
+                {!isLoaded ? (
+                  // Skeleton placeholder - looks like content
+                  <>
+                    {[0, 1].map((i) => (
+                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
+                        <div className="h-4 md:h-5 bg-gray-100 rounded w-3/4" />
+                        <div className="h-3 md:h-4 bg-gray-100 rounded w-20 shrink-0" />
+                      </div>
+                    ))}
+                  </>
+                ) : newsItems.length > 0 ? (
                   newsItems.map((item, index) => (
                     <Link
                       key={index}
@@ -246,7 +259,17 @@ export const HomeTemplate = () => {
                 </Link>
               </div>
               <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
-                {noticeItems.length > 0 ? (
+                {!isLoaded ? (
+                  // Skeleton placeholder - looks like content
+                  <>
+                    {[0, 1].map((i) => (
+                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
+                        <div className="h-4 md:h-5 bg-gray-100 rounded w-3/4" />
+                        <div className="h-3 md:h-4 bg-gray-100 rounded w-20 shrink-0" />
+                      </div>
+                    ))}
+                  </>
+                ) : noticeItems.length > 0 ? (
                   noticeItems.map((item, index) => (
                     <Link
                       key={index}

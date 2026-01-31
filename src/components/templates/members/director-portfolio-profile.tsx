@@ -1175,7 +1175,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         const totalHonors = allItems.filter(item => item.type === 'honor').length
                         const totalItems = totalAwards + totalHonors
                         return (
-                          <div className="flex flex-col gap-16 md:gap-24 mb-20">
+                          <div className="flex flex-col gap-16 md:gap-24 mb-20 transition-opacity duration-500">
                             <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                               <span className="w-8 h-8 rounded-full bg-primary" />
                               Statistics
@@ -1185,7 +1185,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="flex flex-col items-center justify-center">
-                                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalItems}</span>
+                                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalItems}</span>
                                 <div className="flex items-center gap-6">
                                   <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                   <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
@@ -1198,7 +1198,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
                                     <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
@@ -1208,7 +1208,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
+                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
                                     <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
