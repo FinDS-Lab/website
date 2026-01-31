@@ -937,7 +937,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <span className="px-10 py-4 bg-primary text-white text-[9px] md:text-[11px] font-bold rounded-full w-fit">{thesis.number} Paper</span>
                                         <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
                                           <GraduationCap size={12} className="text-[#D6B14D]" />
-                                          <span className="text-[9px] md:text-xs font-semibold text-gray-600">{thesis.advisorName}</span>
+                                          <span className="text-[9px] md:text-xs font-bold text-gray-600">{thesis.advisorName}</span>
                                         </div>
                                       </div>
                                       {/* English Title */}
@@ -981,7 +981,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     >
                                       <div className="flex items-center gap-8">
                                         <GraduationCap className="size-14 text-[#D6B14D]" />
-                                        <span className="text-xs md:text-sm font-semibold text-gray-800">{adv.name}</span>
+                                        <span className="text-xs md:text-sm font-bold text-gray-800">{adv.name}</span>
                                       </div>
                                       <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors" />
                                     </a>
@@ -1012,12 +1012,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="flex items-center gap-8">
                                       <Building className="size-14 text-[#D6B14D] shrink-0" />
                                       <div className="flex flex-col">
-                                        <span className="text-xs md:text-sm font-semibold text-gray-800">{edu.researchGroup.name}</span>
+                                        <span className="text-xs md:text-sm font-bold text-gray-800">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
-                                          <span className="text-[10px] md:text-xs text-gray-500">{edu.researchGroup.department}</span>
+                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium">{edu.researchGroup.department}</span>
                                         )}
                                         {edu.researchGroup.role && (
-                                          <span className="text-[10px] md:text-xs text-gray-600 mt-4 flex items-center gap-4">
+                                          <span className="text-[10px] md:text-xs text-gray-600 font-medium mt-4 flex items-center gap-4">
                                             <span className="size-4 rounded-full bg-[#D6B14D]/60 shrink-0" />
                                             {edu.researchGroup.role}{edu.researchGroup.period && `, ${edu.researchGroup.period}`}
                                           </span>
@@ -1039,8 +1039,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 {edu.leadership.map((l: any, i: number) => (
                                   <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gray-50 rounded-lg px-12 py-10">
                                     <div>
-                                      <span className="text-xs md:text-sm font-semibold text-gray-800">{l.role}</span>
-                                      <span className="text-[10px] md:text-xs text-gray-500 block sm:inline sm:ml-8">{l.context}</span>
+                                      <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
+                                      <span className="text-[10px] md:text-xs text-gray-500 font-medium block sm:inline sm:ml-8">{l.context}</span>
                                     </div>
                                     <span className="text-[10px] md:text-xs text-gray-600 font-medium shrink-0">{l.period}</span>
                                   </div>
@@ -1068,8 +1068,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
                                           <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1">
-                                            <span className="text-xs md:text-sm font-semibold text-gray-800">{h.title}</span>
-                                            <span className="text-[10px] md:text-xs text-gray-500 font-bold block mt-2">{h.org}</span>
+                                            <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
+                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium block mt-2">{h.org}</span>
                                           </div>
                                         </div>
                                       ))}
@@ -1083,7 +1083,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1">
                                             <div>
-                                              <span className="text-xs md:text-sm font-semibold text-gray-800">{a.title}</span>
+                                              <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
                                               {a.note && <span className="text-[10px] md:text-xs text-primary font-medium ml-4">({a.note})</span>}
                                             </div>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium block mt-3">{a.org}</span>
@@ -1293,9 +1293,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       {/* Content + Date - PC: Date on right */}
                                       <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
                                         <div className="flex-1 min-w-0">
-                                          <h4 className="text-sm md:text-base font-semibold text-gray-800 mb-4">{item.title}</h4>
-                                          <p className="text-xs md:text-sm text-gray-600 mb-4">{item.event}</p>
-                                          <p className="text-xs md:text-sm text-gray-500 font-bold">{item.organization}</p>
+                                          <h4 className="text-sm md:text-base font-bold text-gray-800 mb-4">{item.title}</h4>
+                                          <p className="text-xs md:text-sm text-gray-600 font-medium mb-4">{item.event}</p>
+                                          <p className="text-xs md:text-sm text-gray-500 font-medium">{item.organization}</p>
                                           {/* Mobile: Date as text */}
                                           <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
                                         </div>
