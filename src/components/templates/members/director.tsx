@@ -712,7 +712,7 @@ export const MembersDirectorTemplate = () => {
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
-                          <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                          <span className="size-5 rounded-full shrink-0 mt-[6px] bg-primary/40"/>
                           <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>

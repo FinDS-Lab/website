@@ -534,7 +534,7 @@ export const AboutIntroductionTemplate = () => {
                                 <ul className="space-y-8 text-left">
                                   {(focusLang === 'ko' ? area.itemsKo : area.items).map((item, idx) => (
                                     <li key={idx} className="flex items-start gap-8">
-                                      <span className="size-5 rounded-full shrink-0 mt-6 bg-[#D6B14D]/40"/>
+                                      <span className="size-5 rounded-full shrink-0 mt-[6px] bg-[#D6B14D]/40"/>
                                       <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                                         {item}
                                       </span>

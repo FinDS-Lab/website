@@ -176,7 +176,7 @@ const education: any[] = [
     researchGroup: {
       name: 'Financial Engineering Lab', 
       department: 'Department of Industrial and Management Systems Engineering, Kyung Hee University', 
-      url: 'http://imse.khu.ac.kr/',
+      url: 'https://fintech.korea.ac.kr/members',
       role: 'Undergraduate Researcher',
       period: '2017-01 - 2018-02'
     },
@@ -779,7 +779,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <ul className="space-y-10">
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
-                          <span className="size-5 rounded-full shrink-0 mt-7 bg-primary/40"/>
+                          <span className="size-5 rounded-full shrink-0 mt-[6px] bg-primary/40"/>
                           <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>
@@ -861,21 +861,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-dissertation`) && (
                                 <div className="bg-gradient-to-br from-gray-50 to-white p-16">
                                   {/* English Title */}
-                                  <div className="mb-12">
+                                  <div>
                                     <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.dissertation.en.split(' — ')[0]}
                                     </p>
                                     {edu.dissertation.en.includes(' — ') && (
                                       <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
-                                    )}
-                                  </div>
-                                  {/* Korean Title */}
-                                  <div className="pt-10 border-t border-gray-100">
-                                    <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
-                                      {edu.dissertation.ko.split(' — ')[0]}
-                                    </p>
-                                    {edu.dissertation.ko.includes(' — ') && (
-                                      <p className="text-[9px] md:text-[11px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.dissertation.ko.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -896,21 +887,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-thesis`) && (
                                 <div className="bg-gradient-to-br from-gray-50 to-white p-16">
                                   {/* English Title */}
-                                  <div className="mb-12">
+                                  <div>
                                     <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.thesis.en.split(' — ')[0]}
                                     </p>
                                     {edu.thesis.en.includes(' — ') && (
                                       <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
-                                    )}
-                                  </div>
-                                  {/* Korean Title */}
-                                  <div className="pt-10 border-t border-gray-100">
-                                    <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
-                                      {edu.thesis.ko.split(' — ')[0]}
-                                    </p>
-                                    {edu.thesis.ko.includes(' — ') && (
-                                      <p className="text-[9px] md:text-[11px] font-medium text-gray-400 mt-3 leading-relaxed">— {edu.thesis.ko.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -941,15 +923,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         </div>
                                       </div>
                                       {/* English Title */}
-                                      <div className="mb-12">
+                                      <div>
                                         <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                           {thesis.en}
-                                        </p>
-                                      </div>
-                                      {/* Korean Title */}
-                                      <div className="pt-10 border-t border-gray-100">
-                                        <p className="text-[10px] md:text-xs font-bold text-gray-700 leading-relaxed">
-                                          {thesis.ko}
                                         </p>
                                       </div>
                                     </div>
@@ -1007,10 +983,10 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     href={edu.researchGroup.url} 
                                     target="_blank" 
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
+                                    className="flex items-start justify-between gap-8 bg-white rounded-lg px-12 py-10 hover:bg-gray-50 transition-colors group border border-gray-100"
                                   >
-                                    <div className="flex items-center gap-8">
-                                      <Building className="size-14 text-[#D6B14D] shrink-0" />
+                                    <div className="flex items-start gap-8">
+                                      <Building className="size-14 text-[#D6B14D] shrink-0 mt-1" />
                                       <div className="flex flex-col">
                                         <span className="text-xs md:text-sm font-bold text-gray-800">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
@@ -1024,7 +1000,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         )}
                                       </div>
                                     </div>
-                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0" />
+                                    <ExternalLink className="size-12 text-gray-400 group-hover:text-primary transition-colors shrink-0 mt-1" />
                                   </a>
                                 </div>
                               )}
@@ -1066,7 +1042,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="space-y-6">
                                       {edu.honors.map((h: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
-                                          <span className="shrink-0" style={{color: '#D6B14D'}}>🎖️</span>
+                                          <span className="shrink-0 mt-1" style={{color: '#D6B14D'}}>🎖️</span>
                                           <div className="flex-1 flex flex-col">
                                             <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
@@ -1080,7 +1056,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="space-y-6">
                                       {edu.awards.map((a: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                          <span className="shrink-0" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
+                                          <span className="shrink-0 mt-1" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
                                           <div className="flex-1 flex flex-col">
                                             <div>
                                               <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
@@ -1277,7 +1253,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
                                     >
                                       <div
-                                        className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                        className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 mt-2 ${
                                           item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
                                         }`}
                                       >
