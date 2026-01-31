@@ -202,7 +202,7 @@ export const MembersCurrentTemplate = () => {
       phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
       ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#E8889C' },
-      undergrad: { label: 'Undergraduate Program', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
   }, [members])
@@ -323,15 +323,15 @@ export const MembersCurrentTemplate = () => {
             {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 min-h-[100px] md:min-h-0"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col items-center md:items-start">
-                  <stat.icon className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
-                  <span className="text-lg md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
-                  <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                <div className="flex flex-col items-center h-full justify-center">
+                  <stat.icon className="size-20 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
+                  <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6" style={{color: stat.color}}>{stat.count}</span>
+                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                     <stat.icon className="hidden md:block size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
+                    <span className="text-[9px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
                   </div>
                 </div>
               </div>

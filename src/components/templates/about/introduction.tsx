@@ -310,7 +310,7 @@ export const AboutIntroductionTemplate = () => {
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span> Financial Innovation</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Financial Innovation</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -400,9 +400,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
                               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의 미래를 위하여</>
+                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의<br className="md:hidden" /> 미래를 위하여</>
                                 ) : (
-                                  <>Toward a Better Future for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
+                                  <>Toward a Better Future<br className="md:hidden" /> for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />

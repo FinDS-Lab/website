@@ -299,38 +299,38 @@ export const MembersAlumniTemplate = () => {
                 </div>
               </div>
               
-              {/* 3 Categories - 3 columns */}
-              <div className="grid grid-cols-3 gap-8 md:gap-12">
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              {/* 3 Categories - 3 columns on desktop, stacked on mobile */}
+              <div className="grid grid-cols-3 gap-6 md:gap-12">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <GraduationCap className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <GraduationCap className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4" style={{color: '#D6B14D'}}>{phdCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <GraduationCap className="hidden md:block size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left">Ph.D. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Ph.D. Graduates</span>
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <BookOpen className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#E8889C'}}>{msCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4" style={{color: '#E8889C'}}>{msCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <BookOpen className="hidden md:block size-16" style={{color: '#E8889C', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left">M.S. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">M.S. Graduates</span>
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="flex flex-col items-center md:items-start">
-                    <UserCheck className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-4 md:mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+                  <div className="flex flex-col items-center h-full justify-center">
+                    <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4" style={{color: '#FFBAC4'}}>{undergradCount}</span>
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <UserCheck className="hidden md:block size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former Undergraduate Researchers</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former Undergrad Researchers</span>
                     </div>
                   </div>
                 </div>
