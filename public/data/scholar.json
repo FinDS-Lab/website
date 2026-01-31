@@ -54,5 +54,5 @@
       "2017": 1
     }
   },
-  "note": "Manual update only. Edit public/data/scholar.json directly or run python scripts/fetch_scholar.py locally."
+  "note": "Auto-updated daily via GitHub Actions. Run 'python scripts/fetch_scholar.py' to update manually."
 }

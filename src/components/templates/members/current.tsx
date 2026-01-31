@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles} from 'lucide-react'
+import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles } from 'lucide-react'
 import type { MemberData } from '@/types/data'
 
 // Scroll animation hook
@@ -53,14 +53,12 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
     ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
     : degree === 'phd' 
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
-    : degree === 'ms'
-    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90'
     : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
 
   return (
     <div
       ref={popupRef}
-      className="absolute bottom-full left-0 mb-8 bg-white border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg p-12 z-50 min-w-200"
+      className="absolute bottom-full left-0 mb-8 bg-white border border-gray-200 rounded-xl shadow-lg p-12 z-50 min-w-200"
     >
       <p className="text-xs text-gray-500 mb-8">Email Address</p>
       <p className="text-sm font-medium text-gray-900 mb-12 break-all">{email}</p>
@@ -88,18 +86,14 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
 import banner2 from '@/assets/images/banner/2.webp'
 
 const degreeLabels = {
-  phd: 'Ph.D. Students',
-  'phd-candidate': 'Ph.D. Candidates',
-  'phd-student': 'Ph.D. Students',
-  combined: 'Ph.D.-M.S. Combined Students',
-  ms: 'M.S. Students',
+  phd: 'Ph.D.',
+  combined: 'Ph.D.-M.S. Combined',
+  ms: 'M.S.',
   undergrad: 'Undergraduate Researchers',
 }
 
 const degreeColors = {
   phd: 'text-white',
-  'phd-candidate': 'text-white',
-  'phd-student': 'text-white',
   combined: 'text-white',
   ms: 'text-white',
   undergrad: 'text-white',
@@ -108,20 +102,16 @@ const degreeColors = {
 // Gold for PhD, Coral for combined, MS, Deep pink for undergrad
 const degreeBgStyles = {
   phd: {backgroundColor: '#D6B14D'},          // Gold
-  'phd-candidate': {backgroundColor: '#D6B14D'},  // Gold
-  'phd-student': {backgroundColor: '#D6B14D'},    // Gold
   combined: {backgroundColor: '#FF6B6B'},      // Coral (석박사통합)
-  ms: {backgroundColor: '#E8889C'},            // Pink (M.S.)
+  ms: {backgroundColor: '#FF6B6B'},            // Coral
   undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
 }
 
 // Hover colors matching Alumni style
 const degreeHoverColors = {
   phd: '#D6B14D',
-  'phd-candidate': '#D6B14D',
-  'phd-student': '#D6B14D',
   combined: '#FF6B6B',
-  ms: '#E8889C',
+  ms: '#FF6B6B',
   undergrad: '#E8889C',
 }
 
@@ -191,37 +181,30 @@ export const MembersCurrentTemplate = () => {
   }, [])
 
   const stats = useMemo(() => {
-    const phdCandidateCount = members.filter((m) => m.degree === 'phd' && m.candidacy === true).length
-    const phdStudentCount = members.filter((m) => m.degree === 'phd' && m.candidacy !== true).length
-    const phdCount = phdCandidateCount + phdStudentCount
+    const phdCount = members.filter((m) => m.degree === 'phd').length
     const combinedCount = members.filter((m) => m.degree === 'combined').length
     const msCount = members.filter((m) => m.degree === 'ms').length
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return {
-      phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#E8889C' },
-      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      phd: { label: phdCount === 1 ? 'Ph.D. Student' : 'Ph.D. Students', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
+      combined: { label: combinedCount === 1 ? 'Ph.D. - M.S. Combined Student' : 'Ph.D. - M.S. Combined Students', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
+      ms: { label: msCount === 1 ? 'M.S. Student' : 'M.S. Students', count: msCount, icon: BookOpen, color: '#FF6B6B' },
+      undergrad: { label: undergradCount === 1 ? 'Undergraduate Researcher' : 'Undergraduate Researchers', count: undergradCount, icon: UserCheck, color: '#E8889C' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#D6B14D' },
     }
   }, [members])
 
   const groupedMembers = useMemo(() => {
     const grouped: { [key: string]: MemberData[] } = {
-      'phd-candidate': [],
-      'phd-student': [],
+      phd: [],
       combined: [],
       ms: [],
       undergrad: [],
     }
     members.forEach((m) => {
       if (m.degree === 'phd') {
-        if (m.candidacy === true) {
-          grouped['phd-candidate'].push(m)
-        } else {
-          grouped['phd-student'].push(m)
-        }
+        grouped.phd.push(m)
       } else if (m.degree === 'combined') {
         grouped.combined.push(m)
       } else if (m.degree === 'ms') {
@@ -243,7 +226,7 @@ export const MembersCurrentTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <div className="flex flex-col bg-white">
       {/* Banner - 통일된 스타일 */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -281,14 +264,14 @@ export const MembersCurrentTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16} />
             </Link>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">Current Members</span>
           </div>
         </div>
@@ -300,7 +283,7 @@ export const MembersCurrentTemplate = () => {
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-80"
       >
         {/* Statistics Section - Red Dot Style */}
-        <div className={`flex flex-col gap-16 md:gap-24 mb-40 md:mb-60 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
+        <div className="flex flex-col gap-16 md:gap-24 mb-40 md:mb-60">
           <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
             <span className="w-8 h-8 rounded-full bg-primary" />
             Statistics
@@ -310,10 +293,10 @@ export const MembersCurrentTemplate = () => {
           <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
             <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex flex-col items-center justify-center">
-              <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
+              <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: stats.total.color}}>{stats.total.count}</span>
               <div className="flex items-center gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
+                <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
               </div>
             </div>
           </div>
@@ -323,15 +306,15 @@ export const MembersCurrentTemplate = () => {
             {[stats.phd, stats.combined, stats.ms, stats.undergrad].map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-10 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 min-h-[100px] md:min-h-0"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-12 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col items-center h-full justify-center">
-                  <stat.icon className="size-20 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
-                  <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
-                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                <div className="flex flex-col items-center md:items-start">
+                  <stat.icon className="size-24 md:size-16 mb-8 md:mb-0 md:hidden" style={{color: stat.color, opacity: 0.7}} />
+                  <span className="text-lg md:text-3xl font-bold mb-4" style={{color: stat.color}}>{stat.count}</span>
+                  <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
                     <stat.icon className="hidden md:block size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-[9px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
+                    <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
                   </div>
                 </div>
               </div>
@@ -341,62 +324,19 @@ export const MembersCurrentTemplate = () => {
 
         {/* Members List */}
         {loading ? (
-          <div className="flex flex-col gap-32 md:gap-[40px]">
-            {/* Centered Spinner */}
-            <div className="flex items-center justify-center py-32">
-              <div className="relative">
-                <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
-                <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
-              </div>
-            </div>
-            {/* Skeleton Loading - Member cards */}
-            {[1, 2].map((section) => (
-              <div key={section}>
-                <div className="h-6 md:h-7 w-32 bg-gray-200 rounded mb-16 md:mb-[20px] animate-pulse" />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
-                  {[1, 2, 3].map((card) => (
-                    <div key={card} className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-[20px] p-20 md:p-[24px] animate-pulse">
-                      <div className="flex items-start gap-16">
-                        <div className="w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-full bg-gray-200 shrink-0" />
-                        <div className="flex-1 min-w-0 space-y-8">
-                          <div className="h-5 w-24 bg-gray-200 rounded" />
-                          <div className="h-4 w-32 bg-gray-200 rounded" />
-                          <div className="h-3 w-full bg-gray-100 dark:bg-[#242424] rounded" />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
+            <p className="text-sm md:text-md text-gray-500">Loading members...</p>
           </div>
-        ) : (
+        ) : members.length > 0 ? (
           <div className="flex flex-col gap-32 md:gap-[40px]">
-            {(['phd-candidate', 'phd-student', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
+            {(['phd', 'combined', 'ms', 'undergrad'] as const).map((groupKey) => {
               const degreeMembers = groupedMembers[groupKey]
-              const baseKey = groupKey.startsWith('phd') ? 'phd' : groupKey
-              const sectionColor = degreeHoverColors[groupKey as keyof typeof degreeHoverColors]
-              const bgStyle = degreeBgStyles[groupKey as keyof typeof degreeBgStyles]
-
-              // Show placeholder for empty sections (except undergrad)
-              if (degreeMembers.length === 0) {
-                if (groupKey === 'undergrad') return null
-                
-                return (
-                  <div key={groupKey}>
-                    <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
-                      {degreeLabels[groupKey as keyof typeof degreeLabels]}
-                    </h3>
-                    <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 dark:border-gray-700 rounded-xl md:rounded-[20px] p-24 md:p-[40px]">
-                    </div>
-                  </div>
-                )
-              }
+              if (degreeMembers.length === 0) return null
 
               return (
                 <div key={groupKey}>
                   <h3 className="text-lg md:text-[22px] font-semibold text-gray-800 mb-16 md:mb-[20px]">
-                    {degreeLabels[groupKey as keyof typeof degreeLabels]}
+                    {degreeLabels[groupKey]}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-[20px]">
                     {degreeMembers.map((member) => {
@@ -406,7 +346,7 @@ export const MembersCurrentTemplate = () => {
                       return (
                         <div
                           key={member.id}
-                          className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
+                          className="bg-white border border-gray-100 rounded-xl md:rounded-[20px] p-16 md:p-[24px] shadow-sm hover:shadow-lg hover:border-primary/20 transition-all group"
                           onMouseEnter={() => setHoveredMember(member.id)}
                           onMouseLeave={() => setHoveredMember(null)}
                         >
@@ -440,7 +380,7 @@ export const MembersCurrentTemplate = () => {
                                   {member.role.en}
                                 </span>
                               </div>
-                              <p className="text-xs md:text-[13px] text-gray-500 dark:text-gray-400">
+                              <p className="text-xs md:text-[13px] text-gray-500">
                                 {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
                               </p>
                             </div>
@@ -453,7 +393,7 @@ export const MembersCurrentTemplate = () => {
                                 {member.research.interests.slice(0, 4).map((interest, idx) => (
                                   <span
                                     key={idx}
-                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 dark:bg-[#242424] rounded-full text-[10px] md:text-xs text-gray-600"
+                                    className="px-8 md:px-[10px] py-[3px] md:py-[4px] bg-gray-100 rounded-full text-[10px] md:text-xs text-gray-600"
                                   >
                                     {interest}
                                   </span>
@@ -529,6 +469,14 @@ export const MembersCurrentTemplate = () => {
                 </div>
               )
             })}
+          </div>
+        ) : (
+          <div className="bg-gray-50 rounded-xl md:rounded-[20px] p-40 md:p-[60px] text-center">
+            <div className="w-60 h-60 md:w-[80px] md:h-[80px] bg-white rounded-full flex items-center justify-center mx-auto mb-16 md:mb-[20px]">
+              <Users className="w-28 h-28 md:w-[40px] md:h-[40px] text-gray-300" />
+            </div>
+            <p className="text-base md:text-[18px] font-medium text-gray-800 mb-8 md:mb-[8px]">No members found</p>
+            <p className="text-xs md:text-[14px] text-gray-500">현재 등록된 멤버가 없습니다.</p>
           </div>
         )}
       </section>

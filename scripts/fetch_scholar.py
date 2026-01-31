@@ -290,7 +290,6 @@ def main():
             scholar_data = json.load(f)
         scholar_data['fetchError'] = True
         scholar_data['lastAttempt'] = datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
-        # Keep original lastUpdated - don't overwrite with failed attempt
     elif scholar_data is None:
         print("No existing data and fetch failed")
         scholar_data = {
@@ -305,10 +304,6 @@ def main():
                 'i10Index': 0,
             }
         }
-    else:
-        # Successful fetch - remove any fetchError flag
-        scholar_data.pop('fetchError', None)
-        scholar_data.pop('lastAttempt', None)
     
     # Calculate pub-based stats
     pub_stats = calculate_pub_based_stats(PUBS_PATH)

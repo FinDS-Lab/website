@@ -47,11 +47,114 @@ const heroSlides = [
   },
 ]
 
+// Scientific Loading Screen Component
+const ScienceLoadingScreen = () => {
+  return (
+    <div className="fixed inset-0 z-[99999] bg-white flex items-center justify-center">
+      {/* Background Pattern - Subtle Grid */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #D6B14D 1px, transparent 1px),
+            linear-gradient(to bottom, #D6B14D 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}
+      />
+      
+      {/* Central Animation Container */}
+      <div className="relative flex flex-col items-center">
+        {/* Hexagon Network Animation */}
+        <div className="relative w-[120px] h-[120px] mb-24">
+          {/* Rotating outer ring */}
+          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '8s' }} viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="8 4" opacity="0.4" />
+          </svg>
+          
+          {/* Counter-rotating middle ring */}
+          <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.3" />
+          </svg>
+          
+          {/* Central hexagon */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+            {/* Hexagon path */}
+            <polygon 
+              points="50,20 76,35 76,65 50,80 24,65 24,35" 
+              fill="none" 
+              stroke="#D6B14D" 
+              strokeWidth="1.5"
+              className="animate-pulse"
+              style={{ animationDuration: '2s' }}
+            />
+            {/* Inner hexagon */}
+            <polygon 
+              points="50,30 66,40 66,60 50,70 34,60 34,40" 
+              fill="rgba(214,177,77,0.1)" 
+              stroke="#D6B14D" 
+              strokeWidth="0.8"
+              opacity="0.6"
+            />
+            {/* Center dot */}
+            <circle cx="50" cy="50" r="4" fill="#D6B14D" className="animate-pulse" />
+            
+            {/* Node points on hexagon vertices */}
+            {[
+              [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
+            ].map(([x, y], i) => (
+              <g key={i}>
+                <circle cx={x} cy={y} r="3" fill="#D6B14D" opacity="0.8">
+                  <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                </circle>
+                <circle cx={x} cy={y} r="6" fill="none" stroke="#D6B14D" strokeWidth="0.5" opacity="0.4">
+                  <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                  <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                </circle>
+              </g>
+            ))}
+            
+            {/* Connection lines from center to vertices */}
+            {[
+              [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
+            ].map(([x, y], i) => (
+              <line key={`line-${i}`} x1="50" y1="50" x2={x} y2={y} stroke="#D6B14D" strokeWidth="0.5" opacity="0.3" />
+            ))}
+          </svg>
+        </div>
+        
+        {/* Text */}
+        <div className="text-center">
+          <h1 className="text-xl font-bold tracking-wider mb-8" style={{ color: '#D6B14D' }}>
+            FINDS Lab
+          </h1>
+          <p className="text-xs text-gray-400 tracking-widest uppercase">
+            Loading
+            <span className="inline-flex ml-4">
+              <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
+              <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
+              <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
+            </span>
+          </p>
+        </div>
+        
+        {/* Bottom decorative line */}
+        <div className="absolute -bottom-16 w-48 h-px bg-gradient-to-r from-transparent via-[#D6B14D]/30 to-transparent" />
+      </div>
+      
+      {/* Corner decorations */}
+      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#D6B14D]/20" />
+      <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#D6B14D]/20" />
+      <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#D6B14D]/20" />
+      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#D6B14D]/20" />
+    </div>
+  )
+}
+
 export const HomeTemplate = () => {
   const [newsItems, setNewsItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [noticeItems, setNoticeItems] = useState<{ title: string; date: string; slug: string }[]>([])
   const [isLoaded, setIsLoaded] = useState(false)
-  const [showWelcome, setShowWelcome] = useState(true)
+  const [showLoading, setShowLoading] = useState(true)
   const [loadStartTime] = useState(Date.now())
 
   useEffect(() => {
@@ -110,56 +213,35 @@ export const HomeTemplate = () => {
       } finally {
         setIsLoaded(true)
         const loadTime = Date.now() - loadStartTime
-        // 로딩이 200ms 이내면 바로 넘어감, 아니면 잠시 보여주고 페이드아웃
-        if (loadTime < 200) {
-          setShowWelcome(false)
+        // 로딩이 300ms 이내면 바로 숨김, 아니면 살짝 보여주고 페이드아웃
+        if (loadTime < 300) {
+          setShowLoading(false)
         } else {
-          setTimeout(() => setShowWelcome(false), 400)
+          setTimeout(() => setShowLoading(false), 500)
         }
       }
     }
 
     fetchLatest()
-  }, [loadStartTime])
-
-  // Welcome Loading Screen - Developer Style
-  if (showWelcome) {
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0a0a0a]">
-        {/* Terminal-style container */}
-        <div className="flex flex-col items-center gap-16">
-          {/* Welcome text with typing cursor effect */}
-          <div className="font-mono text-center">
-            <span className="text-gray-500 text-xs md:text-sm">$ </span>
-            <span className="text-gray-300 text-sm md:text-base">Welcome to </span>
-            <span className="text-[#D6B14D] text-sm md:text-base font-semibold">FINDS Lab</span>
-            <span className="inline-block w-2 h-4 md:h-5 bg-[#D6B14D] ml-1 animate-pulse" />
-          </div>
-          
-          {/* Loading dots */}
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '0ms' }} />
-            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '150ms' }} />
-            <div className="w-2 h-2 rounded-full bg-[#D6B14D] animate-bounce" style={{ animationDelay: '300ms' }} />
-          </div>
-        </div>
-      </div>
-    )
-  }
+  }, [])
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <>
+      {/* Loading Screen */}
+      {showLoading && <ScienceLoadingScreen />}
+      
+      <div className="flex flex-col bg-white">
       {/* Hero Section - PC only */}
       <section className="hidden md:block relative px-16 md:px-20 py-24 md:py-40">
         <div className="max-w-1480 mx-auto">
           <Slider loop autoplay autoplayDelay={5000} arrows dots>
             {heroSlides.map((slide) => (
-              <div key={slide.id} className="relative bg-white dark:bg-[#1a1a1a] h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-24 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100 dark:border-gray-800 transition-colors duration-300">
+              <div key={slide.id} className="relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-24 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
                 <div className="flex flex-col flex-1 gap-12 md:gap-20 lg:gap-24 z-10">
-                  <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-6 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white dark:bg-[#242424] shadow-sm w-fit">
+                  <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-6 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
                     <span className="text-xs md:text-md font-bold text-primary">{slide.badge}</span>
                   </div>
-                  <h1 className="text-base md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 dark:text-white whitespace-pre-line leading-tight">
+                  <h1 className="text-base md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 whitespace-pre-line leading-tight">
                     {slide.title}
                   </h1>
                   <div className="flex gap-8 md:gap-10">
@@ -207,7 +289,7 @@ export const HomeTemplate = () => {
       </section>
 
       {/* News & Notice Section */}
-      <section className="bg-gray-50 dark:bg-[#1a1a1a] py-40 md:py-60 lg:py-80 px-16 md:px-20 transition-colors duration-300">
+      <section className="bg-gray-50 py-40 md:py-60 lg:py-80 px-16 md:px-20">
         <div className="max-w-1480 mx-auto">
           <div className="flex flex-col md:flex-row gap-32 md:gap-40 lg:gap-60">
             <div className="flex-1">
@@ -227,40 +309,30 @@ export const HomeTemplate = () => {
                     <path d="M15 18h-5" />
                     <path d="M10 6h8v4h-8V6Z" />
                   </svg>
-                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900 dark:text-white">News</h3>
+                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">News</h3>
                 </div>
                 <Link
                   to="/archives/news"
-                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white dark:bg-[#242424] border border-gray-100 dark:border-gray-700 rounded-full text-sm md:text-base font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
                 >
                   자세히 보기
                   <ChevronRight size={16} className="text-primary" />
                 </Link>
               </div>
-              <div className="bg-white dark:bg-[#242424] rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
-                {!isLoaded ? (
-                  // Skeleton placeholder - looks like content
-                  <>
-                    {[0, 1].map((i) => (
-                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
-                        <div className="h-4 md:h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-                        <div className="h-3 md:h-4 bg-gray-200 dark:bg-gray-700 rounded w-20 shrink-0" />
-                      </div>
-                    ))}
-                  </>
-                ) : newsItems.length > 0 ? (
+              <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
+                {newsItems.length > 0 ? (
                   newsItems.map((item, index) => (
                     <Link
                       key={index}
                       to={`/archives/news?id=${item.slug}`}
-                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 dark:border-gray-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-pointer"
                     >
-                      <span className="text-sm md:text-base font-medium text-gray-900 dark:text-gray-100 truncate flex-1 mr-12">· {item.title}</span>
+                      <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
                       <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
                     </Link>
                   ))
                 ) : (
-                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500 dark:text-gray-400">
+                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">
                     등록된 뉴스가 없습니다.
                   </div>
                 )}
@@ -282,40 +354,30 @@ export const HomeTemplate = () => {
                     <path d="m3 11 18-5v12L3 13v-2z" />
                     <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
                   </svg>
-                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900 dark:text-white">Notice</h3>
+                  <h3 className="text-lg md:text-xl lg:text-[26px] font-semibold text-gray-900">Notice</h3>
                 </div>
                 <Link
                   to="/archives/notice"
-                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white dark:bg-[#242424] border border-gray-100 dark:border-gray-700 rounded-full text-sm md:text-base font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center gap-4 md:gap-6 lg:gap-8 px-12 md:px-14 lg:px-16 py-8 md:py-10 lg:py-12 bg-white border border-gray-100 rounded-full text-sm md:text-base font-medium text-gray-500 hover:bg-gray-50 transition-colors"
                 >
                   자세히 보기
                   <ChevronRight size={16} className="text-primary" />
                 </Link>
               </div>
-              <div className="bg-white dark:bg-[#242424] rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
-                {!isLoaded ? (
-                  // Skeleton placeholder - looks like content
-                  <>
-                    {[0, 1].map((i) => (
-                      <div key={i} className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0">
-                        <div className="h-4 md:h-5 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-                        <div className="h-3 md:h-4 bg-gray-200 dark:bg-gray-700 rounded w-20 shrink-0" />
-                      </div>
-                    ))}
-                  </>
-                ) : noticeItems.length > 0 ? (
+              <div className="bg-white rounded-xl md:rounded-2xl border border-gray-100 overflow-hidden">
+                {noticeItems.length > 0 ? (
                   noticeItems.map((item, index) => (
                     <Link
                       key={index}
                       to={`/archives/notice?id=${item.slug}`}
-                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 dark:border-gray-700 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                      className="flex items-center justify-between px-12 md:px-14 lg:px-16 py-12 md:py-14 lg:py-16 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors cursor-pointer"
                     >
-                      <span className="text-sm md:text-base font-medium text-gray-900 dark:text-gray-100 truncate flex-1 mr-12">· {item.title}</span>
+                      <span className="text-sm md:text-base font-medium text-gray-900 truncate flex-1 mr-12">· {item.title}</span>
                       <span className="text-xs md:text-sm lg:text-base text-gray-500 shrink-0">{item.date}</span>
                     </Link>
                   ))
                 ) : (
-                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500 dark:text-gray-400">
+                  <div className="px-16 py-32 md:py-36 lg:py-40 text-center text-sm md:text-base text-gray-500">
                     등록된 공지사항이 없습니다.
                   </div>
                 )}
@@ -325,6 +387,7 @@ export const HomeTemplate = () => {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

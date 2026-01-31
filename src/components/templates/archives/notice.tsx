@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Calendar, Home} from 'lucide-react'
+import { Calendar, Home } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -8,11 +8,12 @@ import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NoticeTag = 'Announcements' | 'Recruitment' | 'General';
+type NoticeTag = 'Announcements' | 'Awards' | 'Events' | 'General';
 
 const tagColors: Record<NoticeTag, { bg: string; text: string; border: string }> = {
   'Announcements': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
-  'Recruitment': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
+  'Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
+  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 
@@ -92,7 +93,7 @@ const NoticeDetailModal = ({ id, title, date }: { id: string; title?: string; da
         <h1 className="text-lg md:text-xl font-bold text-gray-900 leading-snug tracking-[-0.02em] mb-12 md:mb-16">
           {metadata.title}
         </h1>
-        <div className="flex items-center gap-8 text-[12px] text-gray-500 dark:text-gray-400">
+        <div className="flex items-center gap-8 text-[12px] text-gray-500">
           <span className="font-medium">{metadata.author}</span>
           <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
           <span>{metadata.date}</span>
@@ -137,7 +138,7 @@ export const ArchivesNoticeTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NoticeTag | 'All')[] = ['All', 'Announcements', 'Recruitment', 'General']
+  const allTags: (NoticeTag | 'All')[] = ['All', 'Announcements', 'Awards', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -212,7 +213,7 @@ export const ArchivesNoticeTemplate = () => {
     : noticeItems.filter(item => item.tag === selectedTag)
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <div className="flex flex-col bg-white">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center md:scale-105 transition-transform duration-[2000ms]" style={{ backgroundImage: `url(${banner5})` }} />
@@ -245,12 +246,12 @@ export const ArchivesNoticeTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Archives</span>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">Notice</span>
           </div>
         </div>
@@ -261,52 +262,31 @@ export const ArchivesNoticeTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
-        {/* Tag Filter - Refined Design */}
-        <div className="mb-32 md:mb-40">
-          <div className="flex items-center gap-8 md:gap-12 overflow-x-auto pb-4 scrollbar-hide">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`
-                  px-14 md:px-20 py-8 md:py-10 rounded-full text-xs md:text-sm font-semibold
-                  transition-all duration-200 border whitespace-nowrap
-                  ${selectedTag === tag 
-                    ? tag === 'All'
-                      ? 'bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/20'
-                      : `${tagColors[tag as NoticeTag].bg} ${tagColors[tag as NoticeTag].text} ${tagColors[tag as NoticeTag].border} shadow-sm`
-                    : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  }
-                `}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+        {/* Tag Filter */}
+        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`
+                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
+                transition-all duration-200 border
+                ${selectedTag === tag 
+                  ? tag === 'All'
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : `${tagColors[tag as NoticeTag].bg} ${tagColors[tag as NoticeTag].text} ${tagColors[tag as NoticeTag].border}`
+                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }
+              `}
+            >
+              {tag}
+            </button>
+          ))}
         </div>
 
         {loading ? (
-          <div className="flex flex-col gap-12 md:gap-20">
-            {/* Centered Spinner */}
-            <div className="flex items-center justify-center py-32">
-              <div className="relative">
-                <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
-                <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
-              </div>
-            </div>
-            {/* Skeleton Loading - 3 notice cards */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 min-h-[120px] md:min-h-[140px] animate-pulse">
-                <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12">
-                  <div className="h-4 w-24 bg-gray-200 rounded" />
-                  <div className="h-4 w-16 bg-gray-200 rounded hidden md:block" />
-                  <div className="h-5 w-20 bg-gray-200 rounded-full" />
-                </div>
-                <div className="h-5 md:h-6 w-3/4 bg-gray-200 rounded mb-8" />
-                <div className="h-4 w-full bg-gray-100 dark:bg-[#242424] rounded mb-4" />
-                <div className="h-4 w-2/3 bg-gray-100 dark:bg-[#242424] rounded" />
-              </div>
-            ))}
+          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
+            Loading notices...
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-20">
@@ -352,7 +332,7 @@ export const ArchivesNoticeTemplate = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#f9fafb] dark:bg-[#1a1a1a] rounded-xl md:rounded-[20px] p-40 md:p-60 text-center">
+          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-40 md:p-60 text-center">
             <p className="text-xs md:text-[14px] text-[#7f8894]">No items found for selected filter</p>
           </div>
         )}

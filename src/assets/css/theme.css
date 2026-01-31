@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme {
   --spacing: 1px;
 
@@ -46,14 +44,6 @@
   --color-coral: #D6A076;
   --color-rose: #E8889C;
   --color-blossom: #FFBAC4;
-
-  /* Dark Mode Colors */
-  --color-dark-bg: #0f0f0f;
-  --color-dark-surface: #1a1a1a;
-  --color-dark-card: #242424;
-  --color-dark-border: #333333;
-  --color-dark-text: #e5e5e5;
-  --color-dark-text-secondary: #a3a3a3;
 
   --animate-fadeIn: fadeIn 0.4s;
   --animate-slideYMargin: slideYMargin linear 0.2s;

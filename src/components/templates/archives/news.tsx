@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Calendar, Home, User} from 'lucide-react'
+import { Calendar, Home, User } from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -33,11 +33,12 @@ const useScrollAnimation = () => {
 import banner5 from '@/assets/images/banner/5.webp'
 
 // Tag types and colors based on FINDS Lab Color Palette
-type NewsTag = 'Honors & Awards' | 'Events' | 'General';
+type NewsTag = 'Awards' | 'Achievements' | 'Events' | 'General';
 
 const tagColors: Record<NewsTag, { bg: string; text: string; border: string }> = {
-  'Honors & Awards': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30' },
-  'Events': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
+  'Awards': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30' },
+  'Achievements': { bg: 'bg-[#D6B14D]/10', text: 'text-[#B8962D]', border: 'border-[#D6B14D]/30' },
+  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6A076]/30' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200' }
 };
 
@@ -91,7 +92,7 @@ const NewsDetailModal = ({ id, title, date }: { id: string; title?: string; date
         <h1 className="text-lg md:text-xl font-bold text-gray-900 leading-snug tracking-[-0.02em] mb-12 md:mb-16">
           {metadata.title}
         </h1>
-        <div className="flex items-center gap-8 text-[12px] text-gray-500 dark:text-gray-400">
+        <div className="flex items-center gap-8 text-[12px] text-gray-500">
           <span className="font-medium">{metadata.author}</span>
           <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
           <span>{metadata.date}</span>
@@ -139,7 +140,7 @@ export const ArchivesNewsTemplate = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NewsTag | 'All')[] = ['All', 'Honors & Awards', 'Events', 'General']
+  const allTags: (NewsTag | 'All')[] = ['All', 'Awards', 'Achievements', 'Events', 'General']
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -179,15 +180,13 @@ export const ArchivesNewsTemplate = () => {
               if (!response.ok) return null
               const text = await response.text()
               const { data } = parseMarkdown(text)
-              const validTags: NewsTag[] = ['Honors & Awards', 'Events', 'General']
-              const parsedTag = validTags.includes(data.tag as NewsTag) ? (data.tag as NewsTag) : 'General'
               return {
                 id: file.replace('.md', ''),
                 title: data.title || 'No Title',
                 date: data.date || '',
                 excerpt: data.excerpt || '',
                 author: data.author || 'FINDS Lab',
-                tag: parsedTag
+                tag: (data.tag as NewsTag) || 'General'
               }
             } catch (err) {
               return null
@@ -244,12 +243,12 @@ export const ArchivesNewsTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110"><Home size={16} /></Link>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Archives</span>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">News</span>
           </div>
         </div>
@@ -260,54 +259,31 @@ export const ArchivesNewsTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
-        {/* Tag Filter - Refined Design */}
-        <div className="mb-32 md:mb-40">
-          <div className="flex items-center gap-8 md:gap-12 overflow-x-auto pb-4 scrollbar-hide">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`
-                  px-14 md:px-20 py-8 md:py-10 rounded-full text-xs md:text-sm font-semibold
-                  transition-all duration-200 border whitespace-nowrap
-                  ${selectedTag === tag 
-                    ? tag === 'All'
-                      ? 'bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/20'
-                      : tagColors[tag as NewsTag]
-                        ? `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border} shadow-sm`
-                        : 'bg-gray-100 text-gray-600 border-gray-200 shadow-sm'
-                    : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  }
-                `}
-              >
-                {tag}
-              </button>
-            ))}
-          </div>
+        {/* Tag Filter */}
+        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`
+                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
+                transition-all duration-200 border
+                ${selectedTag === tag 
+                  ? tag === 'All'
+                    ? 'bg-gray-900 text-white border-gray-900'
+                    : `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border}`
+                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }
+              `}
+            >
+              {tag}
+            </button>
+          ))}
         </div>
 
         {loading ? (
-          <div className="flex flex-col gap-12 md:gap-20">
-            {/* Centered Spinner */}
-            <div className="flex items-center justify-center py-32">
-              <div className="relative">
-                <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
-                <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
-              </div>
-            </div>
-            {/* Skeleton Loading - 3 news cards */}
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border border-[#f0f0f0] rounded-xl md:rounded-[20px] p-16 md:p-30 min-h-[120px] md:min-h-[140px] animate-pulse">
-                <div className="flex items-center gap-8 md:gap-16 mb-8 md:mb-12">
-                  <div className="h-4 w-24 bg-gray-200 rounded" />
-                  <div className="h-4 w-16 bg-gray-200 rounded hidden md:block" />
-                  <div className="h-5 w-16 bg-gray-200 rounded-full" />
-                </div>
-                <div className="h-5 md:h-6 w-3/4 bg-gray-200 rounded mb-8" />
-                <div className="h-4 w-full bg-gray-100 dark:bg-[#242424] rounded mb-4" />
-                <div className="h-4 w-2/3 bg-gray-100 dark:bg-[#242424] rounded" />
-              </div>
-            ))}
+          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 font-medium">
+            Loading news...
           </div>
         ) : filteredItems.length > 0 ? (
           <div className="flex flex-col gap-12 md:gap-20">
@@ -327,7 +303,7 @@ export const ArchivesNewsTemplate = () => {
                   </div>
                   <span className="text-gray-300 hidden md:inline">|</span>
                   <span>{item.author}</span>
-                  {item.tag && tagColors[item.tag] && (
+                  {item.tag && (
                     <>
                       <span className="text-gray-300 hidden md:inline">|</span>
                       <span className={`px-8 py-2 rounded-full text-[10px] md:text-xs font-medium border ${tagColors[item.tag].bg} ${tagColors[item.tag].text} ${tagColors[item.tag].border}`}>
@@ -346,7 +322,7 @@ export const ArchivesNewsTemplate = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#f9fafb] dark:bg-[#1a1a1a] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500 dark:text-gray-400">
+          <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500">
             No items found for selected filter
           </div>
         )}

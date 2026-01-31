@@ -62,9 +62,23 @@ const GlobalMusicPlayer = memo(() => {
   const [trackInfo, setTrackInfo] = useState<{ artist: string; title: string }[]>([])
   const [playerReady, setPlayerReady] = useState(false)
   const lastVideoIdRef = useRef<string | null>(null)
+  const shouldAutoPlayRef = useRef(false)
   const [isCompact, setIsCompact] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const location = useLocation()
+
+  // Helper function to change track and auto-play
+  const handlePrevTrack = () => {
+    shouldAutoPlayRef.current = true
+    prevTrack()
+    setIsPlaying(true)
+  }
+
+  const handleNextTrack = () => {
+    shouldAutoPlayRef.current = true
+    nextTrack()
+    setIsPlaying(true)
+  }
 
   useEffect(() => {
     if (!window.YT) {
@@ -137,6 +151,13 @@ const GlobalMusicPlayer = memo(() => {
               setIsPlaying(false)
             } else if (event.data === 0) {
               nextTrack()
+              // Auto-play next track after short delay
+              setTimeout(() => {
+                if (playerRef.current) {
+                  playerRef.current.playVideo()
+                  setIsPlaying(true)
+                }
+              }, 100)
             }
           },
         },
@@ -146,18 +167,30 @@ const GlobalMusicPlayer = memo(() => {
     initPlayer()
   }, [currentVideoId])
 
-  // Handle track changes
+  // Handle track changes - always loadVideoById and auto-play if requested
   useEffect(() => {
     if (!playerRef.current || !playerReady || !currentVideoId) return
     if (lastVideoIdRef.current === currentVideoId) return
     
     lastVideoIdRef.current = currentVideoId
-    if (isPlaying) {
-      playerRef.current.loadVideoById(currentVideoId)
+    const shouldAutoPlay = shouldAutoPlayRef.current || isPlaying
+    
+    // Always load the video
+    playerRef.current.loadVideoById(currentVideoId)
+    
+    // Auto-play after short delay if requested
+    if (shouldAutoPlay) {
+      setTimeout(() => {
+        if (playerRef.current) {
+          playerRef.current.playVideo()
+          setIsPlaying(true)
+        }
+        shouldAutoPlayRef.current = false
+      }, 100)
     } else {
-      playerRef.current.cueVideoById(currentVideoId)
+      shouldAutoPlayRef.current = false
     }
-  }, [currentVideoId, playerReady, isPlaying])
+  }, [currentVideoId, playerReady, isPlaying, setIsPlaying])
 
   // Handle play/pause
   useEffect(() => {
@@ -233,11 +266,11 @@ const GlobalMusicPlayer = memo(() => {
               </div>
             </div>
             <div className="flex items-center gap-4 shrink-0">
-              <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
+              <button onClick={handlePrevTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipBack size={10} className="text-gray-400" /></button>
               <button onClick={togglePlay} className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary/30 transition-colors">
                 {isPlaying ? <Pause size={12} className="text-primary" /> : <Play size={12} className="text-primary ml-0.5" />}
               </button>
-              <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
+              <button onClick={handleNextTrack} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors"><SkipForward size={10} className="text-gray-400" /></button>
               <button onClick={() => setIsCompact(false)} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="확장"><Maximize2 size={10} className="text-gray-400" /></button>
               <button onClick={toggleMinimize} className="w-7 h-7 rounded-full bg-gray-700/50 flex items-center justify-center hover:bg-gray-600/50 transition-colors" title="닫기"><X size={10} className="text-gray-400" /></button>
             </div>
@@ -289,11 +322,11 @@ const GlobalMusicPlayer = memo(() => {
 
           <div className="px-20 py-16 bg-gradient-to-t from-gray-950 to-gray-900 border-t border-gray-800/50">
             <div className="flex items-center justify-center gap-20 mb-12">
-              <button onClick={() => { prevTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
+              <button onClick={handlePrevTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Previous"><SkipBack className="w-20 h-20 text-gray-300" /></button>
               <button onClick={togglePlay} className="w-56 h-56 rounded-full flex items-center justify-center hover:scale-105 transition-transform duration-200 shadow-lg" style={{background: 'linear-gradient(135deg, rgb(214,177,77) 0%, rgb(184,150,45) 100%)', boxShadow: '0 4px 20px rgba(214,177,77,0.35)'}} title={isPlaying ? "Pause" : "Play"}>
                 {isPlaying ? <Pause className="w-24 h-24 text-white" /> : <Play className="w-24 h-24 text-white ml-2" />}
               </button>
-              <button onClick={() => { nextTrack(); setIsPlaying(true); }} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
+              <button onClick={handleNextTrack} className="w-44 h-44 rounded-full bg-gray-800/60 flex items-center justify-center hover:bg-gray-700 transition-all duration-200 border border-gray-700/30" title="Next"><SkipForward className="w-20 h-20 text-gray-300" /></button>
             </div>
             <div className="flex items-center justify-center">
               <span className="text-sm text-gray-500 font-medium tracking-wide">{currentIndex + 1} <span className="text-gray-600 mx-1">/</span> {playlist.length}</span>
@@ -312,7 +345,17 @@ export const App = () => {
   return (
     <>
       <GlobalMusicPlayer />
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-white dark:bg-[#0f0f0f]"><div className="animate-pulse text-primary">Loading...</div></div>}>
+      <Suspense fallback={
+        <div className="min-h-screen flex items-center justify-center bg-white">
+          <div className="flex flex-col items-center gap-16">
+            <div className="relative">
+              <div className="w-12 h-12 rounded-full border-2 border-gray-200" />
+              <div className="absolute inset-0 w-12 h-12 rounded-full border-2 border-transparent border-t-[#D6B14D] animate-spin" />
+            </div>
+            <div className="text-xs text-gray-400 tracking-widest uppercase">Loading</div>
+          </div>
+        </div>
+      }>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/publications" element={<Publications />} />

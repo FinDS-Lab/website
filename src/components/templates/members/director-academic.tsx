@@ -136,7 +136,7 @@ const employment = [
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
-  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University Sejong Campus', organizationKo: '고려대학교 세종캠퍼스', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
+  {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
   {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
@@ -583,18 +583,18 @@ const CollaborationNetwork = memo(() => {
 
   if (loading) {
     return (
-      <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-3xl p-60 text-center border border-gray-100">
+      <div className="bg-gray-50 rounded-3xl p-60 text-center border border-gray-100">
         <div className="size-64 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-16 mx-auto animate-pulse">
           <Network size={32}/>
         </div>
         <p className="text-lg font-bold text-gray-900 mb-8">Loading Network Data...</p>
-        <p className="text-sm text-gray-500 dark:text-gray-400">Analyzing collaboration patterns</p>
+        <p className="text-sm text-gray-500">Analyzing collaboration patterns</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-3xl overflow-hidden shadow-sm">
+    <div className="bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
       {/* Header */}
       <div className="bg-gray-50/50 px-16 md:px-32 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between border-b border-gray-100 gap-12 md:gap-0">
         {/* Co-work Rate Threshold Slider */}
@@ -616,21 +616,21 @@ const CollaborationNetwork = memo(() => {
           </span>
           <button
             onClick={handleZoomIn}
-            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom In"
           >
             <ZoomIn size={14}/>
           </button>
           <button
             onClick={handleZoomOut}
-            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Zoom Out"
           >
             <ZoomOut size={14}/>
           </button>
           <button
             onClick={handleReset}
-            className="size-28 md:size-32 bg-white border border-gray-200 dark:border-gray-700 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
+            className="size-28 md:size-32 bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary/30 transition-all"
             title="Reset View"
           >
             <Maximize2 size={14}/>
@@ -812,7 +812,7 @@ const CollaborationNetwork = memo(() => {
         {/* Tooltip / Popup */}
         {(hoveredNode || selectedNode) && (
           <div
-            className={`absolute bg-white/98 max-md:w-[calc(100%-40px)] backdrop-blur-sm border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl overflow-hidden ${
+            className={`absolute bg-white/98 max-md:w-[calc(100%-40px)] backdrop-blur-sm border border-gray-200 rounded-2xl shadow-xl overflow-hidden ${
               selectedNode
                 ? 'bottom-20 left-20 w-340 max-h-500 overflow-y-auto pointer-events-auto'
                 : 'bottom-20 left-20 w-300 pointer-events-none'
@@ -827,14 +827,14 @@ const CollaborationNetwork = memo(() => {
               return (
                 <>
                   {/* Header */}
-                  <div className="bg-gray-50 px-20 py-16 border-b border-gray-100 dark:border-gray-800">
+                  <div className="bg-gray-50 px-20 py-16 border-b border-gray-100">
                     <div className="flex items-center justify-between gap-12">
                       <div className="min-w-0">
                         <p className="text-sm font-bold text-gray-900 truncate">
                           {node.nameKo || node.name}
                         </p>
                         {node.nameKo && (
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{node.name}</p>
+                          <p className="text-xs text-gray-500">{node.name}</p>
                         )}
                       </div>
                       {selectedNode && (
@@ -873,7 +873,7 @@ const CollaborationNetwork = memo(() => {
                     </div>
 
                     {/* Breakdown */}
-                    <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-lg p-12 border border-gray-100">
+                    <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
                         <p className="text-[10px] font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
@@ -881,22 +881,22 @@ const CollaborationNetwork = memo(() => {
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full" style={{backgroundColor: '#D6B14D'}}/>
                           <span className="text-xs text-gray-600 flex-1">Journal Paper{node.breakdown.journal !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.journal}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.journal}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full" style={{backgroundColor: '#AC0E0E'}}/>
                           <span className="text-xs text-gray-600 flex-1">Conference Proceeding{node.breakdown.conference !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.conference}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.conference}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full" style={{backgroundColor: '#E8D688'}}/>
                           <span className="text-xs text-gray-600 flex-1">Book{node.breakdown.book !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.book}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.book}</span>
                         </div>
                         <div className="flex items-center gap-8">
                           <span className="size-4 rounded-full" style={{backgroundColor: '#FFBAC4'}}/>
                           <span className="text-xs text-gray-600 flex-1">Report{node.breakdown.report !== 1 ? 's' : ''}</span>
-                          <span className="text-xs font-bold text-gray-800 dark:text-gray-100">{node.breakdown.report}</span>
+                          <span className="text-xs font-bold text-gray-800">{node.breakdown.report}</span>
                         </div>
                       </div>
                     </div>
@@ -917,7 +917,7 @@ const CollaborationNetwork = memo(() => {
         )}
 
         {/* Legend */}
-        <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 dark:border-gray-800 rounded-lg p-12 text-[10px]">
+        <div className="absolute top-16 right-16 bg-white/90 backdrop-blur-sm border border-gray-100 rounded-lg p-12 text-[10px]">
           <div className="flex items-center gap-6 mb-6">
             <div className="size-10 rounded-full bg-white flex items-center justify-center text-[9px] font-bold" style={{border: '2px solid rgb(172,14,14)', color: '#D6B14D'}}>IC</div>
             <span className="text-gray-600 font-medium">Director</span>
@@ -1271,7 +1271,7 @@ export const MembersDirectorAcademicTemplate = () => {
   }, [activitiesData])
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <div className="flex flex-col bg-white">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -1309,14 +1309,14 @@ export const MembersDirectorAcademicTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16}/>
             </Link>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Members</span>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">Director</span>
           </div>
         </div>
@@ -1358,11 +1358,11 @@ export const MembersDirectorAcademicTemplate = () => {
           <aside className="lg:w-380 shrink-0">
             <div 
               ref={profileCardRef}
-              className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
+              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
-                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 dark:bg-[#242424] rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
+                <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
@@ -1374,37 +1374,37 @@ export const MembersDirectorAcademicTemplate = () => {
 
               <div className="flex flex-col gap-16 md:gap-20">
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Briefcase size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2">Position</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">FINDS Lab</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Building size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2">Affiliation</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">Gachon University</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <MapPin size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2">Office</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">Room 304, Gachon Hall</p>
-                    <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-400">가천대학교 글로벌캠퍼스 가천관 304호</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">가천대학교 글로벌캠퍼스 가천관 304호</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Mail size={16}/>
                   </div>
                   <div className="min-w-0 flex-1">
@@ -1415,7 +1415,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       </a>
                       <button 
                         onClick={handleCopyEmail} 
-                        className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shrink-0" 
+                        className="size-24 flex items-center justify-center rounded-md hover:bg-gray-100 transition-colors shrink-0" 
                         title="Copy email"
                       >
                         {emailCopied ? <Check size={12} className="text-green-500"/> : <Copy size={12} className="text-gray-400"/>}
@@ -1424,12 +1424,12 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
                 </div>
                 <div className="flex items-start gap-12 group">
-                  <div className="size-36 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
+                  <div className="size-36 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400 group-hover:bg-primary/10 group-hover:text-primary transition-colors shrink-0">
                     <Phone size={16}/>
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2">Phone</p>
-                    <p className="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100">031-750-0614</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">031-750-0614</p>
                   </div>
                 </div>
               </div>
@@ -1437,7 +1437,7 @@ export const MembersDirectorAcademicTemplate = () => {
               <div className="grid grid-cols-2 gap-8 md:gap-12 mt-24 md:mt-32">
                 <button 
                   onClick={() => showModal({
-                    title: '',
+                    title: 'Resume',
                     maxWidth: '800px',
                     children: <ResumeModal />
                   })}
@@ -1461,12 +1461,12 @@ export const MembersDirectorAcademicTemplate = () => {
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
             {/* Collaboration Network */}
-            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('collaborationNetwork')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Collaboration Network</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Collaboration Network</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.collaborationNetwork ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.collaborationNetwork && (
@@ -1477,19 +1477,19 @@ export const MembersDirectorAcademicTemplate = () => {
             </section>
 
             {/* Publication Statistics */}
-            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('publicationStats')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Publication Statistics</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.publicationStats && (
                 <div className="p-20 md:p-24 border-t border-gray-100">
                   <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
                     {pubStats.map((stat, index) => (
-                      <div key={index} className="text-center p-12 md:p-16 bg-gray-50 dark:bg-[#1a1a1a] rounded-xl hover:bg-primary/5 transition-colors">
+                      <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
                         <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
                         <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
@@ -1514,6 +1514,22 @@ export const MembersDirectorAcademicTemplate = () => {
                       ))}
                     </div>
                   </div>
+                  <div className="flex items-center justify-between pt-12 mt-12 border-t border-gray-100">
+                    <a 
+                      href={scholarConfig.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-[10px] text-gray-400 hover:text-primary transition-colors flex items-center gap-4"
+                    >
+                      <span>Google Scholar</span>
+                      <ExternalLink size={10} />
+                    </a>
+                    {scholarData?.lastUpdated && (
+                      <span className="text-[9px] text-gray-400">
+                        Updated: {new Date(scholarData.lastUpdated).toISOString().split('T')[0]}
+                      </span>
+                    )}
+                  </div>
                   <div className="mt-20 text-center">
                     <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
                       View All Publications <ChevronRight size={14}/>
@@ -1524,24 +1540,24 @@ export const MembersDirectorAcademicTemplate = () => {
             </section>
 
             {/* Academic Service */}
-            <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('academicService')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Academic Service</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Academic Service</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicService ? 'rotate-180' : ''}`}/>
               </button>
               {expandedSections.academicService && (
                 <div className="border-t border-gray-100">
                   {/* Editorial Board Memberships */}
-                  <div className="border-b border-gray-100 dark:border-gray-800">
+                  <div className="border-b border-gray-100">
                     <button
                       onClick={() => toggleSection('editorialBoard')}
-                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Editorial Board Memberships</p>
+                        <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">0</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
@@ -1554,57 +1570,57 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
 
                   {/* Academic Memberships */}
-                  <div className="bg-gray-50/50 border-b border-gray-100 dark:border-gray-800">
+                  <div className="bg-gray-50/50 border-b border-gray-100">
                     <button
                       onClick={() => toggleSection('academicMemberships')}
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Academic Memberships</p>
+                        <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
                         <span className="px-8 py-2 bg-[#E8C95F] text-white text-[10px] font-bold rounded-full">4</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
                     </button>
                     {expandedSections.academicMemberships && (
                       <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white dark:bg-[#1a1a1a] rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900 dark:text-white">Korean Institute of Industrial Engineers (KIIE)</p>
+                            <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                             <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600 dark:text-gray-400">2025-06 – Present</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white dark:bg-[#1a1a1a] rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900 dark:text-white">Korean Securities Association (KSA)</p>
+                            <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
                             <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600 dark:text-gray-400">2023-09 – Present</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white dark:bg-[#1a1a1a] rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900 dark:text-white">Korean Academic Society of Business Administration (KASBA)</p>
+                            <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                             <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600 dark:text-gray-400">2023-06 – Present</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white dark:bg-[#1a1a1a] rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900 dark:text-white">Korea Intelligent Information Systems Society (KIISS)</p>
+                            <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                             <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600 dark:text-gray-400">2022-06 – Present</span>
+                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
                           </div>
                         </div>
                       </div>
@@ -1612,13 +1628,13 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
 
                   {/* Program Committee */}
-                  <div className="border-b border-gray-100 dark:border-gray-800">
+                  <div className="border-b border-gray-100">
                     <button
                       onClick={() => toggleSection('programCommittee')}
-                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Program Committee</p>
+                        <p className="text-sm font-bold text-gray-900">Program Committee</p>
                         <span className="px-8 py-2 bg-[#F5DFA0] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
@@ -1629,9 +1645,9 @@ export const MembersDirectorAcademicTemplate = () => {
                           <div className="flex flex-col gap-6">
                             {committees.map((comm) => (
                               <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
-                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
+                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs font-bold text-gray-900 dark:text-white">{comm.name}</p>
+                                  <p className="text-xs font-bold text-gray-900">{comm.name}</p>
                                   {comm.name_ko && (
                                     <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                                   )}
@@ -1649,13 +1665,13 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
 
                   {/* Session Chair */}
-                  <div className="bg-gray-50/50 border-b border-gray-100 dark:border-gray-800">
+                  <div className="bg-gray-50/50 border-b border-gray-100">
                     <button
                       onClick={() => toggleSection('sessionChair')}
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Session Chair</p>
+                        <p className="text-sm font-bold text-gray-900">Session Chair</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{sessionChairs.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.sessionChair ? 'rotate-180' : ''}`}/>
@@ -1666,15 +1682,15 @@ export const MembersDirectorAcademicTemplate = () => {
                           <div className="flex flex-col gap-6">
                             {sessionChairs.map((chair) => (
                               <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
-                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
+                                className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs font-bold text-gray-900 dark:text-white">{chair.name}</p>
+                                  <p className="text-xs font-bold text-gray-900">{chair.name}</p>
                                   {chair.name_ko && (
                                     <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                                   )}
                                   <span className="md:hidden block text-[10px] text-gray-500 mt-2">{chair.period || chair.since}</span>
                                 </div>
-                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600 dark:text-gray-400">{chair.period || chair.since}</span>
+                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
                               </a>
                             ))}
                           </div>
@@ -1686,13 +1702,13 @@ export const MembersDirectorAcademicTemplate = () => {
                   </div>
 
                   {/* Journal Reviewer */}
-                  <div className="border-b border-gray-100 dark:border-gray-800">
+                  <div className="border-b border-gray-100">
                     <button
                       onClick={() => toggleSection('journalReviewer')}
-                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                      className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Journal Reviewer</p>
+                        <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D64545'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
@@ -1702,7 +1718,7 @@ export const MembersDirectorAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {journals.map((journal) => (
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 hover:border-[#E8889C]/30 gap-8">
+                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
                               <span className="text-xs font-bold text-gray-700 flex-1">{journal.name}</span>
                               <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
@@ -1725,7 +1741,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Conference Reviewer</p>
+                        <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E88A8A'}}>{conferenceReviewers.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.conferenceReviewer ? 'rotate-180' : ''}`}/>
@@ -1735,12 +1751,12 @@ export const MembersDirectorAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {conferenceReviewers.map((conf) => (
                             <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
+                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
                               <div className="flex-1 min-w-0">
                                 <span className="text-xs font-bold text-gray-700 break-words">{conf.name}</span>
                                 <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
                               </div>
-                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600 dark:text-gray-400">
+                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
                                 {conf.period || conf.since}
                               </span>
                             </a>
@@ -1755,12 +1771,12 @@ export const MembersDirectorAcademicTemplate = () => {
 
             {/* Projects */}
             {projects.length > 0 && (
-              <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
                 <button
                   onClick={() => toggleSection('projects')}
-                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Projects</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Projects</h3>
                   <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.projects ? 'rotate-180' : ''}`}/>
                 </button>
                 {expandedSections.projects && (
@@ -1773,7 +1789,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     placeholder="Search projects..."
                     value={projectSearchTerm}
                     onChange={(e) => setProjectSearchTerm(e.target.value)}
-                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
 
@@ -1789,7 +1805,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     const isCurrentYear = Number(year) === currentYear
                     
                     return (
-                    <div key={year} className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
+                    <div key={year} className="bg-white border border-gray-100 rounded-xl overflow-hidden">
                       <button
                         onClick={() => toggleProjectYear(year)}
                         className={`w-full flex items-center justify-between p-16 transition-colors ${
@@ -1802,32 +1818,32 @@ export const MembersDirectorAcademicTemplate = () => {
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
                           )}
                           {/* PC: Full name with Project/Projects */}
-                          <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white dark:bg-[#1a1a1a] rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                          <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Government {govCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Government {govCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#D6B14D]">{indCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Industry {indCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Industry {indCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{instCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Institution {instCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Institution {instCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-gray-600 dark:text-gray-400">{acadCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="font-bold text-gray-600">{acadCount}</span>
+                            <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line abbreviations */}
-                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white dark:bg-[#1a1a1a] rounded-lg text-[9px] font-medium shadow-sm">
+                          <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
                             <span className="font-bold text-primary">{govCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Gov.</span>
+                            <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#D6B14D]">{indCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Ind.</span>
+                            <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{instCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Inst.</span>
+                            <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-gray-600 dark:text-gray-400">{acadCount}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Res.</span>
+                            <span className="font-bold text-gray-600">{acadCount}</span>
+                            <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>
                         {expandedProjectYears.includes(year) ? <ChevronUp size={18} className="text-gray-400" /> : <ChevronDown size={18} className="text-gray-400" />}
@@ -1951,7 +1967,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                         <p className="md:hidden text-[9px] text-gray-400 mt-4">{project.period}</p>
                                       </div>
                                       {/* PC: Period badge - right aligned */}
-                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 dark:border-gray-700 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
                                       </span>
                                     </div>
@@ -1974,12 +1990,12 @@ export const MembersDirectorAcademicTemplate = () => {
 
             {/* Teaching */}
             {lectures.length > 0 && (
-              <section className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
                 <button
                   onClick={() => toggleSection('teaching')}
-                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:bg-gray-800 transition-colors"
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
                 >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">Teaching</h3>
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
                   <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
                 </button>
                 {expandedSections.teaching && (
@@ -1993,19 +2009,19 @@ export const MembersDirectorAcademicTemplate = () => {
                     placeholder="Search courses..."
                     value={teachingSearchTerm}
                     onChange={(e) => setTeachingSearchTerm(e.target.value)}
-                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    className="w-full pl-36 pr-12 py-10 text-sm border border-gray-200 rounded-lg focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
                   />
                 </div>
 
                 {/* Lecturer Section */}
                 {lecturerCourses.length > 0 && (
-                  <div className="mb-24 border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
+                  <div className="mb-24 border border-gray-100 rounded-xl overflow-hidden">
                     <button
                       onClick={() => toggleSection('lecturer')}
-                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Lecturer</p>
+                        <p className="text-sm font-bold text-gray-900">Lecturer</p>
                         <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
                       </div>
                       <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${expandedSections.lecturer ? 'rotate-180' : ''}`}/>
@@ -2035,7 +2051,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             const schoolLogo = getSchoolLogo(course.school)
                         
                         return (
-                        <div key={index} className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
                               {schoolLogo ? (
@@ -2047,12 +2063,12 @@ export const MembersDirectorAcademicTemplate = () => {
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 bg-primary/10 dark:bg-primary/20 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
                                     {period}
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">{course.courseNameKo || course.courseName}</p>
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
                               )}
@@ -2069,13 +2085,13 @@ export const MembersDirectorAcademicTemplate = () => {
 
                 {/* Teaching Assistant Section */}
                 {taCourses.length > 0 && (
-                  <div className="border border-gray-100 dark:border-gray-800 rounded-xl overflow-hidden">
+                  <div className="border border-gray-100 rounded-xl overflow-hidden">
                     <button
                       onClick={() => toggleSection('teachingAssistant')}
-                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      className="w-full flex items-center justify-between px-16 py-12 bg-gray-50 hover:bg-gray-100 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900 dark:text-white">Teaching Assistant</p>
+                        <p className="text-sm font-bold text-gray-900">Teaching Assistant</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{taSemesters}</span>
                       </div>
                       <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${expandedSections.teachingAssistant ? 'rotate-180' : ''}`}/>
@@ -2105,7 +2121,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             const schoolLogo = getSchoolLogo(course.school)
                         
                         return (
-                        <div key={index} className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
+                        <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-primary/30 transition-all">
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#E8889C]/30 bg-white overflow-hidden">
                               {schoolLogo ? (
@@ -2122,7 +2138,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">
                                 {(course.courseNameKo || course.courseName).split('<').map((part, i) => (
                                   i === 0 ? part : <span key={i} className="inline-block">&lt;{part}</span>
                                 ))}

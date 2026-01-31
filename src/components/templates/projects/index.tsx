@@ -110,7 +110,7 @@ const FilterModal = ({
     <div className="flex flex-col gap-20 p-20">
       {/* Type Filter */}
       <div className="flex flex-col gap-12">
-        <h4 className="text-base font-bold text-gray-900 dark:text-white">Type</h4>
+        <h4 className="text-base font-bold text-gray-900">Type</h4>
         <div className="flex flex-wrap gap-8">
           {typeOptions.map((type) => {
             const config = typeConfig[type as keyof typeof typeConfig]
@@ -135,7 +135,7 @@ const FilterModal = ({
 
       {/* Status Filter */}
       <div className="flex flex-col gap-12">
-        <h4 className="text-base font-bold text-gray-900 dark:text-white">Status</h4>
+        <h4 className="text-base font-bold text-gray-900">Status</h4>
         <div className="flex flex-wrap gap-8">
           {statusOptions.map((status) => {
             const isActive = filters.status.includes(status)
@@ -313,7 +313,7 @@ export const ProjectsTemplate = () => {
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <div className="flex flex-col bg-white">
       {/* Banner */}
       <div className="relative w-full h-[200px] md:h-[420px] overflow-hidden">
         <div
@@ -351,14 +351,14 @@ export const ProjectsTemplate = () => {
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
               <Home size={16}/>
             </Link>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-gray-400 font-medium">Research</span>
-            <span className="text-gray-200 dark:text-gray-700">—</span>
+            <span className="text-gray-200">—</span>
             <span className="text-sm text-primary font-semibold">Projects</span>
           </div>
         </div>
@@ -372,7 +372,7 @@ export const ProjectsTemplate = () => {
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           
           {/* Statistics Section - Publications Style */}
-          <div className={`flex flex-col gap-16 md:gap-24 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
+          <div className="flex flex-col gap-16 md:gap-24">
             <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
@@ -382,62 +382,62 @@ export const ProjectsTemplate = () => {
             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
-                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.total}</span>
+                <span className="text-3xl md:text-4xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.total}</span>
                 <div className="flex items-center gap-6">
                   <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                  <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Total</span>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                 </div>
               </div>
             </div>
 
             {/* Type Stats - 2x2 Grid */}
             <div className="grid grid-cols-2 gap-8 md:gap-12">
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.government}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
                       <span className="hidden sm:inline">{stats.government === 1 ? 'Government' : 'Government'}</span>
                       <span className="sm:hidden">Gov.</span>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary transition-all duration-300">{stats.industry}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary">{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
                       <span className="hidden sm:inline">{stats.industry === 1 ? 'Industry' : 'Industry'}</span>
                       <span className="sm:hidden">Ind.</span>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
                       <span className="hidden sm:inline">{stats.institution === 1 ? 'Institution' : 'Institution'}</span>
                       <span className="sm:hidden">Inst.</span>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{stats.academic}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#FFBAC4'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <span className="text-xs md:text-sm font-medium text-gray-600">
                       <span className="hidden sm:inline">{stats.academic === 1 ? 'Research' : 'Research'}</span>
                       <span className="sm:hidden">Res.</span>
                     </span>
@@ -448,23 +448,23 @@ export const ProjectsTemplate = () => {
 
             {/* Status Stats - 2 columns (ON/OFF style) */}
             <div className="grid grid-cols-2 gap-8 md:gap-12">
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{stats.ongoing}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{stats.ongoing}</span>
                   <div className="flex items-center gap-6">
                     <TrendingUp className="size-14 md:size-16 text-gray-600" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">Ongoing</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Ongoing</span>
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{stats.completed}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500">{stats.completed}</span>
                   <div className="flex items-center gap-6">
                     <CheckCircle className="size-14 md:size-16 text-gray-500" />
-                    <span className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">Completed</span>
+                    <span className="text-xs md:text-sm font-medium text-gray-500">Completed</span>
                   </div>
                 </div>
               </div>
@@ -492,7 +492,7 @@ export const ProjectsTemplate = () => {
                     className="fixed inset-0 z-10"
                     onClick={() => setIsFilterOpen(false)}
                   />
-                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                     <FilterModal
                       filters={filters}
                       onChange={handleFilterChange}
@@ -504,7 +504,7 @@ export const ProjectsTemplate = () => {
               )}
             </div>
 
-            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 rounded-xl focus-within:border-primary transition-colors">
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
               <input
                 type="text"
                 placeholder="Search by title, funding agency..."
@@ -519,7 +519,7 @@ export const ProjectsTemplate = () => {
               />
               <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
             </div>
-            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 dark:border-gray-800 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
               {filteredProjects.length} of {projects.length}
             </div>
           </div>
@@ -566,39 +566,15 @@ export const ProjectsTemplate = () => {
           {/* Projects by Year */}
           <div className="flex flex-col gap-12 md:gap-20">
             {loading ? (
-              <div className="flex flex-col gap-16">
-                {/* Centered Spinner */}
-                <div className="flex items-center justify-center py-32">
-                  <div className="relative">
-                    <div className="w-12 h-12 rounded-full border-3 border-gray-200" />
-                    <div className="absolute top-0 left-0 w-12 h-12 rounded-full border-3 border-transparent border-t-[#D6B14D] animate-spin" />
-                  </div>
-                </div>
-                <div className="border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
-                  {/* Skeleton Loading - 3 year rows */}
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="bg-gray-50 px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 animate-pulse">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-12 md:gap-16">
-                          <div className="h-7 md:h-8 w-16 md:w-20 bg-gray-200 rounded" />
-                          <div className="flex gap-6">
-                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
-                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
-                            <div className="h-5 w-8 bg-gray-200 rounded-full" />
-                          </div>
-                        </div>
-                        <div className="h-5 w-5 bg-gray-200 rounded" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="text-center py-40">
+                <p className="text-gray-400 animate-pulse">Loading projects...</p>
               </div>
             ) : years.length === 0 ? (
-              <div className="text-center py-40 bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl">
+              <div className="text-center py-40 bg-gray-50 rounded-2xl">
                 <p className="text-gray-400">No projects found.</p>
               </div>
             ) : (
-              <div className="border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+              <div className="border border-gray-100 rounded-2xl overflow-hidden">
                 {years.map((year) => {
                   const yearProjects = projectsByYear[year]
                   const isCurrentYear = year === currentYear
@@ -628,32 +604,32 @@ export const ProjectsTemplate = () => {
                             <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
                           )}
                           {/* White badge with counts - PC: Full name with "Project" */}
-                          <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white dark:bg-[#1a1a1a] rounded-full text-[10px] md:text-xs font-medium shadow-sm">
+                          <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Government {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Government {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Industry {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Industry {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Institution {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Institution {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line format with abbreviations */}
-                          <span className="sm:hidden inline-flex px-8 py-4 bg-white dark:bg-[#1a1a1a] rounded-full text-[9px] font-medium shadow-sm">
+                          <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Gov.</span>
+                            <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-primary">{yearStats.industry}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Ind.</span>
+                            <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Inst.</span>
+                            <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
-                            <span className="text-gray-500 dark:text-gray-400">&nbsp;Res.</span>
+                            <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>
                         {isExpanded ? (
@@ -770,7 +746,7 @@ export const ProjectsTemplate = () => {
                                         <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
                                       </div>
                                       {/* Period Badge - white background, right aligned */}
-                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 dark:border-gray-700 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
                                       </span>
                                     </div>

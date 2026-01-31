@@ -3,9 +3,9 @@ import { Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
-import fdsImg from '@/assets/images/icons/fds_intro.webp'
-import baImg from '@/assets/images/icons/ba_intro.webp'
-import dimImg from '@/assets/images/icons/dim_intro.webp'
+import fdsImg from '@/assets/images/icons/10.png'
+import baImg from '@/assets/images/icons/11.png'
+import dimImg from '@/assets/images/icons/12.png'
 // Core Values Images (gold-colored illustrations)
 import insightImg from '@/assets/images/icons/insight.webp'
 import solutionImg from '@/assets/images/icons/solution.webp'
@@ -20,42 +20,42 @@ const focusAreas = [
     items: [
       'Portfolio Optimization & Algorithmic Trading',
       'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
+      'AI-Driven Quantitative Finance'
     ],
     itemsKo: [
-      '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
-      '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
-      '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정'
-    ]
-  },
-  {
-    image: baImg,
-    title: 'Business Analytics',
-    titleKo: '비즈니스 애널리틱스',
-    items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
-    ],
-    itemsKo: [
-      '다양한 산업 간 융합을 위한 데이터 분석',
-      '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
-      '통계적 방법론을 활용한 비즈니스 인사이트 도출'
+      '포트폴리오 최적화 및 알고리즘 트레이딩',
+      '금융 시계열 모델링 및 예측',
+      'AI 기반 퀀트 금융'
     ]
   },
   {
     image: dimImg,
+    title: 'Business Analytics',
+    titleKo: '비즈니스 애널리틱스',
+    items: [
+      'Cross-Industry Data Analytics & Visualization',
+      'Graph-Based Network Analysis',
+      'Statistical Modeling for Business Insights'
+    ],
+    itemsKo: [
+      '산업 간 데이터 분석 및 시각화',
+      '그래프 기반 네트워크 분석',
+      '비즈니스 인사이트를 위한 통계 모델링'
+    ]
+  },
+  {
+    image: baImg,
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools',
-      'Iridescent View Extraction for Data-Informed Decision'
+      'Empirical Evidence-Based Decision Support Systems',
+      'Human-Centered Analytics & AI Augmentation',
+      'Iridescent View Extraction for Advanced Decision Making'
     ],
     itemsKo: [
-      '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
-      '경영 및 산업 환경의 위험을 고려한 의사결정 지원 도구',
-      '데이터 기반 의사결정을 위한 다양한 관점에서의 해석과 종합'
+      '경험적 증거 기반 의사결정 지원 시스템',
+      '인간 중심 분석 및 AI 증강',
+      '고급 의사결정을 위한 다각적 관점 추출'
     ]
   },
 ]
@@ -66,52 +66,28 @@ const coreValues = [
     image: insightImg,
     label: 'Perspective',
     labelKo: '관점',
-    title: 'See the essence through data.',
-    titleKo: '데이터를 통해 문제의 본질을 바라봅니다.',
-    items: [
-      'Understanding Problems Through Data-Driven Analysis',
-      'Integrating Finance & Business with Analytical Methods',
-      'Illuminating Complex Phenomena from Multiple Angles'
-    ],
-    itemsKo: [
-      '데이터 분석을 통한 문제의 본질 파악',
-      '금융·비즈니스 영역과 분석 기법의 융합',
-      '복잡한 현상을 다양한 각도에서 조명하는 접근'
-    ],
-  },
-  {
-    image: philosophyImg,
-    label: 'Direction',
-    labelKo: '방향성',
-    title: 'Balance rigor with applicability.',
-    titleKo: '학술적 엄밀함과 실용성의 균형을 추구합니다.',
-    items: [
-      'Bridging Academic Rigor & Practical Applicability',
-      'Building Data-Informed Decision Frameworks',
-      'Creating Sustainable Value Through Research'
-    ],
-    itemsKo: [
-      '학술적 엄밀함과 실무 적용 가능성의 균형',
-      '데이터 기반 의사결정 체계 구축',
-      '지속 가능한 가치 창출을 위한 연구'
-    ],
+    title: 'Multiple perspectives, practical frameworks.',
+    titleKo: '다양한 관점에서 연구하고, 실용적인 프레임워크를 만듭니다.',
+    description: 'We draw on <b>data science</b> and <b>business analytics</b> to develop <b>frameworks</b> that support <b>real-world applications</b> and <b>sound decision-making</b>.',
+    descriptionKo: '<b>데이터 사이언스</b>와 <b>비즈니스 애널리틱스</b>의 방법론으로 인사이트를 도출하고,<br/><b>실용적 적용</b>과 <b>합리적 의사결정</b>을 지원하는 프레임워크를 개발합니다.',
   },
   {
     image: solutionImg,
+    label: 'Direction',
+    labelKo: '방향성',
+    title: 'From theory to practice.',
+    titleKo: '이론을 실용적인 솔루션으로 연결합니다.',
+    description: 'Our research aims to be a <b>solution</b> that helps practitioners <b>navigate uncertainty</b> in <b>business and industrial environments</b>.',
+    descriptionKo: '저희 FINDS Lab의 연구는 실무자들이 <b>경영 및 산업 환경</b>에서<br/><b>불확실성을 관리</b>하는 <b>솔루션</b>이 되기를 바랍니다.',
+  },
+  {
+    image: philosophyImg,
     label: 'Philosophy',
     labelKo: '철학',
     title: 'des avenirs lucides — lucid futures',
-    titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
-    items: [
-      'Illuminating Insights Hidden Within Data',
-      'Reducing Inefficiency Through Information Transparency',
-      'Designing Better Futures with Technology & Analytics'
-    ],
-    itemsKo: [
-      '데이터 속에 숨겨진 인사이트를 밝혀내는 연구',
-      '정보 비대칭 해소를 통한 효율적 의사결정 지원',
-      '기술과 분석을 통한 더 나은 미래 설계'
-    ],
+    titleKo: '기술로 더 윤택한 경영 및 산업 환경을 향해 나아갑니다.',
+    description: 'Through <b>data science</b>, we strive to bring <b>clarity</b> to complex problems and contribute to a more <b>fair</b>, <b>creative</b>, and <b>meaningful</b> future.',
+    descriptionKo: '<b>데이터 사이언스</b>로 복잡한 현실 문제에 <b>명확한 해답</b>을 제시하고,<br/>더욱 <b>공정하고</b>, <b>창의적이며</b>, <b>의미 있는</b> 미래에 기여하고자 합니다.',
   },
 ]
 
@@ -247,7 +223,7 @@ export const AboutIntroductionTemplate = () => {
   }
 
   return (
-    <div className="flex flex-col bg-white dark:bg-[#0f0f0f] transition-colors duration-300">
+    <div className="flex flex-col bg-white">
       {/* ═══════════════════════════════════════════════════════════════
           HERO BANNER
       ═══════════════════════════════════════════════════════════════ */}
@@ -302,7 +278,7 @@ export const AboutIntroductionTemplate = () => {
                   {/* Slide 1: Goal (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
-                      className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden relative"
+                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
                       onMouseMove={handleMouseMoveLight1}
                     >
                       {/* Mouse-following light effect for light background */}
@@ -313,11 +289,11 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50 dark:bg-gray-800/20">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {missionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>목표</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Goal</span></>}
+                            {missionLang === 'ko' ? "FINDS Lab의 목표" : "FINDS Lab's Goal"}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -326,17 +302,19 @@ export const AboutIntroductionTemplate = () => {
                       {/* Card Content */}
                       <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
                         {/* Title with Quote Icon */}
-                        <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
-                          <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
+                        <div className="text-center mb-32 md:mb-40">
+                          <div className="flex items-center justify-center gap-16 mb-16">
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
-                            <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
+                            <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
+                            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Financial Innovation</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Driven</span> Financial Innovation</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
+                            <Quote size={24} className="text-[#D6B14D]/50 md:hidden" />
                           </div>
                           <div className="flex items-center justify-center gap-8">
                             <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6C360]" />
@@ -388,7 +366,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {visionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>비전</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Vision</span></>}
+                            {visionLang === 'ko' ? "FINDS Lab의 비전" : "FINDS Lab's Vision"}
                           </span>
                         </div>
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -416,17 +394,19 @@ export const AboutIntroductionTemplate = () => {
 
                         <div className="relative z-10">
                           {/* Title with Quote Icon */}
-                          <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
-                            <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
+                          <div className="text-center mb-32 md:mb-40">
+                            <div className="flex items-center justify-center gap-16 mb-16">
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
-                              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
+                              <Quote size={24} className="text-[#D6B14D]/50 rotate-180 md:hidden" />
+                              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의<br className="md:hidden" /> 미래를 위하여</>
+                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의 미래를 위하여</>
                                 ) : (
-                                  <>Toward a Better Future<br className="md:hidden" /> for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
+                                  <>Toward a Better Future for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
+                              <Quote size={24} className="text-[#D6B14D]/50 md:hidden" />
                             </div>
                             <div className="flex items-center justify-center gap-8">
                               <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D6B14D]/60" />
@@ -465,7 +445,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 0 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Goal slide"
                 >
@@ -478,7 +458,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center justify-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carouselIndex === 1 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Vision slide"
                 >
@@ -508,7 +488,7 @@ export const AboutIntroductionTemplate = () => {
                   {/* Slide 1: Focus Areas (Light Theme with mouse-following light) */}
                   <div className="w-full flex-shrink-0">
                     <div 
-                      className="bg-white dark:bg-[#1a1a1a] border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden relative"
+                      className="bg-white border border-gray-100 shadow-sm overflow-hidden relative"
                       onMouseMove={handleMouseMoveLight2}
                     >
                       {/* Mouse-following light effect for light background */}
@@ -519,11 +499,11 @@ export const AboutIntroductionTemplate = () => {
                         }}
                       />
                       {/* Card Header */}
-                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50 dark:bg-gray-800/20">
+                      <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} className="text-[#D6B14D]" />
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {focusLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Research Areas</span></>}
+                            {focusLang === 'ko' ? "FINDS Lab의 연구 분야" : "FINDS Lab's Research Areas"}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
@@ -536,12 +516,12 @@ export const AboutIntroductionTemplate = () => {
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white dark:from-gray-800/50 dark:to-[#1a1a1a] rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
                             >
                               {/* Icon */}
                               <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-white dark:bg-[#1a1a1a] rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
+                                <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
                                   <img loading="lazy" src={area.image} alt={area.title} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                 </div>
                               </div>
@@ -554,7 +534,7 @@ export const AboutIntroductionTemplate = () => {
                                 <ul className="space-y-8 text-left">
                                   {(focusLang === 'ko' ? area.itemsKo : area.items).map((item, idx) => (
                                     <li key={idx} className="flex items-start gap-8">
-                                      <span className="size-5 rounded-full shrink-0 mt-[6px] bg-[#D6B14D]/40"/>
+                                      <span className="size-5 rounded-full shrink-0 mt-6 bg-[#D6B14D]/40"/>
                                       <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
                                         {item}
                                       </span>
@@ -586,7 +566,7 @@ export const AboutIntroductionTemplate = () => {
                         <div className="flex items-center gap-10">
                           <Sparkles size={18} style={{ color: '#D6B14D' }} />
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {valuesLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>핵심 가치</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Core Values</span></>}
+                            {valuesLang === 'ko' ? "FINDS Lab의 핵심 가치" : "FINDS Lab's Core Values"}
                           </span>
                         </div>
                         <LangToggle lang={valuesLang} setLang={setValuesLang} variant="dark" />
@@ -642,19 +622,13 @@ export const AboutIntroductionTemplate = () => {
 
                                 {/* Text - Matching Research Areas Layout */}
                                 <div className="text-center flex-1 flex flex-col">
-                                  <h3 className="text-base md:text-lg font-bold mb-12 shrink-0" style={{ color: '#D6B14D' }}>
+                                  <h3 className="text-base md:text-lg font-bold mb-10 shrink-0" style={{ color: '#D6B14D' }}>
                                     {valuesLang === 'ko' ? value.labelKo : value.label}
                                   </h3>
-                                  <ul className="space-y-8 text-left">
-                                    {(valuesLang === 'ko' ? value.itemsKo : value.items).map((item, idx) => (
-                                      <li key={idx} className="flex items-start gap-8">
-                                        <span className="size-5 rounded-full shrink-0 mt-[6px]" style={{ background: 'rgba(214, 177, 77, 0.5)' }}/>
-                                        <span className="text-xs md:text-sm text-gray-400 font-medium leading-relaxed">
-                                          {item}
-                                        </span>
-                                      </li>
-                                    ))}
-                                  </ul>
+                                  <p 
+                                    className="text-xs md:text-sm text-gray-400 leading-[1.8] [&>b]:text-gray-300 [&>b]:font-semibold"
+                                    dangerouslySetInnerHTML={{ __html: valuesLang === 'ko' ? value.descriptionKo : value.description }}
+                                  />
                                 </div>
                               </div>
                             ))}
@@ -673,7 +647,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carousel2Index === 0 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Focus Areas slide"
                 >
@@ -686,7 +660,7 @@ export const AboutIntroductionTemplate = () => {
                   className={`group flex items-center gap-8 px-16 py-10 rounded-full border transition-all duration-300 ${
                     carousel2Index === 1 
                       ? 'bg-[#D6B14D] border-[#D6B14D] text-white' 
-                      : 'bg-white dark:bg-[#1a1a1a] border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:border-[#D6B14D] hover:text-[#D6B14D]'
+                      : 'bg-white border-gray-200 text-gray-500 hover:border-[#D6B14D] hover:text-[#D6B14D]'
                   }`}
                   aria-label="Values slide"
                 >

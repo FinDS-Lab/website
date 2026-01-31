@@ -65,7 +65,7 @@ export const PageBanner = memo(({ backgroundImage, category, title, breadcrumbs 
 
       {/* Breadcrumb */}
       <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-        <div className="py-20 md:py-32 border-b border-gray-100 dark:border-gray-800">
+        <div className="py-20 md:py-32 border-b border-gray-100">
           <div className="flex items-center gap-8 md:gap-12 flex-wrap">
             <Link 
               to="/" 
@@ -76,7 +76,7 @@ export const PageBanner = memo(({ backgroundImage, category, title, breadcrumbs 
             </Link>
             {breadcrumbs.map((item, index) => (
               <span key={index} className="contents">
-                <span className="text-gray-200 dark:text-gray-700">—</span>
+                <span className="text-gray-200">—</span>
                 {item.path ? (
                   <Link to={item.path} className="text-sm text-gray-400 hover:text-primary font-medium transition-colors">
                     {item.label}
