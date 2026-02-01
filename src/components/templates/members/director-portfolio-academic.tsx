@@ -1630,7 +1630,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
-                            <p className="text-[10px] text-gray-500 mt-2">대한산업공학회 (KIIE) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
@@ -1640,7 +1639,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
-                            <p className="text-[10px] text-gray-500 mt-2">한국증권학회 (KSA) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
@@ -1650,7 +1648,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
-                            <p className="text-[10px] text-gray-500 mt-2">한국경영학회 (KASBA) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
@@ -1660,7 +1657,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
-                            <p className="text-[10px] text-gray-500 mt-2">한국지능정보시스템학회 (KIISS) 종신회원</p>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>

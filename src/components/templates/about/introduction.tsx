@@ -333,7 +333,7 @@ export const AboutIntroductionTemplate = () => {
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 혁신</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Inspired</span><br className="md:hidden" /> Innovation in Business & Industry</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Innovation in Business & Industry</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />

@@ -114,7 +114,7 @@ const FilterModal = ({
   }
   const statusFilterColors: Record<string, { bg: string; text: string }> = {
     ongoing: { bg: '#D6B14D', text: '#FFFFFF' },
-    completed: { bg: '#E8889C', text: '#FFFFFF' },
+    completed: { bg: '#8B8B8B', text: '#FFFFFF' },
   }
 
   return (
@@ -823,11 +823,8 @@ export const ProjectsTemplate = () => {
                                           {/* Principal Investigator - only show if exists */}
                                           {project.roles.principalInvestigator && (
                                             <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Principal Investigator
-                                              </span>
-                                              <span className="text-[10px] md:text-xs text-gray-700 font-medium">
-                                                {project.roles.principalInvestigator}
+                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                                Principal Investigator · {project.roles.principalInvestigator}
                                               </span>
                                             </div>
                                           )}
@@ -835,11 +832,8 @@ export const ProjectsTemplate = () => {
                                           {/* Lead Researcher - only show if exists and different from PI */}
                                           {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
                                             <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-600 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Lead Researcher
-                                              </span>
-                                              <span className="text-[10px] md:text-xs text-gray-700 font-medium">
-                                                {project.roles.leadResearcher}
+                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-600 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                                Lead Researcher · {project.roles.leadResearcher}
                                               </span>
                                             </div>
                                           )}
@@ -847,11 +841,8 @@ export const ProjectsTemplate = () => {
                                           {/* Visiting Researcher - only show if exists */}
                                           {project.roles.visitingResearcher && (
                                             <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto min-w-[100px] md:min-w-[140px] px-8 py-3 bg-gray-500 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Visiting Researcher
-                                              </span>
-                                              <span className="text-[10px] md:text-xs text-gray-700 font-medium">
-                                                {project.roles.visitingResearcher}
+                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-500 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
+                                                Visiting Researcher · {project.roles.visitingResearcher}
                                               </span>
                                             </div>
                                           )}

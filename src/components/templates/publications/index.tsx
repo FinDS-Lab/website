@@ -1001,19 +1001,19 @@ export const PublicationsTemplate = () => {
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
                           <span className="text-gray-500">&nbsp;{stats.reports === 1 ? 'Report' : 'Reports'}</span>
                         </span>
-                        {/* Mobile: same as desktop */}
+                        {/* Mobile: full words */}
                         <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'J' : 'J'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal' : 'Journals'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'C' : 'C'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference' : 'Conferences'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'B' : 'B'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'Book' : 'Books'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-500">&nbsp;{stats.reports === 1 ? 'R' : 'R'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.reports === 1 ? 'Report' : 'Reports'}</span>
                         </span>
                       </div>
                       {expandedYears.has(year) ? (

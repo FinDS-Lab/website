@@ -6,8 +6,6 @@ import type { HonorsData, HonorItem } from '@/types/data'
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
 
-type FilterType = 'all' | 'honor' | 'award'
-
 // Scroll animation hook
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -50,20 +48,20 @@ const formatDate = (dateStr: string): string => {
 
 export const AboutHonorsTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData>({})
-  const [filter, setFilter] = useState<FilterType>('all')
+  const [selectedTypes, setSelectedTypes] = useState<('honor' | 'award')[]>([])
   const [searchTerm, setSearchTerm] = useState('')
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
   const contentAnimation = useScrollAnimation()
 
-  const filterOptions: { key: FilterType; label: string; color: { bg: string; text: string } }[] = [
+  const filterOptions: { key: 'honor' | 'award'; label: string; color: { bg: string; text: string } }[] = [
     { key: 'honor', label: 'Honors', color: { bg: '#D6B14D', text: '#FFFFFF' } },
     { key: 'award', label: 'Awards', color: { bg: '#AC0E0E', text: '#FFFFFF' } },
   ]
 
-  const handleFilterToggle = (type: FilterType) => {
-    setFilter(prev => prev === type ? 'all' : type)
+  const handleFilterToggle = (type: 'honor' | 'award') => {
+    setSelectedTypes(prev => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type])
   }
 
   const toggleYear = (year: string) => {
@@ -161,8 +159,8 @@ export const AboutHonorsTemplate = () => {
 
   const getFilteredItems = (items: HonorItem[]) => {
     let filtered = items || []
-    if (filter !== 'all') {
-      filtered = filtered.filter((item) => item.type === filter)
+    if (selectedTypes.length > 0) {
+      filtered = filtered.filter((item) => selectedTypes.includes(item.type))
     }
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase()
@@ -182,7 +180,7 @@ export const AboutHonorsTemplate = () => {
   // Total count for display
   const totalItems = Object.values(honorsData).flat().length
   const filteredTotalItems = sortedYears.reduce((acc, year) => acc + getFilteredItems(honorsData[year] || []).length, 0)
-  const hasActiveFilters = filter !== 'all' || searchTerm.trim() !== ''
+  const hasActiveFilters = selectedTypes.length > 0 || searchTerm.trim() !== ''
 
   // Get year stats for display like Publications
   const getYearStats = (year: string) => {
@@ -313,7 +311,7 @@ export const AboutHonorsTemplate = () => {
             <div className="relative">
               <button onClick={() => setIsFilterOpen(!isFilterOpen)}
                 className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
-                  isFilterOpen || filter !== 'all' ? 'bg-primary/5 border-primary text-primary font-medium' : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                  isFilterOpen || selectedTypes.length > 0 ? 'bg-primary/5 border-primary text-primary font-medium' : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
                 }`}>
                 Filters <SlidersHorizontal className="size-16 md:size-20" />
               </button>
@@ -332,7 +330,7 @@ export const AboutHonorsTemplate = () => {
                         <h4 className="text-sm font-bold text-gray-500">Type</h4>
                         <div className="flex flex-wrap gap-8">
                           {filterOptions.map((opt) => {
-                            const isActive = filter === opt.key
+                            const isActive = selectedTypes.includes(opt.key)
                             return (
                               <button key={opt.key} onClick={() => handleFilterToggle(opt.key)}
                                 className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
@@ -343,7 +341,7 @@ export const AboutHonorsTemplate = () => {
                         </div>
                       </div>
                       <div className="flex justify-end pt-16 border-t border-gray-100">
-                        <button onClick={() => setFilter('all')} className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors">Reset all filters</button>
+                        <button onClick={() => setSelectedTypes([])} className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors">Reset all filters</button>
                       </div>
                     </div>
                   </div>
@@ -360,12 +358,15 @@ export const AboutHonorsTemplate = () => {
           </div>
           {hasActiveFilters && (
             <div className="flex flex-wrap items-center gap-8 mt-12">
-              {filter !== 'all' && (
-                <button onClick={() => setFilter('all')} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={{ backgroundColor: `${filterOptions.find(o => o.key === filter)?.color.bg}15`, borderColor: `${filterOptions.find(o => o.key === filter)?.color.bg}30`, color: filterOptions.find(o => o.key === filter)?.color.bg }}>
-                  {filter === 'honor' ? 'Honors' : 'Awards'} <span className="text-[10px]">✕</span>
-                </button>
-              )}
-              <button onClick={() => { setFilter('all'); setSearchTerm('') }} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+              {selectedTypes.map((type) => {
+                const opt = filterOptions.find(o => o.key === type)
+                return opt ? (
+                  <button key={type} onClick={() => handleFilterToggle(type)} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={{ backgroundColor: `${opt.color.bg}15`, borderColor: `${opt.color.bg}30`, color: opt.color.bg }}>
+                    {opt.label} <span className="text-[10px]">✕</span>
+                  </button>
+                ) : null
+              })}
+              <button onClick={() => { setSelectedTypes([]); setSearchTerm('') }} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
             </div>
           )}
         </div>
