@@ -363,8 +363,8 @@ const LayoutOrganisms = ({ children }: props) => {
                               className={clsx(
                                 'py-8 px-8 -ml-8 text-sm rounded-lg transition-all duration-200',
                                 location.pathname === child.path
-                                  ? 'text-primary font-bold bg-primary/5'
-                                  : 'text-gray-600 font-bold active:bg-gray-100'
+                                  ? 'text-primary font-semibold bg-primary/5'
+                                  : 'text-gray-600 font-semibold active:bg-gray-100'
                               )}
                             >
                               {child.name}
