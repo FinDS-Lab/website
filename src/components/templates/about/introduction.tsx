@@ -421,9 +421,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 일상을 위한<br className="md:hidden" /> 사회적 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>비효율의 개선</span></>
+                                  <>더 나은 내일을 위한<br className="md:hidden" /> 경영 환경과 산업 현장의 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>효율성 제고</span></>
                                 ) : (
-                                  <>For a Better Everyday —<br className="md:hidden" /> Improving <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Societal Inefficiency</span></>
+                                  <>For a Better Tomorrow —<br className="md:hidden" /> Enhancing <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span> Efficiency</>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -446,8 +446,8 @@ export const AboutIntroductionTemplate = () => {
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? <>이러한 노력을 바탕으로 더 나은 일상을 위한 <span className="font-semibold text-gray-300">사회적 비효율의 개선</span>에 기여하고자 합니다.</>
-                                : <>Through these efforts, we aim to <span className="font-semibold text-gray-300">improve societal inefficiency</span> for a better everyday.</>}
+                                ? <>이러한 노력을 바탕으로 더 나은 내일을 위한 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.</>
+                                : <>Through these efforts, we aim to <span className="font-semibold text-gray-300">enhance business and industry efficiency</span> for a better tomorrow.</>}
                             </p>
                           </div>
                         </div>

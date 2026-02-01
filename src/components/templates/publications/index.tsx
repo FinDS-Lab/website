@@ -63,6 +63,27 @@ const FilterModal = ({
   onReset: () => void;
   onClose: () => void;
 }) => {
+  // Color map for filter options
+  const filterColors: Record<string, { bg: string; border: string; text: string }> = {
+    'Journal': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
+    'Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Book': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
+    'Report': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
+    'SCIE': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
+    'SSCI': { bg: '#C0392B', border: '#C0392B', text: '#FFFFFF' },
+    'A&HCI': { bg: '#D4654A', border: '#D4654A', text: '#FFFFFF' },
+    'ESCI': { bg: '#D6A076', border: '#D6A076', text: '#FFFFFF' },
+    'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Other International': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
+    'KCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+    'Other Domestic': { bg: '#9A7D1F', border: '#9A7D1F', text: '#FFFFFF' },
+    'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
+    'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+    'Oral': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
+    'Poster': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  }
+
   const sections = [
     {
       key: 'type' as const,
@@ -88,24 +109,50 @@ const FilterModal = ({
 
   return (
     <div className="flex flex-col gap-20 p-20">
+      {/* Header with X button */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+        <button
+          onClick={onClose}
+          className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
       {sections.map((section) => (
         <div key={section.key} className="flex flex-col gap-16">
-          <h4 className="text-base font-bold text-gray-900">{section.label}</h4>
+          <h4 className="text-sm font-bold text-gray-500">{section.label}</h4>
           <div className="flex flex-wrap gap-8">
             {section.options.map((option) => {
               const isActive = filters[section.key].includes(option)
+              const color = filterColors[option]
               return (
                 <button
                   key={option}
-                  onClick={() => {
-                    onChange(section.key, option)
-                    onClose()
+                  onClick={() => onChange(section.key, option)}
+                  className={`px-16 py-8 rounded-lg text-sm font-medium transition-all border`}
+                  style={isActive && color ? {
+                    backgroundColor: color.bg,
+                    borderColor: color.border,
+                    color: color.text,
+                    boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                  } : {
+                    backgroundColor: 'white',
+                    borderColor: '#f0f0f0',
+                    color: '#7f8894'
                   }}
-                  className={`px-16 py-8 rounded-lg text-sm font-medium transition-all border ${
-                    isActive
-                      ? 'bg-primary text-white border-primary shadow-sm'
-                      : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
-                  }`}
+                  onMouseEnter={(e) => {
+                    if (!isActive && color) {
+                      e.currentTarget.style.borderColor = `${color.border}50`
+                      e.currentTarget.style.backgroundColor = '#fafafa'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.borderColor = '#f0f0f0'
+                      e.currentTarget.style.backgroundColor = 'white'
+                    }
+                  }}
                 >
                   {option}
                 </button>
@@ -458,6 +505,11 @@ export const PublicationsTemplate = () => {
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(publicationsByYear).map(Number)
+    // Always include current year (2026) even if empty
+    const currentYear = new Date().getFullYear()
+    if (!years.includes(currentYear)) {
+      years.push(currentYear)
+    }
     return years.sort((a, b) => b - a)
   }, [publicationsByYear])
 
@@ -935,36 +987,33 @@ export const PublicationsTemplate = () => {
                     >
                       <div className="flex items-center gap-12 md:gap-16 flex-wrap">
                         <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                        {isCurrentYear && (
-                          <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
-                        )}
                         {/* White badge with counts - desktop */}
                         <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;Journals</span>
+                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal' : 'Journals'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;Conferences</span>
+                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference' : 'Conferences'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-500">&nbsp;Books</span>
+                          <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'Book' : 'Books'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-500">&nbsp;Reports</span>
+                          <span className="text-gray-500">&nbsp;{stats.reports === 1 ? 'Report' : 'Reports'}</span>
                         </span>
                         {/* Mobile: same as desktop */}
                         <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;Journals</span>
+                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'J' : 'J'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;Conferences</span>
+                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'C' : 'C'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
-                          <span className="text-gray-500">&nbsp;Books</span>
+                          <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'B' : 'B'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#FFBAC4]">{stats.reports}</span>
-                          <span className="text-gray-500">&nbsp;Reports</span>
+                          <span className="text-gray-500">&nbsp;{stats.reports === 1 ? 'R' : 'R'}</span>
                         </span>
                       </div>
                       {expandedYears.has(year) ? (

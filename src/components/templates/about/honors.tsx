@@ -140,6 +140,11 @@ export const AboutHonorsTemplate = () => {
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(honorsData)
+    // Always include current year even if empty
+    const currentYear = new Date().getFullYear().toString()
+    if (!years.includes(currentYear)) {
+      years.push(currentYear)
+    }
     return years.sort((a, b) => Number(b) - Number(a))
   }, [honorsData])
 
@@ -335,8 +340,9 @@ export const AboutHonorsTemplate = () => {
               const currentYear = new Date().getFullYear()
               const isCurrentYear = Number(year) === currentYear
 
-              // 데이터가 0개면 표시하지 않음
-              if (yearCount === 0) return null
+              // Show current year even if empty (don't filter out)
+              // For other years, skip if empty
+              if (yearCount === 0 && !isCurrentYear) return null
 
               return (
                 <div key={year} className={`border rounded-xl md:rounded-[20px] overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
@@ -350,9 +356,6 @@ export const AboutHonorsTemplate = () => {
                   >
                     <div className="flex items-center gap-12 md:gap-[16px] flex-wrap">
                       <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                      {isCurrentYear && (
-                        <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
-                      )}
                       {/* White badge with counts - always show both */}
                       <span className="px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                         {(() => {

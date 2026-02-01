@@ -106,24 +106,53 @@ const FilterModal = ({
   const typeOptions = ['government', 'industry', 'institution', 'academic']
   const statusOptions = ['ongoing', 'completed']
 
+  const typeFilterColors: Record<string, { bg: string; text: string }> = {
+    government: { bg: '#D6B14D', text: '#FFFFFF' },
+    industry: { bg: '#AC0E0E', text: '#FFFFFF' },
+    institution: { bg: '#E8D688', text: '#5C4A1E' },
+    academic: { bg: '#E8889C', text: '#FFFFFF' },
+  }
+  const statusFilterColors: Record<string, { bg: string; text: string }> = {
+    ongoing: { bg: '#D6B14D', text: '#FFFFFF' },
+    completed: { bg: '#8B8B8B', text: '#FFFFFF' },
+  }
+
   return (
     <div className="flex flex-col gap-20 p-20">
+      {/* Header with X */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+        <button
+          onClick={onClose}
+          className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
       {/* Type Filter */}
       <div className="flex flex-col gap-12">
-        <h4 className="text-base font-bold text-gray-900">Type</h4>
+        <h4 className="text-sm font-bold text-gray-500">Type</h4>
         <div className="flex flex-wrap gap-8">
           {typeOptions.map((type) => {
             const config = typeConfig[type as keyof typeof typeConfig]
             const isActive = filters.type.includes(type)
+            const color = typeFilterColors[type]
             return (
               <button
                 key={type}
                 onClick={() => onChange('type', type)}
-                className={`flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
-                  isActive
-                    ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
-                }`}
+                className="flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border"
+                style={isActive && color ? {
+                  backgroundColor: color.bg,
+                  borderColor: color.bg,
+                  color: color.text,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                } : {
+                  backgroundColor: 'white',
+                  borderColor: '#f0f0f0',
+                  color: '#7f8894'
+                }}
               >
                 <config.icon size={14} />
                 {config.label}
@@ -135,19 +164,26 @@ const FilterModal = ({
 
       {/* Status Filter */}
       <div className="flex flex-col gap-12">
-        <h4 className="text-base font-bold text-gray-900">Status</h4>
+        <h4 className="text-sm font-bold text-gray-500">Status</h4>
         <div className="flex flex-wrap gap-8">
           {statusOptions.map((status) => {
             const isActive = filters.status.includes(status)
+            const color = statusFilterColors[status]
             return (
               <button
                 key={status}
                 onClick={() => onChange('status', status)}
-                className={`px-12 py-8 rounded-lg text-sm font-medium transition-all border ${
-                  isActive
-                    ? 'bg-primary text-white border-primary shadow-sm'
-                    : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'
-                }`}
+                className="px-12 py-8 rounded-lg text-sm font-medium transition-all border"
+                style={isActive && color ? {
+                  backgroundColor: color.bg,
+                  borderColor: color.bg,
+                  color: color.text,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+                } : {
+                  backgroundColor: 'white',
+                  borderColor: '#f0f0f0',
+                  color: '#7f8894'
+                }}
               >
                 {status === 'ongoing' ? 'Ongoing' : 'Completed'}
               </button>
@@ -157,18 +193,12 @@ const FilterModal = ({
       </div>
 
       {/* Actions */}
-      <div className="flex items-center justify-between pt-16 border-t border-gray-100">
+      <div className="flex justify-end pt-16 border-t border-gray-100">
         <button
           onClick={onReset}
-          className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+          className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors"
         >
-          Reset All
-        </button>
-        <button
-          onClick={onClose}
-          className="px-16 py-8 bg-primary text-white text-sm font-semibold rounded-lg hover:bg-primary/90 transition-colors"
-        >
-          Apply
+          Reset all filters
         </button>
       </div>
     </div>
@@ -299,6 +329,10 @@ export const ProjectsTemplate = () => {
 
   const years = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
   const currentYear = new Date().getFullYear().toString()
+  // Always include current year even if empty
+  if (!years.includes(currentYear)) {
+    years.unshift(currentYear)
+  }
 
   const stats = {
     total: projects.length,
@@ -600,7 +634,7 @@ export const ProjectsTemplate = () => {
             ) : (
               <div className="border border-gray-100 rounded-2xl overflow-hidden">
                 {years.map((year) => {
-                  const yearProjects = projectsByYear[year]
+                  const yearProjects = projectsByYear[year] || []
                   const isCurrentYear = year === currentYear
                   const isExpanded = expandedYears.has(year)
                   
@@ -624,9 +658,6 @@ export const ProjectsTemplate = () => {
                       >
                         <div className="flex items-center gap-12 md:gap-[16px] flex-wrap">
                           <span className={`text-lg md:text-[20px] font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                          {isCurrentYear && (
-                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
-                          )}
                           {/* White badge with counts - PC: Full name with "Project" */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
@@ -665,7 +696,11 @@ export const ProjectsTemplate = () => {
                       
                       {isExpanded && (
                         <div className="border-t border-gray-100 divide-y divide-gray-50">
-                          {yearProjects.map((project, idx) => {
+                          {yearProjects.length === 0 ? (
+                            <div className="p-32 md:p-40 text-center bg-white">
+                              <p className="text-sm md:text-base text-gray-500">아직 등록된 프로젝트가 없습니다.</p>
+                            </div>
+                          ) : yearProjects.map((project, idx) => {
                             const config = typeConfig[project.type]
                             const Icon = config?.icon || Briefcase
                             const status = getProjectStatus(project.period)

@@ -1543,7 +1543,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                   <div className="pt-16 border-t border-gray-100">
                     {/* Citations - Full Width Row */}
                     <div className="mb-12">
-                      <div className="text-center p-20 md:p-28 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                      <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                         <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
                         <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
                       </div>
@@ -1551,7 +1551,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     {/* Indices - 2x2 on mobile, 4 columns on desktop */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                       {liveCitationStats.slice(1).map((stat, index) => (
-                        <div key={index} className="text-center p-16 md:p-20 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                        <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                           <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
                           <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                         </div>
@@ -1795,12 +1795,9 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {conferenceReviewers.map((conf) => (
                             <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-12">
-                              <div className="flex-1 min-w-0">
-                                <span className="text-xs font-bold text-gray-700 break-words">{conf.name}</span>
-                                <span className="md:hidden block text-[10px] text-gray-500 mt-2">{conf.period || conf.since}</span>
-                              </div>
-                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
+                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-8">
+                              <span className="text-xs font-bold text-gray-700 flex-1">{conf.name}</span>
+                              <span className="inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
                                 {conf.period || conf.since}
                               </span>
                             </a>
@@ -1858,9 +1855,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                       >
                         <div className="flex items-center gap-8 md:gap-12 flex-wrap">
                           <span className={`text-base md:text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-900'}`}>{year}</span>
-                          {isCurrentYear && (
-                            <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-semibold rounded-full">NEW</span>
-                          )}
                           {/* PC: Full name with Project/Projects */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                             <span className="font-bold text-[#D6B14D]">{govCount}</span>

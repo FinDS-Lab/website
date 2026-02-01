@@ -100,32 +100,7 @@ const researchAreas = [
   },
 ]
 
-// 영어/한글 전체 문장 Dissolve 전환
-const useTitleFade = () => {
-  const titles = [
-    { text: 'Innovation in Business & Industry through Data', lang: 'en' },
-    { text: '데이터를 통한 경영 환경과 산업 현장의 혁신', lang: 'ko' }
-  ]
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
-  
-  useEffect(() => {
-    const cycleInterval = setInterval(() => {
-      setIsVisible(false)
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % titles.length)
-        setIsVisible(true)
-      }, 500)
-    }, 4000)
-    
-    return () => clearInterval(cycleInterval)
-  }, [])
-  
-  return { currentTitle: titles[currentIndex], isVisible }
-}
-
 export const AboutResearchTemplate = () => {
-  const { currentTitle, isVisible } = useTitleFade()
   const heroAnimation = useScrollAnimation()
   const contentAnimation = useScrollAnimation()
 
@@ -195,46 +170,7 @@ export const AboutResearchTemplate = () => {
         className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32"
       >
         <div className="relative text-center max-w-4xl mx-auto">
-          {/* Animated Title - PC only animation, Mobile fixed Korean */}
-          <div className="relative mb-16 md:mb-24 flex flex-col items-center justify-center gap-8 min-h-[40px] md:min-h-[48px]">
-            {/* Mobile: Fixed Korean */}
-            <h2 className="md:hidden text-xl font-bold leading-[1.4]">
-              <span style={{ color: '#D6B14D' }}>데이터</span>
-              <span className="text-gray-900">를 통한 </span>
-              <span style={{ color: '#AC0E0E' }}>경영 환경</span>
-              <span className="text-gray-900">과 </span>
-              <span style={{ color: '#AC0E0E' }}>산업 현장</span>
-              <span className="text-gray-900">의 </span>
-              <span style={{ color: '#AC0E0E' }}>혁신</span>
-            </h2>
-            {/* PC: Animated English <-> Korean */}
-            <h2 
-              className={`hidden md:block text-2xl lg:text-3xl font-bold leading-[1.4] transition-all duration-500 ease-in-out ${
-                isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              {currentTitle.lang === 'en' ? (
-                <>
-                  <span className="text-gray-900">Transforming </span>
-                  <span style={{ color: '#AC0E0E' }}>Business and Industry</span>
-                  <span className="text-gray-900"> via </span>
-                  <span style={{ color: '#D6B14D' }}>Data</span>
-                </>
-              ) : (
-                <>
-                  <span style={{ color: '#D6B14D' }}>데이터</span>
-                  <span className="text-gray-900">를 통한 </span>
-                  <span style={{ color: '#AC0E0E' }}>경영 환경</span>
-                  <span className="text-gray-900">과 </span>
-                  <span style={{ color: '#AC0E0E' }}>산업 현장</span>
-                  <span className="text-gray-900">의 </span>
-                  <span style={{ color: '#AC0E0E' }}>혁신</span>
-                </>
-              )}
-            </h2>
-          </div>
-          
-          <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
             <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해 경영 환경과 산업 현장에서 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
