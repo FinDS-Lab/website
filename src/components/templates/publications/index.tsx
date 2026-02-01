@@ -939,6 +939,24 @@ export const PublicationsTemplate = () => {
             </div>
           </div>
 
+          {/* Active Filters Display */}
+          {(filters.type.length > 0 || filters.indexing.length > 0 || filters.conference.length > 0 || filters.presentation.length > 0) && (
+            <div className="flex flex-wrap items-center gap-8 mt-12">
+              {[...filters.type, ...filters.indexing, ...filters.conference, ...filters.presentation].map((item) => {
+                const color = filterColors[item]
+                return (
+                  <button key={item} onClick={() => {
+                    const section = filters.type.includes(item) ? 'type' : filters.indexing.includes(item) ? 'indexing' : filters.conference.includes(item) ? 'conference' : 'presentation'
+                    handleFilterChange(section as keyof typeof filters, item)
+                  }} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={color ? { backgroundColor: `${color.bg}15`, borderColor: `${color.bg}30`, color: color.bg } : {}}>
+                    {item} <span className="text-[10px]">✕</span>
+                  </button>
+                )
+              })}
+              <button onClick={handleFilterReset} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+            </div>
+          )}
+
           {/* Year List */}
           {loading ? (
             <div className="flex flex-col gap-16">

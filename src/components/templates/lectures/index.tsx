@@ -91,9 +91,19 @@ const FilterModal = ({
 
   return (
     <div className="flex flex-col gap-20 p-20">
+      {/* Header with X button */}
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+        <button
+          onClick={onClose}
+          className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
       {sections.map((section) => (
-        <div key={section.key} className="flex flex-col gap-16">
-          <h4 className="text-base font-bold text-gray-900">{section.label}</h4>
+        <div key={section.key} className="flex flex-col gap-12">
+          <h4 className="text-sm font-bold text-gray-500">{section.label}</h4>
           <div className="flex flex-wrap gap-8">
             {section.items.map((item) => {
               const isActive = filters[section.key].includes(item)
@@ -102,7 +112,6 @@ const FilterModal = ({
                   key={item}
                   onClick={() => {
                     onChange(section.key, item)
-                    onClose()
                   }}
                   className={clsx(
                     'px-16 py-8 rounded-lg text-sm font-medium transition-all border',
@@ -146,6 +155,7 @@ export const LecturesTemplate = () => {
   const [lectures, setLectures] = useState<Lecture[]>([])
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [filters, setFilters] = useState<{ role: string[]; school: string[]; year: string[] }>({
     role: [],
     school: [],
@@ -322,47 +332,64 @@ export const LecturesTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-120"
       >
-        {/* Search & Filter */}
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 mb-24 md:mb-32">
-          <div className="relative flex-1">
-            <Search className="absolute left-14 top-1/2 -translate-y-1/2 size-18 text-gray-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by course, university, role..."
-              className="w-full pl-44 pr-16 py-14 border border-gray-200 rounded-xl text-sm md:text-base focus:outline-none focus:border-primary transition-colors"
-            />
+        {/* Search & Filter - Unified Design */}
+        <div className="mb-24 md:mb-32">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            <div className="relative">
+              <button
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
+                  isFilterOpen || filters.role.length > 0 || filters.school.length > 0 || filters.year.length > 0
+                    ? 'bg-primary/5 border-primary text-primary font-medium'
+                    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                }`}
+              >
+                Filters
+                <SlidersHorizontal className="size-16 md:size-20" />
+              </button>
+
+              {isFilterOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <FilterModal
+                      filters={filters}
+                      options={filterOptions}
+                      onChange={handleFilterChange}
+                      onReset={handleFilterReset}
+                      onClose={() => setIsFilterOpen(false)}
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by course, university, role..."
+                className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0"
+              />
+              <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
+            </div>
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+              {filteredLectures.length} of {expandedLectures.length}
+            </div>
           </div>
-          <button
-            onClick={() =>
-              showModal({
-                title: 'Filter Lectures',
-                maxWidth: '500px',
-                children: (
-                  <FilterModal
-                    filters={filters}
-                    options={filterOptions}
-                    onChange={handleFilterChange}
-                    onReset={handleFilterReset}
-                    onClose={() => {}}
-                  />
-                ),
-              })
-            }
-            className="flex items-center justify-center gap-8 px-20 py-14 bg-gray-50 border border-gray-200 rounded-xl text-sm md:text-base font-medium text-gray-700 hover:bg-gray-100 transition-colors shrink-0"
-          >
-            <SlidersHorizontal size={18} />
-            Filters
-            {(filters.role.length > 0 || filters.school.length > 0 || filters.year.length > 0) && (
-              <span className="w-20 h-20 bg-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
-                {filters.role.length + filters.school.length + filters.year.length}
-              </span>
-            )}
-          </button>
-          <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
-            {filteredLectures.length} of {expandedLectures.length}
-          </div>
+
+          {/* Active Filters Display */}
+          {(filters.role.length > 0 || filters.school.length > 0 || filters.year.length > 0) && (
+            <div className="flex flex-wrap items-center gap-8 mt-12">
+              {[...filters.role.map(r => ({ label: r, key: 'role' as const })), ...filters.school.map(s => ({ label: s, key: 'school' as const })), ...filters.year.map(y => ({ label: y, key: 'year' as const }))].map((item) => (
+                <button key={`${item.key}-${item.label}`} onClick={() => handleFilterChange(item.key, item.label)} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70 bg-primary/5 border-primary/20 text-primary">
+                  {item.label} <span className="text-[10px]">✕</span>
+                </button>
+              ))}
+              <button onClick={handleFilterReset} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+            </div>
+          )}
         </div>
 
         {/* Year List */}

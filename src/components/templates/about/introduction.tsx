@@ -324,7 +324,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center">
+                      <div className="relative p-24 md:p-40 lg:p-56 h-[450px] md:h-[500px] flex flex-col justify-center overflow-hidden">
                         {/* Title with Quote Icon */}
                         <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
                           <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
@@ -395,7 +395,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-56 h-[450px] md:h-[500px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
                           className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
@@ -421,9 +421,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 내일을 위한<br className="md:hidden" /> 경영 환경과 산업 현장의 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>효율성 제고</span></>
+                                  <>더 나은 내일을 위한<br className="md:hidden" /> 경영 환경과 산업 현장의 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>효율성 제고</span></>
                                 ) : (
-                                  <>For a Better Tomorrow —<br className="md:hidden" /> Enhancing <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span> Efficiency</>
+                                  <>For a Better Tomorrow —<br className="md:hidden" /> Enhancing <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>Business & Industry</span> Efficiency</>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -530,7 +530,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center">
+                      <div className="relative p-24 md:p-40 lg:p-48 h-[480px] md:h-[520px] flex flex-col justify-center overflow-hidden">
                         {/* 3 Cards Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                           {focusAreas.map((area, index) => (
@@ -593,7 +593,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-48 h-[480px] md:h-[520px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
                           className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"

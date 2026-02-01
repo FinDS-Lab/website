@@ -579,7 +579,7 @@ export const ProjectsTemplate = () => {
                 <span
                   key={status}
                   className={`flex items-center gap-6 px-12 py-6 text-sm font-medium rounded-full ${
-                    status === 'ongoing' ? 'bg-[#FFF3CC] text-[#B8962D]' : 'bg-pink-100 text-[#E8889C]'
+                    status === 'ongoing' ? 'bg-[#FFF3CC] text-[#B8962D]' : 'bg-gray-100 text-gray-500'
                   }`}
                 >
                   {status === 'ongoing' ? 'Ongoing' : 'Completed'}
