@@ -52,7 +52,7 @@ const navItems: NavItem[] = [
 const footerLinks = [
   { name: '한국연구재단', url: 'https://www.nrf.re.kr', hoverColor: '#AC0E0E', hoverBg: '#AC0E0E' },
   { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en', hoverColor: '#D6B14D', hoverBg: '#D6B14D' },
-  { name: 'Web of Science', url: 'https://www.webofscience.com', hoverColor: '#E8889C', hoverBg: '#E8889C' },
+  { name: 'Web of Science', url: 'https://www.webofscience.com', hoverColor: '#E8D688', hoverBg: '#E8D688' },
   { name: 'Scopus', url: 'https://www.scopus.com', hoverColor: '#D6A076', hoverBg: '#D6A076' },
 ]
 

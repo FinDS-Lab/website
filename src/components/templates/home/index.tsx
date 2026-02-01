@@ -17,7 +17,8 @@ import logoFinds from '@/assets/images/brand/logo-finds.png'
 const heroSlides = [
   {
     id: 1,
-    badge: 'Illuminate',
+    badge: 'FINDS Lab',
+    verb: 'Illuminate',
     title: 'Data-Illuminated\nFinancial Innovation',
     image: hero1,
     buttons: [
@@ -27,7 +28,8 @@ const heroSlides = [
   },
   {
     id: 2,
-    badge: 'Highlight',
+    badge: 'FINDS Lab',
+    verb: 'Highlight',
     title: 'Research &\nAccomplishments',
     image: hero2,
     buttons: [
@@ -37,7 +39,8 @@ const heroSlides = [
   },
   {
     id: 3,
-    badge: 'Flash',
+    badge: 'FINDS Lab',
+    verb: 'Flash',
     title: 'News &\nAnnouncements',
     image: hero3,
     buttons: [
@@ -232,14 +235,26 @@ export const HomeTemplate = () => {
         <div className="max-w-1480 mx-auto">
           <Slider loop autoplay autoplayDelay={5000} arrows dots>
             {heroSlides.map((slide) => (
-              <div key={slide.id} className="relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-24 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
-                <div className="flex flex-col flex-1 gap-12 md:gap-20 lg:gap-24 z-10">
+              <div key={slide.id} className="group/slide relative bg-white h-full rounded-2xl md:rounded-3xl px-20 md:px-48 lg:px-60 xl:px-100 py-24 md:py-44 lg:py-48 flex items-center justify-between overflow-hidden border border-gray-100">
+                {/* Subtle background accent */}
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#D6B14D]/30 to-transparent" />
+                <div className="flex flex-col flex-1 gap-10 md:gap-16 lg:gap-20 z-10">
+                  {/* Badge */}
                   <div className="inline-flex items-center px-12 md:px-14 lg:px-16 py-6 md:py-10 lg:py-12 border border-primary/30 rounded-full bg-white shadow-sm w-fit">
                     <span className="text-xs md:text-md font-bold text-primary">{slide.badge}</span>
                   </div>
-                  <h1 className="text-base md:text-2xl lg:text-[32px] xl:text-[36px] font-bold text-gray-900 whitespace-pre-line leading-tight">
+                  {/* Verb - large accent word */}
+                  <div className="flex items-baseline gap-10">
+                    <span className="text-2xl md:text-[40px] lg:text-[52px] xl:text-[60px] font-black tracking-tight bg-gradient-to-r from-[#D6B14D] to-[#E8D688] bg-clip-text text-transparent leading-none">
+                      {slide.verb}
+                    </span>
+                    <span className="hidden lg:block w-12 lg:w-20 h-[2px] bg-gradient-to-r from-[#D6B14D] to-transparent rounded-full" />
+                  </div>
+                  {/* Title */}
+                  <h1 className="text-base md:text-xl lg:text-[26px] xl:text-[30px] font-bold text-gray-900 whitespace-pre-line leading-tight -mt-4 md:-mt-6">
                     {slide.title}
                   </h1>
+                  {/* Buttons */}
                   <div className="flex gap-8 md:gap-10">
                     {slide.buttons.map((button, btnIndex) => (
                       <Link
