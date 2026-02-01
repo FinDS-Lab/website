@@ -168,8 +168,8 @@ export const AboutHonorsTemplate = () => {
       const term = searchTerm.toLowerCase()
       filtered = filtered.filter((item) => 
         item.title.toLowerCase().includes(term) ||
-        (item.org && item.org.toLowerCase().includes(term)) ||
-        (item.note && item.note.toLowerCase().includes(term))
+        (item.organization && item.organization.toLowerCase().includes(term)) ||
+        (item.event && item.event.toLowerCase().includes(term))
       )
     }
     return filtered
