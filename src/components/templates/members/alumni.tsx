@@ -345,9 +345,9 @@ export const MembersAlumniTemplate = () => {
                   <div className="flex flex-col items-center h-full justify-center">
                     <GraduationCap className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#D6B14D', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 min-h-[28px] md:min-h-0 justify-center">
                       <GraduationCap className="hidden md:block size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Ph.D. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Ph.D.<br className="md:hidden" /> Graduates</span>
                     </div>
                   </div>
                 </div>
@@ -356,9 +356,9 @@ export const MembersAlumniTemplate = () => {
                   <div className="flex flex-col items-center h-full justify-center">
                     <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{msCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 min-h-[28px] md:min-h-0 justify-center">
                       <BookOpen className="hidden md:block size-16" style={{color: '#E8889C', opacity: 0.7}} />
-                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">M.S. Graduates</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">M.S.<br className="md:hidden" /> Graduates</span>
                     </div>
                   </div>
                 </div>
@@ -367,9 +367,9 @@ export const MembersAlumniTemplate = () => {
                   <div className="flex flex-col items-center h-full justify-center">
                     <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 min-h-[28px] md:min-h-0 justify-center">
                       <UserCheck className="hidden md:block size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
-                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former Undergrad Researchers</span>
+                      <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former<br className="md:hidden" /> Undergraduate<br className="md:hidden" /> Researchers</span>
                     </div>
                   </div>
                 </div>

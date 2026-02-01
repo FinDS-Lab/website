@@ -324,7 +324,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="relative p-24 md:p-40 lg:p-56 h-[450px] md:h-[500px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center overflow-hidden">
                         {/* Title with Quote Icon */}
                         <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
                           <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
@@ -395,7 +395,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-56 h-[450px] md:h-[500px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-56 min-h-[450px] md:min-h-[500px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
                           className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
@@ -530,13 +530,13 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content */}
-                      <div className="relative p-24 md:p-40 lg:p-48 h-[480px] md:h-[520px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center overflow-hidden">
                         {/* 3 Cards Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-20">
                           {focusAreas.map((area, index) => (
                             <div
                               key={index}
-                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
+                              className="group bg-gradient-to-br from-gray-50/80 to-white rounded-xl p-16 md:p-24 border border-gray-100 hover:border-[#D6B14D]/30 hover:shadow-lg transition-all duration-300 flex flex-col h-[300px] md:h-[340px] overflow-hidden"
                             >
                               {/* Icon */}
                               <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
@@ -593,7 +593,7 @@ export const AboutIntroductionTemplate = () => {
                       </div>
 
                       {/* Card Content with mouse-following light */}
-                      <div className="relative p-24 md:p-40 lg:p-48 h-[480px] md:h-[520px] flex flex-col justify-center overflow-hidden">
+                      <div className="relative p-24 md:p-40 lg:p-48 min-h-[480px] md:min-h-[520px] flex flex-col justify-center overflow-hidden">
                         {/* Mouse-following light effect */}
                         <div 
                           className="absolute w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
@@ -618,7 +618,7 @@ export const AboutIntroductionTemplate = () => {
                             {coreValues.map((value, index) => (
                               <div 
                                 key={index} 
-                                className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col min-h-[300px] md:min-h-[340px]"
+                                className="group rounded-xl p-16 md:p-24 border transition-all duration-300 flex flex-col h-[300px] md:h-[340px] overflow-hidden"
                                 style={{ 
                                   background: 'rgba(255, 255, 255, 0.03)', 
                                   borderColor: 'rgba(214, 177, 77, 0.15)',
