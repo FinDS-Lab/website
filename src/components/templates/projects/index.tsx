@@ -812,7 +812,7 @@ export const ProjectsTemplate = () => {
                                     </div>
                                     
                                     {/* Mobile: Date below FundingAgency - same as Publications */}
-                                    <p className="md:hidden text-xs text-gray-400 font-medium mt-4">
+                                    <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">
                                       {project.period}
                                     </p>
                                     

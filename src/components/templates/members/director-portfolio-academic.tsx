@@ -1627,40 +1627,44 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     </button>
                     {expandedSections.academicMemberships && (
                       <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2025-06 – Present</span>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
+                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2023-09 – Present</span>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
+                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2023-06 – Present</span>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
+                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-8">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2022-06 – Present</span>
                           </div>
                           <div className="flex flex-wrap items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
-                            <span className="px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
+                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
                           </div>
                         </div>
                       </div>
@@ -1691,7 +1695,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   {comm.name_ko && (
                                     <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
                                   )}
-                                  <span className="md:hidden block text-[10px] text-gray-500 mt-2">{comm.period || comm.since}</span>
+                                  <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{comm.period || comm.since}</span>
                                 </div>
                                 <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0">{comm.period || comm.since}</span>
                               </a>
@@ -1728,7 +1732,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   {chair.name_ko && (
                                     <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
                                   )}
-                                  <span className="md:hidden block text-[10px] text-gray-500 mt-2">{chair.period || chair.since}</span>
+                                  <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{chair.period || chair.since}</span>
                                 </div>
                                 <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
                               </a>
@@ -1791,9 +1795,12 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {conferenceReviewers.map((conf) => (
                             <a key={conf.id} href={conf.url || '#'} target="_blank" rel="noopener noreferrer"
-                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-8">
-                              <span className="text-xs font-bold text-gray-700 flex-1">{conf.name}</span>
-                              <span className="inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
+                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#FFBAC4]/30 gap-4 md:gap-8">
+                              <div className="flex flex-col">
+                                <span className="text-xs font-bold text-gray-700">{conf.name}</span>
+                                <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{conf.period || conf.since}</span>
+                              </div>
+                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
                                 {conf.period || conf.since}
                               </span>
                             </a>
@@ -1998,7 +2005,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                         <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 line-clamp-2">{project.titleEn}</p>
                                         <p className="text-[9px] md:text-[10px] text-gray-500 mt-3"><span className="font-bold">{project.fundingAgency}</span></p>
                                         {/* Mobile: Period as text */}
-                                        <p className="md:hidden text-[9px] text-gray-400 mt-4">{project.period}</p>
+                                        <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">{project.period}</p>
                                       </div>
                                       {/* PC: Period badge - right aligned */}
                                       <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">

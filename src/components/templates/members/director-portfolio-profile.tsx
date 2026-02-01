@@ -1023,15 +1023,16 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-leadership`) && (
                                 <div className="p-12 space-y-8">
                                   {edu.leadership.map((l: any, i: number) => (
-                                    <div key={i} className="flex items-start justify-between gap-8 bg-white rounded-lg px-12 py-10 border border-gray-100">
+                                    <div key={i} className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-8 bg-white rounded-lg px-12 py-10 border border-gray-100">
                                       <div className="flex items-start gap-8">
                                         <Users className="size-14 text-[#D6B14D] shrink-0 mt-1" />
                                         <div className="flex flex-col">
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
                                           <span className="text-[10px] md:text-xs text-gray-500 font-medium">{l.context}</span>
+                                          <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{l.period}</span>
                                         </div>
                                       </div>
-                                      <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
+                                      <span className="hidden md:inline-flex px-8 py-3 bg-gray-100 rounded-full text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
                                     </div>
                                   ))}
                                 </div>
