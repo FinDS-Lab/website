@@ -250,10 +250,6 @@ export const HomeTemplate = () => {
                     </span>
                     <span className="hidden lg:block w-12 lg:w-20 h-[2px] bg-gradient-to-r from-[#D6B14D] to-transparent rounded-full" />
                   </div>
-                  {/* Title */}
-                  <h1 className="text-base md:text-xl lg:text-[26px] xl:text-[30px] font-bold text-gray-900 whitespace-pre-line leading-tight -mt-4 md:-mt-6">
-                    {slide.title}
-                  </h1>
                   {/* Buttons */}
                   <div className="flex gap-8 md:gap-10">
                     {slide.buttons.map((button, btnIndex) => (

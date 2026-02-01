@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react'
-import { Quote, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
@@ -69,31 +69,31 @@ const coreValues = [
     title: 'See the essence through data.',
     titleKo: '데이터를 통해 문제의 본질을 바라봅니다.',
     items: [
-      'Understanding Problems Through Data-Driven Analysis',
-      'Integrating Finance & Business with Analytical Methods',
-      'Illuminating Complex Phenomena from Multiple Angles'
+      'Grasping the Core of Problems Through Data-Driven Analysis',
+      'Converging Finance & Diverse Business Domains with Data Analytics',
+      'Multidisciplinary Approach: Illuminating Complex Phenomena from Multiple Angles'
     ],
     itemsKo: [
-      '데이터 분석을 통한 문제의 본질 파악',
-      '금융·비즈니스 영역과 분석 기법의 융합',
-      '복잡한 현상을 다양한 각도에서 조명하는 접근'
+      '데이터를 기반으로 한 문제의 본질 파악',
+      '금융을 비롯한 다양한 사업 영역과 데이터 분석 기법의 융합',
+      '복잡한 현상을 다양한 관점에서 조명하는 다학제적 접근'
     ],
   },
   {
     image: philosophyImg,
     label: 'Direction',
     labelKo: '방향성',
-    title: 'Balance rigor with applicability.',
-    titleKo: '학술적 엄밀함과 실용성의 균형을 추구합니다.',
+    title: 'Balance rigor with real-world impact.',
+    titleKo: '학술적 엄밀함과 현장 적용의 균형을 추구합니다.',
     items: [
       'Bridging Academic Rigor & Practical Applicability',
-      'Building Data-Informed Decision Frameworks',
-      'Creating Sustainable Value Through Research'
+      'Human-AI Collaborative Decision Frameworks',
+      'Continuously Evolving & Improving Research Outcomes'
     ],
     itemsKo: [
-      '학술적 엄밀함과 실무 적용 가능성의 균형',
-      '데이터 기반 의사결정 체계 구축',
-      '지속 가능한 가치 창출을 위한 연구'
+      '학술적 엄밀함과 실무 활용성의 균형',
+      '사람과 AI가 협력하는 의사결정 체계 구축',
+      '꾸준한 업데이트와 개선이 가능한 연구 성과 추구'
     ],
   },
   {
@@ -103,14 +103,14 @@ const coreValues = [
     title: 'des avenirs lucides — lucid futures',
     titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
     items: [
-      'Illuminating Insights Hidden Within Data',
-      'Reducing Inefficiency Through Information Transparency',
-      'Designing Better Futures with Technology & Analytics'
+      'Driving Rational & Transparent Decision-Making Through Data',
+      'Resolving Inefficiencies Caused by Information & Knowledge Asymmetry',
+      'Creating Sustainable Intangible & Tangible Value'
     ],
     itemsKo: [
-      '데이터 속에 숨겨진 인사이트를 밝혀내는 연구',
-      '정보 비대칭 해소를 통한 효율적 의사결정 지원',
-      '기술과 분석을 통한 더 나은 미래 설계'
+      '데이터를 통한 합리적이고 투명한 의사결정 추구',
+      '정보 및 지식 비대칭으로 인한 비효율성을 해소',
+      '지속 가능한 무형적·유형적 가치 창출'
     ],
   },
 ]
@@ -315,9 +315,9 @@ export const AboutIntroductionTemplate = () => {
                       {/* Card Header */}
                       <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-10">
-                          <Sparkles size={18} className="text-[#D6B14D]" />
+                          <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🎯</span>
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {missionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>목표</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Goal</span></>}
+                            {missionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>목표</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Goal</span></>}
                           </span>
                         </div>
                         <LangToggle lang={missionLang} setLang={setMissionLang} />
@@ -331,9 +331,9 @@ export const AboutIntroductionTemplate = () => {
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                             <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 금융 혁신의 미래</>
+                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영·산업 환경의 미래</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Financial Innovation</>
+                                <><span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Future of Business & Industry</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -350,19 +350,19 @@ export const AboutIntroductionTemplate = () => {
                           {missionLang === 'ko' ? (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
+                                저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 데이터를 바탕으로 보다 <span className="font-bold">정교한 의사결정</span>을 돕는 것을 목표로 합니다.
+                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 <span className="font-bold">경영·산업 환경을 다양한 측면에서 개선하는 데에 기여하는 것</span>을 목표로 합니다.
                               </p>
                             </>
                           ) : (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                <span className="font-semibold italic" style={{color: '#D6B14D'}}>Towards Data-Illuminated Financial Innovation</span> — <span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> (<span className="font-bold" style={{color: '#AC0E0E'}}>FInancial Data Intelligence & Solutions</span>) at Gachon University conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span> in the fast-changing, data-driven business and financial landscape.
+                                The <span className="font-bold" style={{color: '#AC0E0E'}}>Financial Data Intelligence & Solutions</span> Laboratory (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab) at Gachon University conducts research that creates <span className="font-bold" style={{color: '#D6B14D'}}>tangible value</span> in the fast-changing, data-driven business and financial landscape.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data and support sharper, data-grounded decision-making.
+                                Our lab combines <span className="font-bold" style={{color: '#D6B14D'}}>Data Science</span> and <span className="font-bold" style={{color: '#D6B14D'}}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#AC0E0E'}}>finds</span> in complex data and aims to <span className="font-bold">contribute to improving business and industry environments from multiple perspectives</span>.
                               </p>
                             </>
                           )}
@@ -386,9 +386,9 @@ export const AboutIntroductionTemplate = () => {
                         style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
                       >
                         <div className="flex items-center gap-10">
-                          <Sparkles size={18} style={{ color: '#D6B14D' }} />
+                          <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🔭</span>
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {visionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>비전</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Vision</span></>}
+                            {visionLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>비전</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Vision</span></>}
                           </span>
                         </div>
                         <LangToggle lang={visionLang} setLang={setVisionLang} variant="dark" />
@@ -421,9 +421,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>더 나은 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>경영 및 산업 환경</span>의<br className="md:hidden" /> 미래를 위하여</>
+                                  <>데이터로 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>밝혀나가는</span><br className="md:hidden" /> 경영·산업 환경의 미래</>
                                 ) : (
-                                  <>Toward a Better Future<br className="md:hidden" /> for <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
+                                  <>Illuminating the Future<br className="md:hidden" /> of <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -439,15 +439,15 @@ export const AboutIntroductionTemplate = () => {
                           <div className="max-w-3xl mx-auto text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
-                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 및 산업 환경의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
+                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영·산업 환경의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through <span className="font-semibold text-gray-300">data-driven research</span>, our lab aims to reduce inefficiencies in business and industry caused by <span className="font-semibold text-gray-300">information asymmetry</span>, and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? <>이러한 노력을 바탕으로 더 나은 <span className="font-semibold text-gray-300">데이터 기반의 경영 및 산업 환경</span>의 미래를 밝혀나가는 데 기여하고자 합니다.</>
-                                : <>We strive to illuminate a better future for <span className="font-semibold text-gray-300">data-driven business and industry</span>.</>}
+                                ? <>이러한 노력을 바탕으로 데이터로 <span className="font-semibold text-gray-300">경영·산업 환경의 미래</span>를 밝혀나가는 데 기여하고자 합니다.</>
+                                : <>We strive to illuminate the future of <span className="font-semibold text-gray-300">business and industry</span> through data.</>}
                             </p>
                           </div>
                         </div>
@@ -521,9 +521,9 @@ export const AboutIntroductionTemplate = () => {
                       {/* Card Header */}
                       <div className="relative flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b border-gray-100 bg-gray-50/50">
                         <div className="flex items-center gap-10">
-                          <Sparkles size={18} className="text-[#D6B14D]" />
+                          <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🔬</span>
                           <span className="text-sm md:text-base font-bold text-gray-800 tracking-tight">
-                            {focusLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Research Areas</span></>}
+                            {focusLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Research Areas</span></>}
                           </span>
                         </div>
                         <LangToggle lang={focusLang} setLang={setFocusLang} />
@@ -584,9 +584,9 @@ export const AboutIntroductionTemplate = () => {
                         style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
                       >
                         <div className="flex items-center gap-10">
-                          <Sparkles size={18} style={{ color: '#D6B14D' }} />
+                          <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>💎</span>
                           <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
-                            {valuesLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#AC0E0E'}}>핵심 가치</span></> : <>FINDS Lab's <span style={{color: '#AC0E0E'}}>Core Values</span></>}
+                            {valuesLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>핵심 가치</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Core Values</span></>}
                           </span>
                         </div>
                         <LangToggle lang={valuesLang} setLang={setValuesLang} variant="dark" />
@@ -678,7 +678,7 @@ export const AboutIntroductionTemplate = () => {
                   aria-label="Focus Areas slide"
                 >
                   <ChevronLeft size={16} className={carousel2Index === 0 ? 'text-white' : 'text-gray-400 group-hover:text-[#D6B14D]'} />
-                  <span className="text-xs font-semibold tracking-wide">Focus</span>
+                  <span className="text-xs font-semibold tracking-wide">Domains</span>
                 </button>
                 <div className="w-px h-16 bg-gray-200" />
                 <button 
