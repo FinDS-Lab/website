@@ -146,7 +146,10 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/40 via-[#D6B14D]/20 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      Room 304, Gachon Hall, Gachon University Global Campus
+                      Room 304, Gachon Hall
+                    </p>
+                    <p className="text-sm font-medium text-gray-300 leading-relaxed mt-2">
+                      Gachon University Global Campus
                     </p>
                     <p className="text-xs text-gray-400 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
@@ -195,7 +198,10 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/30 via-[#D6B14D]/15 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      Room 304, Gachon Hall, Gachon University Global Campus
+                      Room 304, Gachon Hall
+                    </p>
+                    <p className="text-sm font-medium text-gray-500 leading-relaxed mt-2">
+                      Gachon University Global Campus
                     </p>
                     <p className="text-xs text-gray-500 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,

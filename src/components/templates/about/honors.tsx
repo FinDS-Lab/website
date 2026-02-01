@@ -130,7 +130,7 @@ export const AboutHonorsTemplate = () => {
     })
     const total = honors + awards
     return {
-      total: { label: 'Total', subLabel: '', count: total, icon: Award, color: '#D6B14D' },
+      total: { label: 'Total', subLabel: '', count: total, icon: Award, color: '#9A7D1F' },
       items: [
         { label: honors === 1 ? 'Honor' : 'Honors', subLabel: 'Honorary Recognition', count: honors, icon: Medal, color: '#D6B14D' },
         { label: awards === 1 ? 'Award' : 'Awards', subLabel: 'Competition Awards', count: awards, icon: Trophy, color: '#AC0E0E' },
