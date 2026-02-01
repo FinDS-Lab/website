@@ -50,10 +50,10 @@ const navItems: NavItem[] = [
 ]
 
 const footerLinks = [
-  { name: '한국연구재단', url: 'https://www.nrf.re.kr' },
-  { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en' },
-  { name: 'Web of Science', url: 'https://www.webofscience.com' },
-  { name: 'Scopus', url: 'https://www.scopus.com' },
+  { name: '한국연구재단', url: 'https://www.nrf.re.kr', hoverColor: '#AC0E0E', hoverBg: '#AC0E0E' },
+  { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en', hoverColor: '#D6B14D', hoverBg: '#D6B14D' },
+  { name: 'Web of Science', url: 'https://www.webofscience.com', hoverColor: '#E8889C', hoverBg: '#E8889C' },
+  { name: 'Scopus', url: 'https://www.scopus.com', hoverColor: '#D6A076', hoverBg: '#D6A076' },
 ]
 
 // Header logo text animation hook - simple dissolve fade
@@ -414,19 +414,19 @@ const LayoutOrganisms = ({ children }: props) => {
       {/* Footer */}
       <footer className="w-full bg-gradient-to-b from-white to-gray-50/80 border-t border-gray-100" role="contentinfo" aria-label="사이트 정보">
         <div className="max-w-1480 mx-auto px-16 md:px-20 py-28 md:py-36">
-          {/* Links Row - Redesigned with gold hover */}
+          {/* Links Row - Each link with unique palette color */}
           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-20 md:mb-24">
-            {footerLinks.map((link, idx) => (
+            {footerLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative px-12 py-6 text-[10px] md:text-xs text-gray-500 transition-all duration-300 font-medium tracking-wide"
-                style={{ color: undefined }}
+                style={{ '--link-hover-color': link.hoverColor, '--link-hover-bg': `${link.hoverBg}10` } as React.CSSProperties}
               >
-                <span className="relative z-10 group-hover:text-[#D6B14D] transition-colors duration-300">{link.name}</span>
-                <span className="absolute inset-0 bg-transparent group-hover:bg-[#FFF9E6] rounded-full transition-all duration-300" />
+                <span className="relative z-10 transition-colors duration-300 group-hover:[color:var(--link-hover-color)]">{link.name}</span>
+                <span className="absolute inset-0 bg-transparent rounded-full transition-all duration-300 group-hover:[background-color:var(--link-hover-bg)]" />
               </a>
             ))}
           </div>
@@ -434,9 +434,15 @@ const LayoutOrganisms = ({ children }: props) => {
           {/* Divider */}
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-16 md:mb-20" />
 
-          {/* Copyright - simplified */}
-          <p className="text-[10px] md:text-xs text-gray-400 text-center tracking-wide">
-            © 2026 FINDS Lab All Rights Reserved.
+          {/* Copyright - gradient swipe on hover (PC only) */}
+          <p className="text-[10px] md:text-xs text-gray-400 text-center tracking-wide md:cursor-default">
+            <span className="hidden md:inline-block relative group">
+              <span className="relative z-10 bg-clip-text transition-all duration-700 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#AC0E0E] group-hover:via-[#D6B14D] group-hover:to-[#E8889C]">
+                © 2026 FINDS Lab All Rights Reserved.
+              </span>
+              <span className="absolute bottom-0 left-1/2 w-0 h-px bg-gradient-to-r from-[#AC0E0E] via-[#D6B14D] to-[#E8889C] transition-all duration-500 group-hover:w-full group-hover:left-0" />
+            </span>
+            <span className="md:hidden">© 2026 FINDS Lab All Rights Reserved.</span>
           </p>
         </div>
       </footer>

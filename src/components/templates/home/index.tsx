@@ -17,8 +17,8 @@ import logoFinds from '@/assets/images/brand/logo-finds.png'
 const heroSlides = [
   {
     id: 1,
-    badge: 'FINDS Lab',
-    title: 'Towards Data-Illuminated\nFinancial Innovation',
+    badge: 'Illuminate',
+    title: 'Data-Illuminated\nFinancial Innovation',
     image: hero1,
     buttons: [
       { label: 'Introduction', path: '/about/introduction' },
@@ -27,8 +27,8 @@ const heroSlides = [
   },
   {
     id: 2,
-    badge: 'FINDS Lab',
-    title: 'Accomplishments',
+    badge: 'Highlight',
+    title: 'Research &\nAccomplishments',
     image: hero2,
     buttons: [
       { label: 'Publications', path: '/publications' },
@@ -37,8 +37,8 @@ const heroSlides = [
   },
   {
     id: 3,
-    badge: 'FINDS Lab',
-    title: 'Updates',
+    badge: 'Flash',
+    title: 'News &\nAnnouncements',
     image: hero3,
     buttons: [
       { label: 'News', path: '/archives/news' },
@@ -266,7 +266,7 @@ export const HomeTemplate = () => {
         <img loading="eager" src={hero4} alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-16">
-          <img loading="eager" src={logoFinds} alt="FINDS Lab" className="w-80 md:w-112 h-auto mb-16 md:mb-24 brightness-0 invert" />
+          <img loading="eager" src={logoFinds} alt="FINDS Lab" className="w-80 md:w-112 h-auto mb-16 md:mb-24 brightness-0 invert md:transition-all md:duration-700 md:hover:brightness-100 md:hover:invert-0" />
           <h2 className="text-xl md:text-2xl font-semibold text-primary mb-8">FINDS Lab</h2>
           <p className="text-base md:text-xl font-medium mb-12 md:mb-16">
             <span style={{ color: '#E8D688' }}>Fin</span>
