@@ -46,6 +46,27 @@ const useScrollAnimation = () => {
   return { ref, isVisible }
 }
 
+// Color map for filter options - matches actual badge/rendering colors
+const pubFilterColors: Record<string, { bg: string; border: string; text: string }> = {
+  'Journal': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
+  'Book': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
+  'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
+  'SCIE': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+  'SSCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+  'A&HCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+  'ESCI': { bg: '#C9A833', border: '#C9A833', text: '#FFFFFF' },
+  'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'Other International': { bg: '#D6C360', border: '#D6C360', text: '#5C4A1E' },
+  'KCI': { bg: '#64748b', border: '#64748b', text: '#FFFFFF' },
+  'Other Domestic': { bg: '#94a3b8', border: '#94a3b8', text: '#FFFFFF' },
+  'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
+  'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+  'Oral': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
+  'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
+}
+
 // 필터 모달 컴포넌트
 const FilterModal = ({
   filters,
@@ -63,26 +84,8 @@ const FilterModal = ({
   onReset: () => void;
   onClose: () => void;
 }) => {
-  // Color map for filter options - matches actual badge/rendering colors
-  const filterColors: Record<string, { bg: string; border: string; text: string }> = {
-    'Journal': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-    'Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
-    'Book': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
-    'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
-    'SCIE': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'SSCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'A&HCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'ESCI': { bg: '#C9A833', border: '#C9A833', text: '#FFFFFF' },
-    'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-    'Other International': { bg: '#D6C360', border: '#D6C360', text: '#5C4A1E' },
-    'KCI': { bg: '#64748b', border: '#64748b', text: '#FFFFFF' },
-    'Other Domestic': { bg: '#94a3b8', border: '#94a3b8', text: '#FFFFFF' },
-    'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
-    'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-    'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'Oral': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
-    'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
-  }
+  // Color map for filter options - matches actual badge/rendering colors (module-level reference)
+  const colors = pubFilterColors
 
   const sections = [
     {
@@ -125,7 +128,7 @@ const FilterModal = ({
           <div className="flex flex-wrap gap-8">
             {section.options.map((option) => {
               const isActive = filters[section.key].includes(option)
-              const color = filterColors[option]
+              const color = colors[option]
               return (
                 <button
                   key={option}
@@ -943,7 +946,7 @@ export const PublicationsTemplate = () => {
           {(filters.type.length > 0 || filters.indexing.length > 0 || filters.conference.length > 0 || filters.presentation.length > 0) && (
             <div className="flex flex-wrap items-center gap-8 mt-12">
               {[...filters.type, ...filters.indexing, ...filters.conference, ...filters.presentation].map((item) => {
-                const color = filterColors[item]
+                const color = pubFilterColors[item]
                 return (
                   <button key={item} onClick={() => {
                     const section = filters.type.includes(item) ? 'type' : filters.indexing.includes(item) ? 'indexing' : filters.conference.includes(item) ? 'conference' : 'presentation'
