@@ -54,7 +54,7 @@ const focusAreas = [
     ],
     itemsKo: [
       '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
-      '경영·산업 환경의 위험을 고려한 의사결정 지원 도구',
+      '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
       '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합'
     ]
   },
@@ -109,7 +109,7 @@ const coreValues = [
     ],
     itemsKo: [
       '데이터를 통한 합리적이고 투명한 의사결정',
-      '정보 및 지식 비대칭으로 인한 비효율성을 해소',
+      '정보 및 지식의 비대칭으로 인한 비효율 해소',
       '지속 가능한 무형적·유형적 가치 창출'
     ],
   },
@@ -331,7 +331,7 @@ export const AboutIntroductionTemplate = () => {
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                             <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영·산업 환경의 미래</>
+                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 미래</>
                               ) : (
                                 <><span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Future of Business & Industry</>
                               )}
@@ -350,10 +350,10 @@ export const AboutIntroductionTemplate = () => {
                           {missionLang === 'ko' ? (
                             <>
                               <p className="text-sm md:text-base text-gray-600 leading-[2]">
-                                저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 환경 및 금융 시장을 비롯한 다양한 산업 환경</span>을 위하여 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
+                                저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#AC0E0E'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#AC0E0E'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-bold" style={{color: '#D6B14D'}}>경영 환경과 금융 시장을 비롯한 다양한 산업 현장</span>에서 <span className="font-bold">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
                               </p>
                               <p className="text-sm md:text-base text-gray-500 leading-[2]">
-                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 <span className="font-bold">경영·산업 환경을 다양한 측면에서 개선하는 데에 기여하는 것</span>을 목표로 합니다.
+                                저희 FINDS Lab은 <span className="font-bold" style={{color: '#D6B14D'}}>데이터 사이언스</span>와 <span className="font-bold" style={{color: '#D6B14D'}}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#AC0E0E'}}>발견(finds)</span>을 이끌어내고 <span className="font-bold">경영 환경과 산업 현장을 다양한 측면에서 개선하는 데 기여하는 것</span>을 목표로 합니다.
                               </p>
                             </>
                           ) : (
@@ -421,7 +421,7 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>데이터로 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>밝혀나가는</span><br className="md:hidden" /> 경영·산업 환경의 미래</>
+                                  <>데이터로 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>밝혀나가는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 미래</>
                                 ) : (
                                   <>Illuminating the Future<br className="md:hidden" /> of <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
                                 )}
@@ -439,14 +439,14 @@ export const AboutIntroductionTemplate = () => {
                           <div className="max-w-3xl mx-auto text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
-                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영·산업 환경의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
+                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 환경과 산업 현장의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through <span className="font-semibold text-gray-300">data-driven research</span>, our lab aims to reduce inefficiencies in business and industry caused by <span className="font-semibold text-gray-300">information asymmetry</span>, and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? <>이러한 노력을 바탕으로 데이터로 <span className="font-semibold text-gray-300">경영·산업 환경의 미래</span>를 밝혀나가는 데 기여하고자 합니다.</>
+                                ? <>이러한 노력을 바탕으로 데이터로 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 미래</span>를 밝혀나가는 데 기여하고자 합니다.</>
                                 : <>We strive to illuminate the future of <span className="font-semibold text-gray-300">business and industry</span> through data.</>}
                             </p>
                           </div>

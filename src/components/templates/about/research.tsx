@@ -90,7 +90,7 @@ const researchAreas = [
       },
       {
         en: 'Risk-Aware Decision Support Tools',
-        ko: '경영·산업 환경의 위험을 고려한 의사결정 지원 도구',
+        ko: '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
       },
       {
         en: 'Multi-Perspective Insights for Data-Informed Decision',
@@ -104,7 +104,7 @@ const researchAreas = [
 const useTitleFade = () => {
   const titles = [
     { text: 'Innovation in Business & Industry through Data', lang: 'en' },
-    { text: '데이터 기반의 경영·산업 환경의 혁신', lang: 'ko' }
+    { text: '데이터를 통한 경영 환경과 산업 현장의 혁신', lang: 'ko' }
   ]
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
@@ -200,9 +200,11 @@ export const AboutResearchTemplate = () => {
             {/* Mobile: Fixed Korean */}
             <h2 className="md:hidden text-xl font-bold leading-[1.4]">
               <span style={{ color: '#D6B14D' }}>데이터</span>
-              <span className="text-gray-900"> 기반의 </span>
-              <span style={{ color: '#AC0E0E' }}>경영·산업 환경</span>
-              <span className="text-gray-900"> </span>
+              <span className="text-gray-900">를 통한 </span>
+              <span style={{ color: '#AC0E0E' }}>경영 환경</span>
+              <span className="text-gray-900">과 </span>
+              <span style={{ color: '#AC0E0E' }}>산업 현장</span>
+              <span className="text-gray-900">의 </span>
               <span style={{ color: '#AC0E0E' }}>혁신</span>
             </h2>
             {/* PC: Animated English <-> Korean */}
@@ -221,9 +223,11 @@ export const AboutResearchTemplate = () => {
               ) : (
                 <>
                   <span style={{ color: '#D6B14D' }}>데이터</span>
-                  <span className="text-gray-900"> 기반의 </span>
-                  <span style={{ color: '#AC0E0E' }}>경영·산업 환경</span>
-                  <span className="text-gray-900"> </span>
+                  <span className="text-gray-900">를 통한 </span>
+                  <span style={{ color: '#AC0E0E' }}>경영 환경</span>
+                  <span className="text-gray-900">과 </span>
+                  <span style={{ color: '#AC0E0E' }}>산업 현장</span>
+                  <span className="text-gray-900">의 </span>
                   <span style={{ color: '#AC0E0E' }}>혁신</span>
                 </>
               )}
@@ -231,7 +235,7 @@ export const AboutResearchTemplate = () => {
           </div>
           
           <p className="text-sm md:text-base text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해 경영·산업 현장에서의 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
+            <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-semibold text-gray-700">세 가지 핵심 연구 분야</span>를 통해 경영 환경과 산업 현장에서 <span className="font-semibold text-gray-700">실질적인 가치</span>를 창출하는 연구를 지향합니다.
           </p>
         </div>
       </div>
