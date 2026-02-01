@@ -1803,30 +1803,30 @@ export const MembersDirectorAcademicTemplate = () => {
                           )}
                           {/* PC: Full name with Project/Projects */}
                           <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
-                            <span className="font-bold text-primary">{govCount}</span>
+                            <span className="font-bold text-[#D6B14D]">{govCount}</span>
                             <span className="text-gray-500">&nbsp;Government {govCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-[#D6B14D]">{indCount}</span>
+                            <span className="font-bold text-[#AC0E0E]">{indCount}</span>
                             <span className="text-gray-500">&nbsp;Industry {indCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-[#E8889C]">{instCount}</span>
+                            <span className="font-bold text-[#E8D688]">{instCount}</span>
                             <span className="text-gray-500">&nbsp;Institution {instCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-gray-600">{acadCount}</span>
+                            <span className="font-bold text-[#E8889C]">{acadCount}</span>
                             <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line abbreviations */}
                           <span className="sm:hidden inline-flex items-center px-8 py-4 bg-white rounded-lg text-[9px] font-medium shadow-sm">
-                            <span className="font-bold text-primary">{govCount}</span>
+                            <span className="font-bold text-[#D6B14D]">{govCount}</span>
                             <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-[#D6B14D]">{indCount}</span>
+                            <span className="font-bold text-[#AC0E0E]">{indCount}</span>
                             <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-[#E8889C]">{instCount}</span>
+                            <span className="font-bold text-[#E8D688]">{instCount}</span>
                             <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-gray-600">{acadCount}</span>
+                            <span className="font-bold text-[#E8889C]">{acadCount}</span>
                             <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>
@@ -1848,22 +1848,22 @@ export const MembersDirectorAcademicTemplate = () => {
                               academic: 'Research',
                             }
                             const typeBorderColors: Record<string, string> = {
-                              government: 'border-[rgb(172,14,14)]',
-                              industry: 'border-[rgb(214,176,76)]',
-                              institution: 'border-[#FFBAC4]',
-                              academic: 'border-[#D6B14D]',
+                              government: 'border-[#D6B14D]',
+                              industry: 'border-[#AC0E0E]',
+                              institution: 'border-[#E8D688]',
+                              academic: 'border-[#E8889C]',
                             }
                             const typeTextColors: Record<string, string> = {
-                              government: 'text-[rgb(172,14,14)]',
-                              industry: 'text-[rgb(214,176,76)]',
-                              institution: 'text-pink-500',
-                              academic: 'text-[#B8962D]',
+                              government: 'text-[#9A7D1F]',
+                              industry: 'text-[#AC0E0E]',
+                              institution: 'text-[#B8962D]',
+                              academic: 'text-[#C4677A]',
                             }
                             const typeBgColors: Record<string, string> = {
-                              government: 'bg-[rgb(172,14,14)]',
-                              industry: 'bg-[rgb(214,176,76)]',
-                              institution: 'bg-[#FFBAC4]',
-                              academic: 'bg-[#D6B14D]',
+                              government: 'bg-[#D6B14D]',
+                              industry: 'bg-[#AC0E0E]',
+                              institution: 'bg-[#E8D688]',
+                              academic: 'bg-[#E8889C]',
                             }
                             const Icon = typeIcons[project.type]
                             // Determine status

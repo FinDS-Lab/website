@@ -51,10 +51,10 @@ const typeConfig = {
     labelShort: 'Gov.',
     labelPlural: 'Government Projects',
     labelKo: '정부과제',
-    color: 'bg-[rgb(172,14,14)]',
-    bgColor: 'bg-red-50',
-    borderColor: 'border-red-200',
-    textColor: 'text-[rgb(172,14,14)]',
+    color: 'bg-[#D6B14D]',
+    bgColor: 'bg-[#FFF9E6]',
+    borderColor: 'border-[#D6B14D]/30',
+    textColor: 'text-[#9A7D1F]',
   },
   industry: {
     icon: Building2,
@@ -62,10 +62,10 @@ const typeConfig = {
     labelShort: 'Ind.',
     labelPlural: 'Industry Projects',
     labelKo: '산업체과제',
-    color: 'bg-[rgb(214, 176, 76)]',
-    bgColor: 'bg-[#FFF9E6]',
-    borderColor: 'border-[#FFEB99]',
-    textColor: 'text-[rgb(214, 176, 76)]',
+    color: 'bg-[#AC0E0E]',
+    bgColor: 'bg-red-50',
+    borderColor: 'border-red-200',
+    textColor: 'text-[#AC0E0E]',
   },
   institution: {
     icon: GraduationCap,
@@ -73,10 +73,10 @@ const typeConfig = {
     labelShort: 'Inst.',
     labelPlural: 'Institution Projects',
     labelKo: '기관과제',
-    color: 'bg-[#FFBAC4]',
-    bgColor: 'bg-pink-50',
-    borderColor: 'border-pink-200',
-    textColor: 'text-pink-500',
+    color: 'bg-[#E8D688]',
+    bgColor: 'bg-[#FFFBF0]',
+    borderColor: 'border-[#E8D688]/40',
+    textColor: 'text-[#B8962D]',
   },
   academic: {
     icon: Briefcase,
@@ -84,10 +84,10 @@ const typeConfig = {
     labelShort: 'Res.',
     labelPlural: 'Research Projects',
     labelKo: '연구과제',
-    color: 'bg-[#D6B14D]',
-    bgColor: 'bg-[#FFF9E6]',
-    borderColor: 'border-[#FFEB99]',
-    textColor: 'text-[#B8962D]',
+    color: 'bg-[#E8889C]',
+    bgColor: 'bg-pink-50',
+    borderColor: 'border-[#E8889C]/30',
+    textColor: 'text-[#C4677A]',
   },
 }
 
@@ -408,7 +408,7 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-primary transition-all duration-300">{stats.industry}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -431,10 +431,10 @@ export const ProjectsTemplate = () => {
                   </div>
                 </div>
               </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#FFBAC4]/50 hover:shadow-lg hover:shadow-[#FFBAC4]/10 transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFBAC4]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{stats.academic}</span>
+                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">
@@ -632,13 +632,13 @@ export const ProjectsTemplate = () => {
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
                             <span className="text-gray-500">&nbsp;Government {yearStats.government === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-primary">{yearStats.industry}</span>
+                            <span className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.industry}</span>
                             <span className="text-gray-500">&nbsp;Industry {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
                             <span className="text-gray-500">&nbsp;Institution {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
+                            <span className="font-bold" style={{color: '#E8889C'}}>{yearStats.academic}</span>
                             <span className="text-gray-500">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
                           </span>
                           {/* Mobile: 1-line format with abbreviations */}
@@ -646,13 +646,13 @@ export const ProjectsTemplate = () => {
                             <span className="font-bold" style={{color: '#D6B14D'}}>{yearStats.government}</span>
                             <span className="text-gray-500">&nbsp;Gov.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold text-primary">{yearStats.industry}</span>
+                            <span className="font-bold" style={{color: '#AC0E0E'}}>{yearStats.industry}</span>
                             <span className="text-gray-500">&nbsp;Ind.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
                             <span className="text-gray-500">&nbsp;Inst.</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
-                            <span className="font-bold" style={{color: '#FFBAC4'}}>{yearStats.academic}</span>
+                            <span className="font-bold" style={{color: '#E8889C'}}>{yearStats.academic}</span>
                             <span className="text-gray-500">&nbsp;Res.</span>
                           </span>
                         </div>

@@ -14,7 +14,7 @@ const categoryColors: Record<GalleryCategory, { bg: string; text: string; border
   'Conferences': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30', hoverText: '#AC0E0E' },
   'Events': { bg: 'bg-[#D6B14D]/10', text: 'text-[#D6B14D]', border: 'border-[#D6B14D]/30', hoverText: '#D6B14D' },
   'Celebrations': { bg: 'bg-[#E8889C]/10', text: 'text-[#E8889C]', border: 'border-[#E8889C]/30', hoverText: '#E8889C' },
-  'Design': { bg: 'bg-[#9A7D1F]/10', text: 'text-[#9A7D1F]', border: 'border-[#9A7D1F]/30', hoverText: '#9A7D1F' },
+  'Design': { bg: 'bg-[#F5E6C8]/20', text: 'text-[#B8962D]', border: 'border-[#F5E6C8]/50', hoverText: '#B8962D' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200', hoverText: '#4B5563' }
 };
 
