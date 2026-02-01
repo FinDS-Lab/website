@@ -1570,40 +1570,40 @@ export const MembersDirectorAcademicTemplate = () => {
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2025-06 – Present</span>
                           </div>
-                          <div className="flex flex-wrap items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
                             <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2023-09 – Present</span>
                           </div>
-                          <div className="flex flex-wrap items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
                             <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2023-06 – Present</span>
                           </div>
-                          <div className="flex flex-wrap items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
                             <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2 block">2022-06 – Present</span>
                           </div>
-                          <div className="flex flex-wrap items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded">Lifetime Member</span>
+                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
                             <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
                           </div>
                         </div>
