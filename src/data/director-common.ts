@@ -20,10 +20,10 @@ export const scholarConfig = {
 
 // Professional Affiliations
 export const affiliations = [
-  { organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE) 종신회원', role: 'Lifetime Member', period: '2025-06 – Present' },
-  { organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA) 종신회원', role: 'Lifetime Member', period: '2023-09 – Present' },
-  { organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA) 종신회원', role: 'Lifetime Member', period: '2023-06 – Present' },
-  { organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS) 종신회원', role: 'Lifetime Member', period: '2022-06 – Present' },
+  { organization: 'Korean Institute of Industrial Engineers (KIIE)', krOrg: '대한산업공학회 (KIIE)', role: 'Lifetime Member', period: '2025-06 – Present' },
+  { organization: 'Korean Securities Association (KSA)', krOrg: '한국증권학회 (KSA)', role: 'Lifetime Member', period: '2023-09 – Present' },
+  { organization: 'Korean Academic Society of Business Administration (KASBA)', krOrg: '한국경영학회 (KASBA)', role: 'Lifetime Member', period: '2023-06 – Present' },
+  { organization: 'Korea Intelligent Information Systems Society (KIISS)', krOrg: '한국지능정보시스템학회 (KIISS)', role: 'Lifetime Member', period: '2022-06 – Present' },
 ]
 
 // Research Interests - Must match focusAreas in introduction.tsx and researchAreas in research.tsx

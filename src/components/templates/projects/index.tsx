@@ -822,27 +822,36 @@ export const ProjectsTemplate = () => {
                                         <div className="flex flex-col gap-6">
                                           {/* Principal Investigator - only show if exists */}
                                           {project.roles.principalInvestigator && (
-                                            <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Principal Investigator · {project.roles.principalInvestigator}
+                                            <div className="flex items-center gap-6">
+                                              <span className="shrink-0 px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md">
+                                                Principal Investigator
+                                              </span>
+                                              <span className="shrink-0 px-8 py-3 bg-gray-100 text-gray-700 text-[9px] md:text-[10px] font-bold rounded-md">
+                                                {project.roles.principalInvestigator}
                                               </span>
                                             </div>
                                           )}
                                           
                                           {/* Lead Researcher - only show if exists and different from PI */}
                                           {project.roles.leadResearcher && project.roles.leadResearcher !== project.roles.principalInvestigator && (
-                                            <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-600 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Lead Researcher · {project.roles.leadResearcher}
+                                            <div className="flex items-center gap-6">
+                                              <span className="shrink-0 px-8 py-3 bg-gray-600 text-white text-[9px] md:text-[10px] font-bold rounded-md">
+                                                Lead Researcher
+                                              </span>
+                                              <span className="shrink-0 px-8 py-3 bg-gray-100 text-gray-700 text-[9px] md:text-[10px] font-bold rounded-md">
+                                                {project.roles.leadResearcher}
                                               </span>
                                             </div>
                                           )}
 
                                           {/* Visiting Researcher - only show if exists */}
                                           {project.roles.visitingResearcher && (
-                                            <div className="flex items-center gap-8">
-                                              <span className="shrink-0 w-auto px-8 py-3 bg-gray-500 text-white text-[9px] md:text-[10px] font-bold rounded-md text-center">
-                                                Visiting Researcher · {project.roles.visitingResearcher}
+                                            <div className="flex items-center gap-6">
+                                              <span className="shrink-0 px-8 py-3 bg-gray-500 text-white text-[9px] md:text-[10px] font-bold rounded-md">
+                                                Visiting Researcher
+                                              </span>
+                                              <span className="shrink-0 px-8 py-3 bg-gray-100 text-gray-700 text-[9px] md:text-[10px] font-bold rounded-md">
+                                                {project.roles.visitingResearcher}
                                               </span>
                                             </div>
                                           )}
