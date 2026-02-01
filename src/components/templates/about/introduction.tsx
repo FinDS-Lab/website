@@ -331,9 +331,9 @@ export const AboutIntroductionTemplate = () => {
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                             <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 미래</>
+                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 혁신</>
                               ) : (
-                                <><span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Future of Business & Industry</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Inspired</span><br className="md:hidden" /> Innovation in Business & Industry</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -421,9 +421,9 @@ export const AboutIntroductionTemplate = () => {
                               <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                               <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                                 {visionLang === 'ko' ? (
-                                  <>데이터로 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>밝혀나가는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 미래</>
+                                  <>더 나은 일상을 위한<br className="md:hidden" /> 사회적 <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>비효율의 개선</span></>
                                 ) : (
-                                  <>Illuminating the Future<br className="md:hidden" /> of <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Business & Industry</span></>
+                                  <>For a Better Everyday —<br className="md:hidden" /> Improving <span className="font-bold" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)' }}>Societal Inefficiency</span></>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -446,8 +446,8 @@ export const AboutIntroductionTemplate = () => {
                             </p>
                             <p className="text-sm md:text-base leading-[2] text-gray-400 mt-0">
                               {visionLang === 'ko' 
-                                ? <>이러한 노력을 바탕으로 데이터로 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 미래</span>를 밝혀나가는 데 기여하고자 합니다.</>
-                                : <>We strive to illuminate the future of <span className="font-semibold text-gray-300">business and industry</span> through data.</>}
+                                ? <>이러한 노력을 바탕으로 더 나은 일상을 위한 <span className="font-semibold text-gray-300">사회적 비효율의 개선</span>에 기여하고자 합니다.</>
+                                : <>Through these efforts, we aim to <span className="font-semibold text-gray-300">improve societal inefficiency</span> for a better everyday.</>}
                             </p>
                           </div>
                         </div>
