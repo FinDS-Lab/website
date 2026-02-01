@@ -672,16 +672,16 @@ export const ProjectsTemplate = () => {
                             
                             const typeColors: Record<string, string> = {
                               government: 'bg-[#D6B14D]',
-                              industry: 'bg-primary',
+                              industry: 'bg-[#AC0E0E]',
                               institution: 'bg-[#E8D688]',
-                              academic: 'bg-[#FFBAC4]',
+                              academic: 'bg-[#E8889C]',
                             }
                             
                             const typeTextColors: Record<string, string> = {
                               government: 'text-white',
                               industry: 'text-white',
                               institution: 'text-gray-800',
-                              academic: 'text-gray-800',
+                              academic: 'text-white',
                             }
                             
                             // Filter out empty researchers
@@ -693,10 +693,10 @@ export const ProjectsTemplate = () => {
                               <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
                                 {/* Mobile: Full-width top bar - solid color with Type | Role format */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
-                                  background: project.type === 'government' ? '#AC0E0E' :
-                                    project.type === 'industry' ? '#D6B14D' :
-                                    project.type === 'institution' ? '#FFBAC4' :
-                                    project.type === 'academic' ? '#D6B14D' :
+                                  background: project.type === 'government' ? '#D6B14D' :
+                                    project.type === 'industry' ? '#AC0E0E' :
+                                    project.type === 'institution' ? '#E8D688' :
+                                    project.type === 'academic' ? '#E8889C' :
                                     '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
@@ -728,25 +728,19 @@ export const ProjectsTemplate = () => {
                                 
                                 <div className="p-16 md:p-24">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
-                                  {/* Left: Type Badge - White background style matching Honors */}
+                                  {/* Left: Type Badge - Solid fill style matching Director-Academics */}
                                   <div className="hidden md:flex flex-col items-center shrink-0 w-72">
-                                    <div className={`w-full py-8 rounded-lg text-center bg-white border-2 shadow-sm ${
-                                      project.type === 'government' ? 'border-[#D6B14D]' :
-                                      project.type === 'industry' ? 'border-primary' :
-                                      project.type === 'institution' ? 'border-[#E8D688]' :
-                                      project.type === 'academic' ? 'border-[#FFBAC4]' : 'border-gray-300'
+                                    <div className={`w-full py-8 rounded-lg text-center shadow-sm ${
+                                      project.type === 'government' ? 'bg-[#D6B14D]' :
+                                      project.type === 'industry' ? 'bg-[#AC0E0E]' :
+                                      project.type === 'institution' ? 'bg-[#E8D688]' :
+                                      project.type === 'academic' ? 'bg-[#E8889C]' : 'bg-gray-300'
                                     }`}>
                                       <Icon size={18} className={`inline mb-2 ${
-                                        project.type === 'government' ? 'text-[#D6B14D]' :
-                                        project.type === 'industry' ? 'text-primary' :
-                                        project.type === 'institution' ? 'text-[#B8962D]' :
-                                        project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-500'
+                                        project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                       }`} />
                                       <span className={`block text-[10px] font-bold tracking-wide ${
-                                        project.type === 'government' ? 'text-[#D6B14D]' :
-                                        project.type === 'industry' ? 'text-primary' :
-                                        project.type === 'institution' ? 'text-[#B8962D]' :
-                                        project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-500'
+                                        project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                       }`}>
                                         {config?.label || project.type} Project
                                       </span>

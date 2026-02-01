@@ -1946,10 +1946,10 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               <div key={index} className="hover:bg-gray-50/50 transition-all relative overflow-hidden">
                                 {/* Mobile: Full-width top bar - solid color with Type | Role format */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
-                                  background: project.type === 'government' ? '#AC0E0E' :
-                                    project.type === 'industry' ? '#D6B14D' :
-                                    project.type === 'institution' ? '#FFBAC4' :
-                                    project.type === 'academic' ? '#D6B14D' :
+                                  background: project.type === 'government' ? '#D6B14D' :
+                                    project.type === 'industry' ? '#AC0E0E' :
+                                    project.type === 'institution' ? '#E8D688' :
+                                    project.type === 'academic' ? '#E8889C' :
                                     '#6B7280'
                                 }}>
                                   <div className="flex items-center gap-8">
