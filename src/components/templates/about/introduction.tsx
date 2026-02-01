@@ -103,12 +103,12 @@ const coreValues = [
     title: 'des avenirs lucides — lucid futures',
     titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
     items: [
-      'Driving Rational & Transparent Decision-Making Through Data',
+      'Rational & Transparent Decision-Making Through Data',
       'Resolving Inefficiencies Caused by Information & Knowledge Asymmetry',
       'Creating Sustainable Intangible & Tangible Value'
     ],
     itemsKo: [
-      '데이터를 통한 합리적이고 투명한 의사결정 추구',
+      '데이터를 통한 합리적이고 투명한 의사결정',
       '정보 및 지식 비대칭으로 인한 비효율성을 해소',
       '지속 가능한 무형적·유형적 가치 창출'
     ],
