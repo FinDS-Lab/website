@@ -114,7 +114,7 @@ const FilterModal = ({
                     onChange(section.key, item)
                   }}
                   className={clsx(
-                    'px-16 py-8 rounded-lg text-sm font-medium transition-all border',
+                    'px-12 md:px-16 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border',
                     isActive
                       ? 'bg-primary text-white border-primary shadow-sm'
                       : 'bg-white text-[#7f8894] border-[#f0f0f0] hover:border-[#D6B14D]/30 hover:bg-gray-50'

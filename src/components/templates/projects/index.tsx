@@ -142,7 +142,7 @@ const FilterModal = ({
               <button
                 key={type}
                 onClick={() => onChange('type', type)}
-                className="flex items-center gap-6 px-12 py-8 rounded-lg text-sm font-medium transition-all border"
+                className="flex items-center gap-6 px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border"
                 style={isActive && color ? {
                   backgroundColor: color.bg,
                   borderColor: color.bg,
@@ -173,7 +173,7 @@ const FilterModal = ({
               <button
                 key={status}
                 onClick={() => onChange('status', status)}
-                className="px-12 py-8 rounded-lg text-sm font-medium transition-all border"
+                className="px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border"
                 style={isActive && color ? {
                   backgroundColor: color.bg,
                   borderColor: color.bg,

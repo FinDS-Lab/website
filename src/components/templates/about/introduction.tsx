@@ -18,9 +18,9 @@ const focusAreas = [
     title: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     items: [
-      'Portfolio Optimization & Algorithmic Trading',
-      'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
+      'Portfolio Optimization and Algorithmic Trading Strategies',
+      'Financial Time-Series Modeling and Forecasting',
+      'Personalized Finance and Behavioral Decision Modeling'
     ],
     itemsKo: [
       '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
@@ -33,9 +33,9 @@ const focusAreas = [
     title: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
+      'Cross-Industry Data Analytics and Integration',
+      'Data Visualization and Interpretive Transparency',
+      'Statistical Methods for Actionable Business Insights'
     ],
     itemsKo: [
       '다양한 산업 간 융합을 위한 데이터 분석',
@@ -48,9 +48,9 @@ const focusAreas = [
     title: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools',
-      'Multi-Perspective Insights for Data-Informed Decision'
+      'Design and Optimization of Trustworthy Decision Systems',
+      'Risk-Aware Decision Support Frameworks',
+      'Multi-Perspective Insight Synthesis for Informed Decisions'
     ],
     itemsKo: [
       '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
@@ -69,9 +69,9 @@ const coreValues = [
     title: 'See the essence through data.',
     titleKo: '데이터를 통해 문제의 본질을 바라봅니다.',
     items: [
-      'Grasping the Core of Problems Through Data-Driven Analysis',
-      'Converging Finance & Diverse Business Domains with Data Analytics',
-      'Multidisciplinary Approach: Illuminating Complex Phenomena from Multiple Angles'
+      'Identifying Core Problems Through Data-Driven Analysis',
+      'Integrating Finance and Diverse Business Domains with Data Analytics',
+      'Interdisciplinary Approaches to Illuminate Complex Phenomena'
     ],
     itemsKo: [
       '데이터를 기반으로 한 문제의 본질 파악',
@@ -86,9 +86,9 @@ const coreValues = [
     title: 'Balance rigor with real-world impact.',
     titleKo: '학술적 엄밀함과 현장 적용의 균형을 추구합니다.',
     items: [
-      'Bridging Academic Rigor & Practical Applicability',
-      'Human-AI Collaborative Decision Frameworks',
-      'Continuously Evolving & Improving Research Outcomes'
+      'Bridging Academic Rigor and Practical Applicability',
+      'Collaborative Human–Machine Decision Frameworks',
+      'Continuously Evolving and Refining Research Outcomes'
     ],
     itemsKo: [
       '학술적 엄밀함과 실무 활용성의 균형',
@@ -103,9 +103,9 @@ const coreValues = [
     title: 'des avenirs lucides — lucid futures',
     titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
     items: [
-      'Rational & Transparent Decision-Making Through Data',
-      'Resolving Inefficiencies Caused by Information & Knowledge Asymmetry',
-      'Creating Sustainable Intangible & Tangible Value'
+      'Rational and Transparent Decision-Making Through Data',
+      'Addressing Inefficiencies Arising from Information and Knowledge Asymmetry',
+      'Generating Sustainable Intangible and Tangible Value'
     ],
     itemsKo: [
       '데이터를 통한 합리적이고 투명한 의사결정',
@@ -333,7 +333,7 @@ export const AboutIntroductionTemplate = () => {
                               {missionLang === 'ko' ? (
                                 <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 개선</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated<br className="md:hidden" /> Innovation</span> in Business & Industry</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated<br className="md:hidden" /> Innovation</span> in Business and Industry</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -423,7 +423,7 @@ export const AboutIntroductionTemplate = () => {
                                 {visionLang === 'ko' ? (
                                   <>더 나은 내일을 위한<br className="md:hidden" /> 경영 환경과 산업 현장의 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>효율성 제고</span></>
                                 ) : (
-                                  <>For a Better Tomorrow —<br className="md:hidden" /> Enhancing <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>Business & Industry</span> Efficiency</>
+                                  <>For a Better Tomorrow —<br className="md:hidden" /> Enhancing <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>Business and Industry</span> Efficiency</>
                                 )}
                               </h2>
                               <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />

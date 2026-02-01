@@ -32,9 +32,9 @@ export const researchInterests = [
     category: 'Financial Data Science',
     categoryKo: '금융 데이터 사이언스',
     items: [
-      'Portfolio Optimization & Algorithmic Trading',
-      'Financial Time-Series Modeling & Forecasting',
-      'Personalized Finance & Behavioral Decision Modeling'
+      'Portfolio Optimization and Algorithmic Trading Strategies',
+      'Financial Time-Series Modeling and Forecasting',
+      'Personalized Finance and Behavioral Decision Modeling'
     ],
     itemsKo: [
       '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
@@ -46,9 +46,9 @@ export const researchInterests = [
     category: 'Business Analytics',
     categoryKo: '비즈니스 애널리틱스',
     items: [
-      'Cross-Industry Data Analytics',
-      'Data Visualization & Transparency',
-      'Business Insights from Statistical Methods'
+      'Cross-Industry Data Analytics and Integration',
+      'Data Visualization and Interpretive Transparency',
+      'Statistical Methods for Actionable Business Insights'
     ],
     itemsKo: [
       '다양한 산업 간 융합을 위한 데이터 분석',
@@ -60,9 +60,9 @@ export const researchInterests = [
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Trustworthy Decision Systems & Optimization',
-      'Risk-Aware Decision Support Tools',
-      'Multi-Perspective Insights for Data-Informed Decision'
+      'Design and Optimization of Trustworthy Decision Systems',
+      'Risk-Aware Decision Support Frameworks',
+      'Multi-Perspective Insight Synthesis for Informed Decisions'
     ],
     itemsKo: [
       '신뢰할 수 있는 의사결정 시스템 설계와 최적화',

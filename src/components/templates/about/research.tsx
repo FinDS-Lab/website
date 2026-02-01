@@ -43,15 +43,15 @@ const researchAreas = [
     image: fdsImg,
     items: [
       {
-        en: 'Portfolio Optimization & Algorithmic Trading',
+        en: 'Portfolio Optimization and Algorithmic Trading Strategies',
         ko: '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
       },
       {
-        en: 'Financial Time-Series Modeling & Forecasting',
+        en: 'Financial Time-Series Modeling and Forecasting',
         ko: '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
       },
       {
-        en: 'Personalized Finance & Behavioral Decision Modeling',
+        en: 'Personalized Finance and Behavioral Decision Modeling',
         ko: '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정',
       },
     ],
@@ -64,15 +64,15 @@ const researchAreas = [
     image: baImg,
     items: [
       {
-        en: 'Cross-Industry Data Analytics',
+        en: 'Cross-Industry Data Analytics and Integration',
         ko: '다양한 산업 간 융합을 위한 데이터 분석',
       },
       {
-        en: 'Data Visualization & Transparency',
+        en: 'Data Visualization and Interpretive Transparency',
         ko: '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
       },
       {
-        en: 'Business Insights from Statistical Methods',
+        en: 'Statistical Methods for Actionable Business Insights',
         ko: '통계적 방법론을 활용한 비즈니스 인사이트 도출',
       },
     ],
@@ -85,15 +85,15 @@ const researchAreas = [
     image: dimImg,
     items: [
       {
-        en: 'Trustworthy Decision Systems & Optimization',
+        en: 'Design and Optimization of Trustworthy Decision Systems',
         ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
       },
       {
-        en: 'Risk-Aware Decision Support Tools',
+        en: 'Risk-Aware Decision Support Frameworks',
         ko: '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
       },
       {
-        en: 'Multi-Perspective Insights for Data-Informed Decision',
+        en: 'Multi-Perspective Insight Synthesis for Informed Decisions',
         ko: '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합',
       },
     ],

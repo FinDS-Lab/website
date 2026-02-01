@@ -333,7 +333,7 @@ export const AboutHonorsTemplate = () => {
                             const isActive = selectedTypes.includes(opt.key)
                             return (
                               <button key={opt.key} onClick={() => handleFilterToggle(opt.key)}
-                                className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
+                                className="px-12 md:px-16 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border"
                                 style={isActive ? { backgroundColor: opt.color.bg, borderColor: opt.color.bg, color: opt.color.text, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' } : { backgroundColor: 'white', borderColor: '#f0f0f0', color: '#7f8894' }}
                               >{opt.label}</button>
                             )

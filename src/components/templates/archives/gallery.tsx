@@ -294,7 +294,7 @@ export const ArchivesGalleryTemplate = () => {
                             const color = categoryFilterColors[cat]
                             return (
                               <button key={cat} onClick={() => handleCategoryToggle(cat)}
-                                className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
+                                className="px-12 md:px-16 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border"
                                 style={isActive && color ? { backgroundColor: color.bg, borderColor: color.bg, color: color.text, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' } : { backgroundColor: 'white', borderColor: '#f0f0f0', color: '#7f8894' }}
                               >{cat}</button>
                             )

@@ -133,7 +133,7 @@ const FilterModal = ({
                 <button
                   key={option}
                   onClick={() => onChange(section.key, option)}
-                  className={`px-16 py-8 rounded-lg text-sm font-medium transition-all border`}
+                  className={`px-12 md:px-16 py-6 md:py-8 rounded-lg text-xs md:text-sm font-medium transition-all border`}
                   style={isActive && color ? {
                     backgroundColor: color.bg,
                     borderColor: color.border,
