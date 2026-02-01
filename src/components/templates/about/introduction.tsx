@@ -69,9 +69,9 @@ const coreValues = [
     title: 'See the essence through data.',
     titleKo: '데이터를 통해 문제의 본질을 바라봅니다.',
     items: [
-      'Identifying Core Problems Through Data-Driven Analysis',
-      'Integrating Finance and Diverse Business Domains with Data Analytics',
-      'Interdisciplinary Approaches to Illuminate Complex Phenomena'
+      'Data-driven identification of fundamental problems',
+      'Convergence of data analytics across domains including finance',
+      'Interdisciplinary analysis of complex phenomena'
     ],
     itemsKo: [
       '데이터를 기반으로 한 문제의 본질 파악',
@@ -86,9 +86,9 @@ const coreValues = [
     title: 'Balance rigor with real-world impact.',
     titleKo: '학술적 엄밀함과 현장 적용의 균형을 추구합니다.',
     items: [
-      'Bridging Academic Rigor and Practical Applicability',
-      'Collaborative Human–Machine Decision Frameworks',
-      'Continuously Evolving and Refining Research Outcomes'
+      'Balance between academic rigor and practical applicability',
+      'Human–machine collaborative decision frameworks',
+      'Iterative refinement of research outcomes'
     ],
     itemsKo: [
       '학술적 엄밀함과 실무 활용성의 균형',
@@ -103,9 +103,9 @@ const coreValues = [
     title: 'des avenirs lucides — lucid futures',
     titleKo: '데이터로 밝히는 더 나은 미래를 설계합니다.',
     items: [
-      'Rational and Transparent Decision-Making Through Data',
-      'Addressing Inefficiencies Arising from Information and Knowledge Asymmetry',
-      'Generating Sustainable Intangible and Tangible Value'
+      'Rational and transparent decision-making through data',
+      'Resolution of inefficiencies from information asymmetry',
+      'Creation of sustainable intangible and tangible value'
     ],
     itemsKo: [
       '데이터를 통한 합리적이고 투명한 의사결정',
