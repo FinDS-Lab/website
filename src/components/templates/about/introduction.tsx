@@ -331,9 +331,9 @@ export const AboutIntroductionTemplate = () => {
                             <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                             <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900">
                               {missionLang === 'ko' ? (
-                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 혁신</>
+                                <><span className="text-[#D6B14D]">데이터로 밝히는</span><br className="md:hidden" /> 경영 환경과 산업 현장의 개선</>
                               ) : (
-                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated</span><br className="md:hidden" /> Innovation in Business & Industry</>
+                                <>Towards <span className="text-[#D6B14D]">Data-Illuminated<br className="md:hidden" /> Innovation</span> in Business & Industry</>
                               )}
                             </h2>
                             <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
