@@ -251,9 +251,20 @@ export const AboutHonorsTemplate = () => {
             {stats.items.map((stat, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300"
+                className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 transition-all duration-300"
+                style={{
+                  ['--hover-color' as string]: stat.color,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = `${stat.color}40`
+                  e.currentTarget.style.boxShadow = `0 10px 15px -3px ${stat.color}15`
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = ''
+                  e.currentTarget.style.boxShadow = ''
+                }}
               >
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                   <div className="flex items-center gap-6">

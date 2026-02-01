@@ -859,9 +859,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-dissertation`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-dissertation`) && (
-                                <div className="bg-gradient-to-br from-gray-50 to-white p-16">
-                                  {/* English Title */}
-                                  <div>
+                                <div className="p-12">
+                                  <div className="bg-white rounded-lg px-12 py-10 border border-gray-100">
                                     <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.dissertation.en.split(' — ')[0]}
                                     </p>
@@ -885,9 +884,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <ChevronDown size={14} className={`text-gray-400 transition-transform duration-300 ${expandedEduSections.has(`${index}-thesis`) ? 'rotate-180' : ''}`}/>
                               </button>
                               {expandedEduSections.has(`${index}-thesis`) && (
-                                <div className="bg-gradient-to-br from-gray-50 to-white p-16">
-                                  {/* English Title */}
-                                  <div>
+                                <div className="p-12">
+                                  <div className="bg-white rounded-lg px-12 py-10 border border-gray-100">
                                     <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.thesis.en.split(' — ')[0]}
                                     </p>
@@ -913,11 +911,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-graduationPaper`) && (
                                 <div className="p-12 space-y-12">
                                   {edu.undergraduateTheses.map((thesis: any, idx: number) => (
-                                    <div key={idx} className="bg-gradient-to-br from-white to-gray-50 rounded-lg p-16 border border-gray-100">
+                                    <div key={idx} className="bg-white rounded-lg p-12 border border-gray-100">
                                       {/* Header: Number Badge & Advisor Name */}
                                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 mb-12 pb-10 border-b border-gray-100">
                                         <span className="px-10 py-4 bg-primary text-white text-[10px] md:text-xs font-bold rounded-full w-fit">{thesis.number} Paper</span>
-                                        <div className="flex items-center gap-6 px-10 py-4 bg-gray-100 rounded-full">
+                                        <div className="flex items-center gap-6 px-10 py-4 bg-gray-50 rounded-full border border-gray-100">
                                           <GraduationCap size={12} className="text-[#D6B14D]" />
                                           <span className="text-[10px] md:text-xs font-bold text-gray-600">{thesis.advisorName}</span>
                                         </div>
@@ -1195,7 +1193,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             {/* Honors & Awards - 2 columns */}
                             <div className="grid grid-cols-2 gap-8 md:gap-12">
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
@@ -1204,8 +1202,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   </div>
                                 </div>
                               </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-primary/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">

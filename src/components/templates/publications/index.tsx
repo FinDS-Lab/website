@@ -352,7 +352,7 @@ export const PublicationsTemplate = () => {
     })
 
     return {
-      total: { label: 'Total', count: publications.length, icon: BarChart3, color: '#D6B14D' },
+      total: { label: 'Total', count: publications.length, icon: BarChart3, color: '#9A7D1F' },
       items: [
         { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' },
         { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' },

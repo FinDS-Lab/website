@@ -62,11 +62,11 @@ export const researchInterests = [
     items: [
       'Trustworthy Decision Systems & Optimization',
       'Risk-Aware Decision Support Tools',
-      'Multi-Perspective Insight Extraction for Data-Informed Decision'
+      'Multi-Perspective Insights for Data-Informed Decision'
     ],
     itemsKo: [
       '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
-      '경영 및 산업 환경의 위험을 고려한 의사결정 지원 도구',
+      '경영·산업 환경의 위험을 고려한 의사결정 지원 도구',
       '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합'
     ]
   },
