@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp } from 'lucide-react'
+import { Award, Trophy, Medal, Home, ChevronDown, ChevronUp, Search, SlidersHorizontal } from 'lucide-react'
 import type { HonorsData, HonorItem } from '@/types/data'
 
 // Image Imports
@@ -51,9 +51,20 @@ const formatDate = (dateStr: string): string => {
 export const AboutHonorsTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData>({})
   const [filter, setFilter] = useState<FilterType>('all')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [loading, setLoading] = useState(true)
   const contentAnimation = useScrollAnimation()
+
+  const filterOptions: { key: FilterType; label: string; color: { bg: string; text: string } }[] = [
+    { key: 'honor', label: 'Honors', color: { bg: '#D6B14D', text: '#FFFFFF' } },
+    { key: 'award', label: 'Awards', color: { bg: '#AC0E0E', text: '#FFFFFF' } },
+  ]
+
+  const handleFilterToggle = (type: FilterType) => {
+    setFilter(prev => prev === type ? 'all' : type)
+  }
 
   const toggleYear = (year: string) => {
     const isMobile = window.innerWidth < 768
@@ -149,15 +160,29 @@ export const AboutHonorsTemplate = () => {
   }, [honorsData])
 
   const getFilteredItems = (items: HonorItem[]) => {
-    if (filter === 'all') return items
-    return items?.filter((item) => item.type === filter)
+    let filtered = items || []
+    if (filter !== 'all') {
+      filtered = filtered.filter((item) => item.type === filter)
+    }
+    if (searchTerm.trim()) {
+      const term = searchTerm.toLowerCase()
+      filtered = filtered.filter((item) => 
+        item.title.toLowerCase().includes(term) ||
+        (item.org && item.org.toLowerCase().includes(term)) ||
+        (item.note && item.note.toLowerCase().includes(term))
+      )
+    }
+    return filtered
   }
 
   const getYearCount = (year: string) => {
-    const items = honorsData[year] || []
-    if (filter === 'all') return items.length
-    return items?.filter((item) => item.type === filter).length
+    return getFilteredItems(honorsData[year] || []).length
   }
+
+  // Total count for display
+  const totalItems = Object.values(honorsData).flat().length
+  const filteredTotalItems = sortedYears.reduce((acc, year) => acc + getFilteredItems(honorsData[year] || []).length, 0)
+  const hasActiveFilters = filter !== 'all' || searchTerm.trim() !== ''
 
   // Get year stats for display like Publications
   const getYearStats = (year: string) => {
@@ -282,26 +307,67 @@ export const AboutHonorsTemplate = () => {
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-12 md:gap-[12px] mb-20 md:mb-[30px]">
-          <h3 className="text-base md:text-[18px] font-semibold text-gray-800 flex items-center gap-[8px]">
-            Filters
-          </h3>
-          <div className="flex flex-wrap items-center gap-6 md:gap-[8px]">
-            {(['all', 'honor', 'award'] as FilterType[]).map((type) => (
-              <button
-                key={type}
-                onClick={() => setFilter(type)}
-                className={`px-12 md:px-[16px] py-6 md:py-[8px] rounded-lg md:rounded-[8px] text-xs md:text-[14px] font-medium transition-colors ${
-                  filter === type
-                    ? 'bg-primary text-white'
-                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
-                }`}
-              >
-                {type === 'all' ? 'All' : type === 'honor' ? 'Honors' : 'Awards'}
+        {/* Filter & Search - Unified Design */}
+        <div className="mb-20 md:mb-[30px]">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            <div className="relative">
+              <button onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
+                  isFilterOpen || filter !== 'all' ? 'bg-primary/5 border-primary text-primary font-medium' : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                }`}>
+                Filters <SlidersHorizontal className="size-16 md:size-20" />
               </button>
-            ))}
+              {isFilterOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="flex flex-col gap-20 p-20">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+                        <button onClick={() => setIsFilterOpen(false)} className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-12">
+                        <h4 className="text-sm font-bold text-gray-500">Type</h4>
+                        <div className="flex flex-wrap gap-8">
+                          {filterOptions.map((opt) => {
+                            const isActive = filter === opt.key
+                            return (
+                              <button key={opt.key} onClick={() => handleFilterToggle(opt.key)}
+                                className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
+                                style={isActive ? { backgroundColor: opt.color.bg, borderColor: opt.color.bg, color: opt.color.text, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' } : { backgroundColor: 'white', borderColor: '#f0f0f0', color: '#7f8894' }}
+                              >{opt.label}</button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div className="flex justify-end pt-16 border-t border-gray-100">
+                        <button onClick={() => setFilter('all')} className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors">Reset all filters</button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
+              <input type="text" placeholder="Search by title, organization..." className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+              <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
+            </div>
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+              {filteredTotalItems} of {totalItems}
+            </div>
           </div>
+          {hasActiveFilters && (
+            <div className="flex flex-wrap items-center gap-8 mt-12">
+              {filter !== 'all' && (
+                <button onClick={() => setFilter('all')} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={{ backgroundColor: `${filterOptions.find(o => o.key === filter)?.color.bg}15`, borderColor: `${filterOptions.find(o => o.key === filter)?.color.bg}30`, color: filterOptions.find(o => o.key === filter)?.color.bg }}>
+                  {filter === 'honor' ? 'Honors' : 'Awards'} <span className="text-[10px]">✕</span>
+                </button>
+              )}
+              <button onClick={() => { setFilter('all'); setSearchTerm('') }} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+            </div>
+          )}
         </div>
 
         {/* List by Year */}

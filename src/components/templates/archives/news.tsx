@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { Calendar, Home, User} from 'lucide-react'
+import { Calendar, Home, User, Search, SlidersHorizontal} from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -135,12 +135,25 @@ const NewsDetailModal = ({ id, title, date }: { id: string; title?: string; date
 export const ArchivesNewsTemplate = () => {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedTag, setSelectedTag] = useState<NewsTag | 'All'>('All')
+  const [selectedTags, setSelectedTags] = useState<NewsTag[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const { showModal } = useStoreModal()
   const [searchParams, setSearchParams] = useSearchParams()
   const contentAnimation = useScrollAnimation()
 
-  const allTags: (NewsTag | 'All')[] = ['All', 'Honors', 'Awards', 'Events', 'General']
+  const allTags: NewsTag[] = ['Honors', 'Awards', 'Events', 'General']
+
+  const tagFilterColors: Record<string, { bg: string; text: string }> = {
+    'Honors': { bg: '#D6B14D', text: '#FFFFFF' },
+    'Awards': { bg: '#AC0E0E', text: '#FFFFFF' },
+    'Events': { bg: '#D6A076', text: '#FFFFFF' },
+    'General': { bg: '#6B7280', text: '#FFFFFF' },
+  }
+
+  const handleTagToggle = (tag: NewsTag) => {
+    setSelectedTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag])
+  }
 
   // URL에서 id 파라미터가 있으면 자동으로 해당 게시글 모달 열기
   useEffect(() => {
@@ -207,9 +220,16 @@ export const ArchivesNewsTemplate = () => {
     fetchAllNews()
   }, [])
 
-  const filteredItems = selectedTag === 'All' 
-    ? newsItems 
-    : newsItems.filter(item => item.tag === selectedTag)
+  const filteredItems = newsItems.filter(item => {
+    const matchesTag = selectedTags.length === 0 || (item.tag && selectedTags.includes(item.tag))
+    const matchesSearch = !searchTerm.trim() || 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (item.author && item.author.toLowerCase().includes(searchTerm.toLowerCase()))
+    return matchesTag && matchesSearch
+  })
+
+  const hasActiveFilters = selectedTags.length > 0 || searchTerm.trim() !== ''
 
   return (
     <div className="flex flex-col">
@@ -261,30 +281,82 @@ export const ArchivesNewsTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
-        {/* Tag Filter - Refined Design */}
-        <div className="mb-32 md:mb-40">
-          <div className="flex items-center gap-8 md:gap-12 overflow-x-auto pb-4 scrollbar-hide">
-            {allTags.map((tag) => (
+        {/* Filter & Search - Unified Design */}
+        <div className="mb-24 md:mb-32">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            <div className="relative">
               <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`
-                  px-14 md:px-20 py-8 md:py-10 rounded-full text-xs md:text-sm font-semibold
-                  transition-all duration-200 border whitespace-nowrap
-                  ${selectedTag === tag 
-                    ? tag === 'All'
-                      ? 'bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/20'
-                      : tagColors[tag as NewsTag]
-                        ? `${tagColors[tag as NewsTag].bg} ${tagColors[tag as NewsTag].text} ${tagColors[tag as NewsTag].border} shadow-sm`
-                        : 'bg-gray-100 text-gray-600 border-gray-200 shadow-sm'
-                    : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                  }
-                `}
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
+                  isFilterOpen || selectedTags.length > 0
+                    ? 'bg-primary/5 border-primary text-primary font-medium'
+                    : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                }`}
               >
-                {tag}
+                Filters
+                <SlidersHorizontal className="size-16 md:size-20" />
               </button>
-            ))}
+
+              {isFilterOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="flex flex-col gap-20 p-20">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+                        <button onClick={() => setIsFilterOpen(false)} className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-12">
+                        <h4 className="text-sm font-bold text-gray-500">Tag</h4>
+                        <div className="flex flex-wrap gap-8">
+                          {allTags.map((tag) => {
+                            const isActive = selectedTags.includes(tag)
+                            const color = tagFilterColors[tag]
+                            return (
+                              <button key={tag} onClick={() => handleTagToggle(tag)}
+                                className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
+                                style={isActive && color ? { backgroundColor: color.bg, borderColor: color.bg, color: color.text, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' } : { backgroundColor: 'white', borderColor: '#f0f0f0', color: '#7f8894' }}
+                              >{tag}</button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div className="flex justify-end pt-16 border-t border-gray-100">
+                        <button onClick={() => setSelectedTags([])} className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors">Reset all filters</button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
+              <input type="text" placeholder="Search by title, content..." className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+              <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
+            </div>
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+              {filteredItems.length} of {newsItems.length}
+            </div>
           </div>
+
+          {/* Active Filters Display */}
+          {hasActiveFilters && (
+            <div className="flex flex-wrap items-center gap-8 mt-12">
+              {selectedTags.map((tag) => {
+                const color = tagFilterColors[tag]
+                return (
+                  <button key={tag} onClick={() => handleTagToggle(tag)} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={{ backgroundColor: `${color.bg}15`, borderColor: `${color.bg}30`, color: color.bg }}>
+                    {tag} <span className="text-[10px]">✕</span>
+                  </button>
+                )
+              })}
+              {hasActiveFilters && (
+                <button onClick={() => { setSelectedTags([]); setSearchTerm('') }} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+              )}
+            </div>
+          )}
         </div>
 
         {loading ? (
@@ -352,7 +424,7 @@ export const ArchivesNewsTemplate = () => {
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-xl md:rounded-[20px] p-32 md:p-60 text-center text-sm md:text-base text-gray-500">
-            No items found for selected filter
+            No items found matching your filters
           </div>
         )}
       </div>

@@ -922,7 +922,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="pt-16 border-t border-gray-100">
                     {/* Citations - Full Width Row */}
                     <div className="mb-12">
-                      <div className="text-center p-20 md:p-28 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                      <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                         <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
                         <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
                       </div>
@@ -930,7 +930,7 @@ export const MembersDirectorTemplate = () => {
                     {/* Indices - 2x2 on mobile, 4 columns on desktop */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                       {liveCitationStats.slice(1).map((stat, index) => (
-                        <div key={index} className="text-center p-16 md:p-20 bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors">
+                        <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                           <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
                           <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                         </div>

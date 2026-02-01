@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Image as ImageIcon, Calendar, Home} from 'lucide-react'
+import { Image as ImageIcon, Calendar, Home, Search, SlidersHorizontal} from 'lucide-react'
 import { useStoreModal } from '@/store/modal'
 import { parseMarkdown, processJekyllContent } from '@/utils/parseMarkdown'
 
@@ -137,12 +137,26 @@ const GalleryDetailModal = ({ id, title, date }: { id: string; title?: string; d
 export const ArchivesGalleryTemplate = () => {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedCategory, setSelectedCategory] = useState<GalleryCategory | 'All'>('All')
+  const [selectedCategories, setSelectedCategories] = useState<GalleryCategory[]>([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
   const { showModal } = useStoreModal()
   const baseUrl = import.meta.env.BASE_URL || '/'
   const contentAnimation = useScrollAnimation()
 
-  const allCategories: (GalleryCategory | 'All')[] = ['All', 'Conferences', 'Events', 'Celebrations', 'Design', 'General']
+  const allCategories: GalleryCategory[] = ['Conferences', 'Events', 'Celebrations', 'Design', 'General']
+
+  const categoryFilterColors: Record<string, { bg: string; text: string }> = {
+    'Conferences': { bg: '#AC0E0E', text: '#FFFFFF' },
+    'Events': { bg: '#D6B14D', text: '#FFFFFF' },
+    'Celebrations': { bg: '#E8889C', text: '#FFFFFF' },
+    'Design': { bg: '#B8962D', text: '#FFFFFF' },
+    'General': { bg: '#6B7280', text: '#FFFFFF' },
+  }
+
+  const handleCategoryToggle = (cat: GalleryCategory) => {
+    setSelectedCategories(prev => prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat])
+  }
 
   useEffect(() => {
     const fetchAllGalleries = async () => {
@@ -192,9 +206,14 @@ export const ArchivesGalleryTemplate = () => {
     fetchAllGalleries()
   }, [])
 
-  const filteredItems = selectedCategory === 'All' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === selectedCategory)
+  const filteredItems = galleryItems.filter(item => {
+    const matchesCat = selectedCategories.length === 0 || (item.category && selectedCategories.includes(item.category))
+    const matchesSearch = !searchTerm.trim() || 
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    return matchesCat && matchesSearch
+  })
+
+  const hasActiveFilters = selectedCategories.length > 0 || searchTerm.trim() !== ''
 
   return (
     <div className="flex flex-col bg-white">
@@ -246,28 +265,71 @@ export const ArchivesGalleryTemplate = () => {
         
         className="max-w-1480 mx-auto w-full px-16 md:px-20 py-40 md:py-60 pb-60 md:pb-100"
       >
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-8 md:gap-10 mb-24 md:mb-32">
-          {allCategories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`
-                px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-sm font-medium
-                transition-all duration-200 border
-                ${selectedCategory === category 
-                  ? category === 'All'
-                    ? 'bg-gray-900 text-white border-gray-900'
-                    : categoryColors[category as GalleryCategory]
-                      ? `${categoryColors[category as GalleryCategory].bg} ${categoryColors[category as GalleryCategory].text} ${categoryColors[category as GalleryCategory].border}`
-                      : 'bg-gray-100 text-gray-600 border-gray-200'
-                  : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                }
-              `}
-            >
-              {category}
-            </button>
-          ))}
+        {/* Filter & Search - Unified Design */}
+        <div className="mb-24 md:mb-32">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-12 md:gap-20 relative z-30">
+            <div className="relative">
+              <button onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`w-full sm:w-auto flex items-center justify-center gap-8 px-12 md:px-16 py-12 md:py-16 border rounded-xl text-sm md:text-base transition-all ${
+                  isFilterOpen || selectedCategories.length > 0 ? 'bg-primary/5 border-primary text-primary font-medium' : 'bg-white border-gray-100 text-gray-500 hover:bg-gray-50'
+                }`}>
+                Filters <SlidersHorizontal className="size-16 md:size-20" />
+              </button>
+              {isFilterOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
+                  <div className="absolute top-[calc(100%+12px)] left-0 w-[calc(100vw-32px)] sm:w-[400px] max-w-[calc(100vw-32px)] bg-white border border-gray-100 rounded-2xl shadow-xl z-20 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="flex flex-col gap-20 p-20">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-base font-bold text-gray-900">Filters</h3>
+                        <button onClick={() => setIsFilterOpen(false)} className="size-28 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors text-gray-400 hover:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </button>
+                      </div>
+                      <div className="flex flex-col gap-12">
+                        <h4 className="text-sm font-bold text-gray-500">Category</h4>
+                        <div className="flex flex-wrap gap-8">
+                          {allCategories.map((cat) => {
+                            const isActive = selectedCategories.includes(cat)
+                            const color = categoryFilterColors[cat]
+                            return (
+                              <button key={cat} onClick={() => handleCategoryToggle(cat)}
+                                className="px-16 py-8 rounded-lg text-sm font-medium transition-all border"
+                                style={isActive && color ? { backgroundColor: color.bg, borderColor: color.bg, color: color.text, boxShadow: '0 1px 3px rgba(0,0,0,0.1)' } : { backgroundColor: 'white', borderColor: '#f0f0f0', color: '#7f8894' }}
+                              >{cat}</button>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div className="flex justify-end pt-16 border-t border-gray-100">
+                        <button onClick={() => setSelectedCategories([])} className="px-16 py-8 text-sm font-medium text-gray-400 hover:text-primary transition-colors">Reset all filters</button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="flex-1 flex items-center px-12 md:px-16 py-12 md:py-16 bg-white border border-gray-100 rounded-xl focus-within:border-primary transition-colors">
+              <input type="text" placeholder="Search by title..." className="flex-1 text-sm md:text-base text-gray-700 outline-none min-w-0" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+              <Search className="size-16 md:size-20 text-gray-500 shrink-0 ml-8" />
+            </div>
+            <div className="px-12 md:px-16 py-12 md:py-16 bg-gray-50 border border-gray-100 rounded-xl text-sm md:text-base font-medium text-gray-500 text-center shrink-0">
+              {filteredItems.length} of {galleryItems.length}
+            </div>
+          </div>
+          {hasActiveFilters && (
+            <div className="flex flex-wrap items-center gap-8 mt-12">
+              {selectedCategories.map((cat) => {
+                const color = categoryFilterColors[cat]
+                return (
+                  <button key={cat} onClick={() => handleCategoryToggle(cat)} className="flex items-center gap-4 px-10 py-4 rounded-full text-xs font-medium border transition-all hover:opacity-70" style={{ backgroundColor: `${color.bg}15`, borderColor: `${color.bg}30`, color: color.bg }}>
+                    {cat} <span className="text-[10px]">✕</span>
+                  </button>
+                )
+              })}
+              <button onClick={() => { setSelectedCategories([]); setSearchTerm('') }} className="text-xs text-gray-400 hover:text-primary transition-colors ml-4">Clear all</button>
+            </div>
+          )}
         </div>
 
         {loading ? (
@@ -343,7 +405,7 @@ export const ArchivesGalleryTemplate = () => {
           </div>
         ) : (
           <div className="bg-[#f9fafb] rounded-[20px] p-60 text-center text-gray-500">
-            No gallery items found for selected category.
+            No items found matching your filters.
           </div>
         )}
       </div>

@@ -114,7 +114,7 @@ const FilterModal = ({
   }
   const statusFilterColors: Record<string, { bg: string; text: string }> = {
     ongoing: { bg: '#D6B14D', text: '#FFFFFF' },
-    completed: { bg: '#8B8B8B', text: '#FFFFFF' },
+    completed: { bg: '#E8889C', text: '#FFFFFF' },
   }
 
   return (

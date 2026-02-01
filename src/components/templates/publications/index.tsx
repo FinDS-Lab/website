@@ -63,25 +63,25 @@ const FilterModal = ({
   onReset: () => void;
   onClose: () => void;
 }) => {
-  // Color map for filter options
+  // Color map for filter options - matches actual badge/rendering colors
   const filterColors: Record<string, { bg: string; border: string; text: string }> = {
-    'Journal': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
-    'Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Journal': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
     'Book': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
-    'Report': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
-    'SCIE': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
-    'SSCI': { bg: '#C0392B', border: '#C0392B', text: '#FFFFFF' },
-    'A&HCI': { bg: '#D4654A', border: '#D4654A', text: '#FFFFFF' },
-    'ESCI': { bg: '#D6A076', border: '#D6A076', text: '#FFFFFF' },
+    'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
+    'SCIE': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+    'SSCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+    'A&HCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
+    'ESCI': { bg: '#C9A833', border: '#C9A833', text: '#FFFFFF' },
     'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-    'Other International': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
-    'KCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'Other Domestic': { bg: '#9A7D1F', border: '#9A7D1F', text: '#FFFFFF' },
+    'Other International': { bg: '#D6C360', border: '#D6C360', text: '#5C4A1E' },
+    'KCI': { bg: '#64748b', border: '#64748b', text: '#FFFFFF' },
+    'Other Domestic': { bg: '#94a3b8', border: '#94a3b8', text: '#FFFFFF' },
     'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
     'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
     'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-    'Oral': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
-    'Poster': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+    'Oral': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
+    'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
   }
 
   const sections = [
