@@ -425,8 +425,8 @@ export const ProjectsTemplate = () => {
               </div>
             </div>
 
-            {/* Type Stats - 2x2 Grid */}
-            <div className="grid grid-cols-2 gap-8 md:gap-12">
+            {/* Type Stats - 2x2 Mobile, 1x4 PC */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col">

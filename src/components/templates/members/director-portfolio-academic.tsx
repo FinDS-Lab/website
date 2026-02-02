@@ -28,6 +28,9 @@ import {
   ZoomOut,
   Maximize2,
   X,
+  Folder,
+  Factory,
+  Building2,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {AcademicActivitiesData, Publication} from '@/types/data'
@@ -1169,6 +1172,15 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
     )
   }
 
+  // Project statistics for the stats card
+  const projectStats = useMemo(() => ({
+    total: projects.length,
+    government: projects.filter(p => p.type === 'government').length,
+    industry: projects.filter(p => p.type === 'industry').length,
+    institution: projects.filter(p => p.type === 'institution').length,
+    academic: projects.filter(p => p.type === 'academic').length,
+  }), [projects])
+
   // Group lectures by course name and aggregate semesters, with role information
   const groupedLectures = useMemo(() => {
     const filtered = teachingSearchTerm.trim()
@@ -1813,6 +1825,84 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                 </div>
               )}
             </section>
+
+            {/* Project Statistics */}
+            {projects.length > 0 && (
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden p-20 md:p-24">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12 mb-16 md:mb-20">
+                  <span className="w-8 h-8 rounded-full bg-primary" />
+                  Project Statistics
+                </h3>
+                
+                {/* Total - Full Width */}
+                <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300 mb-8 md:mb-12">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{projectStats.total}</span>
+                    <div className="flex items-center gap-6">
+                      <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Type Stats - 2x2 Mobile, 1x4 PC */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{projectStats.government}</span>
+                      <div className="flex items-center gap-6">
+                        <Landmark className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">
+                          <span className="hidden sm:inline">Government</span>
+                          <span className="sm:hidden">Gov.</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{projectStats.industry}</span>
+                      <div className="flex items-center gap-6">
+                        <Factory className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">
+                          <span className="hidden sm:inline">Industry</span>
+                          <span className="sm:hidden">Ind.</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{projectStats.institution}</span>
+                      <div className="flex items-center gap-6">
+                        <Building2 className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">
+                          <span className="hidden sm:inline">Institution</span>
+                          <span className="sm:hidden">Inst.</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{projectStats.academic}</span>
+                      <div className="flex items-center gap-6">
+                        <GraduationCap className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">
+                          <span className="hidden sm:inline">Research</span>
+                          <span className="sm:hidden">Res.</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
 
             {/* Projects */}
             {projects.length > 0 && (
