@@ -1,6 +1,6 @@
 import React, {memo, useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, UserCheck, Users} from 'lucide-react'
+import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, Lightbulb, Users} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 // Scroll animation hook
@@ -366,10 +366,10 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#FFBAC4]/50 hover:shadow-lg hover:shadow-[#FFBAC4]/10 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFBAC4]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
-                    <UserCheck className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
+                    <Lightbulb className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#FFBAC4', opacity: 0.7}} />
                     <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 min-h-[28px] md:min-h-0 justify-center">
-                      <UserCheck className="hidden md:block size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
+                      <Lightbulb className="hidden md:block size-16" style={{color: '#FFBAC4', opacity: 0.7}} />
                       <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">Former<br className="md:hidden" /> Undergraduate<br className="md:hidden" /> Researchers</span>
                     </div>
                   </div>

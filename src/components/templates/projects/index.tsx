@@ -1,6 +1,6 @@
 import {memo, useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, Calendar, Building2, Landmark, GraduationCap, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search, CheckCircle, Factory, User, UserCheck, UserPlus, Users} from 'lucide-react'
+import {Home, Calendar, School, Landmark, FlaskConical, Briefcase, ChevronDown, ChevronUp, Folder, TrendingUp, SlidersHorizontal, X, Search, CheckCircle, Factory} from 'lucide-react'
 import banner4 from '@/assets/images/banner/4.webp'
 
 // Scroll animation hook
@@ -57,7 +57,7 @@ const typeConfig = {
     textColor: 'text-[#9A7D1F]',
   },
   industry: {
-    icon: Building2,
+    icon: School,
     label: 'Industry',
     labelShort: 'Ind.',
     labelPlural: 'Industry Projects',
@@ -68,7 +68,7 @@ const typeConfig = {
     textColor: 'text-[#AC0E0E]',
   },
   institution: {
-    icon: GraduationCap,
+    icon: FlaskConical,
     label: 'Institution',
     labelShort: 'Inst.',
     labelPlural: 'Institution Projects',
@@ -453,7 +453,7 @@ export const ProjectsTemplate = () => {
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
-                    <Building2 className="size-14 md:size-16 text-gray-400" />
+                    <School className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
                   </div>
                 </div>
@@ -463,7 +463,7 @@ export const ProjectsTemplate = () => {
                 <div className="flex flex-col">
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
-                    <GraduationCap className="size-14 md:size-16 text-gray-400" />
+                    <FlaskConical className="size-14 md:size-16 text-gray-400" />
                     <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
                   </div>
                 </div>

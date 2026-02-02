@@ -18,7 +18,7 @@ import {
   Activity,
   Award,
   Landmark,
-  GraduationCap,
+  FlaskConical,
   Calendar,
   BookOpen,
   Search,
@@ -29,10 +29,11 @@ import {
   X,
   Folder,
   Factory,
-  Building2,
-  UserCheck,
-  UserPlus,
-  Users,
+  School,
+  Crown,
+  ShieldCheck,
+  Compass,
+  Microscope,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {AcademicActivitiesData, Publication} from '@/types/data'
@@ -1822,7 +1823,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{projectStats.institution}</span>
                       <div className="flex items-center gap-6">
-                        <Building2 className="size-14 md:size-16 text-gray-400" />
+                        <School className="size-14 md:size-16 text-gray-400" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
                       </div>
                     </div>
@@ -1832,7 +1833,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{projectStats.academic}</span>
                       <div className="flex items-center gap-6">
-                        <GraduationCap className="size-14 md:size-16 text-gray-400" />
+                        <FlaskConical className="size-14 md:size-16 text-gray-400" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
                       </div>
                     </div>
@@ -1847,7 +1848,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{projectStats.pi}</span>
                       <div className="flex items-center gap-6">
-                        <UserCheck className="size-14 md:size-16 text-gray-900" />
+                        <Crown className="size-14 md:size-16 text-gray-900" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Principal Investigator</span>
                       </div>
                     </div>
@@ -1857,7 +1858,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600 transition-all duration-300">{projectStats.lead}</span>
                       <div className="flex items-center gap-6">
-                        <UserPlus className="size-14 md:size-16 text-gray-600" />
+                        <ShieldCheck className="size-14 md:size-16 text-gray-600" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Lead Researcher</span>
                       </div>
                     </div>
@@ -1867,7 +1868,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{projectStats.visiting}</span>
                       <div className="flex items-center gap-6">
-                        <Users className="size-14 md:size-16 text-gray-500" />
+                        <Compass className="size-14 md:size-16 text-gray-500" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Visiting Researcher</span>
                       </div>
                     </div>
@@ -1877,7 +1878,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400 transition-all duration-300">{projectStats.researcher}</span>
                       <div className="flex items-center gap-6">
-                        <User className="size-14 md:size-16 text-gray-400" />
+                        <Microscope className="size-14 md:size-16 text-gray-400" />
                         <span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span>
                       </div>
                     </div>

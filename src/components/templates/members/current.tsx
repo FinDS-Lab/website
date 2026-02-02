@@ -1,6 +1,6 @@
 import { memo, useState, useEffect, useMemo, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Users, GraduationCap, BookOpen, UserCheck, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles} from 'lucide-react'
+import { Users, GraduationCap, BookOpen, Lightbulb, ChevronRight, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles} from 'lucide-react'
 import type { MemberData } from '@/types/data'
 
 // Scroll animation hook
@@ -202,7 +202,7 @@ export const MembersCurrentTemplate = () => {
       phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#D6A076' },
       ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#D6A076' },
-      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: UserCheck, color: '#D6A076' },
+      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: Lightbulb, color: '#D6A076' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#9A7D1F' },
     }
   }, [members])

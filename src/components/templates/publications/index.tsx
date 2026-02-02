@@ -8,7 +8,7 @@ import {
   Home,
   FileText,
   MessageSquare,
-  BookOpen,
+  BookMarked,
   FileCheck,
   BarChart3,
   Copy,
@@ -406,7 +406,7 @@ export const PublicationsTemplate = () => {
       items: [
         { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' },
         { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' },
-        { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookOpen, color: '#E8D688' },
+        { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookMarked, color: '#E8D688' },
         { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' },
       ]
     }
