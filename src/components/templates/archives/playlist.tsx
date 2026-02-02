@@ -427,6 +427,8 @@ export const ArchivesPlaylistTemplate = () => {
                         src={item.thumbnail?.replace('maxresdefault', 'default')} 
                         alt=""
                         className="w-36 h-36 md:w-40 md:h-40 object-cover rounded-md flex-shrink-0"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement
                           if (target.src.includes('maxresdefault')) {
@@ -473,7 +475,9 @@ export const ArchivesPlaylistTemplate = () => {
                     <img 
                       src={item.thumbnail} 
                       alt={item.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement
                         if (target.src.includes('maxresdefault')) {
@@ -549,7 +553,7 @@ export const ArchivesPlaylistTemplate = () => {
                   src={currentVideo.thumbnail?.replace('maxresdefault', 'default')} 
                   alt={currentVideo.title}
                   className="w-40 h-40 object-cover rounded-md"
-                />
+                loading="lazy" decoding="async" />
               )}
               <div className="min-w-0">
                 <p className="text-gray-400 text-[10px] md:text-xs truncate">{currentVideo.artist}</p>

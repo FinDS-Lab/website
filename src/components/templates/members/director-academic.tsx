@@ -1364,7 +1364,7 @@ export const MembersDirectorAcademicTemplate = () => {
             >
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
-                  <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                  <img loading="lazy" decoding="async" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">
                   Insu Choi
@@ -2037,7 +2037,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
                               {schoolLogo ? (
-                                <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                                <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
                               ) : (
                                 <BookOpen size={18} style={{color: '#D6B14D'}} />
                               )}
@@ -2107,7 +2107,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <div className="flex items-start gap-12 md:gap-16">
                             <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#E8889C]/30 bg-white overflow-hidden">
                               {schoolLogo ? (
-                                <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                                <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
                               ) : (
                                 <BookOpen size={18} style={{color: '#E8889C'}} />
                               )}

@@ -1553,7 +1553,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                         <div className="text-center">
                           {/* Logo */}
                           <div className="size-80 bg-gray-50 rounded-xl p-12 flex items-center justify-center mx-auto mb-16">
-                            <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
+                            <img loading="lazy" decoding="async" src={act.logo} alt={act.name} className="w-full h-full object-contain"/>
                           </div>
 
                           {/* Name */}
@@ -1602,7 +1602,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     className="flex items-center gap-16 bg-white border border-gray-100 rounded-xl p-20 hover:shadow-lg hover:border-[#D6B14D]/30 transition-all group text-left"
                   >
                     <div className="size-56 bg-gray-50 rounded-xl p-8 flex items-center justify-center group-hover:bg-primary/5 transition-colors shrink-0">
-                      <img loading="lazy" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
+                      <img loading="lazy" decoding="async" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-bold text-primary">{act.name}</h4>

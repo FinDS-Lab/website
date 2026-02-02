@@ -559,7 +559,7 @@ export const MembersDirectorTemplate = () => {
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
                 <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
-                  <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                  <img loading="lazy" decoding="async" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
                 </div>
                 <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
               </div>
@@ -750,7 +750,7 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
-                        <img loading="lazy" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
+                        <img loading="lazy" decoding="async" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
@@ -797,7 +797,7 @@ export const MembersDirectorTemplate = () => {
                     </div>
                     <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
-                        <img loading="lazy" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
+                        <img loading="lazy" decoding="async" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center">
                         <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
@@ -997,7 +997,7 @@ export const MembersDirectorTemplate = () => {
                                 <div className="flex items-start gap-12 md:gap-16">
                                   <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
                                     {schoolLogo ? (
-                                      <img loading="lazy" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
+                                      <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
                                     ) : (
                                       <BookOpen size={18} style={{color: '#D6B14D'}} />
                                     )}

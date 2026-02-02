@@ -101,7 +101,7 @@ export const LocationTemplate = () => {
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
-              loading="lazy"
+              loading="lazy" decoding="async"
               referrerPolicy="no-referrer-when-downgrade"
               title="Gachon University - Gachon Hall"
             />

@@ -1474,7 +1474,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#A6CE39]/50 hover:shadow-lg hover:shadow-[#A6CE39]/10 transition-all duration-300"
                   >
                     <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" />
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/orcid.webp`} alt="ORCID" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                     </div>
                     <div className="flex-1 md:text-center">
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">ORCID</p>
@@ -1491,7 +1491,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#E9711C]/50 hover:shadow-lg hover:shadow-[#E9711C]/10 transition-all duration-300"
                   >
                     <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" />
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/scopus.webp`} alt="Scopus" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                     </div>
                     <div className="flex-1 md:text-center">
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">Scopus</p>
@@ -1508,7 +1508,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     className="group flex flex-row md:flex-col items-center p-16 md:p-20 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-[#5E33BF]/50 hover:shadow-lg hover:shadow-[#5E33BF]/10 transition-all duration-300"
                   >
                     <div className="size-40 md:size-56 md:mb-12 mr-16 md:mr-0 flex items-center justify-center shrink-0">
-                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" />
+                      <img src={`${import.meta.env.BASE_URL || '/'}images/wos_logo.webp`} alt="Web of Science" className="w-full h-full object-contain" loading="lazy" decoding="async" />
                     </div>
                     <div className="flex-1 md:text-center">
                       <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-2 md:mb-4">Web of Science</p>

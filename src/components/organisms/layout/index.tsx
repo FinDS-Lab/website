@@ -200,7 +200,7 @@ const LayoutOrganisms = ({ children }: props) => {
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo with animated text - PC only animation, mobile static */}
           <Link to="/" className="flex items-center gap-12 md:gap-16" aria-label="FINDS Lab 홈으로 이동">
-            <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" />
+            <img src={logoFinds} alt="FINDS Lab" className="h-40 md:max-h-59" decoding="async" />
             
             {/* Mobile: Static FINDS Lab */}
             <span className="md:hidden text-lg font-bold">

@@ -543,7 +543,7 @@ export const AboutIntroductionTemplate = () => {
                               <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                 <div className="absolute inset-0 bg-[#FFF9E6] rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-white rounded-xl shadow-sm flex items-center justify-center overflow-hidden">
-                                  <img loading="lazy" src={area.image} alt={area.title} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
+                                  <img loading="lazy" decoding="async" src={area.image} alt={area.title} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                 </div>
                               </div>
 
@@ -637,7 +637,7 @@ export const AboutIntroductionTemplate = () => {
                                 <div className="relative w-100 h-100 md:w-140 md:h-140 mx-auto mb-16 shrink-0">
                                   <div className="absolute inset-0 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" style={{ background: 'rgba(214, 177, 77, 0.2)' }} />
                                   <div className="absolute inset-0 rounded-xl shadow-sm flex items-center justify-center overflow-hidden" style={{ background: '#FFF9E6' }}>
-                                    <img loading="lazy" src={value.image} alt={value.label} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
+                                    <img loading="lazy" decoding="async" src={value.image} alt={value.label} className="w-80 h-80 md:w-120 md:h-120 object-contain" />
                                   </div>
                                 </div>
 
