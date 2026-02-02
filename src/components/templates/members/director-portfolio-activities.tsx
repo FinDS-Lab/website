@@ -1825,11 +1825,6 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                       style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
                                     >
                                       {year}
-                                      {program && (
-                                        <span className="absolute top-full left-0 mt-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                                          {program}
-                                        </span>
-                                      )}
                                     </span>
                                   )
                                 })}
@@ -1853,11 +1848,6 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                   style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
                                 >
                                   {year}
-                                  {program && (
-                                    <span className="absolute top-full left-0 mt-6 px-8 py-4 bg-gray-800 text-white text-[10px] rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                                      {program}
-                                    </span>
-                                  )}
                                 </span>
                               )
                             })}
