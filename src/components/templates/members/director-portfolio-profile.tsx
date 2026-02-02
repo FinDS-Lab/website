@@ -186,8 +186,8 @@ const education: any[] = [
     ],
     awards: [
       {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'},
-      {title: '2nd Award', titleKo: '은상', org: '4th Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
-      {title: '3rd Award', titleKo: '동상', org: '3rd Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
+      {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '4th Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
+      {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '3rd Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
     ],
     honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students'}],
     logo: logoKyunghee
@@ -816,8 +816,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
                       {/* Header: Logo + Degree/School/Field */}
-                      <div className="flex items-start gap-12 md:gap-16">
-                        <div className="size-48 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
+                      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
+                        <div className="size-40 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
                           <img loading="lazy" decoding="async" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0">
@@ -838,7 +838,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             )}
                           </div>
                           {/* Degree - Largest */}
-                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree}</p>
+                          <p className="text-sm md:text-base font-bold text-gray-900 leading-tight">{edu.degree.includes("(Ph.D.") ? <>{edu.degree.split(" (")[0]}<br className="md:hidden" /><span className="text-xs md:text-base text-gray-500 md:text-gray-900 font-semibold md:font-bold"> ({edu.degree.split(" (")[1]}</span></> : edu.degree}</p>
                           {/* School - Medium */}
                           <p className="text-xs md:text-sm text-gray-500 font-bold mt-2">{edu.school}</p>
                           {/* Field - Department */}

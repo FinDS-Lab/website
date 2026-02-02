@@ -43,15 +43,15 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
           return (
             <div
               key={index}
-              className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-16 animate-fadeIn"
-              style={{zIndex: 10000 + index}}
+              className="fixed w-full h-full top-0 left-0 flex items-center justify-center bg-black/30 px-40 max-md:px-16 animate-fadeIn overscroll-contain"
+              style={{zIndex: 10000 + index, touchAction: 'none'}}
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
               ref={isTopModal ? modalRef : undefined}
             >
               <div
                 className="w-full max-h-[85vh] bg-white rounded-xl shadow-[rgb(0_0_0_/_15%)_0_0_6px_0] p-20 flex flex-col items-center justify-between gap-20 relative m-[7.5vh_auto_auto_auto] animate-fadeIn"
-                style={{maxWidth: modal.maxWidth || '900px'}}
+                style={{maxWidth: modal.maxWidth || '900px', touchAction: 'auto', overscrollBehavior: 'contain'}}
               >
                 {/* X button inside modal for mobile visibility */}
                 <button 
