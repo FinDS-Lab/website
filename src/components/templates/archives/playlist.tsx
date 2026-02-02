@@ -553,7 +553,7 @@ export const ArchivesPlaylistTemplate = () => {
                   src={currentVideo.thumbnail?.replace('maxresdefault', 'default')} 
                   alt={currentVideo.title}
                   className="w-40 h-40 object-cover rounded-md"
-                loading="lazy" decoding="async" />
+                />
               )}
               <div className="min-w-0">
                 <p className="text-gray-400 text-[10px] md:text-xs truncate">{currentVideo.artist}</p>
