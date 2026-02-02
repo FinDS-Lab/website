@@ -433,10 +433,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.government}</span>
                   <div className="flex items-center gap-6">
                     <Landmark className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">
-                      <span className="hidden sm:inline">{stats.government === 1 ? 'Government' : 'Government'}</span>
-                      <span className="sm:hidden">Gov.</span>
-                    </span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
                   </div>
                 </div>
               </div>
@@ -446,10 +443,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{stats.industry}</span>
                   <div className="flex items-center gap-6">
                     <Factory className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">
-                      <span className="hidden sm:inline">{stats.industry === 1 ? 'Industry' : 'Industry'}</span>
-                      <span className="sm:hidden">Ind.</span>
-                    </span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
                   </div>
                 </div>
               </div>
@@ -459,10 +453,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
                   <div className="flex items-center gap-6">
                     <Building2 className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">
-                      <span className="hidden sm:inline">{stats.institution === 1 ? 'Institution' : 'Institution'}</span>
-                      <span className="sm:hidden">Inst.</span>
-                    </span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
                   </div>
                 </div>
               </div>
@@ -472,10 +463,7 @@ export const ProjectsTemplate = () => {
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{stats.academic}</span>
                   <div className="flex items-center gap-6">
                     <GraduationCap className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">
-                      <span className="hidden sm:inline">{stats.academic === 1 ? 'Research' : 'Research'}</span>
-                      <span className="sm:hidden">Res.</span>
-                    </span>
+                    <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
                   </div>
                 </div>
               </div>

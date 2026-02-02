@@ -175,7 +175,7 @@ const employment = [
     krOrg: '강사 / 경희대학교 공과대학 산업경영공학과',
     logo: logoKyunghee
   },
-  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022-06 – Present', location: 'WorldQuant Brain', krOrg: '연구 컨설턴트 / 월드퀀트 브레인', logo: logoWorldquant},
+  {position: 'Research Consultant', organization: 'WorldQuant Brain', period: '2022-06 – 2026-02', location: 'WorldQuant Brain', krOrg: '연구 컨설턴트 / 월드퀀트 브레인', logo: logoWorldquant},
   {position: 'Intern', organization: 'EY Consulting', period: '2020-03 – 2020-05', location: 'Performance Improvement Department', krOrg: '인턴 / EY컨설팅 성과개선팀', logo: logoEy},
   {position: 'Founder', organization: 'JL Creatives & Contents (JL C&C)', period: '2014-06 – Present', location: 'JL C&C', krOrg: '대표 / JL C&C', logo: logoJl},
 ]
