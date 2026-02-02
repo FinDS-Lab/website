@@ -1035,7 +1035,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{l.period}</span>
                                         </div>
                                       </div>
-                                      <span className="hidden md:inline-flex px-8 py-3 bg-gray-100 rounded-full text-[10px] font-bold text-gray-600 shrink-0 whitespace-nowrap">{l.period}</span>
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{l.period}</span>
                                     </div>
                                   ))}
                                 </div>
@@ -1291,7 +1291,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
                                         </div>
                                         {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                           {year}-{formatHonorDate(item.date)}
                                         </span>
                                       </div>

@@ -241,9 +241,9 @@ const activities = [
     url: '#'
   },
   {
-    name: 'FBA Quant',
+    name: 'FBA',
     logo: logoFba,
-    fullName: 'FBA Quant',
+    fullName: 'FBA Quantitative Research Group',
     fullNameKo: '',
     generation: '12th Generation',
     membership: [

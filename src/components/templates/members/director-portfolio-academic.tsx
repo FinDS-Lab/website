@@ -1635,7 +1635,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
-                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2025-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
@@ -1645,7 +1645,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
-                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-09 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
@@ -1655,7 +1655,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
-                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2023-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
@@ -1665,7 +1665,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
-                            <span className="hidden md:inline-flex px-8 py-2 text-[9px] font-bold rounded-full bg-white border border-gray-200 text-gray-600">2022-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
                           </div>
                         </div>
                       </div>
@@ -1698,7 +1698,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   )}
                                   <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{comm.period || comm.since}</span>
                                 </div>
-                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold bg-white border border-gray-200 text-gray-600 shrink-0">{comm.period || comm.since}</span>
+                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{comm.period || comm.since}</span>
                               </a>
                             ))}
                           </div>
@@ -1735,7 +1735,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   )}
                                   <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{chair.period || chair.since}</span>
                                 </div>
-                                <span className="hidden md:inline-flex px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">{chair.period || chair.since}</span>
+                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{chair.period || chair.since}</span>
                               </a>
                             ))}
                           </div>
@@ -1801,7 +1801,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                 <span className="text-xs font-bold text-gray-700">{conf.name}</span>
                                 <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{conf.period || conf.since}</span>
                               </div>
-                              <span className="hidden md:inline-flex items-center px-8 py-2 rounded-full text-[9px] font-bold shrink-0 bg-white border border-gray-200 text-gray-600">
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                 {conf.period || conf.since}
                               </span>
                             </a>
