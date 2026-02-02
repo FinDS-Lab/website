@@ -1039,6 +1039,17 @@ export const MembersDirectorActivitiesTemplate = () => {
   const [selectedUniversity, setSelectedUniversity] = useState<string>('all')
   const [menteeSearchTerm, setMenteeSearchTerm] = useState('')
   const [programTooltip, setProgramTooltip] = useState<{text: string, x: number, y: number} | null>(null)
+
+  useEffect(() => {
+    if (!programTooltip) return
+    const dismiss = () => setProgramTooltip(null)
+    window.addEventListener('scroll', dismiss, true)
+    window.addEventListener('touchstart', dismiss, true)
+    return () => {
+      window.removeEventListener('scroll', dismiss, true)
+      window.removeEventListener('touchstart', dismiss, true)
+    }
+  }, [programTooltip])
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
