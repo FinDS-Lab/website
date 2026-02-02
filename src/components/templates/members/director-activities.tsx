@@ -26,6 +26,7 @@ import {
   Check,
   X,
   Search,
+  Instagram,
 } from 'lucide-react'
 import type {AcademicActivitiesData, AuthorsData, Publication, Mentee, HonorsData} from '@/types/data'
 import {useStoreModal} from '@/store/modal'
@@ -188,7 +189,7 @@ const activities = [
     logo: logoCaptima,
     fullName: 'Computer Applications for Optima',
     fullNameKo: '경희대학교 산업경영공학과 컴퓨터학술동아리',
-    generation: '',
+    generation: '27th Generation',
     membership: [
       {role: 'Member', period: '2013-03 – 2018-02'},
       {role: 'Alumni', period: '2018-03 – Present'},
@@ -197,7 +198,8 @@ const activities = [
       {role: 'President', period: '2015-06 – 2015-12'},
       {role: 'Vice President', period: '2013-12 – 2014-08'},
     ],
-    url: '#'
+    url: '#',
+    instagram: 'https://www.instagram.com/captima_official/'
   },
   {
     name: 'KFAC',
@@ -213,7 +215,8 @@ const activities = [
       {role: 'Acting President', period: '2021-03 – 2021-08'},
       {role: 'Session Leader', period: '2018-09 – 2019-02'},
     ],
-    url: '#'
+    url: '#',
+    instagram: 'https://www.instagram.com/kaist_kfac/'
   },
   {
     name: 'Mensa Korea',
@@ -239,7 +242,8 @@ const activities = [
       {role: 'Alumni', period: '2020-01 – Present'},
     ],
     leadership: [],
-    url: '#'
+    url: '#',
+    instagram: 'https://www.instagram.com/iefield/'
   },
   {
     name: 'FBA',
@@ -1601,6 +1605,21 @@ export const MembersDirectorActivitiesTemplate = () => {
                                   </div>
                                 ))}
                               </div>
+                            </div>
+                          )}
+                          {/* Instagram */}
+                          {act.instagram && (
+                            <div className="mt-16 pt-16 border-t border-gray-100">
+                              <a
+                                href={act.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-8 px-16 py-10 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white rounded-xl text-xs font-bold hover:opacity-90 transition-opacity"
+                              >
+                                <Instagram size={14} />
+                                Instagram
+                              </a>
                             </div>
                           )}
                         </div>
