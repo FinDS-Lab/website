@@ -2029,7 +2029,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             const typeIcons = {
                               government: Landmark,
                               industry: Building,
-                              institution: GraduationCap,
+                              institution: School,
                               academic: Briefcase,
                             }
                             const typeLabels: Record<string, string> = {
