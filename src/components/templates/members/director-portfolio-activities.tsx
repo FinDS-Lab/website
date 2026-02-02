@@ -1039,6 +1039,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [selectedUniversity, setSelectedUniversity] = useState<string>('all')
   const [menteeSearchTerm, setMenteeSearchTerm] = useState('')
+  const [programTooltip, setProgramTooltip] = useState<{text: string, x: number, y: number} | null>(null)
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
@@ -1638,6 +1639,16 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
               )}
             </section>
 
+            {/* Mentoring Program Tooltip (fixed position, outside scroll) */}
+            {programTooltip && (
+              <div
+                className="fixed px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap pointer-events-none shadow-lg"
+                style={{left: programTooltip.x, top: programTooltip.y, zIndex: 99999}}
+              >
+                {programTooltip.text}
+              </div>
+            )}
+
             {/* Mentoring Program */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1816,20 +1827,16 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                   return (
                                     <span
                                       key={year}
-                                      title={program}
-                                      className={`relative group px-6 md:px-8 py-2 rounded text-[10px] font-bold cursor-help ${
+                                      className={`relative px-6 md:px-8 py-2 rounded text-[10px] font-bold ${program ? 'cursor-help' : ''} ${
                                         year === '2026'
                                           ? ''
                                           : 'bg-gray-100 text-gray-500'
                                       }`}
                                       style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                      onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); setProgramTooltip({text: program, x: rect.left, y: rect.bottom + 6}); }}}
+                                      onMouseLeave={() => setProgramTooltip(null)}
                                     >
                                       {year}
-                                      {program && (
-                                        <span className="absolute top-full left-0 mt-4 px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg" style={{zIndex: 9999}}>
-                                          {program}
-                                        </span>
-                                      )}
                                     </span>
                                   )
                                 })}
@@ -1844,20 +1851,16 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               return (
                                 <span
                                   key={year}
-                                  title={program}
-                                  className={`relative group px-6 py-2 rounded text-[10px] font-bold cursor-help ${
+                                  className={`relative px-6 py-2 rounded text-[10px] font-bold ${program ? 'cursor-help' : ''} ${
                                     year === '2026'
                                       ? ''
                                       : 'bg-gray-100 text-gray-500'
                                   }`}
                                   style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
+                                  onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); setProgramTooltip({text: program, x: rect.left, y: rect.bottom + 6}); }}}
+                                  onMouseLeave={() => setProgramTooltip(null)}
                                 >
                                   {year}
-                                  {program && (
-                                    <span className="absolute top-full left-0 mt-4 px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg" style={{zIndex: 9999}}>
-                                      {program}
-                                    </span>
-                                  )}
                                 </span>
                               )
                             })}
