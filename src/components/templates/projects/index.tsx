@@ -342,10 +342,6 @@ export const ProjectsTemplate = () => {
     industry: projects.filter(p => p.type === 'industry').length,
     institution: projects.filter(p => p.type === 'institution').length,
     academic: projects.filter(p => p.type === 'academic').length,
-    pi: projects.filter(p => p.roles.principalInvestigator === '최인수').length,
-    lead: projects.filter(p => p.roles.leadResearcher === '최인수').length,
-    visiting: projects.filter(p => p.roles.visitingResearcher === '최인수').length,
-    researcher: projects.filter(p => p.roles.researchers?.includes('최인수')).length,
   }
 
   const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
@@ -499,50 +495,7 @@ export const ProjectsTemplate = () => {
               </div>
             </div>
 
-            {/* Participation */}
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8">Participation</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-900/30 hover:shadow-lg transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-900/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{stats.pi}</span>
-                  <div className="flex items-center gap-6">
-                    <UserCheck className="size-14 md:size-16 text-gray-900" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Principal Investigator</span>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-600/30 hover:shadow-lg transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-600/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600 transition-all duration-300">{stats.lead}</span>
-                  <div className="flex items-center gap-6">
-                    <UserPlus className="size-14 md:size-16 text-gray-600" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Lead Researcher</span>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-500/30 hover:shadow-lg transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-500/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{stats.visiting}</span>
-                  <div className="flex items-center gap-6">
-                    <Users className="size-14 md:size-16 text-gray-500" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Visiting Researcher</span>
-                  </div>
-                </div>
-              </div>
-              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/30 hover:shadow-lg transition-all duration-300">
-                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400 transition-all duration-300">{stats.researcher}</span>
-                  <div className="flex items-center gap-6">
-                    <User className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Filter & Search - Matching Publications Style Exactly */}
