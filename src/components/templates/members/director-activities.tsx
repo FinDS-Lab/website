@@ -1792,7 +1792,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                 </div>
 
                 {/* Mentee List */}
-                <div className="max-h-400 overflow-y-auto overflow-x-hidden">
+                <div className="max-h-400 overflow-y-auto" style={{overflowX: "clip"}}>
                   {filteredMentees.length > 0 ? (
                     <div className="divide-y divide-gray-50">
                       {filteredMentees.map((mentee) => (
@@ -1829,6 +1829,11 @@ export const MembersDirectorActivitiesTemplate = () => {
                                       style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
                                     >
                                       {year}
+                                      {program && (
+                                        <span className="absolute top-full left-0 mt-4 px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg" style={{zIndex: 9999}}>
+                                          {program}
+                                        </span>
+                                      )}
                                     </span>
                                   )
                                 })}
@@ -1852,6 +1857,11 @@ export const MembersDirectorActivitiesTemplate = () => {
                                   style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
                                 >
                                   {year}
+                                  {program && (
+                                    <span className="absolute top-full left-0 mt-4 px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg" style={{zIndex: 9999}}>
+                                      {program}
+                                    </span>
+                                  )}
                                 </span>
                               )
                             })}
