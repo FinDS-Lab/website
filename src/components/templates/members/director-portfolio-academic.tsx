@@ -31,7 +31,6 @@ import {
   Folder,
   Factory,
   Building2,
-  User,
   UserCheck,
   UserPlus,
   Users,
@@ -64,6 +63,7 @@ type Project = {
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
+    visitingResearcher?: string
     researchers?: string[]
   }
 }
@@ -2063,6 +2063,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             const getDirectorRole = () => {
                               if (project.roles.principalInvestigator === '최인수') return 'Principal Investigator'
                               if (project.roles.leadResearcher === '최인수') return 'Lead Researcher'
+                              if (project.roles.visitingResearcher === '최인수') return 'Visiting Researcher'
                               if (project.roles.researchers?.includes('최인수')) return 'Researcher'
                               return 'Researcher'
                             }
