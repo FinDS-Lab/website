@@ -1179,17 +1179,33 @@ export const MembersDirectorAcademicTemplate = () => {
   }
 
   // Project statistics for the stats card
-  const projectStats = useMemo(() => ({
+  const projectStats = useMemo(() => {
+    // Priority-based exclusive counting: PI > Lead > Visiting > Researcher
+    const piProjects = projects.filter(p => p.roles.principalInvestigator === '최인수')
+    const piIds = new Set(piProjects.map((_, i) => i))
+    
+    const remaining1 = projects.filter((_, i) => !piIds.has(i))
+    const leadProjects = remaining1.filter(p => p.roles.leadResearcher === '최인수')
+    const leadSet = new Set(leadProjects.map(p => p.titleEn))
+    
+    const remaining2 = remaining1.filter(p => !leadSet.has(p.titleEn))
+    const visitingProjects = remaining2.filter(p => p.roles.visitingResearcher === '최인수')
+    const visitingSet = new Set(visitingProjects.map(p => p.titleEn))
+    
+    const remaining3 = remaining2.filter(p => !visitingSet.has(p.titleEn))
+    const researcherProjects = remaining3.filter(p => p.roles.researchers?.includes('최인수'))
+    
+    return {
     total: projects.length,
     government: projects.filter(p => p.type === 'government').length,
     industry: projects.filter(p => p.type === 'industry').length,
     institution: projects.filter(p => p.type === 'institution').length,
     academic: projects.filter(p => p.type === 'academic').length,
-    pi: projects.filter(p => p.roles.principalInvestigator === '최인수').length,
-    lead: projects.filter(p => p.roles.leadResearcher === '최인수').length,
-    visiting: projects.filter(p => p.roles.visitingResearcher === '최인수').length,
-    researcher: projects.filter(p => p.roles.researchers?.includes('최인수')).length,
-  }), [projects])
+    pi: piProjects.length,
+    lead: leadProjects.length,
+    visiting: visitingProjects.length,
+    researcher: researcherProjects.length,
+  }}, [projects])
 
   // Group lectures by course name and aggregate semesters, with role information
   const groupedLectures = useMemo(() => {

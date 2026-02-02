@@ -208,6 +208,7 @@ const FilterModal = ({
 export const ProjectsTemplate = () => {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [statsExpanded, setStatsExpanded] = useState(true)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set())
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
@@ -407,11 +408,13 @@ export const ProjectsTemplate = () => {
           
           {/* Statistics Section - Publications Style */}
           <div className={`flex flex-col gap-16 md:gap-24 transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
-            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+            <button onClick={() => setStatsExpanded(!statsExpanded)} className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12 hover:text-primary transition-colors w-fit">
               <span className="w-8 h-8 rounded-full bg-primary" />
               Statistics
-            </h3>
+              <ChevronDown className={`size-20 text-gray-400 transition-transform duration-300 ${statsExpanded ? 'rotate-180' : ''}`} />
+            </button>
             
+            {statsExpanded && (<>
             {/* Total - Full Width */}
             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -493,7 +496,7 @@ export const ProjectsTemplate = () => {
                 </div>
               </div>
             </div>
-
+            </>)}
 
           </div>
 
