@@ -321,15 +321,18 @@ export const MembersAlumniTemplate = () => {
           </div>
         ) : (
           <div className="space-y-48">
-            {/* Stats Summary - Total on top, 3 categories below */}
-            <div className="flex flex-col gap-16 md:gap-24 transition-opacity duration-500">
-              <button onClick={() => setStatsExpanded(!statsExpanded)} className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12 hover:text-primary transition-colors w-fit">
-                <span className="w-8 h-8 rounded-full bg-primary" />
-                Statistics
-                <ChevronDown className={`size-20 text-gray-400 transition-transform duration-300 ${statsExpanded ? 'rotate-180' : ''}`} />
+            {/* Stats Summary */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button onClick={() => setStatsExpanded(!statsExpanded)} className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
+                  <span className="w-8 h-8 rounded-full bg-primary" />
+                  Statistics
+                </h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${statsExpanded ? 'rotate-180' : ''}`} />
               </button>
               
-              {statsExpanded && (<>
+              {statsExpanded && (
+              <div className="flex flex-col gap-16 md:gap-24 p-20 md:p-24 border-t border-gray-100">
               {/* Total - Full width, centered */}
               <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -378,8 +381,9 @@ export const MembersAlumniTemplate = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            </>)}
+              </div>
+              )}
+            </section>
 
             {/* Ph.D. Section */}
             {phdAlumni.length > 0 ? (
