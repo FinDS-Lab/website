@@ -1707,7 +1707,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                 <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
                   <button
                     onClick={() => setSelectedMentoringYear('all')}
-                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex items-center gap-6 ${
+                    className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex flex-col items-center ${
                       selectedMentoringYear === 'all'
                         ? 'bg-primary text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -1724,7 +1724,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <button
                       key={year}
                       onClick={() => setSelectedMentoringYear(selectedMentoringYear === year ? 'all' : year)}
-                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex items-center gap-6 ${
+                      className={`px-12 md:px-16 py-6 md:py-8 rounded-full text-xs md:text-xs font-bold transition-all shrink-0 flex flex-col items-center ${
                         selectedMentoringYear === year
                           ? 'bg-primary text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
