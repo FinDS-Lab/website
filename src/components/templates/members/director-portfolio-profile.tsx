@@ -112,7 +112,7 @@ const education: any[] = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025-02',
-    degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
+    degree: 'Doctor of Philosophy in Engineering (Ph.D. in Engineering)',
     field: 'Department of Industrial and Systems Engineering',
     college: 'College of Engineering',
     dissertation: {

@@ -94,7 +94,7 @@ const education = [
   {
     school: 'Korea Advanced Institute of Science and Technology (KAIST)',
     period: '2025-02',
-    degree: 'Doctor of Philosophy (Ph.D.) in Engineering',
+    degree: 'Doctor of Philosophy in Engineering (Ph.D. in Engineering)',
     field: 'Industrial and Systems Engineering',
     location: 'Korea Advanced Institute of Science and Technology (KAIST)',
     krName: '한국과학기술원 (KAIST) 산업및시스템공학 공학박사',

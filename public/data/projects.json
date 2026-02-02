@@ -15,7 +15,7 @@
     },
     {
         "titleEn": "Portfolio Risk Assessment and Investment Transparency with Explainable AI",
-        "titleKo": "설명 가능한 인공지능 기법을 활용한 투자 성향 결정 요인 분석",
+        "titleKo": "설명 가능한 인공지능(XAI) 기법을 활용한 투자 성향 결정 요인 분석",
         "period": "2025-05-19 – 2025-09-12",
         "fundingAgency": "Korea Institute of Public Finance",
         "fundingAgencyKo": "한국조세재정연구원",
@@ -165,7 +165,7 @@
         "type": "government",
         "roles": {
             "principalInvestigator": "김지혜",
-            "leadResearcher": "최인수",
+            "visitingResearcher": "최인수",
             "researchers": []
         }
     },
@@ -201,7 +201,7 @@
     },
     {
         "titleEn": "Predicting Mobile Payment Behavior Through Explainable Machine Learning and Application Usage Analysis",
-        "titleKo": "설명 가능한 머신러닝(XAI) 및 앱 사용 분석을 활용한 모바일 결제 행동 예측 연구",
+        "titleKo": "설명 가능한 인공지능(XAI) 및 앱 사용 분석을 활용한 모바일 결제 행동 예측 연구",
         "period": "2023-09-01 – 2025-05-31",
         "fundingAgency": "Konkuk University",
         "fundingAgencyKo": "건국대학교 경영학과",
@@ -209,13 +209,13 @@
         "type": "academic",
         "roles": {
             "principalInvestigator": "",
-            "leadResearcher": "최인수",
+            "visitingResearcher": "최인수",
             "researchers": []
         }
     },
     {
         "titleEn": "Explainable AI-based Mass Appraisal: Insights from Machine Learning Applications in Korea's Residential Property Market",
-        "titleKo": "설명 가능한 AI(XAI) 기반의 대량 감정평가 모형 연구: 한국 주거용 부동산 시장 내 머신러닝 적용 사례를 중심으로",
+        "titleKo": "설명 가능한 인공지능(XAI) 기반의 대량 감정평가 모형 연구: 한국 주거용 부동산 시장 내 머신러닝 적용 사례를 중심으로",
         "period": "2024-07-01 – 2025-11-30",
         "fundingAgency": "Konkuk University",
         "fundingAgencyKo": "건국대학교 경영학과",
@@ -223,7 +223,7 @@
         "type": "academic",
         "roles": {
             "principalInvestigator": "",
-            "leadResearcher": "최인수",
+            "visitingResearcher": "최인수",
             "researchers": []
         }
     }
