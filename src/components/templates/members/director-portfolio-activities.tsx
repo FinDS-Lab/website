@@ -204,7 +204,7 @@ const activities = [
     name: 'KFAC',
     logo: logoKfac,
     fullName: 'KAIST Financial Analysis Club',
-    fullNameKo: 'KAIST 금융 분석 동아리',
+    fullNameKo: 'KAIST 금융분석학회',
     generation: '25th Generation',
     membership: [
       {role: 'Member', period: '2018-03 – 2019-02'},
@@ -218,6 +218,7 @@ const activities = [
   },
   {
     name: 'Mensa Korea',
+    hidden: true,
     logo: logoMensa,
     fullName: '',
     fullNameKo: '멘사코리아',
@@ -243,6 +244,7 @@ const activities = [
   },
   {
     name: 'FBA',
+    hidden: true,
     logo: logoFba,
     fullName: 'FBA Quantitative Research Group',
     fullNameKo: '',
@@ -256,6 +258,7 @@ const activities = [
   },
   {
     name: 'DadingCoding',
+    hidden: true,
     logo: logoDading,
     fullName: '',
     fullNameKo: '대딩코딩',
@@ -1544,7 +1547,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
               {expandedSections.activities && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16 p-20 md:p-24 border-t border-gray-100">
-                {activities.map((act) => (
+                {activities.filter(a => !a.hidden).map((act) => (
                   <button
                     key={act.name}
                     onClick={() => showModal({
