@@ -1222,7 +1222,7 @@ export const PublicationsTemplate = () => {
                                                   <span className="absolute left-4 bottom-full border-4 border-transparent border-b-gray-900"></span>
                                                   {pub.award_details ? (
                                                     <>
-                                                      <span className="font-bold text-yellow-400">{pub.award_details.prize_ko || pub.award_details.prize}</span>
+                                                      <span className="font-bold text-[#D6B14D]">{pub.award_details.prize_ko || pub.award_details.prize}</span>
                                                       {pub.award_details.category_ko || pub.award_details.category ? (
                                                         <span className="block text-gray-300 mt-1">{pub.award_details.category_ko || pub.award_details.category}</span>
                                                       ) : null}

@@ -1039,7 +1039,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
   const [selectedMentoringYear, setSelectedMentoringYear] = useState<string>('all')
   const [selectedUniversity, setSelectedUniversity] = useState<string>('all')
   const [menteeSearchTerm, setMenteeSearchTerm] = useState('')
-  const [programTooltip, setProgramTooltip] = useState<{text: string, x: number, y: number} | null>(null)
+  const [programTooltip, setProgramTooltip] = useState<{name: string, org: string, x: number, y: number} | null>(null)
 
   useEffect(() => {
     if (!programTooltip) return
@@ -1051,6 +1051,16 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
       window.removeEventListener('touchstart', dismiss, true)
     }
   }, [programTooltip])
+
+  const parseProgramInfo = useCallback((program: string) => {
+    const map: Record<string, {name: string, org: string}> = {
+      '경희대학교 공학교육혁신센터 1인 1멘토 평생멘토링 프로그램': {name: '1인1멘토 평생멘토링 프로그램', org: '경희대학교 공학교육혁신센터'},
+      '경희대학교 교수학습개발원 Learning Step-Up 튜터링 프로그램': {name: 'Learning Step-Up 튜터링 프로그램', org: '경희대학교 교수학습개발원'},
+      '경희대학교 후마니타스칼리지 신입생세미나 프로그램': {name: '신입생세미나 프로그램', org: '경희대학교 후마니타스칼리지'},
+      '자체 멘토링 프로그램': {name: '자체 멘토링 프로그램', org: ''},
+    }
+    return map[program] || {name: program, org: ''}
+  }, [])
   const [emailCopied, setEmailCopied] = useState(false)
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
@@ -1653,10 +1663,11 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
             {/* Mentoring Program Tooltip (fixed position, outside scroll) */}
             {programTooltip && (
               <div
-                className="fixed px-10 py-6 bg-gray-900 text-white text-[10px] rounded-lg whitespace-nowrap pointer-events-none shadow-lg"
+                className="fixed px-12 py-8 bg-gray-900 text-white text-[10px] rounded-lg pointer-events-none shadow-2xl border border-gray-700/50"
                 style={{left: programTooltip.x, top: programTooltip.y, zIndex: 99999}}
               >
-                {programTooltip.text}
+                <span className="font-bold text-[#D6B14D] block">{programTooltip.name}</span>
+                {programTooltip.org && <span className="block text-gray-400 mt-1">{programTooltip.org}</span>}
               </div>
             )}
 
@@ -1844,7 +1855,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                           : 'bg-gray-100 text-gray-500'
                                       }`}
                                       style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
-                                      onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); setProgramTooltip({text: program, x: rect.left, y: rect.bottom + 6}); }}}
+                                      onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); const info = parseProgramInfo(program); setProgramTooltip({name: info.name, org: info.org, x: rect.left, y: rect.bottom + 6}); }}}
                                       onMouseLeave={() => setProgramTooltip(null)}
                                     >
                                       {year}
@@ -1868,7 +1879,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                       : 'bg-gray-100 text-gray-500'
                                   }`}
                                   style={year === '2026' ? {backgroundColor: 'rgba(255,183,197,0.3)', color: 'rgb(172,14,14)'} : {}}
-                                  onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); setProgramTooltip({text: program, x: rect.left, y: rect.bottom + 6}); }}}
+                                  onMouseEnter={(e) => { if (program) { const rect = e.currentTarget.getBoundingClientRect(); const info = parseProgramInfo(program); setProgramTooltip({name: info.name, org: info.org, x: rect.left, y: rect.bottom + 6}); }}}
                                   onMouseLeave={() => setProgramTooltip(null)}
                                 >
                                   {year}
