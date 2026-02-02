@@ -124,8 +124,8 @@ const education: any[] = [
     ],
     researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
     leadership: [
-      {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 - 2025-01'},
-      {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 - 2025-01'},
+      {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 – 2025-01'},
+      {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 – 2025-01'},
     ],
     awards: [{title: 'Best Doctoral Dissertation Award', titleKo: '우수박사학위논문상', org: 'Korean Operations Research and Management Science Society (KORMS)'}],
     honors: [],
@@ -181,8 +181,8 @@ const education: any[] = [
       role: 'Undergraduate Researcher'
     },
     leadership: [
-      {role: 'Head of Culture & Public Relations', roleKo: '문화홍보국장', context: '41st Student Council, College of Engineering', contextKo: '제41대 공과대학 학생회', period: '2017-01 - 2017-11'},
-      {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 - 2016-12'},
+      {role: 'Head of Culture & Public Relations', roleKo: '문화홍보국장', context: '41st Student Council, College of Engineering', contextKo: '제41대 공과대학 학생회', period: '2017-01 – 2017-11'},
+      {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 – 2016-12'},
     ],
     awards: [
       {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'},

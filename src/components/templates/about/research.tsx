@@ -93,7 +93,7 @@ const researchAreas = [
         ko: '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
       },
       {
-        en: 'Multi-Perspective Insight Synthesis for Informed Decisions',
+        en: 'Multi-Perspective Insight Extraction for Decision Making',
         ko: '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합',
       },
     ],

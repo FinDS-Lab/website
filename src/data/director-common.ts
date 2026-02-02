@@ -62,7 +62,7 @@ export const researchInterests = [
     items: [
       'Design and Optimization of Trustworthy Decision Systems',
       'Risk-Aware Decision Support Frameworks',
-      'Multi-Perspective Insight Synthesis for Informed Decisions'
+      'Multi-Perspective Insight Extraction for Decision Making'
     ],
     itemsKo: [
       '신뢰할 수 있는 의사결정 시스템 설계와 최적화',

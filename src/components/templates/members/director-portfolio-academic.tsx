@@ -93,8 +93,8 @@ const education = [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
     leadership: [
-      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 - 2025-01'},
-      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 - 2025-01'},
+      {role: 'Member', context: 'Graduate School Central Operations Committee', period: '2021-09 – 2025-01'},
+      {role: 'Graduate Student Representative', context: 'Department of Industrial and Systems Engineering', period: '2021-09 – 2025-01'},
     ],
     awards: [{title: 'Best Doctoral Dissertation Award', org: 'Korean Operations Research and Management Science Society (KORMS, 한국경영과학회)'}],
     logo: logoKaist
@@ -121,8 +121,8 @@ const education = [
       {name: 'Myoung-Ju Park', url: 'https://scholar.google.com/citations?user=O8OYIzMAAAAJ&hl=en&oi=sra'}
     ],
     leadership: [
-      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 - 2017-11'},
-      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 - 2016-12'},
+      {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 – 2017-11'},
+      {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 – 2016-12'},
     ],
     awards: [{title: 'Valedictorian', org: '1st out of 86 students'}],
     logo: logoKyunghee
