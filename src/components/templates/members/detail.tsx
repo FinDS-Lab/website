@@ -40,10 +40,10 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   }
 
   const sendButtonColor = degree === 'undergrad' 
-    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
+    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90' 
     : degree === 'phd' 
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
-    : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
+    : 'bg-[#D6A076] hover:bg-[#D6A076]/90'
 
   return (
     <div
@@ -170,9 +170,9 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
 
   const degreeColors: Record<string, string> = {
     phd: 'bg-[#D6B14D]/20 text-[#D6B14D]',
-    combined: 'bg-[#FF6B6B]/20 text-[#FF6B6B]',
-    ms: 'bg-[#FF6B6B]/20 text-[#FF6B6B]',
-    undergrad: 'bg-[#E8889C]/20 text-[#E8889C]',
+    combined: 'bg-[#D6A076]/20 text-[#D6A076]',
+    ms: 'bg-[#D6A076]/20 text-[#D6A076]',
+    undergrad: 'bg-[#D6A076]/20 text-[#D6A076]',
   }
 
   return (
@@ -257,10 +257,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                       onClick={() => setShowEmailPopup(!showEmailPopup)}
                       className={`flex items-center justify-center gap-8 px-16 py-10 rounded-xl text-sm font-medium transition-colors w-full ${
                         member.degree === 'undergrad' 
-                          ? 'bg-[#E8889C]/10 hover:bg-[#E8889C]/20 text-[#E8889C]'
+                          ? 'bg-[#E8889C]/10 hover:bg-[#D6A076]/20 text-[#D6A076]'
                           : member.degree === 'phd'
                           ? 'bg-[#D6B14D]/10 hover:bg-[#D6B14D]/20 text-[#D6B14D]'
-                          : 'bg-[#FF6B6B]/10 hover:bg-[#FF6B6B]/20 text-[#FF6B6B]'
+                          : 'bg-[#E8889C]/10 hover:bg-[#D6A076]/20 text-[#D6A076]'
                       }`}
                     >
                       <Mail size={16} />
@@ -366,7 +366,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                         {edu.school_en || edu.school}
                       </h4>
                       <p className="text-sm font-semibold text-gray-500">{edu.field_en || edu.field}</p>
-                      <span className="text-xs font-medium mt-4" style={{ color: '#E8889C' }}>
+                      <span className="text-xs font-medium mt-4" style={{ color: '#D6A076' }}>
                         {edu.start} - {edu.end || edu.expected || 'Present'}
                       </span>
                       {(edu.doubleMajor || edu.minor) && (

@@ -1615,7 +1615,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-8 px-16 py-10 bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] text-white rounded-xl text-xs font-bold hover:opacity-90 transition-opacity"
+                                className="inline-flex items-center gap-8 px-16 py-10 bg-[#D6B14D] text-white rounded-xl text-xs font-bold hover:opacity-90 transition-opacity"
                               >
                                 <Instagram size={14} />
                                 Instagram

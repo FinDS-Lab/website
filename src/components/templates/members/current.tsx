@@ -50,12 +50,12 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   }
 
   const sendButtonColor = degree === 'undergrad' 
-    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90' 
+    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90' 
     : degree === 'phd' 
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
     : degree === 'ms'
-    ? 'bg-[#E8889C] hover:bg-[#E8889C]/90'
-    : 'bg-[#FF6B6B] hover:bg-[#FF6B6B]/90'
+    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90'
+    : 'bg-[#D6A076] hover:bg-[#D6A076]/90'
 
   return (
     <div
@@ -110,7 +110,7 @@ const degreeBgStyles = {
   phd: {backgroundColor: '#D6B14D'},          // Gold
   'phd-candidate': {backgroundColor: '#D6B14D'},  // Gold
   'phd-student': {backgroundColor: '#D6B14D'},    // Gold
-  combined: {backgroundColor: '#FF6B6B'},      // Coral (석박사통합)
+  combined: {backgroundColor: '#D6A076'},      // Coral (석박사통합)
   ms: {backgroundColor: '#E8889C'},            // Pink (M.S.)
   undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
 }
@@ -120,7 +120,7 @@ const degreeHoverColors = {
   phd: '#D6B14D',
   'phd-candidate': '#D6B14D',
   'phd-student': '#D6B14D',
-  combined: '#FF6B6B',
+  combined: '#D6A076',
   ms: '#E8889C',
   undergrad: '#E8889C',
 }
@@ -200,9 +200,9 @@ export const MembersCurrentTemplate = () => {
 
     return {
       phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#FF6B6B' },
-      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#E8889C' },
-      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: UserCheck, color: '#E8889C' },
+      combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#D6A076' },
+      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#D6A076' },
+      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: UserCheck, color: '#D6A076' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#9A7D1F' },
     }
   }, [members])
