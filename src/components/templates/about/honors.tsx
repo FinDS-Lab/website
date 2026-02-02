@@ -149,13 +149,14 @@ export const AboutHonorsTemplate = () => {
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(honorsData)
-    // Always include current year even if empty
+    // 필터 없을 때만 현재 연도 포함
+    const hasFilters = selectedTypes.length > 0 || searchTerm.trim() !== ''
     const currentYear = new Date().getFullYear().toString()
-    if (!years.includes(currentYear)) {
+    if (!hasFilters && !years.includes(currentYear)) {
       years.push(currentYear)
     }
     return years.sort((a, b) => Number(b) - Number(a))
-  }, [honorsData])
+  }, [honorsData, selectedTypes, searchTerm])
 
   const getFilteredItems = (items: HonorItem[]) => {
     let filtered = items || []
@@ -407,10 +408,10 @@ export const AboutHonorsTemplate = () => {
               const yearCount = getYearCount(year)
               const currentYear = new Date().getFullYear()
               const isCurrentYear = Number(year) === currentYear
+              const hasFiltersActive = selectedTypes.length > 0 || searchTerm.trim() !== ''
 
-              // Show current year even if empty (don't filter out)
-              // For other years, skip if empty
-              if (yearCount === 0 && !isCurrentYear) return null
+              // 필터 없을 때: 현재 연도는 빈 상태도 표시. 필터 있을 때: 빈 연도 숨김
+              if (yearCount === 0 && (hasFiltersActive || !isCurrentYear)) return null
 
               return (
                 <div key={year} className={`border rounded-xl md:rounded-[20px] overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>

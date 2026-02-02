@@ -508,13 +508,14 @@ export const PublicationsTemplate = () => {
 
   const sortedYears = useMemo(() => {
     const years = Object.keys(publicationsByYear).map(Number)
-    // Always include current year (2026) even if empty
+    // 필터 없을 때만 현재 연도 포함
+    const hasActiveFilters = searchTerm.trim() !== '' || filters.type.length > 0 || filters.indexing.length > 0 || filters.conference.length > 0 || filters.presentation.length > 0
     const currentYear = new Date().getFullYear()
-    if (!years.includes(currentYear)) {
+    if (!hasActiveFilters && !years.includes(currentYear)) {
       years.push(currentYear)
     }
     return years.sort((a, b) => b - a)
-  }, [publicationsByYear])
+  }, [publicationsByYear, searchTerm, filters])
 
   // Timeline 차트용 데이터 (전체 publications 기준, 필터 무관, 2017년부터)
   const yearlyChartData = useMemo(() => {
@@ -551,7 +552,7 @@ export const PublicationsTemplate = () => {
     }))
   }, [publications])
 
-  // 현재 연도만 기본으로 펼침
+  // 현재 연도를 기본으로 펼침
   useEffect(() => {
     if (sortedYears.length > 0) {
       const currentYear = new Date().getFullYear()
@@ -996,6 +997,10 @@ export const PublicationsTemplate = () => {
                 const pubs = publicationsByYear[year] || []
                 const currentYear = new Date().getFullYear()
                 const isCurrentYear = year === currentYear
+                const hasFiltersActive = searchTerm.trim() !== '' || filters.type.length > 0 || filters.indexing.length > 0 || filters.conference.length > 0 || filters.presentation.length > 0
+
+                // 필터 있을 때 빈 연도 숨김
+                if (pubs.length === 0 && hasFiltersActive) return null
 
                 return (
                   <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
@@ -1208,7 +1213,7 @@ export const PublicationsTemplate = () => {
                                   <div className="flex-1 min-w-0">
                                   {/* Title with date at top-right on PC */}
                                   {(() => {
-                                    const isKorean = pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language === 'korean'
+                                    const isKorean = pub.indexing_group?.includes('KCI') || pub.indexing_group?.includes('Domestic') || pub.language?.toLowerCase() === 'korean'
                                     const mainTitle = isKorean && pub.title_ko ? pub.title_ko : pub.title
                                     const subTitle = isKorean && pub.title_ko ? pub.title : pub.title_ko
                                     return (

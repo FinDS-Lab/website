@@ -329,8 +329,9 @@ export const ProjectsTemplate = () => {
 
   const years = Object.keys(projectsByYear).sort((a, b) => parseInt(b) - parseInt(a))
   const currentYear = new Date().getFullYear().toString()
-  // Always include current year even if empty
-  if (!years.includes(currentYear)) {
+  const hasActiveFilters = searchQuery.trim() !== '' || filters.type.length > 0 || filters.status.length > 0
+  // 필터 없을 때만 현재 연도 포함
+  if (!hasActiveFilters && !years.includes(currentYear)) {
     years.unshift(currentYear)
   }
 
@@ -343,8 +344,6 @@ export const ProjectsTemplate = () => {
     institution: projects.filter(p => p.type === 'institution').length,
     academic: projects.filter(p => p.type === 'academic').length,
   }
-
-  const hasActiveFilters = filters.type.length > 0 || filters.status.length > 0 || searchQuery.trim() !== ''
 
   return (
     <div className="flex flex-col bg-white">
@@ -630,6 +629,9 @@ export const ProjectsTemplate = () => {
                   const yearProjects = projectsByYear[year] || []
                   const isCurrentYear = year === currentYear
                   const isExpanded = expandedYears.has(year)
+                  
+                  // 필터 있을 때 빈 연도 숨김
+                  if (yearProjects.length === 0 && hasActiveFilters) return null
                   
                   // Type별 개수 계산
                   const yearStats = {
