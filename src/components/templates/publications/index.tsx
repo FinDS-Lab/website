@@ -1269,8 +1269,8 @@ export const PublicationsTemplate = () => {
                                       ? pub.venue_ko 
                                       : pub.venue}
                                   </p>
-                                  {/* Edition info for books - separate line */}
-                                  {pub.type === 'book' && (
+                                  {/* Edition info for books - only show for 2nd edition and above */}
+                                  {pub.type === 'book' && pub.edition && pub.edition >= 2 && (
                                     <>
                                       {/* PC: Badge style */}
                                       <div className="hidden md:flex items-center gap-8 mt-6">
