@@ -1707,6 +1707,11 @@ export const MembersDirectorActivitiesTemplate = () => {
                   </div>
                 </div>
 
+                {/* Year Distribution */}
+                <div className="px-20 md:px-32 pt-16">
+                  <p className="text-[10px] font-bold text-gray-400">Year Distribution</p>
+                </div>
+
                 {/* Year Filter */}
                 <div className="px-20 md:px-32 py-16 border-b border-gray-100 flex items-center gap-8 md:gap-12 overflow-x-auto">
                   <button
@@ -1744,11 +1749,42 @@ export const MembersDirectorActivitiesTemplate = () => {
                   ))}
                 </div>
 
-                {/* Active Filters - Always visible when filters are applied */}
+                {/* University Distribution - Clickable Filter */}
+                {universityStats.length > 0 && (
+                  <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
+                    <div className="flex items-center justify-between mb-12">
+                      <p className="text-[10px] font-bold text-gray-400">Affiliation Distribution</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-6 md:gap-8">
+                      {universityStats.map(([univ, count]) => (
+                        <button
+                          key={univ}
+                          onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
+                          className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
+                            selectedUniversity === univ
+                              ? 'text-white'
+                              : 'bg-white border border-gray-200 text-gray-700 hover:border-[#D6B14D]/50 hover:bg-[#D6B14D]/5'
+                          }`}
+                          style={selectedUniversity === univ ? {backgroundColor: '#E8889C'} : {}}
+                        >
+                          <span className="truncate">{univ}</span>
+                          <span className="flex items-center gap-2 shrink-0">
+                            <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>{count}</span>
+                            {selectedUniversity === univ && <X size={12}/>}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Active Filters - Below Affiliation Distribution */}
                 {(selectedMentoringYear !== 'all' || selectedUniversity !== 'all') && (
                   <div className="px-20 md:px-32 py-12 border-b border-gray-100 bg-primary/5">
                     <div className="flex items-center gap-8 flex-wrap">
-                      <span className="text-[10px] font-bold text-gray-500 uppercase leading-none">Active Filters:</span>
+                      <span className="text-[10px] font-bold text-gray-500 leading-none">
+                        {(selectedMentoringYear !== 'all' && selectedUniversity !== 'all') ? 'Active Filters' : 'Active Filter'}
+                      </span>
                       {selectedMentoringYear !== 'all' && (
                         <button
                           onClick={() => setSelectedMentoringYear('all')}
@@ -1777,35 +1813,6 @@ export const MembersDirectorActivitiesTemplate = () => {
                       >
                         Reset All
                       </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* University Distribution - Clickable Filter */}
-                {universityStats.length > 0 && (
-                  <div className="px-20 md:px-32 py-16 border-b border-gray-100 bg-gray-50/30">
-                    <div className="flex items-center justify-between mb-12">
-                      <p className="text-[10px] font-bold text-gray-400">Affiliation Distribution</p>
-                    </div>
-                    <div className="grid grid-cols-2 gap-6 md:gap-8">
-                      {universityStats.map(([univ, count]) => (
-                        <button
-                          key={univ}
-                          onClick={() => setSelectedUniversity(selectedUniversity === univ ? 'all' : univ)}
-                          className={`px-10 md:px-12 py-6 md:py-8 rounded-lg text-xs md:text-xs font-medium transition-all flex items-center justify-between gap-4 ${
-                            selectedUniversity === univ
-                              ? 'text-white'
-                              : 'bg-white border border-gray-200 text-gray-700 hover:border-[#D6B14D]/50 hover:bg-[#D6B14D]/5'
-                          }`}
-                          style={selectedUniversity === univ ? {backgroundColor: '#E8889C'} : {}}
-                        >
-                          <span className="truncate">{univ}</span>
-                          <span className="flex items-center gap-2 shrink-0">
-                            <span className={selectedUniversity === univ ? 'font-bold' : 'font-bold'} style={{color: selectedUniversity === univ ? 'white' : '#E8889C'}}>{count}</span>
-                            {selectedUniversity === univ && <X size={12}/>}
-                          </span>
-                        </button>
-                      ))}
                     </div>
                   </div>
                 )}

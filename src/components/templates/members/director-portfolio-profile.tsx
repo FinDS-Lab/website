@@ -198,7 +198,7 @@ const education: any[] = [
 const employment = [
   {position: 'Assistant Professor (Tenure-Track)', positionKo: '조교수', department: 'Big Data Business Management Major, Department of Finance & Big Data, College of Business', departmentKo: '경영대학 금융·빅데이터학부 빅데이터경영전공', organization: 'Gachon University', organizationKo: '가천대학교', period: '2026-03 – Present', logo: logoGcu, isCurrent: true},
   {position: 'Assistant Professor (Tenure-Track)', positionKo: '조교수', department: 'Division of Business Administration, College of Business', departmentKo: '경영대학 경영융합학부', organization: 'Dongduk Women\'s University', organizationKo: '동덕여자대학교', period: '2025-09 – 2026-02', logo: logoDwu, isCurrent: false},
-  {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory (FINDS Lab)', departmentKo: '금융데이터인텔리전스연구실 (FINDS Lab)', organization: '', organizationKo: '', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
+  {position: 'Director', positionKo: '연구실장', department: 'Financial Data Intelligence & Solutions Laboratory', departmentKo: '금융데이터인텔리전스연구실', organization: 'FINDS Lab', organizationKo: 'FINDS Lab', period: '2025-06 – Present', logo: logoFinds, isCurrent: true},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Technology Lab, Graduate School of Management of Technology', departmentKo: '기술경영전문대학원 금융기술연구실', organization: 'Korea University', organizationKo: '고려대학교', period: '2025-03 – 2025-08', logo: logoKorea, isCurrent: false},
   {position: 'Postdoctoral Researcher', positionKo: '박사후연구원', department: 'Financial Engineering Lab, Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과 금융공학연구실', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2025-03 – 2025-08', logo: logoKaist, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Electronic and Semiconductor Engineering, College of Engineering', departmentKo: '공과대학 전자반도체공학부 (舊 인공지능융합공학부)', organization: 'Kangnam University', organizationKo: '강남대학교', period: '2025-03 – 2026-02', logo: logoKangnam, isCurrent: false},
@@ -1060,7 +1060,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="space-y-6">
                                       {edu.honors.map((h: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
-                                          <span className="shrink-0 mt-1" style={{color: '#D6B14D'}}>🎖️</span>
+                                          <Medal className="shrink-0 mt-1 size-14" style={{color: '#D6B14D'}} />
                                           <div className="flex-1 flex flex-col">
                                             <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
@@ -1074,11 +1074,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     <div className="space-y-6">
                                       {edu.awards.map((a: any, i: number) => (
                                         <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                          <span className="shrink-0 mt-1" style={{color: 'rgb(172, 14, 14)'}}>🏆</span>
+                                          <Trophy className="shrink-0 mt-1 size-14" style={{color: 'rgb(172, 14, 14)'}} />
                                           <div className="flex-1 flex flex-col">
                                             <div>
                                               <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
-                                              {a.note && <span className="text-[10px] md:text-xs text-primary font-medium ml-4">({a.note})</span>}
+                                              {a.note && <><br className="md:hidden" /><span className="text-[10px] md:text-xs text-primary font-medium md:ml-4">{a.note}</span></>}
                                             </div>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{a.org}</span>
                                           </div>

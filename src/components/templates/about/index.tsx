@@ -158,7 +158,7 @@ export const LocationTemplate = () => {
                     <p className="text-xs text-gray-400 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
                       <br />
-                      Seongnam-si, Gyeonggi-do 13120, Korea
+                      Seongnam-si, Gyeonggi-do 13120, Republic of Korea
                     </p>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ export const LocationTemplate = () => {
                     <p className="text-xs text-gray-500 leading-relaxed mt-4">
                       1342 Seongnam-daero, Sujeong-gu,
                       <br />
-                      Seongnam-si, Gyeonggi-do 13120, Korea
+                      Seongnam-si, Gyeonggi-do 13120, Republic of Korea
                     </p>
                   </div>
                 </div>

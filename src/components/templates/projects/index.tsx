@@ -785,8 +785,8 @@ export const ProjectsTemplate = () => {
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
                                       <div className="flex-1 min-w-0">
-                                        <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed">{project.titleKo}</p>
-                                        <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed">{project.titleEn}</p>
+                                        <p className="text-sm md:text-md font-bold text-gray-900 leading-relaxed whitespace-pre-line">{project.titleKo}</p>
+                                        <p className="text-xs md:text-sm text-gray-600 mt-4 leading-relaxed whitespace-pre-line">{project.titleEn}</p>
                                       </div>
                                       {/* Period Badge - white background, right aligned */}
                                       <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
@@ -796,7 +796,7 @@ export const ProjectsTemplate = () => {
                                     
                                     {/* Funding Agency */}
                                     <div className="flex flex-wrap items-center gap-8 mt-8">
-                                      <p className="text-xs md:text-sm text-gray-700 font-bold">
+                                      <p className="text-xs md:text-sm text-gray-700 font-bold whitespace-pre-line">
                                         {project.fundingAgency}
                                       </p>
                                     </div>
@@ -811,7 +811,7 @@ export const ProjectsTemplate = () => {
                                       <div className="mt-12 pt-12 border-t border-gray-100">
                                         <div className="flex flex-col gap-6">
                                           {/* Principal Investigator - only show if exists */}
-                                          {project.roles.principalInvestigator && (
+                                          {project.roles.principalInvestigator === '최인수' && (
                                             <div className="flex items-center gap-6">
                                               <span className="shrink-0 px-8 py-3 bg-gray-900 text-white text-[9px] md:text-[10px] font-bold rounded-md">
                                                 Principal Investigator
