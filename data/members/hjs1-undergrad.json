@@ -27,8 +27,8 @@
       "Supply Chain Management (SCM)"
     ],
     "project": {
-      "ko": "K-방산 산업의 주가 동조성 네트워크 분석: 상관관계 기반 네트워크를 활용한 산업 구조 및 리스크 연결성 탐색",
-      "en": "Stock Price Co-Movement Network Analysis of K-Defense Industry: Exploring Industry Structure and Risk Connectivity Using Correlation-Based Networks"
+      "ko": "K-방산 리스크에 따른 주가 동조화 분석",
+      "en": "An Analysis of Stock Price Synchronization Based on K-Defense Risk"
     }
   },
   "education": [
