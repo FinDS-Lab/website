@@ -487,7 +487,7 @@ export const LecturesTemplate = () => {
 
                                   {/* Course Title */}
                                   <h4 className="text-sm md:text-base font-bold text-gray-900 leading-relaxed">{item.course.en}</h4>
-                                  <p className="text-xs md:text-sm text-gray-500 mt-4">{item.course.ko}</p>
+                                  <p className="text-xs md:text-base text-gray-500 mt-4">{item.course.ko}</p>
                                 </div>
                               </div>
                             </div>

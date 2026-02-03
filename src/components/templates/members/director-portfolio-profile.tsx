@@ -635,9 +635,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 mb-1">Position</p>
-                    <p className="text-xs font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] text-gray-500">FINDS Lab</p>
+                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Position</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -645,9 +645,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 mb-1">Affiliation</p>
-                    <p className="text-xs font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] text-gray-500">Gachon University</p>
+                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Affiliation</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
+                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -655,8 +655,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-bold text-gray-400 mb-1">Office</p>
-                    <p className="text-xs font-semibold text-gray-800">Room 304, Gachon Hall</p>
+                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Office</p>
+                    <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -664,9 +664,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] font-bold text-gray-400 mb-1">E-mail</p>
+                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
-                      <a href={`mailto:${directorEmail}`} className="select-text text-xs font-semibold text-primary hover:underline break-all">
+                      <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
                       <button 
