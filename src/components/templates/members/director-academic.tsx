@@ -131,7 +131,7 @@ const education = [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 – 2017-11'},
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 – 2016-12'},
     ],
-    awards: [{title: 'Dean's Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'}],
+    awards: [{title: "Dean's Award for Academic Excellence", org: "College of Engineering, Kyung Hee University"}],
     honors: [{title: 'Valedictorian', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
   },
@@ -614,8 +614,7 @@ const CollaborationNetwork = memo(() => {
             min="0"
             max="100"
             value={coworkRateThreshold}
-            onChange={(e) => setCoworkRateThreshold(Number(e.target.value)
-                    })
+            onChange={(e) => setCoworkRateThreshold(Number(e.target.value))}
             className="w-80 md:w-100 h-4 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <span className="text-[10px] md:text-xs font-bold text-primary w-28">{coworkRateThreshold}%</span>
@@ -1554,8 +1553,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
                           <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                         </div>
-                      )
-                    })
+                      ))}
                     </div>
                   </div>
                   <div className="mt-20 text-center">
@@ -1683,8 +1681,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 </div>
                                 <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{comm.period || comm.since}</span>
                               </a>
-                            )
-                    })
+                            ))}
                           </div>
                         ) : (
                           <div className="py-8 text-xs text-gray-400">Coming soon...</div>
@@ -1721,8 +1718,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 </div>
                                 <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{chair.period || chair.since}</span>
                               </a>
-                            )
-                    })
+                            ))}
                           </div>
                         ) : (
                           <div className="py-8 text-xs text-gray-400">Coming soon...</div>
@@ -1758,8 +1754,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 'bg-[#FFE4E9] text-gray-700'
                               }`}>{journal.type}</span>
                             </a>
-                          )
-                    })
+                          ))}
                         </div>
                       </div>
                     )}
@@ -1791,8 +1786,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 {conf.period || conf.since}
                               </span>
                             </a>
-                          )
-                    })
+                          ))}
                         </div>
                       </div>
                     )}
@@ -2208,8 +2202,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                   <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
                                     {period}
                                   </span>
-                                )
-                    })
+                                ))}
                               </div>
                               <p className="text-xs md:text-sm font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
@@ -2279,14 +2272,12 @@ export const MembersDirectorAcademicTemplate = () => {
                                   <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     {period}
                                   </span>
-                                )
-                    })
+                                ))}
                               </div>
                               <p className="text-xs md:text-sm font-semibold text-gray-700">
                                 {(course.courseNameKo || course.courseName).split('<').map((part, i) => (
                                   i === 0 ? part : <span key={i} className="inline-block">&lt;{part}</span>
-                                )
-                    })
+                                ))}
                               </p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                 <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
