@@ -3,6 +3,45 @@ import {Link} from 'react-router-dom'
 import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, Lightbulb, Users} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
+// Get initials from English name (Korean style: "First-Name Last" → "LFN")
+const getInitialsFromEnglishName = (nameEn?: string): string => {
+  if (!nameEn) return ''
+  const parts = nameEn.trim().split(' ')
+  if (parts.length < 2) return ''
+  const lastName = parts[parts.length - 1]
+  const firstName = parts.slice(0, -1).join(' ')
+  const firstNameParts = firstName.split('-')
+  const initials = lastName[0].toUpperCase() + firstNameParts.map(p => p[0]?.toUpperCase() || '').join('')
+  return initials
+}
+
+// Avatar component with fallback
+const AlumniAvatar = ({ nameEn, size = 'md', className = '' }: { nameEn?: string, size?: 'sm' | 'md', className?: string }) => {
+  const [imgError, setImgError] = useState(false)
+  const initials = getInitialsFromEnglishName(nameEn)
+  const imgPath = initials ? `/images/members/${initials}-1.webp` : ''
+  const sizeClass = size === 'sm' ? 'size-36' : 'size-36 md:size-40'
+  
+  if (!initials || imgError) {
+    return (
+      <div className={`${sizeClass} rounded-full flex items-center justify-center shrink-0 ${className}`} style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
+        <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
+      </div>
+    )
+  }
+  
+  return (
+    <div className={`${sizeClass} rounded-full overflow-hidden shrink-0 ring-2 ring-[#FFBAC4]/20 group-hover:ring-[#FFBAC4]/50 transition-all duration-300 ${className}`}>
+      <img 
+        src={imgPath} 
+        alt=""
+        className="w-full h-full object-cover opacity-75 saturate-[0.7] group-hover:opacity-100 group-hover:saturate-100 transition-all duration-300"
+        onError={() => setImgError(true)}
+      />
+    </div>
+  )
+}
+
 // Scroll animation hook
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -839,9 +878,7 @@ export const MembersAlumniTemplate = () => {
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="flex items-center gap-10 md:gap-12">
-                                      <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
-                                        <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
-                                      </div>
+                                      <AlumniAvatar nameEn={alumni.nameEn} />
                                       <div className="flex items-center gap-8">
                                         <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#FFBAC4] transition-colors">{alumni.name}</p>
                                         {hasProjects && (
@@ -866,8 +903,10 @@ export const MembersAlumniTemplate = () => {
                                       )}
                                     </div>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600">
-                                    {alumni.periods?.ur || '-'}
+                                  <td className="py-12 md:py-16 px-12 md:px-16">
+                                    <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                                      {alumni.periods?.ur || '-'}
+                                    </span>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {getAffiliation(alumni)}
@@ -914,14 +953,12 @@ export const MembersAlumniTemplate = () => {
                         return (
                           <div 
                             key={idx}
-                            className={`rounded-xl border border-gray-100 bg-white overflow-hidden ${hasProjects ? 'cursor-pointer' : ''}`}
+                            className={`rounded-xl border border-gray-100 bg-white overflow-hidden group ${hasProjects ? 'cursor-pointer' : ''}`}
                             onClick={() => hasProjects && toggleAlumniExpand(alumni.name)}
                           >
                             {/* Card Header */}
                             <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
-                              <div className="size-36 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.3) 0%, rgba(232,135,155,0.2) 100%)'}}>
-                                <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
-                              </div>
+                              <AlumniAvatar nameEn={alumni.nameEn} size="sm" />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
                                   <p className="text-sm font-bold text-gray-900">{alumni.name}</p>
@@ -935,7 +972,9 @@ export const MembersAlumniTemplate = () => {
                                     />
                                   )}
                                 </div>
-                                <p className="text-xs text-gray-500 mt-2">{alumni.periods?.ur || '-'}</p>
+                                <span className="inline-flex items-center px-8 py-3 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap mt-6">
+                                  {alumni.periods?.ur || '-'}
+                                </span>
                               </div>
                             </div>
 

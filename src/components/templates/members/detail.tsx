@@ -173,10 +173,17 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
   }
 
   const degreeColors: Record<string, string> = {
-    phd: 'bg-gray-100 text-gray-700',
-    combined: 'bg-gray-100 text-gray-700',
-    ms: 'bg-gray-100 text-gray-700',
-    undergrad: 'bg-gray-100 text-gray-700',
+    phd: 'text-white',
+    combined: 'text-white',
+    ms: 'text-white',
+    undergrad: 'text-white',
+  }
+
+  const degreeBgStyles: Record<string, React.CSSProperties> = {
+    phd: {backgroundColor: '#D6B14D'},
+    combined: {backgroundColor: '#D6A076'},
+    ms: {backgroundColor: '#C41E3A'},
+    undergrad: {backgroundColor: '#FFBAC4'},
   }
 
   return (
@@ -240,14 +247,16 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{member.name.ko}</h2>
                 <p className="text-sm md:text-base text-gray-500 mb-12">{member.name.en}</p>
-                <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'bg-gray-100 text-gray-700'}`}>
+                <span 
+                  className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'text-gray-700'}`}
+                  style={degreeBgStyles[member.degree] || {backgroundColor: '#f3f4f6'}}
+                >
                   {member.role.en}
                 </span>
                 {/* Period - moved under role badge */}
-                <div className="flex items-center gap-8 text-xs text-gray-500">
-                  <Calendar size={12} className="text-gray-400"/>
-                  <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
-                </div>
+                <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                  {member.period.start} - {member.period.expected_graduation || 'Present'}
+                </span>
               </div>
 
               {/* Divider */}
