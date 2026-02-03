@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <!-- Background -->
+  <rect width="900" height="900" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#374151" text-anchor="middle">FINDS Lab Color Palette</text>
+  
+  <!-- Row 1: Primary Colors (larger) -->
+  <!-- FINDS Gold -->
+  <rect x="50" y="55" width="380" height="160" rx="16" fill="#D6B14D"/>
+  <text x="240" y="105" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">FINDS Gold</text>
+  <text x="240" y="145" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="white" text-anchor="middle">#D6B14D</text>
+  <text x="240" y="180" font-family="Courier New, monospace" font-size="14" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 177, 77</text>
+  
+  <!-- FINDS Red -->
+  <rect x="470" y="55" width="380" height="160" rx="16" fill="#AC0E0E"/>
+  <text x="660" y="105" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">FINDS Red</text>
+  <text x="660" y="145" font-family="Courier New, monospace" font-size="28" font-weight="bold" fill="white" text-anchor="middle">#AC0E0E</text>
+  <text x="660" y="180" font-family="Courier New, monospace" font-size="14" fill="white" text-anchor="middle" opacity="0.9">RGB 172, 14, 14</text>
+  
+  <!-- Row 2: Gold Variants -->
+  <!-- Honey -->
+  <rect x="50" y="235" width="195" height="140" rx="12" fill="#D6C360"/>
+  <text x="147" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Honey</text>
+  <text x="147" y="310" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#D6C360</text>
+  <text x="147" y="335" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 195, 96</text>
+  
+  <!-- Cream -->
+  <rect x="255" y="235" width="195" height="140" rx="12" fill="#E8D688"/>
+  <text x="352" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">Cream</text>
+  <text x="352" y="310" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">#E8D688</text>
+  <text x="352" y="335" font-family="Courier New, monospace" font-size="10" fill="#333" text-anchor="middle" opacity="0.9">RGB 232, 214, 136</text>
+  
+  <!-- Amber -->
+  <rect x="460" y="235" width="195" height="140" rx="12" fill="#B8962D"/>
+  <text x="557" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Amber</text>
+  <text x="557" y="310" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#B8962D</text>
+  <text x="557" y="335" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 184, 150, 45</text>
+  
+  <!-- Oak -->
+  <rect x="665" y="235" width="185" height="140" rx="12" fill="#9A7D1F"/>
+  <text x="757" y="280" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Oak</text>
+  <text x="757" y="310" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#9A7D1F</text>
+  <text x="757" y="335" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 154, 125, 31</text>
+  
+  <!-- Row 3: Warm Tones (Coral to Red) -->
+  <!-- Coral -->
+  <rect x="50" y="395" width="195" height="140" rx="12" fill="#D6A076"/>
+  <text x="147" y="440" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Coral</text>
+  <text x="147" y="470" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#D6A076</text>
+  <text x="147" y="495" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 214, 160, 118</text>
+  
+  <!-- Rose -->
+  <rect x="255" y="395" width="195" height="140" rx="12" fill="#E8889C"/>
+  <text x="352" y="440" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Rose</text>
+  <text x="352" y="470" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#E8889C</text>
+  <text x="352" y="495" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 232, 136, 156</text>
+  
+  <!-- Blossom -->
+  <rect x="460" y="395" width="195" height="140" rx="12" fill="#FFBAC4"/>
+  <text x="557" y="440" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#333" text-anchor="middle">Blossom</text>
+  <text x="557" y="470" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#333" text-anchor="middle">#FFBAC4</text>
+  <text x="557" y="495" font-family="Courier New, monospace" font-size="10" fill="#333" text-anchor="middle" opacity="0.9">RGB 255, 186, 196</text>
+  
+  <!-- Ruby -->
+  <rect x="665" y="395" width="185" height="140" rx="12" fill="#C41E3A"/>
+  <text x="757" y="440" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Ruby</text>
+  <text x="757" y="470" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">#C41E3A</text>
+  <text x="757" y="495" font-family="Courier New, monospace" font-size="10" fill="white" text-anchor="middle" opacity="0.9">RGB 196, 30, 58</text>
+  
+  <!-- Row 4: Background Colors -->
+  <!-- Buttercream -->
+  <rect x="50" y="555" width="195" height="120" rx="12" fill="#FFF9E6" stroke="#E8D688" stroke-width="2"/>
+  <text x="147" y="595" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#9A7D1F" text-anchor="middle">Buttercream</text>
+  <text x="147" y="625" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#9A7D1F" text-anchor="middle">#FFF9E6</text>
+  <text x="147" y="650" font-family="Courier New, monospace" font-size="10" fill="#9A7D1F" text-anchor="middle" opacity="0.9">RGB 255, 249, 230</text>
+  
+  <!-- Vanilla -->
+  <rect x="255" y="555" width="195" height="120" rx="12" fill="#FFF3CC" stroke="#E8D688" stroke-width="2"/>
+  <text x="352" y="595" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#9A7D1F" text-anchor="middle">Vanilla</text>
+  <text x="352" y="625" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#9A7D1F" text-anchor="middle">#FFF3CC</text>
+  <text x="352" y="650" font-family="Courier New, monospace" font-size="10" fill="#9A7D1F" text-anchor="middle" opacity="0.9">RGB 255, 243, 204</text>
+  
+  <!-- Sunlight -->
+  <rect x="460" y="555" width="195" height="120" rx="12" fill="#FFEB99" stroke="#D6B14D" stroke-width="2"/>
+  <text x="557" y="595" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#9A7D1F" text-anchor="middle">Sunlight</text>
+  <text x="557" y="625" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#9A7D1F" text-anchor="middle">#FFEB99</text>
+  <text x="557" y="650" font-family="Courier New, monospace" font-size="10" fill="#9A7D1F" text-anchor="middle" opacity="0.9">RGB 255, 235, 153</text>
+  
+  <!-- Blush -->
+  <rect x="665" y="555" width="185" height="120" rx="12" fill="#FFE4E9" stroke="#E8889C" stroke-width="2"/>
+  <text x="757" y="595" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#AC0E0E" text-anchor="middle">Blush</text>
+  <text x="757" y="625" font-family="Courier New, monospace" font-size="14" font-weight="bold" fill="#AC0E0E" text-anchor="middle">#FFE4E9</text>
+  <text x="757" y="650" font-family="Courier New, monospace" font-size="10" fill="#AC0E0E" text-anchor="middle" opacity="0.9">RGB 255, 228, 233</text>
+  
+  <!-- Gradient Bar -->
+  <defs>
+    <linearGradient id="fullGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9A7D1F" />
+      <stop offset="15%" style="stop-color:#D6B14D" />
+      <stop offset="30%" style="stop-color:#D6C360" />
+      <stop offset="45%" style="stop-color:#E8D688" />
+      <stop offset="55%" style="stop-color:#D6A076" />
+      <stop offset="70%" style="stop-color:#E8889C" />
+      <stop offset="85%" style="stop-color:#FFBAC4" />
+      <stop offset="100%" style="stop-color:#AC0E0E" />
+    </linearGradient>
+  </defs>
+  
+  <text x="450" y="730" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#374151" text-anchor="middle">Full Palette Gradient</text>
+  <rect x="50" y="750" width="800" height="50" rx="25" fill="url(#fullGrad)"/>
+  
+  <!-- Footer -->
+  <text x="450" y="840" font-family="Arial, sans-serif" font-size="12" fill="#9CA3AF" text-anchor="middle">© 2026 FINDS Lab · Financial Data Intelligence &amp; Solutions</text>
+</svg>

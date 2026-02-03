@@ -1,0 +1,43 @@
+{
+  "id": "kyh1-undergrad",
+  "name": {
+    "ko": "김연후"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/KYH-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "kyh050412@hanyang.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Business Analytics",
+      "Financial Data Analysis",
+      "Risk Analysis"
+    ],
+    "project": {
+      "ko": "시변 글로벌 주식시장 리스크 전이 네트워크의 분석",
+      "en": "Analysis of Time-Varying Global Stock Market Risk Spillover Networks"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "산업경영공학과",
+      "field_en": "Industrial and Management Engineering",
+      "school": "한양대학교 ERICA 캠퍼스",
+      "school_en": "Hanyang University ERICA Campus",
+      "expected": "Present",
+      "start": "2024-03"
+    }
+  ]
+}

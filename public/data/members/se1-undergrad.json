@@ -1,0 +1,43 @@
+{
+  "id": "se1-undergrad",
+  "name": {
+    "ko": "심은"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/SE-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "tladms545@sogang.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Semiconductor Engineering",
+      "Industrial Engineering",
+      "Machine Learning"
+    ],
+    "project": {
+      "ko": "",
+      "en": "Housing–Fertility Interdependencies in South Korea: A Dynamic Analysis Across Regional Disparities and Temporal Shifts"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "컴퓨터공학과",
+      "field_en": "Computer Science and Engineering",
+      "school": "서강대학교",
+      "school_en": "Sogang University",
+      "expected": "Present",
+      "start": "2022-03"
+    }
+  ]
+}

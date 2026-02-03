@@ -1,0 +1,73 @@
+{
+  "_comment": "=== FINDS Lab 현재 멤버 템플릿 ===",
+  "_usage": "이 파일을 복사하여 /public/data/members/ 폴더에 새 파일로 저장",
+  "_filename_rule": "{이니셜}{번호}-{degree}.json (예: kim1-phd.json, park2-ms.json, lee3-undergrad.json)",
+  
+  "id": "lastname-degree",
+  "name": {
+    "ko": "한글이름",
+    "en": "English Name"
+  },
+  "degree": "phd | ms | undergrad",
+  "role": {
+    "ko": "박사과정 | 석사과정 | 학부연구생",
+    "en": "Ph.D. Candidate | Master Student | Undergraduate Researcher"
+  },
+  "status": "active",
+  "cohort": "1st Cohort (2025 Winter)",
+  "_cohort_note": "학부연구생만 사용, 박사/석사는 이 필드 삭제",
+  
+  "period": {
+    "start": "2024-03",
+    "expected_graduation": "2026-02",
+    "_or_for_undergrad": {
+      "start": "2025-12-24",
+      "end": "2026-03-01"
+    }
+  },
+  
+  "contact": {
+    "email": "example@gachon.ac.kr",
+    "phone": "010-0000-0000"
+  },
+  
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Business Analytics",
+      "Machine Learning",
+      "Deep Learning"
+    ]
+  },
+  
+  "education": [
+    {
+      "_comment": "현재 재학 중인 학위",
+      "degree": "Ph.D. | M.S. | B.S.",
+      "field": "전공명 (예: Business Analytics)",
+      "school": "학교명 (예: Gachon University)",
+      "start": "2024-03",
+      "expected": "2026-02"
+    },
+    {
+      "_comment": "이전 학위 (있는 경우)",
+      "degree": "B.S.",
+      "field": "Computer Science",
+      "school": "Previous University",
+      "start": "2019-03",
+      "end": "2024-02"
+    }
+  ],
+  
+  "social": {
+    "github": "https://github.com/username",
+    "linkedin": "https://linkedin.com/in/username",
+    "google_scholar": "https://scholar.google.com/citations?user=xxx",
+    "orcid": "0000-0000-0000-0000",
+    "personal_website": "https://username.github.io",
+    "_note": "없는 항목은 삭제하거나 빈 문자열로"
+  },
+  
+  "avatar": "/website/images/members/ABC-1.webp",
+  "_avatar_note": "이미지가 없으면 woman_default.png 또는 man_default.png 사용"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "lsj1-undergrad",
+  "name": {
+    "ko": "이성준"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/LSJ-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "sungjun758@naver.com"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Business Analytics",
+      "Data-Inspired Decision Making"
+    ],
+    "project": {
+      "ko": "빅데이터 기반 뉴스 심리지수(NSI)와 검색량지수(SVI)의 산업별 경기 및 주가 예측력 분석: 거시 및 금융 경제변수 통제와 경기심리지수(ESI)와의 비교를 중심으로",
+      "en": "Analysis of Industry-Specific Economic and Stock Price Predictive Power of Big Data-Based News Sentiment Index (NSI) and Search Volume Index (SVI): Focusing on Macroeconomic and Financial Variable Controls and Comparison with Economic Sentiment Index (ESI)"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "산업경영공학과",
+      "field_en": "Industrial and Management Systems Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
+      "expected": "Present",
+      "start": "2024-03"
+    }
+  ]
+}

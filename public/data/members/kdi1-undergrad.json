@@ -1,0 +1,44 @@
+{
+  "id": "kdi1-undergrad",
+  "name": {
+    "ko": "김다인"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/KDI-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "daini612015@g.hongik.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Quality Engineering",
+      "Industrial Data Analytics",
+      "Process Control",
+      "Statistical Data Analysis"
+    ],
+    "project": {
+      "ko": "멀티모달 RSW 데이터를 활용한 품질 기반 확률적 공정시간 및 생산 비용을 고려한 스케줄링 프레임워크",
+      "en": "A Scheduling Framework Considering Quality-Based Stochastic Processing Time and Production Cost Using Multimodal RSW Data"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "산업데이터공학과",
+      "field_en": "Industrial and Data Engineering",
+      "school": "홍익대학교",
+      "school_en": "Hongik University",
+      "expected": "Present",
+      "start": "2023-03"
+    }
+  ]
+}

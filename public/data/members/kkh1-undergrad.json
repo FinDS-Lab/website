@@ -1,0 +1,43 @@
+{
+  "id": "kkh1-undergrad",
+  "name": {
+    "ko": "김강현"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/KKH-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "kkkkhh0507@naver.com"
+  },
+  "research": {
+    "interests": [
+      "Portfolio Optimization",
+      "Financial Risk Engineering"
+    ],
+    "project": {
+      "ko": "시장 스트레스 국면에서의 리스크 구조화와 포트폴리오 최적화",
+      "en": "Risk Structuring and Portfolio Optimization Under Market Stress Regimes"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "산업정보시스템공학과",
+      "field_en": "Industrial and Information Systems Engineering",
+      "school": "숭실대학교",
+      "school_en": "Soongsil University",
+      "expected": "Present",
+      "start": "2020-03",
+      "doubleMajor": "Finance"
+    }
+  ]
+}

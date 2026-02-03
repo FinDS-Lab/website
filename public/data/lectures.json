@@ -1,0 +1,120 @@
+[
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2026 Spring"
+    ],
+    "school": "Gachon University",
+    "courses": [
+      {
+        "en": "Financial Investment (13994004)",
+        "ko": "금융투자 (13994004)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2026 Spring"
+    ],
+    "school": "Gachon University",
+    "courses": [
+      {
+        "en": "Business Intelligence & Analytics (15122001)",
+        "ko": "비즈니스 인텔리전스와 분석 (15122001)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2025 Fall"
+    ],
+    "school": "Dongduk Women's University",
+    "courses": [
+      {
+        "en": "Business Decision Making and Data Analysis (경영K0039)",
+        "ko": "경영의사결정과 자료분석 (경영K0039)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2025 Fall-1",
+      "2025 Fall-2"
+    ],
+    "school": "Dongduk Women's University",
+    "courses": [
+      {
+        "en": "Python Programming (경융K0011)",
+        "ko": "파이썬을 활용한 프로그래밍 기초 (경융K0011)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2025 Fall"
+    ],
+    "school": "Kangnam University",
+    "courses": [
+      {
+        "en": "Applied Statistics (EG14204)",
+        "ko": "응용통계 (EG14204)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2025 Spring"
+    ],
+    "school": "Korea University Sejong Campus",
+    "courses": [
+      {
+        "en": "Algorithmic Trading (DIGB441)",
+        "ko": "알고리즘 투자전략 (DIGB441)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2025 Spring"
+    ],
+    "school": "Kangnam University",
+    "courses": [
+      {
+        "en": "Introduction to Financial Engineering (EG14209)",
+        "ko": "금융공학입문 (EG14209)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2024 Spring"
+    ],
+    "school": "Kyung Hee University",
+    "courses": [
+      {
+        "en": "Financial Engineering (IE329)",
+        "ko": "금융공학 (IE329)"
+      }
+    ]
+  },
+  {
+    "role": "Lecturer",
+    "periods": [
+      "2024 Spring"
+    ],
+    "school": "Kyung Hee University",
+    "courses": [
+      {
+        "en": "Engineering Economy (IE201)",
+        "ko": "경제성공학 (IE201)"
+      }
+    ]
+  }
+]

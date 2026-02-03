@@ -1,0 +1,44 @@
+{
+  "id": "kbo1-undergrad",
+  "name": {
+    "ko": "강병오"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/KBO-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "garamkg@khu.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Quantitative Trading",
+      "Explainable Artificial Intelligence (XAI)",
+      "Trustworthy Artificial Intelligence (AI)"
+    ],
+    "project": {
+      "ko": "신뢰도 지표 기반 거래 필터링 프레임워크 (C-index)",
+      "en": "A Trading Filtering Framework Based on Confidence Index (C-index)"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "컴퓨터공학과",
+      "field_en": "Computer Science and Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
+      "expected": "Present",
+      "start": "2019-03"
+    }
+  ]
+}

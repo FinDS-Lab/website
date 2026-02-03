@@ -1,0 +1,58 @@
+{
+  "lastUpdated": "2026-01-30T06:00:00Z",
+  "scholarId": "p9JwRLwAAAAJ",
+  "scholarUrl": "https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en",
+  "name": "Insu Choi",
+  "affiliation": "Gachon University",
+  "interests": [
+    "Financial Data Science",
+    "Business Analytics",
+    "Machine Learning"
+  ],
+  "metrics": {
+    "totalCitations": 161,
+    "citations5y": 161,
+    "hIndex": 8,
+    "hIndex5y": 8,
+    "i10Index": 7,
+    "i10Index5y": 7,
+    "i5Index": 10,
+    "gIndex": 12,
+    "eIndex": 3.46,
+    "mQuotient": 0.89
+  },
+  "citationsByYear": {},
+  "pubStats": {
+    "totalPublications": 181,
+    "journals": 23,
+    "conferences": 154,
+    "books": 2,
+    "indexing": {
+      "scie": 9,
+      "ssci": 9,
+      "ahci": 0,
+      "esci": 1,
+      "scopus": 3,
+      "kci": 3,
+      "webOfScience": 19
+    },
+    "authorship": {
+      "firstAuthor": 0,
+      "corresponding": 0
+    },
+    "firstPubYear": 2017,
+    "publicationsByYear": {
+      "2026": 2,
+      "2025": 25,
+      "2024": 40,
+      "2023": 50,
+      "2022": 32,
+      "2021": 21,
+      "2020": 5,
+      "2019": 4,
+      "2018": 1,
+      "2017": 1
+    }
+  },
+  "note": "Manual update only. Edit public/data/scholar.json directly or run python scripts/fetch_scholar.py locally."
+}
