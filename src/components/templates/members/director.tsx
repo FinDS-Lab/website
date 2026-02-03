@@ -149,7 +149,7 @@ const education = [
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 – 2016-12'},
     ],
     awards: [{title: 'Dean\'s Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'}],
-    honors: [{title: 'Valedictorian', org: '1st out of 86 students (GPA: 4.42/4.5)'}],
+    honors: [{title: 'Valedictorian', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
   },
 ]
@@ -668,21 +668,21 @@ export const MembersDirectorTemplate = () => {
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
                   My research focuses on three main areas:
                 </p>
-                <div className="space-y-16 mb-24">
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
+                <div className="space-y-12 md:space-y-16 mb-24">
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
                     </p>
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
                     </p>
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
@@ -914,12 +914,15 @@ export const MembersDirectorTemplate = () => {
               {expandedSections.publicationStats && (
                 <div className="p-20 md:p-24 border-t border-gray-100">
                   <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                    {pubStats.map((stat, index) => (
-                      <div key={index} className="text-center p-12 md:p-16 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors">
-                        <div className="text-lg md:text-xl font-bold text-primary">{stat.count}</div>
+                    {pubStats.map((stat, index) => {
+                      const hoverColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'hover:bg-[#D6B14D]/5' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'hover:bg-[#D6C360]/5' : stat.label === 'Other Int\'l' ? 'hover:bg-[#E8D688]/10' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'hover:bg-[#AC0E0E]/5' : stat.label === 'KCI' ? 'hover:bg-[#64748b]/5' : 'hover:bg-[#D6B14D]/5'
+                      const textColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'text-[#D6B14D]' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'text-[#D6C360]' : stat.label === 'Other Int\'l' ? 'text-[#9A7D1F]' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'text-[#AC0E0E]' : stat.label === 'KCI' ? 'text-[#64748b]' : 'text-primary'
+                      return (
+                      <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${hoverColor} transition-colors`}>
+                        <div className={`text-lg md:text-xl font-bold ${textColor}`}>{stat.count}</div>
                         <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
-                    ))}
+                    )})}
                   </div>
                   {/* Citation Stats - Citations on top, indices below */}
                   <div className="pt-16 border-t border-gray-100">

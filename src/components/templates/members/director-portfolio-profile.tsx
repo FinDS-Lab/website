@@ -189,7 +189,7 @@ const education: any[] = [
       {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '4th Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
       {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '3rd Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
     ],
-    honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students (GPA: 4.42/4.5)'}],
+    honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
   },
 ]
@@ -735,21 +735,21 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
                   My research focuses on three main areas:
                 </p>
-                <div className="space-y-16 mb-24">
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">1</span>
+                <div className="space-y-12 md:space-y-16 mb-24">
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">1</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
                     </p>
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">2</span>
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">2</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
                     </p>
                   </div>
-                  <div className="flex gap-16">
-                    <span className="size-28 bg-primary text-white text-sm font-bold rounded-full flex items-center justify-center shrink-0">3</span>
+                  <div className="flex items-start gap-12 md:gap-16">
+                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">3</span>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                       <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
                     </p>
@@ -1063,7 +1063,17 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <Medal className="shrink-0 mt-1 size-14" style={{color: '#D6B14D'}} />
                                           <div className="flex-1 flex flex-col">
                                             <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
-                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
+                                            <div className="flex items-center gap-6 mt-2 flex-wrap">
+                                              <span className="text-[10px] md:text-xs text-gray-500 font-medium">{h.org}</span>
+                                              {h.gpa && (
+                                                <span className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#D6B14D] to-[#B8962D] text-white text-[9px] md:text-[10px] font-bold rounded-full shadow-sm">
+                                                  <span className="opacity-80">GPA</span>
+                                                  <span className="text-[10px] md:text-xs">{h.gpa}</span>
+                                                  <span className="opacity-60">/</span>
+                                                  <span className="opacity-80">{h.gpaMax}</span>
+                                                </span>
+                                              )}
+                                            </div>
                                           </div>
                                         </div>
                                       ))}

@@ -52,19 +52,19 @@ const pubFilterColors: Record<string, { bg: string; border: string; text: string
   'Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
   'Book': { bg: '#E8D688', border: '#E8D688', text: '#9A7D1F' },
   'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#9A7D1F' },
-  'SCIE': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'SSCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'A&HCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'ESCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-  'Other International': { bg: '#D6C360', border: '#D6C360', text: '#9A7D1F' },
+  'SCIE': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'SSCI': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'A&HCI': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'ESCI': { bg: '#D6C360', border: '#D6C360', text: '#FFFFFF' },
+  'Scopus': { bg: '#D6C360', border: '#D6C360', text: '#FFFFFF' },
+  'Other International': { bg: '#E8D688', border: '#E8D688', text: '#9A7D1F' },
   'KCI': { bg: '#64748b', border: '#64748b', text: '#FFFFFF' },
   'Other Domestic': { bg: '#94a3b8', border: '#94a3b8', text: '#FFFFFF' },
   'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
-  'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-  'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'Oral': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
-  'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#9A7D1F' },
+  'International Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
+  'Domestic Conference': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
+  'Oral': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
+  'Poster': { bg: '#D6C360', border: '#D6C360', text: '#FFFFFF' },
 }
 
 // 필터 모달 컴포넌트
@@ -1109,14 +1109,24 @@ export const PublicationsTemplate = () => {
                                       </span>
                                     </>
                                   )}
-                                  {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group === 'Scopus') && (
+                                  {pub.type === 'conference' && (pub.presentation_type || pub.indexing_group) && (
                                     <>
-                                      <span className="text-[10px] text-white/60">|</span>
-                                      <span className="text-xs font-bold text-white/90">
-                                        {pub.indexing_group === 'Scopus' && 'Scopus'}
-                                        {pub.indexing_group === 'Scopus' && pub.presentation_type && ' | '}
-                                        {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
-                                      </span>
+                                      {pub.indexing_group && (
+                                        <>
+                                          <span className="text-[10px] text-white/60">|</span>
+                                          <span className="text-xs font-bold text-white/90">
+                                            {pub.indexing_group === 'Scopus' || pub.indexing_group === 'International Conference' ? 'International' : pub.indexing_group === 'Domestic Conference' ? 'Domestic' : ''}
+                                          </span>
+                                        </>
+                                      )}
+                                      {pub.presentation_type && (
+                                        <>
+                                          <span className="text-[10px] text-white/60">|</span>
+                                          <span className="text-xs font-bold text-white/90">
+                                            {pub.presentation_type === 'oral' ? 'Oral' : pub.presentation_type === 'poster' ? 'Poster' : ''}
+                                          </span>
+                                        </>
+                                      )}
                                     </>
                                   )}
                                 </div>
@@ -1164,49 +1174,53 @@ export const PublicationsTemplate = () => {
                                         </span>
                                       </div>
                                     </div>
-                                    {/* Status badge below - Conference */}
-                                    {pub.type === 'conference' && pub.indexing_group === 'Scopus' && (
-                                      <div className="w-full mt-4 py-4 text-center rounded-md bg-[#D6B14D]/10 border border-[#D6B14D]/30">
-                                        <span className="text-[9px] font-bold" style={{color: '#D6B14D'}}>
-                                          Scopus
-                                        </span>
-                                      </div>
-                                    )}
-                                    {pub.type === 'conference' && pub.presentation_type && (
-                                      <div className={`w-full mt-4 py-4 text-center rounded-md ${
-                                        pub.presentation_type === 'oral' ? 'bg-[#E8889C]/10 border border-[#E8889C]/30' : 'bg-[#FFBAC4]/10 border border-[#FFBAC4]/30'
-                                      }`}>
-                                        <span className="text-[9px] font-bold"
-                                          style={{color: pub.presentation_type === 'oral' ? '#E8889C' : '#FFBAC4'}}
-                                        >
-                                          {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
-                                        </span>
+                                    {/* Status badge below - Conference: 2-row design */}
+                                    {pub.type === 'conference' && (pub.indexing_group || pub.presentation_type) && (
+                                      <div className="w-full mt-4 space-y-2">
+                                        {/* Row 1: Domestic/International */}
+                                        {pub.indexing_group && (
+                                          <div className={`w-full py-3 text-center rounded-md ${
+                                            pub.indexing_group === 'International Conference' || pub.indexing_group === 'Scopus' ? 'bg-[#AC0E0E]/10 border border-[#AC0E0E]/30' : 
+                                            'bg-[#E8889C]/10 border border-[#E8889C]/30'
+                                          }`}>
+                                            <span className="text-[9px] font-bold" style={{color: pub.indexing_group === 'International Conference' || pub.indexing_group === 'Scopus' ? '#AC0E0E' : '#E8889C'}}>
+                                              {pub.indexing_group === 'Scopus' ? 'International' : pub.indexing_group === 'International Conference' ? 'International' : 'Domestic'}
+                                            </span>
+                                          </div>
+                                        )}
+                                        {/* Row 2: Oral/Poster */}
+                                        {pub.presentation_type && (
+                                          <div className={`w-full py-3 text-center rounded-md ${
+                                            pub.presentation_type === 'oral' ? 'bg-[#D6B14D]/10 border border-[#D6B14D]/30' : 'bg-[#D6C360]/10 border border-[#D6C360]/30'
+                                          }`}>
+                                            <span className="text-[9px] font-bold" style={{color: pub.presentation_type === 'oral' ? '#D6B14D' : '#D6C360'}}>
+                                              {pub.presentation_type === 'oral' ? 'Oral' : 'Poster'}
+                                            </span>
+                                          </div>
+                                        )}
                                       </div>
                                     )}
                                     {pub.type === 'journal' && pub.indexing_group && (
                                       <div className={`w-full mt-4 py-4 text-center rounded-md border`}
                                         style={{
                                           backgroundColor: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.1)' :
-                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.08)' :
-                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.08)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.06)' :
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(214,177,77,0.1)' :
+                                            pub.indexing_group === 'ESCI' || pub.indexing_group === 'Scopus' ? 'rgba(214,195,96,0.1)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(232,214,136,0.15)' :
                                             pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.08)' : 'rgba(148,163,184,0.08)',
                                           borderColor: 
-                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(234,179,8,0.3)' :
-                                            pub.indexing_group === 'ESCI' ? 'rgba(234,179,8,0.25)' :
-                                            pub.indexing_group === 'Scopus' ? 'rgba(214, 176, 76,0.25)' :
-                                            pub.indexing_group === 'Other International' ? 'rgba(214, 176, 76,0.2)' :
+                                            ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? 'rgba(214,177,77,0.3)' :
+                                            pub.indexing_group === 'ESCI' || pub.indexing_group === 'Scopus' ? 'rgba(214,195,96,0.3)' :
+                                            pub.indexing_group === 'Other International' ? 'rgba(232,214,136,0.4)' :
                                             pub.indexing_group === 'KCI' ? 'rgba(100,116,139,0.2)' : 'rgba(148,163,184,0.2)'
                                         }}
                                       >
                                         <span 
                                           className="text-[9px] font-bold"
                                           style={{
-                                            color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
-                                              pub.indexing_group === 'ESCI' ? '#B8962D' :
-                                              pub.indexing_group === 'Scopus' ? '#D6B14D' :
-                                              pub.indexing_group === 'Other International' ? '#D6C360' :
+                                            color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#D6B14D' :
+                                              pub.indexing_group === 'ESCI' || pub.indexing_group === 'Scopus' ? '#D6C360' :
+                                              pub.indexing_group === 'Other International' ? '#9A7D1F' :
                                               pub.indexing_group === 'KCI' ? '#64748b' : '#94a3b8'
                                           }}
                                         >

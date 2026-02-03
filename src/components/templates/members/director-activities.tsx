@@ -129,7 +129,8 @@ const education = [
       {role: 'Head of Culture & Public Relations', context: '41st Student Council, College of Engineering', period: '2017-01 – 2017-11'},
       {role: 'President', context: '7th Student Council, Department of Industrial and Management Systems Engineering', period: '2016-01 – 2016-12'},
     ],
-    awards: [{title: 'Valedictorian', org: '1st out of 86 students (GPA: 4.42/4.5)'}],
+    awards: [{title: 'Dean's Award for Academic Excellence', org: 'College of Engineering, Kyung Hee University'}],
+    honors: [{title: 'Valedictorian', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
   },
 ]
