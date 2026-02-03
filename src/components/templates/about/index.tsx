@@ -134,7 +134,10 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/60 via-[#D6B14D]/30 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-white leading-relaxed">
-                      가천대학교 글로벌캠퍼스 가천관 304호
+                      가천관 304호
+                    </p>
+                    <p className="text-sm font-medium text-gray-300 leading-relaxed mt-2">
+                      가천대학교 글로벌캠퍼스
                     </p>
                     <p className="text-xs text-gray-400 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342
@@ -186,7 +189,10 @@ export const LocationTemplate = () => {
                       <div className="flex-1 h-px bg-gradient-to-r from-[#D6B14D]/50 via-[#D6B14D]/25 to-transparent" />
                     </div>
                     <p className="text-sm font-medium text-gray-900 leading-relaxed">
-                      가천대학교 글로벌캠퍼스 가천관 304호
+                      가천관 304호
+                    </p>
+                    <p className="text-sm font-medium text-gray-500 leading-relaxed mt-2">
+                      가천대학교 글로벌캠퍼스
                     </p>
                     <p className="text-xs text-gray-500 mt-4">
                       (13120) 경기도 성남시 수정구 성남대로 1342

@@ -1,4 +1,4 @@
-import {ReactNode, useEffect, useRef, MouseEvent, memo} from "react";
+import {ReactNode, useEffect, useRef, MouseEvent, memo, WheelEvent} from "react";
 import {useStoreModal, useStoreModalValue} from "@/store/modal";
 import {X} from "lucide-react";
 
@@ -18,7 +18,21 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
 
   useEffect(() => {
     const el = document.querySelector('body');
-    if (el) el.style.overflow = modals.length > 0 ? 'hidden' : '';
+    if (el) {
+      if (modals.length > 0) {
+        el.style.overflow = 'hidden';
+        el.style.position = 'fixed';
+        el.style.width = '100%';
+        el.style.top = `-${window.scrollY}px`;
+      } else {
+        const scrollY = el.style.top;
+        el.style.overflow = '';
+        el.style.position = '';
+        el.style.width = '';
+        el.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
   }, [modals.length]);
 
   const onMouseDown = (e: MouseEvent<HTMLDivElement>) => {
@@ -29,6 +43,11 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
     // mousedown과 mouseup이 모두 backdrop에서 발생했을 때만 모달 닫기
     if (modalRef.current === e.target && mouseDownTargetRef.current === e.target) closeModal();
     mouseDownTargetRef.current = null;
+  };
+
+  // Prevent wheel events from propagating to background
+  const onWheel = (e: WheelEvent<HTMLDivElement>) => {
+    e.stopPropagation();
   };
 
   if (modals.length === 0) return (<></>);
@@ -47,6 +66,7 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
               style={{zIndex: 10000 + index, touchAction: 'none'}}
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
+              onWheel={onWheel}
               ref={isTopModal ? modalRef : undefined}
             >
               <div

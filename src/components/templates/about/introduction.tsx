@@ -289,7 +289,7 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           MISSION & VISION CAROUSEL
       ═══════════════════════════════════════════════════════════════ */}
-      <div className="bg-gradient-to-b from-[#FFFDF5] to-white">
+      <div className="bg-gradient-to-b from-[#FFF9E6] to-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 py-32 md:py-60">
           <section>
             {/* Carousel Container */}
@@ -440,7 +440,7 @@ export const AboutIntroductionTemplate = () => {
                           <div className="max-w-3xl mx-auto text-center">
                             <p className="text-sm md:text-base leading-[2] text-gray-400">
                               {visionLang === 'ko' ? (
-                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 환경과 산업 현장의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold" style={{ color: '#D6B14D' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
+                                <>저희 FINDS Lab은 <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 환경과 산업 현장의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하고자 합니다.</>
                               ) : (
                                 <>Through <span className="font-semibold text-gray-300">data-driven research</span>, our lab aims to reduce inefficiencies in business and industry caused by <span className="font-semibold text-gray-300">information asymmetry</span>, and turn complex data into <span className="font-bold" style={{ color: '#D6B14D' }}>clear, strategically valuable insights</span>.</>
                               )}

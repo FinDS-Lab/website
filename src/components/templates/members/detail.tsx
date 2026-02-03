@@ -40,10 +40,14 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   }
 
   const sendButtonColor = degree === 'undergrad' 
-    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90' 
-    : degree === 'phd' 
+    ? 'bg-[#FFBAC4] hover:bg-[#FFBAC4]/90' 
+    : degree === 'phd' || degree === 'phd-candidate' || degree === 'phd-student'
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
-    : 'bg-[#D6A076] hover:bg-[#D6A076]/90'
+    : degree === 'ms'
+    ? 'bg-[#C41E3A] hover:bg-[#C41E3A]/90'
+    : degree === 'combined'
+    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90'
+    : 'bg-gray-500 hover:bg-gray-500/90'
 
   return (
     <div
@@ -169,10 +173,10 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
   }
 
   const degreeColors: Record<string, string> = {
-    phd: 'bg-[#D6B14D]/20 text-[#D6B14D]',
-    combined: 'bg-[#D6A076]/20 text-[#D6A076]',
-    ms: 'bg-[#D6A076]/20 text-[#D6A076]',
-    undergrad: 'bg-[#D6A076]/20 text-[#D6A076]',
+    phd: 'bg-gray-100 text-gray-700',
+    combined: 'bg-gray-100 text-gray-700',
+    ms: 'bg-gray-100 text-gray-700',
+    undergrad: 'bg-gray-100 text-gray-700',
   }
 
   return (
@@ -255,13 +259,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                   <div className="relative">
                     <button
                       onClick={() => setShowEmailPopup(!showEmailPopup)}
-                      className={`flex items-center justify-center gap-8 px-16 py-10 rounded-xl text-sm font-medium transition-colors w-full ${
-                        member.degree === 'undergrad' 
-                          ? 'bg-[#E8889C]/10 hover:bg-[#D6A076]/20 text-[#D6A076]'
-                          : member.degree === 'phd'
-                          ? 'bg-[#D6B14D]/10 hover:bg-[#D6B14D]/20 text-[#D6B14D]'
-                          : 'bg-[#E8889C]/10 hover:bg-[#D6A076]/20 text-[#D6A076]'
-                      }`}
+                      className="flex items-center justify-center gap-8 px-16 py-10 rounded-xl text-sm font-medium transition-colors w-full bg-gray-100 hover:bg-gray-200 text-gray-700"
                     >
                       <Mail size={16} />
                       <span>Email</span>
@@ -366,7 +364,7 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                         {edu.school_en || edu.school}
                       </h4>
                       <p className="text-sm font-semibold text-gray-500">{edu.field_en || edu.field}</p>
-                      <span className="text-xs font-medium mt-4" style={{ color: '#D6A076' }}>
+                      <span className="text-xs font-medium mt-4 text-gray-500">
                         {edu.start} - {edu.end || edu.expected || 'Present'}
                       </span>
                       {(edu.doubleMajor || edu.minor) && (

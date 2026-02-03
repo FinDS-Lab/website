@@ -74,7 +74,7 @@ const typeConfig = {
     labelPlural: 'Institution Projects',
     labelKo: '기관과제',
     color: 'bg-[#E8D688]',
-    bgColor: 'bg-[#FFFBF0]',
+    bgColor: 'bg-[#FFF9E6]',
     borderColor: 'border-[#E8D688]/40',
     textColor: 'text-[#B8962D]',
   },
@@ -87,7 +87,7 @@ const typeConfig = {
     color: 'bg-[#E8889C]',
     bgColor: 'bg-pink-50',
     borderColor: 'border-[#E8889C]/30',
-    textColor: 'text-[#C4677A]',
+    textColor: 'text-[#E8889C]',
   },
 }
 
@@ -109,7 +109,7 @@ const FilterModal = ({
   const typeFilterColors: Record<string, { bg: string; text: string }> = {
     government: { bg: '#D6B14D', text: '#FFFFFF' },
     industry: { bg: '#AC0E0E', text: '#FFFFFF' },
-    institution: { bg: '#E8D688', text: '#5C4A1E' },
+    institution: { bg: '#E8D688', text: '#9A7D1F' },
     academic: { bg: '#E8889C', text: '#FFFFFF' },
   }
   const statusFilterColors: Record<string, { bg: string; text: string }> = {
@@ -741,17 +741,6 @@ export const ProjectsTemplate = () => {
                                       project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                     }`}>
                                       {config?.label || project.type} Project
-                                    </span>
-                                    {(project.roles.principalInvestigator === '최인수' || project.roles.leadResearcher === '최인수' || project.roles.visitingResearcher === '최인수' || project.roles.researchers?.includes('최인수')) && (
-                                      <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
-                                    )}
-                                    <span className={`text-[9px] font-bold tracking-wide ${
-                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
-                                    }`}>
-                                      {project.roles.principalInvestigator === '최인수' ? 'Principal Investigator' : 
-                                       project.roles.leadResearcher === '최인수' ? 'Lead Researcher' : 
-                                       project.roles.visitingResearcher === '최인수' ? 'Visiting Researcher' :
-                                       project.roles.researchers?.includes('최인수') ? 'Researcher' : ''}
                                     </span>
                                   </div>
                                   {/* Right side: Status badge */}

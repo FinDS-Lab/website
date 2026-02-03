@@ -50,21 +50,21 @@ const useScrollAnimation = () => {
 const pubFilterColors: Record<string, { bg: string; border: string; text: string }> = {
   'Journal': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
   'Conference': { bg: '#AC0E0E', border: '#AC0E0E', text: '#FFFFFF' },
-  'Book': { bg: '#E8D688', border: '#E8D688', text: '#5C4A1E' },
-  'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
+  'Book': { bg: '#E8D688', border: '#E8D688', text: '#9A7D1F' },
+  'Report': { bg: '#FFBAC4', border: '#FFBAC4', text: '#9A7D1F' },
   'SCIE': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
   'SSCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
   'A&HCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
-  'ESCI': { bg: '#C9A833', border: '#C9A833', text: '#FFFFFF' },
+  'ESCI': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
   'Scopus': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
-  'Other International': { bg: '#D6C360', border: '#D6C360', text: '#5C4A1E' },
+  'Other International': { bg: '#D6C360', border: '#D6C360', text: '#9A7D1F' },
   'KCI': { bg: '#64748b', border: '#64748b', text: '#FFFFFF' },
   'Other Domestic': { bg: '#94a3b8', border: '#94a3b8', text: '#FFFFFF' },
   'Preprint': { bg: '#8B8B8B', border: '#8B8B8B', text: '#FFFFFF' },
   'International Conference': { bg: '#D6B14D', border: '#D6B14D', text: '#FFFFFF' },
   'Domestic Conference': { bg: '#B8962D', border: '#B8962D', text: '#FFFFFF' },
   'Oral': { bg: '#E8889C', border: '#E8889C', text: '#FFFFFF' },
-  'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#5C4A1E' },
+  'Poster': { bg: '#FFBAC4', border: '#FFBAC4', text: '#9A7D1F' },
 }
 
 // 필터 모달 컴포넌트
@@ -1204,7 +1204,7 @@ export const PublicationsTemplate = () => {
                                           className="text-[9px] font-bold"
                                           style={{
                                             color: ['SCIE', 'SSCI', 'A&HCI'].includes(pub.indexing_group) ? '#B8962D' :
-                                              pub.indexing_group === 'ESCI' ? '#C9A833' :
+                                              pub.indexing_group === 'ESCI' ? '#B8962D' :
                                               pub.indexing_group === 'Scopus' ? '#D6B14D' :
                                               pub.indexing_group === 'Other International' ? '#D6C360' :
                                               pub.indexing_group === 'KCI' ? '#64748b' : '#94a3b8'

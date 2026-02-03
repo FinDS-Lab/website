@@ -38,7 +38,7 @@ type NewsTag = 'Honors' | 'Awards' | 'Events' | 'General';
 const tagColors: Record<NewsTag, { bg: string; text: string; border: string; hoverText: string }> = {
   'Honors': { bg: 'bg-[#D6B14D]/10', text: 'text-[#9A7D1F]', border: 'border-[#D6B14D]/30', hoverText: '#9A7D1F' },
   'Awards': { bg: 'bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]', border: 'border-[#AC0E0E]/30', hoverText: '#AC0E0E' },
-  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#B8762D]', border: 'border-[#D6A076]/30', hoverText: '#B8762D' },
+  'Events': { bg: 'bg-[#D6A076]/10', text: 'text-[#B8962D]', border: 'border-[#D6A076]/30', hoverText: '#B8962D' },
   'General': { bg: 'bg-gray-100', text: 'text-gray-600', border: 'border-gray-200', hoverText: '#4B5563' }
 };
 

@@ -50,12 +50,14 @@ const EmailPopup = ({ email, onClose, degree }: { email: string; onClose: () => 
   }
 
   const sendButtonColor = degree === 'undergrad' 
-    ? 'bg-[#D6A076] hover:bg-[#D6A076]/90' 
-    : degree === 'phd' 
+    ? 'bg-[#FFBAC4] hover:bg-[#FFBAC4]/90' 
+    : degree === 'phd' || degree === 'phd-candidate' || degree === 'phd-student'
     ? 'bg-[#D6B14D] hover:bg-[#D6B14D]/90' 
     : degree === 'ms'
+    ? 'bg-[#C41E3A] hover:bg-[#C41E3A]/90'
+    : degree === 'combined'
     ? 'bg-[#D6A076] hover:bg-[#D6A076]/90'
-    : 'bg-[#D6A076] hover:bg-[#D6A076]/90'
+    : 'bg-gray-500 hover:bg-gray-500/90'
 
   return (
     <div
@@ -105,14 +107,14 @@ const degreeColors = {
   undergrad: 'text-white',
 }
 
-// Gold for PhD, Coral for combined, MS, Deep pink for undergrad
+// Gold for PhD, Coral for combined, Ruby for MS, Blossom for undergrad
 const degreeBgStyles = {
-  phd: {backgroundColor: '#D6B14D'},          // Gold
+  phd: {backgroundColor: '#D6B14D'},          // Gold (박사)
   'phd-candidate': {backgroundColor: '#D6B14D'},  // Gold
   'phd-student': {backgroundColor: '#D6B14D'},    // Gold
   combined: {backgroundColor: '#D6A076'},      // Coral (석박사통합)
-  ms: {backgroundColor: '#E8889C'},            // Pink (M.S.)
-  undergrad: {backgroundColor: '#E8889C'},     // Deep Pink (진한 핑크)
+  ms: {backgroundColor: '#C41E3A'},            // Ruby (석사과정)
+  undergrad: {backgroundColor: '#FFBAC4'},     // Blossom (랩인턴)
 }
 
 // Hover colors matching Alumni style
@@ -121,8 +123,8 @@ const degreeHoverColors = {
   'phd-candidate': '#D6B14D',
   'phd-student': '#D6B14D',
   combined: '#D6A076',
-  ms: '#E8889C',
-  undergrad: '#E8889C',
+  ms: '#C41E3A',
+  undergrad: '#FFBAC4',
 }
 
 // 날짜 포맷 - 하이픈 유지 (2025-12-22 형식)
@@ -202,8 +204,8 @@ export const MembersCurrentTemplate = () => {
     return {
       phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
       combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#D6A076' },
-      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#D6A076' },
-      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: Lightbulb, color: '#D6A076' },
+      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#C41E3A' },
+      undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: Lightbulb, color: '#FFBAC4' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#9A7D1F' },
     }
   }, [members])
@@ -240,7 +242,7 @@ export const MembersCurrentTemplate = () => {
 
   // 각 멤버의 degree에 맞는 hover color 반환
   const getMemberHoverColor = (degree: string) => {
-    return degreeHoverColors[degree as keyof typeof degreeHoverColors] || '#E8889C'
+    return degreeHoverColors[degree as keyof typeof degreeHoverColors] || '#C41E3A'
   }
 
   return (

@@ -667,11 +667,11 @@ const CollaborationNetwork = memo(() => {
         >
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#E8C86A"/>
+              <stop offset="0%" stopColor="#E8D688"/>
               <stop offset="100%" stopColor="#D6B14D"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffd6dd"/>
+              <stop offset="0%" stopColor="#FFE4E9"/>
               <stop offset="100%" stopColor="#FFBAC4"/>
             </radialGradient>
             <filter id="glow">
@@ -727,7 +727,7 @@ const CollaborationNetwork = memo(() => {
               const getNodeFillColor = () => {
                 if (node.isDirector) return 'url(#directorGradient)'
                 // coworkRate is 0-100%, map to color intensity
-                // Light: #ffd6dd (low rate) to Dark: #E8889C (high rate)
+                // Light: #FFE4E9 (low rate) to Dark: #E8889C (high rate)
                 const rate = Math.min(100, node.coworkRate)
                 // Interpolate between light pink and dark pink
                 const r = Math.round(255 - (rate / 100) * (255 - 232))
@@ -931,7 +931,7 @@ const CollaborationNetwork = memo(() => {
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #FFBAC4 100%)'}}/>
+            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #FFE4E9 0%, #FFBAC4 100%)'}}/>
             <span className="text-gray-600 font-medium">Collaborator</span>
           </div>
           <div className="flex items-center gap-6">
@@ -1599,7 +1599,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
-                        <span className="px-8 py-2 bg-[#E8C95F] text-white text-[10px] font-bold rounded-full">4</span>
+                        <span className="px-8 py-2 bg-[#E8D688] text-white text-[10px] font-bold rounded-full">4</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1657,7 +1657,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Program Committee</p>
-                        <span className="px-8 py-2 bg-[#F5DFA0] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
+                        <span className="px-8 py-2 bg-[#FFEB99] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1731,7 +1731,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D64545'}}>{journals.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1744,10 +1744,10 @@ export const MembersDirectorAcademicTemplate = () => {
                               <span className="text-xs font-bold text-gray-700 flex-1">{journal.name}</span>
                               <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'SSCI' ? 'bg-[#C62828] text-white' :
+                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
                                 journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                                'bg-[#FFD6DD] text-gray-700'
+                                'bg-[#FFE4E9] text-gray-700'
                               }`}>{journal.type}</span>
                             </a>
                           ))}
@@ -1764,7 +1764,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm font-bold text-gray-900">Conference Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E88A8A'}}>{conferenceReviewers.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{conferenceReviewers.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.conferenceReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -2004,7 +2004,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               government: 'text-[#9A7D1F]',
                               industry: 'text-[#AC0E0E]',
                               institution: 'text-[#B8962D]',
-                              academic: 'text-[#C4677A]',
+                              academic: 'text-[#E8889C]',
                             }
                             const typeBgColors: Record<string, string> = {
                               government: 'bg-[#D6B14D]',

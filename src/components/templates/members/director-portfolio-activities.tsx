@@ -773,11 +773,11 @@ const CollaborationNetwork = memo(() => {
         >
           <defs>
             <radialGradient id="directorGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#E8C86A"/>
+              <stop offset="0%" stopColor="#E8D688"/>
               <stop offset="100%" stopColor="#D6B14D"/>
             </radialGradient>
             <radialGradient id="nodeGradient" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#ffd6dd"/>
+              <stop offset="0%" stopColor="#FFE4E9"/>
               <stop offset="100%" stopColor="#FFBAC4"/>
             </radialGradient>
             <filter id="glow">
@@ -828,7 +828,7 @@ const CollaborationNetwork = memo(() => {
               const getNodeFillColor = () => {
                 if (node.isDirector) return 'url(#directorGradient)'
                 // coworkRate is 0-100%, map to color intensity
-                // Light: #ffd6dd (low rate) to Dark: #E8889C (high rate)
+                // Light: #FFE4E9 (low rate) to Dark: #E8889C (high rate)
                 const rate = Math.min(100, node.coworkRate)
                 // Interpolate between light pink and dark pink
                 const r = Math.round(255 - (rate / 100) * (255 - 232))
@@ -1006,7 +1006,7 @@ const CollaborationNetwork = memo(() => {
             <span className="text-gray-600 font-medium">Director</span>
           </div>
           <div className="flex items-center gap-6 mb-6">
-            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #ffd6dd 0%, #FFBAC4 100%)'}}/>
+            <div className="size-8 rounded-full" style={{background: 'linear-gradient(135deg, #FFE4E9 0%, #FFBAC4 100%)'}}/>
             <span className="text-gray-600 font-medium">Collaborator</span>
           </div>
           <div className="flex items-center gap-6">

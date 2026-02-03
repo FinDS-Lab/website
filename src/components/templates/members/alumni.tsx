@@ -358,13 +358,13 @@ export const MembersAlumniTemplate = () => {
                     </div>
                   </div>
                 </div>
-                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#E8889C]/40 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
-                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#C41E3A]/40 hover:shadow-lg hover:shadow-[#C41E3A]/10 transition-all duration-300">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#C41E3A]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
-                    <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#E8889C', opacity: 0.7}} />
-                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{msCount}</span>
+                    <BookOpen className="size-18 md:size-16 mb-6 md:mb-0 md:hidden" style={{color: '#C41E3A', opacity: 0.7}} />
+                    <span className="text-lg md:text-3xl font-bold mb-2 md:mb-4 transition-all duration-300" style={{color: '#C41E3A'}}>{msCount}</span>
                     <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6 min-h-[28px] md:min-h-0 justify-center">
-                      <BookOpen className="hidden md:block size-16" style={{color: '#E8889C', opacity: 0.7}} />
+                      <BookOpen className="hidden md:block size-16" style={{color: '#C41E3A', opacity: 0.7}} />
                       <span className="text-[8px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">M.S.<br className="md:hidden" /> Graduates</span>
                     </div>
                   </div>
@@ -596,7 +596,7 @@ export const MembersAlumniTemplate = () => {
                   className="flex items-center justify-between w-full group"
                 >
                   <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
+                    <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#C41E3A'}} />
                     M.S. Graduates
                   </h2>
                   <div className="size-32 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary/5 transition-colors">
@@ -631,7 +631,7 @@ export const MembersAlumniTemplate = () => {
                             return (
                               <React.Fragment key={idx}>
                                 <tr 
-                                  className={`border-b border-gray-100 hover:bg-[#E8889C]/5 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
+                                  className={`border-b border-gray-100 hover:bg-[#C41E3A]/5 transition-colors group ${hasThesis ? 'cursor-pointer' : ''}`}
                                   onClick={() => hasThesis && toggleAlumniExpand(alumni.name)}
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
@@ -640,10 +640,10 @@ export const MembersAlumniTemplate = () => {
                                         className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0"
                                         style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.2) 0%, rgba(232,135,155,0.1) 100%)'}}
                                       >
-                                        <span className="text-xs md:text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
+                                        <span className="text-xs md:text-sm font-bold" style={{color: '#C41E3A'}}>{alumniNumber}</span>
                                       </div>
                                       <div className="flex items-center gap-8">
-                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#E8889C] transition-colors">
+                                        <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#C41E3A] transition-colors">
                                           {alumni.nameKo || alumni.name}
                                         </p>
                                         {hasThesis && (
@@ -657,7 +657,7 @@ export const MembersAlumniTemplate = () => {
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <span className="px-8 md:px-10 py-3 md:py-4 text-[10px] md:text-xs font-bold rounded-full"
-                                      style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                      style={{backgroundColor: 'rgba(196,30,58,0.15)', color: '#C41E3A'}}>
                                       M.S.
                                     </span>
                                   </td>
@@ -670,7 +670,7 @@ export const MembersAlumniTemplate = () => {
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {alumni.company ? (
                                       <div className="flex items-center gap-6 text-xs md:text-sm text-gray-600">
-                                        <Building2 size={14} style={{color: '#E8889C'}}/>
+                                        <Building2 size={14} style={{color: '#C41E3A'}}/>
                                         <span>{alumni.company}</span>
                                       </div>
                                     ) : (
@@ -686,9 +686,9 @@ export const MembersAlumniTemplate = () => {
                                           .filter(([deg]) => deg === 'ms')
                                           .map(([deg, thesis]) => (
                                             <div key={deg} className="flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
-                                              <FileText size={16} className="shrink-0 mt-2" style={{color: '#E8889C'}}/>
+                                              <FileText size={16} className="shrink-0 mt-2" style={{color: '#C41E3A'}}/>
                                               <div className="flex-1 min-w-0">
-                                                <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#E8889C'}}>
+                                                <p className="text-[10px] md:text-xs font-bold mb-4" style={{color: '#C41E3A'}}>
                                                   M.S. Thesis
                                                 </p>
                                                 <p className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
@@ -735,12 +735,12 @@ export const MembersAlumniTemplate = () => {
                           >
                             <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
                               <div className="size-36 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.25) 0%, rgba(232,135,155,0.12) 100%)'}}>
-                                <span className="text-sm font-bold" style={{color: '#E8889C'}}>{alumniNumber}</span>
+                                <span className="text-sm font-bold" style={{color: '#C41E3A'}}>{alumniNumber}</span>
                               </div>
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
                                   <p className="text-sm font-bold text-gray-900">{alumni.nameKo || alumni.name}</p>
-                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(196,30,58,0.15)', color: '#C41E3A'}}>
                                     M.S.
                                   </span>
                                   {hasThesis && (
@@ -757,9 +757,9 @@ export const MembersAlumniTemplate = () => {
                                   .filter(([deg]) => deg === 'ms')
                                   .map(([deg, thesis]) => (
                                     <div key={deg} className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
-                                      <FileText size={14} className="shrink-0 mt-1" style={{color: '#E8889C'}}/>
+                                      <FileText size={14} className="shrink-0 mt-1" style={{color: '#C41E3A'}}/>
                                       <div className="flex-1 min-w-0">
-                                        <p className="text-[10px] font-bold mb-4" style={{color: '#E8889C'}}>M.S. Thesis</p>
+                                        <p className="text-[10px] font-bold mb-4" style={{color: '#C41E3A'}}>M.S. Thesis</p>
                                         <p className="text-xs text-gray-700 leading-relaxed">{thesis.title}</p>
                                         {thesis.url && (
                                           <a href={thesis.url} target="_blank" rel="noopener noreferrer" 
@@ -783,7 +783,7 @@ export const MembersAlumniTemplate = () => {
             ) : (
               <div className="flex flex-col gap-16 md:gap-24">
                 <h2 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#E8889C'}} />
+                  <span className="w-8 h-8 rounded-full" style={{backgroundColor: '#C41E3A'}} />
                   M.S. Graduates
                 </h2>
                 <div className="bg-gradient-to-br from-gray-50 to-white border border-dashed border-gray-200 rounded-2xl p-24 md:p-40">
@@ -839,7 +839,7 @@ export const MembersAlumniTemplate = () => {
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="flex items-center gap-10 md:gap-12">
-                                      <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(232,135,155,0.15) 100%)'}}>
+                                      <div className="size-36 md:size-40 rounded-full flex items-center justify-center shrink-0" style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
                                         <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
                                       </div>
                                       <div className="flex items-center gap-8">
@@ -855,7 +855,7 @@ export const MembersAlumniTemplate = () => {
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="group/tooltip relative inline-block">
-                                      <span className="px-10 md:px-12 py-4 md:py-5 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit cursor-default transition-all duration-200 group-hover/tooltip:shadow-md" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                      <span className="px-10 md:px-12 py-4 md:py-5 text-[10px] md:text-xs font-bold rounded-full inline-block w-fit cursor-default transition-all duration-200 group-hover/tooltip:shadow-md" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#C41E3A'}}>
                                         {alumni.cohort || '-'}
                                       </span>
                                       {alumni.cohortName && (
@@ -882,7 +882,7 @@ export const MembersAlumniTemplate = () => {
                                       <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
                                         <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
                                         <div className="flex-1 min-w-0">
-                                          <p className="text-[10px] md:text-xs font-bold mb-8" style={{color: '#E8889C'}}>
+                                          <p className="text-[10px] md:text-xs font-bold mb-8" style={{color: '#C41E3A'}}>
                                             Research Projects
                                           </p>
                                           <ul className="space-y-4">
@@ -925,7 +925,7 @@ export const MembersAlumniTemplate = () => {
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
                                   <p className="text-sm font-bold text-gray-900">{alumni.name}</p>
-                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#E8889C'}}>
+                                  <span className="px-6 py-1 text-[9px] font-bold rounded-full" style={{backgroundColor: 'rgba(255,183,197,0.15)', color: '#C41E3A'}}>
                                     {alumni.cohort || '-'}
                                   </span>
                                   {hasProjects && (
@@ -945,7 +945,7 @@ export const MembersAlumniTemplate = () => {
                                 <div className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
                                   <FileText size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] font-bold mb-6" style={{color: '#E8889C'}}>Research Projects</p>
+                                    <p className="text-[10px] font-bold mb-6" style={{color: '#C41E3A'}}>Research Projects</p>
                                     <ul className="space-y-3">
                                       {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
                                         <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
