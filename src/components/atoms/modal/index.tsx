@@ -1,10 +1,11 @@
-import {ReactNode, useEffect, useRef, MouseEvent, memo, WheelEvent} from "react";
+import {ReactNode, useEffect, useLayoutEffect, useRef, MouseEvent, memo, WheelEvent, useCallback} from "react";
 import {useStoreModal, useStoreModalValue} from "@/store/modal";
 import {X} from "lucide-react";
 
 const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const mouseDownTargetRef = useRef<EventTarget | null>(null);
+  const scrollYRef = useRef<number>(0);
   const {modals} = useStoreModalValue();
   const {closeModal} = useStoreModal();
 
@@ -16,22 +17,44 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
     };
   }, []);
 
-  useEffect(() => {
-    const el = document.querySelector('body');
-    if (el) {
-      if (modals.length > 0) {
-        el.style.overflow = 'hidden';
-        el.style.position = 'fixed';
-        el.style.width = '100%';
-        el.style.top = `-${window.scrollY}px`;
-      } else {
-        const scrollY = el.style.top;
-        el.style.overflow = '';
-        el.style.position = '';
-        el.style.width = '';
-        el.style.top = '';
-        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+  // Use useLayoutEffect to capture scroll position before browser paint
+  useLayoutEffect(() => {
+    const body = document.body;
+    const html = document.documentElement;
+    
+    if (modals.length > 0) {
+      // Save current scroll position before locking (only if not already locked)
+      if (body.style.position !== 'fixed') {
+        scrollYRef.current = window.scrollY;
       }
+      
+      // Apply scroll lock
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+      body.style.top = `-${scrollYRef.current}px`;
+      body.style.left = '0';
+      body.style.right = '0';
+      body.style.width = '100%';
+      html.style.overflow = 'hidden';
+    } else {
+      // Get saved scroll position before clearing styles
+      const savedScrollY = scrollYRef.current;
+      
+      // Remove scroll lock
+      body.style.overflow = '';
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      body.style.width = '';
+      html.style.overflow = '';
+      
+      // Restore scroll position
+      window.scrollTo({
+        top: savedScrollY,
+        left: 0,
+        behavior: 'instant'
+      });
     }
   }, [modals.length]);
 
@@ -49,6 +72,14 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
   const onWheel = (e: WheelEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
+  
+  // Prevent touch scroll on backdrop
+  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    // Only prevent if touching the backdrop directly
+    if (e.target === e.currentTarget) {
+      e.preventDefault();
+    }
+  }, []);
 
   if (modals.length === 0) return (<></>);
 
@@ -67,6 +98,7 @@ const Modal = ({title, children}: { title?: string, children?: ReactNode }) => {
               onMouseDown={(e) => onMouseDown(e)}
               onClick={(e) => isTopModal ? onModalClose(e) : undefined}
               onWheel={onWheel}
+              onTouchMove={handleTouchMove}
               ref={isTopModal ? modalRef : undefined}
             >
               <div

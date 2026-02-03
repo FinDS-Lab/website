@@ -441,9 +441,9 @@
   },
   "kim-seonghoon": {
     "name": "김성훈",
-    "university": "한양대학교",
-    "department": "경영학과",
-    "entryYear": "2025",
+    "university": "경희대학교",
+    "department": "산업경영공학과",
+    "entryYear": "2023",
     "participationYears": [
       {
         "year": "2023",
@@ -681,9 +681,9 @@
   },
   "na-yujin": {
     "name": "나유진",
-    "university": "한양대학교",
-    "department": "산업공학과",
-    "entryYear": "2021",
+    "university": "경희대학교",
+    "department": "산업경영공학과",
+    "entryYear": "2020",
     "participationYears": [
       {
         "year": "2020",
@@ -1226,8 +1226,25 @@
   "shim-eun": {
     "name": "심은",
     "university": "서강대학교",
-    "department": "컴퓨터공학과",
-    "entryYear": "2022",
+    "department": "컴퓨터공학부",
+    "entryYear": "2021",
+    "schoolHistory": [
+      {
+        "yearRange": ["2021", "2021"],
+        "university": "경희대학교",
+        "department": "산업경영공학과"
+      },
+      {
+        "yearRange": ["2022", "2023"],
+        "university": "서강대학교",
+        "department": "컴퓨터공학과"
+      },
+      {
+        "yearRange": ["2024", "9999"],
+        "university": "서강대학교",
+        "department": "컴퓨터공학부"
+      }
+    ],
     "participationYears": [
       {
         "year": "2021",
@@ -1241,9 +1258,26 @@
   },
   "shim-eunyoung": {
     "name": "심은영",
-    "university": "고려대학교",
-    "department": "산업경영공학부",
-    "entryYear": "2021",
+    "university": "경희대학교",
+    "department": "산업경영공학과",
+    "entryYear": "2020",
+    "schoolHistory": [
+      {
+        "yearRange": ["2020", "2021"],
+        "university": "경희대학교",
+        "department": "산업경영공학과"
+      },
+      {
+        "yearRange": ["2022", "2023"],
+        "university": "서강대학교",
+        "department": "컴퓨터공학과"
+      },
+      {
+        "yearRange": ["2024", "9999"],
+        "university": "서강대학교",
+        "department": "컴퓨터공학부"
+      }
+    ],
     "participationYears": [
       {
         "year": "2020",

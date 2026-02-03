@@ -185,9 +185,7 @@ const education: any[] = [
       {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 – 2016-12'},
     ],
     awards: [
-      {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'},
-      {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '4th Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '2nd Graduation Paper'},
-      {title: 'Outstanding Project Award', titleKo: '학술제 우수 프로젝트상', org: '3rd Research Symposium, Department of Industrial and Management Systems Engineering, Kyung Hee University', note: '1st Graduation Paper'}
+      {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'}
     ],
     honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
@@ -1063,17 +1061,19 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <Medal className="shrink-0 mt-1 size-14" style={{color: '#D6B14D'}} />
                                           <div className="flex-1 flex flex-col">
                                             <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
-                                            <div className="flex items-center gap-6 mt-2 flex-wrap">
-                                              <span className="text-[10px] md:text-xs text-gray-500 font-medium">{h.org}</span>
-                                              {h.gpa && (
-                                                <span className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#D6B14D] to-[#B8962D] text-white text-[9px] md:text-[10px] font-bold rounded-full shadow-sm">
-                                                  <span className="opacity-80">GPA</span>
-                                                  <span className="text-[10px] md:text-xs">{h.gpa}</span>
-                                                  <span className="opacity-60">/</span>
-                                                  <span className="opacity-80">{h.gpaMax}</span>
+                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
+                                            {h.gpa && (
+                                              <div className="flex items-center gap-4 mt-4">
+                                                <span className="w-4 h-4 rounded-full bg-[#D6B14D]/40 shrink-0" />
+                                                <span className="text-[10px] md:text-xs">
+                                                  <span className="font-bold text-gray-700">GPA</span>
+                                                  {' '}
+                                                  <span className="font-bold" style={{color: '#D6B14D'}}>{h.gpa}</span>
+                                                  {' '}
+                                                  <span className="text-gray-600">out of {h.gpaMax}</span>
                                                 </span>
-                                              )}
-                                            </div>
+                                              </div>
+                                            )}
                                           </div>
                                         </div>
                                       ))}

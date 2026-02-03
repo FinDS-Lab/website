@@ -229,12 +229,19 @@ export type ParticipationYear = {
   program: string
 }
 
+export type SchoolHistoryEntry = {
+  yearRange: [string, string]  // [startYear, endYear], endYear can be "9999" for current
+  university: string
+  department: string
+}
+
 export type Mentee = {
   name: string
   university: string
   department: string
   entryYear: string
   participationYears: ParticipationYear[]
+  schoolHistory?: SchoolHistoryEntry[]  // Optional for mentees who changed schools
 }
 
 export type MenteesData = {

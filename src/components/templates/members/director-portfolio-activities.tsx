@@ -1030,6 +1030,27 @@ type MenteesByYear = {
   [year: string]: MenteeWithId[]
 }
 
+// Helper function to get school info for a specific year based on schoolHistory
+const getSchoolInfoForYear = (mentee: MenteeWithId, year: string | null): { university: string; department: string } => {
+  if (!mentee.schoolHistory || mentee.schoolHistory.length === 0 || !year || year === 'all') {
+    return { university: mentee.university, department: mentee.department }
+  }
+  
+  const yearNum = parseInt(year.split('-')[0])
+  
+  for (const entry of mentee.schoolHistory) {
+    const startYear = parseInt(entry.yearRange[0])
+    const endYear = entry.yearRange[1] === '9999' ? 9999 : parseInt(entry.yearRange[1])
+    
+    if (yearNum >= startYear && yearNum <= endYear) {
+      return { university: entry.university, department: entry.department }
+    }
+  }
+  
+  // Default to base school info if no matching history found
+  return { university: mentee.university, department: mentee.department }
+}
+
 
 export const MembersDirectorPortfolioActivitiesTemplate = () => {
   const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
@@ -1222,14 +1243,19 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
     return uniqueMentees.size
   }, [menteesByYear])
 
-  // 필터링된 멘티
+  // 필터링된 멘티 (with year-based school info)
   const filteredMentees = useMemo(() => {
-    let result: MenteeWithId[] = []
+    let result: (MenteeWithId & { displayUniversity: string; displayDepartment: string })[] = []
+    
     if (selectedMentoringYear === 'all') {
       // 중복 제거하여 전체 멘티 반환
       const uniqueMentees = new Map<string, MenteeWithId>()
       mentees.forEach((m) => uniqueMentees.set(m.id, m))
-      result = Array.from(uniqueMentees.values())
+      result = Array.from(uniqueMentees.values()).map(m => ({
+        ...m,
+        displayUniversity: m.university,
+        displayDepartment: m.department
+      }))
     } else {
       // 선택한 연도와 해당 연도의 학기들 모두 포함
       const uniqueMentees = new Map<string, MenteeWithId>()
@@ -1238,21 +1264,29 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
           menteesByYear[key].forEach((m) => uniqueMentees.set(m.id, m))
         }
       })
-      result = Array.from(uniqueMentees.values())
+      // Apply year-based school info transformation
+      result = Array.from(uniqueMentees.values()).map(m => {
+        const schoolInfo = getSchoolInfoForYear(m, selectedMentoringYear)
+        return {
+          ...m,
+          displayUniversity: schoolInfo.university,
+          displayDepartment: schoolInfo.department
+        }
+      })
     }
     
-    // 대학 필터 적용
+    // 대학 필터 적용 (use displayUniversity for filtering)
     if (selectedUniversity !== 'all') {
-      result = result.filter(m => m.university === selectedUniversity)
+      result = result.filter(m => m.displayUniversity === selectedUniversity)
     }
     
-    // 검색어 필터 적용
+    // 검색어 필터 적용 (search in both original and display values)
     if (menteeSearchTerm.trim()) {
       const term = menteeSearchTerm.toLowerCase().trim()
       result = result.filter(m => 
         m.name.toLowerCase().includes(term) ||
-        m.university.toLowerCase().includes(term) ||
-        m.department.toLowerCase().includes(term)
+        m.displayUniversity.toLowerCase().includes(term) ||
+        m.displayDepartment.toLowerCase().includes(term)
       )
     }
     
@@ -1267,11 +1301,11 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
     return result
   }, [selectedMentoringYear, selectedUniversity, menteeSearchTerm, mentees, menteesByYear])
 
-  // 대학별 통계
+  // 대학별 통계 (using displayUniversity)
   const universityStats = useMemo(() => {
     const stats = new Map<string, number>()
     filteredMentees.forEach((m) => {
-      stats.set(m.university, (stats.get(m.university) || 0) + 1)
+      stats.set(m.displayUniversity, (stats.get(m.displayUniversity) || 0) + 1)
     })
     return Array.from(stats.entries())
       .sort((a, b) => a[0].localeCompare(b[0], 'ko'))
@@ -1845,7 +1879,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               <div className="min-w-0">
                                 <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
                                 <p className="text-xs md:text-xs text-gray-500 truncate">
-                                  {mentee.university} · {mentee.department} · {mentee.entryYear}학번
+                                  {mentee.displayUniversity} · {mentee.displayDepartment} · {mentee.entryYear}학번
                                 </p>
                               </div>
                             </div>
