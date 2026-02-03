@@ -1621,17 +1621,17 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           </div>
 
                           {/* Name */}
-                          <h3 className="text-base font-bold text-primary mb-6">{act.name}</h3>
+                          <h3 className="text-base md:text-lg font-bold text-primary mb-6">{act.name}</h3>
                           {act.fullName && (
-                            <p className="text-xs text-gray-500 mb-2">{act.fullName}</p>
+                            <p className="text-xs md:text-sm text-gray-500 mb-2">{act.fullName}</p>
                           )}
                           {act.fullNameKo && (
-                            <p className="text-xs text-gray-500 font-bold mb-6">{act.fullNameKo}</p>
+                            <p className="text-xs md:text-sm text-gray-500 font-bold mb-6">{act.fullNameKo}</p>
                           )}
 
                           {/* Generation */}
                           {act.generation && (
-                            <p className="text-gray-600 font-bold text-xs mb-16">{act.generation}</p>
+                            <p className="text-gray-600 font-bold text-xs md:text-sm mb-16">{act.generation}</p>
                           )}
 
                           {/* Membership */}
@@ -1649,7 +1649,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                           {/* Leadership */}
                           {act.leadership.length > 0 && (
                             <div className="mt-16 pt-16 border-t border-gray-100">
-                              <h4 className="text-[10px] md:text-xs font-bold text-primary uppercase tracking-widest mb-10">Leadership</h4>
+                              <h4 className="text-xs md:text-sm font-bold text-primary uppercase tracking-widest mb-10">Leadership</h4>
                               <div className="space-y-6">
                                 {act.leadership.map((r, idx) => (
                                   <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
@@ -1684,9 +1684,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                       <img loading="lazy" decoding="async" src={act.logo} alt={act.name} className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all"/>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-primary">{act.name}</h4>
-                      {act.fullName && <p className="text-xs text-gray-500 mt-2 truncate">{act.fullName}</p>}
-                      {act.fullNameKo && <p className="text-xs text-gray-400 font-semibold truncate">{act.fullNameKo}</p>}
+                      <h4 className="text-sm md:text-base font-bold text-primary">{act.name}</h4>
+                      {act.fullName && <p className="text-xs md:text-sm text-gray-500 mt-2 truncate">{act.fullName}</p>}
+                      {act.fullNameKo && <p className="text-xs md:text-sm text-gray-400 font-semibold truncate">{act.fullNameKo}</p>}
                     </div>
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-[#D6B14D] transition-colors shrink-0"/>
                   </button>
@@ -1877,8 +1877,8 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                 <span className="text-sm md:text-base font-bold" style={{color: 'rgb(172,14,14)'}}>{mentee.participationYears.length}</span>
                               </div>
                               <div className="min-w-0">
-                                <p className="text-sm font-bold text-gray-900">{mentee.name}</p>
-                                <p className="text-xs md:text-xs text-gray-500 truncate">
+                                <p className="text-sm md:text-base font-bold text-gray-900">{mentee.name}</p>
+                                <p className="text-xs md:text-sm text-gray-500 truncate">
                                   {mentee.displayUniversity} · {mentee.displayDepartment} · {mentee.entryYear}학번
                                 </p>
                               </div>
