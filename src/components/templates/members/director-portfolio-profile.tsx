@@ -1078,7 +1078,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <div className="flex-1 flex flex-col">
                                             <div>
                                               <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
-                                              {a.note && <><br className="md:hidden" /><span className="text-[10px] md:text-xs text-primary font-medium md:ml-4">{a.note}</span></>}
+                                              {a.note && <><br /><span className="text-[10px] md:text-xs text-primary font-medium">{a.note}</span></>}
                                             </div>
                                             <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{a.org}</span>
                                           </div>
