@@ -1273,7 +1273,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
       stats.set(m.university, (stats.get(m.university) || 0) + 1)
     })
     return Array.from(stats.entries())
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => a[0].localeCompare(b[0], 'ko'))
   }, [filteredMentees])
 
   const [publicationStats, setPublicationStats] = useState<{label: string, count: number}[]>([
