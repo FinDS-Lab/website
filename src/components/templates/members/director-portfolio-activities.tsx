@@ -1639,7 +1639,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                             <div className="border-t border-gray-100 pt-16 space-y-6">
                               {act.membership.map((r, idx) => (
                                 <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 rounded-lg">
-                                  <span className="text-xs font-bold text-gray-700">{r.role}</span>
+                                  <span className="text-xs md:text-sm font-bold text-gray-700">{r.role}</span>
                                   <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
                                 </div>
                               ))}
@@ -1653,7 +1653,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               <div className="space-y-6">
                                 {act.leadership.map((r, idx) => (
                                   <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
-                                    <span className="text-xs font-bold text-primary">{r.role}</span>
+                                    <span className="text-xs md:text-sm font-bold text-primary">{r.role}</span>
                                     <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
                                   </div>
                                 ))}
