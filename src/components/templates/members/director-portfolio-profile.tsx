@@ -838,11 +838,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
                       {/* Header: Logo + Degree/School/Field */}
-                      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
-                        <div className="size-52 md:size-56 bg-gray-50 rounded-xl p-6 md:p-8 flex items-center justify-center shrink-0">
+                      <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
+                        <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0">
                           <img loading="lazy" decoding="async" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
-                        <div className="flex-1 min-w-0">
+                        <div className="flex-1 min-w-0 text-center md:text-left">
                           {/* Period + Honor/Award Badges */}
                           <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 md:mb-10">
                             <span className="px-8 md:px-10 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
@@ -1081,12 +1081,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.honors && edu.honors.length > 0 && (
                                     <div className="space-y-6">
                                       {edu.honors.map((h: any, i: number) => (
-                                        <div key={i} className="flex flex-col items-center text-center bg-[#FFF9E6] rounded-lg px-12 py-14">
+                                        <div key={i} className="flex flex-col items-start bg-[#FFF9E6] rounded-lg px-12 py-14">
                                           <Medal className="shrink-0 size-20 mb-10" style={{color: '#D6B14D'}} />
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
                                           <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{h.org}</span>
                                           {h.gpa && (
-                                            <div className="flex items-center justify-center gap-4 mt-6">
+                                            <div className="flex items-center gap-4 mt-6">
                                               <span className="text-[10px] md:text-xs">
                                                 <span className="font-bold text-gray-700">GPA</span>
                                                 {' '}
@@ -1104,7 +1104,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.awards && edu.awards.length > 0 && (
                                     <div className="space-y-6">
                                       {edu.awards.map((a: any, i: number) => (
-                                        <div key={i} className="flex flex-col items-center text-center rounded-lg px-12 py-14" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                        <div key={i} className="flex flex-col items-start rounded-lg px-12 py-14" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
                                           <Trophy className="shrink-0 size-20 mb-10" style={{color: 'rgb(172, 14, 14)'}} />
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
                                           {a.note && <span className="text-xs md:text-sm font-bold mt-2" style={{color: '#D6B14D'}}>{a.note}</span>}
@@ -1147,12 +1147,12 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-[#D6B14D]/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
-                      <div className="size-36 md:size-44 bg-gray-50 rounded-lg p-4 md:p-6 flex items-center justify-center shrink-0 self-center">
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                      <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0">
                         <img loading="lazy" decoding="async" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
-                      <div className="flex-1 min-w-0 flex flex-col justify-center">
-                        <div className="flex flex-wrap items-center gap-6 md:gap-8 mb-4">
+                      <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
                           <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
                             emp.isCurrent
                               ? 'bg-primary text-white'

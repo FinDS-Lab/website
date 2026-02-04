@@ -1583,7 +1583,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Editorial Board Memberships</p>
+                        <p className="text-sm md:text-base font-bold text-gray-900">Editorial Board Memberships</p>
                         <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">0</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
@@ -1602,7 +1602,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Academic Memberships</p>
+                        <p className="text-sm md:text-base font-bold text-gray-900">Academic Memberships</p>
                         <span className="px-8 py-2 bg-[#E8D688] text-white text-[10px] font-bold rounded-full">4</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
@@ -1611,42 +1611,42 @@ export const MembersDirectorAcademicTemplate = () => {
                       <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
                           </div>
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                            <p className="text-xs md:text-sm font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
+                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
                           </div>
                         </div>
                       </div>
@@ -1660,7 +1660,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Program Committee</p>
+                        <p className="text-sm md:text-base font-bold text-gray-900">Program Committee</p>
                         <span className="px-8 py-2 bg-[#FFEB99] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
@@ -1673,13 +1673,13 @@ export const MembersDirectorAcademicTemplate = () => {
                               <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
                                 className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs font-bold text-gray-900">{comm.name}</p>
+                                  <p className="text-xs md:text-sm font-bold text-gray-900">{comm.name}</p>
                                   {comm.name_ko && (
-                                    <p className="text-[10px] text-gray-500 mt-2">{comm.name_ko}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-2">{comm.name_ko}</p>
                                   )}
                                   <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{comm.period || comm.since}</span>
                                 </div>
-                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{comm.period || comm.since}</span>
+                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{comm.period || comm.since}</span>
                               </a>
                             ))}
                           </div>
@@ -1697,7 +1697,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-100/50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Session Chair</p>
+                        <p className="text-sm md:text-base font-bold text-gray-900">Session Chair</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{sessionChairs.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.sessionChair ? 'rotate-180' : ''}`}/>
@@ -1710,13 +1710,13 @@ export const MembersDirectorAcademicTemplate = () => {
                               <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
                                 className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs font-bold text-gray-900">{chair.name}</p>
+                                  <p className="text-xs md:text-sm font-bold text-gray-900">{chair.name}</p>
                                   {chair.name_ko && (
-                                    <p className="text-[10px] text-gray-500 mt-2">{chair.name_ko}</p>
+                                    <p className="text-[10px] md:text-xs text-gray-500 mt-2">{chair.name_ko}</p>
                                   )}
                                   <span className="md:hidden block text-[10px] text-gray-400 font-medium mt-2">{chair.period || chair.since}</span>
                                 </div>
-                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{chair.period || chair.since}</span>
+                                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{chair.period || chair.since}</span>
                               </a>
                             ))}
                           </div>
@@ -1734,7 +1734,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       className="w-full flex items-center justify-between p-16 md:p-20 hover:bg-gray-50 transition-colors"
                     >
                       <div className="flex items-center gap-8">
-                        <p className="text-sm font-bold text-gray-900">Journal Reviewer</p>
+                        <p className="text-sm md:text-base font-bold text-gray-900">Journal Reviewer</p>
                         <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
@@ -1745,7 +1745,7 @@ export const MembersDirectorAcademicTemplate = () => {
                           {journals.map((journal) => (
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
                               className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                              <span className="text-xs font-bold text-gray-700 flex-1">{journal.name}</span>
+                              <span className="text-xs md:text-sm font-bold text-gray-700 flex-1">{journal.name}</span>
                               <span className={`px-8 py-2 rounded text-[9px] font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
@@ -1782,7 +1782,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                 <span className="text-xs font-bold text-gray-700">{conf.name}</span>
                                 <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{conf.period || conf.since}</span>
                               </div>
-                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                 {conf.period || conf.since}
                               </span>
                             </a>
@@ -2103,7 +2103,7 @@ export const MembersDirectorAcademicTemplate = () => {
                                         <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">{project.period}</p>
                                       </div>
                                       {/* PC: Period badge - right aligned */}
-                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
                                       </span>
                                     </div>
