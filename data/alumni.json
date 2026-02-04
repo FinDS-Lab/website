@@ -443,7 +443,7 @@
       }],
       "cohortName": "1st Cohort (2025 Winter)",
       "currentPosition": "재학생",
-      "projects": ["K-방산 리스크에 따른 주가 동조화 분석/An Analysis of Stock Price Synchronization Based on K-Defense Risk"]
+      "projects": [{"ko": "K-방산 리스크에 따른 주가 동조화 분석", "en": "An Analysis of Stock Price Synchronization Based on K-Defense Risk"}]
     }
   ],
   "sinceDate": "2025-06-14"
