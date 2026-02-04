@@ -903,10 +903,8 @@ export const MembersAlumniTemplate = () => {
                                       )}
                                     </div>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16">
-                                    <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm whitespace-nowrap">
-                                      {alumni.periods?.ur || '-'}
-                                    </span>
+                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600">
+                                    {alumni.periods?.ur || '-'}
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {getAffiliation(alumni)}
@@ -972,9 +970,7 @@ export const MembersAlumniTemplate = () => {
                                     />
                                   )}
                                 </div>
-                                <span className="inline-flex items-center px-8 py-3 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap mt-6">
-                                  {alumni.periods?.ur || '-'}
-                                </span>
+                                <p className="text-xs text-gray-500 mt-2">{alumni.periods?.ur || '-'}</p>
                               </div>
                             </div>
 

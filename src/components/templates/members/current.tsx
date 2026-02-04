@@ -458,9 +458,9 @@ export const MembersCurrentTemplate = () => {
                                   {member.role.en}
                                 </span>
                               </div>
-                              <span className="inline-flex items-center px-8 md:px-10 py-3 md:py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm whitespace-nowrap mt-6">
+                              <p className="text-xs md:text-[13px] text-gray-500">
                                 {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
-                              </span>
+                              </p>
                             </div>
                           </div>
 
