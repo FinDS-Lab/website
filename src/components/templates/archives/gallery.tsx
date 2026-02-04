@@ -144,7 +144,7 @@ export const ArchivesGalleryTemplate = () => {
   const baseUrl = import.meta.env.BASE_URL || '/'
   const contentAnimation = useScrollAnimation()
 
-  const allCategories: GalleryCategory[] = ['Conferences', 'Events', 'Celebrations', 'Design', 'General']
+  const allCategories: GalleryCategory[] = ['Events', 'Conferences', 'Celebrations', 'Design', 'General']
 
   const categoryFilterColors: Record<string, { bg: string; text: string }> = {
     'Conferences': { bg: '#AC0E0E', text: '#FFFFFF' },

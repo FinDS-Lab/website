@@ -68,10 +68,10 @@ const typeConfig = {
     textColor: 'text-[#AC0E0E]',
   },
   institution: {
-    icon: FlaskConical,
-    label: 'Institution',
+    icon: School,
+    label: 'Institutional',
     labelShort: 'Inst.',
-    labelPlural: 'Institution Projects',
+    labelPlural: 'Institutional Projects',
     labelKo: '기관과제',
     color: 'bg-[#E8D688]',
     bgColor: 'bg-[#FFF9E6]',
@@ -668,7 +668,7 @@ export const ProjectsTemplate = () => {
                             <span className="text-gray-500">&nbsp;Industry {yearStats.industry === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8D688'}}>{yearStats.institution}</span>
-                            <span className="text-gray-500">&nbsp;Institution {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Institutional {yearStats.institution === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold" style={{color: '#E8889C'}}>{yearStats.academic}</span>
                             <span className="text-gray-500">&nbsp;Research {yearStats.academic === 1 ? 'Project' : 'Projects'}</span>
@@ -753,18 +753,18 @@ export const ProjectsTemplate = () => {
                                 
                                 <div className="p-16 md:p-24">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
-                                  {/* Left: Type Badge - Solid fill style matching Director-Academics */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0 w-72">
-                                    <div className={`w-full py-8 rounded-lg text-center shadow-sm ${
+                                  {/* Left: Type Badge - Compact design with icon and text in a row */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0">
+                                    <div className={`flex items-center gap-6 px-12 py-8 rounded-lg shadow-sm ${
                                       project.type === 'government' ? 'bg-[#D6B14D]' :
                                       project.type === 'industry' ? 'bg-[#AC0E0E]' :
                                       project.type === 'institution' ? 'bg-[#E8D688]' :
                                       project.type === 'academic' ? 'bg-[#E8889C]' : 'bg-gray-300'
                                     }`}>
-                                      <Icon size={18} className={`inline mb-2 ${
+                                      <Icon size={14} className={`shrink-0 ${
                                         project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                       }`} />
-                                      <span className={`block text-[10px] font-bold tracking-wide ${
+                                      <span className={`text-[10px] font-bold tracking-wide whitespace-nowrap ${
                                         project.type === 'institution' ? 'text-gray-800' : 'text-white'
                                       }`}>
                                         {config?.label || project.type} Project

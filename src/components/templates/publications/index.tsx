@@ -406,7 +406,7 @@ export const PublicationsTemplate = () => {
       total: { label: 'Total', count: publications.length, icon: BarChart3, color: '#9A7D1F' },
       items: [
         { label: journals === 1 ? 'Journal Paper' : 'Journal Papers', count: journals, icon: FileText, color: '#D6B14D' },
-        { label: conferences === 1 ? 'Conference' : 'Conferences', count: conferences, icon: MessageSquare, color: '#AC0E0E' },
+        { label: conferences === 1 ? 'Conference Proceeding' : 'Conference Proceedings', count: conferences, icon: MessageSquare, color: '#AC0E0E' },
         { label: books === 1 ? 'Book' : 'Books', count: books, icon: BookMarked, color: '#E8D688' },
         { label: reports === 1 ? 'Report' : 'Reports', count: reports, icon: FileCheck, color: '#FFBAC4' },
       ]
@@ -713,19 +713,19 @@ export const PublicationsTemplate = () => {
                     <div className="flex items-center gap-16">
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6B14D' }} />
-                        <span className="text-[10px] text-gray-500">Journal</span>
-                      </div>
-                      <div className="flex items-center gap-6">
-                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#E8D688' }} />
-                        <span className="text-[10px] text-gray-500">Conference</span>
-                      </div>
-                      <div className="flex items-center gap-6">
-                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#D6A076' }} />
-                        <span className="text-[10px] text-gray-500">Book</span>
+                        <span className="text-[10px] text-gray-500">Journal Papers</span>
                       </div>
                       <div className="flex items-center gap-6">
                         <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#AC0E0E' }} />
-                        <span className="text-[10px] text-gray-500">Report</span>
+                        <span className="text-[10px] text-gray-500">Conference Proceedings</span>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#E8D688' }} />
+                        <span className="text-[10px] text-gray-500">Books</span>
+                      </div>
+                      <div className="flex items-center gap-6">
+                        <span className="w-10 h-10 rounded-sm" style={{ backgroundColor: '#FFBAC4' }} />
+                        <span className="text-[10px] text-gray-500">Reports</span>
                       </div>
                     </div>
                   </div>
@@ -754,7 +754,7 @@ export const PublicationsTemplate = () => {
                                   className="w-full transition-all duration-300 group-hover:opacity-80"
                                   style={{ 
                                     height: data.report * heightScale,
-                                    backgroundColor: '#AC0E0E',
+                                    backgroundColor: '#FFBAC4',
                                     borderRadius: data.journal + data.conference + data.book === 0 ? '4px 4px 0 0' : '0'
                                   }} 
                                 />
@@ -764,7 +764,7 @@ export const PublicationsTemplate = () => {
                                   className="w-full transition-all duration-300 group-hover:opacity-80"
                                   style={{ 
                                     height: data.book * heightScale,
-                                    backgroundColor: '#D6A076',
+                                    backgroundColor: '#E8D688',
                                     borderRadius: data.journal + data.conference === 0 ? '4px 4px 0 0' : '0'
                                   }} 
                                 />
@@ -774,7 +774,7 @@ export const PublicationsTemplate = () => {
                                   className="w-full transition-all duration-300 group-hover:opacity-80"
                                   style={{ 
                                     height: data.conference * heightScale,
-                                    backgroundColor: '#E8D688',
+                                    backgroundColor: '#AC0E0E',
                                     borderRadius: data.journal === 0 ? '4px 4px 0 0' : '0'
                                   }} 
                                 />
@@ -809,7 +809,7 @@ export const PublicationsTemplate = () => {
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
                                         <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6B14D'}} />
-                                        <span className="text-xs text-gray-300">Journal</span>
+                                        <span className="text-xs text-gray-300">Journal Paper</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.journal}</span>
                                     </div>
@@ -817,8 +817,8 @@ export const PublicationsTemplate = () => {
                                   {data.conference > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#E8D688'}} />
-                                        <span className="text-xs text-gray-300">Conference</span>
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#AC0E0E'}} />
+                                        <span className="text-xs text-gray-300">Conference Proceeding</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.conference}</span>
                                     </div>
@@ -826,7 +826,7 @@ export const PublicationsTemplate = () => {
                                   {data.book > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6A076'}} />
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#E8D688'}} />
                                         <span className="text-xs text-gray-300">Book</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.book}</span>
@@ -835,7 +835,7 @@ export const PublicationsTemplate = () => {
                                   {data.report > 0 && (
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#AC0E0E'}} />
+                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#FFBAC4'}} />
                                         <span className="text-xs text-gray-300">Report</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.report}</span>
@@ -1024,10 +1024,10 @@ export const PublicationsTemplate = () => {
                         {/* White badge with counts - desktop */}
                         <span className="hidden sm:inline-flex px-10 md:px-12 py-4 md:py-5 bg-white rounded-full text-[10px] md:text-xs font-medium shadow-sm">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal' : 'Journals'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal Paper' : 'Journal Papers'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference' : 'Conferences'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference Proceeding' : 'Conference Proceedings'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
                           <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'Book' : 'Books'}</span>
@@ -1038,10 +1038,10 @@ export const PublicationsTemplate = () => {
                         {/* Mobile: full words */}
                         <span className="sm:hidden inline-flex px-8 py-4 bg-white rounded-full text-[9px] font-medium shadow-sm flex-wrap">
                           <span className="font-bold text-[#D6B14D]">{stats.journals}</span>
-                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal' : 'Journals'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.journals === 1 ? 'Journal Paper' : 'Journal Papers'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#AC0E0E]">{stats.conferences}</span>
-                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference' : 'Conferences'}</span>
+                          <span className="text-gray-500">&nbsp;{stats.conferences === 1 ? 'Conference Proceeding' : 'Conference Proceedings'}</span>
                           <span className="text-gray-300">&nbsp;·&nbsp;</span>
                           <span className="font-bold text-[#E8D688]">{stats.books}</span>
                           <span className="text-gray-500">&nbsp;{stats.books === 1 ? 'Book' : 'Books'}</span>
