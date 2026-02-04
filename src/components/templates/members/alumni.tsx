@@ -1013,14 +1013,7 @@ export const MembersAlumniTemplate = () => {
                                               return (
                                                 <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
                                                   <span className="text-[#FFBAC4] mt-1">•</span>
-                                                  <span>
-                                                    {isObject ? (
-                                                      <>
-                                                        {project.en}
-                                                        <span className="block text-gray-400 text-xs mt-2">{project.ko}</span>
-                                                      </>
-                                                    ) : project}
-                                                  </span>
+                                                  <span>{isObject ? project.en : project}</span>
                                                 </li>
                                               )
                                             })}
@@ -1086,14 +1079,7 @@ export const MembersAlumniTemplate = () => {
                                         return (
                                           <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
                                             <span className="text-[#FFBAC4] mt-0.5">•</span>
-                                            <span>
-                                              {isObject ? (
-                                                <>
-                                                  {project.en}
-                                                  <span className="block text-gray-400 text-[10px] mt-1">{project.ko}</span>
-                                                </>
-                                              ) : project}
-                                            </span>
+                                            <span>{isObject ? project.en : project}</span>
                                           </li>
                                         )
                                       })}

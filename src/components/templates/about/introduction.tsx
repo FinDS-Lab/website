@@ -389,15 +389,12 @@ export const AboutIntroductionTemplate = () => {
                             </span>
                           </div>
                           
-                          {/* Title */}
-                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6" style={{ color: '#D6B14D' }}>
+                          {/* Title - 선택한 언어만 표시 */}
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-20" style={{ color: '#D6B14D' }}>
                             {researchLang === 'ko' ? area.titleKo : area.titleEn}
                           </h3>
-                          <p className="text-base md:text-lg font-semibold text-gray-400 mb-20">
-                            {researchLang === 'ko' ? area.titleEn : area.titleKo}
-                          </p>
 
-                          {/* Items */}
+                          {/* Items - 선택한 언어만 표시 */}
                           <ul className="flex flex-col gap-12 md:gap-16">
                             {area.items.map((item, idx) => (
                               <li key={idx} className="relative pl-20 md:pl-24">
@@ -406,9 +403,6 @@ export const AboutIntroductionTemplate = () => {
                                 </span>
                                 <span className="block text-sm md:text-base font-semibold text-gray-300 leading-snug">
                                   {researchLang === 'ko' ? item.ko : item.en}
-                                </span>
-                                <span className="block text-xs md:text-sm text-gray-500 mt-4 leading-relaxed">
-                                  {researchLang === 'ko' ? item.en : item.ko}
                                 </span>
                               </li>
                             ))}

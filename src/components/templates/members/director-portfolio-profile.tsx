@@ -185,9 +185,9 @@ const education: any[] = [
       {role: 'President', roleKo: '학생회장', context: '7th Student Council, Department of Industrial and Management Systems Engineering', contextKo: '제7대 산업경영공학과 학생회', period: '2016-01 – 2016-12'},
     ],
     awards: [
-      {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', org: 'College of Engineering, Kyung Hee University'},
-      {title: 'Outstanding Project Award', titleKo: '우수프로젝트상', note: '2nd Graduation Paper', org: 'Department of Industrial and Management Systems Engineering, Kyung Hee University'},
-      {title: 'Outstanding Project Award', titleKo: '우수프로젝트상', note: '1st Graduation Paper', org: 'Department of Industrial and Management Systems Engineering, Kyung Hee University'}
+      {title: 'Dean\'s Award for Academic Excellence', titleKo: '학장상 (성적우수)', college: 'College of Engineering', university: 'Kyung Hee University'},
+      {title: 'Outstanding Project Award', titleKo: '우수프로젝트상', note: '2nd Graduation Paper', college: 'College of Engineering', university: 'Kyung Hee University'},
+      {title: 'Outstanding Project Award', titleKo: '우수프로젝트상', note: '1st Graduation Paper', college: 'College of Engineering', university: 'Kyung Hee University'}
     ],
     honors: [{title: 'Valedictorian', titleKo: '수석 졸업', org: '1st out of 86 students', gpa: '4.42', gpaMax: '4.5'}],
     logo: logoKyunghee
@@ -1112,7 +1112,14 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <Trophy className="shrink-0 size-20 mb-10" style={{color: 'rgb(172, 14, 14)'}} />
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
                                           {a.note && <span className="text-xs md:text-sm font-bold mt-2" style={{color: '#D6B14D'}}>{a.note}</span>}
-                                          <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{a.org}</span>
+                                          {a.college && a.university ? (
+                                            <div className="flex flex-col mt-4">
+                                              <span className="text-xs md:text-sm text-gray-400 font-medium">{a.college}</span>
+                                              <span className="text-xs md:text-sm text-gray-600 font-medium">{a.university}</span>
+                                            </div>
+                                          ) : (
+                                            <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{a.org}</span>
+                                          )}
                                         </div>
                                       ))}
                                     </div>
