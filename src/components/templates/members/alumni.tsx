@@ -15,29 +15,51 @@ const getInitialsFromEnglishName = (nameEn?: string): string => {
   return initials
 }
 
-// Avatar component with fallback
-const AlumniAvatar = ({ nameEn, size = 'md', className = '' }: { nameEn?: string, size?: 'sm' | 'md', className?: string }) => {
+// Avatar with hover photo popup - 기본은 아이콘, 호버하면 큰 사진이 위에 나타남
+const AlumniAvatar = ({ nameEn, size = 'md' }: { nameEn?: string, size?: 'sm' | 'md' }) => {
   const [imgError, setImgError] = useState(false)
+  const [showPhoto, setShowPhoto] = useState(false)
   const initials = getInitialsFromEnglishName(nameEn)
   const imgPath = initials ? `/images/members/${initials}-1.webp` : ''
   const sizeClass = size === 'sm' ? 'size-36' : 'size-36 md:size-40'
-  
-  if (!initials || imgError) {
-    return (
-      <div className={`${sizeClass} rounded-full flex items-center justify-center shrink-0 ${className}`} style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
-        <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
-      </div>
-    )
-  }
+  const hasPhoto = initials && !imgError
   
   return (
-    <div className={`${sizeClass} rounded-full overflow-hidden shrink-0 ring-2 ring-[#FFBAC4]/20 group-hover:ring-[#FFBAC4]/50 transition-all duration-300 ${className}`}>
-      <img 
-        src={imgPath} 
-        alt=""
-        className="w-full h-full object-cover opacity-75 saturate-[0.7] group-hover:opacity-100 group-hover:saturate-100 transition-all duration-300"
-        onError={() => setImgError(true)}
-      />
+    <div 
+      className="relative"
+      onMouseEnter={() => hasPhoto && setShowPhoto(true)}
+      onMouseLeave={() => setShowPhoto(false)}
+    >
+      {/* 기본 아이콘 */}
+      <div className={`${sizeClass} rounded-full flex items-center justify-center shrink-0`} style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
+        <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
+      </div>
+      
+      {/* 숨겨진 이미지 - 존재 여부 체크용 */}
+      {initials && !imgError && (
+        <img 
+          src={imgPath} 
+          alt=""
+          className="hidden"
+          onError={() => setImgError(true)}
+        />
+      )}
+      
+      {/* 호버 시 큰 사진 팝업 */}
+      {showPhoto && (
+        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 z-50">
+          <div className="relative">
+            <div className="w-72 h-72 rounded-xl overflow-hidden shadow-2xl border-2 border-white bg-white">
+              <img 
+                src={imgPath} 
+                alt=""
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white" />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
