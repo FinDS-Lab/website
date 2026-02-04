@@ -429,7 +429,7 @@ export const MembersCurrentTemplate = () => {
                           onMouseLeave={() => setHoveredMember(null)}
                         >
                           <div className="flex items-start gap-12 md:gap-[16px]">
-                            <div className="w-60 h-60 md:w-[80px] md:h-[80px] rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
+                            <div className="w-[56px] h-[72px] md:w-[70px] md:h-[90px] rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
                               {member.avatar ? (
                                 <img
                                   src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}

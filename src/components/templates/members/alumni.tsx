@@ -15,121 +15,36 @@ const getInitialsFromEnglishName = (nameEn?: string): string => {
   return initials
 }
 
-// Premium Alumni Avatar with sophisticated hover photo reveal
-// Design: Minimal icon that transforms into an elegant photo reveal on hover
-const AlumniAvatar = ({ nameEn, size = 'md', baseUrl = '' }: { nameEn?: string, size?: 'sm' | 'md', baseUrl?: string }) => {
-  const [imgError, setImgError] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const initials = getInitialsFromEnglishName(nameEn)
-  const imgPath = initials ? `${baseUrl}images/members/${initials}-1.webp` : ''
+// Simple Alumni Avatar - just icon, no hover effect
+const AlumniAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' }) => {
   const sizeClass = size === 'sm' ? 'size-36' : 'size-36 md:size-40'
-  const hasPhoto = initials && !imgError
   
   return (
     <div 
-      className="relative group/avatar"
-      onMouseEnter={() => hasPhoto && setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`${sizeClass} rounded-full flex items-center justify-center shrink-0`}
+      style={{background: 'linear-gradient(135deg, rgba(255,186,196,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}
     >
-      {/* Base icon container with subtle pulse on hover */}
-      <div 
-        className={`${sizeClass} rounded-full flex items-center justify-center shrink-0 relative overflow-hidden transition-all duration-500 ease-out ${
-          isHovered ? 'scale-110' : ''
-        }`}
-        style={{
-          background: isHovered 
-            ? 'linear-gradient(135deg, rgba(255,186,196,0.4) 0%, rgba(196,30,58,0.25) 100%)'
-            : 'linear-gradient(135deg, rgba(255,186,196,0.2) 0%, rgba(196,30,58,0.15) 100%)'
-        }}
-      >
-        {/* Animated ring effect on hover */}
-        <div 
-          className={`absolute inset-0 rounded-full border-2 transition-all duration-500 ${
-            isHovered ? 'border-[#FFBAC4]/60 scale-100 opacity-100' : 'border-transparent scale-90 opacity-0'
-          }`}
-        />
-        
-        {/* Icon with fade effect */}
-        <Lightbulb 
-          size={16} 
-          className={`transition-all duration-300 ${isHovered ? 'opacity-30 scale-90' : 'opacity-100 scale-100'}`}
-          style={{color: '#FFBAC4'}}
-        />
-      </div>
-      
-      {/* Hidden image for preload & error check */}
-      {initials && !imgError && (
-        <img 
-          src={imgPath} 
-          alt=""
-          className="hidden"
-          onError={() => setImgError(true)}
-        />
-      )}
-      
-      {/* Premium photo reveal popup - Desktop only */}
-      <div 
-        className={`hidden md:block absolute left-1/2 -translate-x-1/2 bottom-full mb-12 z-50 transition-all duration-400 ease-out pointer-events-none ${
-          isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        {hasPhoto && (
-          <div className="relative">
-            {/* Outer glow ring */}
-            <div 
-              className={`absolute -inset-3 rounded-2xl transition-all duration-500 ${
-                isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              style={{
-                background: 'radial-gradient(ellipse at center, rgba(255,186,196,0.3) 0%, transparent 70%)',
-                filter: 'blur(8px)'
-              }}
-            />
-            
-            {/* Photo container with elegant shadow */}
-            <div 
-              className={`relative w-80 h-80 rounded-xl overflow-hidden transition-all duration-500 ease-out ${
-                isHovered ? 'shadow-2xl scale-100' : 'shadow-lg scale-95'
-              }`}
-              style={{
-                boxShadow: isHovered 
-                  ? '0 25px 50px -12px rgba(196, 30, 58, 0.25), 0 0 0 1px rgba(255,186,196,0.3)'
-                  : '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
-              }}
-            >
-              {/* Subtle border frame */}
-              <div className="absolute inset-0 rounded-xl border border-white/80 z-10 pointer-events-none" />
-              
-              {/* Photo with subtle zoom effect */}
-              <img 
-                src={imgPath} 
-                alt=""
-                className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
-                  isHovered ? 'scale-105' : 'scale-100'
-                }`}
-              />
-              
-              {/* Subtle vignette overlay */}
-              <div 
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.08) 100%)'
-                }}
-              />
-            </div>
-            
-            {/* Elegant pointer/arrow */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-full -mt-1">
-              <div 
-                className="w-4 h-4 rotate-45 bg-white border-r border-b border-[#FFBAC4]/30"
-                style={{
-                  boxShadow: '4px 4px 8px rgba(196, 30, 58, 0.1)'
-                }}
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      <Lightbulb size={16} style={{color: '#FFBAC4'}}/>
+    </div>
+  )
+}
+
+// Alumni Photo component for expanded section - 3.5:4.5 ratio
+const AlumniPhoto = ({ nameEn, baseUrl }: { nameEn?: string, baseUrl: string }) => {
+  const [imgError, setImgError] = useState(false)
+  const initials = getInitialsFromEnglishName(nameEn)
+  const imgPath = initials ? `${baseUrl}images/members/${initials}-1.webp` : ''
+  
+  if (!initials || imgError) return null
+  
+  return (
+    <div className="w-[70px] h-[90px] rounded-xl overflow-hidden shrink-0 shadow-sm border border-gray-100">
+      <img 
+        src={imgPath} 
+        alt=""
+        className="w-full h-full object-cover object-top"
+        onError={() => setImgError(true)}
+      />
     </div>
   )
 }
@@ -970,7 +885,7 @@ export const MembersAlumniTemplate = () => {
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="flex items-center gap-10 md:gap-12">
-                                      <AlumniAvatar nameEn={alumni.nameEn} baseUrl={baseUrl} />
+                                      <AlumniAvatar />
                                       <div className="flex items-center gap-8">
                                         <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#FFBAC4] transition-colors">{alumni.name}</p>
                                         {hasProjects && (
@@ -1008,12 +923,16 @@ export const MembersAlumniTemplate = () => {
                                 {isExpanded && hasProjects && (
                                   <tr className="bg-gray-50/50">
                                     <td colSpan={5} className="py-16 px-16">
-                                      <div className="ml-48 flex items-start gap-12 p-12 rounded-xl bg-white border border-gray-100">
-                                        <FileText size={16} className="shrink-0 mt-2" style={{color: '#FFBAC4'}}/>
+                                      <div className="ml-48 flex items-start gap-16 p-16 rounded-xl bg-white border border-gray-100">
+                                        {/* Photo - 3.5:4.5 ratio */}
+                                        <AlumniPhoto nameEn={alumni.nameEn} baseUrl={baseUrl} />
                                         <div className="flex-1 min-w-0">
-                                          <p className="text-[10px] md:text-xs font-bold mb-8" style={{color: '#C41E3A'}}>
-                                            Research Projects
-                                          </p>
+                                          <div className="flex items-center gap-8 mb-10">
+                                            <FileText size={14} className="shrink-0" style={{color: '#FFBAC4'}}/>
+                                            <p className="text-xs font-bold" style={{color: '#C41E3A'}}>
+                                              Research Projects
+                                            </p>
+                                          </div>
                                           <ul className="space-y-4">
                                             {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
                                               <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
@@ -1048,7 +967,7 @@ export const MembersAlumniTemplate = () => {
                           >
                             {/* Card Header */}
                             <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
-                              <AlumniAvatar nameEn={alumni.nameEn} size="sm" baseUrl={baseUrl} />
+                              <AlumniAvatar size="sm" />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
                                   <p className="text-sm font-bold text-gray-900">{alumni.name}</p>
@@ -1069,10 +988,14 @@ export const MembersAlumniTemplate = () => {
                             {/* Project Section */}
                             {isExpanded && hasProjects && (
                               <div className="px-14 py-12 border-t border-gray-50">
-                                <div className="flex items-start gap-8 p-10 rounded-lg bg-gray-50 border border-gray-100">
-                                  <FileText size={14} className="shrink-0 mt-1" style={{color: '#FFBAC4'}}/>
+                                <div className="flex items-start gap-12 p-12 rounded-lg bg-gray-50 border border-gray-100">
+                                  {/* Photo - 3.5:4.5 ratio */}
+                                  <AlumniPhoto nameEn={alumni.nameEn} baseUrl={baseUrl} />
                                   <div className="flex-1 min-w-0">
-                                    <p className="text-[10px] font-bold mb-6" style={{color: '#C41E3A'}}>Research Projects</p>
+                                    <div className="flex items-center gap-6 mb-8">
+                                      <FileText size={12} className="shrink-0" style={{color: '#FFBAC4'}}/>
+                                      <p className="text-[10px] font-bold" style={{color: '#C41E3A'}}>Research Projects</p>
+                                    </div>
                                     <ul className="space-y-3">
                                       {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
                                         <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">

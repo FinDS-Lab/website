@@ -733,24 +733,33 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
                   My research focuses on three main areas:
                 </p>
-                <div className="space-y-12 md:space-y-16 mb-24">
-                  <div className="flex items-start gap-12 md:gap-16">
-                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">1</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Financial Data Science</span> — including <span className="font-semibold text-gray-700">AI applications</span> in quantitative finance, <span className="font-semibold text-gray-700">portfolio optimization</span>, <span className="font-semibold text-gray-700">algorithmic trading</span>, and financial time-series forecasting.
-                    </p>
+                <div className="grid grid-cols-1 gap-12 md:gap-16 mb-24">
+                  <div className="flex gap-12 md:gap-16 p-16 md:p-20 bg-white border border-gray-100 rounded-xl hover:border-[#D6B14D]/30 hover:shadow-md transition-all">
+                    <span className="size-28 md:size-32 bg-primary text-white text-sm md:text-base font-bold rounded-full flex items-center justify-center shrink-0">1</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Financial Data Science</p>
+                      <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
+                        AI applications in quantitative finance, portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-12 md:gap-16">
-                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">2</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Business Analytics</span> — using various <span className="font-semibold text-gray-700">analytical methods</span> from time-series models to graph-based approaches to uncover <span className="font-semibold text-gray-700">meaningful insights</span>.
-                    </p>
+                  <div className="flex gap-12 md:gap-16 p-16 md:p-20 bg-white border border-gray-100 rounded-xl hover:border-[#D6B14D]/30 hover:shadow-md transition-all">
+                    <span className="size-28 md:size-32 bg-primary text-white text-sm md:text-base font-bold rounded-full flex items-center justify-center shrink-0">2</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Business Analytics</p>
+                      <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
+                        Using various analytical methods from time-series models to graph-based approaches to uncover meaningful insights.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-12 md:gap-16">
-                    <span className="size-24 md:size-28 bg-primary text-white text-xs md:text-sm font-bold rounded-full flex items-center justify-center shrink-0 mt-1">3</span>
-                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-                      <span className="font-semibold" style={{color: '#D6B14D'}}>Data-Informed Decision Making</span> — extracting <span className="font-semibold text-gray-700">iridescent views</span> for <span className="font-semibold text-gray-700">multi-perspective interpretation</span> and synthesis to support decisions in business and industry.
-                    </p>
+                  <div className="flex gap-12 md:gap-16 p-16 md:p-20 bg-white border border-gray-100 rounded-xl hover:border-[#D6B14D]/30 hover:shadow-md transition-all">
+                    <span className="size-28 md:size-32 bg-primary text-white text-sm md:text-base font-bold rounded-full flex items-center justify-center shrink-0">3</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Data-Informed Decision Making</p>
+                      <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
+                        Extracting iridescent views for multi-perspective interpretation and synthesis to support decisions in business and industry.
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base pt-20 border-t border-gray-200">
