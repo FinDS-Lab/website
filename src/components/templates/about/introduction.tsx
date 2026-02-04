@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef, useState } from 'react'
-import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Quote, ChevronLeft, ChevronRight, Home } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
@@ -289,6 +290,22 @@ export const AboutIntroductionTemplate = () => {
       {/* ═══════════════════════════════════════════════════════════════
           WELCOME MESSAGE
       ═══════════════════════════════════════════════════════════════ */}
+      {/* Breadcrumb - same as Research Areas */}
+      <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
+        <div className="py-20 md:py-32 border-b border-gray-100">
+          <div className="flex items-center gap-8 md:gap-12 flex-wrap">
+            <Link to="/" className="text-gray-400 hover:text-primary transition-all duration-300 hover:scale-110">
+              <Home size={16} />
+            </Link>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-gray-400 font-medium">About FINDS</span>
+            <span className="text-gray-200">—</span>
+            <span className="text-sm text-primary font-semibold">Introduction</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section - Welcome message */}
       <div className="bg-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
           <div className="relative text-center max-w-4xl mx-auto">

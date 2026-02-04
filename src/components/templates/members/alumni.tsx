@@ -15,27 +15,49 @@ const getInitialsFromEnglishName = (nameEn?: string): string => {
   return initials
 }
 
-// Avatar with hover photo popup - 기본은 아이콘, 호버하면 큰 사진이 위에 나타남
-const AlumniAvatar = ({ nameEn, size = 'md' }: { nameEn?: string, size?: 'sm' | 'md' }) => {
+// Premium Alumni Avatar with sophisticated hover photo reveal
+// Design: Minimal icon that transforms into an elegant photo reveal on hover
+const AlumniAvatar = ({ nameEn, size = 'md', baseUrl = '' }: { nameEn?: string, size?: 'sm' | 'md', baseUrl?: string }) => {
   const [imgError, setImgError] = useState(false)
-  const [showPhoto, setShowPhoto] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
   const initials = getInitialsFromEnglishName(nameEn)
-  const imgPath = initials ? `/images/members/${initials}-1.webp` : ''
+  const imgPath = initials ? `${baseUrl}images/members/${initials}-1.webp` : ''
   const sizeClass = size === 'sm' ? 'size-36' : 'size-36 md:size-40'
   const hasPhoto = initials && !imgError
   
   return (
     <div 
-      className="relative"
-      onMouseEnter={() => hasPhoto && setShowPhoto(true)}
-      onMouseLeave={() => setShowPhoto(false)}
+      className="relative group/avatar"
+      onMouseEnter={() => hasPhoto && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* 기본 아이콘 */}
-      <div className={`${sizeClass} rounded-full flex items-center justify-center shrink-0`} style={{background: 'linear-gradient(135deg, rgba(255,183,197,0.2) 0%, rgba(196,30,58,0.15) 100%)'}}>
-        <GraduationCap size={16} style={{color: '#FFBAC4'}}/>
+      {/* Base icon container with subtle pulse on hover */}
+      <div 
+        className={`${sizeClass} rounded-full flex items-center justify-center shrink-0 relative overflow-hidden transition-all duration-500 ease-out ${
+          isHovered ? 'scale-110' : ''
+        }`}
+        style={{
+          background: isHovered 
+            ? 'linear-gradient(135deg, rgba(255,186,196,0.4) 0%, rgba(196,30,58,0.25) 100%)'
+            : 'linear-gradient(135deg, rgba(255,186,196,0.2) 0%, rgba(196,30,58,0.15) 100%)'
+        }}
+      >
+        {/* Animated ring effect on hover */}
+        <div 
+          className={`absolute inset-0 rounded-full border-2 transition-all duration-500 ${
+            isHovered ? 'border-[#FFBAC4]/60 scale-100 opacity-100' : 'border-transparent scale-90 opacity-0'
+          }`}
+        />
+        
+        {/* Icon with fade effect */}
+        <Lightbulb 
+          size={16} 
+          className={`transition-all duration-300 ${isHovered ? 'opacity-30 scale-90' : 'opacity-100 scale-100'}`}
+          style={{color: '#FFBAC4'}}
+        />
       </div>
       
-      {/* 숨겨진 이미지 - 존재 여부 체크용 */}
+      {/* Hidden image for preload & error check */}
       {initials && !imgError && (
         <img 
           src={imgPath} 
@@ -45,21 +67,69 @@ const AlumniAvatar = ({ nameEn, size = 'md' }: { nameEn?: string, size?: 'sm' | 
         />
       )}
       
-      {/* 호버 시 큰 사진 팝업 */}
-      {showPhoto && (
-        <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-8 z-50">
+      {/* Premium photo reveal popup - Desktop only */}
+      <div 
+        className={`hidden md:block absolute left-1/2 -translate-x-1/2 bottom-full mb-12 z-50 transition-all duration-400 ease-out pointer-events-none ${
+          isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        {hasPhoto && (
           <div className="relative">
-            <div className="w-72 h-72 rounded-xl overflow-hidden shadow-2xl border-2 border-white bg-white">
+            {/* Outer glow ring */}
+            <div 
+              className={`absolute -inset-3 rounded-2xl transition-all duration-500 ${
+                isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`}
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(255,186,196,0.3) 0%, transparent 70%)',
+                filter: 'blur(8px)'
+              }}
+            />
+            
+            {/* Photo container with elegant shadow */}
+            <div 
+              className={`relative w-80 h-80 rounded-xl overflow-hidden transition-all duration-500 ease-out ${
+                isHovered ? 'shadow-2xl scale-100' : 'shadow-lg scale-95'
+              }`}
+              style={{
+                boxShadow: isHovered 
+                  ? '0 25px 50px -12px rgba(196, 30, 58, 0.25), 0 0 0 1px rgba(255,186,196,0.3)'
+                  : '0 10px 25px -5px rgba(0, 0, 0, 0.1)'
+              }}
+            >
+              {/* Subtle border frame */}
+              <div className="absolute inset-0 rounded-xl border border-white/80 z-10 pointer-events-none" />
+              
+              {/* Photo with subtle zoom effect */}
               <img 
                 src={imgPath} 
                 alt=""
-                className="w-full h-full object-cover"
+                className={`w-full h-full object-cover transition-transform duration-700 ease-out ${
+                  isHovered ? 'scale-105' : 'scale-100'
+                }`}
+              />
+              
+              {/* Subtle vignette overlay */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.08) 100%)'
+                }}
               />
             </div>
-            <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-8 border-r-8 border-t-8 border-transparent border-t-white" />
+            
+            {/* Elegant pointer/arrow */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-full -mt-1">
+              <div 
+                className="w-4 h-4 rotate-45 bg-white border-r border-b border-[#FFBAC4]/30"
+                style={{
+                  boxShadow: '4px 4px 8px rgba(196, 30, 58, 0.1)'
+                }}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }
@@ -146,6 +216,7 @@ export const MembersAlumniTemplate = () => {
   const [undergradExpanded, setUndergradExpanded] = useState(true)
   const [expandedAlumni, setExpandedAlumni] = useState<Set<string>>(new Set())
   const contentAnimation = useScrollAnimation()
+  const baseUrl = import.meta.env.BASE_URL || '/'
 
   const toggleAlumniExpand = (name: string) => {
     setExpandedAlumni(prev => {
@@ -160,7 +231,6 @@ export const MembersAlumniTemplate = () => {
   }
 
   useEffect(() => {
-    const baseUrl = import.meta.env.BASE_URL || '/'
     fetch(`${baseUrl}data/alumni.json`)
       .then((res) => res.json())
       .then((json: AlumniData) => {
@@ -900,7 +970,7 @@ export const MembersAlumniTemplate = () => {
                                 >
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     <div className="flex items-center gap-10 md:gap-12">
-                                      <AlumniAvatar nameEn={alumni.nameEn} />
+                                      <AlumniAvatar nameEn={alumni.nameEn} baseUrl={baseUrl} />
                                       <div className="flex items-center gap-8">
                                         <p className="text-sm md:text-base font-semibold text-gray-900 group-hover:text-[#FFBAC4] transition-colors">{alumni.name}</p>
                                         {hasProjects && (
@@ -978,7 +1048,7 @@ export const MembersAlumniTemplate = () => {
                           >
                             {/* Card Header */}
                             <div className="px-14 py-12 flex items-center gap-10 bg-gradient-to-r from-pink-50/50 to-white">
-                              <AlumniAvatar nameEn={alumni.nameEn} size="sm" />
+                              <AlumniAvatar nameEn={alumni.nameEn} size="sm" baseUrl={baseUrl} />
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-6">
                                   <p className="text-sm font-bold text-gray-900">{alumni.name}</p>

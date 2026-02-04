@@ -753,23 +753,38 @@ export const ProjectsTemplate = () => {
                                 
                                 <div className="p-16 md:p-24">
                                 <div className="flex flex-row items-start gap-12 md:gap-20">
-                                  {/* Left: Type Badge - Compact design with icon and text in a row */}
-                                  <div className="hidden md:flex flex-col items-center shrink-0">
-                                    <div className={`flex items-center gap-6 px-12 py-8 rounded-lg shadow-sm ${
-                                      project.type === 'government' ? 'bg-[#D6B14D]' :
-                                      project.type === 'industry' ? 'bg-[#AC0E0E]' :
-                                      project.type === 'institution' ? 'bg-[#E8D688]' :
-                                      project.type === 'academic' ? 'bg-[#E8889C]' : 'bg-gray-300'
-                                    }`}>
-                                      <Icon size={14} className={`shrink-0 ${
-                                        project.type === 'institution' ? 'text-gray-800' : 'text-white'
-                                      }`} />
-                                      <span className={`text-[10px] font-bold tracking-wide whitespace-nowrap ${
-                                        project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                  {/* Left: Type Badge - 3-tier design matching Publications w-72 */}
+                                  <div className="hidden md:flex flex-col items-center shrink-0 w-72">
+                                    <div className="w-full rounded-lg overflow-hidden shadow-sm border border-gray-100">
+                                      {/* Top part - Icon with type-matching border and white background */}
+                                      <div className={`w-full py-6 flex items-center justify-center bg-white border-b ${
+                                        project.type === 'government' ? 'border-[#D6B14D]/30' :
+                                        project.type === 'industry' ? 'border-[#AC0E0E]/30' :
+                                        project.type === 'institution' ? 'border-[#E8D688]/50' :
+                                        project.type === 'academic' ? 'border-[#E8889C]/30' : 'border-gray-200'
                                       }`}>
-                                        {config?.label || project.type} Project
-                                      </span>
+                                        <Icon size={16} className={`${
+                                          project.type === 'government' ? 'text-[#D6B14D]' :
+                                          project.type === 'industry' ? 'text-[#AC0E0E]' :
+                                          project.type === 'institution' ? 'text-[#B8962D]' :
+                                          project.type === 'academic' ? 'text-[#E8889C]' : 'text-gray-400'
+                                        }`} />
+                                      </div>
+                                      {/* Middle part - colored background with type label */}
+                                      <div className={`w-full py-6 text-center ${
+                                        project.type === 'government' ? 'bg-[#D6B14D]' :
+                                        project.type === 'industry' ? 'bg-[#AC0E0E]' :
+                                        project.type === 'institution' ? 'bg-[#E8D688]' :
+                                        project.type === 'academic' ? 'bg-[#E8889C]' : 'bg-gray-300'
+                                      }`}>
+                                        <span className={`text-[9px] font-bold tracking-wide ${
+                                          project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                        }`}>
+                                          {config?.label || project.type} Project
+                                        </span>
+                                      </div>
                                     </div>
+                                    {/* Bottom part - Status badge */}
                                     <div className={`w-full mt-4 py-4 text-center rounded-md ${
                                       status === 'ongoing' ? 'bg-[#FFF9E6] border border-[#FFEB99]' : 'bg-gray-50 border border-gray-200'
                                     }`}>
