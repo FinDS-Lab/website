@@ -266,7 +266,7 @@ export const MembersDirectorTemplate = () => {
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
+    {label: 'KCI', count: 0}, {label: 'Int\'l Conf', count: 0}, {label: 'Dom. Conf', count: 0}
   ])
   const [scholarData, setScholarData] = useState<ScholarData | null>(null)
   
@@ -334,8 +334,8 @@ export const MembersDirectorTemplate = () => {
           {label: 'ESCI', count: stats.esci},
           {label: 'Scopus', count: stats.scopus},
           {label: 'Other Int\'l', count: stats.otherIntl},
-          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'KCI', count: stats.kci},
+          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'Dom. Conf', count: stats.domConf}
         ])
       })
@@ -644,10 +644,9 @@ export const MembersDirectorTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-4 py-10 text-xs font-bold rounded-xl hover:opacity-90 transition-all"
-                  style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
+                  className="flex items-center justify-center gap-4 py-10 bg-primary text-white text-xs font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  Scholar <ExternalLink size={12} color="#ffffff"/>
+                  Scholar <ExternalLink size={12}/>
                 </a>
               </div>
               <Link 

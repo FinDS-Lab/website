@@ -1024,7 +1024,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
+    {label: 'KCI', count: 0}, {label: 'Int\'l Conf', count: 0}, {label: 'Dom. Conf', count: 0}
   ])
   const [scholarData, setScholarData] = useState<ScholarData | null>(null)
   
@@ -1103,8 +1103,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
           {label: 'ESCI', count: stats.esci},
           {label: 'Scopus', count: stats.scopus},
           {label: 'Other Int\'l', count: stats.otherIntl},
-          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'KCI', count: stats.kci},
+          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'Dom. Conf', count: stats.domConf}
         ])
       })
@@ -1487,10 +1487,9 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-4 py-10 text-xs font-bold rounded-xl hover:opacity-90 transition-all"
-                  style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
+                  className="flex items-center justify-center gap-4 py-10 bg-primary text-white text-xs font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  Scholar <ExternalLink size={12} color="#ffffff"/>
+                  Scholar <ExternalLink size={12}/>
                 </a>
               </div>
               <Link 
@@ -1837,9 +1836,18 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {journals.map((journal) => (
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                              className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                              className="flex items-center p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
+                              {/* Mobile: Badge first with fixed width for alignment */}
+                              <span className={`md:hidden w-52 px-8 py-2 rounded text-[10px] font-bold shrink-0 text-center ${
+                                journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
+                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
+                                journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
+                                journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
+                                'bg-[#FFE4E9] text-gray-700'
+                              }`}>{journal.type}</span>
                               <span className="text-xs md:text-sm font-bold text-gray-700 flex-1">{journal.name}</span>
-                              <span className={`px-8 py-2 rounded text-[10px] md:text-xs font-bold shrink-0 ${
+                              {/* Desktop: Badge at end */}
+                              <span className={`hidden md:inline-block px-8 py-2 rounded text-xs font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :

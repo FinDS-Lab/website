@@ -1586,10 +1586,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-4 py-10 text-xs font-bold rounded-xl hover:opacity-90 transition-all"
-                  style={{backgroundColor: 'rgb(172, 14, 14)', color: '#ffffff'}}
+                  className="flex items-center justify-center gap-4 py-10 bg-primary text-white text-xs font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  Scholar <ExternalLink size={12} color="#ffffff"/>
+                  Scholar <ExternalLink size={12}/>
                 </a>
               </div>
               <Link 

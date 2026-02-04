@@ -1025,7 +1025,7 @@ export const MembersDirectorAcademicTemplate = () => {
   const [pubStats, setPubStats] = useState<{label: string, count: number}[]>([
     {label: 'SCIE', count: 0}, {label: 'SSCI', count: 0}, {label: 'A&HCI', count: 0}, 
     {label: 'ESCI', count: 0}, {label: 'Scopus', count: 0}, {label: 'Other Int\'l', count: 0},
-    {label: 'Int\'l Conf', count: 0}, {label: 'KCI', count: 0}, {label: 'Dom. Conf', count: 0}
+    {label: 'KCI', count: 0}, {label: 'Int\'l Conf', count: 0}, {label: 'Dom. Conf', count: 0}
   ])
   const [scholarData, setScholarData] = useState<ScholarData | null>(null)
   
@@ -1104,8 +1104,8 @@ export const MembersDirectorAcademicTemplate = () => {
           {label: 'ESCI', count: stats.esci},
           {label: 'Scopus', count: stats.scopus},
           {label: 'Other Int\'l', count: stats.otherIntl},
-          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'KCI', count: stats.kci},
+          {label: 'Int\'l Conf', count: stats.intlConf},
           {label: 'Dom. Conf', count: stats.domConf}
         ])
       })
@@ -1488,10 +1488,9 @@ export const MembersDirectorAcademicTemplate = () => {
                   href="https://scholar.google.com/citations?user=p9JwRLwAAAAJ&hl=en" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center justify-center gap-6 py-12 bg-[#D6B14D] text-xs md:text-sm font-bold rounded-xl hover:bg-[#B8962D] transition-all"
-                  style={{color: '#ffffff'}}
+                  className="flex items-center justify-center gap-6 py-12 bg-primary text-white text-xs md:text-sm font-bold rounded-xl hover:bg-primary/90 transition-all"
                 >
-                  Scholar <ExternalLink size={14} color="#ffffff"/>
+                  Scholar <ExternalLink size={14}/>
                 </a>
               </div>
             </div>

@@ -1,6 +1,6 @@
-import React, {memo, useState, useEffect, useRef} from 'react'
+import React, {memo, useState, useEffect, useRef, useMemo} from 'react'
 import {Link} from 'react-router-dom'
-import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, Lightbulb, Users} from 'lucide-react'
+import {Home, GraduationCap, Building2, ChevronDown, ChevronUp, FileText, ExternalLink, BookOpen, Lightbulb, Users, ArrowUpDown, ArrowUp, ArrowDown} from 'lucide-react'
 import banner2 from '@/assets/images/banner/2.webp'
 
 // Get initials from English name (Korean style: "First-Name Last" → "LFN")
@@ -29,7 +29,7 @@ const AlumniAvatar = ({ size = 'md' }: { size?: 'sm' | 'md' }) => {
   )
 }
 
-// Alumni Photo component for expanded section - 3.5:4.5 ratio
+// Alumni Photo component for expanded section - 3.5:4.5 ratio (PC only)
 const AlumniPhoto = ({ nameEn, baseUrl }: { nameEn?: string, baseUrl: string }) => {
   const [imgError, setImgError] = useState(false)
   const initials = getInitialsFromEnglishName(nameEn)
@@ -39,7 +39,7 @@ const AlumniPhoto = ({ nameEn, baseUrl }: { nameEn?: string, baseUrl: string }) 
   
   return (
     <div 
-      className="w-[70px] h-[90px] rounded-xl overflow-hidden shrink-0 shadow-sm border border-gray-100 relative select-none"
+      className="hidden md:block w-[70px] h-[90px] rounded-xl overflow-hidden shrink-0 shadow-sm border border-gray-100 relative select-none"
       onContextMenu={(e) => e.preventDefault()}
     >
       <img 
@@ -137,8 +137,19 @@ export const MembersAlumniTemplate = () => {
   const [msExpanded, setMsExpanded] = useState(true)
   const [undergradExpanded, setUndergradExpanded] = useState(true)
   const [expandedAlumni, setExpandedAlumni] = useState<Set<string>>(new Set())
+  const [undergradSortKey, setUndergradSortKey] = useState<'name' | 'cohort' | 'period' | 'preMajor' | 'postPosition'>('cohort')
+  const [undergradSortDir, setUndergradSortDir] = useState<'asc' | 'desc'>('asc')
   const contentAnimation = useScrollAnimation()
   const baseUrl = import.meta.env.BASE_URL || '/'
+
+  const handleUndergradSort = (key: 'name' | 'cohort' | 'period' | 'preMajor' | 'postPosition') => {
+    if (undergradSortKey === key) {
+      setUndergradSortDir(prev => prev === 'asc' ? 'desc' : 'asc')
+    } else {
+      setUndergradSortKey(key)
+      setUndergradSortDir('asc')
+    }
+  }
 
   const toggleAlumniExpand = (name: string) => {
     setExpandedAlumni(prev => {
@@ -182,14 +193,39 @@ export const MembersAlumniTemplate = () => {
   const phdAlumni = sortedGraduateAlumni.filter(a => a.degrees.includes('phd'))
   const msAlumni = sortedGraduateAlumni.filter(a => a.degrees.includes('ms') && !a.degrees.includes('phd'))
 
-  // Sort undergrad alumni by cohort
-  const sortedUndergradAlumni = data?.undergradAlumni
-    ? [...data.undergradAlumni].sort((a, b) => {
-        const aCohort = parseInt(a.cohort?.replace(/[^0-9]/g, '') || '0')
-        const bCohort = parseInt(b.cohort?.replace(/[^0-9]/g, '') || '0')
-        return aCohort - bCohort
-      })
-    : []
+  // Sort undergrad alumni by selected column
+  const sortedUndergradAlumni = useMemo(() => {
+    if (!data?.undergradAlumni) return []
+    return [...data.undergradAlumni].sort((a, b) => {
+      let comparison = 0
+      switch (undergradSortKey) {
+        case 'name':
+          comparison = (a.name || '').localeCompare(b.name || '')
+          break
+        case 'cohort':
+          const aCohort = parseInt(a.cohort?.replace(/[^0-9]/g, '') || '0')
+          const bCohort = parseInt(b.cohort?.replace(/[^0-9]/g, '') || '0')
+          comparison = aCohort - bCohort
+          break
+        case 'period':
+          const aPeriod = a.period?.split(' ~ ')[0] || ''
+          const bPeriod = b.period?.split(' ~ ')[0] || ''
+          comparison = aPeriod.localeCompare(bPeriod)
+          break
+        case 'preMajor':
+          const aPreMajor = a.affiliationPre?.major || a.affiliationPre?.school || ''
+          const bPreMajor = b.affiliationPre?.major || b.affiliationPre?.school || ''
+          comparison = aPreMajor.localeCompare(bPreMajor)
+          break
+        case 'postPosition':
+          const aPost = a.affiliationPost?.position || a.affiliationPost?.organization || ''
+          const bPost = b.affiliationPost?.position || b.affiliationPost?.organization || ''
+          comparison = aPost.localeCompare(bPost)
+          break
+      }
+      return undergradSortDir === 'asc' ? comparison : -comparison
+    })
+  }, [data?.undergradAlumni, undergradSortKey, undergradSortDir])
 
   const totalCount = (data?.graduateAlumni?.length || 0) + (data?.undergradAlumni?.length || 0)
   const phdCount = sortedGraduateAlumni.filter(a => a.degrees.includes('phd')).length
@@ -875,11 +911,36 @@ export const MembersAlumniTemplate = () => {
                       <table className="w-full min-w-[800px] table-fixed">
                         <thead>
                           <tr className="bg-gray-50/80">
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Name</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[8%]">Cohort</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%]">Period</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Pre-Internship)</th>
-                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%]">Affiliation (Post-Internship)</th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%] cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleUndergradSort('name')}>
+                              <div className="flex items-center gap-4">
+                                Name
+                                {undergradSortKey === 'name' ? (undergradSortDir === 'asc' ? <ArrowUp size={14} className="text-primary" /> : <ArrowDown size={14} className="text-primary" />) : <ArrowUpDown size={14} className="text-gray-400" />}
+                              </div>
+                            </th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[8%] cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleUndergradSort('cohort')}>
+                              <div className="flex items-center gap-4">
+                                Cohort
+                                {undergradSortKey === 'cohort' ? (undergradSortDir === 'asc' ? <ArrowUp size={14} className="text-primary" /> : <ArrowDown size={14} className="text-primary" />) : <ArrowUpDown size={14} className="text-gray-400" />}
+                              </div>
+                            </th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[16%] cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleUndergradSort('period')}>
+                              <div className="flex items-center gap-4">
+                                Period
+                                {undergradSortKey === 'period' ? (undergradSortDir === 'asc' ? <ArrowUp size={14} className="text-primary" /> : <ArrowDown size={14} className="text-primary" />) : <ArrowUpDown size={14} className="text-gray-400" />}
+                              </div>
+                            </th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%] cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleUndergradSort('preMajor')}>
+                              <div className="flex items-center gap-4">
+                                Affiliation (Pre-Internship)
+                                {undergradSortKey === 'preMajor' ? (undergradSortDir === 'asc' ? <ArrowUp size={14} className="text-primary" /> : <ArrowDown size={14} className="text-primary" />) : <ArrowUpDown size={14} className="text-gray-400" />}
+                              </div>
+                            </th>
+                            <th className="py-12 px-16 text-left text-sm font-bold text-gray-900 w-[30%] cursor-pointer hover:bg-gray-100 transition-colors" onClick={() => handleUndergradSort('postPosition')}>
+                              <div className="flex items-center gap-4">
+                                Affiliation (Post-Internship)
+                                {undergradSortKey === 'postPosition' ? (undergradSortDir === 'asc' ? <ArrowUp size={14} className="text-primary" /> : <ArrowDown size={14} className="text-primary" />) : <ArrowUpDown size={14} className="text-gray-400" />}
+                              </div>
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
