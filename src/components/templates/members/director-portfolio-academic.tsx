@@ -866,7 +866,7 @@ const CollaborationNetwork = memo(() => {
                     <div className="grid grid-cols-2 gap-8">
                       <div className="bg-primary/5 rounded-lg p-12 text-center border border-primary/10">
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Total Works</p>
+                          <p className="text-xs md:text-sm font-bold text-gray-500 uppercase">Total Works</p>
                         </div>
                         <p className="text-2xl font-bold text-primary">
                           {node.publications}
@@ -874,7 +874,7 @@ const CollaborationNetwork = memo(() => {
                       </div>
                       <div className="bg-pink-50 rounded-lg p-12 text-center" style={{borderColor: '#FFBAC4', borderWidth: '1px'}}>
                         <div className="flex items-center justify-center gap-6 mb-4">
-                          <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Co-work Rate</p>
+                          <p className="text-xs md:text-sm font-bold text-gray-500 uppercase">Co-work Rate</p>
                         </div>
                         <p className="text-2xl font-bold" style={{color: '#E8889C'}}>
                           {node.coworkRate}%
@@ -885,7 +885,7 @@ const CollaborationNetwork = memo(() => {
                     {/* Breakdown */}
                     <div className="bg-gray-50 rounded-lg p-12 border border-gray-100">
                       <div className="flex items-center gap-6 mb-10">
-                        <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase">Breakdown</p>
+                        <p className="text-xs md:text-sm font-bold text-gray-500 uppercase">Breakdown</p>
                       </div>
                       <div className="space-y-6">
                         <div className="flex items-center gap-8">
@@ -1426,9 +1426,9 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Position</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
+                    <p className="text-xs md:text-sm text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -1436,9 +1436,9 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Affiliation</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-xs md:text-sm text-gray-500">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -1446,7 +1446,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Office</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
@@ -1455,7 +1455,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">E-mail</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
@@ -1610,7 +1610,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                       return (
                       <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${colors.hover} transition-colors`}>
                         <div className={`text-lg md:text-xl font-bold ${colors.text}`}>{stat.count}</div>
-                        <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     )})}
                   </div>
@@ -1628,7 +1628,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                       {liveCitationStats.slice(1).map((stat, index) => (
                         <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                           <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                          <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
+                          <div className="text-[10px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
                         </div>
                       ))}
                     </div>
@@ -1707,7 +1707,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
                           </div>
@@ -1717,7 +1717,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
                           </div>
@@ -1727,7 +1727,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
                           </div>
@@ -1737,7 +1737,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
                           </div>
@@ -1839,7 +1839,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
                               className="flex items-center justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
                               <span className="text-xs md:text-sm font-bold text-gray-700 flex-1">{journal.name}</span>
-                              <span className={`px-8 py-2 rounded text-[9px] md:text-[10px] font-bold shrink-0 ${
+                              <span className={`px-8 py-2 rounded text-[10px] md:text-xs font-bold shrink-0 ${
                                 journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
                                 journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
@@ -2181,21 +2181,21 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                   
                                   <div className="flex-1 min-w-0">
                                     {/* Role badge - Desktop only */}
-                                    <span className={`hidden md:inline-flex px-6 py-2 text-[9px] md:text-[9px] font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
+                                    <span className={`hidden md:inline-flex px-6 py-2 text-[10px] md:text-xs font-bold rounded-full mb-6 ${roleColor[directorRole] || 'bg-gray-500 text-white'}`}>
                                       {directorRole}
                                     </span>
                                     
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-16">
                                       <div className="flex-1 min-w-0">
-                                        <p className="text-xs md:text-xs font-bold text-gray-900 whitespace-pre-line">{project.titleKo}</p>
-                                        <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 whitespace-pre-line">{project.titleEn}</p>
-                                        <p className="text-[9px] md:text-[10px] text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.fundingAgency}</span></p>
+                                        <p className="text-sm md:text-base font-bold text-gray-900 whitespace-pre-line">{project.titleKo}</p>
+                                        <p className="text-xs md:text-sm text-gray-600 mt-3 whitespace-pre-line">{project.titleEn}</p>
+                                        <p className="text-xs md:text-sm text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.fundingAgency}</span></p>
                                         {/* Mobile: Period as text */}
                                         <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">{project.period}</p>
                                       </div>
                                       {/* PC: Period badge - right aligned */}
-                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                      <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
                                         {project.period}
                                       </span>
                                     </div>
@@ -2291,16 +2291,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <div className="flex-1 min-w-0 text-center md:text-left">
                               <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
                                     {period}
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-semibold text-gray-700">{course.courseNameKo || course.courseName}</p>
+                              <p className="text-sm md:text-base font-bold text-gray-700">{course.courseNameKo || course.courseName}</p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                                <p className="text-xs md:text-sm text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
+                              <p className="text-xs md:text-sm font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                             </div>
                           </div>
                         </div>
@@ -2361,20 +2361,20 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <div className="flex-1 min-w-0 text-center md:text-left">
                               <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                  <span key={i} className="px-8 py-2 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     {period}
                                   </span>
                                 ))}
                               </div>
-                              <p className="text-xs md:text-sm font-semibold text-gray-700">
+                              <p className="text-sm md:text-base font-bold text-gray-700">
                                 {(course.courseNameKo || course.courseName).split('<').map((part, i) => (
                                   i === 0 ? part : <span key={i} className="inline-block">&lt;{part}</span>
                                 ))}
                               </p>
                               {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                <p className="text-[10px] md:text-xs text-gray-500 mt-2">{course.courseName}</p>
+                                <p className="text-xs md:text-sm text-gray-500 mt-2">{course.courseName}</p>
                               )}
-                              <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
+                              <p className="text-xs md:text-sm font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                             </div>
                           </div>
                         </div>

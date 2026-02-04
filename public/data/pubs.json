@@ -1440,17 +1440,17 @@
             "2",
             "*"
         ],
-        "venue": "3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024",
+        "venue": "3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)",
         "presentation_type": "oral",
         "language": "English",
         "awards": 0,
         "citations": {
-            "apa": "Choi, I., Koh, W., Kang, G., Jang, Y., & Kim, W. C. (2024, August 5). Encoding temporal statistical-space priors via augmented representation under data scarcity [Paper presentation]. 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024.",
-            "mla": "Choi, Insu, et al. \"Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity.\" 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024, 5 Aug. 2024.",
-            "chicago": "Choi, Insu, Woosung Koh, Gimin Kang, Yoontae Jang, and Woo Chang Kim. \"Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity.\" Paper presented at the 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024, August 5, 2024.",
-            "harvard": "Choi, I., Koh, W., Kang, G., Jang, Y. & Kim, W.C. (2024) 'Encoding temporal statistical-space priors via augmented representation under data scarcity', paper presented at the 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024, 5 August.",
-            "vancouver": "Choi I, Koh W, Kang G, Jang Y, Kim WC. Encoding temporal statistical-space priors via augmented representation under data scarcity. Paper presented at: 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024; 2024 Aug 5.",
-            "bibtex": "@inproceedings{choi2024encoding,\n  title = {{Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity}},\n  author = {Choi, I., Koh, W., Kang, G., Jang, Y. and Kim, W. C.},\n  booktitle = {3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), IJCAI 2024},\n  year = {2024},\n}"
+            "apa": "Choi, I., Koh, W., Kang, G., Jang, Y., & Kim, W. C. (2024, August 5). Encoding temporal statistical-space priors via augmented representation under data scarcity [Paper presentation]. 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024).",
+            "mla": "Choi, Insu, et al. \"Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity.\" 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024), 5 Aug. 2024.",
+            "chicago": "Choi, Insu, Woosung Koh, Gimin Kang, Yoontae Jang, and Woo Chang Kim. \"Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity.\" Paper presented at the 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024), August 5, 2024.",
+            "harvard": "Choi, I., Koh, W., Kang, G., Jang, Y. & Kim, W.C. (2024) 'Encoding temporal statistical-space priors via augmented representation under data scarcity', paper presented at the 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024), 5 August.",
+            "vancouver": "Choi I, Koh W, Kang G, Jang Y, Kim WC. Encoding temporal statistical-space priors via augmented representation under data scarcity. Paper presented at: 3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024); 2024 Aug 5.",
+            "bibtex": "@inproceedings{choi2024encoding,\n  title = {{Encoding Temporal Statistical-Space Priors via Augmented Representation Under Data Scarcity}},\n  author = {Choi, I., Koh, W., Kang, G., Jang, Y. and Kim, W. C.},\n  booktitle = {3rd International Workshop on Spatio-Temporal Reasoning and Learning (STRL 2024), The 33rd International Joint Conference on Artificial Intelligence (IJCAI 2024)},\n  year = {2024},\n}"
         }
     },
     {
@@ -2090,17 +2090,17 @@
             "2",
             "*"
         ],
-        "venue": "AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024",
+        "venue": "AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024)",
         "presentation_type": "oral",
         "language": "English",
         "awards": 0,
         "citations": {
-            "apa": "Koh, W., Choi, I., Jang, Y., Kang, G., & Kim, W. C. (2024, February 26). Curriculum learning and imitation learning for model-free control on financial time-series [Paper presentation]. AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024.",
-            "mla": "Koh, Woosung, et al. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, 26 Feb. 2024.",
-            "chicago": "Koh, Woosung, Insu Choi, Yoontae Jang, Gimin Kang, and Woo Chang Kim. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" Paper presented at the AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, February 26, 2024.",
-            "harvard": "Koh, W., Choi, I., Jang, Y., Kang, G. & Kim, W.C. (2024) 'Curriculum learning and imitation learning for model-free control on financial time-series', paper presented at the AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024, 26 February.",
-            "vancouver": "Koh W, Choi I, Jang Y, Kang G, Kim WC. Curriculum learning and imitation learning for model-free control on financial time-series. Paper presented at: AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024; 2024 Feb 26.",
-            "bibtex": "@inproceedings{koh2024curriculum,\n  title = {{Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series}},\n  author = {Koh, W., Choi, I., Jang, Y., Kang, G. and Kim, W. C.},\n  booktitle = {AI for Time Series Analysis (AI4TS) Workshop, AAAI 2024},\n  year = {2024},\n}"
+            "apa": "Koh, W., Choi, I., Jang, Y., Kang, G., & Kim, W. C. (2024, February 26). Curriculum learning and imitation learning for model-free control on financial time-series [Paper presentation]. AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024).",
+            "mla": "Koh, Woosung, et al. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024), 26 Feb. 2024.",
+            "chicago": "Koh, Woosung, Insu Choi, Yoontae Jang, Gimin Kang, and Woo Chang Kim. \"Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series.\" Paper presented at the AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024), February 26, 2024.",
+            "harvard": "Koh, W., Choi, I., Jang, Y., Kang, G. & Kim, W.C. (2024) 'Curriculum learning and imitation learning for model-free control on financial time-series', paper presented at the AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024), 26 February.",
+            "vancouver": "Koh W, Choi I, Jang Y, Kang G, Kim WC. Curriculum learning and imitation learning for model-free control on financial time-series. Paper presented at: AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024); 2024 Feb 26.",
+            "bibtex": "@inproceedings{koh2024curriculum,\n  title = {{Curriculum Learning and Imitation Learning for Model-Free Control on Financial Time-Series}},\n  author = {Koh, W., Choi, I., Jang, Y., Kang, G. and Kim, W. C.},\n  booktitle = {AI for Time Series Analysis (AI4TS) Workshop, The 38th Annual AAAI Conference on Artificial Intelligence (AAAI 2024)},\n  year = {2024},\n}"
         }
     },
     {

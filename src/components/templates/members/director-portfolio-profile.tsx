@@ -650,9 +650,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Position</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
+                    <p className="text-xs md:text-sm text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -660,9 +660,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Affiliation</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-xs md:text-sm text-gray-500">Gachon University</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-10 group">
@@ -670,7 +670,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Office</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
@@ -679,7 +679,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">E-mail</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
@@ -838,22 +838,22 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     </div>
                     <div className="bg-white border border-gray-100 rounded-xl p-16 md:p-24 hover:shadow-md transition-all">
                       {/* Header: Logo + Degree/School/Field */}
-                      <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
-                        <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0">
+                      <div className="flex flex-col items-center md:items-start gap-12 md:gap-16">
+                        <div className="size-56 md:size-64 bg-gray-50 rounded-xl p-8 flex items-center justify-center shrink-0">
                           <img loading="lazy" decoding="async" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                         </div>
                         <div className="flex-1 min-w-0 text-center md:text-left">
                           {/* Period + Honor/Award Badges */}
-                          <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 md:mb-10">
-                            <span className="px-8 md:px-10 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
+                          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-6 mb-8 md:mb-10">
+                            <span className="px-8 md:px-10 py-2 md:py-3 text-[10px] md:text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
                             {edu.honors && edu.honors.length > 0 && (
-                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
+                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: '#FFF3CC', color: '#B8962D'}}>
                                 <Medal size={10} />
                                 Honor
                               </span>
                             )}
                             {edu.awards && edu.awards.length > 0 && (
-                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
+                              <span className="flex items-center gap-3 px-6 md:px-8 py-2 md:py-3 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(172, 14, 14, 0.1)', color: 'rgb(172, 14, 14)'}}>
                                 <Award size={10} />
                                 Award
                               </span>
@@ -864,9 +864,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           {/* School - Medium */}
                           <p className="text-xs md:text-sm text-gray-500 font-bold mt-2">{edu.school}</p>
                           {/* Field - Department */}
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600">{edu.field}</p>
+                          <p className="text-xs md:text-sm font-medium text-gray-600">{edu.field}</p>
                           {/* College */}
-                          {edu.college && <p className="text-[10px] md:text-xs text-gray-500">{edu.college}</p>}
+                          {edu.college && <p className="text-xs md:text-sm text-gray-500">{edu.college}</p>}
                         </div>
                       </div>
                       
@@ -886,11 +886,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-dissertation`) && (
                                 <div className="p-12">
                                   <div className="bg-white rounded-lg px-12 py-10 border border-gray-100">
-                                    <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
+                                    <p className="text-xs md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.dissertation.en.split(' — ')[0]}
                                     </p>
                                     {edu.dissertation.en.includes(' — ') && (
-                                      <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
+                                      <p className="text-xs md:text-sm font-medium text-gray-500 mt-4 leading-relaxed">— {edu.dissertation.en.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -911,11 +911,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               {expandedEduSections.has(`${index}-thesis`) && (
                                 <div className="p-12">
                                   <div className="bg-white rounded-lg px-12 py-10 border border-gray-100">
-                                    <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
+                                    <p className="text-xs md:text-sm font-bold text-gray-800 leading-relaxed">
                                       {edu.thesis.en.split(' — ')[0]}
                                     </p>
                                     {edu.thesis.en.includes(' — ') && (
-                                      <p className="text-[10px] md:text-xs font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
+                                      <p className="text-xs md:text-sm font-medium text-gray-500 mt-4 leading-relaxed">— {edu.thesis.en.split(' — ')[1]}</p>
                                     )}
                                   </div>
                                 </div>
@@ -947,7 +947,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       </div>
                                       {/* English Title */}
                                       <div>
-                                        <p className="text-[11px] md:text-sm font-bold text-gray-800 leading-relaxed">
+                                        <p className="text-xs md:text-sm font-bold text-gray-800 leading-relaxed">
                                           {thesis.en}
                                         </p>
                                       </div>
@@ -1013,7 +1013,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                       <div className="flex flex-col">
                                         <span className="text-xs md:text-sm font-bold text-gray-800">{edu.researchGroup.name}</span>
                                         {edu.researchGroup.department && (
-                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium">{edu.researchGroup.department}</span>
+                                          <span className="text-xs md:text-sm text-gray-500 font-medium">{edu.researchGroup.department}</span>
                                         )}
                                         {edu.researchGroup.role && (
                                           <span className="text-[10px] md:text-xs text-gray-600 font-medium mt-4 flex items-center gap-4">
@@ -1025,7 +1025,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                     </div>
                                     <div className="flex flex-col items-end gap-4 shrink-0">
                                       {edu.researchGroup.period && (
-                                        <span className="px-8 py-3 bg-gray-100 rounded-full text-[9px] md:text-[10px] font-bold text-gray-600 whitespace-nowrap">{edu.researchGroup.period}</span>
+                                        <span className="px-8 py-3 bg-gray-100 rounded-full text-[10px] md:text-xs font-bold text-gray-600 whitespace-nowrap">{edu.researchGroup.period}</span>
                                       )}
                                       <ExternalLink className="size-12 text-gray-400 group-hover:text-[#D6B14D] transition-colors" />
                                     </div>
@@ -1053,7 +1053,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <Users className="size-14 text-[#D6B14D] shrink-0 mt-1" />
                                         <div className="flex flex-col">
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{l.role}</span>
-                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium">{l.context}</span>
+                                          <span className="text-xs md:text-sm text-gray-500 font-medium">{l.context}</span>
                                           <span className="md:hidden text-[10px] text-gray-400 font-medium mt-2">{l.period}</span>
                                         </div>
                                       </div>
@@ -1084,7 +1084,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                         <div key={i} className="flex flex-col items-start bg-[#FFF9E6] rounded-lg px-12 py-14">
                                           <Medal className="shrink-0 size-20 mb-10" style={{color: '#D6B14D'}} />
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
-                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{h.org}</span>
+                                          <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{h.org}</span>
                                           {h.gpa && (
                                             <div className="flex items-center gap-4 mt-6">
                                               <span className="text-[10px] md:text-xs">
@@ -1108,7 +1108,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <Trophy className="shrink-0 size-20 mb-10" style={{color: 'rgb(172, 14, 14)'}} />
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
                                           {a.note && <span className="text-xs md:text-sm font-bold mt-2" style={{color: '#D6B14D'}}>{a.note}</span>}
-                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{a.org}</span>
+                                          <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{a.org}</span>
                                         </div>
                                       ))}
                                     </div>
@@ -1153,7 +1153,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
-                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
+                          <span className={`px-8 md:px-10 py-2 text-[10px] md:text-xs font-bold rounded-full ${
                             emp.isCurrent
                               ? 'bg-primary text-white'
                               : 'bg-gray-200 text-gray-700'
@@ -1163,11 +1163,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                         {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
-                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
-                            <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
+                            <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
+                            <p className="text-xs md:text-sm text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
                           </>
                         ) : emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
+                          <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
                       </div>
                     </div>

@@ -1533,7 +1533,7 @@ export const MembersDirectorAcademicTemplate = () => {
                       return (
                       <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${hoverColor} transition-colors`}>
                         <div className={`text-lg md:text-xl font-bold ${textColor}`}>{stat.count}</div>
-                        <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     )})}
                   </div>
@@ -1614,7 +1614,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
                           </div>
@@ -1624,7 +1624,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Securities Association (KSA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
                           </div>
@@ -1634,7 +1634,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
                           </div>
@@ -1644,7 +1644,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <p className="text-xs md:text-sm font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[9px] md:text-[10px] font-bold rounded self-start md:self-auto">Lifetime Member</span>
+                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
                             <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
                             <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
                           </div>
@@ -2096,9 +2096,9 @@ export const MembersDirectorAcademicTemplate = () => {
                                     {/* Title + Period (Desktop: Period on right) */}
                                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 md:gap-16">
                                       <div className="flex-1 min-w-0">
-                                        <p className="text-xs md:text-xs font-bold text-gray-900 whitespace-pre-line">{project.titleKo}</p>
-                                        <p className="text-[9px] md:text-[10px] text-gray-600 mt-3 whitespace-pre-line">{project.titleEn}</p>
-                                        <p className="text-[9px] md:text-[10px] text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.fundingAgency}</span></p>
+                                        <p className="text-sm md:text-base font-bold text-gray-900 whitespace-pre-line">{project.titleKo}</p>
+                                        <p className="text-xs md:text-sm text-gray-600 mt-3 whitespace-pre-line">{project.titleEn}</p>
+                                        <p className="text-xs md:text-sm text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.fundingAgency}</span></p>
                                         {/* Mobile: Period as text */}
                                         <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">{project.period}</p>
                                       </div>
@@ -2199,7 +2199,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                  <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
                                     {period}
                                   </span>
                                 ))}
@@ -2269,7 +2269,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 mb-8">
                                 {course.periods.map((period, i) => (
-                                  <span key={i} className="px-8 py-2 text-[9px] md:text-[10px] font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
+                                  <span key={i} className="px-8 py-2 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     {period}
                                   </span>
                                 ))}

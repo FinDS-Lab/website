@@ -583,7 +583,7 @@ export const MembersDirectorTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Position</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
                     <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
                   </div>
@@ -593,7 +593,7 @@ export const MembersDirectorTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Affiliation</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
                     <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
                   </div>
@@ -603,7 +603,7 @@ export const MembersDirectorTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Office</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
@@ -612,7 +612,7 @@ export const MembersDirectorTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">E-mail</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
@@ -776,12 +776,12 @@ export const MembersDirectorTemplate = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
-                          <span className="px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full bg-primary text-white">{edu.period}</span>
+                          <span className="px-8 md:px-10 py-2 text-[10px] md:text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{edu.degree.includes("(Ph.D.") ? <>{edu.degree.split(" (")[0]}<br className="md:hidden" /><span className="text-sm md:text-base text-gray-900 font-bold"> ({edu.degree.split(" (")[1]}</span></> : edu.degree}</h4>
                         <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{edu.school}</p>
-                        <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{edu.field}</p>
-                        <p className="text-[10px] md:text-xs text-gray-500 break-words">{edu.college}</p>
+                        <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{edu.field}</p>
+                        <p className="text-xs md:text-sm text-gray-500 break-words">{edu.college}</p>
                       </div>
                     </div>
                   </div>
@@ -823,7 +823,7 @@ export const MembersDirectorTemplate = () => {
                       </div>
                       <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
-                          <span className={`px-8 md:px-10 py-2 text-[9px] md:text-[10px] font-bold rounded-full ${
+                          <span className={`px-8 md:px-10 py-2 text-[10px] md:text-xs font-bold rounded-full ${
                             emp.isCurrent
                               ? 'bg-primary text-white'
                               : 'bg-gray-200 text-gray-700'
@@ -833,11 +833,11 @@ export const MembersDirectorTemplate = () => {
                         {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
-                            <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
-                            <p className="text-[10px] md:text-xs text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
+                            <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
+                            <p className="text-xs md:text-sm text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
                           </>
                         ) : emp.department && (
-                          <p className="text-[10px] md:text-xs font-medium text-gray-600 break-words">{emp.department}</p>
+                          <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
                       </div>
                     </div>
@@ -963,7 +963,7 @@ export const MembersDirectorTemplate = () => {
                       return (
                       <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${colors.hover} transition-colors`}>
                         <div className={`text-lg md:text-xl font-bold ${colors.text}`}>{stat.count}</div>
-                        <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
+                        <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     )})}
                   </div>
@@ -1051,7 +1051,7 @@ export const MembersDirectorTemplate = () => {
                                   <div className="flex-1 min-w-0 text-center md:text-left">
                                     <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
                                       {course.periods.map((period, i) => (
-                                        <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
+                                        <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
                                           {period}
                                         </span>
                                       ))}
@@ -1060,7 +1060,7 @@ export const MembersDirectorTemplate = () => {
                                     {course.courseNameKo && course.courseName !== course.courseNameKo && (
                                       <p className="text-xs md:text-sm text-gray-500 mt-2">{course.courseName}</p>
                                     )}
-                                    <p className="text-[10px] md:text-xs font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
+                                    <p className="text-xs md:text-sm font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
                                   </div>
                                 </div>
                               </div>

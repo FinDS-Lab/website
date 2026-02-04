@@ -1518,9 +1518,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Briefcase size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Position</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Position</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Director</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">FINDS Lab</p>
+                    <p className="text-xs md:text-sm text-gray-500">FINDS Lab</p>
                   </div>
                 </div>
 
@@ -1529,9 +1529,9 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Building size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Affiliation</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Affiliation</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Assistant Professor</p>
-                    <p className="text-[10px] md:text-xs text-gray-500">Gachon University</p>
+                    <p className="text-xs md:text-sm text-gray-500">Gachon University</p>
                   </div>
                 </div>
 
@@ -1540,7 +1540,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <MapPin size={14}/>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">Office</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">Office</p>
                     <p className="text-xs md:text-sm font-semibold text-gray-800">Room 304, Gachon Hall</p>
                   </div>
                 </div>
@@ -1550,7 +1550,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                     <Mail size={14}/>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-[10px] md:text-[11px] font-bold text-gray-400 mb-1">E-mail</p>
+                    <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
                     <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
@@ -1647,7 +1647,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                               {act.membership.map((r, idx) => (
                                 <div key={idx} className="flex items-center justify-between px-12 py-10 bg-gray-50 rounded-lg">
                                   <span className="text-xs md:text-sm font-bold text-gray-700">{r.role}</span>
-                                  <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
+                                  <span className="text-xs md:text-sm text-gray-500">{r.period}</span>
                                 </div>
                               ))}
                             </div>
@@ -1661,7 +1661,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
                                 {act.leadership.map((r, idx) => (
                                   <div key={idx} className="flex items-center justify-between px-12 py-10 bg-primary/5 rounded-lg border border-primary/10">
                                     <span className="text-xs md:text-sm font-bold text-primary">{r.role}</span>
-                                    <span className="text-[10px] md:text-xs text-gray-500">{r.period}</span>
+                                    <span className="text-xs md:text-sm text-gray-500">{r.period}</span>
                                   </div>
                                 ))}
                               </div>
