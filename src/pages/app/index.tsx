@@ -343,13 +343,112 @@ export const App = () => {
       <GlobalMusicPlayer />
       <Suspense fallback={
         <div className="min-h-screen flex items-center justify-center bg-white">
-          <div className="flex flex-col items-center gap-16">
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full border-2 border-gray-200" />
-              <div className="absolute inset-0 w-12 h-12 rounded-full border-2 border-transparent border-t-[#D6B14D] animate-spin" />
+          <div className="flex flex-col items-center gap-24">
+            {/* 3D Cube Animation - FINDS Logo Style */}
+            <div className="relative" style={{perspective: '800px'}}>
+              <div 
+                className="relative w-48 h-48"
+                style={{
+                  transformStyle: 'preserve-3d',
+                  animation: 'cubeRotate 3s ease-in-out infinite',
+                }}
+              >
+                {/* Cube faces - FINDS brand colors from palette */}
+                {/* Front - Gold */}
+                <div 
+                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #D6B14D 0%, #B8962D 100%)',
+                    transform: 'translateZ(24px)',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
+                  }}
+                >
+                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)'}}>F</span>
+                </div>
+                {/* Back - Red */}
+                <div 
+                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #AC0E0E 0%, #C41E3A 100%)',
+                    transform: 'rotateY(180deg) translateZ(24px)',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
+                  }}
+                >
+                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)'}}>S</span>
+                </div>
+                {/* Right - Cream/Honey */}
+                <div 
+                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #E8D688 0%, #D6C360 100%)',
+                    transform: 'rotateY(90deg) translateZ(24px)',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
+                  }}
+                >
+                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)', color: '#9A7D1F'}}>I</span>
+                </div>
+                {/* Left - Rose/Blossom */}
+                <div 
+                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
+                  style={{
+                    background: 'linear-gradient(135deg, #FFBAC4 0%, #E8889C 100%)',
+                    transform: 'rotateY(-90deg) translateZ(24px)',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
+                  }}
+                >
+                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)', color: '#AC0E0E'}}>N</span>
+                </div>
+                {/* Top - Coral/Amber */}
+                <div 
+                  className="absolute w-full h-full"
+                  style={{
+                    background: 'linear-gradient(135deg, #D6A076 0%, #B8962D 100%)',
+                    transform: 'rotateX(90deg) translateZ(24px)',
+                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
+                  }}
+                />
+                {/* Bottom - Oak */}
+                <div 
+                  className="absolute w-full h-full"
+                  style={{
+                    background: 'linear-gradient(135deg, #9A7D1F 0%, #B8962D 100%)',
+                    transform: 'rotateX(-90deg) translateZ(24px)',
+                    boxShadow: 'inset 0 0 15px rgba(0,0,0,0.3)',
+                  }}
+                />
+              </div>
+              {/* Subtle shadow under cube */}
+              <div 
+                className="absolute left-1/2 -translate-x-1/2 w-32 h-4 rounded-full"
+                style={{
+                  bottom: '-20px',
+                  background: 'radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 70%)',
+                  animation: 'shadowPulse 3s ease-in-out infinite',
+                }}
+              />
             </div>
-            <div className="text-xs text-gray-400 tracking-widest uppercase">Loading</div>
+            <div className="flex flex-col items-center gap-6">
+              <div className="text-xs text-gray-400 tracking-[0.3em] uppercase font-medium">FINDS Lab</div>
+              <div className="flex gap-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D] animate-pulse" style={{animationDelay: '0ms'}} />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#AC0E0E] animate-pulse" style={{animationDelay: '150ms'}} />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#E8889C] animate-pulse" style={{animationDelay: '300ms'}} />
+              </div>
+            </div>
           </div>
+          {/* CSS Keyframes */}
+          <style>{`
+            @keyframes cubeRotate {
+              0%, 100% { transform: rotateX(-20deg) rotateY(0deg); }
+              25% { transform: rotateX(-20deg) rotateY(90deg); }
+              50% { transform: rotateX(-20deg) rotateY(180deg); }
+              75% { transform: rotateX(-20deg) rotateY(270deg); }
+            }
+            @keyframes shadowPulse {
+              0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+              50% { transform: translateX(-50%) scale(0.8); opacity: 0.3; }
+            }
+          `}</style>
         </div>
       }>
         <Routes>
