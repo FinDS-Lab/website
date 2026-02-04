@@ -107,7 +107,7 @@
         "fundingAgencyKo": "스텝인투시티",
         "amount": "₩1,500,000",
         "type": "industry",
-        "language": "ko",
+        "language": "en",
         "roles": {
             "principalInvestigator": "최인수",
             "leadResearcher": "최인수",
@@ -158,7 +158,7 @@
         "fundingAgencyKo": "브리즈",
         "amount": "₩1,000,000",
         "type": "industry",
-        "language": "ko",
+        "language": "en",
         "roles": {
             "principalInvestigator": "최인수",
             "leadResearcher": "최인수",
