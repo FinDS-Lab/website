@@ -69,7 +69,7 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2013-03 – 2018-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (GPA: 4.42/4.5)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (4.42 GPA on a 4.5 scale)</li>
           </ul>
         </div>
       </div>

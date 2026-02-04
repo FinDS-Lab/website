@@ -690,7 +690,7 @@ export const PublicationsTemplate = () => {
                   onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f3f4f6'; e.currentTarget.style.boxShadow = 'none' }}
                 >
                   <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
-                  <div className="flex flex-col">
+                  <div className="flex flex-col items-center text-center">
                     <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                     <div className="flex items-center gap-6">
                       <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />

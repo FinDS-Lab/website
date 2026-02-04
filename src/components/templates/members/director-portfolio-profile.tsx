@@ -739,6 +739,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               </button>
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
+                <p className="text-gray-800 leading-relaxed text-sm md:text-base font-semibold mb-20">
+                  <span className="font-bold" style={{color: '#D6B14D'}}>금융데이터인텔리전스 연구실(FINDS Lab)</span> 홈페이지에 오신 것을 환영합니다.
+                </p>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
                   I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
@@ -1088,11 +1091,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           {h.gpa && (
                                             <div className="flex items-center gap-4 mt-6">
                                               <span className="text-[10px] md:text-xs">
-                                                <span className="font-bold text-gray-700">GPA</span>
-                                                {' '}
                                                 <span className="font-bold" style={{color: '#D6B14D'}}>{h.gpa}</span>
                                                 {' '}
-                                                <span className="text-gray-600">out of {h.gpaMax}</span>
+                                                <span className="font-bold text-gray-700">GPA</span>
+                                                {' '}
+                                                <span className="text-gray-600">on a {h.gpaMax} scale</span>
                                               </span>
                                             </div>
                                           )}
@@ -1225,7 +1228,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                             <div className="grid grid-cols-2 gap-8 md:gap-12">
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col">
+                                <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
                                   <div className="flex items-center gap-6">
                                     <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
@@ -1235,7 +1238,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               </div>
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col">
+                                <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
                                   <div className="flex items-center gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
