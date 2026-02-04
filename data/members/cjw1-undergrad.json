@@ -1,0 +1,43 @@
+{
+  "id": "cjw1-undergrad",
+  "name": {
+    "ko": "최진우"
+  },
+  "degree": "undergrad",
+  "role": {
+    "ko": "Undergraduate Researcher",
+    "en": "Undergraduate Researcher"
+  },
+  "status": "active",
+  "avatar": "/website/images/members/CJW-1.webp",
+  "cohort": "1st Cohort (2025 Winter)",
+  "period": {
+    "start": "2025-12-22",
+    "end": "2026-03-01"
+  },
+  "contact": {
+    "email": "jeenu37@khu.ac.kr"
+  },
+  "research": {
+    "interests": [
+      "Financial Data Science",
+      "Business Analytics",
+      "Data-Inspired Decision Making"
+    ],
+    "project": {
+      "ko": "섹터 ETF 시장에서의 예측 기반 거래 전략 평가: 머신러닝 및 시계열 모델의 비교 분석",
+      "en": "Assessing Prediction-Based Trading Strategies in Sector ETF Markets: A Comparative Study of Machine Learning and Time-Series Models"
+    }
+  },
+  "education": [
+    {
+      "degree": "Undergraduate",
+      "field": "산업경영공학과",
+      "field_en": "Industrial and Management Systems Engineering",
+      "school": "경희대학교",
+      "school_en": "Kyung Hee University",
+      "expected": "Present",
+      "start": "2021-03"
+    }
+  ]
+}
