@@ -483,9 +483,13 @@ export const MembersCurrentTemplate = () => {
                                   {member.role.en}
                                 </span>
                               </div>
-                              <p className="text-xs md:text-[13px] text-gray-500">
-                                {formatPeriod(member.period.start)} - {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
+                              {/* Period - plain text on mobile, badge on desktop */}
+                              <p className="md:hidden text-xs text-gray-500 mt-4">
+                                {formatPeriod(member.period.start)} – {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
                               </p>
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap mt-4">
+                                {formatPeriod(member.period.start)} – {member.period.end ? formatPeriod(member.period.end) : member.period.expected_graduation ? formatPeriod(member.period.expected_graduation) : 'Present'}
+                              </span>
                             </div>
                           </div>
 

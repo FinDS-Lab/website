@@ -514,8 +514,10 @@ export const MembersAlumniTemplate = () => {
                                   <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
                                     {getAffiliation(alumni)}
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                                    {getGraduationDate(alumni, 'phd')}
+                                  <td className="py-12 md:py-16 px-12 md:px-16">
+                                    <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                                      {getGraduationDate(alumni, 'phd')}
+                                    </span>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {alumni.company ? (
@@ -717,8 +719,10 @@ export const MembersAlumniTemplate = () => {
                                   <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
                                     {getAffiliation(alumni)}
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-xs md:text-sm text-gray-600">
-                                    {getGraduationDate(alumni, 'ms')}
+                                  <td className="py-12 md:py-16 px-12 md:px-16">
+                                    <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                                      {getGraduationDate(alumni, 'ms')}
+                                    </span>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {alumni.company ? (
@@ -917,8 +921,10 @@ export const MembersAlumniTemplate = () => {
                                       )}
                                     </div>
                                   </td>
-                                  <td className="py-12 md:py-16 px-12 md:px-16 text-sm text-gray-600">
-                                    {alumni.periods?.ur || '-'}
+                                  <td className="py-12 md:py-16 px-12 md:px-16">
+                                    <span className="inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                                      {alumni.periods?.ur || '-'}
+                                    </span>
                                   </td>
                                   <td className="py-12 md:py-16 px-12 md:px-16">
                                     {getAffiliation(alumni)}

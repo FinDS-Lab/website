@@ -252,11 +252,14 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                 <span className={`inline-flex px-12 py-4 text-xs font-semibold rounded-full mb-8 ${degreeColors[member.degree] || 'bg-gray-100 text-gray-700'}`}>
                   {member.role.en}
                 </span>
-                {/* Period - moved under role badge */}
-                <div className="flex items-center gap-8 text-xs text-gray-500">
+                {/* Period - plain text on mobile, badge on desktop */}
+                <div className="md:hidden flex items-center gap-8 text-xs text-gray-500">
                   <Calendar size={12} className="text-gray-400"/>
-                  <span>{member.period.start} - {member.period.expected_graduation || 'Present'}</span>
+                  <span>{member.period.start} – {member.period.expected_graduation || 'Present'}</span>
                 </div>
+                <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm whitespace-nowrap">
+                  {member.period.start} – {member.period.expected_graduation || 'Present'}
+                </span>
               </div>
 
               {/* Divider */}

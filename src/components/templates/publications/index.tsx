@@ -797,7 +797,7 @@ export const PublicationsTemplate = () => {
                             
                             {/* Enhanced Tooltip */}
                             <div className="absolute bottom-full mb-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-10 scale-95 group-hover:scale-100">
-                              <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-16 py-14 rounded-xl shadow-2xl border border-gray-700/50 min-w-[140px]">
+                              <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white px-16 py-14 rounded-xl shadow-2xl border border-gray-700/50 min-w-[220px]">
                                 {/* Year header */}
                                 <div className="flex items-center justify-between mb-10 pb-8 border-b border-gray-700/50">
                                   <span className="text-lg font-bold text-primary">{data.year}</span>
@@ -806,37 +806,37 @@ export const PublicationsTemplate = () => {
                                 {/* Stats */}
                                 <div className="space-y-6">
                                   {data.journal > 0 && (
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between gap-16">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#D6B14D'}} />
-                                        <span className="text-xs text-gray-300">Journal Paper</span>
+                                        <span className="w-8 h-8 rounded-sm shrink-0" style={{backgroundColor: '#D6B14D'}} />
+                                        <span className="text-xs text-gray-300 whitespace-nowrap">Journal Paper</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.journal}</span>
                                     </div>
                                   )}
                                   {data.conference > 0 && (
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between gap-16">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#AC0E0E'}} />
-                                        <span className="text-xs text-gray-300">Conference Proceeding</span>
+                                        <span className="w-8 h-8 rounded-sm shrink-0" style={{backgroundColor: '#AC0E0E'}} />
+                                        <span className="text-xs text-gray-300 whitespace-nowrap">Conference Proceeding</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.conference}</span>
                                     </div>
                                   )}
                                   {data.book > 0 && (
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between gap-16">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#E8D688'}} />
-                                        <span className="text-xs text-gray-300">Book</span>
+                                        <span className="w-8 h-8 rounded-sm shrink-0" style={{backgroundColor: '#E8D688'}} />
+                                        <span className="text-xs text-gray-300 whitespace-nowrap">Book</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.book}</span>
                                     </div>
                                   )}
                                   {data.report > 0 && (
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex items-center justify-between gap-16">
                                       <div className="flex items-center gap-6">
-                                        <span className="w-8 h-8 rounded-sm" style={{backgroundColor: '#FFBAC4'}} />
-                                        <span className="text-xs text-gray-300">Report</span>
+                                        <span className="w-8 h-8 rounded-sm shrink-0" style={{backgroundColor: '#FFBAC4'}} />
+                                        <span className="text-xs text-gray-300 whitespace-nowrap">Report</span>
                                       </div>
                                       <span className="text-xs font-bold text-white">{data.report}</span>
                                     </div>
