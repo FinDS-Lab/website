@@ -1115,7 +1115,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           {a.college && a.university ? (
                                             <div className="flex flex-col mt-4">
                                               <span className="text-xs md:text-sm text-gray-400 font-medium">{a.college}</span>
-                                              <span className="text-xs md:text-sm text-gray-600 font-medium">{a.university}</span>
+                                              <span className="text-xs md:text-sm text-gray-700 font-medium">{a.university}</span>
                                             </div>
                                           ) : (
                                             <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{a.org}</span>

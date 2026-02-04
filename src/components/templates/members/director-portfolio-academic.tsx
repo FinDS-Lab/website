@@ -1705,7 +1705,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                       <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Institute of Industrial Engineers (KIIE)</p>
+                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Institute of Industrial Engineers (KIIE)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
@@ -1715,7 +1715,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Securities Association (KSA)</p>
+                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Securities Association (KSA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
@@ -1725,7 +1725,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-bold text-gray-900">Korean Academic Society of Business Administration (KASBA)</p>
+                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Academic Society of Business Administration (KASBA)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
@@ -1735,7 +1735,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         </div>
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-bold text-gray-900">Korea Intelligent Information Systems Society (KIISS)</p>
+                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korea Intelligent Information Systems Society (KIISS)</p>
                           </div>
                           <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                             <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
@@ -1767,7 +1767,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               <a key={comm.id} href={comm.url || '#'} target="_blank" rel="noopener noreferrer"
                                 className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs md:text-sm font-bold text-gray-900">{comm.name}</p>
+                                  <p className="text-xs md:text-sm font-semibold text-gray-700">{comm.name}</p>
                                   {comm.name_ko && (
                                     <p className="text-[10px] md:text-xs text-gray-500 mt-2">{comm.name_ko}</p>
                                   )}
@@ -1804,7 +1804,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               <a key={chair.id} href={chair.url || '#'} target="_blank" rel="noopener noreferrer"
                                 className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-12">
                                 <div className="flex-1 min-w-0">
-                                  <p className="text-xs md:text-sm font-bold text-gray-900">{chair.name}</p>
+                                  <p className="text-xs md:text-sm font-semibold text-gray-700">{chair.name}</p>
                                   {chair.name_ko && (
                                     <p className="text-[10px] md:text-xs text-gray-500 mt-2">{chair.name_ko}</p>
                                   )}
@@ -1840,7 +1840,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
                               className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-8">
                               <div className="flex-1 min-w-0">
-                                <p className="text-xs md:text-sm font-bold text-gray-700">{journal.name}</p>
+                                <p className="text-xs md:text-sm font-semibold text-gray-700">{journal.name}</p>
                               </div>
                               <span className={`px-6 py-2 rounded text-[10px] md:text-xs font-bold self-start md:self-auto ${
                                 journal.type === 'SCIE' || journal.type === 'SSCI' || journal.type === 'A&HCI' ? 'bg-[#D6B14D] text-white' :
