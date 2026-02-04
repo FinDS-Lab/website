@@ -131,100 +131,155 @@ export const HomeTemplate = () => {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
         {/* Background Pattern - Subtle Grid */}
-        <div className="absolute inset-0 opacity-[0.03]" 
+        <div className="absolute inset-0 opacity-[0.02]" 
           style={{
             backgroundImage: `
               linear-gradient(to right, #D6B14D 1px, transparent 1px),
               linear-gradient(to bottom, #D6B14D 1px, transparent 1px)
             `,
-            backgroundSize: '40px 40px'
+            backgroundSize: '60px 60px'
+          }}
+        />
+        
+        {/* Soft radial glow */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle at 50% 45%, rgba(214,177,77,0.03) 0%, transparent 50%)'
           }}
         />
         
         {/* Central Animation Container */}
         <div className="relative flex flex-col items-center">
           {/* Hexagon Network Animation */}
-          <div className="relative w-[120px] h-[120px] mb-24">
+          <div className="relative w-[140px] h-[140px] mb-32">
             {/* Rotating outer ring */}
-            <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '8s' }} viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="45" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="8 4" opacity="0.4" />
+            <svg className="absolute inset-0 w-full h-full" style={{ animation: 'spin 12s linear infinite' }} viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="url(#ringGradient)" strokeWidth="0.5" strokeDasharray="6 6" opacity="0.5" />
+              <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#D6B14D" />
+                  <stop offset="100%" stopColor="#B8962D" />
+                </linearGradient>
+              </defs>
             </svg>
             
             {/* Counter-rotating middle ring */}
-            <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="35" fill="none" stroke="#D6B14D" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.3" />
+            <svg className="absolute inset-0 w-full h-full" style={{ animation: 'spin 8s linear infinite reverse' }} viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="36" fill="none" stroke="#D6B14D" strokeWidth="0.3" strokeDasharray="3 9" opacity="0.3" />
             </svg>
             
             {/* Central hexagon */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-              {/* Hexagon path */}
+              {/* Outer hexagon with gradient stroke */}
               <polygon 
-                points="50,20 76,35 76,65 50,80 24,65 24,35" 
+                points="50,18 78,34 78,66 50,82 22,66 22,34" 
                 fill="none" 
-                stroke="#D6B14D" 
-                strokeWidth="1.5"
-                className="animate-pulse"
-                style={{ animationDuration: '2s' }}
-              />
-              {/* Inner hexagon */}
+                stroke="url(#hexGradient)"
+                strokeWidth="1.2"
+                opacity="0.9"
+              >
+                <animate attributeName="opacity" values="0.6;0.9;0.6" dur="3s" repeatCount="indefinite" />
+              </polygon>
+              
+              {/* Inner hexagon with fill */}
               <polygon 
-                points="50,30 66,40 66,60 50,70 34,60 34,40" 
-                fill="rgba(214,177,77,0.1)" 
+                points="50,28 68,39 68,61 50,72 32,61 32,39" 
+                fill="url(#hexFill)"
                 stroke="#D6B14D" 
-                strokeWidth="0.8"
-                opacity="0.6"
+                strokeWidth="0.6"
+                opacity="0.8"
               />
-              {/* Center dot */}
-              <circle cx="50" cy="50" r="4" fill="#D6B14D" className="animate-pulse" />
+              
+              {/* Gradient definitions */}
+              <defs>
+                <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#D6B14D" />
+                  <stop offset="50%" stopColor="#E8D688" />
+                  <stop offset="100%" stopColor="#B8962D" />
+                </linearGradient>
+                <linearGradient id="hexFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="rgba(214,177,77,0.08)" />
+                  <stop offset="100%" stopColor="rgba(184,150,45,0.03)" />
+                </linearGradient>
+              </defs>
+              
+              {/* Center dot with glow */}
+              <circle cx="50" cy="50" r="3" fill="#D6B14D">
+                <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="50" cy="50" r="6" fill="none" stroke="#D6B14D" strokeWidth="0.3" opacity="0.4">
+                <animate attributeName="r" values="4;10;4" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
+              </circle>
+              
+              {/* Connection lines from center to vertices - subtle */}
+              {[
+                [50, 18], [78, 34], [78, 66], [50, 82], [22, 66], [22, 34]
+              ].map(([x, y], i) => (
+                <line key={`line-${i}`} x1="50" y1="50" x2={x} y2={y} stroke="#D6B14D" strokeWidth="0.3" opacity="0.2" />
+              ))}
               
               {/* Node points on hexagon vertices */}
               {[
-                [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
+                [50, 18], [78, 34], [78, 66], [50, 82], [22, 66], [22, 34]
               ].map(([x, y], i) => (
                 <g key={i}>
-                  <circle cx={x} cy={y} r="3" fill="#D6B14D" opacity="0.8">
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                  <circle cx={x} cy={y} r="2.5" fill="#D6B14D">
+                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
                   </circle>
-                  <circle cx={x} cy={y} r="6" fill="none" stroke="#D6B14D" strokeWidth="0.5" opacity="0.4">
-                    <animate attributeName="r" values="3;8;3" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
-                    <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite" begin={`${i * 0.25}s`} />
+                  <circle cx={x} cy={y} r="5" fill="none" stroke="#D6B14D" strokeWidth="0.4" opacity="0">
+                    <animate attributeName="r" values="2.5;8;2.5" dur="2.5s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
+                    <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite" begin={`${i * 0.3}s`} />
                   </circle>
                 </g>
-              ))}
-              
-              {/* Connection lines from center to vertices */}
-              {[
-                [50, 20], [76, 35], [76, 65], [50, 80], [24, 65], [24, 35]
-              ].map(([x, y], i) => (
-                <line key={`line-${i}`} x1="50" y1="50" x2={x} y2={y} stroke="#D6B14D" strokeWidth="0.5" opacity="0.3" />
               ))}
             </svg>
           </div>
           
           {/* Text */}
           <div className="text-center">
-            <h1 className="text-xl font-bold tracking-wider mb-8" style={{ color: '#D6B14D' }}>
+            <h1 
+              className="text-lg font-semibold tracking-[0.3em] mb-6"
+              style={{ 
+                background: 'linear-gradient(135deg, #D6B14D 0%, #9A7D1F 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
               FINDS Lab
             </h1>
-            <p className="text-xs text-gray-400 tracking-widest uppercase">
+            <p className="text-[10px] text-gray-300 tracking-[0.2em] uppercase font-light">
               Loading
-              <span className="inline-flex ml-4">
-                <span className="animate-bounce" style={{ animationDelay: '0ms' }}>.</span>
-                <span className="animate-bounce" style={{ animationDelay: '150ms' }}>.</span>
-                <span className="animate-bounce" style={{ animationDelay: '300ms' }}>.</span>
+              <span className="inline-flex ml-2 gap-0.5">
+                <span className="w-1 h-1 rounded-full bg-gray-300" style={{ animation: 'pulse 1.4s ease-in-out infinite', animationDelay: '0ms' }} />
+                <span className="w-1 h-1 rounded-full bg-gray-300" style={{ animation: 'pulse 1.4s ease-in-out infinite', animationDelay: '200ms' }} />
+                <span className="w-1 h-1 rounded-full bg-gray-300" style={{ animation: 'pulse 1.4s ease-in-out infinite', animationDelay: '400ms' }} />
               </span>
             </p>
           </div>
           
           {/* Bottom decorative line */}
-          <div className="absolute -bottom-16 w-48 h-px bg-gradient-to-r from-transparent via-[#D6B14D]/30 to-transparent" />
+          <div className="absolute -bottom-20 w-64 h-px bg-gradient-to-r from-transparent via-[#D6B14D]/20 to-transparent" />
         </div>
         
-        {/* Corner decorations */}
-        <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#D6B14D]/20" />
-        <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#D6B14D]/20" />
-        <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#D6B14D]/20" />
-        <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#D6B14D]/20" />
+        {/* Corner decorations - more subtle */}
+        <div className="absolute top-12 left-12 w-12 h-12 border-l border-t border-[#D6B14D]/10" />
+        <div className="absolute top-12 right-12 w-12 h-12 border-r border-t border-[#D6B14D]/10" />
+        <div className="absolute bottom-12 left-12 w-12 h-12 border-l border-b border-[#D6B14D]/10" />
+        <div className="absolute bottom-12 right-12 w-12 h-12 border-r border-b border-[#D6B14D]/10" />
+        
+        {/* CSS for spin animation */}
+        <style>{`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+          }
+        `}</style>
       </div>
     )
   }
