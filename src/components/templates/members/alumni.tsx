@@ -208,18 +208,18 @@ export const MembersAlumniTemplate = () => {
           comparison = aCohort - bCohort
           break
         case 'period':
-          const aPeriod = a.period?.split(' ~ ')[0] || ''
-          const bPeriod = b.period?.split(' ~ ')[0] || ''
+          const aPeriod = a.periods?.ur?.split(' ~ ')[0] || ''
+          const bPeriod = b.periods?.ur?.split(' ~ ')[0] || ''
           comparison = aPeriod.localeCompare(bPeriod)
           break
         case 'preMajor':
-          const aPreMajor = a.affiliationPre?.major || a.affiliationPre?.school || ''
-          const bPreMajor = b.affiliationPre?.major || b.affiliationPre?.school || ''
+          const aPreMajor = a.education?.[0]?.school || ''
+          const bPreMajor = b.education?.[0]?.school || ''
           comparison = aPreMajor.localeCompare(bPreMajor)
           break
         case 'postPosition':
-          const aPost = a.affiliationPost?.position || a.affiliationPost?.organization || ''
-          const bPost = b.affiliationPost?.position || b.affiliationPost?.organization || ''
+          const aPost = a.currentPosition || ''
+          const bPost = b.currentPosition || ''
           comparison = aPost.localeCompare(bPost)
           break
       }
