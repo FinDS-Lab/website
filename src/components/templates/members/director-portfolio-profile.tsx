@@ -1089,13 +1089,14 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                           <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
                                           <span className="text-xs md:text-sm text-gray-500 font-medium mt-4">{h.org}</span>
                                           {h.gpa && (
-                                            <div className="flex items-center gap-4 mt-6">
-                                              <span className="text-[10px] md:text-xs">
+                                            <div className="flex items-center gap-6 mt-4">
+                                              <span className="w-5 h-5 rounded-full shrink-0" style={{backgroundColor: 'rgb(214, 177, 77)'}} />
+                                              <span className="text-xs md:text-sm text-gray-500 font-medium">
                                                 <span className="font-bold" style={{color: '#D6B14D'}}>{h.gpa}</span>
                                                 {' '}
                                                 <span className="font-bold text-gray-700">GPA</span>
                                                 {' '}
-                                                <span className="text-gray-600">on a {h.gpaMax} scale</span>
+                                                <span className="text-gray-500">on a {h.gpaMax} scale</span>
                                               </span>
                                             </div>
                                           )}
