@@ -558,8 +558,21 @@ export const MembersDirectorTemplate = () => {
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
-                  <img loading="lazy" decoding="async" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                <div 
+                  className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50 relative select-none"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <img 
+                    loading="lazy" 
+                    decoding="async" 
+                    src={directorImg} 
+                    alt="Prof. Insu Choi" 
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                  {/* Transparent overlay to prevent image interaction */}
+                  <div className="absolute inset-0" />
                 </div>
                 <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
               </div>

@@ -229,16 +229,23 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
             <div className="bg-white border border-gray-100 rounded-2xl p-24 md:p-32 sticky top-100">
               {/* Avatar */}
               <div className="flex flex-col items-center text-center mb-24">
-                <div className="w-[140px] h-[180px] md:w-[154px] md:h-[198px] bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg">
+                <div 
+                  className="w-[140px] h-[180px] md:w-[154px] md:h-[198px] bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden mb-20 border-4 border-gray-50 shadow-lg relative select-none"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
                   {member.avatar ? (
                     <img
                       src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
                       alt={member.name.ko}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover pointer-events-none"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                   ) : (
                     <span className="text-[60px] md:text-[80px]">👤</span>
                   )}
+                  {/* Transparent overlay to prevent image interaction */}
+                  {member.avatar && <div className="absolute inset-0" />}
                 </div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{member.name.ko}</h2>
                 <p className="text-sm md:text-base text-gray-500 mb-12">{member.name.en}</p>

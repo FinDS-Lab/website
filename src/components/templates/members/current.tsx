@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom'
 import { Users, GraduationCap, BookOpen, Lightbulb, ChevronRight, ChevronDown, Home, Mail, Github, Linkedin, Globe, Copy, Check, ExternalLink, Sparkles} from 'lucide-react'
 import type { MemberData } from '@/types/data'
 
+// Members to exclude from Current Members (moved to Alumni)
+const EXCLUDED_MEMBERS = [
+  '박성수',
+  '정유진',
+  '임소영',
+  '이수인',
+  '신경수',
+  '이태경',
+  '심은',
+  '하승민',
+  '최진우'
+]
+
 // Scroll animation hook
 const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -183,7 +196,11 @@ export const MembersCurrentTemplate = () => {
       )
     )
       .then((results) => {
-        const validMembers = results.filter((m): m is MemberData => m !== null && m.status === 'active')
+        const validMembers = results.filter((m): m is MemberData => 
+          m !== null && 
+          m.status === 'active' && 
+          !EXCLUDED_MEMBERS.includes(m.name?.ko || '')
+        )
         setMembers(validMembers)
         setLoading(false)
       })
@@ -429,12 +446,18 @@ export const MembersCurrentTemplate = () => {
                           onMouseLeave={() => setHoveredMember(null)}
                         >
                           <div className="flex items-start gap-12 md:gap-[16px]">
-                            <div className="w-[56px] h-[72px] md:w-[70px] md:h-[90px] rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden" style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}>
+                            <div 
+                              className="w-[56px] h-[72px] md:w-[70px] md:h-[90px] rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden relative select-none" 
+                              style={{background: 'linear-gradient(135deg, rgba(232,135,155,0.15) 0%, rgba(255,183,197,0.2) 100%)'}}
+                              onContextMenu={(e) => e.preventDefault()}
+                            >
                               {member.avatar ? (
                                 <img
                                   src={member.avatar.replace('/assets/img/', `${baseUrl}images/`)}
                                   alt={member.name.ko}
-                                  className="w-full h-full object-cover object-top"
+                                  className="w-full h-full object-cover object-top pointer-events-none"
+                                  draggable={false}
+                                  onContextMenu={(e) => e.preventDefault()}
                                   onError={(e) => {
                                     e.currentTarget.style.display = 'none'
                                     e.currentTarget.nextElementSibling?.classList.remove('hidden')
@@ -442,6 +465,8 @@ export const MembersCurrentTemplate = () => {
                                 />
                               ) : null}
                               <span className={`text-[28px] md:text-[40px] ${member.avatar ? 'hidden' : ''}`}>👤</span>
+                              {/* Transparent overlay to prevent image interaction */}
+                              {member.avatar && <div className="absolute inset-0" />}
                             </div>
                             <div className="flex-1 min-w-0">
                               <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mb-4 md:mb-[4px]">

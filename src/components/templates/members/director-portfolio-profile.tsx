@@ -623,8 +623,21 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
-                  <img loading="lazy" decoding="async" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                <div 
+                  className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50 relative select-none"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <img 
+                    loading="lazy" 
+                    decoding="async" 
+                    src={directorImg} 
+                    alt="Prof. Insu Choi" 
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                  {/* Transparent overlay to prevent image interaction */}
+                  <div className="absolute inset-0" />
                 </div>
                 <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
               </div>
@@ -1092,8 +1105,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.awards && edu.awards.length > 0 && (
                                     <div className="space-y-6">
                                       {edu.awards.map((a: any, i: number) => (
-                                        <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                          <Trophy className="shrink-0 mt-1 size-14" style={{color: 'rgb(172, 14, 14)'}} />
+                                        <div key={i} className="flex items-center gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                          <Trophy className="shrink-0 size-14" style={{color: 'rgb(172, 14, 14)'}} />
                                           <div className="flex-1 flex flex-col">
                                             <div>
                                               <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>

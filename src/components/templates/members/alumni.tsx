@@ -38,13 +38,20 @@ const AlumniPhoto = ({ nameEn, baseUrl }: { nameEn?: string, baseUrl: string }) 
   if (!initials || imgError) return null
   
   return (
-    <div className="w-[70px] h-[90px] rounded-xl overflow-hidden shrink-0 shadow-sm border border-gray-100">
+    <div 
+      className="w-[70px] h-[90px] rounded-xl overflow-hidden shrink-0 shadow-sm border border-gray-100 relative select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <img 
         src={imgPath} 
         alt=""
-        className="w-full h-full object-cover object-top"
+        className="w-full h-full object-cover object-top pointer-events-none"
+        draggable={false}
         onError={() => setImgError(true)}
+        onContextMenu={(e) => e.preventDefault()}
       />
+      {/* Transparent overlay to prevent image interaction */}
+      <div className="absolute inset-0" />
     </div>
   )
 }

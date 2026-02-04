@@ -1402,8 +1402,20 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               style={{ transform: `translateY(${profileTop}px)` }}
             >
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
-                <div className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50">
-                  <img loading="lazy" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
+                <div 
+                  className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50 relative select-none"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <img 
+                    loading="lazy" 
+                    src={directorImg} 
+                    alt="Prof. Insu Choi" 
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable={false}
+                    onContextMenu={(e) => e.preventDefault()}
+                  />
+                  {/* Transparent overlay to prevent image interaction */}
+                  <div className="absolute inset-0" />
                 </div>
                 <h2 className="text-base md:text-lg font-bold text-gray-900">Insu Choi</h2>
               </div>
@@ -1572,11 +1584,32 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                 <div className="p-20 md:p-24 border-t border-gray-100">
                   <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
                     {pubStats.map((stat, index) => {
-                      const hoverColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'hover:bg-[#D6B14D]/5' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'hover:bg-[#D6C360]/5' : stat.label === 'Other Int\'l' ? 'hover:bg-[#E8D688]/10' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'hover:bg-[#AC0E0E]/5' : stat.label === 'KCI' ? 'hover:bg-[#64748b]/5' : 'hover:bg-[#D6B14D]/5'
-                      const textColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'text-[#D6B14D]' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'text-[#D6C360]' : stat.label === 'Other Int\'l' ? 'text-[#9A7D1F]' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'text-[#AC0E0E]' : stat.label === 'KCI' ? 'text-[#64748b]' : 'text-primary'
+                      // Colors matching Publications page exactly
+                      const getColors = (label: string) => {
+                        switch(label) {
+                          case 'SCIE':
+                          case 'SSCI':
+                          case 'A&HCI':
+                            return { hover: 'hover:bg-[#D6B14D]/10', text: 'text-[#D6B14D]' }
+                          case 'ESCI':
+                          case 'Scopus':
+                            return { hover: 'hover:bg-[#D6C360]/10', text: 'text-[#D6C360]' }
+                          case 'Other Int\'l':
+                            return { hover: 'hover:bg-[#E8D688]/10', text: 'text-[#9A7D1F]' }
+                          case 'Int\'l Conf':
+                            return { hover: 'hover:bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]' }
+                          case 'Dom. Conf':
+                            return { hover: 'hover:bg-[#E8889C]/15', text: 'text-[#E8889C]' }
+                          case 'KCI':
+                            return { hover: 'hover:bg-[#64748b]/10', text: 'text-[#64748b]' }
+                          default:
+                            return { hover: 'hover:bg-[#D6B14D]/10', text: 'text-primary' }
+                        }
+                      }
+                      const colors = getColors(stat.label)
                       return (
-                      <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${hoverColor} transition-colors`}>
-                        <div className={`text-lg md:text-xl font-bold ${textColor}`}>{stat.count}</div>
+                      <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${colors.hover} transition-colors`}>
+                        <div className={`text-lg md:text-xl font-bold ${colors.text}`}>{stat.count}</div>
                         <div className="text-[9px] md:text-[10px] font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
                       </div>
                     )})}
