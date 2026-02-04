@@ -105,7 +105,7 @@ type AlumniMember = {
   periods: Record<string, string>
   education: Education[]
   thesis?: Record<string, Thesis>
-  projects?: string[]
+  projects?: (string | { ko: string; en: string })[]
   company?: string
 }
 
@@ -1008,12 +1008,22 @@ export const MembersAlumniTemplate = () => {
                                             </p>
                                           </div>
                                           <ul className="space-y-4">
-                                            {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
-                                              <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
-                                                <span className="text-[#FFBAC4] mt-1">•</span>
-                                                <span>{project}</span>
-                                              </li>
-                                            ))}
+                                            {alumni.projects!.map((project, pIdx) => {
+                                              const isObject = typeof project === 'object'
+                                              return (
+                                                <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
+                                                  <span className="text-[#FFBAC4] mt-1">•</span>
+                                                  <span>
+                                                    {isObject ? (
+                                                      <>
+                                                        {project.en}
+                                                        <span className="block text-gray-400 text-xs mt-2">{project.ko}</span>
+                                                      </>
+                                                    ) : project}
+                                                  </span>
+                                                </li>
+                                              )
+                                            })}
                                           </ul>
                                         </div>
                                       </div>
@@ -1071,12 +1081,22 @@ export const MembersAlumniTemplate = () => {
                                       <p className="text-[10px] font-bold" style={{color: '#C41E3A'}}>Research Projects</p>
                                     </div>
                                     <ul className="space-y-3">
-                                      {[...alumni.projects!].sort((a, b) => a.localeCompare(b)).map((project, pIdx) => (
-                                        <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
-                                          <span className="text-[#FFBAC4] mt-0.5">•</span>
-                                          <span>{project}</span>
-                                        </li>
-                                      ))}
+                                      {alumni.projects!.map((project, pIdx) => {
+                                        const isObject = typeof project === 'object'
+                                        return (
+                                          <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
+                                            <span className="text-[#FFBAC4] mt-0.5">•</span>
+                                            <span>
+                                              {isObject ? (
+                                                <>
+                                                  {project.en}
+                                                  <span className="block text-gray-400 text-[10px] mt-1">{project.ko}</span>
+                                                </>
+                                              ) : project}
+                                            </span>
+                                          </li>
+                                        )
+                                      })}
                                     </ul>
                                   </div>
                                 </div>

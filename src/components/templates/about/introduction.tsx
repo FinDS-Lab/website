@@ -110,12 +110,20 @@ export const AboutIntroductionTemplate = () => {
   
   // Mouse tracking for light effect
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 })
+  const [mousePos2, setMousePos2] = useState({ x: 50, y: 50 })
   
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
     setMousePos({ x, y })
+  }
+  
+  const handleMouseMove2 = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
+    setMousePos2({ x, y })
   }
 
   return (
@@ -188,7 +196,7 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          GOAL SECTION (Dark Theme - Combined Goal + Vision)
+          GOAL SECTION (Dark Theme)
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-48 md:pb-80">
@@ -240,9 +248,9 @@ export const AboutIntroductionTemplate = () => {
                     <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                       {goalLang === 'ko' ? (
-                        <><span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 내일</>
+                        <><span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 내일</>
                       ) : (
-                        <>Towards <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 30px rgba(232, 214, 136, 0.4)' }}>Data-Illuminated</span><br className="md:hidden" /> Better Tomorrow</>
+                        <>Towards <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>Data-Illuminated</span><br className="md:hidden" /> Better Tomorrow</>
                       )}
                     </h2>
                     <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -259,25 +267,25 @@ export const AboutIntroductionTemplate = () => {
                   {goalLang === 'ko' ? (
                     <>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#E8D688'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#E8D688'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-semibold text-gray-300">경영 환경과 금융 시장을 비롯한 다양한 산업 현장</span>에서 <span className="font-semibold text-gray-300">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
+                        저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#D6B14D'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-semibold text-gray-300">경영 환경과 금융 시장을 비롯한 다양한 산업 현장</span>에서 <span className="font-semibold text-gray-300">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        저희 FINDS Lab은 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>데이터 사이언스</span>와 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#E8D688'}}>발견(finds)</span>을 이끌어내고 <span className="font-semibold text-gray-300">경영 환경과 산업 현장을 다양한 측면에서 개선하는 데 기여하는 것</span>을 목표로 합니다.
+                        저희 FINDS Lab은 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>데이터 사이언스</span>와 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#D6B14D'}}>발견(finds)</span>을 이끌어내고 <span className="font-semibold text-gray-300">경영 환경과 산업 현장을 다양한 측면에서 개선하는 데 기여하는 것</span>을 목표로 합니다.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        <span className="font-semibold text-gray-300">데이터를 바탕으로 한 다양한 연구</span>를 통해 <span className="font-semibold text-gray-300">지식과 정보의 비대칭</span>으로 인한 경영 환경과 산업 현장의 비효율을 줄이고, 복잡한 데이터를 <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하여 더 나은 내일을 위한 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.
+                        이러한 목표 하에서 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>지식과 정보의 비대칭</span>으로 인해 발생하는 사회적 비효율을 감소시키고, 데이터를 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하여 더 나은 내일을 위한 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.
                       </p>
                     </>
                   ) : (
                     <>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        The <span className="font-bold" style={{color: '#E8D688'}}>Financial Data Intelligence & Solutions</span> Laboratory (<span className="font-bold" style={{color: '#E8D688'}}>FINDS</span> Lab) at Gachon University conducts research that creates <span className="font-semibold text-gray-300">tangible value</span> in the fast-changing, data-driven <span className="font-semibold text-gray-300">business and financial landscape</span>.
+                        The <span className="font-bold" style={{color: '#D6B14D'}}>Financial Data Intelligence & Solutions</span> Laboratory (<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab) at Gachon University conducts research that creates <span className="font-semibold text-gray-300">tangible value</span> in the fast-changing, data-driven <span className="font-semibold text-gray-300">business and financial landscape</span>.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        Our lab combines <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>Data Science</span> and <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#E8D688'}}>finds</span> in complex data and aims to <span className="font-semibold text-gray-300">contribute to improving business and industry environments from multiple perspectives</span>.
+                        Our lab combines <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Data Science</span> and <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#D6B14D'}}>finds</span> in complex data and aims to <span className="font-semibold text-gray-300">contribute to improving business and industry environments from multiple perspectives</span>.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        Through <span className="font-semibold text-gray-300">data-driven research</span>, we aim to reduce inefficiencies in business and industry caused by <span className="font-semibold text-gray-300">information asymmetry</span>, and turn complex data into <span className="font-bold text-[#E8D688]" style={{ textShadow: '0 0 20px rgba(232, 214, 136, 0.3)' }}>clear, strategically valuable insights</span> to <span className="font-semibold text-gray-300">enhance business and industry efficiency</span> for a better tomorrow.
+                        Under this goal, we aim to reduce social inefficiencies caused by <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>information asymmetry</span>, and turn data into <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>clear, strategically valuable insights</span> to <span className="font-semibold text-gray-300">enhance business and industry efficiency</span> for a better tomorrow.
                       </p>
                     </>
                   )}
@@ -289,117 +297,146 @@ export const AboutIntroductionTemplate = () => {
       </div>
 
       {/* ═══════════════════════════════════════════════════════════════
-          RESEARCH AREAS SECTION
+          RESEARCH AREAS INTRO MESSAGE (Same style as Welcome)
       ═══════════════════════════════════════════════════════════════ */}
       <div className="bg-white">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-20 md:pb-32">
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-16 mb-32 md:mb-48">
-            <div className="text-center md:text-left">
-              <p className="text-base md:text-lg text-gray-500 leading-relaxed">
-                {researchLang === 'ko' ? (
-                  <>
-                    <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 데이터를 바탕으로 하는 <span className="font-bold" style={{color: '#AC0E0E'}}>세 가지 핵심 연구 분야</span>를 통해<br className="hidden md:block" /> 경영 환경과 산업 현장에서 <span className="font-bold" style={{color: '#AC0E0E'}}>실질적인 가치</span>를 창출하는 연구를 지향합니다.
-                  </>
-                ) : (
-                  <>
-                    <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span> pursues research that creates <span className="font-bold" style={{color: '#AC0E0E'}}>tangible value</span> in business and industry<br className="hidden md:block" /> through <span className="font-bold" style={{color: '#AC0E0E'}}>three core research areas</span> grounded in data.
-                  </>
-                )}
-              </p>
-            </div>
-            <div className="flex justify-center md:justify-end">
-              <div className="flex items-center gap-10">
-                <span className="text-sm font-semibold text-gray-600">
-                  {researchLang === 'ko' ? 'FINDS Lab의 연구 분야' : 'FINDS Lab Research Areas'}
-                </span>
-                <LangToggle lang={researchLang} setLang={setResearchLang} variant="light" />
-              </div>
-            </div>
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
+          <div className="relative text-center max-w-4xl mx-auto">
+            <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
+              {researchLang === 'ko' ? (
+                <>
+                  <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 상기한 목표를 바탕으로<br className="md:hidden" /> 데이터를 바탕으로 하는 <span className="font-bold" style={{color: '#AC0E0E'}}>세 가지 핵심 연구 분야</span>를 통해<br className="md:hidden" /> 경영 환경과 산업 현장에서<br className="md:hidden" /> <span className="font-bold" style={{color: '#AC0E0E'}}>실질적인 가치</span>를 창출하는 연구를 지향합니다.
+                </>
+              ) : (
+                <>
+                  Based on the above goal, <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span> pursues research<br className="md:hidden" /> that creates <span className="font-bold" style={{color: '#AC0E0E'}}>tangible value</span> in business and industry<br className="md:hidden" /> through <span className="font-bold" style={{color: '#AC0E0E'}}>three core research areas</span> grounded in data.
+                </>
+              )}
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Research Areas Content */}
-      <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
-        <div className="flex flex-col gap-20 md:gap-32">
-          {researchAreas.map((area, index) => (
-            <article
-              key={area.id}
-              className={`
-                relative bg-gradient-to-br from-white via-white to-[#FFF9E6]/30
-                border border-[#FFF3CC]/50 rounded-2xl md:rounded-3xl p-24 md:p-48 
-                shadow-sm hover:shadow-xl hover:border-[#D6B14D]/30 
-                transition-all duration-500 group overflow-hidden
-              `}
+      {/* ═══════════════════════════════════════════════════════════════
+          RESEARCH AREAS SECTION (Dark Theme Banner)
+      ═══════════════════════════════════════════════════════════════ */}
+      <div className="bg-white">
+        <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100">
+          <div 
+            className="rounded-2xl md:rounded-3xl overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.98) 0%, rgba(31, 41, 55, 0.98) 50%, rgba(17, 24, 39, 0.98) 100%)',
+            }}
+            onMouseMove={handleMouseMove2}
+          >
+            {/* Card Header */}
+            <div 
+              className="flex items-center justify-between px-20 md:px-32 py-16 md:py-20 border-b"
+              style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
             >
-              {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#D6B14D]/10 to-transparent rounded-full blur-2xl" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-xl" />
-              
-              <div className={`
-                relative grid gap-24 md:gap-40 md:grid-cols-2
-              `}>
-                {/* 텍스트 영역 */}
-                <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>
-                  {/* 헤더 */}
-                  <div className="mb-20 md:mb-24">
-                    <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 bg-gradient-to-r from-[#FFF9E6] to-primary/5 border border-[#FFEB99]/50 rounded-full mb-12 md:mb-16">
-                      <span className="text-[10px] md:text-xs font-bold text-[#B8962D] tracking-wide">
-                        {researchLang === 'ko' ? area.badge.ko : area.badge.en}
-                      </span>
+              <div className="flex items-center gap-10">
+                <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🔬</span>
+                <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
+                  {researchLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Research Areas</span></>}
+                </span>
+              </div>
+              <LangToggle lang={researchLang} setLang={setResearchLang} variant="dark" />
+            </div>
+
+            {/* Card Content with mouse-following light */}
+            <div className="relative p-24 md:p-40 lg:p-56 overflow-hidden">
+              {/* Mouse-following light effect */}
+              <div 
+                className="absolute w-[800px] h-[800px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
+                style={{ 
+                  left: `${mousePos2.x}%`,
+                  top: `${mousePos2.y}%`,
+                  transform: 'translate(-50%, -50%)',
+                  background: 'radial-gradient(circle, rgba(214, 177, 77, 0.15) 0%, rgba(214, 177, 77, 0.06) 30%, transparent 60%)'
+                }}
+              />
+              {/* Static ambient lighting */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.06]" />
+                <div className="absolute top-1/2 right-0 -translate-y-1/2 w-40 h-80 bg-[#D6B14D] rounded-full blur-3xl opacity-[0.06]" />
+              </div>
+
+              <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'linear-gradient(90deg, transparent, rgba(214, 177, 77, 0.6), transparent)', boxShadow: '0 0 20px rgba(214, 177, 77, 0.4)' }} />
+
+              <div className="relative z-10">
+                {/* Research Areas Grid */}
+                <div className="flex flex-col gap-24 md:gap-32">
+                  {researchAreas.map((area, index) => (
+                    <div
+                      key={area.id}
+                      className={`
+                        relative rounded-xl md:rounded-2xl p-20 md:p-32 
+                        border transition-all duration-300
+                        ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}
+                      `}
+                      style={{ 
+                        background: 'rgba(255, 255, 255, 0.03)', 
+                        borderColor: 'rgba(214, 177, 77, 0.15)',
+                      }}
+                    >
+                      <div className={`grid gap-20 md:gap-32 md:grid-cols-2 items-center`}>
+                        {/* Text Content */}
+                        <div className={`flex flex-col ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                          {/* Badge */}
+                          <div className="inline-flex items-center gap-8 px-12 md:px-14 py-6 md:py-8 rounded-full mb-12 md:mb-16 w-fit" style={{ background: 'rgba(214, 177, 77, 0.15)', border: '1px solid rgba(214, 177, 77, 0.3)' }}>
+                            <span className="text-[10px] md:text-xs font-bold tracking-wide" style={{ color: '#D6B14D' }}>
+                              {researchLang === 'ko' ? area.badge.ko : area.badge.en}
+                            </span>
+                          </div>
+                          
+                          {/* Title */}
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-6" style={{ color: '#D6B14D' }}>
+                            {researchLang === 'ko' ? area.titleKo : area.titleEn}
+                          </h3>
+                          <p className="text-base md:text-lg font-semibold text-gray-400 mb-20">
+                            {researchLang === 'ko' ? area.titleEn : area.titleKo}
+                          </p>
+
+                          {/* Items */}
+                          <ul className="flex flex-col gap-12 md:gap-16">
+                            {area.items.map((item, idx) => (
+                              <li key={idx} className="relative pl-20 md:pl-24">
+                                <span className="absolute left-0 top-2 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.2)' }}>
+                                  <span className="w-2 h-2 rounded-full" style={{ background: '#D6B14D' }} />
+                                </span>
+                                <span className="block text-sm md:text-base font-semibold text-gray-300 leading-snug">
+                                  {researchLang === 'ko' ? item.ko : item.en}
+                                </span>
+                                <span className="block text-xs md:text-sm text-gray-500 mt-4 leading-relaxed">
+                                  {researchLang === 'ko' ? item.en : item.ko}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Image */}
+                        <div
+                          className={`
+                            flex items-center justify-center 
+                            rounded-xl md:rounded-2xl p-16 md:p-24
+                            ${index % 2 === 1 ? 'md:order-1' : ''}
+                          `}
+                          style={{ background: 'rgba(255, 249, 230, 0.05)', border: '1px solid rgba(214, 177, 77, 0.1)' }}
+                        >
+                          <img
+                            src={area.image}
+                            alt={area.titleEn}
+                            className="w-full h-auto max-w-[200px] md:max-w-[300px] object-contain"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <h2>
-                      <span className="block text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary via-[#D6B14D] to-primary bg-clip-text text-transparent mb-6">
-                        {researchLang === 'ko' ? area.titleKo : area.titleEn}
-                      </span>
-                      <span className="text-base md:text-lg font-semibold text-gray-600">
-                        {researchLang === 'ko' ? area.titleEn : area.titleKo}
-                      </span>
-                    </h2>
-                  </div>
-
-                  {/* 항목 리스트 */}
-                  <ul className="flex flex-col gap-16 md:gap-20">
-                    {area.items.map((item, idx) => (
-                      <li
-                        key={idx}
-                        className="relative pl-20 md:pl-24 group/item"
-                      >
-                        <span className="absolute left-0 top-2 w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-[#D6B14D]/20 flex items-center justify-center group-hover/item:scale-110 transition-transform duration-300">
-                          <span className="w-2 h-2 rounded-full bg-primary" />
-                        </span>
-                        <span className="block text-sm md:text-base font-semibold text-gray-800 leading-snug group-hover/item:text-primary transition-colors">
-                          {researchLang === 'ko' ? item.ko : item.en}
-                        </span>
-                        <span className="block text-xs md:text-sm text-gray-500 mt-6 leading-relaxed">
-                          {researchLang === 'ko' ? item.en : item.ko}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* 이미지 영역 */}
-                <div
-                  className={`
-                    flex items-center justify-center 
-                    bg-gradient-to-br from-[#FFF9E6]/50 via-white to-primary/5
-                    rounded-xl md:rounded-2xl p-16 md:p-24
-                    border border-[#FFF3CC]/30
-                    group-hover:border-[#D6B14D]/20 transition-all duration-500
-                    ${index % 2 === 1 ? 'md:order-1' : ''}
-                  `}
-                >
-                  <img
-                    src={area.image}
-                    alt={area.titleEn}
-                    className="w-full h-auto max-w-[240px] md:max-w-[360px] object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
+                  ))}
                 </div>
               </div>
-            </article>
-          ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

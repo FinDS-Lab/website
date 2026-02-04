@@ -82,7 +82,7 @@ interface Props {
 
 export const MembersDetailTemplate = ({memberId}: Props) => {
   const [member, setMember] = useState<MemberData | null>(null)
-  const [alumniProjects, setAlumniProjects] = useState<string[]>([])
+  const [alumniProjects, setAlumniProjects] = useState<(string | { ko: string; en: string })[]>([])
   const [loading, setLoading] = useState(true)
   const [showEmailPopup, setShowEmailPopup] = useState(false)
   const baseUrl = import.meta.env.BASE_URL || '/'
@@ -427,11 +427,21 @@ export const MembersDetailTemplate = ({memberId}: Props) => {
                     </div>
                   ))}
                   {/* alumni.json에서 가져온 projects (member JSON에 없는 경우에만) */}
-                  {!member.research.project && !member.research.projects?.length && alumniProjects.map((proj, idx) => (
-                    <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 rounded-xl">
-                      <p className="text-base font-semibold text-gray-800">{proj}</p>
-                    </div>
-                  ))}
+                  {!member.research.project && !member.research.projects?.length && alumniProjects.map((proj, idx) => {
+                    const isObject = typeof proj === 'object'
+                    return (
+                      <div key={idx} className="p-20 md:p-24 bg-gray-50 border border-gray-100 rounded-xl">
+                        {isObject ? (
+                          <>
+                            <p className="text-base font-semibold text-gray-800 mb-4">{proj.en}</p>
+                            <p className="text-sm text-gray-400">{proj.ko}</p>
+                          </>
+                        ) : (
+                          <p className="text-base font-semibold text-gray-800">{proj}</p>
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               </section>
             )}

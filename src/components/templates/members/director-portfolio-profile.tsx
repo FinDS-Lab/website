@@ -122,7 +122,7 @@ const education: any[] = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
-    researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
+    researchGroup: {name: 'Financial Engineering Lab', department: 'Korea Advanced Institute of Science and Technology (KAIST)', url: 'https://felab.kaist.ac.kr/'},
     leadership: [
       {role: 'Member', roleKo: '대의원', context: 'Graduate School Central Operations Committee', contextKo: '대학원 총학생회 대의원회', period: '2021-09 – 2025-01'},
       {role: 'Graduate Student Representative', roleKo: '원우회장', context: 'Department of Industrial and Systems Engineering', contextKo: '산업및시스템공학과', period: '2021-09 – 2025-01'},
@@ -144,7 +144,7 @@ const education: any[] = [
     advisors: [
       {name: 'Woo Chang Kim', url: 'https://scholar.google.com/citations?user=7NmBs1kAAAAJ&hl=en'}
     ],
-    researchGroup: {name: 'Financial Engineering Lab', department: 'Department of Industrial and Systems Engineering, Korea Advanced Institute of Science and Technology', url: 'https://felab.kaist.ac.kr/'},
+    researchGroup: {name: 'Financial Engineering Lab', department: 'Korea Advanced Institute of Science and Technology (KAIST)', url: 'https://felab.kaist.ac.kr/'},
     leadership: [],
     awards: [{title: 'Best Master Thesis Award', titleKo: '우수석사학위논문상', org: 'Korean Institute of Industrial Engineers (KIIE)'}],
     honors: [],
@@ -176,7 +176,7 @@ const education: any[] = [
     ],
     researchGroup: {
       name: 'Financial Engineering Lab', 
-      department: 'Department of Industrial and Management Systems Engineering, Kyung Hee University', 
+      department: 'Kyung Hee University', 
       url: 'https://fintech.korea.ac.kr/members',
       role: 'Undergraduate Researcher'
     },
