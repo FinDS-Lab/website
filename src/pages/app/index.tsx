@@ -343,110 +343,106 @@ export const App = () => {
       <GlobalMusicPlayer />
       <Suspense fallback={
         <div className="min-h-screen flex items-center justify-center bg-white">
-          <div className="flex flex-col items-center gap-24">
-            {/* 3D Cube Animation - FINDS Logo Style */}
-            <div className="relative" style={{perspective: '800px'}}>
-              <div 
-                className="relative w-48 h-48"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  animation: 'cubeRotate 3s ease-in-out infinite',
-                }}
+          <div className="flex flex-col items-center gap-32">
+            {/* Elegant Hexagon Animation */}
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              {/* Outer rotating hexagon ring */}
+              <svg 
+                className="absolute w-full h-full"
+                viewBox="0 0 100 100"
+                style={{ animation: 'hexRotate 8s linear infinite' }}
               >
-                {/* Cube faces - FINDS brand colors from palette */}
-                {/* Front - Gold */}
-                <div 
-                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #D6B14D 0%, #B8962D 100%)',
-                    transform: 'translateZ(24px)',
-                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
-                  }}
-                >
-                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)'}}>F</span>
-                </div>
-                {/* Back - Red */}
-                <div 
-                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #AC0E0E 0%, #C41E3A 100%)',
-                    transform: 'rotateY(180deg) translateZ(24px)',
-                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
-                  }}
-                >
-                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)'}}>S</span>
-                </div>
-                {/* Right - Cream/Honey */}
-                <div 
-                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #E8D688 0%, #D6C360 100%)',
-                    transform: 'rotateY(90deg) translateZ(24px)',
-                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
-                  }}
-                >
-                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)', color: '#9A7D1F'}}>I</span>
-                </div>
-                {/* Left - Rose/Blossom */}
-                <div 
-                  className="absolute w-full h-full flex items-center justify-center text-white font-bold text-sm"
-                  style={{
-                    background: 'linear-gradient(135deg, #FFBAC4 0%, #E8889C 100%)',
-                    transform: 'rotateY(-90deg) translateZ(24px)',
-                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
-                  }}
-                >
-                  <span style={{textShadow: '0 1px 2px rgba(0,0,0,0.2)', color: '#AC0E0E'}}>N</span>
-                </div>
-                {/* Top - Coral/Amber */}
-                <div 
-                  className="absolute w-full h-full"
-                  style={{
-                    background: 'linear-gradient(135deg, #D6A076 0%, #B8962D 100%)',
-                    transform: 'rotateX(90deg) translateZ(24px)',
-                    boxShadow: 'inset 0 0 20px rgba(255,255,255,0.2)',
-                  }}
+                <polygon 
+                  points="50,5 93,25 93,75 50,95 7,75 7,25" 
+                  fill="none" 
+                  stroke="url(#goldGradient)" 
+                  strokeWidth="1"
+                  strokeDasharray="4 2"
+                  opacity="0.4"
                 />
-                {/* Bottom - Oak */}
-                <div 
-                  className="absolute w-full h-full"
-                  style={{
-                    background: 'linear-gradient(135deg, #9A7D1F 0%, #B8962D 100%)',
-                    transform: 'rotateX(-90deg) translateZ(24px)',
-                    boxShadow: 'inset 0 0 15px rgba(0,0,0,0.3)',
-                  }}
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#D6B14D" />
+                    <stop offset="100%" stopColor="#B8962D" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              
+              {/* Middle pulsing hexagon */}
+              <svg 
+                className="absolute w-4/5 h-4/5"
+                viewBox="0 0 100 100"
+                style={{ animation: 'hexPulse 2s ease-in-out infinite' }}
+              >
+                <polygon 
+                  points="50,10 88,28 88,72 50,90 12,72 12,28" 
+                  fill="none" 
+                  stroke="#D6B14D" 
+                  strokeWidth="1.5"
+                  opacity="0.6"
                 />
-              </div>
-              {/* Subtle shadow under cube */}
+              </svg>
+              
+              {/* Inner hexagon with gradient fill */}
+              <svg 
+                className="absolute w-3/5 h-3/5"
+                viewBox="0 0 100 100"
+                style={{ animation: 'hexFade 2s ease-in-out infinite' }}
+              >
+                <defs>
+                  <linearGradient id="innerGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#D6B14D" stopOpacity="0.15" />
+                    <stop offset="100%" stopColor="#B8962D" stopOpacity="0.05" />
+                  </linearGradient>
+                </defs>
+                <polygon 
+                  points="50,15 85,32 85,68 50,85 15,68 15,32" 
+                  fill="url(#innerGold)" 
+                  stroke="#D6B14D" 
+                  strokeWidth="2"
+                />
+              </svg>
+              
+              {/* Center dot */}
               <div 
-                className="absolute left-1/2 -translate-x-1/2 w-32 h-4 rounded-full"
-                style={{
-                  bottom: '-20px',
-                  background: 'radial-gradient(ellipse, rgba(0,0,0,0.15) 0%, transparent 70%)',
-                  animation: 'shadowPulse 3s ease-in-out infinite',
-                }}
+                className="absolute w-3 h-3 rounded-full bg-gradient-to-br from-[#D6B14D] to-[#B8962D]"
+                style={{ animation: 'dotPulse 1.5s ease-in-out infinite' }}
               />
             </div>
-            <div className="flex flex-col items-center gap-6">
-              <div className="text-xs text-gray-400 tracking-[0.3em] uppercase font-medium">FINDS Lab</div>
-              <div className="flex gap-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#D6B14D] animate-pulse" style={{animationDelay: '0ms'}} />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#AC0E0E] animate-pulse" style={{animationDelay: '150ms'}} />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#E8889C] animate-pulse" style={{animationDelay: '300ms'}} />
+            
+            {/* Text */}
+            <div className="flex flex-col items-center gap-8">
+              <div 
+                className="text-sm tracking-[0.4em] uppercase font-medium"
+                style={{ 
+                  background: 'linear-gradient(135deg, #D6B14D, #9A7D1F)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                FINDS Lab
               </div>
+              <div className="text-[10px] text-gray-300 tracking-widest">Loading</div>
             </div>
           </div>
+          
           {/* CSS Keyframes */}
           <style>{`
-            @keyframes cubeRotate {
-              0%, 100% { transform: rotateX(-20deg) rotateY(0deg); }
-              25% { transform: rotateX(-20deg) rotateY(90deg); }
-              50% { transform: rotateX(-20deg) rotateY(180deg); }
-              75% { transform: rotateX(-20deg) rotateY(270deg); }
+            @keyframes hexRotate {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
             }
-            @keyframes shadowPulse {
-              0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-              50% { transform: translateX(-50%) scale(0.8); opacity: 0.3; }
+            @keyframes hexPulse {
+              0%, 100% { transform: scale(1); opacity: 0.6; }
+              50% { transform: scale(1.05); opacity: 0.3; }
+            }
+            @keyframes hexFade {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.7; }
+            }
+            @keyframes dotPulse {
+              0%, 100% { transform: scale(1); opacity: 1; }
+              50% { transform: scale(1.3); opacity: 0.7; }
             }
           `}</style>
         </div>
