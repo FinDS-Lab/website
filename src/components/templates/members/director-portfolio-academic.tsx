@@ -1828,7 +1828,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{journals.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1837,23 +1837,15 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         <div className="flex flex-col gap-6">
                           {journals.map((journal) => (
                             <a key={journal.id} href={journal.url} target="_blank" rel="noopener noreferrer"
-                              className="flex items-center p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#E8889C]/30 gap-8">
-                              {/* Mobile: Badge first with fixed width for alignment */}
-                              <span className={`md:hidden w-52 px-8 py-2 rounded text-[10px] font-bold shrink-0 text-center ${
-                                journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
-                                journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                                'bg-[#FFE4E9] text-gray-700'
-                              }`}>{journal.type}</span>
-                              <span className="text-xs md:text-sm font-bold text-gray-700 flex-1">{journal.name}</span>
-                              {/* Desktop: Badge at end */}
-                              <span className={`hidden md:inline-block px-8 py-2 rounded text-xs font-bold shrink-0 ${
-                                journal.type === 'SCIE' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'SSCI' ? 'bg-[#AC0E0E] text-white' :
-                                journal.type === 'ESCI' ? 'bg-[#E8889C] text-white' :
-                                journal.type === 'SCOPUS' ? 'bg-[#FFBAC4] text-gray-700' :
-                                'bg-[#FFE4E9] text-gray-700'
+                              className="flex flex-col md:flex-row md:items-center md:justify-between p-12 rounded-lg transition-all hover:shadow-md bg-white border border-gray-100 hover:border-[#D6B14D]/30 gap-4 md:gap-8">
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs md:text-sm font-bold text-gray-700">{journal.name}</p>
+                              </div>
+                              <span className={`px-6 py-2 rounded text-[10px] md:text-xs font-bold self-start md:self-auto ${
+                                journal.type === 'SCIE' || journal.type === 'SSCI' || journal.type === 'A&HCI' ? 'bg-[#D6B14D] text-white' :
+                                journal.type === 'ESCI' || journal.type === 'SCOPUS' || journal.type === 'Scopus' ? 'bg-[#D6C360] text-white' :
+                                journal.type === 'KCI' ? 'bg-[#64748b] text-white' :
+                                'bg-[#94a3b8] text-white'
                               }`}>{journal.type}</span>
                             </a>
                           ))}
@@ -2289,7 +2281,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         
                         return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
-                          <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
+                          <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
                             <div className="size-48 md:size-44 rounded-lg flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-gray-50 overflow-hidden p-6">
                               {schoolLogo ? (
                                 <img loading="lazy" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
@@ -2297,8 +2289,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                 <BookOpen size={18} style={{color: '#D6B14D'}} />
                               )}
                             </div>
-                            <div className="flex-1 min-w-0 text-center md:text-left">
-                              <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
+                            <div className="flex-1 min-w-0 text-left">
+                              <div className="flex flex-wrap items-center justify-start gap-6 mb-8">
                                 {course.periods.map((period, i) => (
                                   <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
                                     {period}
@@ -2359,7 +2351,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                         
                         return (
                         <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:shadow-[#E8889C]/10 hover:border-[#E8889C]/30 transition-all">
-                          <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
+                          <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
                             <div className="size-48 md:size-44 rounded-lg flex items-center justify-center shrink-0 border-2 border-[#E8889C]/30 bg-gray-50 overflow-hidden p-6">
                               {schoolLogo ? (
                                 <img loading="lazy" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
@@ -2367,8 +2359,8 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                 <BookOpen size={18} style={{color: '#E8889C'}} />
                               )}
                             </div>
-                            <div className="flex-1 min-w-0 text-center md:text-left">
-                              <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
+                            <div className="flex-1 min-w-0 text-left">
+                              <div className="flex flex-wrap items-center justify-start gap-6 mb-8">
                                 {course.periods.map((period, i) => (
                                   <span key={i} className="px-8 py-2 text-[10px] md:text-xs font-bold rounded-full" style={{backgroundColor: 'rgba(232,135,155,0.15)', color: '#E8889C'}}>
                                     {period}

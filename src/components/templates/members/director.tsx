@@ -770,12 +770,12 @@ export const MembersDirectorTemplate = () => {
                     <div className="absolute left-0 top-0 bottom-0 flex items-center -translate-x-1/2" style={{left: '-1px'}}>
                       <div className="size-12 md:size-16 bg-primary rounded-full border-3 md:border-4 border-white shadow-md transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[#D6B14D]/30"/>
                     </div>
-                    <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                    <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0">
                         <img loading="lazy" decoding="async" src={edu.logo} alt={edu.school} className="w-full h-full object-contain"/>
                       </div>
-                      <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
+                      <div className="flex-1 min-w-0 flex flex-col justify-center text-left">
+                        <div className="flex flex-wrap items-center justify-start gap-6 md:gap-8 mb-4">
                           <span className="px-8 md:px-10 py-2 text-[10px] md:text-xs font-bold rounded-full bg-primary text-white">{edu.period}</span>
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{edu.degree.includes("(Ph.D.") ? <>{edu.degree.split(" (")[0]}<br className="md:hidden" /><span className="text-sm md:text-base text-gray-900 font-bold"> ({edu.degree.split(" (")[1]}</span></> : edu.degree}</h4>
@@ -817,12 +817,12 @@ export const MembersDirectorTemplate = () => {
                         emp.isCurrent ? 'bg-primary group-hover:shadow-[#D6B14D]/30' : 'bg-gray-300 group-hover:shadow-gray-300/50'
                       }`}/>
                     </div>
-                    <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
+                    <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16 bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-[#D6B14D]/10 hover:border-[#D6B14D]/40 hover:bg-gradient-to-r hover:from-white hover:to-primary/[0.02] transition-all duration-300 min-h-[100px] md:min-h-[110px]">
                       <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0">
                         <img loading="lazy" decoding="async" src={emp.logo} alt={emp.organization || emp.position} className="w-full h-full object-contain"/>
                       </div>
-                      <div className="flex-1 min-w-0 flex flex-col justify-center text-center md:text-left">
-                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 mb-4">
+                      <div className="flex-1 min-w-0 flex flex-col justify-center text-left">
+                        <div className="flex flex-wrap items-center justify-start gap-6 md:gap-8 mb-4">
                           <span className={`px-8 md:px-10 py-2 text-[10px] md:text-xs font-bold rounded-full ${
                             emp.isCurrent
                               ? 'bg-primary text-white'
@@ -1040,7 +1040,7 @@ export const MembersDirectorTemplate = () => {
                             
                             return (
                               <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
-                                <div className="flex flex-col md:flex-row items-center md:items-start gap-12 md:gap-16">
+                                <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
                                   <div className="size-48 md:size-44 rounded-lg flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-gray-50 overflow-hidden p-6">
                                     {schoolLogo ? (
                                       <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
@@ -1048,8 +1048,8 @@ export const MembersDirectorTemplate = () => {
                                       <BookOpen size={18} style={{color: '#D6B14D'}} />
                                     )}
                                   </div>
-                                  <div className="flex-1 min-w-0 text-center md:text-left">
-                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
+                                  <div className="flex-1 min-w-0 text-left">
+                                    <div className="flex flex-wrap items-center justify-start gap-6 mb-8">
                                       {course.periods.map((period, i) => (
                                         <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
                                           {period}
