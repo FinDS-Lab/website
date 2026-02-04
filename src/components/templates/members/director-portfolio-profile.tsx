@@ -739,9 +739,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               </button>
               {expandedSections.introduction && (
               <div className="bg-gradient-to-br from-gray-50 to-white p-20 md:p-32 border-t border-gray-100">
-                <p className="text-gray-800 leading-relaxed text-sm md:text-base font-semibold mb-20">
-                  <span className="font-bold" style={{color: '#D6B14D'}}>금융데이터인텔리전스 연구실(FINDS Lab)</span> 홈페이지에 오신 것을 환영합니다.
-                </p>
                 <p className="text-gray-600 leading-relaxed text-sm md:text-base mb-20">
                   I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
