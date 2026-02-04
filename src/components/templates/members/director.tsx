@@ -1040,16 +1040,16 @@ export const MembersDirectorTemplate = () => {
                             
                             return (
                               <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
-                                <div className="flex items-start gap-12 md:gap-16">
-                                  <div className="size-36 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
+                                <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-16">
+                                  <div className="size-48 md:size-40 rounded-xl flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-white overflow-hidden">
                                     {schoolLogo ? (
                                       <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-[70%] h-[70%] object-contain" />
                                     ) : (
                                       <BookOpen size={18} style={{color: '#D6B14D'}} />
                                     )}
                                   </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex flex-wrap items-center gap-6 mb-8">
+                                  <div className="flex-1 min-w-0 text-center md:text-left">
+                                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mb-8">
                                       {course.periods.map((period, i) => (
                                         <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[9px] md:text-[10px] font-bold rounded-full">
                                           {period}

@@ -1081,24 +1081,21 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.honors && edu.honors.length > 0 && (
                                     <div className="space-y-6">
                                       {edu.honors.map((h: any, i: number) => (
-                                        <div key={i} className="flex items-start gap-8 bg-[#FFF9E6] rounded-lg px-12 py-10">
-                                          <Medal className="shrink-0 mt-1 size-14" style={{color: '#D6B14D'}} />
-                                          <div className="flex-1 flex flex-col">
-                                            <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
-                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-2">{h.org}</span>
-                                            {h.gpa && (
-                                              <div className="flex items-center gap-4 mt-4">
-                                                <span className="w-4 h-4 rounded-full bg-[#D6B14D]/40 shrink-0" />
-                                                <span className="text-[10px] md:text-xs">
-                                                  <span className="font-bold text-gray-700">GPA</span>
-                                                  {' '}
-                                                  <span className="font-bold" style={{color: '#D6B14D'}}>{h.gpa}</span>
-                                                  {' '}
-                                                  <span className="text-gray-600">out of {h.gpaMax}</span>
-                                                </span>
-                                              </div>
-                                            )}
-                                          </div>
+                                        <div key={i} className="flex flex-col items-center text-center bg-[#FFF9E6] rounded-lg px-12 py-14">
+                                          <Medal className="shrink-0 size-20 mb-10" style={{color: '#D6B14D'}} />
+                                          <span className="text-xs md:text-sm font-bold text-gray-800">{h.title}</span>
+                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{h.org}</span>
+                                          {h.gpa && (
+                                            <div className="flex items-center justify-center gap-4 mt-6">
+                                              <span className="text-[10px] md:text-xs">
+                                                <span className="font-bold text-gray-700">GPA</span>
+                                                {' '}
+                                                <span className="font-bold" style={{color: '#D6B14D'}}>{h.gpa}</span>
+                                                {' '}
+                                                <span className="text-gray-600">out of {h.gpaMax}</span>
+                                              </span>
+                                            </div>
+                                          )}
                                         </div>
                                       ))}
                                     </div>
@@ -1107,15 +1104,11 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                   {edu.awards && edu.awards.length > 0 && (
                                     <div className="space-y-6">
                                       {edu.awards.map((a: any, i: number) => (
-                                        <div key={i} className="flex items-start gap-8 rounded-lg px-12 py-10" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
-                                          <Trophy className="shrink-0 size-14 mt-[3px]" style={{color: 'rgb(172, 14, 14)'}} />
-                                          <div className="flex-1 flex flex-col">
-                                            <div>
-                                              <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
-                                              {a.note && <span className="text-xs md:text-sm font-bold ml-0 block mt-1" style={{color: '#D6B14D'}}>{a.note}</span>}
-                                            </div>
-                                            <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{a.org}</span>
-                                          </div>
+                                        <div key={i} className="flex flex-col items-center text-center rounded-lg px-12 py-14" style={{backgroundColor: 'rgba(172, 14, 14, 0.05)'}}>
+                                          <Trophy className="shrink-0 size-20 mb-10" style={{color: 'rgb(172, 14, 14)'}} />
+                                          <span className="text-xs md:text-sm font-bold text-gray-800">{a.title}</span>
+                                          {a.note && <span className="text-xs md:text-sm font-bold mt-2" style={{color: '#D6B14D'}}>{a.note}</span>}
+                                          <span className="text-[10px] md:text-xs text-gray-500 font-medium mt-4">{a.org}</span>
                                         </div>
                                       ))}
                                     </div>
