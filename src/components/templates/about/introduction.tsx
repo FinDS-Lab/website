@@ -303,15 +303,7 @@ export const AboutIntroductionTemplate = () => {
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
           <div className="relative text-center max-w-4xl mx-auto">
             <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
-              {researchLang === 'ko' ? (
-                <>
-                  <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 상기한 목표를 바탕으로<br className="md:hidden" /> 데이터를 바탕으로 하는 <span className="font-bold" style={{color: '#AC0E0E'}}>세 가지 핵심 연구 분야</span>를 통해<br className="md:hidden" /> 경영 환경과 산업 현장에서<br className="md:hidden" /> <span className="font-bold" style={{color: '#AC0E0E'}}>실질적인 가치</span>를 창출하는 연구를 지향합니다.
-                </>
-              ) : (
-                <>
-                  Based on the above goal, <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span> pursues research<br className="md:hidden" /> that creates <span className="font-bold" style={{color: '#AC0E0E'}}>tangible value</span> in business and industry<br className="md:hidden" /> through <span className="font-bold" style={{color: '#AC0E0E'}}>three core research areas</span> grounded in data.
-                </>
-              )}
+              <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>은 상기한 목표를 바탕으로<br className="md:hidden" /> 데이터를 바탕으로 하는 <span className="font-bold" style={{color: '#AC0E0E'}}>세 가지 핵심 연구 분야</span>를 통해<br className="md:hidden" /> 경영 환경과 산업 현장에서<br className="md:hidden" /> <span className="font-bold" style={{color: '#AC0E0E'}}>실질적인 가치</span>를 창출하는 연구를 지향합니다.
             </p>
           </div>
         </div>
