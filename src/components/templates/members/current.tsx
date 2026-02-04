@@ -514,7 +514,13 @@ export const MembersCurrentTemplate = () => {
                               <div className="relative flex items-center justify-center">
                                 <button
                                   onClick={() => setOpenEmailPopup(openEmailPopup === member.id ? null : member.id)}
-                                  className="p-6 rounded-lg bg-gray-100 hover:bg-primary/10 hover:text-primary transition-colors"
+                                  className={`p-6 rounded-lg bg-gray-100 transition-colors ${
+                                    member.degree === 'phd' ? 'hover:bg-[#D6B14D]/10 hover:text-[#D6B14D]' :
+                                    member.degree === 'combined' ? 'hover:bg-[#D6A076]/10 hover:text-[#D6A076]' :
+                                    member.degree === 'ms' ? 'hover:bg-[#C41E3A]/10 hover:text-[#C41E3A]' :
+                                    member.degree === 'undergrad' ? 'hover:bg-[#FFBAC4]/10 hover:text-[#FFBAC4]' :
+                                    'hover:bg-primary/10 hover:text-primary'
+                                  }`}
                                   title="Email"
                                 >
                                   <Mail size={14} />
@@ -533,7 +539,13 @@ export const MembersCurrentTemplate = () => {
                                 href={member.social.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-primary transition-colors"
+                                className={`text-gray-400 transition-colors ${
+                                  member.degree === 'phd' ? 'hover:text-[#D6B14D]' :
+                                  member.degree === 'combined' ? 'hover:text-[#D6A076]' :
+                                  member.degree === 'ms' ? 'hover:text-[#C41E3A]' :
+                                  member.degree === 'undergrad' ? 'hover:text-[#FFBAC4]' :
+                                  'hover:text-primary'
+                                }`}
                                 title="GitHub"
                               >
                                 <Github size={16} />
@@ -544,7 +556,13 @@ export const MembersCurrentTemplate = () => {
                                 href={member.social.linkedin}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-primary transition-colors"
+                                className={`text-gray-400 transition-colors ${
+                                  member.degree === 'phd' ? 'hover:text-[#D6B14D]' :
+                                  member.degree === 'combined' ? 'hover:text-[#D6A076]' :
+                                  member.degree === 'ms' ? 'hover:text-[#C41E3A]' :
+                                  member.degree === 'undergrad' ? 'hover:text-[#FFBAC4]' :
+                                  'hover:text-primary'
+                                }`}
                                 title="LinkedIn"
                               >
                                 <Linkedin size={16} />
@@ -555,7 +573,13 @@ export const MembersCurrentTemplate = () => {
                                 href={member.social.personal_website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-primary transition-colors"
+                                className={`text-gray-400 transition-colors ${
+                                  member.degree === 'phd' ? 'hover:text-[#D6B14D]' :
+                                  member.degree === 'combined' ? 'hover:text-[#D6A076]' :
+                                  member.degree === 'ms' ? 'hover:text-[#C41E3A]' :
+                                  member.degree === 'undergrad' ? 'hover:text-[#FFBAC4]' :
+                                  'hover:text-primary'
+                                }`}
                                 title="Personal Website"
                               >
                                 <Globe size={16} />
@@ -563,7 +587,13 @@ export const MembersCurrentTemplate = () => {
                             )}
                             <Link
                               to={`/members/detail/${member.id}`}
-                              className="ml-auto flex items-center gap-4 text-xs md:text-[13px] font-medium hover:text-primary transition-colors"
+                              className={`ml-auto flex items-center gap-4 text-xs md:text-[13px] font-medium transition-colors ${
+                                member.degree === 'phd' ? 'hover:text-[#D6B14D]' :
+                                member.degree === 'combined' ? 'hover:text-[#D6A076]' :
+                                member.degree === 'ms' ? 'hover:text-[#C41E3A]' :
+                                member.degree === 'undergrad' ? 'hover:text-[#FFBAC4]' :
+                                'hover:text-primary'
+                              }`}
                             >
                               View Profile
                               <ChevronRight size={14} />
