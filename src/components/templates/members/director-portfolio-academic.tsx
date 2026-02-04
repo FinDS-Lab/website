@@ -59,8 +59,9 @@ type Project = {
   titleKo: string
   period: string
   fundingAgency: string
-  fundingAgencyKo: string
+  fundingAgencyKo?: string
   type: 'government' | 'industry' | 'institution' | 'academic'
+  language?: 'ko' | 'en'
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
@@ -1155,7 +1156,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
           p.titleEn.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
           p.titleKo.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
           p.fundingAgency.toLowerCase().includes(projectSearchTerm.toLowerCase()) ||
-          p.fundingAgencyKo.toLowerCase().includes(projectSearchTerm.toLowerCase())
+          (p.fundingAgencyKo?.toLowerCase() || '').includes(projectSearchTerm.toLowerCase())
         )
       : projects
 
@@ -1828,7 +1829,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#D6B14D'}}>{journals.length}</span>
+                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#C41E3A'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -2191,7 +2192,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                                       <div className="flex-1 min-w-0">
                                         <p className="text-sm md:text-base font-bold text-gray-900 whitespace-pre-line">{project.titleKo}</p>
                                         <p className="text-xs md:text-sm text-gray-600 mt-3 whitespace-pre-line">{project.titleEn}</p>
-                                        <p className="text-xs md:text-sm text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.fundingAgency}</span></p>
+                                        <p className="text-xs md:text-sm text-gray-500 mt-3 whitespace-pre-line"><span className="font-bold">{project.language === 'ko' && project.fundingAgencyKo ? project.fundingAgencyKo : project.fundingAgency}</span></p>
                                         {/* Mobile: Period as text */}
                                         <p className="md:hidden text-[10px] text-gray-400 font-medium mt-4">{project.period}</p>
                                       </div>

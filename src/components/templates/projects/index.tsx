@@ -33,9 +33,10 @@ type Project = {
   titleKo: string
   period: string
   fundingAgency: string
-  fundingAgencyKo: string
+  fundingAgencyKo?: string
   amount?: string
   type: 'government' | 'industry' | 'institution' | 'academic'
+  language?: 'ko' | 'en'
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
@@ -272,7 +273,7 @@ export const ProjectsTemplate = () => {
         if (searchQuery.trim()) {
           const query = searchQuery.toLowerCase()
           const matchesTitle = p.titleEn.toLowerCase().includes(query) || p.titleKo.toLowerCase().includes(query)
-          const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || p.fundingAgencyKo.toLowerCase().includes(query)
+          const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || (p.fundingAgencyKo?.toLowerCase() || '').includes(query)
           const matchesPeriod = p.period.includes(query)
           if (!matchesTitle && !matchesFunding && !matchesPeriod) return false
         }
@@ -314,7 +315,7 @@ export const ProjectsTemplate = () => {
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase()
       const matchesTitle = p.titleEn.toLowerCase().includes(query) || p.titleKo.toLowerCase().includes(query)
-      const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || p.fundingAgencyKo.toLowerCase().includes(query)
+      const matchesFunding = p.fundingAgency.toLowerCase().includes(query) || (p.fundingAgencyKo?.toLowerCase() || '').includes(query)
       const matchesPeriod = p.period.includes(query)
       if (!matchesTitle && !matchesFunding && !matchesPeriod) return false
     }
@@ -812,7 +813,7 @@ export const ProjectsTemplate = () => {
                                     {/* Funding Agency */}
                                     <div className="flex flex-wrap items-center gap-8 mt-8">
                                       <p className="text-xs md:text-sm text-gray-700 font-bold whitespace-pre-line">
-                                        {project.fundingAgency}
+                                        {project.language === 'ko' && project.fundingAgencyKo ? project.fundingAgencyKo : project.fundingAgency}
                                       </p>
                                     </div>
                                     
