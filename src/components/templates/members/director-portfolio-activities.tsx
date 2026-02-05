@@ -73,6 +73,21 @@ type NetworkLink = {
 
 // Image Imports
 import banner2 from '@/assets/images/banner/2.webp'
+
+const formatHonorDate = (dateStr: string): string => {
+  const monthMap: Record<string, string> = {
+    'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
+    'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
+  }
+  const parts = dateStr.split(' ')
+  if (parts.length === 2) {
+    const month = monthMap[parts[0]] || '00'
+    const day = parts[1].padStart(2, '0')
+    return `${month}-${day}`
+  }
+  return dateStr
+}
+
 import directorImg from '@/assets/images/members/director.webp'
 import logoKaist from '@/assets/images/logos/kaist.png'
 import logoKyunghee from '@/assets/images/logos/kyunghee.png'
@@ -1087,6 +1102,7 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+    honorsAwards: true,
     awardsHonors: true,
     academicService: true,
     activities: true,
@@ -1601,13 +1617,106 @@ export const MembersDirectorPortfolioActivitiesTemplate = () => {
 
           {/* Right Column: Activities Only */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
-            {/* Activities */}
+            {/* Honors & Awards */}
+            {honorsData && Object.keys(honorsData).length > 0 && (
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('honorsAwards')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
+              </button>
+
+              {expandedSections.honorsAwards && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <div className="space-y-12">
+                    {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
+                      const items = honorsData[year]
+                      const awards = items.filter((item) => item.type === 'award')
+                      const honors = items.filter((item) => item.type === 'honor')
+                      const isExpanded = expandedYears.has(year)
+                      const currentYear = new Date().getFullYear()
+                      const isCurrentYear = Number(year) === currentYear
+
+                      return (
+                        <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
+                          <button
+                            onClick={() => toggleYear(year)}
+                            className={`w-full flex items-center justify-between px-16 py-14 transition-colors ${
+                              isCurrentYear 
+                                ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
+                                : 'bg-gray-50 hover:bg-gray-100'
+                            }`}
+                          >
+                            <div className="flex items-center gap-12 flex-wrap">
+                              <span className={`text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
+                              {isCurrentYear && (
+                                <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
+                              )}
+                              <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
+                                <span className="font-bold" style={{color: '#D6B14D'}}>{honors.length}</span>
+                                <span className="text-gray-500"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
+                                <span className="text-gray-300"> · </span>
+                                <span className="font-bold" style={{color: '#AC0E0E'}}>{awards.length}</span>
+                                <span className="text-gray-500"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
+                              </span>
+                            </div>
+                            <ChevronDown 
+                              size={18} 
+                              className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                            />
+                          </button>
+
+                          {isExpanded && (
+                            <div className="flex flex-col">
+                              {items.map((item, idx) => (
+                                <div
+                                  key={idx}
+                                  className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
+                                >
+                                  <div
+                                    className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 mt-2 ${
+                                      item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
+                                    }`}
+                                  >
+                                    {item.type === 'honor' ? (
+                                      <Medal className="w-18 h-18 text-[#D6B14D]" />
+                                    ) : (
+                                      <Trophy className="w-18 h-18 text-[#AC0E0E]" />
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
+                                    <div className="flex-1 min-w-0">
+                                      <h4 className="text-sm md:text-base font-bold text-gray-800 mb-4">{item.title}</h4>
+                                      <p className="text-xs md:text-sm text-gray-600 font-medium mb-4">{item.event}</p>
+                                      <p className="text-xs md:text-sm text-gray-500 font-medium">{item.organization}</p>
+                                      <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
+                                    </div>
+                                    <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
+                                      {year}-{formatHonorDate(item.date)}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+            </section>
+            )}
+
+            {/* Off-Campus Activities */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
                 onClick={() => toggleSection('activities')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Activities</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Off-Campus Activities</h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.activities ? 'rotate-180' : ''}`}/>
               </button>
 

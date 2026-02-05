@@ -26,6 +26,14 @@ import {
   Calendar,
   BookOpen,
   Search,
+  Folder,
+  Factory,
+  School,
+  FlaskConical,
+  Crown,
+  ShieldCheck,
+  Compass,
+  Microscope,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {HonorsData} from '@/types/data'
@@ -232,7 +240,8 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
     researchInterests: true,
     education: true,
     employment: true,
-    honorsAwards: true
+    projectStats: true,
+    honorsStats: true
   })
   
   // Sticky profile card refs and state
@@ -530,6 +539,30 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   
   const taSemesters = useMemo(() => 
     taCourses.reduce((sum, course) => sum + course.periods.length, 0), [taCourses])
+
+  const projectStats = useMemo(() => {
+    const piProjects = projects.filter(p => p.roles.principalInvestigator === '최인수')
+    const piIds = new Set(piProjects.map((_, i) => i))
+    const remaining1 = projects.filter((_, i) => !piIds.has(i))
+    const leadProjects = remaining1.filter(p => p.roles.leadResearcher === '최인수')
+    const leadSet = new Set(leadProjects.map(p => p.titleEn))
+    const remaining2 = remaining1.filter(p => !leadSet.has(p.titleEn))
+    const visitingProjects = remaining2.filter(p => p.roles.visitingResearcher === '최인수')
+    const visitingSet = new Set(visitingProjects.map(p => p.titleEn))
+    const remaining3 = remaining2.filter(p => !visitingSet.has(p.titleEn))
+    const researcherProjects = remaining3.filter(p => p.roles.researchers?.includes('최인수'))
+    return {
+      total: projects.length,
+      government: projects.filter(p => p.type === 'government').length,
+      industry: projects.filter(p => p.type === 'industry').length,
+      institution: projects.filter(p => p.type === 'institution').length,
+      academic: projects.filter(p => p.type === 'academic').length,
+      pi: piProjects.length,
+      lead: leadProjects.length,
+      visiting: visitingProjects.length,
+      researcher: researcherProjects.length,
+    }
+  }, [projects])
 
   return (
     <div className="flex flex-col bg-white">
@@ -1184,17 +1217,136 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               )}
             </section>
 
-            {/* Honors & Awards */}
+            {/* Project Statistics */}
+            {projects.length > 0 && (
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('projectStats')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Project Statistics</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.projectStats ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.projectStats && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                
+                {/* Total - Full Width */}
+                <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300 mb-8 md:mb-12">
+                  <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="flex flex-col items-center justify-center">
+                    <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{projectStats.total}</span>
+                    <div className="flex items-center gap-6">
+                      <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                      <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Funding Source */}
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Funding Source</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{projectStats.government}</span>
+                      <div className="flex items-center gap-6">
+                        <Landmark className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{projectStats.industry}</span>
+                      <div className="flex items-center gap-6">
+                        <Factory className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{projectStats.institution}</span>
+                      <div className="flex items-center gap-6">
+                        <School className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{projectStats.academic}</span>
+                      <div className="flex items-center gap-6">
+                        <FlaskConical className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                {/* Participation */}
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8">Participation</p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-900/30 hover:shadow-lg transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-900/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{projectStats.pi}</span>
+                      <div className="flex items-center gap-6">
+                        <Crown className="size-14 md:size-16 text-gray-900" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Principal Investigator</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-600/30 hover:shadow-lg transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-600/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600 transition-all duration-300">{projectStats.lead}</span>
+                      <div className="flex items-center gap-6">
+                        <ShieldCheck className="size-14 md:size-16 text-gray-600" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Lead Researcher</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-500/30 hover:shadow-lg transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-500/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{projectStats.visiting}</span>
+                      <div className="flex items-center gap-6">
+                        <Compass className="size-14 md:size-16 text-gray-500" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Visiting Researcher</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/30 hover:shadow-lg transition-all duration-300">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center text-center">
+                      <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400 transition-all duration-300">{projectStats.researcher}</span>
+                      <div className="flex items-center gap-6">
+                        <Microscope className="size-14 md:size-16 text-gray-400" />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+                )}
+              </section>
+            )}
+
+            {/* Honors & Awards Statistics */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
-                onClick={() => toggleSection('honorsAwards')}
+                onClick={() => toggleSection('honorsStats')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards Statistics</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsStats ? 'rotate-180' : ''}`}/>
               </button>
 
-              {expandedSections.honorsAwards && (
+              {expandedSections.honorsStats && (
                 <div className="border-t border-gray-100 p-20 md:p-24">
                   {!honorsData || Object.keys(honorsData).length === 0 ? (
                     <div className="py-16 text-center text-sm text-gray-400">
@@ -1202,19 +1354,13 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     </div>
                   ) : (
                     <>
-                      {/* Statistics Section */}
                       {(() => {
                         const allItems = Object.values(honorsData).flat()
                         const totalAwards = allItems.filter(item => item.type === 'award').length
                         const totalHonors = allItems.filter(item => item.type === 'honor').length
                         const totalItems = totalAwards + totalHonors
                         return (
-                          <div className="flex flex-col gap-16 md:gap-24 mb-20 transition-opacity duration-500">
-                            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                              <span className="w-8 h-8 rounded-full bg-primary" />
-                              Statistics
-                            </h3>
-                            
+                          <div className="flex flex-col gap-16 md:gap-24 transition-opacity duration-500">
                             {/* Total - Full Width */}
                             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -1253,89 +1399,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                           </div>
                         )
                       })()}
-
-                      {/* Timeline by Year */}
-                      <div className="space-y-12">
-                        {Object.keys(honorsData).sort((a, b) => Number(b) - Number(a)).map((year) => {
-                          const items = honorsData[year]
-                          const awards = items.filter((item) => item.type === 'award')
-                          const honors = items.filter((item) => item.type === 'honor')
-                          const isExpanded = expandedYears.has(year)
-                          const currentYear = new Date().getFullYear()
-                          const isCurrentYear = Number(year) === currentYear
-
-                          return (
-                            <div key={year} className="border border-gray-100 rounded-xl overflow-hidden">
-                              {/* Year Header - About FINDS Style */}
-                              <button
-                                onClick={() => toggleYear(year)}
-                                className={`w-full flex items-center justify-between px-16 py-14 transition-colors ${
-                                  isCurrentYear 
-                                    ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]' 
-                                    : 'bg-gray-50 hover:bg-gray-100'
-                                }`}
-                              >
-                                <div className="flex items-center gap-12 flex-wrap">
-                                  <span className={`text-lg font-bold ${isCurrentYear ? 'text-[#9A7D1F]' : 'text-gray-800'}`}>{year}</span>
-                                  {isCurrentYear && (
-                                    <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-semibold rounded-full">NEW</span>
-                                  )}
-                                  {/* White badge with counts */}
-                                  <span className="px-10 py-4 bg-white rounded-full text-[10px] font-medium shadow-sm">
-                                    <span className="font-bold" style={{color: '#D6B14D'}}>{honors.length}</span>
-                                    <span className="text-gray-500"> {honors.length === 1 ? 'Honor' : 'Honors'}</span>
-                                    <span className="text-gray-300"> · </span>
-                                    <span className="font-bold" style={{color: '#AC0E0E'}}>{awards.length}</span>
-                                    <span className="text-gray-500"> {awards.length === 1 ? 'Award' : 'Awards'}</span>
-                                  </span>
-                                </div>
-                                <ChevronDown 
-                                  size={18} 
-                                  className={`text-gray-400 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
-                                />
-                              </button>
-
-                              {/* Items */}
-                              {isExpanded && (
-                                <div className="flex flex-col">
-                                  {items.map((item, idx) => (
-                                    <div
-                                      key={idx}
-                                      className="flex items-start gap-12 p-16 bg-white border-t border-gray-100"
-                                    >
-                                      <div
-                                        className={`w-36 h-36 rounded-lg flex items-center justify-center flex-shrink-0 mt-2 ${
-                                          item.type === 'honor' ? 'bg-[#FFF3CC]' : 'bg-[#FFBAC4]/20'
-                                        }`}
-                                      >
-                                        {item.type === 'honor' ? (
-                                          <Medal className="w-18 h-18 text-[#D6B14D]" />
-                                        ) : (
-                                          <Trophy className="w-18 h-18 text-[#AC0E0E]" />
-                                        )}
-                                      </div>
-                                      {/* Content + Date - PC: Date on right */}
-                                      <div className="flex-1 min-w-0 flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16">
-                                        <div className="flex-1 min-w-0">
-                                          <h4 className="text-sm md:text-base font-bold text-gray-800 mb-4">{item.title}</h4>
-                                          <p className="text-xs md:text-sm text-gray-600 font-medium mb-4">{item.event}</p>
-                                          <p className="text-xs md:text-sm text-gray-500 font-medium">{item.organization}</p>
-                                          {/* Mobile: Date as text */}
-                                          <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
-                                        </div>
-                                        {/* PC: Date badge - right aligned */}
-                                        <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                          {year}-{formatHonorDate(item.date)}
-                                        </span>
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-                              )}
-                            </div>
-                          )
-                        })}
-                      </div>
                     </>
                   )}
                 </div>

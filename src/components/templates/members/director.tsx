@@ -25,6 +25,15 @@ import {
   Calendar,
   BookOpen,
   Search,
+  Folder,
+  Factory,
+  School,
+  FlaskConical,
+  Crown,
+  ShieldCheck,
+  Compass,
+  Microscope,
+  Heart,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
 import type {HonorsData} from '@/types/data'
@@ -189,10 +198,13 @@ export const MembersDirectorTemplate = () => {
     researchInterests: true,
     education: true,
     employment: true,
-    honorsAwards: true,
-    publicationStats: true,
+    publicationOverview: true,
+    projectOverview: true,
+    honorsOverview: true,
+    mentoringOverview: true,
     teaching: true
   })
+  const [menteeCount, setMenteeCount] = useState(0)
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -376,6 +388,14 @@ export const MembersDirectorTemplate = () => {
         setExpandedYears(new Set(years))
       })
       .catch(console.error)
+
+    // Fetch mentees count
+    fetch(`${baseUrl}data/mentees.json`)
+      .then(res => res.json())
+      .then((data: Record<string, any>) => {
+        setMenteeCount(Object.keys(data).length)
+      })
+      .catch(console.error)
   }, [])
 
   const handleCopyEmail = () => {
@@ -383,6 +403,31 @@ export const MembersDirectorTemplate = () => {
     setEmailCopied(true)
     setTimeout(() => setEmailCopied(false), 2000)
   }
+
+  // Project Statistics
+  const projectStats = useMemo(() => {
+    const piProjects = projects.filter(p => p.roles.principalInvestigator === '최인수')
+    const piIds = new Set(piProjects.map((_, i) => i))
+    const remaining1 = projects.filter((_, i) => !piIds.has(i))
+    const leadProjects = remaining1.filter(p => p.roles.leadResearcher === '최인수')
+    const leadSet = new Set(leadProjects.map(p => p.titleEn))
+    const remaining2 = remaining1.filter(p => !leadSet.has(p.titleEn))
+    const visitingProjects = remaining2.filter(p => p.roles.visitingResearcher === '최인수')
+    const visitingSet = new Set(visitingProjects.map(p => p.titleEn))
+    const remaining3 = remaining2.filter(p => !visitingSet.has(p.titleEn))
+    const researcherProjects = remaining3.filter(p => p.roles.researchers?.includes('최인수'))
+    return {
+      total: projects.length,
+      government: projects.filter(p => p.type === 'government').length,
+      industry: projects.filter(p => p.type === 'industry').length,
+      institution: projects.filter(p => p.type === 'institution').length,
+      academic: projects.filter(p => p.type === 'academic').length,
+      pi: piProjects.length,
+      lead: leadProjects.length,
+      visiting: visitingProjects.length,
+      researcher: researcherProjects.length,
+    }
+  }, [projects])
 
   // Group projects by year
   const projectsByYear = useMemo(() => {
@@ -848,96 +893,19 @@ export const MembersDirectorTemplate = () => {
               )}
             </section>
 
-            {/* Honors & Awards */}
+            {/* Publication Overview */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
-                onClick={() => toggleSection('honorsAwards')}
+                onClick={() => toggleSection('publicationOverview')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsAwards ? 'rotate-180' : ''}`}/>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Overview</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationOverview ? 'rotate-180' : ''}`}/>
               </button>
-
-              {expandedSections.honorsAwards && (
-                <div className="border-t border-gray-100 p-20 md:p-24">
-                  {!honorsData || Object.keys(honorsData).length === 0 ? (
-                    <div className="py-16 text-center text-sm text-gray-400">
-                      No awards data available
-                    </div>
-                  ) : (
-                    <>
-                      {/* Statistics Section */}
-                      {(() => {
-                        const allItems = Object.values(honorsData).flat()
-                        const totalAwards = allItems.filter(item => item.type === 'award').length
-                        const totalHonors = allItems.filter(item => item.type === 'honor').length
-                        const totalItems = totalAwards + totalHonors
-                        return (
-                          <div className="flex flex-col gap-16 md:gap-24 mb-20 transition-opacity duration-500">
-                            <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
-                              <span className="w-8 h-8 rounded-full bg-primary" />
-                              Statistics
-                            </h3>
-                            
-                            {/* Total - Full Width */}
-                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
-                              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <div className="flex flex-col items-center justify-center">
-                                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalItems}</span>
-                                <div className="flex items-center gap-6">
-                                  <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Honors & Awards - 2 columns */}
-                            <div className="grid grid-cols-2 gap-8 md:gap-12">
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col items-center text-center">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
-                                  <div className="flex items-center gap-6">
-                                    <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
-                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <div className="flex flex-col items-center text-center">
-                                  <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
-                                  <div className="flex items-center gap-6">
-                                    <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )
-                      })()}
-
-                    </>
-                  )}
-                </div>
-              )}
-            </section>
-
-            {/* Publication Statistics */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('publicationStats')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.publicationStats && (
+              {expandedSections.publicationOverview && (
                 <div className="p-20 md:p-24 border-t border-gray-100">
                   <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
                     {pubStats.map((stat, index) => {
-                      // Colors matching Publications page exactly
                       const getColors = (label: string) => {
                         switch(label) {
                           case 'SCIE':
@@ -967,16 +935,13 @@ export const MembersDirectorTemplate = () => {
                       </div>
                     )})}
                   </div>
-                  {/* Citation Stats - Citations on top, indices below */}
                   <div className="pt-16 border-t border-gray-100">
-                    {/* Citations - Full Width Row */}
                     <div className="mb-12">
                       <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
                         <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
                         <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
                       </div>
                     </div>
-                    {/* Indices - 2x2 on mobile, 4 columns on desktop */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                       {liveCitationStats.slice(1).map((stat, index) => (
                         <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
@@ -990,6 +955,181 @@ export const MembersDirectorTemplate = () => {
                     <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
                       View All Publications <ChevronRight size={14}/>
                     </Link>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* Project Overview */}
+            {projects.length > 0 && (
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('projectOverview')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Project Overview</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.projectOverview ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.projectOverview && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300 mb-8 md:mb-12">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{projectStats.total}</span>
+                      <div className="flex items-center gap-6">
+                        <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                        <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Funding Source</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{projectStats.government}</span>
+                        <div className="flex items-center gap-6"><Landmark className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Government</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{projectStats.industry}</span>
+                        <div className="flex items-center gap-6"><Factory className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Industry</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{projectStats.institution}</span>
+                        <div className="flex items-center gap-6"><School className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Institution</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{projectStats.academic}</span>
+                        <div className="flex items-center gap-6"><FlaskConical className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Research</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8">Participation</p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-900/30 hover:shadow-lg transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-900/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{projectStats.pi}</span>
+                        <div className="flex items-center gap-6"><Crown className="size-14 md:size-16 text-gray-900" /><span className="text-xs md:text-sm font-medium text-gray-600">PI</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-600/30 hover:shadow-lg transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-600/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600">{projectStats.lead}</span>
+                        <div className="flex items-center gap-6"><ShieldCheck className="size-14 md:size-16 text-gray-600" /><span className="text-xs md:text-sm font-medium text-gray-600">Lead</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-500/30 hover:shadow-lg transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-500/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500">{projectStats.visiting}</span>
+                        <div className="flex items-center gap-6"><Compass className="size-14 md:size-16 text-gray-500" /><span className="text-xs md:text-sm font-medium text-gray-600">Visiting</span></div>
+                      </div>
+                    </div>
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/30 hover:shadow-lg transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400">{projectStats.researcher}</span>
+                        <div className="flex items-center gap-6"><Microscope className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                )}
+              </section>
+            )}
+
+            {/* Honors & Awards Overview */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('honorsOverview')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Honors & Awards Overview</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.honorsOverview ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.honorsOverview && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  {!honorsData || Object.keys(honorsData).length === 0 ? (
+                    <div className="py-16 text-center text-sm text-gray-400">No awards data available</div>
+                  ) : (
+                    <>
+                      {(() => {
+                        const allItems = Object.values(honorsData).flat()
+                        const totalAwards = allItems.filter(item => item.type === 'award').length
+                        const totalHonors = allItems.filter(item => item.type === 'honor').length
+                        const totalItems = totalAwards + totalHonors
+                        return (
+                          <div className="flex flex-col gap-16 md:gap-24 transition-opacity duration-500">
+                            <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                              <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="flex flex-col items-center justify-center">
+                                <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalItems}</span>
+                                <div className="flex items-center gap-6">
+                                  <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-8 md:gap-12">
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col items-center text-center">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
+                                  <div className="flex items-center gap-6"><Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} /><span className="text-xs md:text-sm font-medium text-gray-600">Honors</span></div>
+                                </div>
+                              </div>
+                              <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                                <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="flex flex-col items-center text-center">
+                                  <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
+                                  <div className="flex items-center gap-6"><Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} /><span className="text-xs md:text-sm font-medium text-gray-600">Awards</span></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })()}
+                    </>
+                  )}
+                </div>
+              )}
+            </section>
+
+            {/* Mentoring & Tutoring Program Overview */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('mentoringOverview')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Mentoring & Tutoring Program Overview</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.mentoringOverview ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.mentoringOverview && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                    <div className="text-center">
+                      <p className="text-2xl md:text-3xl font-bold text-primary">{menteeCount}</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Total Mentees & Tutees</p>
+                    </div>
+                    <div className="text-center">
+                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#D6A076'}}>13</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Years Active</p>
+                    </div>
+                    <div className="text-center">
+                      <Heart className="size-20 mx-auto mb-4" style={{color: '#E8889C'}} />
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400">Since 2013</p>
+                    </div>
                   </div>
                 </div>
               )}
