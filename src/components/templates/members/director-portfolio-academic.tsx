@@ -2005,6 +2005,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     </div>
                   </div>
                 </div>
+                </div>
                 )}
               </section>
             )}

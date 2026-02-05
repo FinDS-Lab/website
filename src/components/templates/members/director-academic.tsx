@@ -1912,6 +1912,7 @@ export const MembersDirectorAcademicTemplate = () => {
                     </div>
                   </div>
                 </div>
+                </div>
                 )}
               </section>
             )}
