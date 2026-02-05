@@ -77,6 +77,7 @@ type Project = {
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
+    visitingResearcher?: string
     researchers?: string[]
   }
 }
@@ -893,6 +894,84 @@ export const MembersDirectorTemplate = () => {
               )}
             </section>
 
+            {/* Teaching */}
+            {lectures.length > 0 && (
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('teaching')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.teaching && (
+                  <div className="p-20 md:p-24 border-t border-gray-100">
+                    {/* Lecturer Section */}
+                    {lecturerCourses.length > 0 && (
+                      <div className="border border-gray-100 rounded-xl overflow-hidden">
+                        <div className="flex items-center justify-between px-16 py-12 bg-gray-50">
+                          <div className="flex items-center gap-8">
+                            <p className="text-sm md:text-base font-bold text-gray-900">Lecturer</p>
+                            <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
+                          </div>
+                        </div>
+                        <div className="space-y-12 p-16">
+                          {lecturerCourses.map((course, index) => {
+                            const getSchoolLogo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return logoKaist
+                              if (school.includes('Kyung Hee')) return logoKyunghee
+                              if (school.includes('Gachon')) return logoGcu
+                              if (school.includes('Dongduk')) return logoDwu
+                              if (school.includes('Kangnam')) return logoKangnam
+                              if (school.includes('Korea University') || school === 'Korea University') return logoKorea
+                              return null
+                            }
+                            const getSchoolKo = (school: string) => {
+                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원 (KAIST)'
+                              if (school.includes('Kyung Hee')) return '경희대학교'
+                              if (school.includes('Gachon')) return '가천대학교'
+                              if (school.includes('Dongduk')) return '동덕여자대학교'
+                              if (school.includes('Kangnam')) return '강남대학교'
+                              if (school.includes('Korea University') || school === 'Korea University') return '고려대학교'
+                              return school
+                            }
+                            const schoolLogo = getSchoolLogo(course.school)
+                            
+                            return (
+                              <div key={index} className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-gray-200/50 transition-all duration-300">
+                                <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
+                                  <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0 overflow-hidden">
+                                    {schoolLogo ? (
+                                      <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
+                                    ) : (
+                                      <BookOpen size={18} style={{color: '#D6B14D'}} />
+                                    )}
+                                  </div>
+                                  <div className="flex-1 min-w-0 text-left">
+                                    <div className="flex flex-wrap items-center justify-start gap-6 mb-8">
+                                      {course.periods.map((period, i) => (
+                                        <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
+                                          {period}
+                                        </span>
+                                      ))}
+                                    </div>
+                                    <p className="text-sm md:text-base font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
+                                    {course.courseNameKo && course.courseName !== course.courseNameKo && (
+                                      <p className="text-xs md:text-sm text-gray-500 mt-2">{course.courseName}</p>
+                                    )}
+                                    <p className="text-xs md:text-sm font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </section>
+            )}
             {/* Publication Overview */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1135,84 +1214,6 @@ export const MembersDirectorTemplate = () => {
               )}
             </section>
 
-            {/* Teaching */}
-            {lectures.length > 0 && (
-              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-                <button
-                  onClick={() => toggleSection('teaching')}
-                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-                >
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Teaching</h3>
-                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.teaching ? 'rotate-180' : ''}`}/>
-                </button>
-                {expandedSections.teaching && (
-                  <div className="p-20 md:p-24 border-t border-gray-100">
-                    {/* Lecturer Section */}
-                    {lecturerCourses.length > 0 && (
-                      <div className="border border-gray-100 rounded-xl overflow-hidden">
-                        <div className="flex items-center justify-between px-16 py-12 bg-gray-50">
-                          <div className="flex items-center gap-8">
-                            <p className="text-sm md:text-base font-bold text-gray-900">Lecturer</p>
-                            <span className="px-8 py-2 bg-[#D6B14D] text-gray-900 text-[10px] font-bold rounded-full">{lecturerSemesters}</span>
-                          </div>
-                        </div>
-                        <div className="space-y-12 p-16">
-                          {lecturerCourses.map((course, index) => {
-                            const getSchoolLogo = (school: string) => {
-                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return logoKaist
-                              if (school.includes('Kyung Hee')) return logoKyunghee
-                              if (school.includes('Gachon')) return logoGcu
-                              if (school.includes('Dongduk')) return logoDwu
-                              if (school.includes('Kangnam')) return logoKangnam
-                              if (school.includes('Korea University') || school === 'Korea University') return logoKorea
-                              return null
-                            }
-                            const getSchoolKo = (school: string) => {
-                              if (school.includes('KAIST') || school.includes('Korea Advanced')) return '한국과학기술원 (KAIST)'
-                              if (school.includes('Kyung Hee')) return '경희대학교'
-                              if (school.includes('Gachon')) return '가천대학교'
-                              if (school.includes('Dongduk')) return '동덕여자대학교'
-                              if (school.includes('Kangnam')) return '강남대학교'
-                              if (school.includes('Korea University') || school === 'Korea University') return '고려대학교'
-                              return school
-                            }
-                            const schoolLogo = getSchoolLogo(course.school)
-                            
-                            return (
-                              <div key={index} className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-gray-200/50 transition-all duration-300">
-                                <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
-                                  <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0 overflow-hidden">
-                                    {schoolLogo ? (
-                                      <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
-                                    ) : (
-                                      <BookOpen size={18} style={{color: '#D6B14D'}} />
-                                    )}
-                                  </div>
-                                  <div className="flex-1 min-w-0 text-left">
-                                    <div className="flex flex-wrap items-center justify-start gap-6 mb-8">
-                                      {course.periods.map((period, i) => (
-                                        <span key={i} className="px-8 py-2 bg-primary/10 text-primary text-[10px] md:text-xs font-bold rounded-full">
-                                          {period}
-                                        </span>
-                                      ))}
-                                    </div>
-                                    <p className="text-sm md:text-base font-bold text-gray-900">{course.courseNameKo || course.courseName}</p>
-                                    {course.courseNameKo && course.courseName !== course.courseNameKo && (
-                                      <p className="text-xs md:text-sm text-gray-500 mt-2">{course.courseName}</p>
-                                    )}
-                                    <p className="text-xs md:text-sm font-bold text-gray-500 mt-4">{getSchoolKo(course.school)}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </section>
-            )}
           </main>
         </div>
       </section>

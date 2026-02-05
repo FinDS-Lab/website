@@ -90,6 +90,7 @@ type Project = {
   roles: {
     principalInvestigator?: string
     leadResearcher?: string
+    visitingResearcher?: string
     researchers?: string[]
   }
 }
