@@ -1236,7 +1236,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center justify-center">
                     <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{projectStats.total}</span>
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
                       <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
                     </div>
@@ -1250,9 +1250,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{projectStats.government}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Landmark className="size-14 md:size-16 text-gray-400" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Government</span>
                       </div>
                     </div>
                   </div>
@@ -1260,9 +1260,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{projectStats.industry}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Factory className="size-14 md:size-16 text-gray-400" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Industry</span>
                       </div>
                     </div>
                   </div>
@@ -1270,9 +1270,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{projectStats.institution}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <School className="size-14 md:size-16 text-gray-400" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Institution</span>
                       </div>
                     </div>
                   </div>
@@ -1280,9 +1280,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{projectStats.academic}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <FlaskConical className="size-14 md:size-16 text-gray-400" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Research</span>
                       </div>
                     </div>
                   </div>
@@ -1295,9 +1295,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-900/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{projectStats.pi}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Crown className="size-14 md:size-16 text-gray-900" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Principal Investigator</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Principal Investigator</span>
                       </div>
                     </div>
                   </div>
@@ -1305,9 +1305,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-600/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600 transition-all duration-300">{projectStats.lead}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <ShieldCheck className="size-14 md:size-16 text-gray-600" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Lead Researcher</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Lead Researcher</span>
                       </div>
                     </div>
                   </div>
@@ -1315,9 +1315,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-500/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{projectStats.visiting}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Compass className="size-14 md:size-16 text-gray-500" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Visiting Researcher</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Visiting Researcher</span>
                       </div>
                     </div>
                   </div>
@@ -1325,9 +1325,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center text-center">
                       <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400 transition-all duration-300">{projectStats.researcher}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Microscope className="size-14 md:size-16 text-gray-400" />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Researcher</span>
                       </div>
                     </div>
                   </div>
@@ -1367,9 +1367,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="flex flex-col items-center justify-center">
                                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalItems}</span>
-                                <div className="flex items-center gap-6">
+                                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                                   <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                  <span className="text-[10px] md:text-sm font-medium text-gray-600">Total</span>
                                 </div>
                               </div>
                             </div>
@@ -1380,9 +1380,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{totalHonors}</span>
-                                  <div className="flex items-center gap-6">
+                                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                                     <Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Honors</span>
+                                    <span className="text-[10px] md:text-sm font-medium text-gray-600">Honors</span>
                                   </div>
                                 </div>
                               </div>
@@ -1390,9 +1390,9 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{totalAwards}</span>
-                                  <div className="flex items-center gap-6">
+                                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                                     <Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
-                                    <span className="text-xs md:text-sm font-medium text-gray-600">Awards</span>
+                                    <span className="text-[10px] md:text-sm font-medium text-gray-600">Awards</span>
                                   </div>
                                 </div>
                               </div>

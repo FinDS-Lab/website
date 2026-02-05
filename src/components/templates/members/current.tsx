@@ -337,9 +337,9 @@ export const MembersCurrentTemplate = () => {
             <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex flex-col items-center justify-center">
               <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                 <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                <span className="text-[10px] md:text-sm font-medium text-gray-600">Total</span>
               </div>
             </div>
           </div>
@@ -360,7 +360,7 @@ export const MembersCurrentTemplate = () => {
                   <span className="text-xl md:text-3xl font-bold mb-4 md:mb-6 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                   <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                     <stat.icon className="hidden md:block size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-[9px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
+                    <span className="text-[10px] md:text-sm font-medium text-gray-600 text-center md:text-left leading-tight">{stat.label}</span>
                   </div>
                 </div>
               </div>

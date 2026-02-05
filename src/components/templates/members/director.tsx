@@ -434,9 +434,10 @@ export const MembersDirectorTemplate = () => {
 
   // Academic Service Statistics
   const serviceStats = useMemo(() => {
-    if (!activitiesData) return { editorial: 0, membership: 4, committee: 0, chair: 0, journalReviewer: 0, conferenceReviewer: 0 }
+    if (!activitiesData) return { total: 4, editorial: 0, membership: 4, committee: 0, chair: 0, journalReviewer: 0, conferenceReviewer: 0 }
     const acts = activitiesData.activities
     return {
+      total: 0 + 4 + acts.filter(a => a.category === 'committee').length + acts.filter(a => a.category === 'chair').length + acts.filter(a => a.category === 'journal').length + acts.filter(a => a.category === 'conference').length,
       editorial: 0, // Coming soon
       membership: 4, // Hardcoded (lifetime memberships)
       committee: acts.filter(a => a.category === 'committee').length,
@@ -675,7 +676,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
-                    <div className="flex items-center gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
@@ -842,7 +843,7 @@ export const MembersDirectorTemplate = () => {
                         </div>
                         <h4 className="text-sm md:text-base font-bold text-gray-900">{edu.degree.includes("(Ph.D.") ? <>{edu.degree.split(" (")[0]}<br className="md:hidden" /><span className="text-sm md:text-base text-gray-900 font-bold"> ({edu.degree.split(" (")[1]}</span></> : edu.degree}</h4>
                         <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{edu.school}</p>
-                        <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{edu.field}</p>
+                        <p className="text-[10px] md:text-sm font-medium text-gray-600 break-words">{edu.field}</p>
                         <p className="text-xs md:text-sm text-gray-500 break-words">{edu.college}</p>
                       </div>
                     </div>
@@ -895,11 +896,11 @@ export const MembersDirectorTemplate = () => {
                         {emp.organization && <p className="text-xs md:text-sm text-gray-500 font-bold break-words">{emp.organization}</p>}
                         {emp.department && emp.department.includes(',') ? (
                           <>
-                            <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
+                            <p className="text-[10px] md:text-sm font-medium text-gray-600 break-words">{emp.department.split(',')[0].trim()}</p>
                             <p className="text-xs md:text-sm text-gray-500 break-words">{emp.department.split(',').slice(1).join(',').trim()}</p>
                           </>
                         ) : emp.department && (
-                          <p className="text-xs md:text-sm font-medium text-gray-600 break-words">{emp.department}</p>
+                          <p className="text-[10px] md:text-sm font-medium text-gray-600 break-words">{emp.department}</p>
                         )}
                       </div>
                     </div>
@@ -1071,9 +1072,9 @@ export const MembersDirectorTemplate = () => {
                     <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="flex flex-col items-center justify-center">
                       <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{projectStats.total}</span>
-                      <div className="flex items-center gap-6">
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                         <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                        <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Total</span>
                       </div>
                     </div>
                   </div>
@@ -1083,28 +1084,28 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{projectStats.government}</span>
-                        <div className="flex items-center gap-6"><Landmark className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Government</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Landmark className="size-14 md:size-16 text-gray-400" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Government</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{projectStats.industry}</span>
-                        <div className="flex items-center gap-6"><Factory className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Industry</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Factory className="size-14 md:size-16 text-gray-400" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Industry</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{projectStats.institution}</span>
-                        <div className="flex items-center gap-6"><School className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Institution</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><School className="size-14 md:size-16 text-gray-400" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Institution</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{projectStats.academic}</span>
-                        <div className="flex items-center gap-6"><FlaskConical className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Research</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><FlaskConical className="size-14 md:size-16 text-gray-400" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Research</span></div>
                       </div>
                     </div>
                   </div>
@@ -1114,28 +1115,28 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-900/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{projectStats.pi}</span>
-                        <div className="flex items-center gap-6"><Crown className="size-14 md:size-16 text-gray-900" /><span className="text-xs md:text-sm font-medium text-gray-600">PI</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Crown className="size-14 md:size-16 text-gray-900" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Principal Investigator</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-600/30 hover:shadow-lg transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-600/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-600">{projectStats.lead}</span>
-                        <div className="flex items-center gap-6"><ShieldCheck className="size-14 md:size-16 text-gray-600" /><span className="text-xs md:text-sm font-medium text-gray-600">Lead</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><ShieldCheck className="size-14 md:size-16 text-gray-600" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Lead Researcher</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-500/30 hover:shadow-lg transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-500/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500">{projectStats.visiting}</span>
-                        <div className="flex items-center gap-6"><Compass className="size-14 md:size-16 text-gray-500" /><span className="text-xs md:text-sm font-medium text-gray-600">Visiting</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Compass className="size-14 md:size-16 text-gray-500" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Visiting Researcher</span></div>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/30 hover:shadow-lg transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-400">{projectStats.researcher}</span>
-                        <div className="flex items-center gap-6"><Microscope className="size-14 md:size-16 text-gray-400" /><span className="text-xs md:text-sm font-medium text-gray-600">Researcher</span></div>
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Microscope className="size-14 md:size-16 text-gray-400" /><span className="text-[10px] md:text-sm font-medium text-gray-600">Researcher</span></div>
                       </div>
                     </div>
                   </div>
@@ -1155,15 +1156,26 @@ export const MembersDirectorTemplate = () => {
               </button>
               {expandedSections.academicServiceOverview && (
                 <div className="p-20 md:p-24 border-t border-gray-100">
+                  {/* Total */}
+                  <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300 mb-8 md:mb-12">
+                    <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="flex flex-col items-center justify-center">
+                      <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{serviceStats.total}</span>
+                      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                        <BookOpen className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                        <span className="text-[10px] md:text-sm font-medium text-gray-600">Total</span>
+                      </div>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
                     {/* Editorial Board Memberships */}
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{serviceStats.editorial}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <Newspaper className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Editorial Board</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Editorial Board</span>
                         </div>
                       </div>
                     </div>
@@ -1172,9 +1184,9 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{serviceStats.membership}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <BadgeCheck className="size-14 md:size-16" style={{color: '#E8D688', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Memberships</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Memberships</span>
                         </div>
                       </div>
                     </div>
@@ -1183,9 +1195,9 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFEB99] to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#C4A52D'}}>{serviceStats.committee}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <ClipboardList className="size-14 md:size-16" style={{color: '#C4A52D', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Program Committee</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Program Committee</span>
                         </div>
                       </div>
                     </div>
@@ -1194,9 +1206,9 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{serviceStats.chair}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <Mic className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Session Chair</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Session Chair</span>
                         </div>
                       </div>
                     </div>
@@ -1205,9 +1217,9 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#C41E3A]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#C41E3A'}}>{serviceStats.journalReviewer}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <FileSearch className="size-14 md:size-16" style={{color: '#C41E3A', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Journal Reviewer</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Journal Reviewer</span>
                         </div>
                       </div>
                     </div>
@@ -1216,9 +1228,9 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{serviceStats.conferenceReviewer}</span>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                           <Globe className="size-14 md:size-16" style={{color: '#E8889C', opacity: 0.7}} />
-                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Conference Reviewer</span>
+                          <span className="text-[10px] md:text-sm font-medium text-gray-600">Conference Reviewer</span>
                         </div>
                       </div>
                     </div>
@@ -1253,9 +1265,9 @@ export const MembersDirectorTemplate = () => {
                               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                               <div className="flex flex-col items-center justify-center">
                                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalItems}</span>
-                                <div className="flex items-center gap-6">
+                                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                                   <Award className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
+                                  <span className="text-[10px] md:text-sm font-medium text-gray-600">Total</span>
                                 </div>
                               </div>
                             </div>
@@ -1264,14 +1276,14 @@ export const MembersDirectorTemplate = () => {
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{totalHonors}</span>
-                                  <div className="flex items-center gap-6"><Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} /><span className="text-xs md:text-sm font-medium text-gray-600">Honors</span></div>
+                                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Medal className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} /><span className="text-[10px] md:text-sm font-medium text-gray-600">Honors</span></div>
                                 </div>
                               </div>
                               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
                                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                                 <div className="flex flex-col items-center text-center">
                                   <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#AC0E0E'}}>{totalAwards}</span>
-                                  <div className="flex items-center gap-6"><Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} /><span className="text-xs md:text-sm font-medium text-gray-600">Awards</span></div>
+                                  <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6"><Trophy className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} /><span className="text-[10px] md:text-sm font-medium text-gray-600">Awards</span></div>
                                 </div>
                               </div>
                             </div>
