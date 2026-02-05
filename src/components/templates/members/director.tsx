@@ -1039,7 +1039,7 @@ export const MembersDirectorTemplate = () => {
                             const schoolLogo = getSchoolLogo(course.school)
                             
                             return (
-                              <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
+                              <div key={index} className="bg-white border border-gray-100 rounded-lg md:rounded-xl p-12 md:p-16 hover:shadow-lg hover:shadow-gray-200/50 transition-all duration-300">
                                 <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
                                   <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0 overflow-hidden">
                                     {schoolLogo ? (
