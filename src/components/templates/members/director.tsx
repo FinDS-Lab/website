@@ -738,7 +738,7 @@ export const MembersDirectorTemplate = () => {
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
                           <span className="size-5 rounded-full shrink-0 mt-[6px] bg-primary/40"/>
-                          <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
+                          <span className="text-[11px] md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>
                         </li>
@@ -1041,7 +1041,7 @@ export const MembersDirectorTemplate = () => {
                             return (
                               <div key={index} className="bg-white border border-gray-100 rounded-xl p-16 md:p-20 hover:shadow-md hover:border-[#D6B14D]/30 transition-all">
                                 <div className="flex flex-col md:flex-row items-start gap-12 md:gap-16">
-                                  <div className="size-48 md:size-44 rounded-lg flex items-center justify-center shrink-0 border-2 border-[#D6B14D]/30 bg-gray-50 overflow-hidden p-6">
+                                  <div className="size-48 md:size-44 bg-gray-50 rounded-lg p-6 flex items-center justify-center shrink-0 overflow-hidden">
                                     {schoolLogo ? (
                                       <img loading="lazy" decoding="async" src={schoolLogo} alt={course.school} className="w-full h-full object-contain" />
                                     ) : (

@@ -18,7 +18,7 @@ const researchAreas = [
     image: fdsImg,
     items: [
       {
-        en: 'Portfolio Optimization and Algorithmic Trading Strategies',
+        en: 'Asset Allocation Strategies',
         ko: '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
       },
       {
@@ -60,7 +60,7 @@ const researchAreas = [
     image: dimImg,
     items: [
       {
-        en: 'Design and Optimization of Trustworthy Decision Systems',
+        en: 'Trustworthy, Effective Decision Systems Design',
         ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
       },
       {
@@ -273,7 +273,7 @@ export const AboutIntroductionTemplate = () => {
                         저희 FINDS Lab은 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>데이터 사이언스</span>와 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#D6B14D'}}>발견(finds)</span>을 이끌어내고 <span className="font-semibold text-gray-300">경영 환경과 산업 현장을 다양한 측면에서 개선하는 데 기여하는 것</span>을 목표로 합니다.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        이러한 목표 하에서 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>지식과 정보의 비대칭</span>으로 인해 발생하는 사회적 비효율을 감소시키고, 데이터를 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하여 더 나은 내일을 위한 <span className="font-semibold text-gray-300">경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.
+                        이러한 목표 하에서 <span className="font-bold text-white">지식과 정보의 비대칭</span>으로 인해 발생하는 사회적 비효율을 감소시키고, 데이터를 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하여 더 나은 내일을 위한 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.
                       </p>
                     </>
                   ) : (
@@ -285,7 +285,7 @@ export const AboutIntroductionTemplate = () => {
                         Our lab combines <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Data Science</span> and <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#D6B14D'}}>finds</span> in complex data and aims to <span className="font-semibold text-gray-300">contribute to improving business and industry environments from multiple perspectives</span>.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        Under this goal, we aim to reduce social inefficiencies caused by <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>information asymmetry</span>, and turn data into <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>clear, strategically valuable insights</span> to <span className="font-semibold text-gray-300">enhance business and industry efficiency</span> for a better tomorrow.
+                        Under this goal, we aim to reduce social inefficiencies caused by <span className="font-bold text-white">information asymmetry</span>, and turn data into <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>clear, strategically valuable insights</span> to <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>enhance business and industry efficiency</span> for a better tomorrow.
                       </p>
                     </>
                   )}
@@ -393,7 +393,7 @@ export const AboutIntroductionTemplate = () => {
                                 <span className="absolute left-0 top-2 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(214, 177, 77, 0.2)' }}>
                                   <span className="w-2 h-2 rounded-full" style={{ background: '#D6B14D' }} />
                                 </span>
-                                <span className="block text-sm md:text-base font-semibold text-gray-300 leading-snug">
+                                <span className="block text-xs md:text-base font-semibold text-gray-300 leading-snug">
                                   {researchLang === 'ko' ? item.ko : item.en}
                                 </span>
                               </li>

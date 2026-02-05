@@ -963,6 +963,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
     collaborationNetwork: true,
     researcherIds: true,
     publicationStats: true,
+    projectStats: true,
     academicService: true,
     editorialBoard: true,
     academicMemberships: true,
@@ -1892,10 +1893,16 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
 
             {/* Project Statistics */}
             {projects.length > 0 && (
-              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden p-20 md:p-24">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-16 md:mb-20">
-                  Project Statistics
-                </h3>
+              <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+                <button
+                  onClick={() => toggleSection('projectStats')}
+                  className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+                >
+                  <h3 className="text-lg md:text-xl font-bold text-gray-900">Project Statistics</h3>
+                  <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.projectStats ? 'rotate-180' : ''}`}/>
+                </button>
+                {expandedSections.projectStats && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
                 
                 {/* Total - Full Width */}
                 <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300 mb-8 md:mb-12">
@@ -1998,6 +2005,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     </div>
                   </div>
                 </div>
+                )}
               </section>
             )}
 

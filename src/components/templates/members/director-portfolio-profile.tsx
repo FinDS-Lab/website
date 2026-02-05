@@ -205,6 +205,7 @@ const employment = [
   {position: 'Lecturer', positionKo: '강사', department: 'Digital Business Major, Division of Convergence Business, College of Global Business', departmentKo: '글로벌비즈니스대학 융합경영학부 디지털경영전공', organization: 'Korea University Sejong Campus', organizationKo: '고려대학교 세종캠퍼스', period: '2025-03 – 2026-02', logo: logoKorea, isCurrent: false},
   {position: 'Lecturer', positionKo: '강사', department: 'Department of Industrial and Management Systems Engineering', departmentKo: '산업경영공학과', organization: 'Kyung Hee University', organizationKo: '경희대학교', period: '2024-03 – 2024-08', logo: logoKyunghee, isCurrent: false},
   {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant Brain', organizationKo: '월드퀀트 브레인', period: '2022-06 – Present', logo: logoWorldquant, isCurrent: true},
+  {position: 'Research Consultant', positionKo: '연구 컨설턴트', department: '', departmentKo: '', organization: 'WorldQuant WebSim', organizationKo: '월드퀀트 웹심', period: '2018-07 – 2019-12', logo: logoWorldquant, isCurrent: false},
   {position: 'Doctoral Technical Research Personnel', positionKo: '박사과정 전문연구요원', department: 'Department of Industrial and Systems Engineering', departmentKo: '산업및시스템공학과', organization: 'Korea Advanced Institute of Science and Technology (KAIST)', organizationKo: '한국과학기술원', period: '2022-03 – 2025-02', logo: logoKaist, isCurrent: false},
   {position: 'Intern', positionKo: '인턴', department: 'Data & Analytics Team', departmentKo: '데이터 애널리틱스 팀', organization: 'EY Consulting', organizationKo: 'EY컨설팅', period: '2020-03 – 2020-05', logo: logoEy, isCurrent: false},
   {position: 'Director', positionKo: '대표', department: '', departmentKo: '', organization: 'JL Creatives & Contents (JL C&C)', organizationKo: 'JL크리에이티브&콘텐츠', period: '2014-06 – Present', logo: logoJl, isCurrent: true},
@@ -805,7 +806,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                       {area.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-10">
                           <span className="size-5 rounded-full shrink-0 mt-[6px] bg-primary/40"/>
-                          <span className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed">
+                          <span className="text-[11px] md:text-sm text-gray-700 font-medium leading-relaxed">
                             {item}
                           </span>
                         </li>

@@ -32,7 +32,7 @@ export const researchInterests = [
     category: 'Financial Data Science',
     categoryKo: '금융 데이터 사이언스',
     items: [
-      'Portfolio Optimization and Algorithmic Trading Strategies',
+      'Asset Allocation Strategies',
       'Financial Time-Series Modeling and Forecasting',
       'Personalized Finance and Behavioral Decision Modeling'
     ],
@@ -60,7 +60,7 @@ export const researchInterests = [
     category: 'Data-Informed Decision Making',
     categoryKo: '데이터 기반 의사결정',
     items: [
-      'Design and Optimization of Trustworthy Decision Systems',
+      'Trustworthy, Effective Decision Systems Design',
       'Risk-Aware Decision Support Frameworks',
       'Multi-Perspective Insight Extraction for Decision Making'
     ],

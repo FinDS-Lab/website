@@ -43,7 +43,7 @@ const researchAreas = [
     image: fdsImg,
     items: [
       {
-        en: 'Portfolio Optimization and Algorithmic Trading Strategies',
+        en: 'Asset Allocation Strategies',
         ko: '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
       },
       {
@@ -85,7 +85,7 @@ const researchAreas = [
     image: dimImg,
     items: [
       {
-        en: 'Design and Optimization of Trustworthy Decision Systems',
+        en: 'Trustworthy, Effective Decision Systems Design',
         ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
       },
       {
