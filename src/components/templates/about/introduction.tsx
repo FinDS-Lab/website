@@ -1,6 +1,6 @@
 import { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Quote, Home } from 'lucide-react'
+import { Quote, Home, Target, Atom } from 'lucide-react'
 
 // Image Imports
 import banner1 from '@/assets/images/banner/1.webp'
@@ -213,7 +213,7 @@ export const AboutIntroductionTemplate = () => {
               style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
             >
               <div className="flex items-center gap-10">
-                <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🎯</span>
+                <Target className="size-16 md:size-18" style={{color: '#D6B14D'}} />
                 <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
                   {goalLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>목표</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Goal</span></>}
                 </span>
@@ -327,7 +327,7 @@ export const AboutIntroductionTemplate = () => {
               style={{ borderColor: 'rgba(214, 177, 77, 0.2)', background: 'rgba(17, 24, 39, 0.7)' }}
             >
               <div className="flex items-center gap-10">
-                <span className="text-base md:text-lg" style={{color: '#D6B14D'}}>🔬</span>
+                <Atom className="size-16 md:size-18" style={{color: '#D6B14D'}} />
                 <span className="text-sm md:text-base font-bold text-gray-300 tracking-tight">
                   {researchLang === 'ko' ? <>FINDS Lab의 <span style={{color: '#D6B14D'}}>연구 분야</span></> : <>FINDS Lab's <span style={{color: '#D6B14D'}}>Research Areas</span></>}
                 </span>

@@ -33,10 +33,15 @@ import {
   ShieldCheck,
   Compass,
   Microscope,
-  Heart,
+  Newspaper,
+  BadgeCheck,
+  ClipboardList,
+  Mic,
+  FileSearch,
+  Globe,
 } from 'lucide-react'
 import {useStoreModal} from '@/store/modal'
-import type {HonorsData} from '@/types/data'
+import type {HonorsData, AcademicActivitiesData} from '@/types/data'
 import {citationStats, affiliations, researchInterests, scholarConfig} from '@/data/director-common'
 
 // Scholar data type
@@ -192,6 +197,7 @@ export const MembersDirectorTemplate = () => {
   const [teachingSearchTerm, setTeachingSearchTerm] = useState('')
   const [expandedProjectYears, setExpandedProjectYears] = useState<string[]>([])
   const [honorsData, setHonorsData] = useState<HonorsData | null>(null)
+  const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set(['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013']))
   const [expandedEduAwards, setExpandedEduAwards] = useState<Set<number>>(new Set([0, 1, 2])) // For education awards/honors - all expanded
   const [expandedSections, setExpandedSections] = useState({
@@ -201,11 +207,10 @@ export const MembersDirectorTemplate = () => {
     employment: true,
     publicationOverview: true,
     projectOverview: true,
+    academicServiceOverview: true,
     honorsOverview: true,
-    mentoringOverview: true,
     teaching: true
   })
-  const [menteeCount, setMenteeCount] = useState(0)
   
   // Sticky profile card refs and state
   const profileCardRef = useRef<HTMLDivElement>(null)
@@ -390,12 +395,9 @@ export const MembersDirectorTemplate = () => {
       })
       .catch(console.error)
 
-    // Fetch mentees count
-    fetch(`${baseUrl}data/mentees.json`)
+    fetch(`${baseUrl}data/academicactivities.json`)
       .then(res => res.json())
-      .then((data: Record<string, any>) => {
-        setMenteeCount(Object.keys(data).length)
-      })
+      .then((data: AcademicActivitiesData) => setActivitiesData(data))
       .catch(console.error)
   }, [])
 
@@ -429,6 +431,20 @@ export const MembersDirectorTemplate = () => {
       researcher: researcherProjects.length,
     }
   }, [projects])
+
+  // Academic Service Statistics
+  const serviceStats = useMemo(() => {
+    if (!activitiesData) return { editorial: 0, membership: 4, committee: 0, chair: 0, journalReviewer: 0, conferenceReviewer: 0 }
+    const acts = activitiesData.activities
+    return {
+      editorial: 0, // Coming soon
+      membership: 4, // Hardcoded (lifetime memberships)
+      committee: acts.filter(a => a.category === 'committee').length,
+      chair: acts.filter(a => a.category === 'chair').length,
+      journalReviewer: acts.filter(a => a.category === 'journal').length,
+      conferenceReviewer: acts.filter(a => a.category === 'conference').length,
+    }
+  }, [activitiesData])
 
   // Group projects by year
   const projectsByYear = useMemo(() => {
@@ -1128,6 +1144,89 @@ export const MembersDirectorTemplate = () => {
               </section>
             )}
 
+            {/* Academic Service Overview */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('academicServiceOverview')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Academic Service Overview</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicServiceOverview ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.academicServiceOverview && (
+                <div className="p-20 md:p-24 border-t border-gray-100">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+                    {/* Editorial Board Memberships */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{serviceStats.editorial}</span>
+                        <div className="flex items-center gap-6">
+                          <Newspaper className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Editorial Board</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Academic Memberships */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{serviceStats.membership}</span>
+                        <div className="flex items-center gap-6">
+                          <BadgeCheck className="size-14 md:size-16" style={{color: '#E8D688', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Memberships</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Program Committee */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#FFEB99]/70 hover:shadow-lg hover:shadow-[#FFEB99]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFEB99] to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#C4A52D'}}>{serviceStats.committee}</span>
+                        <div className="flex items-center gap-6">
+                          <ClipboardList className="size-14 md:size-16" style={{color: '#C4A52D', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Program Committee</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Session Chair */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{serviceStats.chair}</span>
+                        <div className="flex items-center gap-6">
+                          <Mic className="size-14 md:size-16" style={{color: '#AC0E0E', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Session Chair</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Journal Reviewer */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#C41E3A]/30 hover:shadow-lg hover:shadow-[#C41E3A]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#C41E3A]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#C41E3A'}}>{serviceStats.journalReviewer}</span>
+                        <div className="flex items-center gap-6">
+                          <FileSearch className="size-14 md:size-16" style={{color: '#C41E3A', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Journal Reviewer</span>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Conference Reviewer */}
+                    <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                      <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex flex-col items-center text-center">
+                        <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{serviceStats.conferenceReviewer}</span>
+                        <div className="flex items-center gap-6">
+                          <Globe className="size-14 md:size-16" style={{color: '#E8889C', opacity: 0.7}} />
+                          <span className="text-[10px] md:text-xs font-medium text-gray-600">Conference Reviewer</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
+
             {/* Honors & Awards Overview */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1181,35 +1280,6 @@ export const MembersDirectorTemplate = () => {
                       })()}
                     </>
                   )}
-                </div>
-              )}
-            </section>
-
-            {/* Mentoring & Tutoring Program Overview */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('mentoringOverview')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Mentoring & Tutoring Program Overview</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.mentoringOverview ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.mentoringOverview && (
-                <div className="p-20 md:p-24 border-t border-gray-100">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-                    <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold text-primary">{menteeCount}</p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Total Mentees & Tutees</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-2xl md:text-3xl font-bold" style={{color: '#D6A076'}}>13</p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Years Active</p>
-                    </div>
-                    <div className="text-center">
-                      <Heart className="size-20 mx-auto mb-4" style={{color: '#E8889C'}} />
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400">Since 2013</p>
-                    </div>
-                  </div>
                 </div>
               )}
             </section>

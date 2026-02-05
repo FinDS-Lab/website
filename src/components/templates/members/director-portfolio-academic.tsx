@@ -1677,7 +1677,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Editorial Board Memberships</p>
-                        <span className="px-8 py-2 bg-[#D6B14D] text-white text-[10px] font-bold rounded-full">0</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1696,7 +1695,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Academic Memberships</p>
-                        <span className="px-8 py-2 bg-[#E8D688] text-white text-[10px] font-bold rounded-full">4</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.academicMemberships ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1754,7 +1752,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Program Committee</p>
-                        <span className="px-8 py-2 bg-[#FFEB99] text-gray-700 text-[10px] font-bold rounded-full">{committees.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.programCommittee ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1791,7 +1788,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Session Chair</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#AC0E0E'}}>{sessionChairs.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.sessionChair ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1828,7 +1824,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Journal Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#C41E3A'}}>{journals.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.journalReviewer ? 'rotate-180' : ''}`}/>
                     </button>
@@ -1862,7 +1857,6 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                     >
                       <div className="flex items-center gap-8">
                         <p className="text-sm md:text-base font-bold text-gray-900">Conference Reviewer</p>
-                        <span className="px-8 py-2 text-white text-[10px] font-bold rounded-full" style={{backgroundColor: '#E8889C'}}>{conferenceReviewers.length}</span>
                       </div>
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.conferenceReviewer ? 'rotate-180' : ''}`}/>
                     </button>
