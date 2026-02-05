@@ -1,9 +1,7 @@
 [
   {
     "role": "Lecturer",
-    "periods": [
-      "2026 Spring"
-    ],
+    "periods": ["2026 Spring"],
     "school": "Gachon University",
     "courses": [
       {
@@ -14,22 +12,18 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2026 Spring"
-    ],
+    "periods": ["2026 Spring"],
     "school": "Gachon University",
     "courses": [
       {
-        "en": "Business Intelligence & Analytics (15122001)",
+        "en": "Business Intelligence and Analytics (15122001)",
         "ko": "비즈니스 인텔리전스와 분석 (15122001)"
       }
     ]
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2025 Fall"
-    ],
+    "periods": ["2025 Fall"],
     "school": "Dongduk Women's University",
     "courses": [
       {
@@ -40,10 +34,7 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2025 Fall-1",
-      "2025 Fall-2"
-    ],
+    "periods": ["2025 Fall-1", "2025 Fall-2"],
     "school": "Dongduk Women's University",
     "courses": [
       {
@@ -54,9 +45,7 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2025 Fall"
-    ],
+    "periods": ["2025 Fall"],
     "school": "Kangnam University",
     "courses": [
       {
@@ -67,9 +56,7 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2025 Spring"
-    ],
+    "periods": ["2025 Spring"],
     "school": "Korea University Sejong Campus",
     "courses": [
       {
@@ -80,9 +67,7 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2025 Spring"
-    ],
+    "periods": ["2025 Spring"],
     "school": "Kangnam University",
     "courses": [
       {
@@ -92,10 +77,19 @@
     ]
   },
   {
+    "role": "Teaching Assistant",
+    "periods": ["2024 Fall"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Special Topics in Data Science I: Advanced Data Science for Finance (DS801)",
+        "ko": "데이터사이언스의 특수논제 I <고급금융데이터사이언스> (DS801)"
+      }
+    ]
+  },
+  {
     "role": "Lecturer",
-    "periods": [
-      "2024 Spring"
-    ],
+    "periods": ["2024 Spring"],
     "school": "Kyung Hee University",
     "courses": [
       {
@@ -106,14 +100,78 @@
   },
   {
     "role": "Lecturer",
-    "periods": [
-      "2024 Spring"
-    ],
+    "periods": ["2024 Spring"],
     "school": "Kyung Hee University",
     "courses": [
       {
-        "en": "Engineering Economy (IE201)",
+        "en": "Engineering Economics (IE201)",
         "ko": "경제성공학 (IE201)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2023 Fall"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Special Topics in Data Science I: Applications of Financial Data Science (DS801)",
+        "ko": "데이터사이언스의 특수논제 I <금융데이터사이언스응용> (DS801)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2024 Spring", "2023 Spring", "2022 Spring", "2021 Spring"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Financial Artificial Intelligence (IE471)",
+        "ko": "금융인공지능 (IE471)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2022 Fall"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Special Topics in Knowledge Service Engineering I: Applications of Financial Data Science (KSE801)",
+        "ko": "지식서비스공학의 특수논제 I <금융데이터사이언스응용> (KSE801)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2022 Spring"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Special Topics in Industrial Systems Engineering I: You&IE (IE482)",
+        "ko": "산업공학특강 I <You&IE> (IE482)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2021 Fall", "2020 Fall"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Convex Optimization (IE539)",
+        "ko": "컨벡스 최적화 (IE539)"
+      }
+    ]
+  },
+  {
+    "role": "Teaching Assistant",
+    "periods": ["2021 Spring", "2019 Spring"],
+    "school": "한국과학기술원 (KAIST)",
+    "courses": [
+      {
+        "en": "Decision Analysis and Risk Management (IE432)",
+        "ko": "의사결정분석 및 위험관리 (IE432)"
       }
     ]
   }
