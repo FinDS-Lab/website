@@ -547,35 +547,6 @@ export const MembersDirectorTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation - Sticky */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-4 md:gap-8 py-8 md:py-16 lg:w-340 xl:w-380">
-            <Link
-              to="/members/director"
-              className="flex-1 flex items-center justify-center gap-4 md:gap-6 px-10 md:px-16 py-8 md:py-12 rounded-full text-xs md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-            >
-              <User size={14} className="md:w-16 md:h-16" />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/academic"
-              className="flex-1 flex items-center justify-center gap-4 md:gap-6 px-10 md:px-16 py-8 md:py-12 rounded-full text-xs md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <BookOpen size={14} className="md:w-16 md:h-16" />
-              Academics
-            </Link>
-            <Link
-              to="/members/director/activities"
-              className="flex-1 flex items-center justify-center gap-4 md:gap-6 px-10 md:px-16 py-8 md:py-12 rounded-full text-xs md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <Activity size={14} className="md:w-16 md:h-16" />
-              Activities
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
