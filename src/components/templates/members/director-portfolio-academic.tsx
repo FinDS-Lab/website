@@ -1584,7 +1584,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               {expandedSections.publications && (
                 <div className="border-t border-gray-100 p-20 md:p-24">
                   <div className="text-center">
-                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-6 px-20 py-10 rounded-full border border-[#D6B14D]/30 text-sm font-semibold hover:bg-[#FFF9E6] hover:border-[#D6B14D]/60 transition-all duration-300" style={{color: '#9A7D1F'}}>
                       View All Publications <ChevronRight size={14}/>
                     </Link>
                   </div>
