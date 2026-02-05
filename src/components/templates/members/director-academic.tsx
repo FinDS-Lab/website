@@ -979,6 +979,7 @@ export const MembersDirectorAcademicTemplate = () => {
   const profileCardRef = useRef<HTMLDivElement>(null)
   const contentSectionRef = useRef<HTMLElement>(null)
   const [profileTop, setProfileTop] = useState(0)
+  const [mobileTabOpen, setMobileTabOpen] = useState(false)
   
   // Sticky profile card effect
   useEffect(() => {
@@ -990,7 +991,7 @@ export const MembersDirectorAcademicTemplate = () => {
       const card = profileCardRef.current
       const sectionRect = section.getBoundingClientRect()
       const cardHeight = card.offsetHeight
-      const navHeight = 80
+      const navHeight = 16
       const bottomPadding = 32
       
       // 화면 중앙 위치 계산 (nav bar 아래 영역의 중앙)
@@ -1363,35 +1364,6 @@ export const MembersDirectorAcademicTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation - Sticky */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
-            <Link
-              to="/members/director"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <User size={16} />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/academic"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-            >
-              <BookOpen size={16} />
-              Academics
-            </Link>
-            <Link
-              to="/members/director/activities"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <Activity size={16} />
-              Activities
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
@@ -1399,9 +1371,34 @@ export const MembersDirectorAcademicTemplate = () => {
           <aside className="lg:w-380 shrink-0">
             <div 
               ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm transition-transform duration-100"
+              className="transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
+              {/* Tab Navigation - Desktop: above profile card */}
+              <div className="hidden lg:flex items-center gap-6 mb-12">
+                <Link
+                  to="/members/director"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                >
+                  <User size={14} />
+                  Profile
+                </Link>
+                <Link
+                  to="/members/director/academic"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-primary text-white shadow-md shadow-primary/25"
+                >
+                  <BookOpen size={14} />
+                  Academics
+                </Link>
+                <Link
+                  to="/members/director/activities"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                >
+                  <Activity size={14} />
+                  Activities
+                </Link>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-20 md:p-24 shadow-sm">
               <div className="flex flex-col items-center text-center mb-24 md:mb-32">
                 <div className="w-140 h-180 md:w-180 md:h-232 bg-gray-100 rounded-2xl overflow-hidden mb-16 md:mb-24 shadow-inner border border-gray-50">
                   <img loading="lazy" decoding="async" src={directorImg} alt="Prof. Insu Choi" className="w-full h-full object-cover"/>
@@ -1496,6 +1493,7 @@ export const MembersDirectorAcademicTemplate = () => {
                   Scholar <ExternalLink size={14}/>
                 </a>
               </div>
+            </div>
             </div>
           </aside>
 
@@ -2309,6 +2307,46 @@ export const MembersDirectorAcademicTemplate = () => {
           </main>
         </div>
       </section>
+
+      {/* Mobile Floating Tab Button */}
+      <div className="lg:hidden fixed bottom-24 right-16 z-50">
+        {mobileTabOpen && (
+          <div className="absolute bottom-56 right-0 flex flex-col gap-8 mb-8">
+            <Link
+              to="/members/director"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-gray-200 whitespace-nowrap bg-white text-gray-600 hover:bg-gray-50"
+            >
+              <User size={13} />
+              Profile
+            </Link>
+            <Link
+              to="/members/director/academic"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-primary/20 whitespace-nowrap bg-primary text-white"
+            >
+              <BookOpen size={13} />
+              Academics
+            </Link>
+            <Link
+              to="/members/director/activities"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-gray-200 whitespace-nowrap bg-white text-gray-600 hover:bg-gray-50"
+            >
+              <Activity size={13} />
+              Activities
+            </Link>
+          </div>
+        )}
+        <button
+          onClick={() => setMobileTabOpen(!mobileTabOpen)}
+          className="w-48 h-48 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 border-2"
+          style={{ 
+            backgroundColor: mobileTabOpen ? '#fff' : '#D6B14D',
+            borderColor: '#D6B14D',
+            color: mobileTabOpen ? '#D6B14D' : '#fff'
+          }}
+        >
+          {mobileTabOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+        </button>
+      </div>
     </div>
   )
 }

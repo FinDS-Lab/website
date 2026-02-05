@@ -239,6 +239,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
   const profileCardRef = useRef<HTMLDivElement>(null)
   const contentSectionRef = useRef<HTMLElement>(null)
   const [profileTop, setProfileTop] = useState(0)
+  const [mobileTabOpen, setMobileTabOpen] = useState(false)
   
   // Sticky profile card effect
   useEffect(() => {
@@ -250,7 +251,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
       const card = profileCardRef.current
       const sectionRect = section.getBoundingClientRect()
       const cardHeight = card.offsetHeight
-      const navHeight = 80 // Tab navigation sticky height
+      const navHeight = 16 // Small top padding (no sticky top bar)
       const topOffset = navHeight + 16 // Below nav + small padding
       const bottomPadding = 32
       
@@ -585,35 +586,6 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
         </div>
       </div>
 
-      {/* Tab Navigation - Sticky on Desktop only */}
-      <div className="lg:sticky lg:top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-        <div className="max-w-1480 mx-auto w-full px-16 md:px-20">
-          <div className="flex items-center gap-4 md:gap-8 py-12 md:py-16 lg:w-340 xl:w-380">
-            <Link
-              to="/members/director/portfolio/profile"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-primary text-white shadow-lg shadow-primary/30"
-            >
-              <User size={16} />
-              Profile
-            </Link>
-            <Link
-              to="/members/director/portfolio/academic"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <BookOpen size={16} />
-              Academics
-            </Link>
-            <Link
-              to="/members/director/portfolio/activities"
-              className="flex-1 flex items-center justify-center gap-6 px-12 md:px-16 py-10 md:py-12 rounded-full text-sm md:text-base font-semibold transition-all duration-300 bg-gray-100 text-gray-600 hover:bg-gray-200"
-            >
-              <Activity size={16} />
-              Activities
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* Content */}
       <section ref={contentSectionRef} className="max-w-1480 mx-auto w-full px-16 md:px-20 pb-60 md:pb-100 pt-24 md:pt-32">
         <div className="flex flex-col lg:flex-row gap-32 md:gap-60">
@@ -621,9 +593,34 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
           <aside className="lg:w-340 shrink-0">
             <div 
               ref={profileCardRef}
-              className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm transition-transform duration-100"
+              className="transition-transform duration-100"
               style={{ transform: `translateY(${profileTop}px)` }}
             >
+              {/* Tab Navigation - Desktop: above profile card */}
+              <div className="hidden lg:flex items-center gap-6 mb-12">
+                <Link
+                  to="/members/director/portfolio/profile"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-primary text-white shadow-md shadow-primary/25"
+                >
+                  <User size={14} />
+                  Profile
+                </Link>
+                <Link
+                  to="/members/director/portfolio/academic"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                >
+                  <BookOpen size={14} />
+                  Academics
+                </Link>
+                <Link
+                  to="/members/director/portfolio/activities"
+                  className="flex-1 flex items-center justify-center gap-5 py-10 rounded-full text-sm font-semibold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
+                >
+                  <Activity size={14} />
+                  Activities
+                </Link>
+              </div>
+              <div className="bg-white border border-gray-100 rounded-2xl md:rounded-3xl p-16 md:p-20 shadow-sm">
               <div className="flex flex-col items-center text-center mb-20 md:mb-24">
                 <div 
                   className="w-120 h-155 md:w-140 md:h-180 bg-gray-100 rounded-2xl overflow-hidden mb-12 md:mb-16 shadow-inner border border-gray-50 relative select-none"
@@ -723,6 +720,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
               >
                 <ChevronLeft size={12}/> Back to Overview
               </Link>
+            </div>
             </div>
           </aside>
 
@@ -1346,6 +1344,46 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
           </main>
         </div>
       </section>
+
+      {/* Mobile Floating Tab Button */}
+      <div className="lg:hidden fixed bottom-24 right-16 z-50">
+        {mobileTabOpen && (
+          <div className="absolute bottom-56 right-0 flex flex-col gap-8 mb-8 animate-in fade-in slide-in-from-bottom-2 duration-200">
+            <Link
+              to="/members/director/portfolio/profile"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-primary/20 whitespace-nowrap bg-primary text-white"
+            >
+              <User size={13} />
+              Profile
+            </Link>
+            <Link
+              to="/members/director/portfolio/academic"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-gray-200 whitespace-nowrap bg-white text-gray-600 hover:bg-gray-50"
+            >
+              <BookOpen size={13} />
+              Academics
+            </Link>
+            <Link
+              to="/members/director/portfolio/activities"
+              className="flex items-center gap-8 px-14 py-10 rounded-full text-xs font-bold shadow-lg border border-gray-200 whitespace-nowrap bg-white text-gray-600 hover:bg-gray-50"
+            >
+              <Activity size={13} />
+              Activities
+            </Link>
+          </div>
+        )}
+        <button
+          onClick={() => setMobileTabOpen(!mobileTabOpen)}
+          className="w-48 h-48 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 border-2"
+          style={{ 
+            backgroundColor: mobileTabOpen ? '#fff' : '#D6B14D',
+            borderColor: '#D6B14D',
+            color: mobileTabOpen ? '#D6B14D' : '#fff'
+          }}
+        >
+          {mobileTabOpen ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+        </button>
+      </div>
     </div>
   )
 }
