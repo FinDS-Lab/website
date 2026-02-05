@@ -24,6 +24,10 @@ import {
   GraduationCap,
   Calendar,
   BookOpen,
+  PenTool,
+  UserCheck,
+  Bookmark,
+  FileText,
   Search,
   Folder,
   Factory,
@@ -1243,12 +1247,12 @@ export const MembersDirectorTemplate = () => {
                 </button>
                 {expandedSections.teachingOverview && (
                   <div className="p-20 md:p-24 border-t border-gray-100">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Semesters</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Classes Taught</p>
                     <div className="grid grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12">
                       <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                         <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="flex flex-col items-center text-center">
-                          <Calendar className="size-16 md:size-20 mb-6" style={{color: '#D6B14D'}} />
+                          <PenTool className="size-16 md:size-20 mb-6" style={{color: '#D6B14D'}} />
                           <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerSemesters}</span>
                           <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
                         </div>
@@ -1256,7 +1260,7 @@ export const MembersDirectorTemplate = () => {
                       <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
                         <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="flex flex-col items-center text-center">
-                          <User className="size-16 md:size-20 mb-6" style={{color: '#E8889C'}} />
+                          <UserCheck className="size-16 md:size-20 mb-6" style={{color: '#E8889C'}} />
                           <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taSemesters}</span>
                           <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
                         </div>
@@ -1267,7 +1271,7 @@ export const MembersDirectorTemplate = () => {
                       <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                         <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="flex flex-col items-center text-center">
-                          <Briefcase className="size-16 md:size-20 mb-6" style={{color: '#D6B14D'}} />
+                          <Bookmark className="size-16 md:size-20 mb-6" style={{color: '#D6B14D'}} />
                           <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerCourses.length}</span>
                           <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
                         </div>
@@ -1275,7 +1279,7 @@ export const MembersDirectorTemplate = () => {
                       <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
                         <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="flex flex-col items-center text-center">
-                          <GraduationCap className="size-16 md:size-20 mb-6" style={{color: '#E8889C'}} />
+                          <FileText className="size-16 md:size-20 mb-6" style={{color: '#E8889C'}} />
                           <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taCourses.length}</span>
                           <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
                         </div>
