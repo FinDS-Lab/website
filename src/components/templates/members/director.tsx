@@ -1231,37 +1231,46 @@ export const MembersDirectorTemplate = () => {
                 </button>
                 {expandedSections.teachingOverview && (
                   <div className="p-20 md:p-24 border-t border-gray-100">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Classes Taught</p>
-                    <div className="grid grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12">
-                      <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                    <div className="flex flex-col gap-16 md:gap-24 transition-opacity duration-500">
+                      <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                         <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="flex flex-col items-center text-center">
-                          <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerSemesters}</span>
-                          <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
+                        <div className="flex flex-col items-center justify-center">
+                          <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{lecturerSemesters + taSemesters}</span>
+                          <span className="text-[10px] md:text-sm font-semibold text-gray-500">Total Classes Taught</span>
                         </div>
                       </div>
-                      <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
-                        <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="flex flex-col items-center text-center">
-                          <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taSemesters}</span>
-                          <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Classes Taught</p>
+                      <div className="grid grid-cols-2 gap-8 md:gap-12">
+                        <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                          <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex flex-col items-center text-center">
+                            <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerSemesters}</span>
+                            <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
+                          </div>
+                        </div>
+                        <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                          <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex flex-col items-center text-center">
+                            <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taSemesters}</span>
+                            <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4">Courses</p>
-                    <div className="grid grid-cols-2 gap-8 md:gap-12">
-                      <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
-                        <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="flex flex-col items-center text-center">
-                          <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerCourses.length}</span>
-                          <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Unique Subjects</p>
+                      <div className="grid grid-cols-2 gap-8 md:gap-12">
+                        <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
+                          <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex flex-col items-center text-center">
+                            <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#D6B14D'}}>{lecturerCourses.length}</span>
+                            <span className="text-[10px] md:text-xs font-medium text-gray-500">Lecturer</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
-                        <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="flex flex-col items-center text-center">
-                          <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taCourses.length}</span>
-                          <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
+                        <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
+                          <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div className="flex flex-col items-center text-center">
+                            <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8889C'}}>{taCourses.length}</span>
+                            <span className="text-[10px] md:text-xs font-medium text-gray-500">Teaching Assistant</span>
+                          </div>
                         </div>
                       </div>
                     </div>
