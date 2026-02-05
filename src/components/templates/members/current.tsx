@@ -219,9 +219,9 @@ export const MembersCurrentTemplate = () => {
     const undergradCount = members.filter((m) => m.degree === 'undergrad').length
 
     return {
-      phd: { label: 'Ph.D. Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
-      combined: { label: 'Ph.D.-M.S. Combined Program', count: combinedCount, icon: Sparkles, color: '#D6A076' },
-      ms: { label: 'M.S. Program', count: msCount, icon: BookOpen, color: '#C41E3A' },
+      phd: { label: 'Doctoral Program', count: phdCount, icon: GraduationCap, color: '#D6B14D' },
+      combined: { label: 'Integrated Master\'s–Doctoral Program', count: combinedCount, icon: Sparkles, color: '#D6A076' },
+      ms: { label: 'Master\'s Program', count: msCount, icon: BookOpen, color: '#C41E3A' },
       undergrad: { label: 'Undergraduate Research Program', count: undergradCount, icon: Lightbulb, color: '#FFBAC4' },
       total: { label: 'Total', count: members.length, icon: Users, color: '#9A7D1F' },
     }
@@ -353,7 +353,7 @@ export const MembersCurrentTemplate = () => {
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#f3f4f6'; e.currentTarget.style.boxShadow = 'none' }}
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
-                <div className="flex flex-col items-center h-full justify-center">
+                <div className="flex flex-col items-center h-full justify-start pt-8">
                   <stat.icon className="size-16 md:size-20 mb-6" style={{color: stat.color}} />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
                   <span className="text-[10px] md:text-xs font-medium text-gray-500 text-center leading-tight">{stat.label}</span>

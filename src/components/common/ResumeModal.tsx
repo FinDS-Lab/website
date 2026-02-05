@@ -46,7 +46,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Ph.D., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2021-03 – 2025-02</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2025-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12 pr-8">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" /><span>Best Doctoral Dissertation Award, Korean Operations Research and Management Science Society (KORMS)</span></li>
@@ -56,7 +56,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">M.S., Industrial and Systems Engineering, KAIST</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2018-02 – 2021-02</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2021-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Best Master Thesis Award, Korean Institute of Industrial Engineers (KIIE)</li>
@@ -66,7 +66,7 @@ const ResumeModal = () => (
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
             <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">B.E., Industrial and Management Systems Engineering, Kyung Hee University</p>
-            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2013-03 – 2018-02</span>
+            <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2018-02</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Valedictorian, College of Engineering (4.42 GPA on a 4.5 scale)</li>
