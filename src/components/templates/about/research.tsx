@@ -37,64 +37,64 @@ const useScrollAnimation = () => {
 const researchAreas = [
   {
     id: 'fds',
-    badge: '핀테크 혁신의 핵심 동력',
+    badge: '핀테크의 핵심 원동력',
     titleEn: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     image: fdsImg,
     items: [
       {
-        en: 'Asset Allocation Strategies',
-        ko: '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
+        en: 'Data-driven advanced asset allocation strategies',
+        ko: '데이터 과학 기반의 고도화된 자산 배분 전략 수립',
       },
       {
-        en: 'Financial Time-Series Modeling and Forecasting',
-        ko: '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
+        en: 'Financial market analysis via time-series modeling',
+        ko: '금융 시계열 모형을 활용한 시장 추정 및 분석 연구',
       },
       {
-        en: 'Personalized Finance and Behavioral Decision Modeling',
-        ko: '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정',
+        en: 'Personalized finance and behavioral decision models',
+        ko: '개인 맞춤형 자산 관리와 투자자 행동 기반 의사결정',
       },
     ],
   },
   {
     id: 'ba',
-    badge: '디지털 전환 시대의 경쟁력',
+    badge: '디지털 전환의 핵심 경쟁력',
     titleEn: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     image: baImg,
     items: [
       {
-        en: 'Cross-Industry Data Analytics and Integration',
-        ko: '다양한 산업 간 융합을 위한 데이터 분석',
+        en: 'Data-driven value through industrial convergence',
+        ko: '산업 간 융합을 촉진하는 데이터 기반 가치 창출',
       },
       {
-        en: 'Data Visualization and Interpretive Transparency',
-        ko: '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
+        en: 'Structuring knowledge systems for data clarity',
+        ko: '지식화 및 가독성 제고를 위한 정보 전달 체계화',
       },
       {
-        en: 'Statistical Methods for Actionable Business Insights',
-        ko: '통계적 방법론을 활용한 비즈니스 인사이트 도출',
+        en: 'Actionable management insights via data science',
+        ko: '데이터 과학 기법을 활용한 실효적 경영 통찰 도출',
       },
     ],
   },
   {
     id: 'dim',
-    badge: '전략을 완성하는 설득력',
+    badge: '전략을 완성하는 공신력',
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: dimImg,
     items: [
       {
-        en: 'Trustworthy, Effective Decision Systems Design',
-        ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
+        en: 'Designing trustworthy intelligent decision systems',
+        ko: '신뢰할 수 있는 지능형 의사결정 시스템 설계 및 최적화',
       },
       {
-        en: 'Risk-Aware Decision Support Frameworks',
-        ko: '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
+        en: 'Risk-aware decision tools for business and industry',
+        ko: '경영 환경과 산업 현장의 위험을 고려한 정책 지원 도구',
       },
       {
-        en: 'Multi-Perspective Insight Extraction for Decision Making',
-        ko: '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합',
+        en: 'Strategic decision making via multi-perspective insights',
+        ko: '다각적 통찰을 활용한 전략적 의사결정 방안 모색',
       },
     ],
   },

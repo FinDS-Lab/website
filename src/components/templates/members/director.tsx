@@ -755,7 +755,7 @@ export const MembersDirectorTemplate = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Financial Data Science</p>
                       <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
-                        AI applications in quantitative finance, portfolio optimization, algorithmic trading, and financial time-series forecasting.
+                        Designing advanced asset strategies by orchestrating financial data with clairvoyant-guided modeling
                       </p>
                     </div>
                   </div>
@@ -764,7 +764,7 @@ export const MembersDirectorTemplate = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Business Analytics</p>
                       <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
-                        Using various analytical methods from time-series models to graph-based approaches to uncover meaningful insights.
+                        Fostering industrial convergence by intellectualizing complex data to enhance user-centric transparency
                       </p>
                     </div>
                   </div>
@@ -773,7 +773,7 @@ export const MembersDirectorTemplate = () => {
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-sm md:text-base mb-4" style={{color: '#D6B14D'}}>Data-Informed Decision Making</p>
                       <p className="text-gray-600 leading-relaxed text-xs md:text-sm">
-                        Extracting iridescent views for multi-perspective interpretation and synthesis to support decisions in business and industry.
+                        Empowering strategic choices by extracting iridescent insights to build lucid and trustworthy systems
                       </p>
                     </div>
                   </div>

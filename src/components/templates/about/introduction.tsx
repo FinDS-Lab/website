@@ -12,64 +12,64 @@ import dimImg from '@/assets/images/icons/dim.webp'
 const researchAreas = [
   {
     id: 'fds',
-    badge: { ko: '핀테크 혁신의 핵심 동력', en: 'Core Driver of Fintech Innovation' },
+    badge: { ko: '핀테크의 핵심 원동력', en: 'The Core Vitality' },
     titleEn: 'Financial Data Science',
     titleKo: '금융 데이터 사이언스',
     image: fdsImg,
     items: [
       {
-        en: 'Asset Allocation Strategies',
-        ko: '포트폴리오 최적화, 자산 배분, 알고리즘 트레이딩',
+        en: 'Data-driven advanced asset allocation strategies',
+        ko: '데이터 과학 기반의 고도화된 자산 배분 전략 수립',
       },
       {
-        en: 'Financial Time-Series Modeling and Forecasting',
-        ko: '변동성 예측, 국면 전환 모형, 수익률 예측 등 금융 시계열 연구',
+        en: 'Financial market analysis via time-series modeling',
+        ko: '금융 시계열 모형을 활용한 시장 추정 및 분석 연구',
       },
       {
-        en: 'Personalized Finance and Behavioral Decision Modeling',
-        ko: '개인화 금융, 투자자 행동 분석, 행동재무학 기반 의사결정',
+        en: 'Personalized finance and behavioral decision models',
+        ko: '개인 맞춤형 자산 관리와 투자자 행동 기반 의사결정',
       },
     ],
   },
   {
     id: 'ba',
-    badge: { ko: '디지털 전환 시대의 경쟁력', en: 'Competitive Edge in the Digital Era' },
+    badge: { ko: '디지털 전환의 핵심 경쟁력', en: 'The Digital Agility' },
     titleEn: 'Business Analytics',
     titleKo: '비즈니스 애널리틱스',
     image: baImg,
     items: [
       {
-        en: 'Cross-Industry Data Analytics and Integration',
-        ko: '다양한 산업 간 융합을 위한 데이터 분석',
+        en: 'Data-driven value through industrial convergence',
+        ko: '산업 간 융합을 촉진하는 데이터 기반 가치 창출',
       },
       {
-        en: 'Data Visualization and Interpretive Transparency',
-        ko: '복잡한 데이터를 직관적으로 표현하는 시각화 기법',
+        en: 'Structuring knowledge systems for data clarity',
+        ko: '지식화 및 가독성 제고를 위한 정보 전달 체계화',
       },
       {
-        en: 'Statistical Methods for Actionable Business Insights',
-        ko: '통계적 방법론을 활용한 비즈니스 인사이트 도출',
+        en: 'Actionable management insights via data science',
+        ko: '데이터 과학 기법을 활용한 실효적 경영 통찰 도출',
       },
     ],
   },
   {
     id: 'dim',
-    badge: { ko: '전략을 완성하는 설득력', en: 'Persuasive Power to Complete Strategy' },
+    badge: { ko: '전략을 완성하는 공신력', en: 'The Strategic Authority' },
     titleEn: 'Data-Informed Decision Making',
     titleKo: '데이터 기반 의사결정',
     image: dimImg,
     items: [
       {
-        en: 'Trustworthy, Effective Decision Systems Design',
-        ko: '신뢰할 수 있는 의사결정 시스템 설계와 최적화',
+        en: 'Designing trustworthy intelligent decision systems',
+        ko: '신뢰할 수 있는 지능형 의사결정 시스템 설계 및 최적화',
       },
       {
-        en: 'Risk-Aware Decision Support Frameworks',
-        ko: '경영 환경과 산업 현장의 위험을 고려한 의사결정 지원 도구',
+        en: 'Risk-aware decision tools for business and industry',
+        ko: '경영 환경과 산업 현장의 위험을 고려한 정책 지원 도구',
       },
       {
-        en: 'Multi-Perspective Insight Extraction for Decision Making',
-        ko: '데이터 기반 의사결정을 위한 다각적 인사이트 도출과 종합',
+        en: 'Strategic decision making via multi-perspective insights',
+        ko: '다각적 통찰을 활용한 전략적 의사결정 방안 모색',
       },
     ],
   },
@@ -248,9 +248,9 @@ export const AboutIntroductionTemplate = () => {
                     <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                       {goalLang === 'ko' ? (
-                        <><span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 내일</>
+                        <><span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 우리의 내일을 위하여</>
                       ) : (
-                        <>Towards <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>Data-Illuminated</span><br className="md:hidden" /> Better Tomorrow</>
+                        <>Towards Our <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>Data-Illuminated</span><br className="md:hidden" /> Brighter Future</>
                       )}
                     </h2>
                     <Quote size={32} className="text-[#D6B14D]/50 hidden md:block" />
@@ -267,25 +267,25 @@ export const AboutIntroductionTemplate = () => {
                   {goalLang === 'ko' ? (
                     <>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        저희 가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#D6B14D'}}>금융데이터인텔리전스</span> 연구실 (<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab)은 데이터 중심으로 급변하는 <span className="font-semibold text-gray-300">경영 환경과 금융 시장을 비롯한 다양한 산업 현장</span>에서 <span className="font-semibold text-gray-300">실질적인 가치 창출</span>을 추구하는 연구를 수행하고자 합니다.
+                        가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공 <span className="font-bold" style={{color: '#D6B14D'}}>금융데이터인텔리전스</span> 연구실(<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab)은 <span className="font-semibold text-white">데이터 중심</span>으로 급변하는 <span className="font-semibold text-white">경영 환경</span>과 <span className="font-semibold text-white">금융 시장</span>을 비롯한 산업 현장에서 <span className="font-bold" style={{color: '#D6B14D'}}>실질적인 가치 창출</span>을 목표로 합니다.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        저희 FINDS Lab은 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>데이터 사이언스</span>와 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>비즈니스 애널리틱스</span> 기법을 융합하여, 복잡한 데이터 속에서 새로운 <span className="font-bold" style={{color: '#D6B14D'}}>발견(finds)</span>을 이끌어내고 <span className="font-semibold text-gray-300">경영 환경과 산업 현장을 다양한 측면에서 개선하는 데 기여하는 것</span>을 목표로 합니다.
+                        저희 <span className="font-semibold text-white">FINDS Lab</span>은 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>데이터 사이언스</span>와 <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>비즈니스 애널리틱스</span> 기법을 활용하여 복잡한 데이터 속에서 유의미한 <span className="font-bold" style={{color: '#D6B14D'}}>발견(finds)</span>을 이끌어내고, 이를 통해 <span className="font-semibold text-white">경영 환경</span>과 <span className="font-semibold text-white">산업 현장</span>을 <span className="font-bold" style={{color: '#D6B14D'}}>다각도로 개선</span>하는 데 기여하고자 합니다.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        이러한 목표 하에서 <span className="font-bold text-white">지식과 정보의 비대칭</span>으로 인해 발생하는 사회적 비효율을 감소시키고, 데이터를 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>명확하고 전략적으로 가치 있는 인사이트</span>로 전환하여 더 나은 내일을 위한 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>경영 환경과 산업 현장의 효율성 제고</span>에 기여하고자 합니다.
+                        특히 <span className="font-bold text-white">지식과 정보의 비대칭</span>으로 발생하는 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>사회적 비효율을 극복</span>하고, 데이터를 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>전략적 인사이트</span>로 전환함으로써 <span className="font-semibold text-white">경영 효율성</span>을 제고하여 <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>더 나은 내일</span>을 만드는 데 앞장서겠습니다.
                       </p>
                     </>
                   ) : (
                     <>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        The <span className="font-bold" style={{color: '#D6B14D'}}>Financial Data Intelligence & Solutions</span> Laboratory (<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab) at Gachon University conducts research that creates <span className="font-semibold text-gray-300">tangible value</span> in the fast-changing, data-driven <span className="font-semibold text-gray-300">business and financial landscape</span>.
+                        The <span className="font-bold" style={{color: '#D6B14D'}}>Financial Data Intelligence</span> & Solutions Laboratory (<span className="font-bold" style={{color: '#D6B14D'}}>FINDS</span> Lab) at Gachon University conducts research that aims for <span className="font-bold" style={{color: '#D6B14D'}}>tangible value creation</span> in the rapidly evolving, <span className="font-semibold text-white">data-informed</span> <span className="font-semibold text-white">business environments</span> and <span className="font-semibold text-white">financial markets</span>.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        Our lab combines <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Data Science</span> and <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Business Analytics</span> to uncover new <span className="font-bold" style={{color: '#D6B14D'}}>finds</span> in complex data and aims to <span className="font-semibold text-gray-300">contribute to improving business and industry environments from multiple perspectives</span>.
+                        Our <span className="font-semibold text-white">FINDS Lab</span> utilizes <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Data Science</span> and <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>Business Analytics</span> to derive meaningful <span className="font-bold" style={{color: '#D6B14D'}}>discoveries (finds)</span> from complex data, contributing to the <span className="font-bold" style={{color: '#D6B14D'}}>iridescent insights</span> of <span className="font-semibold text-white">business environments</span> and <span className="font-semibold text-white">industrial sectors</span>.
                       </p>
                       <p className="text-sm md:text-base leading-[2] text-gray-400">
-                        Under this goal, we aim to reduce social inefficiencies caused by <span className="font-bold text-white">information asymmetry</span>, and turn data into <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>clear, strategically valuable insights</span> to <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>enhance business and industry efficiency</span> for a better tomorrow.
+                        In particular, we strive to <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>overcome social inefficiencies</span> arising from <span className="font-bold text-white">asymmetries in knowledge and information</span>. By transforming data into <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>strategic insights</span>, we will lead the way in <span className="font-semibold text-white">enhancing management efficiency</span> to build a <span className="font-bold" style={{ color: 'rgb(214, 177, 77)', textShadow: '0 0 20px rgba(214, 177, 77, 0.3)' }}>better tomorrow</span>.
                       </p>
                     </>
                   )}
