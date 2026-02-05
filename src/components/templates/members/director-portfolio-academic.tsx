@@ -963,6 +963,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
     collaborationNetwork: true,
     researcherIds: true,
     publicationStats: true,
+    publications: true,
     projectStats: true,
     academicService: true,
     editorialBoard: true,
@@ -1571,69 +1572,18 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
               )}
             </section>
 
-            {/* Publication Statistics */}
+            {/* Publications */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
-                onClick={() => toggleSection('publicationStats')}
+                onClick={() => toggleSection('publications')}
                 className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
               >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publications</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publications ? 'rotate-180' : ''}`}/>
               </button>
-              {expandedSections.publicationStats && (
-                <div className="p-20 md:p-24 border-t border-gray-100">
-                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                    {pubStats.map((stat, index) => {
-                      // Colors matching Publications page exactly
-                      const getColors = (label: string) => {
-                        switch(label) {
-                          case 'SCIE':
-                          case 'SSCI':
-                          case 'A&HCI':
-                            return { hover: 'hover:bg-[#D6B14D]/10', text: 'text-[#D6B14D]' }
-                          case 'ESCI':
-                          case 'Scopus':
-                            return { hover: 'hover:bg-[#D6C360]/10', text: 'text-[#D6C360]' }
-                          case 'Other Int\'l':
-                            return { hover: 'hover:bg-[#E8D688]/10', text: 'text-[#9A7D1F]' }
-                          case 'Int\'l Conf':
-                            return { hover: 'hover:bg-[#AC0E0E]/10', text: 'text-[#AC0E0E]' }
-                          case 'Dom. Conf':
-                            return { hover: 'hover:bg-[#E8889C]/15', text: 'text-[#E8889C]' }
-                          case 'KCI':
-                            return { hover: 'hover:bg-[#64748b]/10', text: 'text-[#64748b]' }
-                          default:
-                            return { hover: 'hover:bg-[#D6B14D]/10', text: 'text-primary' }
-                        }
-                      }
-                      const colors = getColors(stat.label)
-                      return (
-                      <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${colors.hover} transition-colors`}>
-                        <div className={`text-lg md:text-xl font-bold ${colors.text}`}>{stat.count}</div>
-                        <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
-                      </div>
-                    )})}
-                  </div>
-                  {/* Citation Stats - Citations on top, indices below */}
-                  <div className="pt-16 border-t border-gray-100">
-                    {/* Citations - Full Width Row */}
-                    <div className="mb-12">
-                      <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
-                        <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
-                        <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
-                      </div>
-                    </div>
-                    {/* Indices - 2x2 on mobile, 4 columns on desktop */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                      {liveCitationStats.slice(1).map((stat, index) => (
-                        <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
-                          <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                          <div className="text-[10px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="mt-20 text-center">
+              {expandedSections.publications && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <div className="text-center">
                     <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
                       View All Publications <ChevronRight size={14}/>
                     </Link>

@@ -960,6 +960,7 @@ export const MembersDirectorAcademicTemplate = () => {
   const [activitiesData, setActivitiesData] = useState<AcademicActivitiesData | null>(null)
   const [expandedSections, setExpandedSections] = useState({
     collaborationNetwork: true,
+    publications: true,
     publicationStats: true,
     projectStats: true,
     academicService: true,
@@ -1499,6 +1500,26 @@ export const MembersDirectorAcademicTemplate = () => {
 
           {/* Right Column */}
           <main className="flex-1 flex flex-col gap-40 md:gap-56 min-w-0">
+            {/* Publications */}
+            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
+              <button
+                onClick={() => toggleSection('publications')}
+                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
+              >
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publications</h3>
+                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publications ? 'rotate-180' : ''}`}/>
+              </button>
+              {expandedSections.publications && (
+                <div className="border-t border-gray-100 p-20 md:p-24">
+                  <div className="text-center">
+                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
+                      View All Publications <ChevronRight size={14}/>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </section>
+
             {/* Collaboration Network */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
               <button
@@ -1515,55 +1536,6 @@ export const MembersDirectorAcademicTemplate = () => {
               )}
             </section>
 
-            {/* Publication Statistics */}
-            <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => toggleSection('publicationStats')}
-                className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors"
-              >
-                <h3 className="text-lg md:text-xl font-bold text-gray-900">Publication Statistics</h3>
-                <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${expandedSections.publicationStats ? 'rotate-180' : ''}`}/>
-              </button>
-              {expandedSections.publicationStats && (
-                <div className="p-20 md:p-24 border-t border-gray-100">
-                  <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-9 gap-8 md:gap-12 mb-16 md:mb-24">
-                    {pubStats.map((stat, index) => {
-                      const hoverColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'hover:bg-[#D6B14D]/5' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'hover:bg-[#D6C360]/5' : stat.label === 'Other Int\'l' ? 'hover:bg-[#E8D688]/10' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'hover:bg-[#AC0E0E]/5' : stat.label === 'KCI' ? 'hover:bg-[#64748b]/5' : 'hover:bg-[#D6B14D]/5'
-                      const textColor = stat.label === 'SCIE' || stat.label === 'SSCI' || stat.label === 'A&HCI' ? 'text-[#D6B14D]' : stat.label === 'ESCI' || stat.label === 'Scopus' ? 'text-[#D6C360]' : stat.label === 'Other Int\'l' ? 'text-[#9A7D1F]' : stat.label === 'Int\'l Conf' || stat.label === 'Dom. Conf' ? 'text-[#AC0E0E]' : stat.label === 'KCI' ? 'text-[#64748b]' : 'text-primary'
-                      return (
-                      <div key={index} className={`text-center p-12 md:p-16 bg-gray-50 rounded-xl ${hoverColor} transition-colors`}>
-                        <div className={`text-lg md:text-xl font-bold ${textColor}`}>{stat.count}</div>
-                        <div className="text-[10px] md:text-xs font-bold text-gray-400 uppercase mt-4">{stat.label}</div>
-                      </div>
-                    )})}
-                  </div>
-                  {/* Citation Stats - Citations on top, indices below */}
-                  <div className="pt-16 border-t border-gray-100">
-                    {/* Citations - Full Width Row */}
-                    <div className="mb-12">
-                      <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
-                        <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
-                        <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
-                      </div>
-                    </div>
-                    {/* Indices - 2x2 on mobile, 4 columns on desktop */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                      {liveCitationStats.slice(1).map((stat, index) => (
-                        <div key={index} className="text-center p-16 md:p-20 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
-                          <div className="text-xl md:text-2xl font-bold text-primary">{stat.count}</div>
-                          <div className="text-[9px] md:text-xs font-bold text-gray-500 uppercase mt-4">{stat.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="mt-20 text-center">
-                    <Link to="/publications?author=Insu Choi" className="inline-flex items-center gap-4 text-sm text-primary font-medium hover:underline">
-                      View All Publications <ChevronRight size={14}/>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </section>
 
             {/* Academic Service */}
             <section className="bg-white border border-gray-100 rounded-2xl overflow-hidden">
