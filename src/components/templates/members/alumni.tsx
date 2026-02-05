@@ -426,8 +426,8 @@ export const MembersAlumniTemplate = () => {
               <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center justify-center">
-                  <span className="text-3xl md:text-4xl font-bold mb-6 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalCount}</span>
-                  <Users className="size-16 md:size-20 mb-4" style={{color: '#D6B14D'}} />
+                  <Users className="size-20 md:size-24 mb-6" style={{color: '#D6B14D'}} />
+                  <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{totalCount}</span>
                   <span className="text-[10px] md:text-sm font-semibold text-gray-500">Total Alumni</span>
                 </div>
               </div>
@@ -437,24 +437,24 @@ export const MembersAlumniTemplate = () => {
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
-                    <span className="text-2xl md:text-3xl font-bold mb-6 transition-all duration-300" style={{color: '#D6B14D'}}>{phdCount}</span>
-                    <GraduationCap className="size-14 md:size-18 mb-4" style={{color: '#D6B14D'}} />
+                    <GraduationCap className="size-16 md:size-20 mb-6" style={{color: '#D6B14D'}} />
+                    <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{phdCount}</span>
                     <span className="text-[10px] md:text-xs font-medium text-gray-500 text-center leading-tight">Ph.D. Graduates</span>
                   </div>
                 </div>
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#C41E3A]/40 hover:shadow-lg hover:shadow-[#C41E3A]/10 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#C41E3A]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
-                    <span className="text-2xl md:text-3xl font-bold mb-6 transition-all duration-300" style={{color: '#C41E3A'}}>{msCount}</span>
-                    <BookOpen className="size-14 md:size-18 mb-4" style={{color: '#C41E3A'}} />
+                    <BookOpen className="size-16 md:size-20 mb-6" style={{color: '#C41E3A'}} />
+                    <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#C41E3A'}}>{msCount}</span>
                     <span className="text-[10px] md:text-xs font-medium text-gray-500 text-center leading-tight">M.S. Graduates</span>
                   </div>
                 </div>
                 <div className="group relative bg-white border border-gray-100 rounded-2xl p-10 md:p-20 hover:border-[#FFBAC4]/50 hover:shadow-lg hover:shadow-[#FFBAC4]/10 transition-all duration-300">
                   <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#FFBAC4]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex flex-col items-center h-full justify-center">
-                    <span className="text-2xl md:text-3xl font-bold mb-6 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
-                    <Lightbulb className="size-14 md:size-18 mb-4" style={{color: '#FFBAC4'}} />
+                    <Lightbulb className="size-16 md:size-20 mb-6" style={{color: '#FFBAC4'}} />
+                    <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#FFBAC4'}}>{undergradCount}</span>
                     <span className="text-[10px] md:text-xs font-medium text-gray-500 text-center leading-tight">Former Undergraduate Researchers</span>
                   </div>
                 </div>

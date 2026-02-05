@@ -274,11 +274,9 @@ export const AboutHonorsTemplate = () => {
           <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
             <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex flex-col items-center justify-center">
+              <stats.total.icon className="size-20 md:size-24 mb-6" style={{color: stats.total.color, opacity: 0.7}} />
               <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: stats.total.color}}>{stats.total.count}</span>
-              <div className="flex items-center gap-6">
-                <stats.total.icon className="size-14 md:size-16" style={{color: stats.total.color, opacity: 0.7}} />
-                <span className="text-xs md:text-sm font-medium text-gray-600">{stats.total.label}</span>
-              </div>
+              <span className="text-xs md:text-sm font-medium text-gray-600">{stats.total.label}</span>
             </div>
           </div>
 
@@ -302,11 +300,9 @@ export const AboutHonorsTemplate = () => {
               >
                 <div className="absolute top-0 left-16 right-16 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity" style={{background: `linear-gradient(to right, ${stat.color}99, transparent)`}} />
                 <div className="flex flex-col items-center text-center">
+                  <stat.icon className="size-16 md:size-20 mb-6" style={{color: stat.color, opacity: 0.7}} />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: stat.color}}>{stat.count}</span>
-                  <div className="flex items-center gap-6">
-                    <stat.icon className="size-14 md:size-16" style={{color: stat.color, opacity: 0.7}} />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">{stat.label}</span>
                 </div>
               </div>
             ))}

@@ -423,11 +423,9 @@ export const ProjectsTemplate = () => {
             <div className="group relative bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
               <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex flex-col items-center justify-center">
+                <Folder className="size-20 md:size-24 mb-6" style={{color: '#D6B14D', opacity: 0.7}} />
                 <span className="text-3xl md:text-4xl font-bold mb-4 transition-all duration-300" style={{color: '#9A7D1F'}}>{stats.total}</span>
-                <div className="flex items-center gap-6">
-                  <Folder className="size-14 md:size-16" style={{color: '#D6B14D', opacity: 0.7}} />
-                  <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
-                </div>
+                <span className="text-xs md:text-sm font-medium text-gray-600">Total</span>
               </div>
             </div>
 
@@ -437,41 +435,33 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#D6B14D]/40 hover:shadow-lg hover:shadow-[#D6B14D]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#D6B14D]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <Landmark className="size-16 md:size-20 mb-6 text-gray-400" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#D6B14D'}}>{stats.government}</span>
-                  <div className="flex items-center gap-6">
-                    <Landmark className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Government</span>
                 </div>
               </div>
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#AC0E0E]/30 hover:shadow-lg hover:shadow-[#AC0E0E]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#AC0E0E]/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <Factory className="size-16 md:size-20 mb-6 text-gray-400" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#AC0E0E'}}>{stats.industry}</span>
-                  <div className="flex items-center gap-6">
-                    <Factory className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Industry</span>
                 </div>
               </div>
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8D688]/50 hover:shadow-lg hover:shadow-[#E8D688]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <School className="size-16 md:size-20 mb-6 text-gray-400" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8D688'}}>{stats.institution}</span>
-                  <div className="flex items-center gap-6">
-                    <School className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Institution</span>
                 </div>
               </div>
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8889C]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <FlaskConical className="size-16 md:size-20 mb-6 text-gray-400" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 transition-all duration-300" style={{color: '#E8889C'}}>{stats.academic}</span>
-                  <div className="flex items-center gap-6">
-                    <FlaskConical className="size-14 md:size-16 text-gray-400" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Research</span>
                 </div>
               </div>
             </div>
@@ -482,21 +472,17 @@ export const ProjectsTemplate = () => {
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-400/40 hover:shadow-lg hover:shadow-gray-400/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-400/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <TrendingUp className="size-16 md:size-20 mb-6 text-gray-600" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 transition-all duration-300">{stats.ongoing}</span>
-                  <div className="flex items-center gap-6">
-                    <TrendingUp className="size-14 md:size-16 text-gray-600" />
-                    <span className="text-xs md:text-sm font-medium text-gray-600">Ongoing</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-600">Ongoing</span>
                 </div>
               </div>
               <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-gray-300/50 hover:shadow-lg hover:shadow-gray-300/10 transition-all duration-300">
                 <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-gray-300/60 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="flex flex-col items-center text-center">
+                  <CheckCircle className="size-16 md:size-20 mb-6 text-gray-500" />
                   <span className="text-2xl md:text-3xl font-bold mb-4 text-gray-500 transition-all duration-300">{stats.completed}</span>
-                  <div className="flex items-center gap-6">
-                    <CheckCircle className="size-14 md:size-16 text-gray-500" />
-                    <span className="text-xs md:text-sm font-medium text-gray-500">Completed</span>
-                  </div>
+                  <span className="text-xs md:text-sm font-medium text-gray-500">Completed</span>
                 </div>
               </div>
             </div>
