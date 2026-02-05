@@ -124,7 +124,7 @@ const ResumeModal = () => (
       <div className="space-y-12">
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
-            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Portfolio Risk Assessment with Explainable AI</p>
+            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Portfolio Risk Assessment and Investment Transparency with Explainable AI</p>
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2025-05 – 2025-09</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
@@ -134,11 +134,11 @@ const ResumeModal = () => (
         </div>
         <div>
           <div className="flex flex-col md:flex-row md:justify-between gap-4 md:gap-16 mb-4">
-            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">Foreign Currency Asset Management Impact Analysis</p>
+            <p className="text-xs font-semibold text-gray-900 min-w-0 flex-1 md:pr-12">An Analysis of the Capacity Enhancement Effect of Domestic Asset Management Companies via the Bank of Korea's Consignment of Foreign Currency Asset Management</p>
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2023-11 – 2024-07</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by <strong className="text-gray-700">Bank of Korea</strong></li>
           </ul>
         </div>
@@ -148,7 +148,7 @@ const ResumeModal = () => (
             <span className="text-xs text-gray-400 shrink-0 md:w-[140px] md:text-right">2021-08 – 2023-12</span>
           </div>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher (Principal Investigator: Prof. Woo Chang Kim)</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Lead Researcher</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Funded by <strong className="text-gray-700">Shinhan Bank</strong></li>
           </ul>
         </div>
@@ -167,6 +167,13 @@ const ResumeModal = () => (
     <section>
       <h3 className="text-sm font-bold text-primary mb-12">Teaching Experience</h3>
       <div className="space-y-12">
+        <div>
+          <p className="text-xs font-bold text-gray-900 mb-6">Gachon University <span className="font-normal text-gray-500">(2026-03 – Present)</span></p>
+          <ul className="text-xs text-gray-600 space-y-3 ml-12">
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Investment</li>
+            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Business Intelligence and Analytics</li>
+          </ul>
+        </div>
         <div>
           <p className="text-xs font-bold text-gray-900 mb-6">Dongduk Women's University <span className="font-normal text-gray-500">(2025-09 – 2026-02)</span></p>
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
@@ -192,12 +199,6 @@ const ResumeModal = () => (
           <ul className="text-xs text-gray-600 space-y-3 ml-12">
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Engineering</li>
             <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Engineering Economics</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs font-bold text-gray-900 mb-6">KAIST <span className="font-normal text-gray-500">(Teaching Assistant, 2018-03 – 2025-02)</span></p>
-          <ul className="text-xs text-gray-600 space-y-3 ml-12">
-            <li className="flex items-start gap-6"><span className="w-3 h-3 rounded-full bg-primary/30 shrink-0 mt-5" />Financial Artificial Intelligence</li>
           </ul>
         </div>
       </div>
