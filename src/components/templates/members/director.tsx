@@ -209,11 +209,11 @@ export const MembersDirectorTemplate = () => {
     researchInterests: true,
     education: true,
     employment: true,
-    publicationOverview: true,
-    projectOverview: true,
-    academicServiceOverview: true,
-    teachingOverview: true,
-    honorsOverview: true,
+    publicationOverview: false,
+    projectOverview: false,
+    academicServiceOverview: false,
+    teachingOverview: false,
+    honorsOverview: false,
     teaching: true
   })
   
