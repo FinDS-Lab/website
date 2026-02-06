@@ -1038,7 +1038,7 @@ export const MembersDirectorTemplate = () => {
                   <div className="pt-16 border-t border-gray-100">
                     <div className="mb-12">
                       <div className="text-center p-20 md:p-28 bg-[#FFF9E6] border border-[#D6B14D]/20 rounded-xl hover:border-[#D6B14D]/40 transition-colors">
-                        <div className="text-3xl md:text-4xl font-bold text-primary">{liveCitationStats[0]?.count || 0}</div>
+                        <div className="text-3xl md:text-4xl font-bold" style={{color: '#9A7D1F'}}>{liveCitationStats[0]?.count || 0}</div>
                         <div className="text-xs md:text-sm font-bold text-gray-500 uppercase mt-6">{liveCitationStats[0]?.label || 'Citations'}</div>
                       </div>
                     </div>
