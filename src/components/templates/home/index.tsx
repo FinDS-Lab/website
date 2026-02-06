@@ -19,7 +19,7 @@ const heroSlides = [
     id: 1,
     badge: 'FINDS Lab',
     verb: 'Illuminate',
-    title: 'Towards Our\nData-Illuminated Brighter Future',
+    title: 'Data-Illuminated\nFinancial Innovation',
     image: hero1,
     buttons: [
       { label: 'Introduction', path: '/about/introduction' },

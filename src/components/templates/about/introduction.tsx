@@ -243,7 +243,7 @@ export const AboutIntroductionTemplate = () => {
 
               <div className="relative z-10">
                 {/* Title with Quote Icon */}
-                <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-center">
+                <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-start">
                   <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
                     <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
