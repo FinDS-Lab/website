@@ -222,7 +222,7 @@ export const AboutIntroductionTemplate = () => {
             </div>
 
             {/* Card Content with mouse-following light */}
-            <div className="relative p-24 md:p-40 lg:p-56 min-h-[500px] md:min-h-[580px] flex flex-col justify-center overflow-hidden">
+            <div className="relative p-24 md:p-40 lg:p-56 h-[580px] md:h-[580px] flex flex-col justify-center overflow-hidden">
               {/* Mouse-following light effect */}
               <div 
                 className="absolute w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none transition-all duration-500 ease-out"
@@ -243,7 +243,7 @@ export const AboutIntroductionTemplate = () => {
 
               <div className="relative z-10">
                 {/* Title with Quote Icon */}
-                <div className="text-center mb-32 md:mb-40 min-h-[80px] md:min-h-[100px] flex flex-col justify-start">
+                <div className="text-center mb-32 md:mb-40 min-h-[120px] md:min-h-[100px] flex flex-col justify-start">
                   <div className="flex items-center justify-center gap-8 md:gap-16 mb-16">
                     <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
