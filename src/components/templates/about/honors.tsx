@@ -31,8 +31,21 @@ const useScrollAnimation = () => {
   return { ref, isVisible }
 }
 
-// Format date from "Dec 5" to "MM-DD" format
-const formatDate = (dateStr: string): string => {
+// Format date from "Dec 5" to "MM-DD" format, or handle date ranges
+const formatDate = (dateStr: string, year?: string): string => {
+  // Check if it's a date range format like "2018-02-26 – 2020-02-28"
+  if (dateStr.includes('–') && dateStr.match(/^\d{4}-\d{2}-\d{2}/)) {
+    const parts = dateStr.split('–').map(s => s.trim())
+    const startYear = parts[0].substring(0, 4)
+    const endYear = parts[1].substring(0, 4)
+    const startMonth = parts[0].substring(5, 7)
+    const endMonth = parts[1].substring(5, 7)
+    if (startYear === endYear) {
+      return `${startMonth} – ${endMonth}`
+    }
+    return `${startYear}-${startMonth} – ${endYear}-${endMonth}`
+  }
+  
   const monthMap: Record<string, string> = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
     'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
@@ -481,7 +494,7 @@ export const AboutHonorsTemplate = () => {
                               </h4>
                               {/* Date badge - top right on PC, same style as Publications */}
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-500 shrink-0 shadow-sm">
-                                {year}-{formatDate(item.date)}
+                                {item.date.includes('–') && item.date.match(/^\d{4}/) ? formatDate(item.date) : `${year}-${formatDate(item.date)}`}
                               </span>
                             </div>
                             <p className="text-xs md:text-[14px] text-gray-600 mb-4 md:mb-[4px]">{item.event}</p>
@@ -489,7 +502,7 @@ export const AboutHonorsTemplate = () => {
                             <p className="text-xs md:text-[13px] text-gray-500 font-bold mb-4">{item.organization}</p>
                             {/* Mobile: Date below organization */}
                             <p className="md:hidden text-[10px] text-gray-400 font-medium mb-4">
-                              {year}-{formatDate(item.date)}
+                              {item.date.includes('–') && item.date.match(/^\d{4}/) ? formatDate(item.date) : `${year}-${formatDate(item.date)}`}
                             </p>
                             {item.winners && item.winners.length > 0 && (
                               <div className="flex flex-wrap items-center gap-6 md:gap-[8px] mt-8 md:mt-[8px]">
