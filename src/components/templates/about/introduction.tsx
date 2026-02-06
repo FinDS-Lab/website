@@ -248,7 +248,7 @@ export const AboutIntroductionTemplate = () => {
                     <Quote size={32} className="text-[#D6B14D]/50 rotate-180 hidden md:block" />
                     <h2 className="text-xl md:text-3xl lg:text-4xl font-bold text-white" style={{ textShadow: '0 0 40px rgba(255, 255, 255, 0.15)' }}>
                       {goalLang === 'ko' ? (
-                        <><span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 우리의 내일을 위하여</>
+                        <><span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>데이터로 밝히는</span><br className="md:hidden" /> 더 나은 내일</>
                       ) : (
                         <>Towards Our <span className="font-bold" style={{ color: '#D6B14D', textShadow: '0 0 30px rgba(214, 177, 77, 0.4)' }}>Data-Illuminated</span><br className="md:hidden" /> Brighter Future</>
                       )}
