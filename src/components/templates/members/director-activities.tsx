@@ -74,6 +74,16 @@ type NetworkLink = {
 import banner2 from '@/assets/images/banner/2.webp'
 
 const formatHonorDate = (dateStr: string): string => {
+  // Check if it's a date range format like "2018-02-26 – 2020-02-28"
+  if (dateStr.includes('–') && dateStr.match(/^\d{4}-\d{2}-\d{2}/)) {
+    const parts = dateStr.split('–').map(s => s.trim())
+    const startYear = parts[0].substring(0, 4)
+    const endYear = parts[1].substring(0, 4)
+    const startMonth = parts[0].substring(5, 7)
+    const endMonth = parts[1].substring(5, 7)
+    return `${startYear}-${startMonth} – ${endYear}-${endMonth}`
+  }
+  
   const monthMap: Record<string, string> = {
     'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05', 'Jun': '06',
     'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12'
@@ -85,6 +95,10 @@ const formatHonorDate = (dateStr: string): string => {
     return `${month}-${day}`
   }
   return dateStr
+}
+
+const isDateRange = (dateStr: string): boolean => {
+  return dateStr.includes('–') && !!dateStr.match(/^\d{4}-\d{2}-\d{2}/)
 }
 
 import directorImg from '@/assets/images/members/director.webp'
@@ -1688,10 +1702,10 @@ export const MembersDirectorActivitiesTemplate = () => {
                                       <h4 className="text-sm md:text-base font-bold text-gray-800 mb-4">{item.title}</h4>
                                       <p className="text-xs md:text-sm text-gray-600 font-medium mb-4">{item.event}</p>
                                       <p className="text-xs md:text-sm text-gray-500 font-medium">{item.organization}</p>
-                                      <p className="md:hidden text-[10px] text-gray-400 mt-4">{year}-{formatHonorDate(item.date)}</p>
+                                      <p className="md:hidden text-[10px] text-gray-400 mt-4">{isDateRange(item.date) ? formatHonorDate(item.date) : `${year}-${formatHonorDate(item.date)}`}</p>
                                     </div>
                                     <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">
-                                      {year}-{formatHonorDate(item.date)}
+                                      {isDateRange(item.date) ? formatHonorDate(item.date) : `${year}-${formatHonorDate(item.date)}`}
                                     </span>
                                   </div>
                                 </div>

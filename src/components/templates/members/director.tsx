@@ -681,7 +681,7 @@ export const MembersDirectorTemplate = () => {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 mb-1">E-mail</p>
-                    <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+                    <div className="flex items-center gap-6">
                       <a href={`mailto:${directorEmail}`} className="select-text text-xs md:text-sm font-semibold text-primary hover:underline break-all">
                         {directorEmail}
                       </a>
