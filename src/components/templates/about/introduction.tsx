@@ -189,7 +189,7 @@ export const AboutIntroductionTemplate = () => {
         <div className="max-w-1480 mx-auto w-full px-16 md:px-20 pt-32 md:pt-48 pb-20 md:pb-32">
           <div className="relative text-center max-w-4xl mx-auto">
             <p className="text-base md:text-lg text-gray-500 leading-relaxed max-w-3xl mx-auto">
-              가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공<br className="md:hidden" /> <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>금융데이터인텔리전스 연구실</span>(<span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>)에<br className="md:hidden" /> 오신 것을 환영합니다.
+              가천대학교 경영대학 금융·빅데이터학부 빅데이터경영전공<br /> <span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>금융데이터인텔리전스 연구실</span>(<span className="font-bold" style={{color: 'rgb(214, 177, 77)'}}>FINDS Lab</span>)에 오신 것을 환영합니다.
             </p>
           </div>
         </div>
