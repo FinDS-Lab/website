@@ -1858,7 +1858,7 @@ export const MembersDirectorActivitiesTemplate = () => {
                       <p className="text-2xl md:text-3xl font-bold" style={{color: '#AC0E0E'}}>
                         {menteesByYear['2026']?.length || 0}
                       </p>
-                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Current Mentees & Tutees (2026)</p>
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 mt-4">Current Mentees & Tutees</p>
                     </div>
                   </div>
                 </div>

@@ -195,7 +195,7 @@ const LayoutOrganisms = ({ children }: props) => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Header - sticky on home page only */}
-      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`} role="banner">
+      <header className={`w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-[9999] ${isHomePage ? 'sticky top-0' : ''}`} role="banner" style={{ paddingTop: 'env(safe-area-inset-top)' }}>
         <div className="max-w-1480 mx-auto flex items-center justify-between px-16 md:px-20 py-10">
           {/* Logo with animated text - PC only animation, mobile static */}
           <Link to="/" className="flex items-center gap-12 md:gap-16" aria-label="FINDS Lab 홈으로 이동">
@@ -325,7 +325,7 @@ const LayoutOrganisms = ({ children }: props) => {
 
       {/* Mobile Navigation - Outside header for proper z-index */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 top-[61px] bg-white z-[10000] overflow-y-auto">
+        <div className="md:hidden fixed inset-0 bg-white z-[10000] overflow-y-auto" style={{ top: 'calc(61px + env(safe-area-inset-top))' }}>
           <nav className="px-16 py-16 max-w-1480 mx-auto">
             <ul className="flex flex-col gap-8">
               {navItems.map((item) => (
