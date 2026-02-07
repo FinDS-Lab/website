@@ -144,15 +144,32 @@ const LayoutOrganisms = ({ children }: props) => {
   const { showAlt: showAltText } = useLogoTextAnimation()
   const isHomePage = location.pathname === '/'
 
-  // 모바일 메뉴 열릴 때 body 스크롤 방지
+  // 모바일 메뉴 열릴 때 body 스크롤 방지 (iOS 포함)
   useEffect(() => {
     if (mobileMenuOpen) {
+      const scrollY = window.scrollY
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.left = '0'
+      document.body.style.right = '0'
     } else {
+      const scrollY = document.body.style.top
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
     }
     return () => {
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
     }
   }, [mobileMenuOpen])
 
