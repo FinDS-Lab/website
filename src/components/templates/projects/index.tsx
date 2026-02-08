@@ -407,12 +407,12 @@ export const ProjectsTemplate = () => {
       >
         <div className="max-w-1480 mx-auto flex flex-col gap-24 md:gap-40">
           
-          {/* Statistics Section */}
+          {/* Overview Section */}
           <section className={`bg-white border border-gray-100 rounded-2xl overflow-hidden transition-opacity duration-500 ${loading ? 'opacity-60' : 'opacity-100'}`}>
             <button onClick={() => setStatsExpanded(!statsExpanded)} className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors">
               <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                 <span className="w-8 h-8 rounded-full bg-primary" />
-                Statistics
+                Overview
               </h3>
               <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${statsExpanded ? 'rotate-180' : ''}`} />
             </button>
@@ -617,7 +617,7 @@ export const ProjectsTemplate = () => {
                 <p className="text-gray-400">No projects found.</p>
               </div>
             ) : (
-              <div className="border border-gray-100 rounded-2xl overflow-hidden">
+              <div className="flex flex-col gap-16 md:gap-24">
                 {years.map((year) => {
                   const yearProjects = projectsByYear[year] || []
                   const isCurrentYear = year === currentYear
@@ -635,12 +635,12 @@ export const ProjectsTemplate = () => {
                   }
 
                   return (
-                    <div key={year}>
+                    <div key={year} className={`border rounded-2xl overflow-hidden shadow-sm ${isCurrentYear ? 'border-[#D6C360]' : 'border-gray-100'}`}>
                       <button
                         onClick={() => toggleYear(year)}
-                        className={`w-full flex items-center justify-between px-20 md:px-32 py-16 md:py-24 border-b border-gray-100 last:border-b-0 transition-colors ${
+                        className={`w-full flex items-center justify-between px-20 md:px-24 py-16 md:py-20 transition-colors ${
                           isCurrentYear
-                            ? 'bg-gradient-to-r from-[#FFF9E6] to-[#FFF3CC]/50 hover:from-[#FFF3CC] hover:to-[#FFF3CC]/70'
+                            ? 'bg-[#FFF3CC] hover:bg-[#FFEB99]'
                             : 'bg-gray-50 hover:bg-gray-100'
                         }`}
                       >
@@ -683,9 +683,9 @@ export const ProjectsTemplate = () => {
                       </button>
                       
                       {isExpanded && (
-                        <div className="border-t border-gray-100 divide-y divide-gray-50">
+                        <div className="flex flex-col">
                           {yearProjects.length === 0 ? (
-                            <div className="p-32 md:p-40 text-center bg-white">
+                            <div className="p-32 md:p-40 text-center bg-white border-t border-gray-100">
                               <p className="text-sm md:text-base text-gray-500">아직 등록된 프로젝트가 없습니다.</p>
                             </div>
                           ) : yearProjects.map((project, idx) => {
@@ -713,7 +713,7 @@ export const ProjectsTemplate = () => {
                             ) || []
                             
                             return (
-                              <div key={idx} className="relative hover:bg-gray-50/50 transition-all overflow-hidden">
+                              <div key={idx} className="relative bg-white border-t border-gray-100 hover:bg-gray-50/50 transition-all overflow-hidden">
                                 {/* Mobile: Full-width top bar - solid color with Type | Role format */}
                                 <div className="md:hidden flex items-center justify-between px-12 py-8 border-b border-gray-50" style={{
                                   background: project.type === 'government' ? '#D6B14D' :

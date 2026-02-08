@@ -415,7 +415,7 @@ export const MembersAlumniTemplate = () => {
               <button onClick={() => setStatsExpanded(!statsExpanded)} className="w-full flex items-center justify-between p-20 md:p-24 hover:bg-gray-50 transition-colors">
                 <h3 className="text-lg md:text-xl font-bold text-gray-900 flex items-center gap-12">
                   <span className="w-8 h-8 rounded-full bg-primary" />
-                  Statistics
+                  Overview
                 </h3>
                 <ChevronDown size={20} className={`text-gray-400 transition-transform duration-300 ${statsExpanded ? 'rotate-180' : ''}`} />
               </button>

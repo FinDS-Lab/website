@@ -413,12 +413,9 @@ export const ArchivesNewsTemplate = () => {
                     </>
                   )}
                 </div>
-                <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-6 md:mb-8 transition-colors group-hover:[color:var(--tag-hover-color)]">
+                <h3 className="text-base md:text-lg font-semibold text-gray-900 transition-colors group-hover:[color:var(--tag-hover-color)]">
                   {item.title}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-500 leading-relaxed line-clamp-2">
-                  {item.excerpt}
-                </p>
               </div>
               )
             })}
