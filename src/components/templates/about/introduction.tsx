@@ -263,7 +263,7 @@ export const AboutIntroductionTemplate = () => {
                 </div>
 
                 {/* Description */}
-                <div className="max-w-3xl mx-auto space-y-24 text-center">
+                <div className="max-w-3xl md:max-w-5xl mx-auto space-y-24 text-center">
                   {goalLang === 'ko' ? (
                     <>
                       <p className="text-sm md:text-lg leading-[2] text-gray-400">
