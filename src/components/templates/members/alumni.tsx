@@ -997,7 +997,11 @@ export const MembersAlumniTemplate = () => {
                                             </p>
                                           </div>
                                           <ul className="space-y-4">
-                                            {alumni.projects!.map((project, pIdx) => {
+                                            {[...alumni.projects!].sort((a, b) => {
+                                              const nameA = typeof a === 'object' ? a.en : a
+                                              const nameB = typeof b === 'object' ? b.en : b
+                                              return nameA.localeCompare(nameB)
+                                            }).map((project, pIdx) => {
                                               const isObject = typeof project === 'object'
                                               return (
                                                 <li key={pIdx} className="text-xs md:text-sm text-gray-700 font-medium leading-relaxed flex items-start gap-6">
@@ -1063,7 +1067,11 @@ export const MembersAlumniTemplate = () => {
                                       <p className="text-[10px] font-bold" style={{color: '#C41E3A'}}>Research Projects</p>
                                     </div>
                                     <ul className="space-y-3">
-                                      {alumni.projects!.map((project, pIdx) => {
+                                      {[...alumni.projects!].sort((a, b) => {
+                                        const nameA = typeof a === 'object' ? a.en : a
+                                        const nameB = typeof b === 'object' ? b.en : b
+                                        return nameA.localeCompare(nameB)
+                                      }).map((project, pIdx) => {
                                         const isObject = typeof project === 'object'
                                         return (
                                           <li key={pIdx} className="text-xs text-gray-700 leading-relaxed flex items-start gap-4">
