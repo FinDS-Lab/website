@@ -168,13 +168,13 @@ const education: any[] = [
     undergraduateTheses: [
       {
         number: '2nd',
-        en: 'Designing a Prescription Data-Based Mobile Healthcare Information Management System Using Data Mining Techniques',
+        en: 'PREMISE: Prescription Data-Based Mobile Healthcare Information Management System',
         ko: '처방전을 활용한 개인 건강관리 어플리케이션 제안',
         advisorName: 'Jang Ho Kim'
       },
       {
         number: '1st',
-        en: 'Developing a Data-Driven Optimal Class Registration Strategy to Maximize Students\' Lecture Satisfaction',
+        en: 'DOORS: Data-driven Optimal Operational Registration Strategies to Maximize Students\' Lecture Satisfaction',
         ko: '경희대학교 학부생의 수강 만족도 증대를 위한 최적의 수강신청 전략 개발',
         advisorName: 'Myoung-Ju Park'
       }
