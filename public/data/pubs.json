@@ -3,10 +3,41 @@
         "type": "conference",
         "indexing_group": "Domestic Conference",
         "code_label": "C",
-        "published_date": "2026-05-01",
+        "published_date": "2026-05-29",
         "year": 2026,
-        "title": "Mitigating Backtest Overfitting via Time-Series Data Augmentation",
-        "title_ko": "시계열 데이터 증강 기법을 활용한 백테스팅 과적합 완화 방안에 관한 연구",
+        "title": "Constructing Stock Network Topology of Korean Defense Companies",
+        "title_ko": "국내 방위산업 종목 간 주가 네트워크 구축",
+        "authors": [
+            156,
+            1
+        ],
+        "author_marks": [
+            "1",
+            "*"
+        ],
+        "venue": "2026 Spring Conference of the Korean Institute of Industrial and Management Systems (KIAMS)",
+        "venue_ko": "2026 한국산업경영시스템학회 춘계학술대회",
+        "presentation_type": "poster",
+        "language": "Korean",
+        "awards": 0,
+        "citations": {
+            "apa": "Ha, S., & Choi, I. (2026, May). Constructing stock network topology of Korean defense companies [Poster presentation]. 2026 Spring Conference of the Korean Institute of Industrial and Management Systems.",
+            "mla": "Ha, Seung-Min, and Insu Choi. \"Constructing Stock Network Topology of Korean Defense Companies.\" 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
+            "chicago": "Ha, Seung-Min, and Insu Choi. \"Constructing Stock Network Topology of Korean Defense Companies.\" Poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
+            "harvard": "Ha, S. & Choi, I. (2026) 'Constructing stock network topology of Korean defense companies', poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May.",
+            "vancouver": "Ha S, Choi I. Constructing stock network topology of Korean defense companies. Poster presented at: 2026 Spring Conference of the Korean Institute of Industrial and Management Systems; 2026 May.",
+            "korean": "하승민, 최인수. (2026). 국내 방위산업 종목 간 주가 네트워크 구축. 2026 한국산업경영시스템학회 춘계학술대회 발표논문.",
+            "bibtex": "@inproceedings{ha2026constructing,\n  title = {{Constructing Stock Network Topology of Korean Defense Companies}},\n  author = {Ha, S. and Choi, I.},\n  booktitle = {2026 Spring Conference of the Korean Institute of Industrial and Management Systems (KIAMS)},\n  year = {2026},\n}"
+        }
+    },
+    {
+        "type": "conference",
+        "indexing_group": "Domestic Conference",
+        "code_label": "C",
+        "published_date": "2026-05-29",
+        "year": 2026,
+        "title": "Mitigating Simulation Uncertainty via Time-Series Resampling Techniques",
+        "title_ko": "시계열 표본화 기법을 활용한 모의검증 신뢰도 제고 방안 연구",
         "authors": [
             155,
             1
@@ -21,13 +52,13 @@
         "language": "Korean",
         "awards": 0,
         "citations": {
-            "apa": "Lee, Y., & Choi, I. (2026, May). Mitigating backtest overfitting via time-series data augmentation [Poster presentation]. 2026 Spring Conference of the Korean Institute of Industrial and Management Systems.",
-            "mla": "Lee, Yuseop, and Insu Choi. \"Mitigating Backtest Overfitting via Time-Series Data Augmentation.\" 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
-            "chicago": "Lee, Yuseop, and Insu Choi. \"Mitigating Backtest Overfitting via Time-Series Data Augmentation.\" Poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
-            "harvard": "Lee, Y. & Choi, I. (2026) 'Mitigating backtest overfitting via time-series data augmentation', poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May.",
-            "vancouver": "Lee Y, Choi I. Mitigating backtest overfitting via time-series data augmentation. Poster presented at: 2026 Spring Conference of the Korean Institute of Industrial and Management Systems; 2026 May.",
-            "korean": "이유섭, 최인수. (2026). 시계열 데이터 증강 기법을 활용한 백테스팅 과적합 완화 방안에 관한 연구. 2026 한국산업경영시스템학회 춘계학술대회 발표논문.",
-            "bibtex": "@inproceedings{lee2026mitigating,\n  title = {{Mitigating Backtest Overfitting via Time-Series Data Augmentation}},\n  author = {Lee, Y. and Choi, I.},\n  booktitle = {2026 Spring Conference of the Korean Institute of Industrial and Management Systems (KIAMS)},\n  year = {2026},\n}"
+            "apa": "Lee, Y., & Choi, I. (2026, May). Mitigating simulation uncertainty via time-series resampling techniques [Poster presentation]. 2026 Spring Conference of the Korean Institute of Industrial and Management Systems.",
+            "mla": "Lee, Yuseop, and Insu Choi. \"Mitigating Simulation Uncertainty via Time-Series Resampling Techniques.\" 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
+            "chicago": "Lee, Yuseop, and Insu Choi. \"Mitigating Simulation Uncertainty via Time-Series Resampling Techniques.\" Poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May 2026.",
+            "harvard": "Lee, Y. & Choi, I. (2026) 'Mitigating simulation uncertainty via time-series resampling techniques', poster presented at the 2026 Spring Conference of the Korean Institute of Industrial and Management Systems, May.",
+            "vancouver": "Lee Y, Choi I. Mitigating simulation uncertainty via time-series resampling techniques. Poster presented at: 2026 Spring Conference of the Korean Institute of Industrial and Management Systems; 2026 May.",
+            "korean": "이유섭, 최인수. (2026). 시계열 표본화 기법을 활용한 모의검증 신뢰도 제고 방안 연구. 2026 한국산업경영시스템학회 춘계학술대회 발표논문.",
+            "bibtex": "@inproceedings{lee2026mitigating,\n  title = {{Mitigating Simulation Uncertainty via Time-Series Resampling Techniques}},\n  author = {Lee, Y. and Choi, I.},\n  booktitle = {2026 Spring Conference of the Korean Institute of Industrial and Management Systems (KIAMS)},\n  year = {2026},\n}"
         }
     },
     {
