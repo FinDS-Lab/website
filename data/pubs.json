@@ -1662,18 +1662,26 @@
     {
         "type": "conference",
         "indexing_group": "Domestic Conference",
+        "code_label": "C",
         "published_date": "2024-06-27",
         "year": 2024,
         "title": "Comparative Analysis of Regional Economy and Real Estate Market Indicators on Birth Rates Using Explainable Machine Learning and Multivariate Models",
         "title_ko": "설명 가능한 기계 학습 모형과 다변량 모형을 활용한 지역 경제와 부동산 시장 지표가 출산율에 미치는 영향의 비교 분석",
         "authors": [
-            1
+            1,
+            44,
+            45,
+            20,
+            29,
+            2
         ],
         "author_marks": [
-            "1"
-        ],
-        "corresponding_authors": [
-            2
+            "1",
+            "",
+            "",
+            "",
+            "",
+            "*"
         ],
         "venue": "2024 Summer Conference of the Korean Data Analysis Society (KDAS)",
         "venue_ko": "2024 한국자료분석학회 하계학술논문발표대회",
