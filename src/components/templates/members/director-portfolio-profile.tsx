@@ -775,7 +775,7 @@ export const MembersDirectorPortfolioProfileTemplate = () => {
                   I am an <span className="font-bold text-gray-900">assistant professor</span> at <span className="font-bold text-gray-900">Gachon University</span> and the <span className="font-bold text-gray-900">director</span> of <span className="font-bold text-gray-900">FINDS Lab</span>, with research interests spanning{' '}
                   <span className="font-bold text-primary">Financial Data Science</span>,{' '}
                   <span className="font-bold text-primary">Business Analytics</span>, and{' '}
-                  <span className="font-bold text-primary">Data-Informed Decision Making</span>. My work combines data science with financial engineering to address practical challenges in finance and business.
+                  <span className="font-bold text-primary">Data-Informed Decision Making</span>.
                 </p>
                 <p className="text-gray-700 leading-relaxed text-sm md:text-base font-semibold mb-16">
                   My research focuses on three main areas:

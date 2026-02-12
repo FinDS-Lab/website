@@ -124,7 +124,7 @@ export const LocationTemplate = () => {
                 {/* Title */}
                 <div className="mb-16 md:mb-20">
                   <h3 className="text-lg md:text-xl font-bold text-white">FINDS Lab</h3>
-                  <p className="text-xs text-gray-400 mt-2">금융인텔리전스연구실</p>
+                  <p className="text-xs text-gray-400 mt-2">가천대학교 금융데이터인텔리전스 연구실</p>
                 </div>
                 
                 {/* Address - KOR */}
