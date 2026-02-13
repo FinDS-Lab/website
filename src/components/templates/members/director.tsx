@@ -439,16 +439,22 @@ export const MembersDirectorTemplate = () => {
 
   // Academic Service Statistics
   const serviceStats = useMemo(() => {
-    if (!activitiesData) return { total: 4, editorial: 0, membership: 4, committee: 0, chair: 0, journalReviewer: 0, conferenceReviewer: 0 }
+    if (!activitiesData) return { total: 0, editorial: 0, membership: 0, committee: 0, chair: 0, journalReviewer: 0, conferenceReviewer: 0 }
     const acts = activitiesData.activities
+    const editorial = acts.filter(a => a.category === 'editorial').length
+    const membership = acts.filter(a => a.category === 'membership').length
+    const committee = acts.filter(a => a.category === 'committee').length
+    const chair = acts.filter(a => a.category === 'chair').length
+    const journalReviewer = acts.filter(a => a.category === 'journal').length
+    const conferenceReviewer = acts.filter(a => a.category === 'conference').length
     return {
-      total: 0 + 4 + acts.filter(a => a.category === 'committee').length + acts.filter(a => a.category === 'chair').length + acts.filter(a => a.category === 'journal').length + acts.filter(a => a.category === 'conference').length,
-      editorial: 0, // Coming soon
-      membership: 4, // Hardcoded (lifetime memberships)
-      committee: acts.filter(a => a.category === 'committee').length,
-      chair: acts.filter(a => a.category === 'chair').length,
-      journalReviewer: acts.filter(a => a.category === 'journal').length,
-      conferenceReviewer: acts.filter(a => a.category === 'conference').length,
+      total: editorial + membership + committee + chair + journalReviewer + conferenceReviewer,
+      editorial,
+      membership,
+      committee,
+      chair,
+      journalReviewer,
+      conferenceReviewer,
     }
   }, [activitiesData])
 

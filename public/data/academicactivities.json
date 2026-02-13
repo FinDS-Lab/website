@@ -514,6 +514,50 @@
       "type": "Committee Member",
       "period": "2021-06-01 – 2021-08-31",
       "url": "https://www.youtube.com/watch?v=KGd4DGsfKS8"
+    },
+    {
+      "id": 55,
+      "category": "editorial",
+      "name": "Mathematics",
+      "name_ko": "Mathematics",
+      "publisher": "MDPI",
+      "type": "SCIE",
+      "role": "Guest Editor",
+      "specialIssue": "Advances in Data-Driven Modeling: Theory and Applications",
+      "since": "2026-02",
+      "url": "https://www.mdpi.com/journal/mathematics"
+    },
+    {
+      "id": 56,
+      "category": "membership",
+      "name": "Korean Institute of Industrial Engineers (KIIE)",
+      "name_ko": "대한산업공학회",
+      "type": "Lifetime Member",
+      "since": "2025-06"
+    },
+    {
+      "id": 57,
+      "category": "membership",
+      "name": "Korean Securities Association (KSA)",
+      "name_ko": "한국증권학회",
+      "type": "Lifetime Member",
+      "since": "2023-09"
+    },
+    {
+      "id": 58,
+      "category": "membership",
+      "name": "Korean Academic Society of Business Administration (KASBA)",
+      "name_ko": "한국경영학회",
+      "type": "Lifetime Member",
+      "since": "2023-06"
+    },
+    {
+      "id": 59,
+      "category": "membership",
+      "name": "Korea Intelligent Information Systems Society (KIISS)",
+      "name_ko": "한국지능정보시스템학회",
+      "type": "Lifetime Member",
+      "since": "2022-06"
     }
   ]
 }

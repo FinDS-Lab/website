@@ -1297,6 +1297,16 @@ export const MembersDirectorAcademicTemplate = () => {
     return activitiesData.activities.filter(a => a.category === 'journal').sort((a, b) => a.name.localeCompare(b.name))
   }, [activitiesData])
 
+  const editorialBoards = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'editorial')
+  }, [activitiesData])
+
+  const memberships = useMemo(() => {
+    if (!activitiesData) return []
+    return activitiesData.activities.filter(a => a.category === 'membership')
+  }, [activitiesData])
+
   const committees = useMemo(() => {
     if (!activitiesData) return []
     return activitiesData.activities.filter(a => a.category === 'committee')
@@ -1560,8 +1570,20 @@ export const MembersDirectorAcademicTemplate = () => {
                       <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${expandedSections.editorialBoard ? 'rotate-180' : ''}`}/>
                     </button>
                     {expandedSections.editorialBoard && (
-                      <div className="px-16 md:px-20 pb-16 md:pb-20">
-                        <div className="py-16 text-center text-xs text-gray-400">Coming soon...</div>
+                      <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
+                        {editorialBoards.map((item) => (
+                          <div key={item.id} className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name} ({item.publisher}, {item.type})</p>
+                              {item.specialIssue && <p className="text-[10px] md:text-xs text-gray-400 mt-1">Special Issue: {item.specialIssue}</p>}
+                            </div>
+                            <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                              <span className="px-6 py-2 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto" style={{backgroundColor: '#D6B14D'}}>{item.role}</span>
+                              <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     )}
                   </div>
@@ -1579,49 +1601,23 @@ export const MembersDirectorAcademicTemplate = () => {
                     </button>
                     {expandedSections.academicMemberships && (
                       <div className="px-16 md:px-20 pb-16 md:pb-20 space-y-8">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Institute of Industrial Engineers (KIIE)</p>
+                        {memberships.map((item) => (
+                          <div key={item.id} className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
+                            <div className="flex-1 min-w-0">
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name}</p>
+                            </div>
+                            <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
+                              <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.type}</span>
+                              <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
+                              <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
+                            </div>
                           </div>
-                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2025-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2025-06 – Present</span>
-                          </div>
-                        </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Securities Association (KSA)</p>
-                          </div>
-                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-09 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-09 – Present</span>
-                          </div>
-                        </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korean Academic Society of Business Administration (KASBA)</p>
-                          </div>
-                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2023-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2023-06 – Present</span>
-                          </div>
-                        </div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs md:text-sm font-semibold text-gray-700">Korea Intelligent Information Systems Society (KIISS)</p>
-                          </div>
-                          <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                            <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">Lifetime Member</span>
-                            <span className="md:hidden text-[10px] text-gray-400 font-medium">2022-06 – Present</span>
-                            <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">2022-06 – Present</span>
-                          </div>
-                        </div>
+                        ))}
                       </div>
                     )}
                   </div>
+
+                  {/* Committee Members */}
 
                   {/* Program Committee */}
                   <div className="border-b border-gray-100">
