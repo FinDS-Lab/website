@@ -703,7 +703,7 @@ export const ProjectsTemplate = () => {
                             const typeTextColors: Record<string, string> = {
                               government: 'text-white',
                               industry: 'text-white',
-                              institution: 'text-gray-800',
+                              institution: 'text-white',
                               academic: 'text-white',
                             }
                             
@@ -725,7 +725,7 @@ export const ProjectsTemplate = () => {
                                   <div className="flex items-center gap-8">
                                     {/* Type | Role Label */}
                                     <span className={`text-[9px] font-bold tracking-wide ${
-                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                      project.type === 'institution' ? 'text-white' : 'text-white'
                                     }`}>
                                       {config?.label || project.type} Project
                                     </span>
@@ -765,7 +765,7 @@ export const ProjectsTemplate = () => {
                                         project.type === 'academic' ? 'bg-[#E8889C]' : 'bg-gray-300'
                                       }`}>
                                         <span className={`text-[9px] font-bold tracking-wide ${
-                                          project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                          project.type === 'institution' ? 'text-white' : 'text-white'
                                         }`}>
                                           {config?.label || project.type} Project
                                         </span>

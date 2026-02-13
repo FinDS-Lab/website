@@ -1580,7 +1580,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                               <div className="flex items-center gap-4">
                                 <span className="px-6 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-bold rounded">{item.type}</span>
-                                <span className="px-6 py-2 bg-[#FFBAC4] text-[#333] text-[10px] md:text-xs font-bold rounded">{item.role}</span>
+                                <span className="px-6 py-2 bg-[#FFBAC4] text-white text-[10px] md:text-xs font-bold rounded">{item.role}</span>
                               </div>
                               <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
@@ -1610,7 +1610,7 @@ export const MembersDirectorAcademicTemplate = () => {
                               <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name}</p>
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                              <span className="px-6 py-2 bg-[#FFBAC4] text-[#333] text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.type}</span>
+                              <span className="px-6 py-2 bg-[#FFBAC4] text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.type}</span>
                               <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
                             </div>
@@ -1902,13 +1902,13 @@ export const MembersDirectorAcademicTemplate = () => {
                                   <div className="flex items-center gap-8">
                                     {/* Type | Role Label */}
                                     <span className={`text-[9px] font-bold tracking-wide ${
-                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                      project.type === 'institution' ? 'text-white' : 'text-white'
                                     }`}>
                                       {typeLabels[project.type]} Project
                                     </span>
-                                    <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-gray-400' : 'bg-white/50'}`} />
+                                    <span className={`w-px h-12 ${project.type === 'institution' ? 'bg-white/50' : 'bg-white/50'}`} />
                                     <span className={`text-[9px] font-bold tracking-wide ${
-                                      project.type === 'institution' ? 'text-gray-800' : 'text-white'
+                                      project.type === 'institution' ? 'text-white' : 'text-white'
                                     }`}>
                                       {directorRole}
                                     </span>

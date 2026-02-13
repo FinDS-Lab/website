@@ -1651,7 +1651,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                             <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
                               <div className="flex items-center gap-4">
                                 <span className="px-6 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-bold rounded">{item.type}</span>
-                                <span className="px-6 py-2 bg-[#FFBAC4] text-[#333] text-[10px] md:text-xs font-bold rounded">{item.role}</span>
+                                <span className="px-6 py-2 bg-[#FFBAC4] text-white text-[10px] md:text-xs font-bold rounded">{item.role}</span>
                               </div>
                               <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
@@ -1681,7 +1681,7 @@ export const MembersDirectorPortfolioAcademicTemplate = () => {
                               <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name}</p>
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                              <span className="px-6 py-2 bg-[#FFBAC4] text-[#333] text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.type}</span>
+                              <span className="px-6 py-2 bg-[#FFBAC4] text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.type}</span>
                               <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
                             </div>
