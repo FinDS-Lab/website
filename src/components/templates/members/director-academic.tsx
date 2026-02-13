@@ -1574,12 +1574,14 @@ export const MembersDirectorAcademicTemplate = () => {
                         {editorialBoards.map((item) => (
                           <div key={item.id} className="flex flex-col md:flex-row md:items-center md:justify-between p-12 bg-white rounded-lg border border-gray-100 hover:border-[#D6B14D]/30 transition-colors gap-4 md:gap-8">
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name} ({item.type})</p>
-                              <p className="text-[10px] md:text-xs text-gray-400 mt-1">{item.publisher}</p>
+                              <p className="text-xs md:text-sm font-semibold text-gray-700">{item.name}</p>
                               {item.specialIssue && <p className="text-[10px] md:text-xs text-gray-400 mt-1">Special Issue: {item.specialIssue}</p>}
                             </div>
                             <div className="flex flex-col md:flex-row md:items-center gap-4 shrink-0">
-                              <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded self-start md:self-auto">{item.role}</span>
+                              <div className="flex items-center gap-4">
+                                <span className="px-6 py-2 bg-gray-800 text-white text-[10px] md:text-xs font-bold rounded">{item.role}</span>
+                                <span className="px-6 py-2 bg-[#D6B14D] text-white text-[10px] md:text-xs font-bold rounded">{item.type}</span>
+                              </div>
                               <span className="md:hidden text-[10px] text-gray-400 font-medium">{item.since} – Present</span>
                               <span className="hidden md:inline-flex items-center px-10 py-4 bg-white border border-gray-200 rounded-full text-[10px] md:text-xs font-bold text-gray-600 shadow-sm shrink-0 whitespace-nowrap">{item.since} – Present</span>
                             </div>
