@@ -1816,7 +1816,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             <span className="text-gray-500">&nbsp;Industry {indCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8D688]">{instCount}</span>
-                            <span className="text-gray-500">&nbsp;Institution {instCount === 1 ? 'Project' : 'Projects'}</span>
+                            <span className="text-gray-500">&nbsp;Institutional {instCount === 1 ? 'Project' : 'Projects'}</span>
                             <span className="text-gray-300">&nbsp;·&nbsp;</span>
                             <span className="font-bold text-[#E8889C]">{acadCount}</span>
                             <span className="text-gray-500">&nbsp;Research {acadCount === 1 ? 'Project' : 'Projects'}</span>
@@ -1850,7 +1850,7 @@ export const MembersDirectorAcademicTemplate = () => {
                             const typeLabels: Record<string, string> = {
                               government: 'Government',
                               industry: 'Industry',
-                              institution: 'Institution',
+                              institution: 'Institutional',
                               academic: 'Research',
                             }
                             const typeBorderColors: Record<string, string> = {

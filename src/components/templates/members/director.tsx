@@ -1105,7 +1105,7 @@ export const MembersDirectorTemplate = () => {
                       <div className="absolute top-0 left-16 right-16 h-[2px] bg-gradient-to-r from-[#E8D688]/80 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="flex flex-col items-center text-center">
                         <span className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#E8D688'}}>{projectStats.institution}</span>
-                        <span className="text-[10px] md:text-xs font-medium text-gray-500">Institution</span>
+                        <span className="text-[10px] md:text-xs font-medium text-gray-500">Institutional</span>
                       </div>
                     </div>
                     <div className="group relative bg-white border border-gray-100 rounded-2xl p-16 md:p-20 hover:border-[#E8889C]/50 hover:shadow-lg hover:shadow-[#E8889C]/10 transition-all duration-300">
